@@ -96,13 +96,15 @@
          "You have old version of aplication \n Downalod update now \n\n Click button below:",
          "Files are not correct",
          "Files of udapte are inncorrect. \n Try download again.",
-         "No backup folder."
+         "No backup folder.",
+         "Automatic restart: \n"
       ],
       [  "Wystąpił problem z aplikacją. Sprawdź zgodność pliku lub pobierz najnowszą wersję.",
          "Masz starą wersję aplikacji \n Pobierz aktualizację teraz \n\n Kliknij przycisk poniżej:",
          "Pliki nie są poprawne",
          "Pliki aplikacji są niepoprawne. \n Spróbuj pobrać jeszcze raz.",
-         "Brak folderu kopii zapasowej."
+         "Brak folderu kopii zapasowej.",
+         "Automatyczny restart za: \n"
       ]
    ],
    "alert_download_button": ["Download", "Pobierz"],

@@ -9,7 +9,7 @@
     "comment_sound_notification": " 0 - off, 1 - on ",
     "__auto_update__": false,
     "comment_auto_udapte": " 0 - off, 1 - on ",
-    "__capacity__": 0,
+    "__capacity__": 4,
     "comment_capacity": " 0 - 500Kbs, 1 - 1000Kbs, 2 - 2000Kbs, 3 - 5000Kbs, 4 - Unlimited ",
     "__language__": 0,
     "comment_language": " 0 - English, 1 - Polish ",
