@@ -1,6 +1,7 @@
 """ Import """
 """ Import system and operating system packages """
 import os  # OS-related operations (paths, directories, environment variables, etc.)
+import sys
 import shutil  # File and directory manipulation (copying, moving, deleting)
 import subprocess  # Running external system processes
 import traceback # For save error in logs
@@ -762,7 +763,6 @@ class controller_update:
                 self.main_self.controller_download.wait() # Wait
                 self.main_self.controller_download.deleteLater() # Delete
                 self.main_self.controller_download = None # Set defoult 
-                print('tak')
                 self.restart() # Call restart fucntion.
             elif value == 10: # Error 
                 self.main_self.main_update_progress.setValue(0) # Reset progress bar
@@ -792,42 +792,9 @@ class controller_update:
     """ Restart """
     def restart(self):
         try:
-            print('restart')
-            self.update_time_sec = 5 # Set defoult
-            timer = QTimer() # Create timer
-            timer.timeout.connect(self.update_time) # Connect update time function
-            timer.start(1000) # Start timer
-            self.main_self.alert_text_label.setText(self.main_self.settings_translate_file['alert_text_label'][self.main_self.settings_config_file['__language__']][5])
-            self.main_self.controller_alert.open() # Open alert
-        except Exception:  # Except if problem with code
-            print(f"{Exception} \n {traceback.format_exc()}")
-            self.main_self.controller_report.write_log(f"{Exception} \n {traceback.format_exc()}")
-            self.main_self.alert_text_label.setText(self.main_self.settings_translate_file['alert_text_label'][self.main_self.settings_config_file['__language__']][0])
-            self.main_self.controller_alert.open()
-#_______________________________________________________________________________________________________________________
-    """ Update time """
-    def update_time(self):
-        try:  # Try open app
-            print(self.update_time_sec)
-            self.main_self.alert_text_label.setText(str(self.main_self.alert_text_label.text())[:-2]+str(self.update_time_sec)+'s')
-            if self.update_time_sec == 0:
-                self.timer.stop()
-                self.perform_restart()
-            self.update_time_sec -= 1
-        except Exception:  # Except if problem with code
-            print(f"{Exception} \n {traceback.format_exc()}")
-            self.main_self.controller_report.write_log(f"{Exception} \n {traceback.format_exc()}")
-            self.main_self.alert_text_label.setText(self.main_self.settings_translate_file['alert_text_label'][self.main_self.settings_config_file['__language__']][0])
-            self.main_self.controller_alert.open()
-#_______________________________________________________________________________________________________________________
-    """ Perform restart """
-    def perform_restart(self):
-        try:  # Try open app
-            print('preform restat')
-            subprocess.run(['/bin/bash', self.main_self.main_path+'/TickerK8.sh'])  # Open app.
+            subprocess.Popen(['/bin/bash', self.main_self.main_path+'/Launcher.sh'])  # Open app.
             sys.exit(0) # Exit application
         except Exception:  # Except if problem with code
-            print(f"{Exception} \n {traceback.format_exc()}")
             self.main_self.controller_report.write_log(f"{Exception} \n {traceback.format_exc()}")
             self.main_self.alert_text_label.setText(self.main_self.settings_translate_file['alert_text_label'][self.main_self.settings_config_file['__language__']][0])
             self.main_self.controller_alert.open()
