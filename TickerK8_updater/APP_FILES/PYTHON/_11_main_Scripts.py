@@ -193,7 +193,8 @@ class controller_main:
     """ Open TcikerK8 App """
     def open_TickerK8(self):
         try:  # Try open app
-            subprocess.run(['/bin/bash', self.main_self.main_path+'/TickerK8.sh'])  # Open app.
+            subprocess.Popen(['/bin/bash', self.main_self.main_path+'/TickerK8.sh'])  # Open app.
+            sys.exit(0)
         except Exception:  # Except if problem with code
             self.main_self.controller_report.write_log(f"{Exception} \n {traceback.format_exc()}")
             self.main_self.alert_text_label.setText(self.main_self.settings_translate_file['alert_text_label'][self.main_self.settings_config_file['__language__']][0])
