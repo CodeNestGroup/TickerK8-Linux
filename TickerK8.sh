@@ -1,6 +1,8 @@
 #!/bin/bash
-# Aktywowanie wirtualnego środowiska
-source /home/admin/PycharmProjects/TickerK8/.venv/bin/activate
 
-# Uruchomienie aplikacji
-python /home/admin/PycharmProjects/TickerK8/TickerK8_app/app_files/PYTHON/_0000_app_base.py
+PROJECT_DIR="$(cd "$(dirname "$0")"; pwd)"
+VENV_DIR="$PROJECT_DIR/.venv"
+
+source "$VENV_DIR/bin/activate"
+
+python "$PROJECT_DIR/TickerK8_app/app_files/PYTHON/_0000_app_base.py"

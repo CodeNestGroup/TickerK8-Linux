@@ -1,5 +1,5 @@
 {
-  "name": "TickerK8_Pre_Alpha",
-  "published_at": "2025-03-18T15:01:32Z",
-  "body": "## What's Changed\r\n* Linux x windows by @Bartosz-magister in https://github.com/CodeNestGroup/TickerK8/pull/1\r\n\r\n## New Contributors\r\n* @Bartosz-magister made their first contribution in https://github.com/CodeNestGroup/TickerK8/pull/1\r\n\r\n**Full Changelog**: https://github.com/CodeNestGroup/TickerK8/commits/TickerK8_Pre_Alpha"
+  "name": "TickerK8 PRE ALPHA 0.0.2.1",
+  "published_at": "2025-04-06T00:01:00Z",
+  "body": " Corrected: \n - Opening main application, \n - Opening changelog \n - Added new icons. \n - All debug of downloading."
 }
