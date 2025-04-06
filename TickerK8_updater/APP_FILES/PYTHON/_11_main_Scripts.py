@@ -1,7 +1,7 @@
 """ Import """
 """ Import system and operating system packages """
 import os  # OS-related operations (paths, directories, environment variables, etc.)
-import sys
+import sys # Sys operations (exit).
 import shutil  # File and directory manipulation (copying, moving, deleting)
 import subprocess  # Running external system processes
 import traceback # For save error in logs
@@ -892,7 +892,7 @@ class controller_download(QThread):
         except:
             pass
 #______________________________________________________________________________________________________________________
-    """ Start setup """
+    """ Backup """
     def backup(self):
         try:
             self.progress_index.emit(0) # Emit signal 0
