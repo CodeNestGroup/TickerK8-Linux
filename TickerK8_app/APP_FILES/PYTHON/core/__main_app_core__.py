@@ -32,7 +32,7 @@ class app_controller(QWidget):
 #______________________________________________________________________________________________________________________
     """ Set size login"""
     def set_size_login(self):
-        x, y, width, height = int(self.primary_screen_size.width()//3), int(self.primary_screen_size.height()//4), int(self.primary_screen_size.width()//3), int(self.primary_screen_size.height()//2) # Set size
+        x, y, width, height = int(self.primary_screen_size.width()//4), int(self.primary_screen_size.height()//4), int(self.primary_screen_size.width()//2), int(self.primary_screen_size.height()//2) # Set size
         self.setGeometry(QRect(x, y, width, height)) # Set geometry 
 #######################################################################################################################
     

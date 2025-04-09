@@ -10,6 +10,7 @@ from PyQt5.QtWidgets import (
     QLineEdit, # Simple line edit
     QGridLayout # Grid layout
 )
+from PyQt5.QtCore import Qt
 #______________________________________________________________________________________________________________________
 """ Import login ui """
 from .login_ui import *
@@ -22,12 +23,13 @@ class Login_widget(QWidget):
     """ Init, creating items, set base variables like paths, screen size, etc. """
     def __init__(self, parent):
         super().__init__()
+        self.setAttribute(Qt.WA_StyledBackground, True) # Force widget to draw background
         self.setParent(parent) # Set parent
 #______________________________________________________________________________________________________________________
         """ Set paths, file name"""
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2]) # Set main path, path to TickerK8 folder.
-        self.login_config = json.load(open(self.main_path+'/CONFIG/LOGIN/login_config.json', 'r')) # Get login config data
-        self.login_translate = json.load(open(self.main_path+'/CONFIG/LOGIN/login_translate.json', 'r')) # Get login translate data
+        self.global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data
+        self.global_translate = json.load(open(self.main_path+'/CONFIG/login/login_translate.json', 'r')) # Get global translate data
 #______________________________________________________________________________________________________________________
         """ Create objects """
         self.login_layout = QGridLayout(self) # Creat grid layout

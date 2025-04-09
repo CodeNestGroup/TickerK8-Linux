@@ -40,12 +40,12 @@ def login_ui(self):
 #______________________________________________________________________________________________________________________
     """ Set layout """
     self.login_layout.addWidget(self.login_title_label, 5, 0, 5, 100)
-    self.login_layout.addWidget(self.login_day_night_button, 20, 40, 5, 20)
+    self.login_layout.addWidget(self.login_day_night_button, 15, 45, 15, 10)
     self.login_layout.addWidget(self.login_login_lineedit, 40, 10, 5, 80)
     self.login_layout.addWidget(self.login_password_lineedit, 55, 10, 5, 80)
-    self.login_layout.addWidget(self.login_login_button, 70, 40, 5, 20)
-    self.login_layout.addWidget(self.login_register_button, 90, 25, 5, 20)
-    self.login_layout.addWidget(self.login_forgot_password_button, 90, 55, 5, 20)
+    self.login_layout.addWidget(self.login_login_button, 70, 30, 3, 40)
+    self.login_layout.addWidget(self.login_register_button, 87, 15, 3, 30)
+    self.login_layout.addWidget(self.login_forgot_password_button, 87, 55, 3, 30)
     self.login_layout.setSpacing(0)
     self.login_layout.setContentsMargins(0,0,0,0)
     for enc in range(100):
@@ -75,14 +75,13 @@ def login_ui(self):
 """ Login style """
 def login_reload_style(self):
     #self.login_day_night_button.setIcon(QIcon(self.main_path+'/STYLE/IMG/ICONS/'+))
-    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/LOGIN/'+self.login_config['__theme__']+'.css')).read())
+    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/LOGIN/'+self.global_config['__theme__']+'.css')).read())
 
 #######################################################################################################################
 """ Logi retranslate"""
 def login_retranslate(self):
     _t = self.login_translate # Translate texts 
     _l = self.login_config['__language__'] # Laguage 
-
     self.login_title_label.setText(_t['login_title_label'][_l])
     self.login_login_lineedit.setPlaceholderText(_t['login_login_lineedit'][_l])
     self.login_password_lineedit.setPlaceholderText(_t['login_password_lineedit'][_l])

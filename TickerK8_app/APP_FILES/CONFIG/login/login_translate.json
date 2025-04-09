@@ -12,7 +12,7 @@
         "Hasło"
     ],
     "login_login_button": [
-        "Login in",
+        "Log in",
         "Zaloguj się"
     ],
     "login_register_button": [
@@ -20,7 +20,7 @@
         "Zarejestrój się"
     ],
     "login_forgot_password_button": [
-        "Recover password",
-        "Odzyskaj hasło"
+        "Recover\npassword",
+        "Odzyskaj\nhasło"
     ]
 }
