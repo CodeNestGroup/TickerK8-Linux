@@ -48,9 +48,19 @@ class Register_widget(QWidget):
         self.register_country_combobox = QComboBox(self) # Create country drop down list
         self.register_password_subtitle_label = QLabel(self) # Create password sub title label 
         self.register_password_lineedit = QLineEdit(self) # Create password input line
+        self.register_password_requirements_label = QLabel(self) # Create password requirments label 
         self.register_password_show_button = QPushButton(self) # Create password show button
         self.register_password_confirm_lineedit = QLineEdit(self) # Create password confirm input line 
         self.register_password_confirm_show_button = QPushButton(self) # Create password confirm show button
         self.register_register_button = QPushButton(self) # Create register button
-        self.register_exit_button = QPushButton(self) # Create exit button 
+        self.register_exit_button = QPushButton(self) # Create exit button
+#______________________________________________________________________________________________________________________
+        """ Call functions """
+        register_ui(self)
+        register_reload_style(self)
+        register_retranslate(self)
+#______________________________________________________________________________________________________________________
+        """ Connect local functions """
+        self.register_password_show_button.clicked.connect(lambda: show_hide_password(self))
+        self.register_password_confirm_show_button.clicked.connect(lambda: show_hide_confirm_password(self))
 #######################################################################################################################

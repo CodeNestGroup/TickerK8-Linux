@@ -81,7 +81,7 @@ def login_reload_style(self):
 """ Logi retranslate"""
 def login_retranslate(self):
     _t = self.login_translate # Translate texts 
-    _l = self.login_config['__language__'] # Laguage 
+    _l = self.global_config['__language__'] # Laguage 
     self.login_title_label.setText(_t['login_title_label'][_l])
     self.login_login_lineedit.setPlaceholderText(_t['login_login_lineedit'][_l])
     self.login_password_lineedit.setPlaceholderText(_t['login_password_lineedit'][_l])
