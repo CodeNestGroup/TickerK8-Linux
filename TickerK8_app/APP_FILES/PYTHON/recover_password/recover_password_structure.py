@@ -50,5 +50,8 @@ class Recover_password_widget(QWidget):
         recover_password_ui(self)
         recover_password_style(self)
         recover_password_translate(self)
-    
+#______________________________________________________________________________________________________________________
+        """ Connect functions """
+        self.recover_password_password_show_button.clicked.connect(lambda: show_hide_password(self))
+        self.recover_password_confirm_password_show_button.clicked.connect(lambda: show_hide_confirm_password(self))
 #######################################################################################################################

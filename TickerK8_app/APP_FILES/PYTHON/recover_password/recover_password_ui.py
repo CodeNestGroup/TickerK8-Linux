@@ -45,22 +45,22 @@ def recover_password_ui(self):
 #______________________________________________________________________________________________________________________
     """ Set layout """
     self.recover_password_layout.addWidget(self.recover_password_title_label, 5, 0, 5, 100)
-    self.recover_password_layout.addWidget(self.recover_password_requirments_label, , , ,)
-    self.recover_password_layout.addWidget(self.recover_password_password_lineedit, , , , )
-    self.recover_password_layout.addWidget(self.recover_password_password_show_button)
-    self.recover_password_layout.addWidget(self.recover_password_confirm_password_lineedit, , , , )
-    self.recover_password_layout.addWidget(self.recover_password_confirm_password_show_button)
-    self.recover_password_layout.addWidget(self.recover_password_code_label, , , , )
-    self.recover_password_layout.addWidget(self.recover_password_time_label, , , , )
-    self.recover_password_layout.addWidget(self.recover_password_code_lineedit, , , , )
-    self.recover_password_layout.addWidget(self.recover_password_code_button, , , , )
-    self.recover_password_layout.addWidget(self.recover_password_confirm_button, , , , )
-    self.recover_password_layout.addWidget(self.recover_password_exit_button, , , , )
+    self.recover_password_layout.addWidget(self.recover_password_password_lineedit, 20, 5, 2, 40)
+    self.recover_password_layout.addWidget(self.recover_password_password_show_button, 20, 77, 2, 18)
+    self.recover_password_layout.addWidget(self.recover_password_requirments_label, 20, 45, 8, 32)
+    self.recover_password_layout.addWidget(self.recover_password_confirm_password_lineedit, 26, 5, 2, 40)
+    self.recover_password_layout.addWidget(self.recover_password_confirm_password_show_button, 26, 77, 2, 18)
+    self.recover_password_layout.addWidget(self.recover_password_code_label, 35, 35, 15, 30)
+    self.recover_password_layout.addWidget(self.recover_password_time_label, 55, 40, 5, 20)
+    self.recover_password_layout.addWidget(self.recover_password_code_lineedit, 65, 40, 3, 20)
+    self.recover_password_layout.addWidget(self.recover_password_code_button, 70, 40, 4, 20)
+    self.recover_password_layout.addWidget(self.recover_password_confirm_button, 85, 28, 5, 20)
+    self.recover_password_layout.addWidget(self.recover_password_exit_button, 85, 52, 5, 20)
     self.recover_password_layout.setSpacing(0)
     self.recover_password_layout.setContentsMargins(0,0,0,0)
     for enc in range(100):
         self.recover_password_layout.setRowStretch(enc, 1)
-        self.recover_password_layout.setColumnStretch(enx, 1)
+        self.recover_password_layout.setColumnStretch(enc, 1)
     self.setLayout(self.recover_password_layout)
 #______________________________________________________________________________________________________________________
     """ Set widget """
@@ -77,7 +77,7 @@ def recover_password_ui(self):
     self.recover_password_confirm_password_lineedit.setEchoMode(QLineEdit.Password)
 #______________________________________________________________________________________________________________________
     """ Set size """
-    self..setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.recover_password_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.recover_password_requirments_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.recover_password_password_lineedit.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)

@@ -44,5 +44,8 @@ class Login_widget(QWidget):
         """ Call functions """
         login_ui(self) # Call login ui function
         login_reload_style(self) # Call login style function
-        login_retranslate(self) # Call login retranslte funcion 
+        login_retranslate(self) # Call login retranslte funcion
+#______________________________________________________________________________________________________________________
+        """ Connect functions """
+        self.login_day_night_button.clicked.connect(lambda: change_day_night(self)) # Connect change day night function 
 #######################################################################################################################
