@@ -33,7 +33,22 @@ class Recover_password_widget(QWidget):
 #______________________________________________________________________________________________________________________
         """ Create objects """
         self.recover_password_layout = QGridLayout(self)
-        
-
+        self.recover_password_title_label = QLabel(self)
+        self.recover_password_requirments_label = QLabel(self)
+        self.recover_password_password_lineedit = QLineEdit(self)
+        self.recover_password_password_show_button = QPushButton(self)
+        self.recover_password_confirm_password_lineedit = QLineEdit(self)
+        self.recover_password_confirm_password_show_button = QPushButton(self)
+        self.recover_password_code_label = QLabel(self)
+        self.recover_password_time_label = QLabel(self)
+        self.recover_password_code_lineedit = QLineEdit(self)
+        self.recover_password_code_button = QPushButton(self)
+        self.recover_password_confirm_button = QPushButton(self)
+        self.recover_password_exit_button = QPushButton(self)
+#______________________________________________________________________________________________________________________
+        """ Call functions """
+        recover_password_ui(self)
+        recover_password_style(self)
+        recover_password_translate(self)
     
 #######################################################################################################################
