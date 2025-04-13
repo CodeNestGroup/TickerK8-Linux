@@ -32,3 +32,25 @@ class Main_widget(QWidget):
         self.main_translate = json.load(open(self.main_path+'/CONFIG/main/main_translate.json', 'r')) # Get main translate data
 #______________________________________________________________________________________________________________________
         """ Create objects """
+        self.main_layout = QGridLayout(self)
+        self.top_widget = QWidget(self)
+        self.top_widget_layout = QGridLayout(self.top_widget)
+        self.top_exit_button = QPushButton(self.top_widget)
+        self.top_window_button = QPushButton(self.top_widget)
+        self.top_minimize_button = QPushButton(self.top_widget)
+        self.top_search_button = QPushButton(self.top_widget)
+        self.top_settings_button = QPushButton(self.top_widget)
+        self.mid_widget = QWidget(self)
+        self.mid_widget_layout = QGridLayout(self.mid_widget)
+        self.bottom_widget = QWidget(self)
+        self.bottom_widget_layout = QGridLayout(self.bottom_widget)
+        self.bottom_left_news_button = QPushButton(self)
+        self.bottom_left_chart_button = QPushButton(self)
+        self.bottom_left_stats_button = QPushButton(self)
+        self.botom_center_add_button = QPushButton(self) 
+        self.bottom_right_market_button = QPushButton(self.bottom_widget)
+        self.bottom_right_country_button = QPushButton(self.bottom_widget)
+        self.bottom_right_world_button = QPushButton(self.bottom_widget)
+#______________________________________________________________________________________________________________________
+        """ Call functions """
+#######################################################################################################################
