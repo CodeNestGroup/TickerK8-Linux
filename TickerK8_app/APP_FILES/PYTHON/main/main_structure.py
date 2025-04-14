@@ -29,7 +29,7 @@ class Main_widget(QWidget):
         """ Set paths, file name"""
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2]) # Set main path, path to TickerK8 folder.
         self.global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data
-        self.main_translate = json.load(open(self.main_path+'/CONFIG/main/main_translate.json', 'r')) # Get main translate data
+        self.main_translate = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r')) # Get main translate data
 #______________________________________________________________________________________________________________________
         """ Create objects """
         self.main_layout = QGridLayout(self)
@@ -53,4 +53,9 @@ class Main_widget(QWidget):
         self.bottom_right_world_button = QPushButton(self.bottom_widget)
 #______________________________________________________________________________________________________________________
         """ Call functions """
+        main_ui(self) # Call main ui function
+        main_reload_style(self) # Call main style function 
+        main_retranslate(self) # Call main retranslate function
+#______________________________________________________________________________________________________________________
+        """ Connect  functions """
 #######################################################################################################################

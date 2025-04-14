@@ -30,7 +30,7 @@ class Register_widget(QWidget):
         """ Set paths, file name"""
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2]) # Set main path, path to TickerK8 folder.
         self.global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data
-        self.register_translate = json.load(open(self.main_path+'/CONFIG/register/register_translate.json', 'r')) # Get global translate data
+        self.register_translate = json.load(open(self.main_path+'/CONFIG/register/translate.json', 'r')) # Get global translate data
 #______________________________________________________________________________________________________________________
         """ Create objects """
         self.register_layout = QGridLayout(self) # Create layout

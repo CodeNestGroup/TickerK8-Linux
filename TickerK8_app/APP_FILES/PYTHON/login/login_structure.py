@@ -29,7 +29,7 @@ class Login_widget(QWidget):
         """ Set paths, file name"""
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2]) # Set main path, path to TickerK8 folder.
         self.global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data
-        self.login_translate = json.load(open(self.main_path+'/CONFIG/login/login_translate.json', 'r')) # Get global translate data
+        self.login_translate = json.load(open(self.main_path+'/CONFIG/login/translate.json', 'r')) # Get global translate data
 #______________________________________________________________________________________________________________________
         """ Create objects """
         self.login_layout = QGridLayout(self) # Creat grid layout
