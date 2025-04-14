@@ -102,7 +102,11 @@ class Main_settings_widget(QWidget):
         self.language_langauge_content_combobox = QComboBox(self.language_widget)
         self.report_widget = QWidget(self.panel_right_widget)
         self.report_layout = QGridLayout(self.report_widget)
-        
+        self.report_title_label = QLabel(self.report_widget)
+        self.report_auto_report_name_label = QLabel(self.report_widget)
+        self.report_auto_report_content_button = QPushButton(self.report_widget)
+        self.report_send_report_name_label = QLabel(self.report_widget)
+        self.report_send_report_content_button = QPushButton(self.report_widget)
 #______________________________________________________________________________________________________________________
         """ Call functions """
 #______________________________________________________________________________________________________________________
