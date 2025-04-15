@@ -8,7 +8,6 @@ from PyQt5.QtWidgets import (
     QScrollArea, # Simple scroll widget 
     QLabel, # Simple label
     QPushButton, # Simple button
-    QLineEdit, # Simple line edit
     QComboBox, # Drop down list
     QGridLayout, # Grid layout
     QVboxLayout # Vertical layout 
@@ -45,7 +44,7 @@ class Main_settings_widget(QWidget):
         self.navi_update_button = QPushButton(self.navi_widget)
         self.navi_language_button = QPushButton(self.navi_widget)
         self.navi_report_button = QPushButton(self.navi_widget)
-        self.navi_exit_button  = QPushButton(self.main_layout)
+        self.navi_exit_button  = QPushButton(self)
         self.panel_right_scroll = QScrollArea(self)
         self.panel_right_widget = QWidget(self.panel_right_scroll)
         self.panel_right_layout = QVboxLayout(self.panel_right_widget)
