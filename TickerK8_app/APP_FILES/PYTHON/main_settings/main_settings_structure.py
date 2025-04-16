@@ -108,6 +108,9 @@ class Main_settings_widget(QWidget):
         self.report_send_report_content_button = QPushButton(self.report_widget)
 #______________________________________________________________________________________________________________________
         """ Call functions """
+        main_settings_ui(self)
+        main_settings_reload_style(self)
+        main_settings_retranslate(self)
 #______________________________________________________________________________________________________________________
         """ Connect functions """
 #######################################################################################################################

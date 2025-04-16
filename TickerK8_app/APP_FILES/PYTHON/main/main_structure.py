@@ -8,6 +8,7 @@ from PyQt5.QtWidgets import (
     QLabel, # Simple label
     QPushButton, # Simple button
     QLineEdit, # Simple line edit
+    QStackedWidget, # Stacked widget
     QGridLayout # Grid layout
 )
 from PyQt5.QtCore import Qt
@@ -42,6 +43,9 @@ class Main_widget(QWidget):
         self.top_settings_button = QPushButton(self.top_widget)
         self.mid_widget = QWidget(self)
         self.mid_widget_layout = QGridLayout(self.mid_widget)
+        self.mid_object_scroll = QScrollArea(self.mid_widget)
+        self.mid_object_list_scorll = QScrollArea(self.mid_widget)
+        self.mid_news_stackedwidget = QStackedWidget(self.mid_widget)
         self.bottom_widget = QWidget(self)
         self.bottom_widget_layout = QGridLayout(self.bottom_widget)
         self.bottom_left_news_button = QPushButton(self)

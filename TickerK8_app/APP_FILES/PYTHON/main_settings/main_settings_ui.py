@@ -270,6 +270,8 @@ def main_settings_ui(self):
     self.update_widget.setHidden(True)
     self.language_widget.setHidden(True)
     self.report_widget.setHidden(True)
+    self.navi_scroll.setWidgetResizable(True)
+    self.panel_right_scroll.setWidgetResizable(True)
 #______________________________________________________________________________________________________________________
     """ Set label """
     self.user_title_label.setAlignment(Qt.AlignCenter)

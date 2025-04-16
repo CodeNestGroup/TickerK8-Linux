@@ -27,6 +27,9 @@ def main_ui(self):
     self.top_search_button.setObjectName('top_search_button')
     self.top_settings_button.setObjectName('top_settings_button')
     self.mid_widget.setObjectName('mid_widget')
+    self.mid_object_scroll.setObjectName('mid_object_scroll')
+    self.mid_object_list_scorll.setObjectName('mid_object_list_scorll')
+    self.mid_news_stackedwidget.setObjectName('mid_news_stackedwidget')
     self.bottom_widget.setObjectName('bottom_widget')
     self.bottom_left_news_button.setObjectName('bottom_left_news_button')
     self.bottom_left_chart_button.setObjectName('bottom_left_chart_button')
@@ -41,6 +44,9 @@ def main_ui(self):
     self.top_window_button.setProperty('class', 'top_button')
     self.top_minimize_button.setProperty('class', 'top_button')
     self.top_settings_button.setProperty('class', 'top_button')
+    self.mid_object_scroll.setProperty('class', 'mid_subwidget')
+    self.mid_object_list_scorll.setProperty('class', 'mid_subwidget')
+    self.mid_news_stackedwidget.setProperty('class', 'mid_subwidget')
     self.bottom_left_news_button.setProperty('class', 'bottom_button')
     self.bottom_left_chart_button.setProperty('class', 'bottom_button')
     self.bottom_left_stats_button.setProperty('class', 'bottom_button')
@@ -70,11 +76,13 @@ def main_ui(self):
         self.top_widget_layout.setRowStretch(enc, 1)
         self.top_widget_layout.setColumnStretch(enc, 1)
     self.top_widget.setLayout(self.top_widget_layout)
+    self.mid_widget_layout.addWidget(self.mid_object_scroll, 0, 0, 100, 1)
+    self.mid_widget_layout.addWidget(self.mid_object_list_scorll, 0, 1, 100, 1)
+    self.mid_widget_layout.addWidget(self.mid_news_stackedwidget, 0, 2, 100, 1)
     self.mid_widget_layout.setSpacing(0)
     self.mid_widget_layout.setContentsMargins(0,0,0,0)
     for enc in range(100):
         self.mid_widget_layout.setRowStretch(enc, 1)
-        self.mid_widget_layout.setColumnStretch(enc, 1)
     self.mid_widget.setLayout(self.mid_widget_layout)
     self.bottom_widget_layout.addWidget(self.bottom_left_news_button, 0, 0)
     self.bottom_widget_layout.addWidget(self.bottom_left_chart_button, 0, 1)
@@ -89,6 +97,8 @@ def main_ui(self):
 #______________________________________________________________________________________________________________________
     """ Set widget """
     self.setHidden(False)
+    self.mid_object_scroll.setWidgetResizable(True)
+    self.mid_object_list_scorll.setWidgetResizable(True)
 #______________________________________________________________________________________________________________________
     """ Set label """
 #______________________________________________________________________________________________________________________
@@ -103,6 +113,9 @@ def main_ui(self):
     self.top_search_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.top_settings_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.mid_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.mid_object_scroll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.mid_object_list_scorll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.mid_news_stackedwidget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.bottom_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.bottom_left_news_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.bottom_left_chart_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
