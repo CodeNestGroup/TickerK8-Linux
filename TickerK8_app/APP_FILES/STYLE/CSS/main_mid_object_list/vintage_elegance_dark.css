@@ -14,6 +14,41 @@
     background-color: #031913;
 }
 #list_scroll{
-    background-color: #00000000;
+    background-color: #252525;
     border: 0;
+}
+#list_widget{
+    background-color: #252525;
+}
+.list_tag{
+    color: #FAFAFA;
+    background-color: #252525;
+    padding: 0.5em;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+}
+.indexes{
+    color: #FAFAFA;
+    background-color: #00000000;
+    padding: 0.3em;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+}
+.logos{
+    background-color: #00000000;
+    border-radius: 0.2em;
+}
+.tickers{
+    color: #FAFAFA;
+    background-color: #1e1e1e;
+    border: 0;
+    padding: 0.3em;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.4em;
+}
+.tickers:hover{
+    background-color: #031913;
 }

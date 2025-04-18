@@ -1,3 +1,14 @@
 {
-    "": ""
+    "top_exit_button": ["E", "E"],
+    "top_window_button": ["W", "W"],
+    "top_minimize_button": ["M", "M"],
+    "top_search_button": ["Search...", "Wyszukaj..."],
+    "top_settings_button": ["S", "S"],
+    "bottom_left_news_button": ["News", "Wiadmomości"],
+    "bottom_left_chart_button": ["Chart", "Wykres"],
+    "bottom_left_stats_button": ["Statistics", "Statystyki"],
+    "botom_center_add_button": ["+Add", "+Dodaj"],
+    "bottom_right_market_button": ["Market", "Rynek"],
+    "bottom_right_country_button": ["Country", "Kraj"],
+    "bottom_right_world_button": ["World", "Świat"]
 }

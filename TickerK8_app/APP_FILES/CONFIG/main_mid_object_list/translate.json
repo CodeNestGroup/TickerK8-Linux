@@ -1,4 +1,7 @@
 {
     "type_list_button": ["Lists", "Listy"],
-    "data_list_button": ["Data", "Dane"]
+    "data_list_button": ["Data", "Dane"],
+    "list_tag_index_label": ["#", "#"],
+    "list_tag_logo_label": ["Logo", "Logo"],
+    "list_tag_name_label": ["Name", "Nazwa"]
 }

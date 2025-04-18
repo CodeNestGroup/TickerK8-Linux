@@ -31,13 +31,16 @@ class Main_mid_object_list_widget(QWidget):
         """ Set paths, file name"""
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2]) # Set main path, path to TickerK8 folder.
         self.global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data
+        self.main_mid_object_list_config = json.load(open(self.main_path+'/CONFIG/main_mid_object_list/config.json', 'r')) # Get main mid object list settings 
         self.main_mid_object_list_translate = json.load(open(self.main_path+'/CONFIG/main_mid_object_list/translate.json', 'r')) # Get main mid object list settings translate data
+        self.local_database = self.main_path+'/CONFIG/GLOBAL/local_data.db' # Get database path
 #______________________________________________________________________________________________________________________
         """ Create objects """
         self.main_layout = QGridLayout(self)
         self.type_list_button = QPushButton(self)
         self.data_list_button = QPushButton(self)
         self.list_scroll = QScrollArea(self)
+        self.list_widget = None 
 #______________________________________________________________________________________________________________________
         """ Call functions """
         main_mid_object_list_ui(self)
