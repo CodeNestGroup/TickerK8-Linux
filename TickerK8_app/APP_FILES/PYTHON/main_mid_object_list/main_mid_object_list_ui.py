@@ -1,0 +1,58 @@
+""" Import PyQt5 Widgets """
+from PyQt5.QtWidgets import (
+    QSizePolicy # Size policy 
+)
+#______________________________________________________________________________________________________________________
+""" Import PyQt5 Core """
+from PyQt5.QtCore import (
+    Qt # Qt settings
+)
+#______________________________________________________________________________________________________________________
+""" Import PyQt5 Gui """
+from PyQt5.QtGui import (
+    QIcon # Icon
+)
+#######################################################################################################################
+""" Main mid object list Ui """
+def main_mid_object_list_ui(self):
+    """ Set object name """
+    self.setObjectName('main_mid_object_list')
+    self.type_list_button.setObjectName('type_list_button')
+    self.data_list_button.setObjectName('data_list_button')
+    self.list_scroll.setObjectName('list_scroll')
+#______________________________________________________________________________________________________________________
+    """ Set property """
+    self.type_list_button.setProperty('class', 'controll_button')
+    self.data_list_button.setProperty('class', 'controll_button')
+#______________________________________________________________________________________________________________________
+    """ Set layout """
+    self.main_layout.addWidget(self.type_list_button, 0, 0, 10, 50)
+    self.main_layout.addWidget(self.data_list_button, 0, 50, 10, 50)
+    self.main_layout.addWidget(self.list_scroll, 10, 0, 90, 100)
+    self.main_layout.setSpacing(0)
+    self.main_layout.setContentsMargins(0,0,0,0)
+    for enc in range(100):
+        self.main_layout.setRowStretch(enc, 1)
+        self.main_layout.setColumnStretch(enc, 1)
+    self.setLayout(self.main_layout)
+#______________________________________________________________________________________________________________________
+    """ Set widget """
+    self.setHidden(False)
+    self.list_scroll.setWidgetResizable(True)
+#______________________________________________________________________________________________________________________
+    """ Set size """
+    self.type_list_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.data_list_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.list_scroll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+#######################################################################################################################
+""" Main mid object list tyle """
+def main_mid_object_list_reload_style(self):
+    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/main_mid_object_list/'+self.global_config['__theme__']+'.css')).read())
+#######################################################################################################################
+""" Main settings retranslate """
+def main_mid_object_list_retranslate(self):
+    _t = self.main_mid_object_list_translate # Translate texts
+    _l = self.global_config['__language__'] # Language
+    self.type_list_button.setText(_t['type_list_button'][_l])
+    self.data_list_button.setText(_t['data_list_button'][_l])
+#######################################################################################################################

@@ -1,0 +1,19 @@
+#main_mid_object_list{
+    background-color: #252525;
+}
+.controll_button{
+    color: #FAFAFA;
+    background-color: #1e1e1e;
+    border: 0;
+    padding: 0.3em;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+}
+.controll_button:hover{
+    background-color: #031913;
+}
+#list_scroll{
+    background-color: #00000000;
+    border: 0;
+}

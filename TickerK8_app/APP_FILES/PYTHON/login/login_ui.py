@@ -75,7 +75,7 @@ def login_ui(self):
 """ Login style """
 def login_reload_style(self):
     #self.login_day_night_button.setIcon(QIcon(self.main_path+'/STYLE/IMG/ICONS/'+))
-    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/LOGIN/'+self.global_config['__theme__']+'.css')).read())
+    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/login/'+self.global_config['__theme__']+'.css')).read())
 
 #######################################################################################################################
 """ Login retranslate"""

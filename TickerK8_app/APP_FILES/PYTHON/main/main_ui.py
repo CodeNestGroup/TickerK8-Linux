@@ -28,7 +28,6 @@ def main_ui(self):
     self.top_settings_button.setObjectName('top_settings_button')
     self.mid_widget.setObjectName('mid_widget')
     self.mid_object_scroll.setObjectName('mid_object_scroll')
-    self.mid_object_list_scorll.setObjectName('mid_object_list_scorll')
     self.mid_news_stackedwidget.setObjectName('mid_news_stackedwidget')
     self.bottom_widget.setObjectName('bottom_widget')
     self.bottom_left_news_button.setObjectName('bottom_left_news_button')
@@ -45,7 +44,7 @@ def main_ui(self):
     self.top_minimize_button.setProperty('class', 'top_button')
     self.top_settings_button.setProperty('class', 'top_button')
     self.mid_object_scroll.setProperty('class', 'mid_subwidget')
-    self.mid_object_list_scorll.setProperty('class', 'mid_subwidget')
+    self.mid_object_list_widget.setProperty('class', 'mid_subwidget')
     self.mid_news_stackedwidget.setProperty('class', 'mid_subwidget')
     self.bottom_left_news_button.setProperty('class', 'bottom_button')
     self.bottom_left_chart_button.setProperty('class', 'bottom_button')
@@ -58,7 +57,7 @@ def main_ui(self):
     """ Set layout """
     self.main_layout.addWidget(self.top_widget, 0, 0, 15, 100)
     self.main_layout.addWidget(self.mid_widget, 15, 0, 65, 100)
-    self.main_layout.addWidget(self.bottm_widget, 80, 0, 20, 100)
+    self.main_layout.addWidget(self.bottom_widget, 80, 0, 20, 100)
     self.main_layout.setSpacing(0)
     self.main_layout.setContentsMargins(0,0,0,0)
     for enc in range(100):
@@ -77,7 +76,7 @@ def main_ui(self):
         self.top_widget_layout.setColumnStretch(enc, 1)
     self.top_widget.setLayout(self.top_widget_layout)
     self.mid_widget_layout.addWidget(self.mid_object_scroll, 0, 0, 100, 1)
-    self.mid_widget_layout.addWidget(self.mid_object_list_scorll, 0, 1, 100, 1)
+    self.mid_widget_layout.addWidget(self.mid_object_list_widget, 0, 1, 100, 1)
     self.mid_widget_layout.addWidget(self.mid_news_stackedwidget, 0, 2, 100, 1)
     self.mid_widget_layout.setSpacing(0)
     self.mid_widget_layout.setContentsMargins(0,0,0,0)
@@ -93,12 +92,10 @@ def main_ui(self):
     self.bottom_widget_layout.addWidget(self.bottom_right_world_button, 0, 6)
     self.bottom_widget_layout.setSpacing(0)
     self.bottom_widget_layout.setContentsMargins(0,0,0,0)
-    self.bottm_widget.setLayout(self.bottom_widget_layout)
+    self.bottom_widget.setLayout(self.bottom_widget_layout)
 #______________________________________________________________________________________________________________________
     """ Set widget """
     self.setHidden(False)
-    self.mid_object_scroll.setWidgetResizable(True)
-    self.mid_object_list_scorll.setWidgetResizable(True)
 #______________________________________________________________________________________________________________________
     """ Set label """
 #______________________________________________________________________________________________________________________
@@ -114,7 +111,7 @@ def main_ui(self):
     self.top_settings_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.mid_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.mid_object_scroll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.mid_object_list_scorll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.mid_object_list_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.mid_news_stackedwidget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.bottom_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.bottom_left_news_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -127,7 +124,7 @@ def main_ui(self):
 #######################################################################################################################
 """ Main style """
 def main_reload_style(self):
-    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/MAIN/'+self.global_config['__theme__']+'.css')).read())
+    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/main/'+self.global_config['__theme__']+'.css')).read())
 #######################################################################################################################
 """ Main retranslate """
 def main_retranslate(self):
