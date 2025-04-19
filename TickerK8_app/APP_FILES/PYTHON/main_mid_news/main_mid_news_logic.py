@@ -1,23 +1,24 @@
 """ Import """
+import requests
+import json
+from io import BytesIO
 import mysql.connector
 """ Import PyQt5 Widgets """
 from PyQt5.QtWidgets import (
     QWidget, # Simple widget, window
     QLabel, # Simple label
     QPushButton, # Simple button
-    QLineEdit, # Simple line edit
-    QStackedWidget, # Stacked widget
     QGridLayout, # Grid layout
-    QVBoxLayout # Vertical layout 
+    QSizePolicy
 )
 from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QPixmap, QIcon
 #######################################################################################################################
 """ create news widget """
-def create_news_widgets(self):
+def create_news_widget(self):
     """ Create dafoult variables """
-    news_list = list # Create news list
-    user_markets = [1] # Get user markets
-    user_countries = [1] # Get user countries 
+    self.news_button_list = []
+    self.news_button_visable = 0
 #______________________________________________________________________________________________________________________
     """ Get news """
     connect = mysql.connector.connect( # Create connect with database
@@ -27,25 +28,68 @@ def create_news_widgets(self):
         database = "TickerK8"
     )
     cursor = connect.cursor() # Create cursor
-    cursor.execute('SELECT title, date FROM news ORDER BY date LIMIT 3;')
-    news_list.append(cursor.fetchall())
-
-    #for market_id in user_markets: # Add news to news list
-    #    cursor.execute(f'SELECT title, date, popularity FROM news WHERE market_id like{market_id} ORDER BY date LIMIT 3;')
-    #    news_list.append(cursor.fetchall()) # Add data of news to list 
-    #for country_id in user_countries:
-    #    cursor.execute(f'SELECT title, date, popularity FROM news WHERE country_id like{country_id} ORDER BY date LIMIT 3;')
-    #    news_list.append(cursor.fetchall()) # Add data of news to list
-    # Tutaj dla świata jak baze ogrne i dane etc.
+    cursor.execute('SELECT json_file FROM news ORDER BY popularity LIMIT 3;')
+    news_list = cursor.fetchall()
+    for index, data in enumerate(news_list, start=1):
+        json_data = json.loads(data[0])
+        """ Create objects """
+        news_button = QPushButton(self)
+        text_label = QLabel(news_button)
 #______________________________________________________________________________________________________________________
-    widget = QWidget(self)
-    layout = QVBoxLayout(wigdet)
+        """ Set object name """
+        news_button.setObjectName(f'news_button_{index}')
+        text_label.setObjectName(f'text_label_{index}')
 #______________________________________________________________________________________________________________________
-    for news_data in news_list:
-        button = QPushButton(widget)
-        self.layout.addWidget(button)
-        #button.setIcon(QIcon())
-        button.clicked.connect()
+        """ Set property """
+        news_button.setProperty('class', 'news_button')
+        text_label.setProperty('class', 'text_label')
+#______________________________________________________________________________________________________________________
+        """ Set layout """
+        self.main_layout.addWidget(news_button, 0, 0, 90, 100)
+#______________________________________________________________________________________________________________________
+        """ Set Widget """
+        news_button.setHidden(True)
+#______________________________________________________________________________________________________________________
+        """ Set label """
+        text_label.setAlignment(Qt.AlignCenter)
+#______________________________________________________________________________________________________________________
+        """ Set size """
+        news_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        news_button.setFixedSize(int(self.width()), int(self.height()*1.35))
+        text_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        text_label.setFixedSize(news_button.size())
+#______________________________________________________________________________________________________________________
+        """ Set text """
+        text_label.setText(json_data['title'])
+#______________________________________________________________________________________________________________________
+        """ Set graphics """
+        photo = requests.get(json_data["photo"]["original"])
+        photo.raise_for_status()
+        pix = QPixmap()
+        pix.loadFromData(BytesIO(photo.content).read())
 
+        zoomed_pix = pix.scaled(news_button.width(), news_button.height(), Qt.KeepAspectRatioByExpanding, Qt.SmoothTransformation)
+        cropped_pix = zoomed_pix.copy(
+            (zoomed_pix.width() - news_button.width()) // 2,
+            (zoomed_pix.height() - news_button.height()) // 2,
+            news_button.width(),
+            news_button.height()
+        )
+        news_button.setIcon(QIcon(cropped_pix))
+        news_button.setIconSize(news_button.size())
 
-
+        self.news_button_list.append(news_button)
+    self.news_button_list[self.news_button_visable].setHidden(False)
+#######################################################################################################################
+""" News next """
+def news_next(self):
+    self.news_button_list[self.news_button_visable].setHidden(True)
+    self.news_button_visable = (self.news_button_visable+1)%len(self.news_button_list)
+    self.news_button_list[self.news_button_visable].setHidden(False)
+#######################################################################################################################
+""" News previous """
+def news_previous(self):
+    self.news_button_list[self.news_button_visable].setHidden(True)
+    self.news_button_visable = (self.news_button_visable-1)%len(self.news_button_list)
+    self.news_button_list[self.news_button_visable].setHidden(False)
+#######################################################################################################################

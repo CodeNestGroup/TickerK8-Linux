@@ -72,7 +72,7 @@ def main_ui(self):
     self.top_widget.setLayout(self.top_widget_layout)
     self.mid_widget_layout.addWidget(self.mid_object_scroll, 0, 0, 100, 1)
     self.mid_widget_layout.addWidget(self.mid_object_list_widget, 0, 1, 100, 1)
-    self.mid_widget_layout.addWidget(self.mid_news_stackedwidget, 0, 2, 100, 1)
+    self.mid_widget_layout.addWidget(self.mid_news_widget, 0, 2, 100, 1)
     self.mid_widget_layout.setSpacing(0)
     self.mid_widget_layout.setContentsMargins(0,0,0,0)
     for enc in range(100):
@@ -93,6 +93,8 @@ def main_ui(self):
 #______________________________________________________________________________________________________________________
     """ Set widget """
     self.setHidden(False)
+    self.mid_object_scroll.setWidgetResizable(True)
+    self.mid_object_scroll.setWidget(self.mid_object_widget)
 #______________________________________________________________________________________________________________________
     """ Set label """
 #______________________________________________________________________________________________________________________
@@ -108,8 +110,9 @@ def main_ui(self):
     self.top_settings_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.mid_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.mid_object_scroll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.mid_object_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.mid_object_list_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.mid_news_stackedwidget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.mid_news_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.bottom_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.bottom_left_news_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.bottom_left_chart_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)

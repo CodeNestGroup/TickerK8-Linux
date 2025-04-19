@@ -7,8 +7,6 @@ from PyQt5.QtWidgets import (
     QWidget, # Simple widget, window
     QLabel, # Simple label
     QPushButton, # Simple button
-    QLineEdit, # Simple line edit
-    QStackedWidget, # Stacked widget
     QGridLayout # Grid layout
 )
 from PyQt5.QtCore import Qt
@@ -26,6 +24,8 @@ class Main_mid_news_widget(QWidget):
         super().__init__()
         self.setAttribute(Qt.WA_StyledBackground, True) # Force widget to draw background
         self.setParent(parent) # Set parent
+        self.news_button_list = []
+        self.news_button_visable = 0
 #______________________________________________________________________________________________________________________
         """ Set paths, file name"""
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2]) # Set main path, path to TickerK8 folder.
@@ -34,12 +34,6 @@ class Main_mid_news_widget(QWidget):
 #______________________________________________________________________________________________________________________
         """ Create objects """
         self.main_layout = QGridLayout(self)
-        self.news_type_favourite_button = QPushButton(self)
-        self.news_type_hot_button = QPushButton(self)
-        self.news_type_market_button = QPushButton(self)
-        self.news_type_country_button = QPushButton(self)
-        self.news_type_world_button = QPushButton(self)
-        self.news_widget = QStackedWidget(self)
         self.next_left_button = QPushButton(self)
         self.next_right_button = QPushButton(self)
 #______________________________________________________________________________________________________________________
@@ -47,5 +41,9 @@ class Main_mid_news_widget(QWidget):
         main_mid_news_ui(self) # Call main mid news ui function
         main_mid_news_reload_style(self) # Call main mid news style function 
         main_mid_news_retranslate(self) # Cakk main mid news retranslate function
+        create_news_widget(self)
 #______________________________________________________________________________________________________________________
         """ Connect functions """
+        self.next_left_button.clicked.connect(lambda: news_previous(self))
+        self.next_right_button.clicked.connect(lambda: news_next(self))
+#######################################################################################################################

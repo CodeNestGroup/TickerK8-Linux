@@ -12,7 +12,10 @@ from PyQt5.QtWidgets import (
     QGridLayout, # Grid layout
     QVBoxLayout # Vertical layout 
 )
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import (
+    Qt,
+    pyqtSignal
+)
 #______________________________________________________________________________________________________________________
 """ Import main mid object list ui """
 from .main_mid_object_list_ui import *
@@ -23,6 +26,7 @@ from .main_mid_object_list_logic import *
 """ Main mid object widget """
 class Main_mid_object_list_widget(QWidget):
     """ Init, creating items, set base variables like paths, screen size, etc. """
+    config_changed = pyqtSignal()
     def __init__(self, parent):
         super().__init__()
         self.setAttribute(Qt.WA_StyledBackground, True) # Force widget to draw background

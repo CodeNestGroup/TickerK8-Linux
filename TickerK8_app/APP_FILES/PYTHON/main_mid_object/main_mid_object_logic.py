@@ -1,3 +1,13 @@
+""" Import """
+import json
+import sqlite3
+#______________________________________________________________________________________________________________________
+""" Import PyQt5 QtCore """
+from PyQt5.QtCore import (
+    Qt,
+    QSize
+)
+#______________________________________________________________________________________________________________________
 """ Import PyQt5 Gui """
 from PyQt5.QtGui import (QPixmap, # Graphic.
                          QPainter) # Painter.
@@ -8,11 +18,11 @@ from PyQt5.QtSvg import QSvgRenderer # Render Svg.
 """ Setup widget """
 def setup_widget(self):
     """ Get data """
+    database_id =  json.load(open(self.main_path+'/CONFIG/main_mid_object/config.json', 'r'))['__id__']
     connect = sqlite3.connect(self.local_database) # Create connect 
     cursor = connect.cursor() # Create cursor 
-    query = f'SELECT id, logo, name, ticker FROM INDEXES WHERE id=={self.main_mid_object_config['__id__']};' # Query 
-    cursor.execute(query, object_list) # Execute 
-    result = cursor.fetchall() # Get result
+    cursor.execute(f'SELECT id, logo, name, ticker FROM INDEXES WHERE id=={database_id};') # Execute 
+    result = cursor.fetchall()[0] # Get result
 #______________________________________________________________________________________________________________________
     self.icon_label.setPixmap(load_svg(self.main_path+result[1], 128, 128))
     self.ticker_label.setText(result[3])

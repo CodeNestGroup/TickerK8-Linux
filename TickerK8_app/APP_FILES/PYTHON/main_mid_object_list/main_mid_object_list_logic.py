@@ -26,6 +26,7 @@ from PyQt5.QtGui import (QPixmap, # Graphic.
 #_______________________________________________________________________________________________________________________
 """ Import PyQt5 Svg """
 from PyQt5.QtSvg import QSvgRenderer # Render Svg.
+#_______________________________________________________________________________________________________________________
 #######################################################################################################################
 """ Create list"""
 def create_list(self):
@@ -134,11 +135,7 @@ def main_mid_object_list_favourite(self):
         logo_label.setPixmap(QPixmap(load_svg(self.main_path+data[1], 64, 64)))
 #______________________________________________________________________________________________________________________
         """ Set connect """
-        ticker_button.clicked.connect(lambda _, id=data[0]: set_object_id(self, id))
-#######################################################################################################################
-""" Main mid object list hot """
-def main_mid_object_list_hot(self):
-    pass
+        ticker_button.clicked.connect(lambda _, id=data[0]: set_to_main_mid_object(self, id))
 #######################################################################################################################
 """ Load svg script """
 def load_svg(svg_path, width, height):
@@ -152,8 +149,9 @@ def load_svg(svg_path, width, height):
     return scaled_pixmap
 #######################################################################################################################
 """ Set object id """
-def set_object_id(self, id ):
+def set_to_main_mid_object(self, id):
     _json_load = json.load(open(self.main_path+'/CONFIG/main_mid_object/config.json', 'r'))
     _json_load['__id__'] = id
     json.dump(_json_load, open(self.main_path+'/CONFIG/main_mid_object/config.json', 'w'), indent=4)
+    self.config_changed.emit()
 #######################################################################################################################

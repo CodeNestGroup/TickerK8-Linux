@@ -22,6 +22,12 @@ from .main_logic import *
 #______________________________________________________________________________________________________________________
 """ Import main mid object list """
 from main_mid_object_list.main_mid_object_list_structure import Main_mid_object_list_widget
+#______________________________________________________________________________________________________________________
+""" Import main mid object """
+from main_mid_object.main_mid_object_structure import Main_mid_object_widget
+#______________________________________________________________________________________________________________________
+""" Import main mid news """
+from main_mid_news.main_mid_news_structure import Main_mid_news_widget
 #######################################################################################################################
 """ Main widget """
 class Main_widget(QWidget):
@@ -48,8 +54,9 @@ class Main_widget(QWidget):
         self.mid_widget = QWidget(self)
         self.mid_widget_layout = QGridLayout(self.mid_widget)
         self.mid_object_scroll = QScrollArea(self.mid_widget)
+        self.mid_object_widget = Main_mid_object_widget(self.mid_widget)
         self.mid_object_list_widget = Main_mid_object_list_widget(self.mid_widget)
-        self.mid_news_stackedwidget = QStackedWidget(self.mid_widget)
+        self.mid_news_widget = Main_mid_news_widget(self.mid_widget)
         self.bottom_widget = QWidget(self)
         self.bottom_widget_layout = QGridLayout(self.bottom_widget)
         self.bottom_left_news_button = QPushButton(self)
@@ -66,4 +73,5 @@ class Main_widget(QWidget):
         main_retranslate(self) # Call main retranslate function
 #______________________________________________________________________________________________________________________
         """ Connect  functions """
+        self.mid_object_list_widget.config_changed.connect(self.mid_object_widget.setup_widet)
 #######################################################################################################################
