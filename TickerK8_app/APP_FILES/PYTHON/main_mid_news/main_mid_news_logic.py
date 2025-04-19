@@ -52,12 +52,13 @@ def create_news_widget(self):
 #______________________________________________________________________________________________________________________
         """ Set label """
         text_label.setAlignment(Qt.AlignCenter)
+        text_label.setWordWrap(True)
 #______________________________________________________________________________________________________________________
         """ Set size """
         news_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        news_button.setFixedSize(int(self.width()), int(self.height()*1.35))
+        news_button.setFixedSize(int(self.width()*0.9), int(self.height()*1.45))
         text_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        text_label.setFixedSize(news_button.size())
+        text_label.setFixedSize(int(self.width()*0.9), int(self.height()*1.45))
 #______________________________________________________________________________________________________________________
         """ Set text """
         text_label.setText(json_data['title'])
@@ -80,15 +81,21 @@ def create_news_widget(self):
 
         self.news_button_list.append(news_button)
     self.news_button_list[self.news_button_visable].setHidden(False)
+    self.timer.timeout.connect(lambda: news_next(self))
+    self.timer.start(5000)
 #######################################################################################################################
 """ News next """
 def news_next(self):
+    self.timer.stop()
+    self.timer.start(5000)
     self.news_button_list[self.news_button_visable].setHidden(True)
     self.news_button_visable = (self.news_button_visable+1)%len(self.news_button_list)
     self.news_button_list[self.news_button_visable].setHidden(False)
 #######################################################################################################################
 """ News previous """
 def news_previous(self):
+    self.timer.stop()
+    self.timer.start(5000)
     self.news_button_list[self.news_button_visable].setHidden(True)
     self.news_button_visable = (self.news_button_visable-1)%len(self.news_button_list)
     self.news_button_list[self.news_button_visable].setHidden(False)

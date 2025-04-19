@@ -1,9 +1,20 @@
 #main_mid_object_list{
-    background-color: #252525;
+    background-color: #202020;
+}
+#title_label{
+    color: #FAFAFA;
+    background-color: #00000000;
+    padding: 0.3em;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 0.4em;
+}
+#tag_widget{
+    background-color: #202020;
 }
 .controll_button{
     color: #FAFAFA;
-    background-color: #1e1e1e;
+    background-color: #252525;
     border: 0;
     padding: 0.3em;
     font-size: 14px;
@@ -14,15 +25,15 @@
     background-color: #031913;
 }
 #list_scroll{
-    background-color: #252525;
+    background-color: #202020;
     border: 0;
 }
 #list_widget{
-    background-color: #252525;
+    background-color: #202020;
 }
 .list_tag{
     color: #FAFAFA;
-    background-color: #252525;
+    background-color: #202020;
     padding: 0.5em;
     font-size: 14px;
     font-weight: 600;
@@ -31,6 +42,7 @@
 .indexes{
     color: #FAFAFA;
     background-color: #00000000;
+    margin-bottom: 4px;
     padding: 0.3em;
     font-size: 14px;
     font-weight: 400;
@@ -38,11 +50,13 @@
 }
 .logos{
     background-color: #00000000;
+    margin-bottom: 4px;
     border-radius: 0.2em;
 }
 .tickers{
     color: #FAFAFA;
-    background-color: #1e1e1e;
+    background-color: #252525;
+    margin-bottom: 4px;
     border: 0;
     padding: 0.3em;
     font-size: 14px;
@@ -50,5 +64,8 @@
     letter-spacing: 0.4em;
 }
 .tickers:hover{
+    background-color: #031913;
+}
+.ticker:focus{
     background-color: #031913;
 }

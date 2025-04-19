@@ -47,9 +47,9 @@ def main_mid_object_list_favourite(self):
     """ Create objects """
     self.list_widget = QWidget(self.list_scroll)
     self.list_layout = QGridLayout(self.list_widget)
-    self.list_tag_index_label = QLabel(self.list_widget)
-    self.list_tag_logo_label = QLabel(self.list_widget)
-    self.list_tag_name_label = QLabel(self.list_widget) 
+    self.list_tag_index_label = QLabel(self.tag_widget)
+    self.list_tag_logo_label = QLabel(self.tag_widget)
+    self.list_tag_name_label = QLabel(self.tag_widget) 
 #______________________________________________________________________________________________________________________
     """ Set object name"""
     self.list_widget.setObjectName('list_widget')
@@ -63,9 +63,9 @@ def main_mid_object_list_favourite(self):
     self.list_tag_name_label.setProperty('class', 'list_tag')
 #______________________________________________________________________________________________________________________
     """ Set Layout """
-    self.list_layout.addWidget(self.list_tag_index_label, 0, 0)
-    self.list_layout.addWidget(self.list_tag_logo_label, 0 ,1)
-    self.list_layout.addWidget(self.list_tag_name_label, 0, 2)
+    self.tag_layout.addWidget(self.list_tag_index_label, 0, 0)
+    self.tag_layout.addWidget(self.list_tag_logo_label, 0 ,1)
+    self.tag_layout.addWidget(self.list_tag_name_label, 0, 2)
     self.list_layout.setSpacing(0)
     self.list_layout.setContentsMargins(0,0,0,0)
     self.list_widget.setLayout(self.list_layout)
@@ -84,6 +84,7 @@ def main_mid_object_list_favourite(self):
     """ Set text """
     _t = self.main_mid_object_list_translate
     _l = self.global_config['__language__']
+    self.title_label.setText(_t['title_label'][_l][0])
     self.list_tag_index_label.setText(_t['list_tag_index_label'][_l])
     self.list_tag_logo_label.setText(_t['list_tag_logo_label'][_l])
     self.list_tag_name_label.setText(_t['list_tag_name_label'][_l])
@@ -128,7 +129,7 @@ def main_mid_object_list_favourite(self):
         ticker_button.setFixedHeight(64)
 #______________________________________________________________________________________________________________________
         """ Set text """
-        index_label.setText(f'{index}')
+        index_label.setText(f'{index}.')
         ticker_button.setText(data[2])
 #______________________________________________________________________________________________________________________
         """ Set photo """

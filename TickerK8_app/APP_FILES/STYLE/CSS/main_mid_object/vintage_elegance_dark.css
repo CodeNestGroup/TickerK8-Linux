@@ -1,8 +1,8 @@
 #main_mid_object_widget{
-    background-color: #1e1e1e;
+    background-color: #202020;
 }
 #icon_label{
-    border-radius: 0.5em;
+    border-radius: 10px;
 }
 #ticker_label{
     color: #fafafa;

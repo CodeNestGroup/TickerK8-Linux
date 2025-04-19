@@ -9,7 +9,10 @@ from PyQt5.QtWidgets import (
     QPushButton, # Simple button
     QGridLayout # Grid layout
 )
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import (
+        Qt,
+        QTimer
+)
 #______________________________________________________________________________________________________________________
 """ Import main mid news ui """
 from .main_mid_news_ui import *
@@ -26,6 +29,7 @@ class Main_mid_news_widget(QWidget):
         self.setParent(parent) # Set parent
         self.news_button_list = []
         self.news_button_visable = 0
+        self.timer = QTimer()
 #______________________________________________________________________________________________________________________
         """ Set paths, file name"""
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2]) # Set main path, path to TickerK8 folder.

@@ -1,4 +1,5 @@
-{
+{   
+    "title_label": [["Favourite", ""], ["Ulubione", ""]],
     "type_list_button": ["Lists", "Listy"],
     "data_list_button": ["Data", "Dane"],
     "list_tag_index_label": ["#", "#"],

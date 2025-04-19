@@ -41,10 +41,13 @@ class Main_mid_object_list_widget(QWidget):
 #______________________________________________________________________________________________________________________
         """ Create objects """
         self.main_layout = QGridLayout(self)
-        self.type_list_button = QPushButton(self)
-        self.data_list_button = QPushButton(self)
+        self.title_label = QLabel(self)
+        self.tag_widget = QWidget(self)
+        self.tag_layout = QGridLayout(self)
         self.list_scroll = QScrollArea(self)
         self.list_widget = None 
+        self.type_list_button = QPushButton(self)
+        self.data_list_button = QPushButton(self)
 #______________________________________________________________________________________________________________________
         """ Call functions """
         main_mid_object_list_ui(self)

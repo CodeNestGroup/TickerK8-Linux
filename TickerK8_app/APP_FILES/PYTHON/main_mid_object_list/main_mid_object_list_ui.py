@@ -17,33 +17,45 @@ from PyQt5.QtGui import (
 def main_mid_object_list_ui(self):
     """ Set object name """
     self.setObjectName('main_mid_object_list')
+    self.title_label.setObjectName('title_label')
+    self.tag_widget.setObjectName('tag_widget')
+    self.list_scroll.setObjectName('list_scroll')
     self.type_list_button.setObjectName('type_list_button')
     self.data_list_button.setObjectName('data_list_button')
-    self.list_scroll.setObjectName('list_scroll')
 #______________________________________________________________________________________________________________________
     """ Set property """
     self.type_list_button.setProperty('class', 'controll_button')
     self.data_list_button.setProperty('class', 'controll_button')
 #______________________________________________________________________________________________________________________
     """ Set layout """
-    self.main_layout.addWidget(self.type_list_button, 0, 0, 10, 50)
-    self.main_layout.addWidget(self.data_list_button, 0, 50, 10, 50)
-    self.main_layout.addWidget(self.list_scroll, 10, 0, 90, 100)
+    self.main_layout.addWidget(self.title_label, 0, 0, 10, 100)
+    self.main_layout.addWidget(self.tag_widget, 10, 0, 5, 100)
+    self.main_layout.addWidget(self.list_scroll, 15, 0, 77, 100)
+    self.main_layout.addWidget(self.type_list_button, 92, 0, 8, 50)
+    self.main_layout.addWidget(self.data_list_button, 92, 50, 8, 50)
     self.main_layout.setSpacing(0)
     self.main_layout.setContentsMargins(0,0,0,0)
     for enc in range(100):
         self.main_layout.setRowStretch(enc, 1)
         self.main_layout.setColumnStretch(enc, 1)
     self.setLayout(self.main_layout)
+    self.tag_layout.setSpacing(0)
+    self.tag_layout.setContentsMargins(0,0,0,0)
+    self.tag_widget.setLayout(self.tag_layout)
 #______________________________________________________________________________________________________________________
     """ Set widget """
     self.setHidden(False)
     self.list_scroll.setWidgetResizable(True)
 #______________________________________________________________________________________________________________________
+    """ Set label """
+    self.title_label.setAlignment(Qt.AlignCenter)
+#______________________________________________________________________________________________________________________
     """ Set size """
+    self.title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.tag_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.list_scroll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.type_list_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.data_list_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.list_scroll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 #######################################################################################################################
 """ Main mid object list tyle """
 def main_mid_object_list_reload_style(self):
