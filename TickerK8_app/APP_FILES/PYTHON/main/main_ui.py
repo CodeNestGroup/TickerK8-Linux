@@ -8,13 +8,21 @@ from PyQt5.QtWidgets import (
 #______________________________________________________________________________________________________________________
 """ Import PyQt5 Core """
 from PyQt5.QtCore import (
-    Qt # Qt settings
+    Qt, # Qt settings
+    QSize # Size 
 )
 #______________________________________________________________________________________________________________________
 """ Import PyQt5 Gui """
 from PyQt5.QtGui import (
     QIcon # Icon
 )
+#______________________________________________________________________________________________________________________
+""" Import PyQt5 Gui """
+from PyQt5.QtGui import (QPixmap, # Graphic.
+                         QPainter) # Painter.
+#_______________________________________________________________________________________________________________________
+""" Import PyQt5 Svg """
+from PyQt5.QtSvg import QSvgRenderer # Render Svg.
 #######################################################################################################################
 """ Main Ui """
 def main_ui(self):
@@ -128,12 +136,13 @@ def main_ui(self):
 """ Main style """
 def main_reload_style(self):
     self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/main/'+self.global_config['__theme__']+'.css')).read())
+    self.top_exit_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/exit_'+self.global_config['__theme__']+'.svg'), 256, 256)))
+    self.top_exit_button.setIconSize(self.top_exit_button.size())
 #######################################################################################################################
 """ Main retranslate """
 def main_retranslate(self):
     _t = self.main_translate # Translate texts 
     _l = self.global_config['__language__'] # Language
-    self.top_exit_button.setText(_t['top_exit_button'][_l])
     self.top_window_button.setText(_t['top_window_button'][_l])
     self.top_minimize_button.setText(_t['top_minimize_button'][_l])
     self.top_search_button.setText(_t['top_search_button'][_l])
@@ -146,4 +155,14 @@ def main_retranslate(self):
     self.bottom_right_country_button.setText(_t['bottom_right_country_button'][_l])
     self.bottom_right_world_button.setText(_t['bottom_right_world_button'][_l])
 #######################################################################################################################
-#  
+""" Load svg script """
+def load_svg(svg_path, width, height):
+    renderer = QSvgRenderer(svg_path) # Render svg
+    pixmap = QPixmap(width, height) # Create pixmap
+    pixmap.fill(Qt.transparent) # Transparent
+    painter = QPainter(pixmap) # Render graphic 
+    renderer.render(painter) # Render graphic
+    painter.end() # Render graphic
+    scaled_pixmap = pixmap.scaled(QSize(width, height), Qt.KeepAspectRatio, Qt.SmoothTransformation) # Scal pixmap
+    return scaled_pixmap
+#######################################################################################################################
