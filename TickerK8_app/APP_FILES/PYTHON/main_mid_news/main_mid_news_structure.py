@@ -38,6 +38,7 @@ class Main_mid_news_widget(QWidget):
 #______________________________________________________________________________________________________________________
         """ Create objects """
         self.main_layout = QGridLayout(self)
+        self.title_label = QLabel(self)
         self.next_left_button = QPushButton(self)
         self.next_right_button = QPushButton(self)
 #______________________________________________________________________________________________________________________

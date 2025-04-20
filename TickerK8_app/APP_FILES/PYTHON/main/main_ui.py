@@ -72,7 +72,7 @@ def main_ui(self):
     self.top_widget_layout.addWidget(self.top_window_button, 15, 6, 25, 3)
     self.top_widget_layout.addWidget(self.top_minimize_button, 15, 10, 25, 3)
     self.top_widget_layout.addWidget(self.top_search_button, 30, 40, 40, 20)
-    self.top_widget_layout.addWidget(self.top_settings_button, 35, 90, 30, 3)
+    self.top_widget_layout.addWidget(self.top_settings_button, 15, 95, 25, 3)
     self.top_widget_layout.setSpacing(0)
     self.top_widget_layout.setContentsMargins(0,0,0,0)
     for enc in range(100):
@@ -138,15 +138,27 @@ def main_reload_style(self):
     self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/main/'+self.global_config['__theme__']+'.css')).read())
     self.top_exit_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/exit_'+self.global_config['__theme__']+'.svg'), 256, 256)))
     self.top_exit_button.setIconSize(self.top_exit_button.size())
+    self.top_window_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/window_'+self.global_config['__theme__']+'.svg'), 256, 256)))
+    self.top_window_button.setIconSize(self.top_window_button.size())
+    self.top_minimize_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/minimize_'+self.global_config['__theme__']+'.svg'), 256, 256)))
+    self.top_minimize_button.setIconSize(self.top_minimize_button.size())
+    self.top_search_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/search_'+self.global_config['__theme__']+'.svg'), 256, 256)))
+    self.top_search_button.setIconSize(self.top_settings_button.size())
+    self.top_settings_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/settings_'+self.global_config['__theme__']+'.svg'), 256, 256)))
+    self.top_settings_button.setIconSize(self.top_settings_button.size())
+    self.bottom_left_news_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/news_'+self.global_config['__theme__']+'.svg'), 256, 256)))
+    self.bottom_left_news_button.setIconSize(self.bottom_left_news_button.size())
+    self.bottom_left_chart_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/chart_'+self.global_config['__theme__']+'.svg'), 256, 256)))
+    self.bottom_left_chart_button.setIconSize(self.bottom_left_chart_button.size())
+    self.bottom_left_stats_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/statistics_'+self.global_config['__theme__']+'.svg'), 256, 256)))
+    self.bottom_left_stats_button.setIconSize(self.bottom_left_stats_button.size())
+
 #######################################################################################################################
 """ Main retranslate """
 def main_retranslate(self):
     _t = self.main_translate # Translate texts 
     _l = self.global_config['__language__'] # Language
-    self.top_window_button.setText(_t['top_window_button'][_l])
-    self.top_minimize_button.setText(_t['top_minimize_button'][_l])
     self.top_search_button.setText(_t['top_search_button'][_l])
-    self.top_settings_button.setText(_t['top_settings_button'][_l])
     self.bottom_left_news_button.setText(_t['bottom_left_news_button'][_l])
     self.bottom_left_chart_button.setText(_t['bottom_left_chart_button'][_l])
     self.bottom_left_stats_button.setText(_t['bottom_left_stats_button'][_l])
