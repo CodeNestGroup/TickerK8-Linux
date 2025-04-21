@@ -1,6 +1,5 @@
 #main_mid_news{
     background-color: #202020;
-    border: 0;
 }
 #title_label{
     color: #FAFAFA;
@@ -16,13 +15,13 @@
 }
 .text_label{
     color: #FAFAFA;
-    background-color: #60000000;
+    background-color: #80000000;
     font-size: 32px;
     font-weight: 600;
     letter-spacing: 0.5em;
 }
 .text_label:hover{
-    background-color: #80000000;
+    background-color: #a0000000;
 }
 .next_buttons{
     color: #fafafa;

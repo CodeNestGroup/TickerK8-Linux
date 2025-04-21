@@ -56,9 +56,9 @@ def create_news_widget(self):
 #______________________________________________________________________________________________________________________
         """ Set size """
         news_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        news_button.setFixedSize(int(self.width()*0.9), int(self.height()*1.32))
+        news_button.setFixedSize(int(self.width()*0.775), int(self.height()*1.32))
         text_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        text_label.setFixedSize(int(self.width()*0.9), int(self.height()*1.32))
+        text_label.setFixedSize(int(self.width()*0.775), int(self.height()*1.32))
 #______________________________________________________________________________________________________________________
         """ Set text """
         text_label.setText(json_data['title'])

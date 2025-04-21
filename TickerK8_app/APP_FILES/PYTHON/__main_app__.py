@@ -22,7 +22,7 @@ def main():
     application = QApplication(sys.argv)
     application.setFont(set_font())
     controller = app_controller()
-    controller.setHidden(False)
+    controller.setHidden(False) 
     sys.exit(application.exec_())
 #######################################################################################################################
 """ Start application """

@@ -5,13 +5,21 @@ from PyQt5.QtWidgets import (
 #______________________________________________________________________________________________________________________
 """ Import PyQt5 Core """
 from PyQt5.QtCore import (
-    Qt # Qt settings
+    Qt, # Qt settings
+    QSize # Size
 )
 #______________________________________________________________________________________________________________________
 """ Import PyQt5 Gui """
 from PyQt5.QtGui import (
     QIcon # Icon
 )
+#______________________________________________________________________________________________________________________
+""" Import PyQt5 Gui """
+from PyQt5.QtGui import (QPixmap, # Graphic.
+                         QPainter) # Painter.
+#_______________________________________________________________________________________________________________________
+""" Import PyQt5 Svg """
+from PyQt5.QtSvg import QSvgRenderer # Render Svg.
 #######################################################################################################################
 """ Main mid object list Ui """
 def main_mid_object_list_ui(self):
@@ -60,6 +68,10 @@ def main_mid_object_list_ui(self):
 """ Main mid object list tyle """
 def main_mid_object_list_reload_style(self):
     self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/main_mid_object_list/'+self.global_config['__theme__']+'.css')).read())
+    self.type_list_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/list_'+self.global_config['__theme__']+'.svg'), 256, 256)))
+    self.type_list_button.setIconSize(self.type_list_button.size())
+    self.data_list_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/edit_table_data_'+self.global_config['__theme__']+'.svg'), 256, 256)))
+    self.data_list_button.setIconSize(self.data_list_button.size())
 #######################################################################################################################
 """ Main settings retranslate """
 def main_mid_object_list_retranslate(self):
@@ -67,4 +79,15 @@ def main_mid_object_list_retranslate(self):
     _l = self.global_config['__language__'] # Language
     self.type_list_button.setText(_t['type_list_button'][_l])
     self.data_list_button.setText(_t['data_list_button'][_l])
+#######################################################################################################################
+""" Load svg script """
+def load_svg(svg_path, width, height):
+    renderer = QSvgRenderer(svg_path) # Render svg
+    pixmap = QPixmap(width, height) # Create pixmap
+    pixmap.fill(Qt.transparent) # Transparent
+    painter = QPainter(pixmap) # Render graphic 
+    renderer.render(painter) # Render graphic
+    painter.end() # Render graphic
+    scaled_pixmap = pixmap.scaled(QSize(width, height), Qt.KeepAspectRatio, Qt.SmoothTransformation) # Scal pixmap
+    return scaled_pixmap
 #######################################################################################################################

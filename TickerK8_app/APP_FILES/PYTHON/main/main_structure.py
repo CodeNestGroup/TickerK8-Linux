@@ -7,6 +7,7 @@ from PyQt5.QtWidgets import (
     QWidget, # Simple widget, window
     QLabel, # Simple label
     QPushButton, # Simple button
+    QToolButton,
     QLineEdit, # Simple line edit
     QStackedWidget, # Stacked widget
     QScrollArea, # Scroll widget
@@ -59,10 +60,10 @@ class Main_widget(QWidget):
         self.mid_news_widget = Main_mid_news_widget(self.mid_widget)
         self.bottom_widget = QWidget(self)
         self.bottom_widget_layout = QGridLayout(self.bottom_widget)
-        self.bottom_left_news_button = QPushButton(self)
-        self.bottom_left_chart_button = QPushButton(self)
-        self.bottom_left_stats_button = QPushButton(self)
-        self.botom_center_add_button = QPushButton(self) 
+        self.bottom_left_news_button = QPushButton(self.bottom_widget)
+        self.bottom_left_chart_button = QPushButton(self.bottom_widget)
+        self.bottom_left_stats_button = QPushButton(self.bottom_widget)
+        self.bottom_center_add_button = QPushButton(self.bottom_widget) 
         self.bottom_right_market_button = QPushButton(self.bottom_widget)
         self.bottom_right_country_button = QPushButton(self.bottom_widget)
         self.bottom_right_world_button = QPushButton(self.bottom_widget)
