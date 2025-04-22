@@ -28,10 +28,12 @@ def create_news_widget(self):
         database = "TickerK8"
     )
     cursor = connect.cursor() # Create cursor
-    cursor.execute('SELECT json_file FROM news ORDER BY popularity LIMIT 3;')
+    cursor.execute('SELECT id, json_file FROM news ORDER BY popularity LIMIT 3;')
     news_list = cursor.fetchall()
     for index, data in enumerate(news_list, start=1):
-        json_data = json.loads(data[0])
+        json_data = json.loads(data[1])
+        print(data[0])
+        id_news = data[0]
         """ Create objects """
         news_button = QPushButton(self)
         text_label = QLabel(news_button)
@@ -78,7 +80,10 @@ def create_news_widget(self):
         )
         news_button.setIcon(QIcon(cropped_pix))
         news_button.setIconSize(news_button.size())
-
+#______________________________________________________________________________________________________________________
+        """ Set connect function for open """
+        news_button.clicked.connect(lambda _, id_news_correct=id_news: self.open_news.emit(id_news_correct))
+#______________________________________________________________________________________________________________________
         self.news_button_list.append(news_button)
     self.news_button_list[self.news_button_visable].setHidden(False)
     self.timer.timeout.connect(lambda: news_next(self))

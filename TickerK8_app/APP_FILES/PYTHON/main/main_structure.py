@@ -29,6 +29,9 @@ from main_mid_object.main_mid_object_structure import Main_mid_object_widget
 #______________________________________________________________________________________________________________________
 """ Import main mid news """
 from main_mid_news.main_mid_news_structure import Main_mid_news_widget
+#______________________________________________________________________________________________________________________
+""" Import main news structure """
+from main_news.main_news_structure import Main_news_widget
 #######################################################################################################################
 """ Main widget """
 class Main_widget(QWidget):
@@ -37,6 +40,7 @@ class Main_widget(QWidget):
         super().__init__()
         self.setAttribute(Qt.WA_StyledBackground, True) # Force widget to draw background
         self.setParent(parent) # Set parent
+        self.main_news = None # Set dafoult
 #______________________________________________________________________________________________________________________
         """ Set paths, file name"""
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2]) # Set main path, path to TickerK8 folder.
@@ -75,4 +79,5 @@ class Main_widget(QWidget):
 #______________________________________________________________________________________________________________________
         """ Connect  functions """
         self.mid_object_list_widget.config_changed.connect(self.mid_object_widget.setup_widet)
+        self.mid_news_widget.open_news.connect(lambda val: open_main_news(self, val))
 #######################################################################################################################

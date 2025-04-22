@@ -56,11 +56,11 @@ def main_news_ui(self):
 #######################################################################################################################
 """ Main news reload style """
 def main_news_reload_style(self):
-    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/MAIN_NEWS/'+self.global_config['__theme__']+'.css')).read())
+    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/main_news/'+self.global_config['__theme__']+'.css')).read())
 #######################################################################################################################
 """ Main news retranslate """
 def main_news_retranslate(self):
-    _t = self.main_settings_translate # Translate texts 
+    _t = self.main_news_translate # Translate texts 
     _l = self.global_config['__language__'] # Language
     self.panel_exit_button.setText(_t['panel_exit_button'][_l])
 #######################################################################################################################
