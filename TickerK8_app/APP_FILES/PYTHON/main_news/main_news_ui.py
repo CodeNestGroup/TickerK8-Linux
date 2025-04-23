@@ -8,7 +8,8 @@ from PyQt5.QtWidgets import (
 #______________________________________________________________________________________________________________________
 """ Import PyQt5 Core """
 from PyQt5.QtCore import (
-    Qt # Qt settings
+    Qt, # Qt settings
+    QRect
 )
 #______________________________________________________________________________________________________________________
 """ Import PyQt5 Gui """
@@ -27,7 +28,7 @@ def main_news_ui(self):
     """ Set property """
 #______________________________________________________________________________________________________________________
     """ Set layout """
-    self.main_layout.addWidget(self.panel_widget, 10, 20, 80, 60)
+    self.main_layout.addWidget(self.panel_widget, 2, 20, 96, 60)
     self.main_layout.setSpacing(0)
     self.main_layout.setContentsMargins(0,0,0,0)
     for enc in range(100):
@@ -35,7 +36,7 @@ def main_news_ui(self):
         self.main_layout.setColumnStretch(enc, 1)
     self.setLayout(self.main_layout)
     self.panel_layout.addWidget(self.news_scroll, 0, 0, 90, 100)
-    self.panel_layout.addWidget(self.panel_exit_button, 90, 40, 5, 20)
+    self.panel_layout.addWidget(self.panel_exit_button, 95, 40, 3, 20)
     self.panel_layout.setSpacing(0)
     self.panel_layout.setContentsMargins(0,0,0,0)
     for enc in range(100):
@@ -46,9 +47,11 @@ def main_news_ui(self):
     """ Set widget """
     self.setHidden(False)
     self.news_scroll.setWidgetResizable(True)
+    self.news_scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
 #______________________________________________________________________________________________________________________
     """ Set size """
     self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.setGeometry(QRect(0, 0, self.parent.width(), self.parent.height()))
     self.panel_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.news_scroll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.panel_exit_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)

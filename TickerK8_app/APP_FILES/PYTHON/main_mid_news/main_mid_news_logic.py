@@ -28,7 +28,7 @@ def create_news_widget(self):
         database = "TickerK8"
     )
     cursor = connect.cursor() # Create cursor
-    cursor.execute('SELECT id, json_file FROM news ORDER BY popularity LIMIT 3;')
+    cursor.execute('SELECT id, json_file FROM news ORDER BY date DESC LIMIT 3;')
     news_list = cursor.fetchall()
     for index, data in enumerate(news_list, start=1):
         json_data = json.loads(data[1])

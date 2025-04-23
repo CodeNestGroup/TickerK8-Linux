@@ -29,6 +29,7 @@ class Main_news_widget(QWidget):
         super().__init__()
         self.setAttribute(Qt.WA_StyledBackground, True) # Force widget to draw background
         self.setParent(parent) # Set parent
+        self.parent = parent # Set parent, main widget
         self.id_news = id_news # Set id news
 #______________________________________________________________________________________________________________________
         """ Set paths, file name"""
