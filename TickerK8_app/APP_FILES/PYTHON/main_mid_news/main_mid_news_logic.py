@@ -32,7 +32,6 @@ def create_news_widget(self):
     news_list = cursor.fetchall()
     for index, data in enumerate(news_list, start=1):
         json_data = json.loads(data[1])
-        print(data[0])
         id_news = data[0]
         """ Create objects """
         news_button = QPushButton(self)

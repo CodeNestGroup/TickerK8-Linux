@@ -55,7 +55,6 @@ def main_news_ui(self):
     self.panel_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.news_scroll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.panel_exit_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-#______________________________________________________________________________________________________________________
 #######################################################################################################################
 """ Main news reload style """
 def main_news_reload_style(self):
