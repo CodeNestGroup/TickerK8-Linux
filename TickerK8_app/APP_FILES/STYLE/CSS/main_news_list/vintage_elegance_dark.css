@@ -1,86 +1,81 @@
-#recover_password_widget{
+#main_news_list_widget{
+    background-color: #60000000;
+}
+#panel_widget{
+    background-color: #1b1b1b;
+}
+#title_label{
+    color: #FAFAFA;
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+}
+#news_list_scroll{
+    background-color: #1e1e1e;
+    border: 0;
+}
+#news_list_scroll QScrollBar:vertical{
+    border: none;
+    background: #1e1e1e;
+    width: 8px;
+    margin: 0;
+}
+#news_list_scroll QScrollBar::handle:vertical {
+    background: #353535;
+    min-height: 15px;
+    border-radius: 2px;
+}
+
+#news_list_scroll QScrollBar::handle:vertical:hover {
+    background: #031913;
+}
+
+#news_list_scroll QScrollBar::add-line:vertical, #news_list_scroll QScrollBar::sub-line:vertical {
+    border: none;
+    background: none;
+}
+
+#news_list_scroll QScrollBar::add-page:vertical, #news_list_scroll QScrollBar::sub-page:vertical {
+    background: none;
+}
+#news_widget{
+    background-color: #1e1e1e;
+}
+.news_button{
+    color: #FAFAFA;
     background-color: #252525;
-}
-#recover_password_title_label{
-    color: #FAFAFA;
-    padding: 0.3em;
-    font-size: 28px;
-    font-weight: 600;
-    letter-spacing: 0.3em;
-}
-#recover_password_requirments_label{
-    color: #FAFAFA;
-    padding: 0.3em;
-    font-size: 14px;
-    font-weight: 400;
-    letter-spacing: 0.2em;
-}
-#recover_password_code_label{
-    color: #FAFAFA;
-    background-color: #1e1e1e;
-    padding: 0.5em;
-    font-size: 20px;
-    font-weight: 600;
-    letter-spacing: 0.8em;
-}
-#recover_password_time_label{
-    color: #FAFAFA;
-    padding: 0.5em;
-    font-size: 16px;
-    font-weight: 400;
-    letter-spacing: 0.3em;
-}
-#recover_password_code_lineedit{
-    color: #FAFAFA;
-    background-color: #1e1e1e;
-    border: 0;
-    padding: 0.5em;
-    font-size: 16px;
-    font-weight: 400;
-    letter-spacing: 0.8em;
-}
-#recover_password_code_button{
-    color: #FAFAFA;
-    background-color: #1e1e1e;
+    margin-bottom: 4px;
     border: 0;
     padding: 0.3em;
     font-size: 14px;
-    font-weight: 400;
-    letter-spacing: 0.3em;
+    font-weight: 600;
+    letter-spacing: 0.4em;
 }
-#recover_password_code_button:hover{
+.news_button:hover{
     background-color: #031913;
 }
-.recover_password_password_line{
+.date_label{
     color: #FAFAFA;
-    background-color: #1e1e1e;
-    border: 0;
-    padding: 0.3em;
-    font-size: 16px;
-    font-weight: 400;
-    letter-spacing: 0.2em;
-}
-.recover_password_password_button{
-    color: #FAFAFA;
-    background-color: #1e1e1e;
-    border: 0;
-    padding: 0.3em;
-    font-size: 14px;
+    background-color: #00000000;
+    font-size: 12px;
     font-weight: 400;
     letter-spacing: 0.3em;
 }
-.recover_password_password_button:hover{
-    background-color: #031913;
-}
-.recover_password_button{
+.text_label{
     color: #FAFAFA;
-    background-color: #1e1e1e;
-    border: 0;
-    padding: 0.3em;
-    font-size: 20px;
+    background-color: #00000000;   
+    font-size: 16px;
     font-weight: 400;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.3em; 
 }
-.recover_password_button:hover{
+#exit_button{
+    color: #FAFAFA;
+    background-color: #252525;
+    border: 0;
+    border-radius: 0.5em;
+    padding: 0.3em;
+    font-size: 14px;
+}
+#exit_button:hover{
     background-color: #031913;
 }

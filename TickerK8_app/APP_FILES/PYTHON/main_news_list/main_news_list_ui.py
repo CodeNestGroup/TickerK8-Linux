@@ -37,7 +37,7 @@ def main_news_list_ui(self):
         self.main_layout.setColumnStretch(enc, 1)
     self.setLayout(self.main_layout)
     self.panel_layout.addWidget(self.title_label, 0, 0, 10, 100)
-    self.panel_layout.addWidget(self,news_list_scroll, 10, 0, 80, 100)
+    self.panel_layout.addWidget(self.news_list_scroll, 10, 0, 80, 100)
     self.panel_layout.addWidget(self.exit_button, 95, 40, 2, 20)
     self.panel_layout.setSpacing(0)
     self.panel_layout.setContentsMargins(0,0,0,0)
@@ -68,7 +68,7 @@ def main_news_list_reload_style(self):
     self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/main_news_list/'+self.global_config['__theme__']+'.css')).read())
 #######################################################################################################################
 def main_news_list_retranslate(self):
-    _t = self.main_news_translate # Translate texts 
+    _t = self.main_news_list_translate # Translate texts 
     _l = self.global_config['__language__'] # Language
     _type = self.news_type # News type 
     self.title_label.setText(_t['title_label'][_l][_type])

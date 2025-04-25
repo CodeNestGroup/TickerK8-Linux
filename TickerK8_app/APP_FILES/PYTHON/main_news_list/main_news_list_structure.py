@@ -37,7 +37,7 @@ class Main_news_list_widget(QWidget):
         """ Set paths, file name"""
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2]) # Set main path, path to TickerK8 folder.
         self.global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data
-        self.main_news_translate = json.load(open(self.main_path+'/CONFIG/main_news/translate.json', 'r')) # Get main news list translate data
+        self.main_news_list_translate = json.load(open(self.main_path+'/CONFIG/main_news_list/translate.json', 'r')) # Get main news list translate data
 #______________________________________________________________________________________________________________________
         """ Create objects """
         self.main_layout = QGridLayout(self) 
@@ -51,6 +51,9 @@ class Main_news_list_widget(QWidget):
         main_news_list_ui(self)
         main_news_list_reload_style(self)
         main_news_list_retranslate(self)
-        news_main_widget(self, self.id_news_type)
+        news_list_widget(self)
+#______________________________________________________________________________________________________________________
+        """ Connect functions """
+        self.exit_button.clicked.connect(lambda: self.deleteLater())
 #######################################################################################################################
 
