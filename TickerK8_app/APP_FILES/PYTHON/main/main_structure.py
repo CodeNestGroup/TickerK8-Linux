@@ -44,6 +44,7 @@ class Main_widget(QWidget):
         self.setAttribute(Qt.WA_StyledBackground, True) # Force widget to draw background
         self.setParent(parent) # Set parent
         self.main_news = None # Set dafoult
+        self.main_news_list = None # Set dafoult
 #______________________________________________________________________________________________________________________
         """ Set paths, file name"""
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2]) # Set main path, path to TickerK8 folder.

@@ -38,7 +38,7 @@
 #news_list_scroll QScrollBar::add-page:vertical, #news_list_scroll QScrollBar::sub-page:vertical {
     background: none;
 }
-#news_widget{
+#news_list_widget{
     background-color: #1e1e1e;
 }
 .news_button{

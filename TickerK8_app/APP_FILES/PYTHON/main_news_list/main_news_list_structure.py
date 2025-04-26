@@ -15,7 +15,8 @@ from PyQt5.QtWidgets import (
 #______________________________________________________________________________________________________________________
 """ Import PyQt5 Core """
 from PyQt5.QtCore import (
-        Qt
+        Qt,
+        pyqtSignal
 )
 #______________________________________________________________________________________________________________________
 """ Import main list ui """
@@ -27,11 +28,12 @@ from .main_news_list_logic import *
 """ Main news widget """
 class Main_news_list_widget(QWidget):
     """ Init, creating items, set base variables like paths, screen size, etc. """
+    open_news = pyqtSignal(int)
     def __init__(self, parent, news_type):
         super().__init__()
         self.setAttribute(Qt.WA_StyledBackground, True) # Force widget to draw background
         self.setParent(parent) # Set parent
-        self.parent = parent # Set parent, main widget
+        self.parent = parent # Set parent, main widget  
         self.news_type = news_type # Set id news type
 #______________________________________________________________________________________________________________________
         """ Set paths, file name"""
