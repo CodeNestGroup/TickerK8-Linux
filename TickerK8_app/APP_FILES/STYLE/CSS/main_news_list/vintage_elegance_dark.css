@@ -46,7 +46,6 @@
     background-color: #252525;
     margin-bottom: 4px;
     border: 0;
-    padding: 0.3em;
     font-size: 14px;
     font-weight: 600;
     letter-spacing: 0.4em;
@@ -64,7 +63,7 @@
 .text_label{
     color: #FAFAFA;
     background-color: #00000000;   
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 400;
     letter-spacing: 0.3em; 
 }

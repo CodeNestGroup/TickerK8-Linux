@@ -84,7 +84,7 @@ class Main_widget(QWidget):
         """ Connect  functions """
         self.mid_object_list_widget.config_changed.connect(self.mid_object_widget.setup_widet)
         self.mid_news_widget.open_news.connect(lambda val: open_main_news(self, val))
-        self.bottom_right_market_button.clicked.connect(lambda: Main_news_list_widget(self, 0))
-        self.bottom_right_country_button.clicked.connect(lambda: Main_news_list_widget(self, 1))
-        self.bottom_right_world_button.clicked.connect(lambda: Main_news_list_widget(self, 2))
+        self.bottom_right_market_button.clicked.connect(lambda: open_main_news_list(self,0))
+        self.bottom_right_country_button.clicked.connect(lambda: open_main_news_list(self, 1))
+        self.bottom_right_world_button.clicked.connect(lambda: open_main_news_list(self, 1))
 #######################################################################################################################

@@ -1,4 +1,4 @@
 {
-    "market": 1,
-    "country": 1
+    "market": [1, 0],
+    "country": [1, 0]
 }

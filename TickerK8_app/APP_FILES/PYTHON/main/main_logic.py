@@ -11,6 +11,5 @@ def open_main_news(self, id_news):
 """ Open main news list """
 def open_main_news_list(self, news_type_index):
     self.main_news_list = Main_news_list_widget(self, news_type_index)
-    #self.main_news_list.open_news.connect(lambda val: open_main_news(self, val))
-    self.main_news_list.open_news.connect(lambda val: print(val))
+    self.main_news_list.open_news.connect(lambda val: open_main_news(self, val))
 #######################################################################################################################

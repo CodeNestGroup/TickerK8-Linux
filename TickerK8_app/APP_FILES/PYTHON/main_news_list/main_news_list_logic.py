@@ -25,6 +25,7 @@ def news_list_widget(self):
     """ Load user settings """
     user_setting = list(dict(json.load(open(self.main_path+'/CONFIG/GLOBAL/logged_user.json', 'r'))).values())[self.news_type]
     news_type_name = None # Set dafoult
+    result = dict # Set dafoult
     if self.news_type == 0:
         news_type_name = 'market_id'
     elif self.news_type == 1:
@@ -40,8 +41,11 @@ def news_list_widget(self):
         database = "TickerK8"
     )
     cursor = connect.cursor()
-    cursor.execute(f'SELECT id, title, date  FROM news WHERE {news_type_name}={user_setting};')
-    result = cursor.fetchall()
+    for id_ in user_setting:
+        cursor.execute(f'SELECT id, title, date  FROM news WHERE {news_type_name}={id_};')
+        result[id_] = list(cursor.fetchall()) # Save result 
+    cursor.close() # Close cursor
+    connect.close() # Close connect 
 #______________________________________________________________________________________________________________________
     """ Create objects """
     self.news_list_widget = QWidget(self.news_list_scroll)
@@ -67,9 +71,42 @@ def news_list_widget(self):
     self.news_list_widget.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
 #______________________________________________________________________________________________________________________
     """ Make news widget content """
+    for keys, values in result:
+        """ Create objects """
+        subtitle_widget = QWidget(self.news_list_widget)
+        subtitle_layout = QGridLayout(subtitle_label)
+        logo_label = QLabel(subtitle_widget)
+        subtitle_label = QLabel(self.news_list_widget)
+#______________________________________________________________________________________________________________________
+        """ Set object name """
+        subtitle_widget.setObjectName(f'subtitle_widget_{keys}')
+        logo_label.setObjectName(f'logo_label_{keys}')
+        subtitle_label.setObjectName(f'subtitle_label_{keys}')
+#______________________________________________________________________________________________________________________
+        """ Set property """
+        subtitle_widget.setProperty('class', 'subtitle_widget')
+        logo_label.setProperty('class', 'logo_label')
+        subtitle_label.setProperty('class', 'subtitle_label')
+#______________________________________________________________________________________________________________________
+        """ Set layout """
+        subtitle_layout.addWidget(logo_label)
+        subtitle_layout.addWidget(subtitle_label)
+        subtitle_layout.setSpacing(0)
+        subtitle_layout.setContentsMargins(0,0,0,0)
+        for enc in range(100):
+            subtitle_layout.setRowStretch(enc, 1)
+            subtitle_layout.setColumnStretch(enc, 1)
+        subtitle_widget.setLayout(subtitle_layout)
+#______________________________________________________________________________________________________________________
+        """ Set widget """
+#______________________________________________________________________________________________________________________
+        """ Set label """
+#______________________________________________________________________________________________________________________
+
     for index, rows in enumerate(result, start=0):
         """ Create objects """
         news_button = QPushButton(self.news_list_widget)
+        news_layout = QGridLayout(news_button)
         date_label = QLabel(news_button)
         text_label = QLabel(news_button)
 #______________________________________________________________________________________________________________________
@@ -83,16 +120,26 @@ def news_list_widget(self):
         date_label.setProperty('class', 'date_label')
         text_label.setProperty('class', 'text_label')
 #______________________________________________________________________________________________________________________
+        """ Set layout """
+        news_layout.addWidget(date_label, 0, 0, 100, 25)
+        news_layout.addWidget(text_label, 0, 25, 100, 75)
+        news_layout.setSpacing(0)
+        news_layout.setContentsMargins(0,0,0,0)
+        for enc in range(100):
+            news_layout.setRowStretch(enc, 1)
+            news_layout.setColumnStretch(enc, 1)
+        news_button.setLayout(news_layout)
+#______________________________________________________________________________________________________________________
         date_label.setAlignment(Qt.AlignCenter)
+        date_label.setAttribute(Qt.WA_TransparentForMouseEvents, True)
         text_label.setAlignment(Qt.AlignCenter)
+        text_label.setAttribute(Qt.WA_TransparentForMouseEvents, True)
 #______________________________________________________________________________________________________________________
         """ Set size """
-        news_button.setFixedSize(QSize(self.news_list_scroll.width(), self.news_list_scroll.height()//8 ))
+        news_button.setFixedSize(QSize(self.news_list_scroll.width(), self.news_list_scroll.height()//8))
         news_button.setSizePolicy(QSizePolicy.Preferred,QSizePolicy.Expanding)
-        date_label.setGeometry(QRect(0, 0, int(news_button.width()//4), int(news_button.height())))
-        date_label.setSizePolicy(QSizePolicy.Preferred,QSizePolicy.Expanding)
-        text_label.setGeometry(QRect(int(news_button.width()//4), 0, int(news_button.width()//1.5), int(news_button.height())))
-        text_label.setSizePolicy(QSizePolicy.Preferred,QSizePolicy.Expanding)
+        date_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        text_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 #______________________________________________________________________________________________________________________
         """ Set text """
         date_label.setText(str(rows[2]))
