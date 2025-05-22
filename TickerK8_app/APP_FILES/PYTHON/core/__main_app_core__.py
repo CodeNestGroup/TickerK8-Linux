@@ -15,6 +15,9 @@ from recover_password.recover_password_structure import Recover_password_widget
 #______________________________________________________________________________________________________________________
 """ Import main widget """
 from main.main_structure import Main_widget 
+#______________________________________________________________________________________________________________________
+""" Import statistics widget """
+from statistics.statistics_structure import Statistics_widget
 #######################################################################################################################
 """ App controller """
 class app_controller(QWidget):
@@ -98,6 +101,18 @@ class app_controller(QWidget):
         x, y, width, height = 0, 0, int(self.primary_screen_size.width()), int(self.primary_screen_size.height()) # Set size
         self.setGeometry(QRect(x, y, width, height)) # Set geometry
 #______________________________________________________________________________________________________________________
+    """ Statistics """
+    def statistics_setup(self):
+        self.statistics_widget = Statistics_widget(self)
+        self.layout.addWidget(self.statistics_widget)
+        self.set_size_statistics()
+        self.statistics_widget.main_exit_button.clicked.connect(self.)
+#______________________________________________________________________________________________________________________
+    """ Set size statistics """
+    def set_size_statistics(self):
+        x, y, width, height = 0, 0, int(self.primary_screen_size.width()), int(self.primary_screen_size.height()) # Set size
+        self.setGeometry(QRect(x, y, width, height)) # Set geometry
+#______________________________________________________________________________________________________________________
     """ From login to register """
     def login_to_register(self):
         self.login_widget.deleteLater() # Delete login widget 
@@ -126,7 +141,12 @@ class app_controller(QWidget):
     def login_to_main(self):
         self.login_widget.deleteLater() # Delete login widget
         self.login_widget = None # Set default  
-        self.main_setup() # Call recover password setup function 
-
+        self.main_setup() # Call main setup function
+#______________________________________________________________________________________________________________________
+    """ From main to statistics """
+    def main_to_statistics(self):
+        self.main_widget.deleteLater() # Delete main widget
+        self.main_widget = None # Set dafault
+        self.statistics_setup() # Call statistics setup function 
 #######################################################################################################################
     

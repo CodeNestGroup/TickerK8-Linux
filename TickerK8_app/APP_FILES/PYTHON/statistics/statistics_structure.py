@@ -29,7 +29,7 @@ class Statistics_widget(QWidget):
 #______________________________________________________________________________________________________________________
         """ Set paths, file name """
         self.main_path = str(pathlib.Path(__file__).resolve().parent[2]) # Set main path, path to TickerK8 folder
-        self.language = int(json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['__language__'])
+        self.global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
 #______________________________________________________________________________________________________________________
         """ Create objects """
         self.main_layout = QGridLayout(self)
