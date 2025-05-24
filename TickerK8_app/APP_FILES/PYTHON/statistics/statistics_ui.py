@@ -33,9 +33,9 @@ def statistics_ui(self):
     """ Set property """
 #______________________________________________________________________________________________________________________
     """ Set layout """
-    self.main_layout.addWidget(self.main_title_label)
-    self.main_layout.addWidget(self.main_exit_button)
-    self.main_layout.addWidget(self.main_scroll)
+    self.main_layout.addWidget(self.main_title_label, 0, 20, 10, 60)
+    self.main_layout.addWidget(self.main_exit_button, 1, 5, 10, 10)
+    self.main_layout.addWidget(self.main_scroll, 10, 0, 90, 100)
     self.main_layout.setSpacing(0)
     self.main_layout.setContentsMargins(0,0,0,0)
     for enc in range(100):
@@ -50,16 +50,18 @@ def statistics_ui(self):
     self.main_title_label.setAlignment(Qt.AlignCenter)
 #______________________________________________________________________________________________________________________
     """ Set size """
+    self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_exit_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_scroll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 #######################################################################################################################
+""" Statistics reload style """
 def statistics_reload_style(self):
     self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/statistics/'+self.global_config['__theme__']+'.css')).read())
     self.main_exit_button.setIcon(QIcon(load_svg(self.main_path+'/STYLE/IMG/icons/main/exit_'+self.global_config['__theme__']+'.svg', 256, 256)))
 #######################################################################################################################
 """ Statistics retranslate """
-def main_mid_news_retranslate(self):
+def statistics_retranslate(self):
     pass
 #######################################################################################################################
 """ Load svg script """

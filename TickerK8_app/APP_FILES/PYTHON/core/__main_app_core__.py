@@ -95,6 +95,7 @@ class app_controller(QWidget):
         self.main_widget = Main_widget(self) # Creat main widget
         self.layout.addWidget(self.main_widget) # Add main widget to main layout 
         self.set_size_main() # Set size if main window fir main widget
+        self.main_widget.bottom_left_stats_button.clicked.connect(self.main_to_statistics) # Connect open statistics widget
 #______________________________________________________________________________________________________________________
     """ Set size main """
     def set_size_main(self):
@@ -103,10 +104,10 @@ class app_controller(QWidget):
 #______________________________________________________________________________________________________________________
     """ Statistics """
     def statistics_setup(self):
-        self.statistics_widget = Statistics_widget(self)
-        self.layout.addWidget(self.statistics_widget)
-        self.set_size_statistics()
-        self.statistics_widget.main_exit_button.clicked.connect(self.)
+        self.statistics_widget = Statistics_widget(self) # Create statistics widget
+        self.layout.addWidget(self.statistics_widget) # Add statistics widget to main layout
+        self.set_size_statistics() # Set size 
+        self.statistics_widget.main_exit_button.clicked.connect(self.statistics_to_main) # Connect exit function 
 #______________________________________________________________________________________________________________________
     """ Set size statistics """
     def set_size_statistics(self):
@@ -147,6 +148,12 @@ class app_controller(QWidget):
     def main_to_statistics(self):
         self.main_widget.deleteLater() # Delete main widget
         self.main_widget = None # Set dafault
-        self.statistics_setup() # Call statistics setup function 
+        self.statistics_setup() # Call statistics setup function
+#______________________________________________________________________________________________________________________
+    """ From statistics to main """
+    def statistics_to_main(self):
+        self.statistics_widget.deleteLater() # Delte statistics widget
+        self.statistics_widget = None # Set dafault
+        self.main_setup() # Call main setup function 
 #######################################################################################################################
     

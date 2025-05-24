@@ -28,7 +28,7 @@ class Statistics_widget(QWidget):
         self.statistics_object = None # Set dafault
 #______________________________________________________________________________________________________________________
         """ Set paths, file name """
-        self.main_path = str(pathlib.Path(__file__).resolve().parent[2]) # Set main path, path to TickerK8 folder
+        self.main_path = str(pathlib.Path(__file__).resolve().parents[2]) # Set main path, path to TickerK8 folder
         self.global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
 #______________________________________________________________________________________________________________________
         """ Create objects """
@@ -40,7 +40,7 @@ class Statistics_widget(QWidget):
         """ Call functions  """
         statistics_ui(self)
         statistics_reload_style(self)
-        statistics_logic(self)
+        #statistics_logic(self)
 #______________________________________________________________________________________________________________________
         """ Connect functions """
         
