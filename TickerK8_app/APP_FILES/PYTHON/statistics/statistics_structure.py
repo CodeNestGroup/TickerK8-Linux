@@ -21,11 +21,11 @@ from .statistics_logic import *
 """ Statistics widget """
 class Statistics_widget(QWidget):
     """ Init, creating items, set base variables like paths, screen size, etc. """
-    def __init__(self, parent):
+    def __init__(self, parent, object_info):
         super().__init__()
         self.setAttribute(Qt.WA_StyledBackground, True) # Force widget to draw background
         self.setParent(parent) # Set parent
-        self.statistics_object = None # Set dafault
+        self.statistics_object = object_info # Set dafault
 #______________________________________________________________________________________________________________________
         """ Set paths, file name """
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2]) # Set main path, path to TickerK8 folder
@@ -36,11 +36,19 @@ class Statistics_widget(QWidget):
         self.main_title_label = QLabel(self)
         self.main_exit_button = QPushButton(self)
         self.main_scroll = QScrollArea(self)
+        self.scroll_widget = None 
 #______________________________________________________________________________________________________________________
         """ Call functions  """
         statistics_ui(self)
         statistics_reload_style(self)
-        #statistics_logic(self)
+        if self.statistics_object[0] == 'country':
+                statisitcs_country(self)
+        elif self.statistics_object[0] == 'market':
+                statistics_market(self)
+        elif self.statistics_object[0] == 'index':
+                statisitcs_index(self)
+        elif self.statistics_object[0] == 'stock':
+                statistics_stock(self)
 #______________________________________________________________________________________________________________________
         """ Connect functions """
         

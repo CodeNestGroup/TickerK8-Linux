@@ -31,7 +31,7 @@ class Main_mid_news_widget(QWidget):
         self.setParent(parent) # Set parent
         self.news_button_list = []
         self.news_button_visable = 0
-        self.timer = QTimer()
+        self.timer = QTimer(self)
 #______________________________________________________________________________________________________________________
         """ Set paths, file name"""
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2]) # Set main path, path to TickerK8 folder.

@@ -104,10 +104,10 @@ class app_controller(QWidget):
 #______________________________________________________________________________________________________________________
     """ Statistics """
     def statistics_setup(self):
-        self.statistics_widget = Statistics_widget(self) # Create statistics widget
+        self.statistics_widget = Statistics_widget(self, ['country', 1]) # Create statistics widget
         self.layout.addWidget(self.statistics_widget) # Add statistics widget to main layout
         self.set_size_statistics() # Set size 
-        self.statistics_widget.main_exit_button.clicked.connect(self.statistics_to_main) # Connect exit function 
+        self.statistics_widget.main_exit_button.clicked.connect(self.statistics_to_main) # Connect exit function
 #______________________________________________________________________________________________________________________
     """ Set size statistics """
     def set_size_statistics(self):
