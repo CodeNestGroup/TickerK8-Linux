@@ -8,9 +8,10 @@ from PyQt5.QtWidgets import (
     QPushButton, # Simple button
     QScrollArea, # Scroll widget
     QGridLayout, # Grid layout
+    QVBoxLayout, # Vertical layout 
     QSizePolicy # Size policy 
 )
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QSize
 #######################################################################################################################
 """ Statistics country """
 def statisitcs_country(self):
@@ -18,11 +19,12 @@ def statisitcs_country(self):
     database = sqlite3.connect(database=self.main_path+'/CONFIG/GLOBAL/local_data_prototype.db')
     cursor = database.cursor()
     result = cursor.execute(f'SELECT name, flag FROM country WHERE id={self.statistics_object[1]};').fetchall()
+    database.close()
 #______________________________________________________________________________________________________________________
     """ Set title """
     self.main_title_label.setText(f'{result[0][0]}')
 #______________________________________________________________________________________________________________________
-    """ Setup widgey """
+    """ Setup widget """
     if self.scroll_widget: # Check if main scroll have widget 
         self.scroll_widget.deleteLater() # Delete scroll widget
         self.scroll_widget = None # Set dafault 
@@ -91,11 +93,207 @@ def open_gdp(self):
 #######################################################################################################################
 """ Open natural resources """
 def open_n_r(self):
+    """ Set data """
+    database = sqlite3.connect(database=self.main_path+'/CONFIG/GLOBAL/local_data_prototype.db')
+    cursor = database.cursor()
+    result = cursor.execute(f'SELECT  FROM country WHERE id={self.statistics_object[1]};').fetchall()
+    database.close()
+#______________________________________________________________________________________________________________________
+    """ Setup widget """
     if self.scroll_widget: # Check if main scroll has widget 
         self.scroll_widget.deleteLater() # Delete widget 
         self.scroll_widget = None  # Set dafault 
+#______________________________________________________________________________________________________________________
+    """ Create objects """
+    self.scroll_widget = QWidget(self.main_scroll)
+    self.scroll_layout = QVBoxLayout(self.scroll_widget)
+#______________________________________________________________________________________________________________________
+    """ Forests """
+    self.n_r_forests_button = QPushButton(self.scroll_widget)
+    self.n_r_forests_widget = QWidget(self.n_r_forests_button)
+    self.n_r_forests_layout = QGridLayout(self.n_r_forests_widget)
+    self.n_r_forests_title_label = QLabel(self.n_r_forests_widget)
+    self.n_r_forests_map_label = QLabel(self.n_r_forests_widget)
+#______________________________________________________________________________________________________________________
+    """ Agroculture """
+    self.n_r_agroculture_button = QPushButton(self.scroll_widget)
+    self.n_r_agroculture_widget = QWidget(self.n_r_agroculture_button)
+    self.n_r_agroculture_layout = QGridLayout(self.n_r_agroculture_widget)
+    self.n_r_agroculture_title_label = QLabel(self.n_r_agroculture_widget)
+    self.n_r_agroculture_map_label = QLabel(self.n_r_agroculture_widget)
+#______________________________________________________________________________________________________________________
+    """ Minerals """
+    self.n_r_minerals_button = QPushButton(self.scroll_widget)
+    self.n_r_minerals_widget = QWidget(self.n_r_minerals_button)
+    self.n_r_minerals_layout = QGridLayout(self.n_r_minerals_widget)
+    self.n_r_minerals_title_label = QLabel(self.n_r_minerals_widget)
+    self.n_r_minerals_map_label = QLabel(self.n_r_minerals_widget)
+#______________________________________________________________________________________________________________________
+    """ Water """
+    self.n_r_water_button = QPushButton(self.scroll_widget)
+    self.n_r_water_widget = QWidget(self.n_r_water_button)
+    self.n_r_water_layout = QGridLayout(self.n_r_water_widget)
+    self.n_r_water_title_label = QLabel(self.n_r_water_widget)
+    self.n_r_water_map_label = QLabel(self.n_r_water_widget)
+#______________________________________________________________________________________________________________________
+    """ Set object name """
+    self.scroll_widget.setObjectName('scroll_widget')
+    """ Forest """
+    self.n_r_forests_button.setObjectName('n_r_forests_button')
+    self.n_r_forests_widget.setObjectName('n_r_forests_widget')
+    self.n_r_forests_title_label.setObjectName('n_r_forests_title_label')
+    self.n_r_forests_map_label.setObjectName('n_r_forests_map_label')
+    """ Agroculture """
+    self.n_r_agroculture_button.setObjectName('n_r_agroculture_button')
+    self.n_r_agroculture_widget.setObjectName('n_r_agroculture_widget')
+    self.n_r_agroculture_title_label.setObjectName('n_r_agroculture_title_label')
+    self.n_r_agroculture_map_label.setObjectName('n_r_agroculture_map_label')
+    """ Minerals """
+    self.n_r_minerals_button.setObjectName('n_r_minerals_button')
+    self.n_r_minerals_widget.setObjectName('n_r_minerals_widget')
+    self.n_r_minerals_title_label.setObjectName('n_r_minerals_title_label')
+    self.n_r_minerals_map_label.setObjectName('n_r_minerals_map_label')
+    """ Water """
+    self.n_r_water_button.setObjectName('n_r_water_button')
+    self.n_r_water_widget.setObjectName('n_r_water_widget')
+    self.n_r_water_title_label.setObjectName('n_r_water_title_label')
+    self.n_r_water_map_label.setObjectName('n_r_water_map_label')
+#______________________________________________________________________________________________________________________
+    """ Set property """
+    """ Forests """
+    self.n_r_forests_button.setProperty('class', 'n_r_button')
+    self.n_r_forests_widget.setProperty('class', 'n_r_widget')
+    self.n_r_forests_title_label.setProperty('class', 'n_r_title_label')
+    self.n_r_forests_map_label.setProperty('class', 'n_r_map_label')
+    """ Agroculture """
+    self.n_r_agroculture_button.setProperty('class', 'n_r_button')
+    self.n_r_agroculture_title_label.setProperty('class', 'n_r_widget')
+    self.n_r_agroculture_title_label.setProperty('class', 'n_r_title_label')
+    self.n_r_agroculture_map_label.setProperty('class', 'n_r_map_label')
+    """ Minerals """
+    self.n_r_minerals_button.setProperty('class', 'n_r_button')
+    self.n_r_minerals_widget.setProperty('class', 'n_r_widget')
+    self.n_r_minerals_title_label.setProperty('class', 'n_r_title_label')
+    self.n_r_minerals_map_label.setProperty('class', 'n_r_map_label')
+    """ Water """
+    self.n_r_water_button.setProperty('class', 'n_r_button')
+    self.n_r_water_widget.setProperty('class', 'n_r_widget')
+    self.n_r_water_title_label.setProperty('class', 'n_r_title_label')
+    self.n_r_water_map_label.setProperty('class', 'n_r_map_label')
+#______________________________________________________________________________________________________________________
+    """ Set layout """
+    self.scroll_layout.addWidget(self.n_r_forests_button)
+    self.scroll_layout.addWidget(self.n_r_agroculture_button)
+    self.scroll_layout.addWidget(self.n_r_minerals_button)
+    self.scroll_layout.addWidget(self.n_r_water_button)
+    self.scroll_layout.setSpacing(0)
+    self.scroll_layout.setContentsMargins(0,0,0,0)
+    self.scroll_widget.setLayout(self.scroll_layout)
+    """ Forests """
+    self.n_r_forests_layout.addWidget(self.n_r_forests_title_label, 0, 0, 20, 100)
+    self.n_r_forests_layout.addWidget(self.n_r_forests_map_label, 20, 5, 80, 30)
+    self.n_r_forests_layout.setSpacing(0)
+    self.n_r_forests_layout.setContentsMargins(0,0,0,0)
+    for enc in range(100):
+        self.n_r_forests_layout.setRowStretch(enc, 1)
+        self.n_r_forests_layout.setColumnStretch(enc, 1)
+    self.n_r_forests_widget.setLayout(self.n_r_forests_layout)
+    """ Agroculture """
+    self.n_r_agroculture_layout.addWidget(self.n_r_agroculture_title_label, 0, 0, 20, 100)
+    self.n_r_agroculture_layout.addWidget(self.n_r_agroculture_map_label, 20, 5, 80, 30)
+    self.n_r_agroculture_layout.setSpacing(0)
+    self.n_r_agroculture_layout.setContentsMargins(0,0,0,0)
+    for enc in range(100):
+        self.n_r_agroculture_layout.setRowStretch(enc, 1)
+        self.n_r_agroculture_layout.setColumnStretch(enc, 1)
+    self.n_r_agroculture_widget.setLayout(self.n_r_agroculture_layout)
+    """ Minerals """
+    self.n_r_minerals_layout.addWidget(self.n_r_minerals_title_label, 0, 0, 20, 100)
+    self.n_r_minerals_layout.addWidget(self.n_r_minerals_map_label, 20, 5, 80, 30)
+    self.n_r_minerals_layout.setSpacing(0)
+    self.n_r_minerals_layout.setContentsMargins(0,0,0,0)
+    for enc in range(100):
+        self.n_r_minerals_layout.setRowStretch(enc, 1)
+        self.n_r_minerals_layout.setColumnStretch(enc, 1)
+    self.n_r_minerals_widget.setLayout(self.n_r_minerals_layout)
+    """ Water """
+    self.n_r_water_layout.addWidget(self.n_r_water_title_label, 0, 0, 20, 100)
+    self.n_r_water_layout.addWidget(self.n_r_water_map_label, 20, 5, 80, 30)
+    self.n_r_water_layout.setSpacing(0)
+    self.n_r_water_layout.setContentsMargins(0,0,0,0)
+    for enc in range(100):
+        self.n_r_water_layout.setRowStretch(enc, 1)
+        self.n_r_water_layout.setColumnStretch(enc, 1)
+    self.n_r_water_widget.setLayout(self.n_r_water_layout)
+#______________________________________________________________________________________________________________________
+    """ Set widget """
+    self.main_scroll.setWidget(self.scroll_widget)
+#______________________________________________________________________________________________________________________
+    """ Set label """
+    """ Forests """
+    self.n_r_forests_title_label.setAlignment(Qt.AlginCenter)
+    """ Agroculture """
+    self.n_r_agroculture_title_label.setAlignment(Qt.AlginCenter)
+    """ Minerals """
+    self.n_r_minerals_title_label.setAlignment(Qt.AlginCenter)
+    """ Water """
+    self.n_r_water_title_label.setAlignment(Qt.AlginCenter)
+#______________________________________________________________________________________________________________________
+    """ Set size  """
+    self.scroll_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    """ Forests """
+    self.n_r_forests_button.setFixedHeight(self.main_scroll.height()//2)
+    self.n_r_forests_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.n_r_forests_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.n_r_forests_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.n_r_forests_map_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    """ Agroculture """
+    self.n_r_agroculture_button.setFixedHeight(self.main_scroll.height()//2)
+    self.n_r_agroculture_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.n_r_agroculture_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.n_r_agroculture_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.n_r_agroculture_map_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    """ Minerals """
+    self.n_r_minerals_button.setFixedHeight(self.main_scroll.height()//2)
+    self.n_r_minerals_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.n_r_minerals_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.n_r_minerals_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.n_r_minerals_map_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    """ Water """
+    self.n_r_water_button.setFixedHeight(self.main_scroll.height()//2)
+    self.n_r_water_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.n_r_water_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.n_r_water_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.n_r_water_map_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+#______________________________________________________________________________________________________________________
+    """ Set text """
+    """ Forests """
+    self.n_r_forests_title_label.setText('Forests')
+    """ Agroculture """
+    self.n_r_agroculture_title_label.setText('Agroculture')
+    """ Minerals """
+    self.n_r_minerals_title_label.setText('Minerals')
+    """ Water """
+    self.n_r_water_title_label.setText('Water')
+#______________________________________________________________________________________________________________________
+    """ Set graphics """
+    self.n_r_forests_map_label.setPixmap(load_svg())
+    self.n_r_agroculture_map_label.setPixmap(load_svg())
+    self.n_r_minerals_map_label.setPixmap(load_svg())
+    self.n_r_water_map_label.setPixmap(load_svg())
 #######################################################################################################################
 """ Open people """
 def open_people(self):
     pass
+#######################################################################################################################
+""" Load svg script """
+def load_svg(svg_path, width, height):
+    renderer = QSvgRenderer(svg_path) # Render svg
+    pixmap = QPixmap(width, height) # Create pixmap
+    pixmap.fill(Qt.transparent) # Transparent
+    painter = QPainter(pixmap) # Render graphic 
+    renderer.render(painter) # Render graphic
+    painter.end() # Render graphic
+    scaled_pixmap = pixmap.scaled(QSize(width, height), Qt.KeepAspectRatio, Qt.SmoothTransformation) # Scal pixmap
+    return scaled_pixmap
 #######################################################################################################################
