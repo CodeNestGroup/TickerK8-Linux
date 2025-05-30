@@ -11,7 +11,7 @@
     letter-spacing: 0.3em;
 }
 #main_scroll{
-    background-color: #00000000;
+    background-color: blue;
     border: 0;
 }
 #main_scroll QScrollBar:vertical{
@@ -48,4 +48,38 @@
 }
 #main_exit_button:hover{
     background-color: #031913;
+}
+#scroll_widget{
+    background-color: red ;
+}
+.option_button{
+    color: #FAFAFA;
+    background-color: #252525;
+    border: 0;
+    padding: 0.3em;
+    font-size: 16px;
+}
+.option_button:hover{
+    background-color: #031913;
+}
+.n_r_button{
+    background-color: #252525;
+    border: 0;
+}
+.n_r_button:hover{
+    background-color: #031913;
+}
+.n_r_widget{
+    background-color: #00000000;
+} 
+.n_r_title_label{
+    color: #FAFAFA;
+    background-color: #00000000;
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: 0.4em;
+}
+.n_r_map_label{
+    background-color: #00000000;
+    padding: 0.3em;
 }

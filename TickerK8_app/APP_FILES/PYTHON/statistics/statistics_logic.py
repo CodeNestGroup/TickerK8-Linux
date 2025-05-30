@@ -11,7 +11,14 @@ from PyQt5.QtWidgets import (
     QVBoxLayout, # Vertical layout 
     QSizePolicy # Size policy 
 )
-from PyQt5.QtCore import Qt, QSize
+from PyQt5.QtCore import Qt, QSize, QRect
+#______________________________________________________________________________________________________________________
+""" Import PyQt5 Gui """
+from PyQt5.QtGui import (QPixmap, # Graphic.
+                         QPainter) # Painter.
+#_______________________________________________________________________________________________________________________
+""" Import PyQt5 Svg """
+from PyQt5.QtSvg import QSvgRenderer # Render Svg.
 #######################################################################################################################
 """ Statistics country """
 def statisitcs_country(self):
@@ -56,7 +63,7 @@ def statisitcs_country(self):
     self.scroll_widget.setLayout(self.scroll_layout)
 #______________________________________________________________________________________________________________________
     """ Set widget """
-    #self.main_scroll.setWidget(self.scroll_widget)
+    self.main_scroll.setWidget(self.scroll_widget)
 #______________________________________________________________________________________________________________________
     """ Set size """
     self.scroll_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -71,9 +78,9 @@ def statisitcs_country(self):
     self.main_scroll.setWidget(self.scroll_widget)
 #______________________________________________________________________________________________________________________
     """ Set connect """
-    self.gdp_button.clicked.connect(open_gdp)
-    self.n_r_button.clicked.connect(open_n_r)
-    self.people_button.clicked.connect(open_people)
+    self.gdp_button.clicked.connect(lambda: open_gdp(self))
+    self.n_r_button.clicked.connect(lambda: open_n_r(self))
+    self.people_button.clicked.connect(lambda: open_people(self))
 #######################################################################################################################
 """ Statistics market """
 def statisitcs_market(self):
@@ -96,8 +103,6 @@ def open_n_r(self):
     """ Set data """
     database = sqlite3.connect(database=self.main_path+'/CONFIG/GLOBAL/local_data_prototype.db')
     cursor = database.cursor()
-    result = cursor.execute(f'SELECT  FROM country WHERE id={self.statistics_object[1]};').fetchall()
-    database.close()
 #______________________________________________________________________________________________________________________
     """ Setup widget """
     if self.scroll_widget: # Check if main scroll has widget 
@@ -114,6 +119,7 @@ def open_n_r(self):
     self.n_r_forests_layout = QGridLayout(self.n_r_forests_widget)
     self.n_r_forests_title_label = QLabel(self.n_r_forests_widget)
     self.n_r_forests_map_label = QLabel(self.n_r_forests_widget)
+    
 #______________________________________________________________________________________________________________________
     """ Agroculture """
     self.n_r_agroculture_button = QPushButton(self.scroll_widget)
@@ -228,40 +234,48 @@ def open_n_r(self):
 #______________________________________________________________________________________________________________________
     """ Set widget """
     self.main_scroll.setWidget(self.scroll_widget)
+    self.n_r_forests_widget.setAttribute(Qt.WA_TransparentForMouseEvents)
+    self.n_r_agroculture_widget.setAttribute(Qt.WA_TransparentForMouseEvents)
+    self.n_r_minerals_widget.setAttribute(Qt.WA_TransparentForMouseEvents)
+    self.n_r_water_widget.setAttribute(Qt.WA_TransparentForMouseEvents)
 #______________________________________________________________________________________________________________________
     """ Set label """
     """ Forests """
-    self.n_r_forests_title_label.setAlignment(Qt.AlginCenter)
+    self.n_r_forests_title_label.setAlignment(Qt.AlignCenter)
     """ Agroculture """
-    self.n_r_agroculture_title_label.setAlignment(Qt.AlginCenter)
+    self.n_r_agroculture_title_label.setAlignment(Qt.AlignCenter)
     """ Minerals """
-    self.n_r_minerals_title_label.setAlignment(Qt.AlginCenter)
+    self.n_r_minerals_title_label.setAlignment(Qt.AlignCenter)
     """ Water """
-    self.n_r_water_title_label.setAlignment(Qt.AlginCenter)
+    self.n_r_water_title_label.setAlignment(Qt.AlignCenter)
 #______________________________________________________________________________________________________________________
     """ Set size  """
     self.scroll_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     """ Forests """
-    self.n_r_forests_button.setFixedHeight(self.main_scroll.height()//2)
+    self.n_r_forests_button.setFixedHeight(self.main_scroll.height())
     self.n_r_forests_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.n_r_forests_widget.setGeometry(QRect(0, 0, self.n_r_forests_button.width(), self.n_r_forests_button.height()))
     self.n_r_forests_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.n_r_forests_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.n_r_forests_map_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     """ Agroculture """
-    self.n_r_agroculture_button.setFixedHeight(self.main_scroll.height()//2)
+    self.n_r_agroculture_button.setFixedHeight(self.main_scroll.height())
     self.n_r_agroculture_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.n_r_agroculture_widget.setGeometry(QRect(0, 0, self.n_r_agroculture_button.width(), self.n_r_agroculture_button.height()))
     self.n_r_agroculture_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.n_r_agroculture_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.n_r_agroculture_map_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     """ Minerals """
-    self.n_r_minerals_button.setFixedHeight(self.main_scroll.height()//2)
+    self.n_r_minerals_button.setFixedHeight(self.main_scroll.height())
     self.n_r_minerals_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.n_r_minerals_widget.setGeometry(QRect(0, 0, self.n_r_minerals_button.width(), self.n_r_minerals_button.height()))
     self.n_r_minerals_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.n_r_minerals_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.n_r_minerals_map_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     """ Water """
-    self.n_r_water_button.setFixedHeight(self.main_scroll.height()//2)
+    self.n_r_water_button.setFixedHeight(self.main_scroll.height())
     self.n_r_water_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.n_r_water_widget.setGeometry(QRect(0, 0, self.n_r_water_button.width(), self.n_r_water_button.height()))
     self.n_r_water_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.n_r_water_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.n_r_water_map_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -277,10 +291,14 @@ def open_n_r(self):
     self.n_r_water_title_label.setText('Water')
 #______________________________________________________________________________________________________________________
     """ Set graphics """
-    self.n_r_forests_map_label.setPixmap(load_svg())
-    self.n_r_agroculture_map_label.setPixmap(load_svg())
-    self.n_r_minerals_map_label.setPixmap(load_svg())
-    self.n_r_water_map_label.setPixmap(load_svg())
+    self.n_r_forests_map_label.setPixmap(load_svg(self.main_path+'/STYLE/IMG/map_forests'+cursor.execute(f'SELECT n_r_forests.area_map FROM n_r_forests WHERE n_r_forests.id_country={self.statistics_object[1]} and n_r_forests.id_tree_type=0 ORDER BY n_r_forests.date DESC LIMIT 1;').fetchall()[0][0]+f'/{self.global_config['__theme__']}.svg', int(self.n_r_forests_widget.height()//1.25), int(self.n_r_forests_widget.height()//1.25)))
+    self.n_r_agroculture_map_label.setPixmap(load_svg(self.main_path+'/STYLE/IMG/map_agriculture'+cursor.execute(f'SELECT n_r_agriculture.area_map FROM n_r_agriculture WHERE n_r_agriculture.id_country={self.statistics_object[1]} and n_r_agriculture.id_crops_type=0 ORDER BY n_r_agriculture.date DESC LIMIT 1;').fetchall()[0][0]+f'/{self.global_config['__theme__']}.svg', int(self.n_r_agroculture_widget.height()//1.25), int(self.n_r_agroculture_widget.height()//1.25)))
+    self.n_r_minerals_map_label.setPixmap(load_svg(self.main_path+'/STYLE/IMG/map_minerals'+cursor.execute(f'SELECT n_r_minerals.area_map FROM n_r_minerals WHERE n_r_minerals.id_country={self.statistics_object[1]} and n_r_minerals.id_mineral_type=0 ORDER BY n_r_minerals.date DESC LIMIT 1;').fetchall()[0][0]+f'/{self.global_config['__theme__']}.svg', int(self.n_r_minerals_widget.height()//1.25), int(self.n_r_minerals_widget.height()//1.25)))
+    self.n_r_water_map_label.setPixmap(load_svg(self.main_path+'/STYLE/IMG/map_water'+cursor.execute(f'SELECT n_r_water.area_map FROM n_r_water WHERE n_r_water.id_country={self.statistics_object[1]} and n_r_water.id_water_type=0 ORDER BY n_r_water.date DESC LIMIT 1;').fetchall()[0][0]+f'/{self.global_config['__theme__']}.svg', int(self.n_r_water_widget.height()//1.25), int(self.n_r_water_widget.height()//1.25)))
+#______________________________________________________________________________________________________________________
+    """ Close connection """
+    cursor.close()
+    database.close()
 #######################################################################################################################
 """ Open people """
 def open_people(self):

@@ -45,6 +45,8 @@ def statistics_ui(self):
 #______________________________________________________________________________________________________________________
     """ Set widget """
     self.setHidden(False)
+    self.main_scroll.setWidgetResizable(True)
+    self.main_scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
 #______________________________________________________________________________________________________________________
     """ Set label """
     self.main_title_label.setAlignment(Qt.AlignCenter)
