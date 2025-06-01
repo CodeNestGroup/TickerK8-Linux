@@ -83,3 +83,22 @@
     background-color: #00000000;
     padding: 0.3em;
 }
+.n_r_statistics_widget{
+    background-color: #1e1e1e;
+}
+.n_r_name_label{
+    color: #FAFAFA;
+    background-color: #00000000;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+}
+.n_r_value_label{
+    color: #FAFAFA;
+    background-color: #00000000;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+}
+
+

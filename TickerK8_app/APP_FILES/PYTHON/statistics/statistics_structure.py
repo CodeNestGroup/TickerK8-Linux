@@ -34,6 +34,7 @@ class Statistics_widget(QWidget):
         """ Create objects """
         self.main_layout = QGridLayout(self)
         self.main_title_label = QLabel(self)
+        self.main_flag_label = QLabel(self)
         self.main_exit_button = QPushButton(self)
         self.main_scroll = QScrollArea(self)
         self.scroll_widget = None 
