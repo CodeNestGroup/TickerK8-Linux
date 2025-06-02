@@ -27,15 +27,21 @@ def statistics_ui(self):
     """ Set object name """
     self.setObjectName('statistics_widget')
     self.main_title_label.setObjectName('main_title_label')
+    self.main_flag_label.setObjectName('main_flag_label')
     self.main_exit_button.setObjectName('main_exit_button')
+    self.main_close_button.setObjectName('main_close_button')
     self.main_scroll.setObjectName('main_scroll')
 #_______________________________________________________________________________________________________________________
     """ Set property """
+    self.main_exit_button.setProperty('class', 'main_e_c_button')
+    self.main_close_button.setProperty('class', 'main_e_c_button')
 #______________________________________________________________________________________________________________________
     """ Set layout """
-    self.main_layout.addWidget(self.main_title_label, 0, 20, 10, 60)
-    self.main_layout.addWidget(self.main_exit_button, 1, 5, 10, 10)
-    self.main_layout.addWidget(self.main_scroll, 10, 0, 90, 100)
+    self.main_layout.addWidget(self.main_title_label, 0, 40, 8, 15)
+    self.main_layout.addWidget(self.main_flag_label, 2, 56, 3, 4)
+    self.main_layout.addWidget(self.main_exit_button, 2, 2, 3, 3)
+    self.main_layout.addWidget(self.main_close_button, 2, 2, 3, 3)
+    self.main_layout.addWidget(self.main_scroll, 10, 0, 92, 100)
     self.main_layout.setSpacing(0)
     self.main_layout.setContentsMargins(0,0,0,0)
     for enc in range(100):
@@ -45,22 +51,27 @@ def statistics_ui(self):
 #______________________________________________________________________________________________________________________
     """ Set widget """
     self.setHidden(False)
+    self.main_close_button.setHidden(True)
     self.main_scroll.setWidgetResizable(True)
     self.main_scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
 #______________________________________________________________________________________________________________________
     """ Set label """
     self.main_title_label.setAlignment(Qt.AlignCenter)
+    self.main_flag_label.setAlignment(Qt.AlignCenter)
 #______________________________________________________________________________________________________________________
     """ Set size """
     self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.main_flag_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_exit_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.main_close_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_scroll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 #######################################################################################################################
 """ Statistics reload style """
 def statistics_reload_style(self):
     self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/statistics/'+self.global_config['__theme__']+'.css')).read())
     self.main_exit_button.setIcon(QIcon(load_svg(self.main_path+'/STYLE/IMG/icons/main/exit_'+self.global_config['__theme__']+'.svg', 256, 256)))
+    self.main_close_button.setIcon(QIcon(load_svg(self.main_path+'/STYLE/IMG/icons/main/exit_'+self.global_config['__theme__']+'.svg', 256, 256)))
 #######################################################################################################################
 """ Statistics retranslate """
 def statistics_retranslate(self):

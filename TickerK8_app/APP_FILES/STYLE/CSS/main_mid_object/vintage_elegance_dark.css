@@ -1,21 +1,66 @@
 #main_mid_object_widget{
     background-color: #202020;
 }
-#icon_label{
-    border-radius: 10px;
-}
-#ticker_label{
-    color: #fafafa;
+#main_scroll{
     background-color: #00000000;
-    font-size: 18px;
-    font-weight: 400;
+    border: 0;
+}
+#main_scroll QScrollBar:vertical{
+    border: none;
+    background: #1e1e1e;
+    width: 8px;
+    margin: 0;
+}
+#main_scroll QScrollBar::handle:vertical {
+    background: #353535;
+    min-height: 15px;
+    border-radius: 2px;
+}
+
+#main_scroll QScrollBar::handle:vertical:hover {
+    background: #031913;
+}
+
+#main_scroll QScrollBar::add-line:vertical, #main_scroll QScrollBar::sub-line:vertical {
+    border: none;
+    background: none;
+}
+
+#main_scroll QScrollBar::add-page:vertical, #main_scroll QScrollBar::sub-page:vertical {
+    background: none;
+}
+#main_widget{
+    background-color: #00000000;
+}
+#main_flag_label{
+    background-color: #00000000;
+}
+#main_name_label{
+    color: #FAFAFA;
+    font-size: 28px;
+    font-weight: 600;
     letter-spacing: 0.4em;
 }
-#name_label{
-    color: #fafafa;
-    background-color: #00000000;
-    font-size: 12px;
+#main_timezone_label{
+    color: #FAFAFA;
+    font-size: 18px;
     font-weight: 400;
     letter-spacing: 0.3em;
 }
-
+#main_statistics_widget{
+    background-color: #252525;
+}
+.main_name_label{
+    color: #FAFAFA;
+    padding: 0.3em;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.4em;
+}
+.main_value_label{
+    color: #FAFAFA;
+    padding: 0.3em;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+}

@@ -11,7 +11,7 @@
     letter-spacing: 0.3em;
 }
 #main_scroll{
-    background-color: blue;
+    background-color: #00000000;
     border: 0;
 }
 #main_scroll QScrollBar:vertical{
@@ -38,7 +38,7 @@
 #main_scroll QScrollBar::add-page:vertical, #main_scroll QScrollBar::sub-page:vertical {
     background: none;
 }
-#main_exit_button{
+.main_e_c_button{
     color: #FAFAFA;
     background-color: #252525;
     border: 0;
@@ -46,11 +46,11 @@
     padding: 0.3em;
     font-size: 14px;
 }
-#main_exit_button:hover{
+.main_e_c_button:hover{
     background-color: #031913;
 }
 #scroll_widget{
-    background-color: red ;
+    background-color: #00000000;
 }
 .option_button{
     color: #FAFAFA;
@@ -100,5 +100,3 @@
     font-weight: 400;
     letter-spacing: 0.3em;
 }
-
-

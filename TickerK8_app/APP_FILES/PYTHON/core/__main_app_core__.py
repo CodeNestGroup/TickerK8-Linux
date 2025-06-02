@@ -33,6 +33,7 @@ class app_controller(QWidget):
         self.register_widget = None # Set default
         self.recover_password_widget = None # Set default
         self.main_widget = None # Set default
+        self.statistics_widget = None # Set default
 
         self.primary_screen_size = QApplication.primaryScreen().size() # Get screen size
         self.login_setup() # Set on start of application
@@ -104,7 +105,7 @@ class app_controller(QWidget):
 #______________________________________________________________________________________________________________________
     """ Statistics """
     def statistics_setup(self):
-        self.statistics_widget = Statistics_widget(self, ['country', 1]) # Create statistics widget
+        self.statistics_widget = Statistics_widget(self) # Create statistics widget
         self.layout.addWidget(self.statistics_widget) # Add statistics widget to main layout
         self.set_size_statistics() # Set size 
         self.statistics_widget.main_exit_button.clicked.connect(self.statistics_to_main) # Connect exit function

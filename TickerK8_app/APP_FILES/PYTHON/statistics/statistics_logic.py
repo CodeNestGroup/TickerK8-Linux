@@ -25,11 +25,19 @@ def statisitcs_country(self):
     """ Set data """
     database = sqlite3.connect(database=self.main_path+'/CONFIG/GLOBAL/local_data_prototype.db')
     cursor = database.cursor()
-    result = cursor.execute(f'SELECT name, flag FROM country WHERE id={self.statistics_object[1]};').fetchall()
+    result = cursor.execute(f'SELECT name, flag FROM country WHERE id={self.global_config['mid_object'][1]};').fetchall()[0]
+    cursor.close()
     database.close()
 #______________________________________________________________________________________________________________________
+    """ Show close button """
+    self.main_exit_button.setHidden(False)
+    self.main_close_button.setHidden(True)
+#______________________________________________________________________________________________________________________
     """ Set title """
-    self.main_title_label.setText(f'{result[0][0]}')
+    self.main_title_label.setText(f'{result[0]}')
+#______________________________________________________________________________________________________________________
+    """ Set graphics """
+    self.main_flag_label.setPixmap(load_svg(self.main_path+'/STYLE/IMG/flags'+result[1]+'.svg', int(self.height()*0.15), int(self.height()*0.15)))
 #______________________________________________________________________________________________________________________
     """ Setup widget """
     if self.scroll_widget: # Check if main scroll have widget 
@@ -72,9 +80,9 @@ def statisitcs_country(self):
     self.people_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 #______________________________________________________________________________________________________________________
     """ Set graphics """
-    self.gdp_button.setText('A')
-    self.n_r_button.setText('B')
-    self.people_button.setText('C')
+    self.gdp_button.setText('GDP')
+    self.n_r_button.setText('Natural Resources')
+    self.people_button.setText('People')
     self.main_scroll.setWidget(self.scroll_widget)
 #______________________________________________________________________________________________________________________
     """ Set connect """
@@ -113,7 +121,7 @@ def open_n_r(self):
     n_r_forests.market_value,
     n_r_forests.date 
     FROM n_r_forests 
-    WHERE n_r_forests.id_country={self.statistics_object[1]} 
+    WHERE n_r_forests.id_country={self.global_config['mid_object'][1]} 
     and n_r_forests.id_tree_type=0 
     ORDER BY n_r_forests.date DESC LIMIT 1;''').fetchall()[0]
     n_r_agriculture_data = cursor.execute(f'''
@@ -125,7 +133,7 @@ def open_n_r(self):
     n_r_agriculture.market_value,
     n_r_agriculture.date 
     FROM n_r_agriculture 
-    WHERE n_r_agriculture.id_country={self.statistics_object[1]} 
+    WHERE n_r_agriculture.id_country={self.global_config['mid_object'][1]} 
     and n_r_agriculture.id_crops_type=0 
     ORDER BY n_r_agriculture.date DESC LIMIT 1;''').fetchall()[0]
     n_r_minerals_data = cursor.execute(f'''
@@ -136,7 +144,7 @@ def open_n_r(self):
     n_r_minerals.market_value,
     n_r_minerals.date
     FROM n_r_minerals 
-    WHERE n_r_minerals.id_country={self.statistics_object[1]} 
+    WHERE n_r_minerals.id_country={self.global_config['mid_object'][1]} 
     and n_r_minerals.id_mineral_type=0 
     ORDER BY n_r_minerals.date DESC LIMIT 1;''').fetchall()[0]
     n_r_water_data = cursor.execute(f'''
@@ -146,9 +154,13 @@ def open_n_r(self):
     n_r_water.area_map, 
     n_r_water.date
     FROM n_r_water 
-    WHERE n_r_water.id_country={self.statistics_object[1]} 
+    WHERE n_r_water.id_country={self.global_config['mid_object'][1]} 
     and n_r_water.id_water_type=0 
     ORDER BY n_r_water.date DESC LIMIT 1;''').fetchall()[0]
+#______________________________________________________________________________________________________________________
+    """ Show close button """
+    self.main_exit_button.setHidden(True)
+    self.main_close_button.setHidden(False)
 #______________________________________________________________________________________________________________________
     """ Setup widget """
     if self.scroll_widget: # Check if main scroll has widget 
