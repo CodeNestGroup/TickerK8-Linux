@@ -1,6 +1,7 @@
 {   
     "title_label": [["Favourite", ""], ["Ulubione", ""]],
     "type_list_button": ["  Lists", "   Listy"],
+    "lists_title_label": ["Lists", "Listy"],
     "data_list_button": ["  Edit table data", "    Edytuj dane tabeli"],
     "list_tag_index_label": ["#", "#"],
     "list_tag_logo_label": ["Logo", "Logo"],

@@ -69,3 +69,41 @@
 .ticker:focus{
     background-color: #031913;
 }
+#lists_background_widget{
+    background-color: #50000000;
+}
+#lists_widget{
+    background-color: #202020;
+    border: 0;
+}
+#lists_title_label{
+    color: #FAFAFA;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 0.4em;
+}
+#lists_exit_button{
+    color: #FAFAFA;
+    background-color: #252525;
+    border: 0;
+    padding: 0.4em;
+}
+#lists_exit_button:hover{
+    background-color: #031913;
+}
+#lists_scroll{
+    background-color: #252525;
+    border: 0;
+}
+#lists_scroll_widget{
+    background-color: #00000000;
+}
+.lists_scroll_button{
+    color: #FAFAFA;
+    background-color: #252525;
+    border: 0;
+    padding: 0.4em;
+}
+.lists_scroll_button:hover{
+    background-color: #031913;
+}

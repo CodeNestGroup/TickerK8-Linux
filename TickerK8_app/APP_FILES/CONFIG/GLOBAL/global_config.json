@@ -1,5 +1,10 @@
 {
   "__language__": 0,
   "__theme__": "vintage_elegance_dark",
+  "mid_object_list": {
+    "favourite": [[1], [1], [1], [1]],
+    "Indexes": [[], [], [1,2,3,4], []],
+    "Others": [[1], [2], [3], [4]]
+  },
   "mid_object": ["country", 1]
 }
