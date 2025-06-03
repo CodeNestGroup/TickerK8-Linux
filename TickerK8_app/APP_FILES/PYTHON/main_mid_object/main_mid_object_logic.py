@@ -46,7 +46,7 @@ def country_widget(self):
     country_data = cursor.execute(f'''
     SELECT
     country.name, 
-    country.flag, 
+    country.icon, 
     country.capital, 
     country.currency_code, 
     timezone.name, 

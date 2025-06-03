@@ -53,7 +53,8 @@ class Main_mid_object_list_widget(QWidget):
         main_mid_object_list_ui(self)
         main_mid_object_list_reload_style(self)
         main_mid_object_list_retranslate(self)
-        create_list(self)
+        for title, value in self.global_config['mid_object_list'].items():
+                open_list(self, title, value)
 #______________________________________________________________________________________________________________________
         """ Connect functions """
         self.type_list_button.clicked.connect(lambda: show_lists(self))

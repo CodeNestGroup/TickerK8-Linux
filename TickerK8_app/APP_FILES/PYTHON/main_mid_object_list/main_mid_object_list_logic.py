@@ -112,14 +112,14 @@ def show_lists(self):
     self.lists_exit_button.clicked.connect(lambda: lists_exit(self))
 #______________________________________________________________________________________________________________________
     """ Add lists items """
-    for keys, value in self.global_config['mid_object_list'].items():
+    for keys, values in self.global_config['mid_object_lists'].items():
         button = QPushButton(self.lists_scroll_widget)
         button.setObjectName(f'lists_scroll_{keys}_button')
         button.setProperty('class', 'lists_scroll_button')
         self.lists_scroll_layout.addWidget(button)
         button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         button.setText(f'{keys}')
-        #button.clicked.connect(open_list)
+        button.clicked.connect(lambda _, key=keys, value=values: open_list(self, key, value))
 #######################################################################################################################
 """ Load svg script """
 def load_svg(svg_path, width, height):
@@ -138,6 +138,144 @@ def set_to_main_mid_object(self, object_list):
     _json_load['mid_object'] = object_list
     json.dump(_json_load, open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'w'), indent=4)
     self.config_changed.emit()
+#######################################################################################################################
+""" Open lsit """
+def open_list(self, title, list_objects):
+    """ Set config """
+    self.global_config['mid_object_list'] = {f"{title}": list_objects}
+    json.dump(self.global_config, open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'w'), indent=4)
+    self.global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
+#______________________________________________________________________________________________________________________
+    """ Setup widget """
+    if self.list_widget:
+        self.list_widget.deleteLater()
+        self.list_widget = None 
+#______________________________________________________________________________________________________________________
+    """ Create object """
+    self.list_widget = QWidget(self.list_scroll)
+    self.list_layout = QVBoxLayout(self.list_widget)
+#______________________________________________________________________________________________________________________
+    """ Set object name """
+    self.list_widget.setObjectName('list_widget')
+#______________________________________________________________________________________________________________________
+    """ Set layout """
+    self.list_layout.setSpacing(0)
+    self.list_layout.setContentsMargins(0,0,0,0)
+    self.list_widget.setLayout(self.list_layout)
+#______________________________________________________________________________________________________________________
+    """ Set widget """
+    self.list_scroll.setWidget(self.list_widget)
+#______________________________________________________________________________________________________________________
+    """ Set label """
+#______________________________________________________________________________________________________________________
+    """ Set size """
+    self.list_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+#______________________________________________________________________________________________________________________
+    """ Set texts """
+    self.title_label.setText(f'{title}')
+#______________________________________________________________________________________________________________________
+    """ Set graphics """
+#______________________________________________________________________________________________________________________
+    """ Connect """
+#______________________________________________________________________________________________________________________
+    """ Add items """
+    for section in list_objects:
+        """ Section data """
+        section_dict = dict(section)
+        for key, value in section_dict.items():
+            """ Create widget """
+            section_widget = QWidget(self.list_widget)
+            section_layout = QGridLayout(section_widget)
+            section_open_button = QPushButton(section_widget)
+            items_widget = QWidget(section_widget)
+            items_layout = QGridLayout(items_widget)
+            items_hash_tag = QLabel(items_widget)
+#______________________________________________________________________________________________________________________
+            """ Set object name """
+            section_widget.setObjectName(f'section_{key}_widget')
+            section_open_button.setObjectName(f'section_{key}_open_button')
+            items_widget.setObjectName(f'items_{key}_widget')
+            items_hash_tag.setObjectName(f'items_{key}hash_tag')
+#______________________________________________________________________________________________________________________
+            """ Set property """
+            section_widget.setProperty('class', 'section_widget')
+            section_open_button.setProperty('class', 'section_open_button')
+            items_widget.setProperty('class', 'items_widget')
+#______________________________________________________________________________________________________________________
+            """ Set layout """
+            self.list_layout.addWidget(section_widget)
+            section_layout.addWidget(section_open_button,0,0)
+            section_layout.addWidget(items_widget,1,0)
+            section_layout.setSpacing(0)
+            section_layout.setContentsMargins(0,0,0,0)
+            section_widget.setLayout(section_layout)
+            items_layout.addWidget(items_hash_tag, 0, 0)
+            items_layout.setSpacing(0)
+            items_layout.setContentsMargins(0,0,0,0)
+            items_widget.setLayout(items_layout)
+#______________________________________________________________________________________________________________________
+            """ Set widget """
+            items_widget.setHidden(True)
+#______________________________________________________________________________________________________________________
+            """ Set label """
+            items_hash_tag.setAlignment(Qt.AlignCenter)
+#______________________________________________________________________________________________________________________
+            """ Set size """
+            section_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+            section_open_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+            items_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+            items_hash_tag.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+#______________________________________________________________________________________________________________________
+            """ Set text """
+            section_open_button.setText(f'{key}')
+            items_hash_tag.setText('#')
+#______________________________________________________________________________________________________________________
+            """ Connect """
+            section_open_button.clicked.connect(lambda _, widget=items_widget: widget.setHidden(not widget.isHidden()))
+#______________________________________________________________________________________________________________________
+            """ Create tags """
+            for index, tag in enumerate(self.global_config['mid_object_list_tags'], start=1):
+                label = QLabel(items_widget)
+                label.setObjectName(f'label_{index}')
+                label.setProperty('class', 'tag')
+                items_layout.addWidget(label, 0, index)
+                label.setAlignment(Qt.AlignCenter)
+                label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+                label.setText(f'{self.main_mid_object_list_translate['list_tags'][f'{tag}'][self.global_config['__language__']]}')
+#_____________________________________________________________________________________________________________________
+            """ Create items """
+            database = sqlite3.connect(database=self.local_database)
+            cursor = database.cursor()
+            if value:
+                for row, item in enumerate(value, start=1):
+                    index_label = QLabel(items_widget)
+                    index_label.setObjectName(f'index_{row}_label')
+                    index_label.setProperty('class', 'index_label')
+                    items_layout.addWidget(index_label, row, 0)
+                    index_label.setAlignment(Qt.AlignCenter)
+                    index_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+                    index_label.setText(f'{row}')
+                    for table, id_id in dict(item).items():
+                        for column, tag in enumerate(self.global_config['mid_object_list_tags'], start=1):
+                            data_label = QLabel(items_widget)
+                            data_label.setObjectName(f'data_{tag}_{id_id}_label')
+                            data_label.setProperty('class', 'data_label')
+                            items_layout.addWidget(data_label, row, column)
+                            data_label.setAlignment(Qt.AlignCenter)
+                            data_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+                            try:
+                                text = cursor.execute(f'SELECT {tag} FROM {table} WHERE id={id_id};').fetchall()[0][0]
+                            except:
+                                text = '---'
+                            
+                            if tag == 'icon' and text != '---':
+                                data_label.setPixmap(load_svg(self.main_path+'/STYLE/IMG/flags'+text+'.svg', 256, 256))
+                            else:
+                                data_label.setText(text)
+#______________________________________________________________________________________________________________________
+    """ Exit form lists widget  """
+    if self.lists_background_widget:
+        lists_exit(self)
 #######################################################################################################################
 """ Lists exit """
 def lists_exit(self):

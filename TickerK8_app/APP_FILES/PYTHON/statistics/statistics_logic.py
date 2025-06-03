@@ -25,7 +25,7 @@ def statisitcs_country(self):
     """ Set data """
     database = sqlite3.connect(database=self.main_path+'/CONFIG/GLOBAL/local_data_prototype.db')
     cursor = database.cursor()
-    result = cursor.execute(f'SELECT name, flag FROM country WHERE id={self.global_config['mid_object'][1]};').fetchall()[0]
+    result = cursor.execute(f'SELECT name, icon FROM country WHERE id={self.global_config['mid_object'][1]};').fetchall()[0]
     cursor.close()
     database.close()
 #______________________________________________________________________________________________________________________
