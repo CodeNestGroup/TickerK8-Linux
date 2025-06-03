@@ -201,6 +201,7 @@ def open_list(self, title, list_objects):
             section_widget.setProperty('class', 'section_widget')
             section_open_button.setProperty('class', 'section_open_button')
             items_widget.setProperty('class', 'items_widget')
+            items_hash_tag.setProperty('class', 'items_hash_tag')
 #______________________________________________________________________________________________________________________
             """ Set layout """
             self.list_layout.addWidget(section_widget)
@@ -215,13 +216,14 @@ def open_list(self, title, list_objects):
             items_widget.setLayout(items_layout)
 #______________________________________________________________________________________________________________________
             """ Set widget """
-            items_widget.setHidden(True)
+            items_widget.setHidden(False)
 #______________________________________________________________________________________________________________________
             """ Set label """
             items_hash_tag.setAlignment(Qt.AlignCenter)
 #______________________________________________________________________________________________________________________
             """ Set size """
             section_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+            section_open_button.setFixedHeight(int(self.height()*0.1))
             section_open_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
             items_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
             items_hash_tag.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -269,7 +271,7 @@ def open_list(self, title, list_objects):
                                 text = '---'
                             
                             if tag == 'icon' and text != '---':
-                                data_label.setPixmap(load_svg(self.main_path+'/STYLE/IMG/flags'+text+'.svg', 256, 256))
+                                data_label.setPixmap(load_svg(self.main_path+'/STYLE/IMG/flags'+text+'.svg', data_label.height(), data_label.height()))
                             else:
                                 data_label.setText(text)
 #______________________________________________________________________________________________________________________

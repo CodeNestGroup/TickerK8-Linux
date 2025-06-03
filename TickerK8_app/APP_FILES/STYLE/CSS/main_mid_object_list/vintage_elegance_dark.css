@@ -5,20 +5,17 @@
     color: #FAFAFA;
     background-color: #00000000;
     padding: 0.3em;
-    font-size: 22px;
-    font-weight: 400;
+    font-size: 28px;
+    font-weight: 600;
     letter-spacing: 0.4em;
-}
-#tag_widget{
-    background-color: #202020;
 }
 .controll_button{
     color: #FAFAFA;
     background-color: #252525;
     border: 0;
     padding: 0.3em;
-    font-size: 14px;
-    font-weight: 400;
+    font-size: 16px;
+    font-weight: 600;
     letter-spacing: 0.3em;
 }
 .controll_button:hover{
@@ -28,47 +25,88 @@
     background-color: #202020;
     border: 0;
 }
+#list_scroll QScrollBar:vertical{
+    border: none;
+    background: #1e1e1e;
+    width: 8px;
+    margin: 0;
+}
+#list_scroll QScrollBar::handle:vertical {
+    background: #353535;
+    min-height: 15px;
+    border-radius: 2px;
+}
+
+#list_scroll QScrollBar::handle:vertical:hover {
+    background: #031913;
+}
+
+#list_scroll QScrollBar::add-line:vertical, #list_scroll QScrollBar::sub-line:vertical {
+    border: none;
+    background: none;
+}
+
+#list_scroll QScrollBar::add-page:vertical, #list_scroll QScrollBar::sub-page:vertical {
+    background: none;
+}
 #list_widget{
     background-color: #202020;
 }
-.list_tag{
-    color: #FAFAFA;
+.section_widget{
     background-color: #202020;
-    padding: 0.5em;
-    font-size: 14px;
+}
+.section_open_button{
+    color: #FAFAFA;
+    background-color: #252525;
+    border: 0;
+    padding: 0.2em;
+    font-size: 22px;
     font-weight: 600;
     letter-spacing: 0.3em;
 }
-.indexes{
+.section_open_button:hover{
+    background-color: #031913;
+}
+.items_widget{
+    background-color: #1e1e1e;
+}
+.items_hash_tag{
     color: #FAFAFA;
     background-color: #00000000;
-    margin-bottom: 4px;
-    padding: 0.3em;
-    font-size: 14px;
-    font-weight: 400;
-    letter-spacing: 0.2em;
-}
-.logos{
-    background-color: #00000000;
-    margin-bottom: 4px;
-    border-radius: 0.2em;
-}
-.tickers{
-    color: #FAFAFA;
-    background-color: #252525;
-    margin-bottom: 4px;
     border: 0;
     padding: 0.3em;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 600;
     letter-spacing: 0.4em;
 }
-.tickers:hover{
-    background-color: #031913;
+.tag{
+    color: #FAFAFA;
+    background-color: #00000000;
+    border: 0;
+    padding: 0.3em;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.4em;
 }
-.ticker:focus{
-    background-color: #031913;
+.index_label{
+    color: #FAFAFA;
+    background-color: #00000000;
+    border: 0;
+    padding: 0.3em;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.3em;
 }
+.data_label{
+    color: #FAFAFA;
+    background-color: #00000000;
+    border: 0;
+    padding: 0.3em;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+}
+
 #lists_background_widget{
     background-color: #50000000;
 }
@@ -92,11 +130,35 @@
     background-color: #031913;
 }
 #lists_scroll{
-    background-color: #252525;
+    background-color: #202020;
     border: 0;
 }
+#lists_scroll QScrollBar:vertical{
+    border: none;
+    background: #1e1e1e;
+    width: 8px;
+    margin: 0;
+}
+#lists_scroll QScrollBar::handle:vertical {
+    background: #353535;
+    min-height: 15px;
+    border-radius: 2px;
+}
+
+#lists_scroll QScrollBar::handle:vertical:hover {
+    background: #031913;
+}
+
+#lists_scroll QScrollBar::add-line:vertical, #lists_scroll QScrollBar::sub-line:vertical {
+    border: none;
+    background: none;
+}
+
+#lists_scroll QScrollBar::add-page:vertical, #lists_scroll QScrollBar::sub-page:vertical {
+    background: none;
+}
 #lists_scroll_widget{
-    background-color: #00000000;
+    background-color: #202020;
 }
 .lists_scroll_button{
     color: #FAFAFA;
