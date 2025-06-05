@@ -197,6 +197,12 @@ def show_lists(self):
     self.lists_scroll_widget.setObjectName('lists_scroll_widget')
 #______________________________________________________________________________________________________________________
     """ Set property """
+    self.lists_background_widget.setProperty('class', 'lists_background_widget')
+    self.lists_widget.setProperty('class', 'lists_widget')
+    self.lists_title_label.setProperty('class', 'lists_title_label')
+    self.lists_exit_button.setProperty('class', 'lists_exit_button')
+    self.lists_scroll.setProperty('class', 'lists_scroll')
+    self.lists_scroll_widget.setProperty('class', 'lists_scroll_widget')
 #______________________________________________________________________________________________________________________
     """ Set layout """
     self.lists_background_layout.addWidget(self.lists_widget, 20, 20, 60, 60)
@@ -265,12 +271,152 @@ def lists_exit(self):
 """ Edit list data """
 def show_edit_list_data(self):
     """ Setup widget """
+    if self.lists_edit_data_background_widget:
+        self.lists_edit_data_background_widget.deleteLater()
+        self.lists_edit_data_background_widget = None
+#______________________________________________________________________________________________________________________
+    """ Create objects """
+    self.lists_edit_data_background_widget = QWidget(self)
+    self.lists_edit_data_background_layout = QGridLayout(self.lists_edit_data_background_widget)
+    self.lists_edit_data_widget = QWidget(self.lists_edit_data_background_widget)
+    self.lists_edit_data_layout = QGridLayout(self.lists_edit_data_widget)
+    self.lists_edit_data_title_label = QLabel(self.lists_edit_data_widget)
+    self.lists_edit_data_exit_button = QPushButton(self.lists_edit_data_widget)
+    self.lists_edit_data_scroll = QScrollArea(self.lists_edit_data_widget)
+    self.lists_edit_data_scroll_widget = QWidget(self.lists_edit_data_scroll)
+    self.lists_edit_data_scroll_layout = QGridLayout(self.lists_edit_data_scroll_widget)
+    self.lists_edit_data_icon_button = QPushButton(self.lists_edit_data_scroll_widget)
+    self.lists_edit_data_ticker_button = QPushButton(self.lists_edit_data_scroll_widget)
+    self.lists_edit_data_pe_ratio_button = QPushButton(self.lists_edit_data_scroll_widget)
+    self.lists_edit_data_eps_button = QPushButton(self.lists_edit_data_scroll_widget)
+    self.lists_edit_data_dividend_yield_button = QPushButton(self.lists_edit_data_scroll_widget)
+    self.lists_edit_data_capitalization_button = QPushButton(self.lists_edit_data_scroll_widget)
+    self.lists_edit_data_capital_button = QPushButton(self.lists_edit_data_scroll_widget)
+    self.lists_edit_data_set_button = QPushButton(self.lists_edit_data_widget)
+#______________________________________________________________________________________________________________________
+    """ Set object name """
+    self.lists_edit_data_background_widget.setObjectName('lists_edit_data_background_widget')
+    self.lists_edit_data_widget.setObjectName('lists_edit_data_widget')
+    self.lists_edit_data_title_label.setObjectName('lists_edit_data_title_label')
+    self.lists_edit_data_exit_button.setObjectName('lists_edit_data_exit_button')
+    self.lists_edit_data_scroll.setObjectName('lists_edit_data_scroll')
+    self.lists_edit_data_scroll_widget.setObjectName('lists_edit_data_scroll_widget')
+    self.lists_edit_data_icon_button.setObjectName('lists_edit_data_icon_button')
+    self.lists_edit_data_ticker_button.setObjectName('lists_edit_data_ticker_button')
+    self.lists_edit_data_pe_ratio_button.setObjectName('lists_edit_data_pe_ratio_button')
+    self.lists_edit_data_eps_button.setObjectName('lists_edit_data_eps_button')
+    self.lists_edit_data_dividend_yield_button.setObjectName('lists_edit_data_dividend_yield_button')
+    self.lists_edit_data_capitalization_button.setObjectName('lists_edit_data_capitalization_button')
+    self.lists_edit_data_capital_button.setObjectName('lists_edit_data_capital_button')
+    self.lists_edit_data_set_button.setObjectName('lists_edit_data_set_button')
+#______________________________________________________________________________________________________________________
+    """ Set property """
+    self.lists_edit_data_background_widget.setProperty('class', 'lists_background_widget')
+    self.lists_edit_data_widget.setProperty('class', 'lists_widget')
+    self.lists_edit_data_title_label.setProperty('class', 'lists_title_label')
+    self.lists_edit_data_exit_button.setProperty('class', 'lists_exit_button')
+    self.lists_edit_data_scroll.setProperty('class', 'lists_scroll')
+    self.lists_edit_data_scroll_widget.setProperty('class', 'lists_scroll_widget')
+    self.lists_edit_data_icon_button.setProperty('class', 'lists_edit_data_button')
+    self.lists_edit_data_ticker_button.setProperty('class', 'lists_edit_data_button')
+    self.lists_edit_data_pe_ratio_button.setProperty('class', 'lists_edit_data_button')
+    self.lists_edit_data_eps_button.setProperty('class', 'lists_edit_data_button')
+    self.lists_edit_data_dividend_yield_button.setProperty('class', 'lists_edit_data_button')
+    self.lists_edit_data_capitalization_button.setProperty('class', 'lists_edit_data_button')
+    self.lists_edit_data_capital_button.setProperty('class', 'lists_edit_data_button')
+#______________________________________________________________________________________________________________________
+    """ Set layout """
+    self.lists_edit_data_background_layout.addWidget(self.lists_edit_data_widget, 20, 20, 60, 60)
+    self.lists_edit_data_background_layout.setSpacing(0)
+    self.lists_edit_data_background_layout.setContentsMargins(0,0,0,0)
+    for enc in range(100):
+        self.lists_edit_data_background_layout.setRowStretch(enc, 1)
+        self.lists_edit_data_background_layout.setColumnStretch(enc, 1)
+    self.lists_edit_data_background_widget.setLayout(self.lists_edit_data_background_layout)
+    self.lists_edit_data_layout.addWidget(self.lists_edit_data_title_label, 2, 20, 8, 60)
+    self.lists_edit_data_layout.addWidget(self.lists_edit_data_exit_button, 2, 5, 6, 5)
+    self.lists_edit_data_layout.addWidget(self.lists_edit_data_scroll, 15, 10, 70, 80)
+    self.lists_edit_data_layout.addWidget(self.lists_edit_data_set_button, 90, 10, 5, 80)
+    self.lists_edit_data_layout.setSpacing(0)
+    self.lists_edit_data_layout.setContentsMargins(0,0,0,0)
+    for enc in range(100):
+        self.lists_edit_data_layout.setRowStretch(enc, 1)
+        self.lists_edit_data_layout.setColumnStretch(enc, 1)
+    self.lists_edit_data_widget.setLayout(self.lists_edit_data_layout)
+    self.lists_edit_data_scroll_layout.addWidget(self.lists_edit_data_icon_button, 0, 0)
+    self.lists_edit_data_scroll_layout.addWidget(self.lists_edit_data_ticker_button, 0, 1)
+    self.lists_edit_data_scroll_layout.addWidget(self.lists_edit_data_pe_ratio_button, 1, 0)
+    self.lists_edit_data_scroll_layout.addWidget(self.lists_edit_data_eps_button, 1, 1)
+    self.lists_edit_data_scroll_layout.addWidget(self.lists_edit_data_dividend_yield_button, 2, 0)
+    self.lists_edit_data_scroll_layout.addWidget(self.lists_edit_data_capitalization_button, 2, 1)
+    self.lists_edit_data_scroll_layout.addWidget(self.lists_edit_data_capital_button, 3, 0)
+    self.lists_edit_data_scroll_layout.setSpacing(0)
+    self.lists_edit_data_scroll_layout.setContentsMargins(0,0,0,0)
+    self.lists_edit_data_scroll_widget.setLayout(self.lists_edit_data_scroll_layout)
+#______________________________________________________________________________________________________________________
+    """ Set widget """
+    self.lists_edit_data_background_widget.setHidden(False)
+    self.lists_edit_data_scroll.setWidgetResizable(True)
+    self.lists_edit_data_scroll.setWidget(self.lists_edit_data_scroll_widget)
+#______________________________________________________________________________________________________________________
+    """ Set label """
+    self.lists_edit_data_title_label.setAlignment(Qt.AlignCenter)
+#______________________________________________________________________________________________________________________
+    """ Set size """
+    self.lists_edit_data_background_widget.setGeometry(QRect(0,0,self.width(),self.height()))
+    self.lists_edit_data_background_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.lists_edit_data_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.lists_edit_data_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.lists_edit_data_exit_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.lists_edit_data_scroll.selists_scrolltSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.lists_edit_data_scroll_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.lists_edit_data_icon_button.setFixedHeight(self.lists_edit_data_scroll.height()//2)
+    self.lists_edit_data_icon_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.lists_edit_data_ticker_button.setFixedHeight(self.lists_edit_data_scroll.height()//2)
+    self.lists_edit_data_ticker_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.lists_edit_data_pe_ratio_button.setFixedHeight(self.lists_edit_data_scroll.height()//2)
+    self.lists_edit_data_pe_ratio_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.lists_edit_data_eps_button.setFixedHeight(self.lists_edit_data_scroll.height()//2)
+    self.lists_edit_data_eps_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.lists_edit_data_dividend_yield_button.setFixedHeight(self.lists_edit_data_scroll.height()//2)
+    self.lists_edit_data_dividend_yield_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.lists_edit_data_capitalization_button.setFixedHeight(self.lists_edit_data_scroll.height()//2)
+    self.lists_edit_data_capitalization_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.lists_edit_data_capital_button.setFixedHeight(self.lists_edit_data_scroll.height()//2)
+    self.lists_edit_data_capital_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.lists_edit_data_set_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+#______________________________________________________________________________________________________________________
+    """ Set text """
+    _t = self.main_mid_object_list_translate # Translate texts
+    _l = self.global_config['__language__'] # Language
+    self.lists_edit_data_title_label.setText(_t['lists_edit_data_title_label'][_l])
+    self.lists_edit_data_icon_button.setText(_t['lists_edit_data_icon_button'][_l])
+    self.lists_edit_data_ticker_button.setText(_t['lists_edit_data_ticker_button'][_l])
+    self.lists_edit_data_pe_ratio_button.setText(_t['lists_edit_data_pe_ratio_button'][_l])
+    self.lists_edit_data_eps_button.setText(_t['lists_edit_data_eps_button'][_l])
+    self.lists_edit_data_dividend_yield_button.setText(_t['lists_edit_data_dividend_yield_button'][_l])
+    self.lists_edit_data_capitalization_button.setText(_t['lists_edit_data_capitalization_button'][_l])
+    self.lists_edit_data_capital_button.setText(_t['lists_edit_data_capital_button'][_l])
+    self.lists_edit_data_set_button.setText(_t['lists_edit_data_set_button'][_l])
+#______________________________________________________________________________________________________________________
+    """ Set graphics """
+    self.lists_edit_data_exit_button.setIcon(QIcon(load_svg(self.main_path+'/STYLE/IMG/icons/main/exit_'+self.global_config['__theme__']+'.svg', 256, 256)))
+#______________________________________________________________________________________________________________________
+    """ Connect """
+    self.lists_edit_data_exit_button.clicked.connect(lambda: lists_edit_data_exit(self))
+    self.lists_edit_data_set_button.clicked.connect(lambda: lists_edit_data_set(self))
+#______________________________________________________________________________________________________________________
+    """ Check selected """
     
-
-
-
-
-
+#######################################################################################################################
+""" Lists edit data exit """
+def lists_edit_data_exit(self):
+    self.lists_edit_data_background_widget.deleteLater()
+    self.lists_edit_data_background_widget = None
+#######################################################################################################################
+""" Lists edit data set"""
+def lists_edit_data_set(self):
+    pass
 #######################################################################################################################
 """ Load svg script """
 def load_svg(svg_path, width, height):

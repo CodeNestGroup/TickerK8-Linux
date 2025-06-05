@@ -48,6 +48,7 @@ class Main_mid_object_list_widget(QWidget):
         self.type_list_button = QPushButton(self)
         self.lists_background_widget = None 
         self.data_list_button = QPushButton(self)
+        self.lists_edit_data_background_widget = None 
 #______________________________________________________________________________________________________________________
         """ Call functions """
         main_mid_object_list_ui(self)
@@ -58,4 +59,5 @@ class Main_mid_object_list_widget(QWidget):
 #______________________________________________________________________________________________________________________
         """ Connect functions """
         self.type_list_button.clicked.connect(lambda: show_lists(self))
+        self.data_list_button.clicked.connect(lambda: show_edit_list_data(self))
 #######################################################################################################################

@@ -107,65 +107,80 @@
     letter-spacing: 0.3em;
 }
 
-#lists_background_widget{
+.lists_background_widget{
     background-color: #50000000;
 }
-#lists_widget{
+.lists_widget{
     background-color: #202020;
     border: 0;
 }
-#lists_title_label{
+.lists_title_label{
     color: #FAFAFA;
     font-size: 24px;
     font-weight: 600;
     letter-spacing: 0.4em;
 }
-#lists_exit_button{
+.lists_exit_button{
     color: #FAFAFA;
     background-color: #252525;
     border: 0;
     padding: 0.4em;
 }
-#lists_exit_button:hover{
+.lists_exit_button:hover{
     background-color: #031913;
 }
-#lists_scroll{
+.lists_scroll{
     background-color: #202020;
     border: 0;
 }
-#lists_scroll QScrollBar:vertical{
+.lists_scroll QScrollBar:vertical{
     border: none;
     background: #1e1e1e;
     width: 8px;
     margin: 0;
 }
-#lists_scroll QScrollBar::handle:vertical {
+.lists_scroll QScrollBar::handle:vertical {
     background: #353535;
     min-height: 15px;
     border-radius: 2px;
 }
 
-#lists_scroll QScrollBar::handle:vertical:hover {
+.lists_scroll QScrollBar::handle:vertical:hover {
     background: #031913;
 }
 
-#lists_scroll QScrollBar::add-line:vertical, #lists_scroll QScrollBar::sub-line:vertical {
+.lists_scroll QScrollBar::add-line:vertical, .lists_scroll QScrollBar::sub-line:vertical {
     border: none;
     background: none;
 }
 
-#lists_scroll QScrollBar::add-page:vertical, #lists_scroll QScrollBar::sub-page:vertical {
+.lists_scroll QScrollBar::add-page:vertical, .lists_scroll QScrollBar::sub-page:vertical {
     background: none;
 }
-#lists_scroll_widget{
+.lists_scroll_widget{
     background-color: #202020;
 }
 .lists_scroll_button{
     color: #FAFAFA;
     background-color: #252525;
     border: 0;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
     padding: 0.4em;
 }
 .lists_scroll_button:hover{
+    background-color: #031913;
+}
+.lists_edit_data_button{
+    color: #FAFAFA;
+    background-color: #252525;
+    border: 0;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    padding: 0.4em;
+}
+.lists_edit_data_button:hover{
     background-color: #031913;
 }
