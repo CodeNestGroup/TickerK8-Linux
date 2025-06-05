@@ -2,7 +2,7 @@
     "title_label": [["Favourite", ""], ["Ulubione", ""]],
     "type_list_button": ["  Lists", "   Listy"],
     "lists_title_label": ["Lists", "Listy"],
-    "data_list_button": ["  Edit table data", "    Edytuj dane tabeli"],
+    "data_list_button": ["  Edit list data", "    Edytuj dane listy"],
     "list_tags": {
         "icon": ["Logo", "Logo"],
         "name":["Name", "Nazwa"]
