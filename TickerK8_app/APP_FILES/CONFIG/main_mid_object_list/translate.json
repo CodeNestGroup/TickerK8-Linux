@@ -10,8 +10,15 @@
     "lists_edit_data_dividend_yield_button": ["Dividend", "Dywidenda"],
     "lists_edit_data_capitalization_button": ["Capitalization", "Kapitalizacja"],
     "lists_edit_data_capital_button": ["Capital", "Stolica"],
+    "lists_edit_data_set_button": ["Set", "Ustaw"],
     "list_tags": {
         "icon": ["Logo", "Logo"],
-        "name":["Name", "Nazwa"]
+        "name":["Name", "Nazwa"],
+        "ticker": ["Ticker", "Ticker"],
+        "pe_ratio": ["Pe ratio", "Pe ratio"],
+        "eps": ["Eps", "Eps"],
+        "dividend_yield": ["Dividend", "Dywidenda"],
+        "capitalization": ["Capitalization", "Kapitalizacja"],
+        "capital": ["Capital", "Stolica"]
     }
 }

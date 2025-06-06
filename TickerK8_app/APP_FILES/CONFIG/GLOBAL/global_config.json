@@ -2,7 +2,6 @@
     "__language__": 0,
     "__theme__": "vintage_elegance_dark",
     "mid_object_list_tags": [
-        "icon",
         "name"
     ],
     "mid_object_lists": {
@@ -145,7 +144,7 @@
         ]
     },
     "mid_object": [
-        "country",
-        1
+        "market_index",
+        3
     ]
 }

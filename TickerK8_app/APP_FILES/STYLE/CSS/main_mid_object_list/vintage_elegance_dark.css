@@ -25,28 +25,27 @@
     background-color: #202020;
     border: 0;
 }
-#list_scroll QScrollBar:vertical{
+#list_scroll QScrollBar:vertical, #list_scroll QScrollBar:horizontal{
     border: none;
     background: #1e1e1e;
     width: 8px;
     margin: 0;
 }
-#list_scroll QScrollBar::handle:vertical {
+#list_scroll QScrollBar::handle:vertical, #list_scroll QScrollBar::handle:horizontal{
     background: #353535;
     min-height: 15px;
     border-radius: 2px;
 }
-
-#list_scroll QScrollBar::handle:vertical:hover {
+#list_scroll QScrollBar::handle:vertical:hover, #list_scroll QScrollBar::handle:horizontal:hover {
     background: #031913;
 }
 
-#list_scroll QScrollBar::add-line:vertical, #list_scroll QScrollBar::sub-line:vertical {
+#list_scroll QScrollBar::add-line:vertical, #list_scroll QScrollBar::sub-line:vertical, #list_scroll QScrollBar::add-line:horizontal, #list_scroll QScrollBar::sub-line:horizontal{
     border: none;
     background: none;
 }
 
-#list_scroll QScrollBar::add-page:vertical, #list_scroll QScrollBar::sub-page:vertical {
+#list_scroll QScrollBar::add-page:vertical, #list_scroll QScrollBar::sub-page:vertical, #list_scroll QScrollBar::add-page:horizontal, #list_scroll QScrollBar::sub-page:horizontal{
     background: none;
 }
 #list_widget{
@@ -106,7 +105,19 @@
     font-weight: 400;
     letter-spacing: 0.3em;
 }
-
+.data_button{
+    color: #FAFAFA;
+    background-color: #252525;
+    border: 0;
+    padding: 0.6em;
+    margin: 0.3em;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+}
+.data_button:hover{
+    background-color: #031913;
+}
 .lists_background_widget{
     background-color: #50000000;
 }
@@ -182,5 +193,17 @@
     padding: 0.4em;
 }
 .lists_edit_data_button:hover{
+    background-color: #031913;
+}
+#lists_edit_data_set_button{
+    color: #FAFAFA;
+    background-color: #252525;
+    border: 0;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    padding: 0.4em;
+}
+#lists_edit_data_set_button:hover{
     background-color: #031913;
 }

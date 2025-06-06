@@ -40,7 +40,8 @@ class Main_mid_object_widget(QWidget):
         """ Call functions """
         main_mid_object_ui(self)
         main_mid_object_reload_style(self)
-        self.setup_widget = setup_widget(self)
+        setup_widget(self)
+        self.setup_widget = lambda: setup_widget(self)
 #______________________________________________________________________________________________________________________
         """ Connect functions """
 #######################################################################################################################

@@ -150,21 +150,27 @@ def open_list(self, title, list_objects):
                     index_label.setText(f'{row}')
                     for table, id_id in dict(item).items():
                         for column, tag in enumerate(self.global_config['mid_object_list_tags'], start=1):
-                            data_label = QLabel(items_widget)
-                            data_label.setObjectName(f'data_{tag}_{id_id}_label')
-                            data_label.setProperty('class', 'data_label')
-                            items_layout.addWidget(data_label, row, column)
-                            data_label.setAlignment(Qt.AlignCenter)
-                            data_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
                             try:
                                 text = cursor.execute(f'SELECT {tag} FROM {table} WHERE id={id_id};').fetchall()[0][0]
                             except:
                                 text = '---'
-                            
-                            if tag == 'icon' and text != '---':
-                                data_label.setPixmap(load_svg(self.main_path+'/STYLE/IMG/'+text+'.svg', data_label.height(), data_label.height()))
+                            if tag == 'name':
+                                data_object = QPushButton(items_widget)
+                                data_object.setObjectName(f'data_{tag}_{id_id}_button')
+                                data_object.setProperty('class', 'data_button')
+                                data_object.setText(str(text))
+                                data_object.clicked.connect(lambda _, t=table, i=id_id: set_to_main_mid_object(self, [t, i]))
                             else:
-                                data_label.setText(text)
+                                data_object = QLabel(items_widget)
+                                data_object.setObjectName(f'data_{tag}_{id_id}_label')
+                                data_object.setProperty('class', 'data_label')
+                                data_object.setAlignment(Qt.AlignCenter)
+                                if tag == 'icon' and text != '---':
+                                    data_object.setPixmap(load_svg(self.main_path+'/STYLE/IMG/'+text+'.svg', data_object.height(), data_object.height()))
+                                else:
+                                    data_object.setText(str(text))
+                            data_object.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+                            items_layout.addWidget(data_object, row, column)
 #______________________________________________________________________________________________________________________
     """ Exit form lists widget  """
     if self.lists_background_widget:
@@ -368,7 +374,7 @@ def show_edit_list_data(self):
     self.lists_edit_data_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.lists_edit_data_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.lists_edit_data_exit_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.lists_edit_data_scroll.selists_scrolltSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.lists_edit_data_scroll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.lists_edit_data_scroll_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.lists_edit_data_icon_button.setFixedHeight(self.lists_edit_data_scroll.height()//2)
     self.lists_edit_data_icon_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -405,18 +411,44 @@ def show_edit_list_data(self):
     """ Connect """
     self.lists_edit_data_exit_button.clicked.connect(lambda: lists_edit_data_exit(self))
     self.lists_edit_data_set_button.clicked.connect(lambda: lists_edit_data_set(self))
+    self.lists_edit_data_icon_button.clicked.connect(lambda: lists_edit_data_controller(self, 'icon'))
+    self.lists_edit_data_ticker_button.clicked.connect(lambda: lists_edit_data_controller(self, 'ticker'))
+    self.lists_edit_data_pe_ratio_button.clicked.connect(lambda: lists_edit_data_controller(self, 'pe_ratio'))
+    self.lists_edit_data_eps_button.clicked.connect(lambda: lists_edit_data_controller(self, 'eps'))
+    self.lists_edit_data_dividend_yield_button.clicked.connect(lambda: lists_edit_data_controller(self, 'dividend_yield'))
+    self.lists_edit_data_capitalization_button.clicked.connect(lambda: lists_edit_data_controller(self, 'capitalization'))
+    self.lists_edit_data_capital_button.clicked.connect(lambda: lists_edit_data_controller(self, 'capital'))
 #______________________________________________________________________________________________________________________
     """ Check selected """
-    
+    for val in self.global_config['mid_object_list_tags']:
+        if val == 'name':
+            pass
+        else:
+            button = getattr(self, f'lists_edit_data_{val}_button')       
+            button.setStyleSheet('background-color: #031913;')
 #######################################################################################################################
 """ Lists edit data exit """
 def lists_edit_data_exit(self):
     self.lists_edit_data_background_widget.deleteLater()
     self.lists_edit_data_background_widget = None
 #######################################################################################################################
+""" Lists edit data controller """
+def lists_edit_data_controller(self, val):
+    button = getattr(self, f'lists_edit_data_{val}_button')
+    if val not in self.global_config['mid_object_list_tags']:
+        self.global_config['mid_object_list_tags'].append(val)       
+        button.setStyleSheet('background-color: #031913;')
+    else:
+        self.global_config['mid_object_list_tags'].remove(val)       
+        button.setStyleSheet('background-color: #252525;')
+
+#######################################################################################################################
 """ Lists edit data set"""
 def lists_edit_data_set(self):
-    pass
+    json.dump(self.global_config, open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'w'), indent=4) # Save config
+    lists_edit_data_exit(self)
+    for title, value in self.global_config['mid_object_list'].items():
+        open_list(self, title, value)
 #######################################################################################################################
 """ Load svg script """
 def load_svg(svg_path, width, height):

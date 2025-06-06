@@ -29,11 +29,12 @@ from PyQt5.QtSvg import QSvgRenderer # Render Svg.
 #######################################################################################################################
 """ Setup widget """
 def setup_widget(self):
+    self.global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Reload global config
     if self.global_config['mid_object'][0] == 'country':
         country_widget(self)
     elif self.global_config['mid_object'][0] == 'market':
         market_widget(self)
-    elif self.global_config['mid_object'][0] == 'index':
+    elif self.global_config['mid_object'][0] == 'market_index':
         index_widget(self)
     elif self.global_config['mid_object'][0] == 'stock':
         stock_widget(self)
@@ -60,7 +61,7 @@ def country_widget(self):
 #______________________________________________________________________________________________________________________
     """ Setup widget """
     if self.main_widget:
-        self.main_widget.delteLater()
+        self.main_widget.deleteLater()
         self.main_widget = None
 #______________________________________________________________________________________________________________________
     """ Create objects """
@@ -155,19 +156,19 @@ def country_widget(self):
     self.main_currency_value_label.setText(f'{country_data[3]}')
 #______________________________________________________________________________________________________________________
     """ Set graphics """
-    self.main_flag_label.setPixmap(load_svg(self.main_path+'/STYLE/IMG/flags'+country_data[1]+'.svg', int(self.width()*0.3), int(self.width()*0.3)))
+    self.main_flag_label.setPixmap(load_svg(self.main_path+'/STYLE/IMG/'+country_data[1]+'.svg', int(self.width()*0.3), int(self.width()*0.3)))
 #######################################################################################################################
 """ Market widget"""
 def market_widget(self):
-    pass
+    print('market', self.global_config['mid_object'])
 #######################################################################################################################
 """ Index widget """
 def index_widget(self):
-    pass
+    print('index', self.global_config['mid_object'])
 #######################################################################################################################
 """ Stock widget """
 def stock_widget(self):
-    pass
+    print('stock', self.global_config['mid_object'])
 #######################################################################################################################
 """ Load svg script """
 def load_svg(svg_path, width, height):
