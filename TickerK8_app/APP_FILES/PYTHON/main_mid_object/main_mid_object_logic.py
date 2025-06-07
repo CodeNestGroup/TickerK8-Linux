@@ -79,7 +79,7 @@ def country_widget(self):
     self.main_currecny_name_label = QLabel(self.main_statistics_widget)
     self.main_currency_value_label = QLabel(self.main_statistics_widget)
 #______________________________________________________________________________________________________________________
-    """ Create objects """
+    """ Set object name """
     self.main_widget.setObjectName('main_widget')
     self.main_flag_label.setObjectName('main_flag_label')
     self.main_name_label.setObjectName('main_name_label')
@@ -160,7 +160,121 @@ def country_widget(self):
 #######################################################################################################################
 """ Market widget"""
 def market_widget(self):
-    print('market', self.global_config['mid_object'])
+    """ Get data """
+    database = sqlite3.connect(database=self.main_path+'/CONFIG/GLOBAL/local_data_prototype.db') # Create connect 
+    cursor = database.cursor() # Create cursor 
+    market_data = cursor.execute(f'''
+    SELECT
+    market.name, 
+    market.icon, 
+    market.capital, 
+    market.currency_code, 
+    timezone.name, 
+    population.number
+    FROM cmarket
+    JOIN timezone ON market.id_timezone=timezone.id
+    JOIN population ON market.id=population.id_country
+    WHERE market.id={self.global_config['mid_object'][1]};''').fetchall()[0] # Execute
+    cursor.close()
+    database.close()
+#______________________________________________________________________________________________________________________
+    """ Setup widget """
+    if self.main_widget:
+        self.main_widget.deleteLater()
+        self.main_widget = None
+#______________________________________________________________________________________________________________________
+    """ Create objects """
+    self.main_widget = QWidget(self.main_scroll)
+    self.main_layout = QGridLayout(self.main_widget)
+    self.main_icon_label = QLabel(self.main_widget)
+    self.main_short_name_label = QLabel(self.main_widget)
+    self.main_name_label = QLabel(self.main_widget)
+    self.main_time_widget = QWidget(self.main_widget)
+    self.main_statistics_widget = QWidget(self.main_widget)
+    self.main_statistics_layout = QGridLayout(self.main_statistics_widget)
+    self.main_capitalization_name_label = QLabel(self.main_statistics_widget)
+    self.main_capitalization_value_label = QLabel(self.main_statistics_widget)
+    self.main_city_name_label = QLabel(self.main_statistics_widget)
+    self.main_city_value_label = QLabel(self.main_statistics_widget)
+    self.main_founded_date_name_label = QLabel(self.main_statistics_widget)
+    self.main_founded_date_value_label = QLabel(self.main_statistics_widget)
+    self.main_website_name_label = QLabel(self.main_statistics_widget)
+    self.main_website_value_label = QLabel(self.main_statistics_widget)
+#______________________________________________________________________________________________________________________
+    """ Set object name """
+    self.main_widget.setObjectName('main_widget')
+    self.main_icon_label.setObjectName('main_icon_label')
+    self.main_short_name_label.setObjectName('main_short_name_label')
+    self.main_name_label.setObjectName('main_name_label')
+    self.main_time_widget.setObjectName('main_time_widget')
+    self.main_statistics_widget.setObjectName('main_statistics_widget')
+    self.main_capitalization_name_label.setObjectName('main_capitalization_name_label')
+    self.main_capitalization_value_label.setObjectName('main_capitalization_value_label')
+    self.main_city_name_label.setObjectName('main_city_name_label')
+    self.main_city_value_label.setObjectName('main_city_value_label')
+    self.main_founded_date_name_label.setObjectName('main_founded_date_name_label')
+    self.main_founded_date_value_label.setObjectName('main_founded_date_value_label')
+    self.main_website_name_label.setObjectName('main_website_name_label')
+    self.main_website_value_label.setObjectName('main_website_value_label')
+#______________________________________________________________________________________________________________________
+    """ Set property """
+    self.main_capitalization_name_label.setProperty('class', '')
+    self.main_capitalization_value_label.setProperty('class', '')
+    self.main_city_name_label.setProperty('class', '')
+    self.main_city_value_label.setProperty('class', '')
+    self.main_founded_date_name_label.setProperty('class', '')
+    self.main_founded_date_value_label.setProperty('class', '')
+    self.main_website_name_label.setProperty('class', '')
+    self.main_website_value_label.setProperty('class', '')
+#______________________________________________________________________________________________________________________
+    """ Set layout """
+#______________________________________________________________________________________________________________________
+    """ Set widget """
+    self.main_scroll.setWidget(self.main_widget)
+#______________________________________________________________________________________________________________________
+    """ Set label """
+    self.main_icon_label.setAlignment(Qt.AlignCenter)
+    self.main_short_name_label.setAlignment(Qt.AlignCenter)
+    self.main_name_label.setAlignment(Qt.AlignCenter)
+    self.main_capitalization_name_label.setAlignment(Qt.AlignCenter)
+    self.main_capitalization_value_label.setAlignment(Qt.AlignCenter)
+    self.main_city_name_label.setAlignment(Qt.AlignCenter)
+    self.main_city_value_label.setAlignment(Qt.AlignCenter)
+    self.main_founded_date_name_label.setAlignment(Qt.AlignCenter)
+    self.main_founded_date_value_label.setAlignment(Qt.AlignCenter)
+    self.main_website_name_label.setAlignment(Qt.AlignCenter)
+    self.main_website_value_label.setAlignment(Qt.AlignCenter)
+#______________________________________________________________________________________________________________________
+    """ Set size """
+    self.main_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.main_icon_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.main_short_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.main_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.main_time_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.main_statistics_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.main_capitalization_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.main_capitalization_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.main_city_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.main_city_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.main_founded_date_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.main_founded_date_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.main_website_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.main_website_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+#______________________________________________________________________________________________________________________
+    """ Set text """
+    self.main_short_name_label.setText(f'')
+    self.main_name_label.setText(f'')
+    self.main_capitalization_name_label.setText(f'')
+    self.main_capitalization_value_label.setText(f'')
+    self.main_city_name_label.setText(f'')
+    self.main_city_value_label.setText(f'')
+    self.main_founded_date_name_label.setText(f'')
+    self.main_founded_date_value_label.setText(f'')
+    self.main_website_name_label.setText(f'')
+    self.main_website_value_label.setText(f'')
+#______________________________________________________________________________________________________________________
+    """ Set graphics """
+    self.main_icon_label
 #######################################################################################################################
 """ Index widget """
 def index_widget(self):
