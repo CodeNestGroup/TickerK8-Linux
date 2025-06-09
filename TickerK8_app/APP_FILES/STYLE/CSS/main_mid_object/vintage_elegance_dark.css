@@ -35,9 +35,15 @@
 #main_flag_label{
     background-color: #00000000;
 }
-#main_name_label{
+#main_short_name_label{
     color: #FAFAFA;
     font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 0.4em;
+}
+#main_name_label{
+    color: #FAFAFA;
+    font-size: 20px;
     font-weight: 600;
     letter-spacing: 0.4em;
 }
@@ -58,6 +64,62 @@
     letter-spacing: 0.4em;
 }
 .main_value_label{
+    color: #FAFAFA;
+    padding: 0.3em;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+}
+.main_objects_label{
+    color: #FAFAFA;
+    padding: 0.3em;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.4em;
+}
+#main_objects_scroll{
+    background-color: #00000000;
+    border: 0;
+}
+#main_objects_scroll QScrollBar:vertical{
+    border: none;
+    background: #1e1e1e;
+    width: 8px;
+    margin: 0;
+}
+#main_objects_scroll QScrollBar::handle:vertical {
+    background: #353535;
+    min-height: 15px;
+    border-radius: 2px;
+}
+
+#main_objects_scroll QScrollBar::handle:vertical:hover {
+    background: #031913;
+}
+
+#main_objects_scroll QScrollBar::add-line:vertical, #main_objects_scroll QScrollBar::sub-line:vertical {
+    border: none;
+    background: none;
+}
+
+#main_objects_scroll QScrollBar::add-page:vertical, #main_objects_scroll QScrollBar::sub-page:vertical {
+    background: none;
+}
+#main_objects_widget{
+    background-color: #252525;
+}
+.index_label{
+    color: #FAFAFA;
+    padding: 0.3em;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+}
+.item_icon_label{
+    background-color: #00000000;
+    border: 0;
+}
+.item_text_label{
     color: #FAFAFA;
     padding: 0.3em;
     font-size: 14px;
