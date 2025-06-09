@@ -18,6 +18,9 @@ from main.main_structure import Main_widget
 #______________________________________________________________________________________________________________________
 """ Import statistics widget """
 from statistics.statistics_structure import Statistics_widget
+#______________________________________________________________________________________________________________________
+""" Import chart widget """
+from chart.chart_structure import Chart_widget
 #######################################################################################################################
 """ App controller """
 class app_controller(QWidget):
@@ -29,11 +32,12 @@ class app_controller(QWidget):
         self.layout.setContentsMargins(0,0,0,0)
         self.setLayout(self.layout) # Set layout 
         
-        self.login_widget = None # Set default
-        self.register_widget = None # Set default
-        self.recover_password_widget = None # Set default
-        self.main_widget = None # Set default
-        self.statistics_widget = None # Set default
+        self.login_widget = None # Set dafault
+        self.register_widget = None # Set dafault
+        self.recover_password_widget = None # Set dafault
+        self.main_widget = None # Set dafault
+        self.statistics_widget = None # Set dafault
+        self.chart_widget = None # Set dafault
 
         self.primary_screen_size = QApplication.primaryScreen().size() # Get screen size
         self.login_setup() # Set on start of application
@@ -97,6 +101,7 @@ class app_controller(QWidget):
         self.layout.addWidget(self.main_widget) # Add main widget to main layout 
         self.set_size_main() # Set size if main window fir main widget
         self.main_widget.bottom_left_stats_button.clicked.connect(self.main_to_statistics) # Connect open statistics widget
+        self.main_widget.bottom_left_chart_button.clicked.connect(self.main_to_chart) # Connect open chart widget
 #______________________________________________________________________________________________________________________
     """ Set size main """
     def set_size_main(self):
@@ -112,6 +117,18 @@ class app_controller(QWidget):
 #______________________________________________________________________________________________________________________
     """ Set size statistics """
     def set_size_statistics(self):
+        x, y, width, height = 0, 0, int(self.primary_screen_size.width()), int(self.primary_screen_size.height()) # Set size
+        self.setGeometry(QRect(x, y, width, height)) # Set geometry
+#______________________________________________________________________________________________________________________
+    """ Chart """
+    def chart_setup(self):
+        self.chart_widget = Chart_widget(self) # Create chart widget
+        self.layout.addWidget(self.chart_widget) # Add chart widget to main layout 
+        self.set_size_chart() # Set size 
+        #self.chart_widget.main_exit_button.clicked.connect(self.chart_to_main) # Connect exit function
+#______________________________________________________________________________________________________________________
+    """ Set size chart """
+    def set_size_chart(self):
         x, y, width, height = 0, 0, int(self.primary_screen_size.width()), int(self.primary_screen_size.height()) # Set size
         self.setGeometry(QRect(x, y, width, height)) # Set geometry
 #______________________________________________________________________________________________________________________
@@ -153,8 +170,20 @@ class app_controller(QWidget):
 #______________________________________________________________________________________________________________________
     """ From statistics to main """
     def statistics_to_main(self):
-        self.statistics_widget.deleteLater() # Delte statistics widget
+        self.statistics_widget.deleteLater() # Delete statistics widget
         self.statistics_widget = None # Set dafault
+        self.main_setup() # Call main setup function 
+#______________________________________________________________________________________________________________________
+    """ From main to chart """
+    def main_to_chart(self):
+        self.main_widget.deleteLater() # Delete main widget
+        self.main_widget = None # Set dafault
+        self.chart_setup() # Call chart setup fucntion 
+#______________________________________________________________________________________________________________________
+    """ From chart to main """
+    def chart_to_main(self):
+        self.chart_widget.deleteLater() # Delete chart widget 
+        self.chart_widget = None # Set dafault
         self.main_setup() # Call main setup function 
 #######################################################################################################################
     
