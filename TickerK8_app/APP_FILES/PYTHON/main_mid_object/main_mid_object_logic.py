@@ -17,7 +17,9 @@ from PyQt5.QtWidgets import (
 from PyQt5.QtCore import (
     Qt,
     QSize,
-    QRect
+    QRect,
+    QTimer,
+    QTime
 )
 #______________________________________________________________________________________________________________________
 """ Import PyQt5 Gui """
@@ -196,6 +198,12 @@ def market_widget(self):
     self.main_short_name_label = QLabel(self.main_widget)
     self.main_name_label = QLabel(self.main_widget)
     self.main_time_widget = QWidget(self.main_widget)
+    self.main_time_close_1_label= QLabel(self.main_time_widget)
+    self.main_time_pre_open_label= QLabel(self.main_time_widget)
+    self.main_time_open_label= QLabel(self.main_time_widget)
+    self.main_time_post_close_label= QLabel(self.main_time_widget)
+    self.main_time_close_2_label= QLabel(self.main_time_widget)
+    self.main_time_dot_label = QLabel(self.main_time_widget)
     self.main_statistics_widget = QWidget(self.main_widget)
     self.main_statistics_layout = QGridLayout(self.main_statistics_widget)
     self.main_capitalization_name_label = QLabel(self.main_statistics_widget)
@@ -213,6 +221,12 @@ def market_widget(self):
     self.main_short_name_label.setObjectName('main_short_name_label')
     self.main_name_label.setObjectName('main_name_label')
     self.main_time_widget.setObjectName('main_time_widget')
+    self.main_time_close_1_label.setObjectName('main_time_close_1_label')
+    self.main_time_pre_open_label.setObjectName('main_time_pre_open_label')
+    self.main_time_open_label.setObjectName('main_time_open_label')
+    self.main_time_post_close_label.setObjectName('main_time_post_close_label')
+    self.main_time_close_2_label.setObjectName('main_time_close_2_label')
+    self.main_time_dot_label.setObjectName('main_time_dot_label')
     self.main_statistics_widget.setObjectName('main_statistics_widget')
     self.main_capitalization_name_label.setObjectName('main_capitalization_name_label')
     self.main_capitalization_value_label.setObjectName('main_capitalization_value_label')
@@ -276,6 +290,12 @@ def market_widget(self):
     self.main_short_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_time_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.main_time_close_1_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.main_time_pre_open_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.main_time_open_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.main_time_post_close_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.main_time_close_2_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.main_time_dot_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_statistics_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_capitalization_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_capitalization_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -300,6 +320,50 @@ def market_widget(self):
 #______________________________________________________________________________________________________________________
     """ Set graphics """
     self.main_icon_label.setPixmap(load_svg(self.main_path+'/STYLE/IMG/'+market_data[2]+'.svg', int(self.width()*0.3), int(self.width()*0.3)))
+#______________________________________________________________________________________________________________________
+    """ Setup time widget """
+    total_sec = 86400
+    pre_open_time = int(market_data[7])
+    open_time = int(market_data[8])
+    close_time = int(market_data[9])
+    post_close_time = int(market_data[10])
+    margins_x = int(self.main_time_widget.width()*0.05)
+    pos_y = int(self.main_time_widget.height()*0.45)
+    width = int(self.main_time_widget.width()-margins_x)
+    height = int(self.main_time_widget.height()*0.1)
+
+    close_1_pos = int(0+(margins_x//2)) # Pos
+    close_1_width = int((pre_open_time/total_sec)*width) # Width
+    pre_open_time_pos = int(close_1_pos+close_1_width) # Pos
+    pre_open_time_width = int(((open_time-pre_open_time)/total_sec)*width) # Width
+    open_time_pos = int(pre_open_time_pos+pre_open_time_width) # Pos
+    open_time_width = int(((close_time-pre_open_time)/total_sec)*width) # Width
+    post_close_pos = int(open_time_pos+open_time_width) # Pos
+    post_close_width = int(((post_close_time-close_time)/total_sec)*width) # Width
+    close_2_pos = int(post_close_pos+post_close_width) # Pos
+    close_2_width = int(width-close_1_width-pre_open_time_width-open_time_width-post_close_width) # Width
+    
+    self.main_time_close_1_label.setGeometry(QRect(close_1_pos, int(pos_y), close_1_width, int(height)))
+    self.main_time_pre_open_label.setGeometry(QRect(pre_open_time_pos, int(pos_y), pre_open_time_width, int(height)))
+    self.main_time_open_label.setGeometry(QRect(open_time_pos, int(pos_y), open_time_width, int(height)))
+    self.main_time_post_close_label.setGeometry(QRect(post_close_pos, int(pos_y), post_close_width, int(height)))
+    self.main_time_close_2_label.setGeometry(QRect(close_2_pos, int(pos_y), close_2_width, int(height)))
+    self.main_time_dot_label.setFixedSize(QSize(int(height*1.5), int(height*1.5)))
+
+    self.main_time_timer = QTimer(self.main_time_widget)
+    self.main_time_timer.timeout.connect(lambda w=width, h=pos_y: update_dot(self, w, h))
+    self.main_time_timer.start(1000)
+#######################################################################################################################
+""" Update dot """
+def update_dot(self, width, height):
+    current_time = QTime.currentTime()
+    sec = (
+            current_time.hour() * 3600 +
+            current_time.minute() * 60 +
+            current_time.second()
+        )
+    total_sec = 86400
+    self.main_time_dot_label.move(int((sec/total_sec)*width), int(height*0.95))
 #######################################################################################################################
 """ Index widget """
 def index_widget(self):

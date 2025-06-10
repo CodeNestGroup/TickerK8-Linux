@@ -126,3 +126,30 @@
     font-weight: 400;
     letter-spacing: 0.3em;
 }
+#main_time_widget{
+    background-color: #00000000;
+}
+#main_time_close_1_label{
+    background-color: #353535;
+    border-radius: 0.2em;
+}
+#main_time_pre_open_label{
+    background-color: #4b4b4b;
+    border-radius: 0.2em;
+}
+#main_time_open_label{
+    background-color: #139e13;
+    border-radius: 0.2em;
+}
+#main_time_post_close_label{
+    background-color: #3b3b3b;
+    border-radius: 0.2em;
+}
+#main_time_close_2_label{
+    background-color: #353535;
+    border-radius: 0.2em;
+}
+#main_time_dot_label{
+    background-color: #FAFAFA;
+    border-radius: 0.49em;
+}
