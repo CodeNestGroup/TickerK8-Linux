@@ -28,6 +28,9 @@ from PyQt5.QtGui import (QPixmap, # Graphic.
 #_______________________________________________________________________________________________________________________
 """ Import PyQt5 Svg """
 from PyQt5.QtSvg import QSvgRenderer # Render Svg.
+#_______________________________________________________________________________________________________________________
+""" Import Main mid object chart  """
+from main_mid_object_chart.main_mid_object_chart_structure import Main_mid_object_chart_widget
 #######################################################################################################################
 """ Setup widget """
 def setup_widget(self):
@@ -396,7 +399,7 @@ def index_widget(self):
     self.main_layout = QGridLayout(self.main_widget)
     self.main_icon_label = QLabel(self.main_widget)
     self.main_name_label = QLabel(self.main_widget)
-    self.main_chart_widget = QWidget(self.main_widget)
+    self.main_chart_widget = Main_mid_object_chart_widget(self.main_widget)
     self.main_objects_scroll = QScrollArea(self.main_widget)
     self.main_objects_widget = QWidget(self.main_objects_scroll)
     self.main_objects_layout = QGridLayout(self.main_objects_widget)
@@ -410,7 +413,6 @@ def index_widget(self):
     self.main_widget.setObjectName('main_widget')
     self.main_icon_label.setObjectName('main_icon_label')
     self.main_name_label.setObjectName('main_name_label')
-    self.main_chart_widget.setObjectName('main_chart_widget')
     self.main_objects_scroll.setObjectName('main_objects_scroll')
     self.main_objects_widget.setObjectName('main_objects_widget')
     self.main_objects_index_label.setObjectName('main_objects_index_label')

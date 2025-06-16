@@ -1,0 +1,10 @@
+{
+    "time_day_button": ["1Day", "1Dzien"],
+    "time_five_day_button": ["5Days", "5Dni"],
+    "time_one_month_button": ["1Month", "1Miesiac"],
+    "time_three_month_button": ["3Months", "3Miesiace"],
+    "time_six_month_button": ["6Months", "6Miesiecy"],
+    "time_one_year_button": ["1Year", "1Rok"],
+    "time_five_year_button": ["5Years", "5Lat"],
+    "time_all_button": ["All", "Wszystko"]
+}
