@@ -41,7 +41,7 @@ class Main_mid_object_chart_widget(QWidget):
         self.current_price_line_label = QLabel(self)
         self.price_info_widget = None
         self.type_chart_button = QPushButton(self)
-        self.type_chart_background = None 
+        self.type_chart_background_widget = None 
         self.time_widget = QWidget(self)
         self.time_layout = QGridLayout(self.time_widget)
         self.time_day_button  = QPushButton(self.time_widget)
