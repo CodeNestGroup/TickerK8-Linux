@@ -91,7 +91,7 @@ def main_mid_object_chart_ui(self):
 #######################################################################################################################
 """ Main mid object chart reload style """
 def main_mid_object_chart_reload_style(self):
-    pass
+    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/main_mid_object_chart/'+self.global_config['__theme__']+'.css')).read())
 #######################################################################################################################
 """ Main settings retranslate """
 def main_mid_object_chart_retranslate(self):

@@ -144,7 +144,11 @@
         ]
     },
     "mid_object": [
-        "market",
+        "market_index",
         1
+    ],
+    "main_mid_object_chart_type": [
+        0,
+        0
     ]
 }
