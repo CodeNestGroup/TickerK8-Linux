@@ -82,62 +82,17 @@
         ]
     },
     "mid_object_list": {
-        "Favourite": [
+        "Indexes": [
             {
-                "Countries": [
-                    {
-                        "country": 1
-                    }
-                ]
-            },
-            {
-                "Markets": [
-                    {
-                        "market": 1
-                    }
-                ]
-            },
-            {
-                "Indexes": [
+                "AGX": [
                     {
                         "market_index": 1
-                    },
-                    {
-                        "market_index": 2
                     },
                     {
                         "market_index": 3
                     },
                     {
                         "market_index": 4
-                    }
-                ]
-            },
-            {
-                "Stocks": [
-                    {
-                        "stock": 1
-                    },
-                    {
-                        "stock": 2
-                    },
-                    {
-                        "stock": 3
-                    },
-                    {
-                        "stock": 4
-                    },
-                    {
-                        "stock": 5
-                    },
-                    {
-                        "stock": 6
-                    },
-                    {
-                        "stock": 7
-                    },
-                    {
-                        "stock": 8
                     }
                 ]
             }

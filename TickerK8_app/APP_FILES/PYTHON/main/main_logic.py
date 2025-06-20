@@ -26,5 +26,5 @@ def main_mid_object_changed(self):
         self.bottom_left_chart_button.setHidden(True)
     else:
         self.bottom_left_chart_button.setHidden(False)
-    self.mid_object_widget.setup_widget()
+    self.mid_object_scroll.setup_widget()
 #######################################################################################################################

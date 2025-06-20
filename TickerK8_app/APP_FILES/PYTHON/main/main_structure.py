@@ -25,7 +25,7 @@ from .main_logic import *
 from main_mid_object_list.main_mid_object_list_structure import Main_mid_object_list_widget
 #______________________________________________________________________________________________________________________
 """ Import main mid object """
-from main_mid_object.main_mid_object_structure import Main_mid_object_widget
+from main_mid_object.main_mid_object_structure import Main_mid_object_scroll
 #______________________________________________________________________________________________________________________
 """ Import main mid news """
 from main_mid_news.main_mid_news_structure import Main_mid_news_widget
@@ -62,8 +62,7 @@ class Main_widget(QWidget):
         self.top_settings_button = QPushButton(self.top_widget)
         self.mid_widget = QWidget(self)
         self.mid_widget_layout = QGridLayout(self.mid_widget)
-        self.mid_object_scroll = QScrollArea(self.mid_widget)
-        self.mid_object_widget = Main_mid_object_widget(self.mid_widget)
+        self.mid_object_scroll = Main_mid_object_scroll(self.mid_widget)
         self.mid_object_list_widget = Main_mid_object_list_widget(self.mid_widget)
         self.mid_news_widget = Main_mid_news_widget(self.mid_widget)
         self.bottom_widget = QWidget(self)

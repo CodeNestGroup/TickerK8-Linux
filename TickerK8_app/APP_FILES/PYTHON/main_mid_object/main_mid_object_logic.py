@@ -29,8 +29,6 @@ from PyQt5.QtGui import (QPixmap, # Graphic.
 """ Import PyQt5 Svg """
 from PyQt5.QtSvg import QSvgRenderer # Render Svg.
 #_______________________________________________________________________________________________________________________
-""" Import Main mid object chart  """
-from main_mid_object_chart.main_mid_object_chart_structure import Main_mid_object_chart_widget
 #######################################################################################################################
 """ Setup widget """
 def setup_widget(self):
@@ -70,7 +68,7 @@ def country_widget(self):
         self.main_widget = None
 #______________________________________________________________________________________________________________________
     """ Create objects """
-    self.main_widget = QWidget(self.main_scroll)
+    self.main_widget = QWidget(self)
     self.main_layout = QGridLayout(self.main_widget)
     self.main_flag_label = QLabel(self.main_widget)
     self.main_name_label = QLabel(self.main_widget)
@@ -124,7 +122,7 @@ def country_widget(self):
     self.main_statistics_widget.setLayout(self.main_statistics_layout)
 #______________________________________________________________________________________________________________________
     """ Set widget """
-    self.main_scroll.setWidget(self.main_widget)
+    self.setWidget(self.main_widget)
 #______________________________________________________________________________________________________________________
     """ Set label """
     self.main_flag_label.setAlignment(Qt.AlignCenter)
@@ -195,7 +193,7 @@ def market_widget(self):
         self.main_widget = None
 #______________________________________________________________________________________________________________________
     """ Create objects """
-    self.main_widget = QWidget(self.main_scroll)
+    self.main_widget = QWidget(self)
     self.main_layout = QGridLayout(self.main_widget)
     self.main_icon_label = QLabel(self.main_widget)
     self.main_short_name_label = QLabel(self.main_widget)
@@ -272,7 +270,7 @@ def market_widget(self):
     self.main_statistics_widget.setLayout(self.main_statistics_layout)
 #______________________________________________________________________________________________________________________
     """ Set widget """
-    self.main_scroll.setWidget(self.main_widget)
+    self.setWidget(self.main_widget)
 #______________________________________________________________________________________________________________________
     """ Set label """
     self.main_icon_label.setAlignment(Qt.AlignCenter)
@@ -395,19 +393,17 @@ def index_widget(self):
         self.main_widget = None
 #______________________________________________________________________________________________________________________
     """ Create objects """
-    self.main_widget = QWidget(self.main_scroll)
+    self.main_widget = QWidget(self)
     self.main_layout = QGridLayout(self.main_widget)
     self.main_icon_label = QLabel(self.main_widget)
     self.main_name_label = QLabel(self.main_widget)
-    self.main_chart_widget = Main_mid_object_chart_widget(self.main_widget)
     self.main_objects_scroll = QScrollArea(self.main_widget)
     self.main_objects_widget = QWidget(self.main_objects_scroll)
     self.main_objects_layout = QGridLayout(self.main_objects_widget)
+    self.main_objects_title_label = QLabel(self.main_objects_widget)
     self.main_objects_index_label = QLabel(self.main_objects_widget)
     self.main_objects_icon_label = QLabel(self.main_objects_widget)
     self.main_objects_ticker_label = QLabel(self.main_objects_widget)
-    self.main_statistics_widget = QWidget(self.main_widget)
-    self.main_statistics_layout = QGridLayout(self.main_statistics_widget)
 #______________________________________________________________________________________________________________________
     """ Set object name """
     self.main_widget.setObjectName('main_widget')
@@ -415,10 +411,10 @@ def index_widget(self):
     self.main_name_label.setObjectName('main_name_label')
     self.main_objects_scroll.setObjectName('main_objects_scroll')
     self.main_objects_widget.setObjectName('main_objects_widget')
+    self.main_objects_title_label.setObjectName('main_objects_title_label')
     self.main_objects_index_label.setObjectName('main_objects_index_label')
     self.main_objects_icon_label.setObjectName('main_objects_icon_label')
     self.main_objects_ticker_label.setObjectName('main_objects_ticker_label')
-    self.main_statistics_widget.setObjectName('main_statistics_widget')
 #______________________________________________________________________________________________________________________
     """ Set property """
     self.main_objects_index_label.setProperty('class', 'main_objects_label')
@@ -426,31 +422,29 @@ def index_widget(self):
     self.main_objects_ticker_label.setProperty('class', 'main_objects_label')
 #______________________________________________________________________________________________________________________
     """ Set layout """
-    self.main_layout.addWidget(self.main_icon_label,0,0)
-    self.main_layout.addWidget(self.main_name_label,1,0)
-    self.main_layout.addWidget(self.main_chart_widget,2,0)
-    self.main_layout.addWidget(self.main_objects_scroll,3,0)
+    self.main_layout.addWidget(self.main_icon_label, 0, 0)
+    self.main_layout.addWidget(self.main_name_label, 1, 0)
+    self.main_layout.addWidget(self.main_objects_scroll, 2, 0)
     self.main_layout.setSpacing(0)
     self.main_layout.setContentsMargins(0,0,0,0)
     self.main_widget.setLayout(self.main_layout)
-    self.main_objects_layout.addWidget(self.main_objects_index_label, 0, 0)
-    self.main_objects_layout.addWidget(self.main_objects_icon_label, 0, 1)
-    self.main_objects_layout.addWidget(self.main_objects_ticker_label, 0, 2)
+    self.main_objects_layout.addWidget(self.main_objects_title_label, 0, 0, 1, 3)
+    self.main_objects_layout.addWidget(self.main_objects_index_label, 1, 0)
+    self.main_objects_layout.addWidget(self.main_objects_icon_label, 1, 1)
+    self.main_objects_layout.addWidget(self.main_objects_ticker_label, 1, 2)
     self.main_objects_layout.setSpacing(0)
     self.main_objects_layout.setContentsMargins(0,0,0,0)
     self.main_objects_widget.setLayout(self.main_objects_layout)
-    self.main_statistics_layout.setSpacing(0)
-    self.main_statistics_layout.setContentsMargins(0,0,0,0)
-    self.main_statistics_widget.setLayout(self.main_statistics_layout)
 #______________________________________________________________________________________________________________________
     """ Set widget """
-    self.main_scroll.setWidget(self.main_widget)
+    self.setWidget(self.main_widget)
     self.main_objects_scroll.setWidgetResizable(True)
     self.main_objects_scroll.setWidget(self.main_objects_widget)
 #______________________________________________________________________________________________________________________
     """ Set label """
     self.main_icon_label.setAlignment(Qt.AlignCenter)
     self.main_name_label.setAlignment(Qt.AlignCenter)
+    self.main_objects_title_label.setAlignment(Qt.AlignCenter)
     self.main_objects_index_label.setAlignment(Qt.AlignCenter)
     self.main_objects_icon_label.setAlignment(Qt.AlignCenter)
     self.main_objects_ticker_label.setAlignment(Qt.AlignCenter)
@@ -459,16 +453,16 @@ def index_widget(self):
     self.main_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_icon_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.main_chart_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_objects_scroll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_objects_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.main_objects_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_objects_index_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_objects_icon_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_objects_ticker_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.main_statistics_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 #______________________________________________________________________________________________________________________
     """ Set text """
     self.main_name_label.setText(f'{market_index_data[0]}')
+    self.main_objects_title_label.setText(self.translate['main_objects_title_label'][self.global_config['__language__']])
     self.main_objects_index_label.setText(f'#')
     self.main_objects_icon_label.setText(self.translate['main_objects_icon_label'][self.global_config['__language__']])
     self.main_objects_ticker_label.setText(self.translate['main_objects_ticker_label'][self.global_config['__language__']])
@@ -477,14 +471,14 @@ def index_widget(self):
     self.main_icon_label.setPixmap(load_svg(self.main_path+'/STYLE/IMG/'+market_index_data[1]+'.svg', int(self.width()*0.3), int(self.width()*0.3)))
 #______________________________________________________________________________________________________________________
     """ Set main objects scroll """
-    for row, item_list in enumerate(objects_of_index, start=1):
+    for row, item_list in enumerate(objects_of_index, start=2):
         index_label = QLabel(self.main_objects_widget)
         index_label.setObjectName(f'index_{row}_label')
         index_label.setProperty('class', 'index_label')
         self.main_objects_layout.addWidget(index_label, row, 0)
         index_label.setAlignment(Qt.AlignCenter)
         index_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        index_label.setText(f'{row}.')
+        index_label.setText(f'{row-1}.')
         for column, item in enumerate(item_list, start=1):
             item_label = QLabel(self.main_objects_widget)
             if column == 1:
@@ -524,12 +518,11 @@ def stock_widget(self):
         self.main_widget = None
 #______________________________________________________________________________________________________________________
     """ Create objects """
-    self.main_widget = QWidget(self.main_scroll)
+    self.main_widget = QWidget(self)
     self.main_layout = QGridLayout(self.main_widget)
     self.main_icon_label = QLabel(self.main_widget)
     self.main_short_name_label = QLabel(self.main_widget)
     self.main_name_label = QLabel(self.main_widget)
-    self.main_chart_widget = QWidget(self.main_widget)
     self.main_statistics_widget = QWidget(self.main_widget)
     self.main_statistics_layout = QGridLayout(self.main_statistics_widget)
     self.main_capitalization_name_label = QLabel(self.main_statistics_widget)
@@ -546,7 +539,6 @@ def stock_widget(self):
     self.main_icon_label.setObjectName('main_icon_label')
     self.main_short_name_label.setObjectName('main_short_name_label')
     self.main_name_label.setObjectName('main_name_label')
-    self.main_chart_widget.setObjectName('main_chart_widget')
     self.main_statistics_widget.setObjectName('main_statistics_widget')
     self.main_capitalization_name_label.setObjectName('main_capitalization_name_label')
     self.main_capitalization_value_label.setObjectName('main_capitalization_value_label')
@@ -571,7 +563,6 @@ def stock_widget(self):
     self.main_layout.addWidget(self.main_icon_label,0,0)
     self.main_layout.addWidget(self.main_short_name_label,1,0)
     self.main_layout.addWidget(self.main_name_label,2,0)
-    self.main_layout.addWidget(self.main_chart_widget,3,0)
     self.main_layout.addWidget(self.main_statistics_widget,4,0)
     self.main_layout.setSpacing(0)
     self.main_layout.setContentsMargins(0,0,0,0)
@@ -589,7 +580,7 @@ def stock_widget(self):
     self.main_statistics_widget.setLayout(self.main_statistics_layout)
 #______________________________________________________________________________________________________________________
     """ Set widget """
-    self.main_scroll.setWidget(self.main_widget)
+    self.setWidget(self.main_widget)
 #______________________________________________________________________________________________________________________
     """ Set label """
     self.main_icon_label.setAlignment(Qt.AlignCenter)
@@ -609,7 +600,6 @@ def stock_widget(self):
     self.main_icon_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_short_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.main_chart_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_statistics_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_capitalization_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_capitalization_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)

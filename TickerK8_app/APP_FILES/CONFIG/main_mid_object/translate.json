@@ -9,6 +9,7 @@
     "main_pe_ratio_name_label": ["Pe ratio", "Pe ratio"],
     "main_eps_name_label": ["Eps", "Eps"],
     "main_dividend_yield_name_label": ["Dividend yield", "Stopa dywidendy"],
+    "main_objects_title_label": ["Ingridients of index", "Skladniki indeksu"],
     "main_objects_icon_label": ["Icon", "Ikona"],
     "main_objects_ticker_label": ["Ticker", "Ticker"]
 }

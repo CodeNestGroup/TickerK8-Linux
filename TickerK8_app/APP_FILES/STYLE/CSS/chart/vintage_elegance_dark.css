@@ -1,86 +1,41 @@
-#recover_password_widget{
+#chart_widget{
     background-color: #252525;
 }
-#recover_password_title_label{
-    color: #FAFAFA;
-    padding: 0.3em;
-    font-size: 28px;
-    font-weight: 600;
-    letter-spacing: 0.3em;
+#top_widget{
+    background-color: #1e1e1e;
 }
-#recover_password_requirments_label{
+#top_exit_button{
     color: #FAFAFA;
+    background-color: #252525;
+    border: 0;
+    border-radius: 17px;
     padding: 0.3em;
     font-size: 14px;
-    font-weight: 400;
-    letter-spacing: 0.2em;
 }
-#recover_password_code_label{
-    color: #FAFAFA;
-    background-color: #1e1e1e;
-    padding: 0.5em;
-    font-size: 20px;
-    font-weight: 600;
-    letter-spacing: 0.8em;
-}
-#recover_password_time_label{
-    color: #FAFAFA;
-    padding: 0.5em;
-    font-size: 16px;
-    font-weight: 400;
-    letter-spacing: 0.3em;
-}
-#recover_password_code_lineedit{
-    color: #FAFAFA;
-    background-color: #1e1e1e;
-    border: 0;
-    padding: 0.5em;
-    font-size: 16px;
-    font-weight: 400;
-    letter-spacing: 0.8em;
-}
-#recover_password_code_button{
-    color: #FAFAFA;
-    background-color: #1e1e1e;
-    border: 0;
-    padding: 0.3em;
-    font-size: 14px;
-    font-weight: 400;
-    letter-spacing: 0.3em;
-}
-#recover_password_code_button:hover{
+#top_exit_button:hover{
     background-color: #031913;
 }
-.recover_password_password_line{
+#top_title_label{
+    color: #FAFAFA;
+    border: 0;
+    padding: 0.3em;
+    font-size: 32px;
+}
+#main_chart_label{
+    background-color: #1b1b1b;
+}
+#bottom_widget{
+    background-color: #1e1e1e;
+}
+.bottom_button{
     color: #FAFAFA;
     background-color: #1e1e1e;
     border: 0;
     padding: 0.3em;
     font-size: 16px;
-    font-weight: 400;
-    letter-spacing: 0.2em;
+    font-weight: 600;
+    letter-spacing: 0.5em;
 }
-.recover_password_password_button{
-    color: #FAFAFA;
-    background-color: #1e1e1e;
-    border: 0;
-    padding: 0.3em;
-    font-size: 14px;
-    font-weight: 400;
-    letter-spacing: 0.3em;
-}
-.recover_password_password_button:hover{
-    background-color: #031913;
-}
-.recover_password_button{
-    color: #FAFAFA;
-    background-color: #1e1e1e;
-    border: 0;
-    padding: 0.3em;
-    font-size: 20px;
-    font-weight: 400;
-    letter-spacing: 0.2em;
-}
-.recover_password_button:hover{
+.bottom_button:hover{
     background-color: #031913;
 }

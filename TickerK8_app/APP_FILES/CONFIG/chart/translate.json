@@ -1,0 +1,9 @@
+{
+    "bottom_1d_button": ["1D", "1D"],
+    "bottom_5d_button": ["5D", "5D"],
+    "bottom_1m_button": ["1M", "1M"],
+    "bottom_3m_button": ["3M", "3M"],
+    "bottom_1y_button": ["1Y", "1R"],
+    "bottom_ytd_button": ["YTD", "ODR"],
+    "bottom_all_button": ["ALL", "Wszystko"]
+}

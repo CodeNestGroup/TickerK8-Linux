@@ -21,7 +21,7 @@ from .main_mid_object_ui import *
 from .main_mid_object_logic import *
 #######################################################################################################################
 """ Main mid object widget """
-class Main_mid_object_widget(QWidget):
+class Main_mid_object_scroll(QScrollArea):
     """ Init, creating items, set base variables like paths, screen size, etc. """
     def __init__(self, parent):
         super().__init__()
@@ -34,8 +34,6 @@ class Main_mid_object_widget(QWidget):
         self.translate = json.load(open(self.main_path+'/CONFIG/main_mid_object/translate.json', 'r')) # Get translate 
 #______________________________________________________________________________________________________________________
         """ Create objects """
-        self.main_layout = QGridLayout(self)
-        self.main_scroll = QScrollArea(self)
         self.main_widget = None
 #______________________________________________________________________________________________________________________
         """ Call functions """

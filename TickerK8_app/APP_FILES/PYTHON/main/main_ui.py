@@ -35,7 +35,6 @@ def main_ui(self):
     self.top_search_button.setObjectName('top_search_button')
     self.top_settings_button.setObjectName('top_settings_button')
     self.mid_widget.setObjectName('mid_widget')
-    self.mid_object_scroll.setObjectName('mid_object_scroll')
     self.bottom_widget.setObjectName('bottom_widget')
     self.bottom_left_news_button.setObjectName('bottom_left_news_button')
     self.bottom_left_chart_button.setObjectName('bottom_left_chart_button')
@@ -104,8 +103,6 @@ def main_ui(self):
 #______________________________________________________________________________________________________________________
     """ Set widget """
     self.setHidden(False)
-    self.mid_object_scroll.setWidgetResizable(True)
-    self.mid_object_scroll.setWidget(self.mid_object_widget)
 #______________________________________________________________________________________________________________________
     """ Set label """
 #______________________________________________________________________________________________________________________
@@ -121,7 +118,6 @@ def main_ui(self):
     self.top_settings_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.mid_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.mid_object_scroll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.mid_object_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.mid_object_list_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.mid_news_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.bottom_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)

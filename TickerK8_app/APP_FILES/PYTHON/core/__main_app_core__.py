@@ -125,7 +125,7 @@ class app_controller(QWidget):
         self.chart_widget = Chart_widget(self) # Create chart widget
         self.layout.addWidget(self.chart_widget) # Add chart widget to main layout 
         self.set_size_chart() # Set size 
-        #self.chart_widget.main_exit_button.clicked.connect(self.chart_to_main) # Connect exit function
+        self.chart_widget.top_exit_button.clicked.connect(self.chart_to_main) # Connect exit function
 #______________________________________________________________________________________________________________________
     """ Set size chart """
     def set_size_chart(self):
