@@ -164,9 +164,6 @@ def main_settings_ui(self):
     self.navi_layout.addWidget(self.navi_report_button)
     self.navi_layout.setSpacing(0)
     self.navi_layout.setContentsMargins(0,0,0,0)
-    for enc in range(100):
-        self.navi_layout.setRowStretch(enc, 1)
-        self.navi_layout.setColumnStretch(enc, 1)
     self.navi_widget.setLayout(self.navi_layout)
     self.panel_right_layout.addWidget(self.user_widget)
     self.panel_right_layout.addWidget(self.style_widget)

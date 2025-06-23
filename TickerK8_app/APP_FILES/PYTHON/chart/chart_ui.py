@@ -31,6 +31,7 @@ def chart_ui(self):
     self.top_widget.setObjectName('top_widget')
     self.top_exit_button.setObjectName('top_exit_button')
     self.top_title_label.setObjectName('top_title_label')
+    self.main_chart_graphics_view.setObjectName('main_chart_graphics_view')
     self.bottom_widget.setObjectName('bottom_widget')
     self.bottom_1d_button.setObjectName('bottom_1d_button')
     self.bottom_5d_button.setObjectName('bottom_5d_button')
@@ -51,6 +52,7 @@ def chart_ui(self):
 #______________________________________________________________________________________________________________________
     """ Set layout """
     self.main_layout.addWidget(self.top_widget, 0, 0, 10, 100)
+    self.main_layout.addWidget(self.main_chart_graphics_view, 10, 0, 80, 100)
     self.main_layout.addWidget(self.bottom_widget, 90, 0, 10, 100)
     self.main_layout.setSpacing(0)
     self.main_layout.setContentsMargins(0,0,0,0)
@@ -91,6 +93,7 @@ def chart_ui(self):
     self.top_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.top_exit_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.top_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.main_chart_graphics_view.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.bottom_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.bottom_1d_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.bottom_5d_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)

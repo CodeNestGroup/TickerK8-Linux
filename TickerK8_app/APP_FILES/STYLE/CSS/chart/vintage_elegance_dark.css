@@ -21,8 +21,8 @@
     padding: 0.3em;
     font-size: 32px;
 }
-#main_chart_label{
-    background-color: #1b1b1b;
+#main_chart_graphics_view{
+    background-color: #5f0e0e;
 }
 #bottom_widget{
     background-color: #1e1e1e;

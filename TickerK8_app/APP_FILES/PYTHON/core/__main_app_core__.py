@@ -16,6 +16,9 @@ from recover_password.recover_password_structure import Recover_password_widget
 """ Import main widget """
 from main.main_structure import Main_widget 
 #______________________________________________________________________________________________________________________
+""" Import settings widget """
+from main_settings.main_settings_structure import Main_settings_widget
+#______________________________________________________________________________________________________________________
 """ Import statistics widget """
 from statistics.statistics_structure import Statistics_widget
 #______________________________________________________________________________________________________________________
@@ -36,6 +39,7 @@ class app_controller(QWidget):
         self.register_widget = None # Set dafault
         self.recover_password_widget = None # Set dafault
         self.main_widget = None # Set dafault
+        self.settings_widget = None # Set dafault
         self.statistics_widget = None # Set dafault
         self.chart_widget = None # Set dafault
 
@@ -100,11 +104,24 @@ class app_controller(QWidget):
         self.main_widget = Main_widget(self) # Creat main widget
         self.layout.addWidget(self.main_widget) # Add main widget to main layout 
         self.set_size_main() # Set size if main window fir main widget
+        self.main_widget.top_settings_button.clicked.connect(self.main_to_settings) # Connect open settings widget
         self.main_widget.bottom_left_stats_button.clicked.connect(self.main_to_statistics) # Connect open statistics widget
         self.main_widget.bottom_left_chart_button.clicked.connect(self.main_to_chart) # Connect open chart widget
 #______________________________________________________________________________________________________________________
     """ Set size main """
     def set_size_main(self):
+        x, y, width, height = 0, 0, int(self.primary_screen_size.width()), int(self.primary_screen_size.height()) # Set size
+        self.setGeometry(QRect(x, y, width, height)) # Set geometry
+#______________________________________________________________________________________________________________________
+    """ Settings """
+    def settings_setup(self):
+        self.settings_widget = Main_settings_widget(self) # Create settings widget
+        self.layout.addWidget(self.settings_widget) # Add settings widget to main layout
+        self.set_size_settings() # Set size
+        self.settings_widget.navi_exit_button.clicked.connect(self.settings_to_main) # Connect exit function 
+#______________________________________________________________________________________________________________________
+    """ Set size settings """
+    def set_size_settings(self):
         x, y, width, height = 0, 0, int(self.primary_screen_size.width()), int(self.primary_screen_size.height()) # Set size
         self.setGeometry(QRect(x, y, width, height)) # Set geometry
 #______________________________________________________________________________________________________________________
@@ -160,6 +177,18 @@ class app_controller(QWidget):
     def login_to_main(self):
         self.login_widget.deleteLater() # Delete login widget
         self.login_widget = None # Set default  
+        self.main_setup() # Call main setup function
+#______________________________________________________________________________________________________________________
+    """ From main to settings """
+    def main_to_settings(self):
+        self.main_widget.deleteLater() # Delete main widget
+        self.main_widget = None # Set dafault 
+        self.settings_setup() # Call settings_setup function
+#______________________________________________________________________________________________________________________
+    """ From settings to main """
+    def settings_to_main(self):
+        self.settings_widget.deleteLater() # Delete settings widget
+        self.settings_widget = None # Set dafault 
         self.main_setup() # Call main setup function
 #______________________________________________________________________________________________________________________
     """ From main to statistics """

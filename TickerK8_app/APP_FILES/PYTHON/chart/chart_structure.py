@@ -9,7 +9,8 @@ from PyQt5.QtWidgets import (
     QPushButton, # Simple button
     QScrollArea, # Scroll widget
     QGridLayout, # Grid layout
-    QApplication
+    QApplication,
+    QGraphicsView
 )
 #______________________________________________________________________________________________________________________
 """ Import PyQt5 Core """
@@ -41,7 +42,7 @@ class Chart_widget(QWidget):
         self.top_layout = QGridLayout(self.top_widget)
         self.top_exit_button = QPushButton(self.top_widget)
         self.top_title_label = QLabel(self.top_widget)
-        self.main_chart_label = None
+        self.main_chart_graphics_view = QGraphicsView(self)
         self.bottom_widget = QWidget(self)
         self.bottom_layout = QGridLayout(self.bottom_widget)
         self.bottom_1d_button = QPushButton(self.bottom_widget)

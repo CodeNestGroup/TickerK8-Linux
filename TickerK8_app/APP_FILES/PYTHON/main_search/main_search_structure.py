@@ -44,6 +44,7 @@ class Main_search_widget(QWidget):
         self.panel_type_etf_button = QPushButton(self.panel_widget)
         self.panel_type_forex_button = QPushButton(self.panel_widget)
         self.panel_type_index_button = QPushButton(self.panel_widget)
+        self.panel_type_market_button = QPushButton(self.panel_widget)
         self.panel_type_country_button = QPushButton(self.panel_widget)
         self.panel_sort_id_button = QPushButton(self.panel_widget)
         self.panel_logo_label = QLabel(self.panel_widget)

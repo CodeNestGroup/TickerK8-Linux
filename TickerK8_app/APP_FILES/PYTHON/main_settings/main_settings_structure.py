@@ -10,7 +10,7 @@ from PyQt5.QtWidgets import (
     QPushButton, # Simple button
     QComboBox, # Drop down list
     QGridLayout, # Grid layout
-    QVboxLayout # Vertical layout 
+    QVBoxLayout # Vertical layout 
 )
 from PyQt5.QtCore import Qt
 #______________________________________________________________________________________________________________________
@@ -37,7 +37,7 @@ class Main_settings_widget(QWidget):
         self.main_layout = QGridLayout(self)
         self.navi_scroll = QScrollArea(self)
         self.navi_widget = QWidget(self.navi_scroll)
-        self.navi_layout = QVboxLayout(self.nav_widget)
+        self.navi_layout = QVBoxLayout(self.navi_widget)
         self.navi_user_button = QPushButton(self.navi_widget)
         self.navi_style_button = QPushButton(self.navi_widget)
         self.navi_sound_button = QPushButton(self.navi_widget)
@@ -47,7 +47,7 @@ class Main_settings_widget(QWidget):
         self.navi_exit_button  = QPushButton(self)
         self.panel_right_scroll = QScrollArea(self)
         self.panel_right_widget = QWidget(self.panel_right_scroll)
-        self.panel_right_layout = QVboxLayout(self.panel_right_widget)
+        self.panel_right_layout = QVBoxLayout(self.panel_right_widget)
         self.user_widget = QWidget(self.panel_right_widget)
         self.user_layout = QGridLayout(self.user_widget)
         self.user_title_label = QLabel(self.user_widget)
