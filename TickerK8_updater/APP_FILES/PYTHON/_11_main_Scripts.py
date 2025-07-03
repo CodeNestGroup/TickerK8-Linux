@@ -658,7 +658,6 @@ class controller_update:
                 self.changelog_fetched.emit(json.loads(release.read().decode())) # Emir signal with json list
             except:
                 self.changelog_fetched.emit([])
-            
 #_______________________________________________________________________________________________________________________
     """ Set data """
     def set_data(self, data):

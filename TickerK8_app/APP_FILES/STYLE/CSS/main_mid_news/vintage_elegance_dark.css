@@ -1,0 +1,37 @@
+#main_mid_news{
+    background-color: #202020;
+}
+#title_label{
+    color: #FAFAFA;
+    background-color: #00000000;
+    padding: 0.3em;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 0.4em;
+}
+.news_button{
+    background-color: #1e1e1e;
+    border: 0;
+}
+.text_label{
+    color: #FAFAFA;
+    background-color: #80000000;
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: 0.5em;
+}
+.text_label:hover{
+    background-color: #a0000000;
+}
+.next_buttons{
+    color: #fafafa;
+    background-color: #252525;
+    border: 0;
+    padding: 0;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+}
+.next_buttons:hover{
+    background-color: #031913;
+}

@@ -1,0 +1,41 @@
+#chart_widget{
+    background-color: #252525;
+}
+#top_widget{
+    background-color: #1e1e1e;
+}
+#top_exit_button{
+    color: #FAFAFA;
+    background-color: #252525;
+    border: 0;
+    border-radius: 17px;
+    padding: 0.3em;
+    font-size: 14px;
+}
+#top_exit_button:hover{
+    background-color: #031913;
+}
+#top_title_label{
+    color: #FAFAFA;
+    border: 0;
+    padding: 0.3em;
+    font-size: 32px;
+}
+#main_chart_graphics_view{
+    background-color: #5f0e0e;
+}
+#bottom_widget{
+    background-color: #1e1e1e;
+}
+.bottom_button{
+    color: #FAFAFA;
+    background-color: #1e1e1e;
+    border: 0;
+    padding: 0.3em;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.5em;
+}
+.bottom_button:hover{
+    background-color: #031913;
+}

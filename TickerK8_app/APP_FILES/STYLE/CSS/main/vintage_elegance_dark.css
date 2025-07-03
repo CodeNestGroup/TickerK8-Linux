@@ -1,0 +1,45 @@
+#main_widget{
+    background-color: #252525;
+}
+#top_widget{
+    background-color: #1e1e1e;
+}
+#top_search_button{
+    color: #FAFAFA;
+    background-color: #252525;
+    border: 0;
+    padding: 0.3em;
+    font-size: 16px;
+}
+#top_search_button:hover{
+    background-color: #031913;
+}
+.top_button{
+    color: #FAFAFA;
+    background-color: #252525;
+    border: 0;
+    border-radius: 17px;
+    padding: 0.3em;
+    font-size: 14px;
+}
+.top_button:hover{
+    background-color: #031913;
+}
+#mid_widget{
+    background-color: #1b1b1b;
+}
+#bottom_widget{
+    background-color: #1e1e1e;
+}
+.bottom_button{
+    color: #FAFAFA;
+    background-color: #1e1e1e;
+    border: 0;
+    padding: 0.3em;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.5em;
+}
+.bottom_button:hover{
+    background-color: #031913;
+}
