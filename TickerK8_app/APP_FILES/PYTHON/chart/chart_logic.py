@@ -8,15 +8,20 @@ from PyQt5.QtWidgets import (
     QGraphicsScene,
     QGraphicsItem,
     QMainWindow,
-    QToolTip
+    QToolTip,
+    QSizePolicy
 )
 from PyQt5.QtGui import QPainter, QBrush, QPen, QFont
 from PyQt5.QtCore import QRectF, Qt, QPointF
+#______________________________________________________________________________________________________________________
+""" Charts types import """
+from .candle_chart import Candle_chart
 #######################################################################################################################
 """ Create chart """
 def create_chart(self, value):
     """ Get data """
     chart_object = self.global_config['mid_object']
+    chart_type = self.global_config['chart_type']
     chart_data = json.load(open(self.main_path+'/test_chart_data/AGX100/agx100_5min.json', 'r'))
     database = sqlite3.connect(database=self.main_path+'/CONFIG/GLOBAL/local_data_prototype.db') # Create connect 
     cursor = database.cursor() # Create cursor 
@@ -25,10 +30,14 @@ def create_chart(self, value):
     database.close() # Close database connection
 #______________________________________________________________________________________________________________________
     """ Set chart """
-    self.main_chart_graphics_view
+    if self.main_chart_graphics_view:
+        self.main_chart_graphics_view.deleteLater()
+        self.main_chart_graphics_view = None 
+    if chart_type == 0:
+        self.main_chart_graphics_view = Candle_chart(chart_data, self)
+    self.main_layout.addWidget(self.main_chart_graphics_view, 10, 0, 80, 100)
 #______________________________________________________________________________________________________________________
     """ Create main chart graphics view """
-    self.main_chart_graphics_scene.addItem(MyRectItem())
 #______________________________________________________________________________________________________________________
     """ Set object name """
 #______________________________________________________________________________________________________________________
@@ -40,18 +49,4 @@ def create_chart(self, value):
 #______________________________________________________________________________________________________________________
     """ Set char title """
     self.top_title_label.setText(f'{object_data[0]}')
-#######################################################################################################################
-""" Candy chart """
-class Candy_chart(QGraphicsScene):
-    def __init__(self, o, h, c, l):
-        pass
-#######################################################################################################################
-class Candy(QGraphicsItem):
-    def boundingRect(self):
-        return QRectF(0, 0, 100, 100)
-
-    def paint(self, painter, option, widget=None):
-        painter.setBrush(QBrush(Qt.blue))
-        painter.drawRect(0, 0, 100, 100)
-
 #######################################################################################################################
