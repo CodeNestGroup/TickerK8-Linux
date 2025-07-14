@@ -155,13 +155,13 @@
     "chart_interval": 1,
     "charts_config": [
         {
-        "x_margin": 10,
-        "y_margin": 50,
-        "space_between": 10,
-        "+_border": "#000000",
-        "+_body": "#00ff00",
-        "-_border": "#000000",
-        "-_body": "#ff0000"
+            "x_margin": 100,
+            "y_margin": 50,
+            "space_between": 2,
+            "+_border": "#000000",
+            "+_body": "#00ff00",
+            "-_border": "#000000",
+            "-_body": "#ff0000"
         }
     ]
 }

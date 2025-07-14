@@ -35,6 +35,7 @@ def create_chart(self, value):
         self.main_chart_graphics_view = None 
     if chart_type == 0:
         self.main_chart_graphics_view = Candle_chart(chart_data, self)
+        self.main_chart_graphics_view.setObjectName('main_chart_graphics_view')
     self.main_layout.addWidget(self.main_chart_graphics_view, 10, 0, 80, 100)
 #______________________________________________________________________________________________________________________
     """ Create main chart graphics view """
