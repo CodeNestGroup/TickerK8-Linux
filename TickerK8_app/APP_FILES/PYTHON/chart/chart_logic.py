@@ -22,7 +22,7 @@ def create_chart(self, value):
     """ Get data """
     chart_object = self.global_config['mid_object']
     chart_type = self.global_config['chart_type']
-    chart_data = json.load(open(self.main_path+'/test_chart_data/AGX100/agx100_5min.json', 'r'))
+    chart_data = json.load(open(self.main_path+'/test_chart_data/AGX100/agx100_1min.json', 'r'))
     database = sqlite3.connect(database=self.main_path+'/CONFIG/GLOBAL/local_data_prototype.db') # Create connect 
     cursor = database.cursor() # Create cursor 
     object_data = cursor.execute(f'SELECT name FROM {chart_object[0]} WHERE id={chart_object[1]};').fetchall()[0] # Get data 
