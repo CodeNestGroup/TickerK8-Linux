@@ -151,17 +151,20 @@
         0,
         0
     ],
-    "chart_type": 0,
-    "chart_interval": 1,
-    "charts_config": [
-        {
-            "x_margin": 100,
-            "y_margin": 50,
-            "space_between": 2,
-            "+_border": "#000000",
-            "+_body": "#00ff00",
-            "-_border": "#000000",
-            "-_body": "#ff0000"
-        }
-    ]
+    "chart": {
+        "type": 0,
+        "interval": 1,
+        "config": [
+            {
+                "x_margin": 100,
+                "y_margin": 50,
+                "space_between": 2,
+                "candle_width": 4,
+                "+_border": "#000000",
+                "+_body": "#00ff00",
+                "-_border": "#000000",
+                "-_body": "#ff0000"
+            }
+        ]
+    }
 }

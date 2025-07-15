@@ -70,8 +70,8 @@ class Candle_chart(QGraphicsView):
 #______________________________________________________________________________________________________________________
     """ Add Candles """
     def add_Candles(self):
-        _x = 10
-        _space_between = self.global_config['charts_config'][0]['space_between']
+        _conf = self.global_config['charts_config'][0]
+        _space_between = _conf['space_between']
         for single_data in self.data:
             _date = single_data['d'] # Get candle date
             _open = [single_data['o'], self.y_position(single_data['o'])] # Get candle open price, y_pos
@@ -81,11 +81,10 @@ class Candle_chart(QGraphicsView):
             _vol = single_data['v'] # Get candle volume value
             _color_wick = self.global_config['charts_config'][0]['+_border'] if _close >= _open else self.global_config['charts_config'][0]['-_border']
             _color_body = self.global_config['charts_config'][0]['+_body'] if _close >= _open else self.global_config['charts_config'][0]['-_body']
-            _x += _space_between+4
-            self.scene.addItem(Candle(_x, _open, _high, _close, _low, _color_wick, _color_body)) # Add candle to scene
-
-        self.setSceneRect(QRectF(0, self.global_config['charts_config'][0]['y_margin'], _x+self.global_config['charts_config'][0]['x_margin'], int(self.height()-(self.global_config['charts_config'][0]['y_margin']*2))))
-        self.fitInView(QRectF(_x-200, self.global_config['charts_config'][0]['y_margin'], self.width(), int(self.height()-(self.global_config['charts_config'][0]['y_margin']*2))), Qt.KeepAspectRatio)
+            _space_between += 4
+            self.scene.addItem(Candle(_space_between, _open, _high, _close, _low, _color_wick, _color_body)) # Add candle to scene
+        self.setSceneRect(QRectF(0, self.global_config['charts_config'][0]['y_margin'], _space_between+self.global_config['charts_config'][0]['x_margin'], int(self.height()-(self.global_config['charts_config'][0]['y_margin']*2))))
+        self.fitInView(QRectF(_space_between-200, self.global_config['charts_config'][0]['y_margin'], self.width(), int(self.height()-(self.global_config['charts_config'][0]['y_margin']*2))), Qt.KeepAspectRatio)
 #______________________________________________________________________________________________________________________
     """ Wheel event """
     def wheelEvent(self, event):
@@ -136,3 +135,5 @@ class Candle(QGraphicsItem):
         QToolTip.hideText() 
         super().hoverLeaveEvent(event) # Call function 
 #######################################################################################################################
+
+# 
