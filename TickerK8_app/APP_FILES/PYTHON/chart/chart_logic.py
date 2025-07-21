@@ -21,7 +21,6 @@ from .candle_chart import Candle_chart
 def create_chart(self, value):
     """ Get data """
     chart_object = self.global_config['mid_object']
-    chart_type = self.global_config['chart_type']
     chart_data = json.load(open(self.main_path+'/test_chart_data/AGX100/agx100_1min.json', 'r'))
     database = sqlite3.connect(database=self.main_path+'/CONFIG/GLOBAL/local_data_prototype.db') # Create connect 
     cursor = database.cursor() # Create cursor 
@@ -50,4 +49,12 @@ def create_chart(self, value):
 #______________________________________________________________________________________________________________________
     """ Set char title """
     self.top_title_label.setText(f'{object_data[0]}')
+#######################################################################################################################
+""" Settings """
+def settings_widget(self):
+    pass
+#######################################################################################################################
+""" Full screan """
+def full_screan(self):
+    pass
 #######################################################################################################################

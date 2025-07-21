@@ -34,6 +34,7 @@ class Chart_widget(QWidget):
         """ Set paths, file name"""
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2]) # Set main path, path to TickerK8 folder.
         self.global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data
+        self.main_config = json.load(open(self.main_path+'/CONFIG/chart/main.json', 'r')) # Get main config data
         self.chart_translate = json.load(open(self.main_path+'/CONFIG/chart/translate.json', 'r')) # Get main translate data
 #______________________________________________________________________________________________________________________
         """ Create objects """
@@ -42,6 +43,8 @@ class Chart_widget(QWidget):
         self.top_layout = QGridLayout(self.top_widget)
         self.top_exit_button = QPushButton(self.top_widget)
         self.top_title_label = QLabel(self.top_widget)
+        self.top_fullscrean_button = QPushButton(self.top_widget)
+        self.top_settings_button = QPushButton(self.top_widget)
         self.main_chart_graphics_view = None
         self.bottom_widget = QWidget(self)
         self.bottom_layout = QGridLayout(self.bottom_widget)
@@ -52,6 +55,7 @@ class Chart_widget(QWidget):
         self.bottom_1y_button = QPushButton(self.bottom_widget)
         self.bottom_ytd_button = QPushButton(self.bottom_widget)
         self.bottom_all_button = QPushButton(self.bottom_widget)
+        self.settings_background_widget = None 
 #______________________________________________________________________________________________________________________
         """ Call functions """
         chart_ui(self) # Call chart ui function

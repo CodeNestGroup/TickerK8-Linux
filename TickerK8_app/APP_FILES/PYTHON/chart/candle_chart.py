@@ -135,5 +135,3 @@ class Candle(QGraphicsItem):
         QToolTip.hideText() 
         super().hoverLeaveEvent(event) # Call function 
 #######################################################################################################################
-
-# 

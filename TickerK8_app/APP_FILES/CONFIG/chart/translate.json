@@ -5,5 +5,7 @@
     "bottom_3m_button": ["3M", "3M"],
     "bottom_1y_button": ["1Y", "1R"],
     "bottom_ytd_button": ["YTD", "ODR"],
-    "bottom_all_button": ["ALL", "Wszystko"]
+    "bottom_all_button": ["ALL", "Wszystko"],
+    "sheet_light": ["Light", "Jasny"],
+    "sheet_dark": ["Dark", "Ciemny"]
 }
