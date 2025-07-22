@@ -32,6 +32,9 @@ def chart_ui(self):
     self.top_widget.setObjectName('top_widget')
     self.top_exit_button.setObjectName('top_exit_button')
     self.top_title_label.setObjectName('top_title_label')
+    self.top_fullscrean_button.setObjectName('top_fullscrean_button')
+    self.top_settings_button.setObjectName('top_settings_button')
+    self.main_chart_graphics_view.setObjectName('main_chart_graphics_view')
     self.bottom_widget.setObjectName('bottom_widget')
     self.bottom_1d_button.setObjectName('bottom_1d_button')
     self.bottom_5d_button.setObjectName('bottom_5d_button')
@@ -42,6 +45,9 @@ def chart_ui(self):
     self.bottom_all_button.setObjectName('bottom_all_button')
 #______________________________________________________________________________________________________________________
     """ Set property """
+    self.top_exit_button.setProperty('class', 'top_button')
+    self.top_fullscrean_button.setProperty('class', 'top_button')
+    self.top_settings_button.setProperty('class', 'top_button')
     self.bottom_1d_button.setProperty('class', 'bottom_button')
     self.bottom_5d_button.setProperty('class', 'bottom_button')
     self.bottom_1m_button.setProperty('class', 'bottom_button')
@@ -52,6 +58,7 @@ def chart_ui(self):
 #______________________________________________________________________________________________________________________
     """ Set layout """
     self.main_layout.addWidget(self.top_widget, 0, 0, 10, 100)
+    self.main_layout.addWidget(self.main_chart_graphics_view, 10, 0, 80, 100)
     self.main_layout.addWidget(self.bottom_widget, 90, 0, 10, 100)
     self.main_layout.setSpacing(0)
     self.main_layout.setContentsMargins(0,0,0,0)
@@ -60,6 +67,8 @@ def chart_ui(self):
         self.main_layout.setColumnStretch(enc, 1)
     self.setLayout(self.main_layout)
     self.top_layout.addWidget(self.top_exit_button, 15, 2, 25, 3)
+    self.top_layout.addWidget(self.top_fullscrean_button, 15, 7, 25, 3)
+    self.top_layout.addWidget(self.top_settings_button, 15, 12, 25, 3)
     self.top_layout.addWidget(self.top_title_label, 30, 40, 40, 20)
     self.top_layout.setSpacing(0)
     self.top_layout.setContentsMargins(0,0,0,0)
@@ -91,7 +100,10 @@ def chart_ui(self):
     self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.top_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.top_exit_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.top_fullscrean_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.top_settings_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.top_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.main_chart_graphics_view.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.bottom_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.bottom_1d_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.bottom_5d_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)

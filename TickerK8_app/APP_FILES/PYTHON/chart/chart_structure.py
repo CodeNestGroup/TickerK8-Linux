@@ -45,7 +45,7 @@ class Chart_widget(QWidget):
         self.top_title_label = QLabel(self.top_widget)
         self.top_fullscrean_button = QPushButton(self.top_widget)
         self.top_settings_button = QPushButton(self.top_widget)
-        self.main_chart_graphics_view = None
+        self.main_chart_graphics_view = QGraphicsView(self)
         self.bottom_widget = QWidget(self)
         self.bottom_layout = QGridLayout(self.bottom_widget)
         self.bottom_1d_button = QPushButton(self.bottom_widget)
@@ -64,6 +64,8 @@ class Chart_widget(QWidget):
         create_chart(self, 2) # Create chart 
 #______________________________________________________________________________________________________________________
         """ Connect  functions """
+        self.top_fullscrean_button.clicked.connect(full_screan)
+        self.top_settings_button.clicked.connect(settings_widget)
         self.bottom_1d_button.clicked.connect(lambda: create_chart(self, 0))
         self.bottom_5d_button.clicked.connect(lambda: create_chart(self, 1))
         self.bottom_1m_button.clicked.connect(lambda: create_chart(self, 2))
