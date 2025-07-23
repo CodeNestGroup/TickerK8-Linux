@@ -52,6 +52,11 @@ def create_chart(self, value):
 #######################################################################################################################
 """ Settings """
 def settings_widget(self):
+    """ Config data """
+    _m = self.main_config
+    _t = self.chart_translate
+    _l = self.global_config['__language__']
+#______________________________________________________________________________________________________________________
     """ Create objects """
     self.settings_background_widget = QWidget(self)
     self.settings_background_layout = QGridLayout(self.settings_background_widget)
@@ -69,7 +74,7 @@ def settings_widget(self):
     self.settings_background_background_color_label = QLabel(self.settings_background_background_widget)
     self.settings_background_background_color_line = QLineEdit(self.settings_background_background_widget)
     self.settings_background_net_type_label = QLabel(self.settings_background_background_widget)
-    self.settings_background_net_type_combo = QLineEdit(self.settings_background_background_widget)
+    self.settings_background_net_type_combo = QComboBox(self.settings_background_background_widget)
     self.settings_background_net_color_label = QLabel(self.settings_background_background_widget)
     self.settings_background_net_color_line = QLineEdit(self.settings_background_background_widget)
     self.settings_price_widget = QWidget(self.settings_tab_widget)
@@ -108,92 +113,277 @@ def settings_widget(self):
     self.settings_exit_button = QPushButton(self.settings_widget)
 #______________________________________________________________________________________________________________________
     """ Set object name """
-    self.settings_background_widget
-    self.settings_widget
-    self.settings_title_label
-    self.settings_tab_widget
-    self.settings_theme_widget
-    self.settings_theme_label
-    self.settings_theme_combo
-    self.settings_background_background_widget
-    self.settings_background_background_exemple_item
-    self.settings_background_background_color_label
-    self.settings_background_background_color_line
-    self.settings_background_net_type_label
-    self.settings_background_net_type_combo
-    self.settings_background_net_color_label
-    self.settings_background_net_color_line
-    self.settings_price_widget
-    self.settings_price_exemple_item
-    self.settings_price_background_color_label
-    self.settings_price_background_color_line
-    self.settings_price_font_color_label
-    self.settings_price_font_color_line
-    self.settings_price_font_size_label
-    self.settings_price_font_size_line
-    self.settings_candle_widget
-    self.settings_candle_exemple_p_item
-    self.settings_candle_exemple_m_item
-    self.settings_candle_size_label
-    self.settings_candle_size_line
-    self.settings_candle_border_label
-    self.settings_candle_p_border_line
-    self.settings_candle_m_border_line
-    self.settings_candle_fill_label
-    self.settings_candle_p_fill_line
-    self.settings_candle_m_fill_line
-    self.settings_vol_widget
-    self.settings_vol_exemple_p_item
-    self.settings_vol_exemple_m_item
-    self.settings_vol_size_label
-    self.settings_vol_size_line
-    self.settings_vol_border_label
-    self.settings_vol_p_border_line
-    self.settings_vol_m_border_line
-    self.settings_vol_fill_label
-    self.settings_vol_p_fill_line
-    self.settings_vol_m_fill_line
-    self.settings_exit_button
+    self.settings_background_widget.setObjectName('settings_background_widget')
+    self.settings_widget.setObjectName('settings_widget')
+    self.settings_title_label.setObjectName('settings_title_label')
+    self.settings_tab_widget.setObjectName('settings_tab_widget')
+    self.settings_theme_widget.setObjectName('settings_theme_widget')
+    self.settings_theme_label.setObjectName('settings_theme_label')
+    self.settings_theme_combo.setObjectName('settings_theme_combo')
+    self.settings_background_background_widget.setObjectName('settings_background_background_widget')
+    self.settings_background_background_exemple_item.setObjectName('settings_background_background_exemple_item')
+    self.settings_background_background_color_label.setObjectName('settings_background_background_color_label')
+    self.settings_background_background_color_line.setObjectName('settings_background_background_color_line')
+    self.settings_background_net_type_label.setObjectName('settings_background_net_type_label')
+    self.settings_background_net_type_combo.setObjectName('settings_background_net_type_combo')
+    self.settings_background_net_color_label.setObjectName('settings_background_net_color_label')
+    self.settings_background_net_color_line.setObjectName('settings_background_net_color_line')
+    self.settings_price_widget.setObjectName('settings_price_widget')
+    self.settings_price_exemple_item.setObjectName('settings_price_exemple_item')
+    self.settings_price_background_color_label.setObjectName('settings_price_background_color_label')
+    self.settings_price_background_color_line.setObjectName('settings_price_background_color_line')
+    self.settings_price_font_color_label.setObjectName('settings_price_font_color_label')
+    self.settings_price_font_color_line.setObjectName('settings_price_font_color_line')
+    self.settings_price_font_size_label.setObjectName('settings_price_font_size_label')
+    self.settings_price_font_size_line.setObjectName('settings_price_font_size_line')
+    self.settings_candle_widget.setObjectName('settings_candle_widget')
+    self.settings_candle_exemple_p_item.setObjectName('settings_candle_exemple_p_item')
+    self.settings_candle_exemple_m_item.setObjectName('settings_candle_exemple_m_item')
+    self.settings_candle_size_label.setObjectName('settings_candle_size_label')
+    self.settings_candle_size_line.setObjectName('settings_candle_size_line')
+    self.settings_candle_border_label.setObjectName('settings_candle_border_label')
+    self.settings_candle_p_border_line.setObjectName('settings_candle_p_border_line')
+    self.settings_candle_m_border_line.setObjectName('settings_candle_m_border_line')
+    self.settings_candle_fill_label.setObjectName('settings_candle_fill_label')
+    self.settings_candle_p_fill_line.setObjectName('settings_candle_p_fill_line')
+    self.settings_candle_m_fill_line.setObjectName('settings_candle_m_fill_line')
+    self.settings_vol_widget.setObjectName('settings_vol_widget')
+    self.settings_vol_exemple_p_item.setObjectName('settings_vol_exemple_p_item')
+    self.settings_vol_exemple_m_item.setObjectName('settings_vol_exemple_m_item')
+    self.settings_vol_size_label.setObjectName('settings_vol_size_label')
+    self.settings_vol_size_line.setObjectName('settings_vol_size_line')
+    self.settings_vol_border_label.setObjectName('settings_vol_border_label')
+    self.settings_vol_p_border_line.setObjectName('settings_vol_p_border_line')
+    self.settings_vol_m_border_line.setObjectName('settings_vol_m_border_line')
+    self.settings_vol_fill_label.setObjectName('settings_vol_fill_label')
+    self.settings_vol_p_fill_line.setObjectName('settings_vol_p_fill_line')
+    self.settings_vol_m_fill_line.setObjectName('settings_vol_m_fill_line')
+    self.settings_exit_button.setObjectName('settings_exit_button')
 #______________________________________________________________________________________________________________________
     """ Set property """
     self.settings_theme_widget.setProperty('class', 'settings_sub_widget')
-    self.settings_theme_label
+    self.settings_theme_label.setProperty('class', 'settings_label')
     self.settings_background_background_widget.setProperty('class', 'settings_sub_widget')
-    self.settings_background_background_color_label
-    self.settings_background_background_color_line
-    self.settings_background_net_type_label
-    self.settings_background_net_color_label
-    self.settings_background_net_color_line
+    self.settings_background_background_color_label.setProperty('class', 'settings_label')
+    self.settings_background_background_color_line.setProperty('class', 'settings_line')
+    self.settings_background_net_type_label.setProperty('class', 'settings_label')
+    self.settings_background_net_color_label.setProperty('class', 'settings_label')
+    self.settings_background_net_color_line.setProperty('class', 'settings_line')
     self.settings_price_widget.setProperty('class', 'settings_sub_widget')
-    self.settings_price_background_color_label
-    self.settings_price_background_color_line
-    self.settings_price_font_color_label
-    self.settings_price_font_color_line
-    self.settings_price_font_size_label
-    self.settings_price_font_size_line
+    self.settings_price_background_color_label.setProperty('class', 'settings_label')
+    self.settings_price_background_color_line.setProperty('class', 'settings_line')
+    self.settings_price_font_color_label.setProperty('class', 'settings_label')
+    self.settings_price_font_color_line.setProperty('class', 'settings_line')
+    self.settings_price_font_size_label.setProperty('class', 'settings_label')
+    self.settings_price_font_size_line.setProperty('class', 'settings_line')
     self.settings_candle_widget.setProperty('class', 'settings_sub_widget')
-    self.settings_candle_size_label
-    self.settings_candle_size_line
-    self.settings_candle_border_label
-    self.settings_candle_p_border_line
-    self.settings_candle_m_border_line
-    self.settings_candle_fill_label
-    self.settings_candle_p_fill_line
-    self.settings_candle_m_fill_line
+    self.settings_candle_size_label.setProperty('class', 'settings_label')
+    self.settings_candle_size_line.setProperty('class', 'settings_line')
+    self.settings_candle_border_label.setProperty('class', 'settings_label')
+    self.settings_candle_p_border_line.setProperty('class', 'settings_line')
+    self.settings_candle_m_border_line.setProperty('class', 'settings_line')
+    self.settings_candle_fill_label.setProperty('class', 'settings_label')
+    self.settings_candle_p_fill_line.setProperty('class', 'settings_line')
+    self.settings_candle_m_fill_line.setProperty('class', 'settings_line')
     self.settings_vol_widget.setProperty('class', 'settings_sub_widget')
-    self.settings_vol_size_label
-    self.settings_vol_size_line
-    self.settings_vol_border_label
-    self.settings_vol_p_border_line
-    self.settings_vol_m_border_line\
-    self.settings_vol_fill_label
-    self.settings_vol_p_fill_line
-    self.settings_vol_m_fill_line
+    self.settings_vol_size_label.setProperty('class', 'settings_label')
+    self.settings_vol_size_line.setProperty('class', 'settings_line')
+    self.settings_vol_border_label.setProperty('class', 'settings_label')
+    self.settings_vol_p_border_line.setProperty('class', 'settings_line')
+    self.settings_vol_m_border_line.setProperty('class', 'settings_line')
+    self.settings_vol_fill_label.setProperty('class', 'settings_label')
+    self.settings_vol_p_fill_line.setProperty('class', 'settings_line')
+    self.settings_vol_m_fill_line.setProperty('class', 'settings_line')
+#______________________________________________________________________________________________________________________
+    """ Set layout """
+    self.settings_background_layout.addWidget(self.settings_widget, 25, 25, 50, 50)
+    self.settings_background_layout.setSpacing(0)
+    self.settings_background_layout.setContentsMargins(0,0,0,0)
+    for enc in range(100):
+        self.settings_background_layout.setRowStretch(enc, 1)
+        self.settings_background_layout.setColumnStretch(enc, 1)
+    self.settings_background_widget.setLayout(self.settings_background_layout)
+    self.settings_layout.addWidget(self.settings_title_label, 5, 0, 10, 100)
+    self.settings_layout.addWidget(self.settings_tab_widget, 20, 0, 65, 100)
+    self.settings_layout.addWidget(self.settings_exit_button, 90, 40, 5, 20)
+    self.settings_layout.setSpacing(0)
+    self.settings_layout.setContentsMargins(0,0,0,0)
+    for enc in range(100):
+        self.settings_layout.setRowStretch(enc, 1)
+        self.settings_layout.setColumnStretch(enc, 1)
+    self.settings_widget.setLayout(self.settings_layout)
+    self.settings_theme_layout.addWidget(self.settings_theme_label, 0, 0)
+    self.settings_theme_layout.addWidget(self.settings_theme_combo, 0, 1)
+    self.settings_theme_layout.setSpacing(0)
+    self.settings_theme_layout.setContentsMargins(0,0,0,0)
+    self.settings_theme_widget.setLayout(self.settings_theme_layout)
+    self.settings_background_background_layout.addWidget(self.settings_background_background_exemple_item, 0, 0)
+    self.settings_background_background_layout.addWidget(self.settings_background_background_color_label, 1, 0)
+    self.settings_background_background_layout.addWidget(self.settings_background_background_color_line, 1, 1)
+    self.settings_background_background_layout.addWidget(self.settings_background_net_type_label, 2, 0)
+    self.settings_background_background_layout.addWidget(self.settings_background_net_type_combo, 2, 1)
+    self.settings_background_background_layout.addWidget(self.settings_background_net_color_label, 3, 0)
+    self.settings_background_background_layout.addWidget(self.settings_background_net_color_line, 3, 1)
+    self.settings_background_background_layout.setSpacing(0)
+    self.settings_background_background_layout.setContentsMargins(0,0,0,0)
+    self.settings_background_background_widget.setLayout(self.settings_background_background_layout)
+    self.settings_price_layout.addWidget(self.settings_price_exemple_item, 0, 0, 1, 2)
+    self.settings_price_layout.addWidget(self.settings_price_background_color_label, 1, 0)
+    self.settings_price_layout.addWidget(self.settings_price_background_color_line, 1, 1)
+    self.settings_price_layout.addWidget(self.settings_price_font_color_label, 2, 0)
+    self.settings_price_layout.addWidget(self.settings_price_font_color_line, 2, 1)
+    self.settings_price_layout.addWidget(self.settings_price_font_size_label, 3, 0)
+    self.settings_price_layout.addWidget(self.settings_price_font_size_line, 3, 1)
+    self.settings_price_layout.setSpacing(0)
+    self.settings_price_layout.setContentsMargins(0,0,0,0)
+    self.settings_price_widget.setLayout(self.settings_price_layout)
+    self.settings_candle_layout.addWidget(self.settings_candle_exemple_p_item, 0, 0)
+    self.settings_candle_layout.addWidget(self.settings_candle_exemple_m_item, 0, 1)
+    self.settings_candle_layout.addWidget(self.settings_candle_size_label, 1, 0)
+    self.settings_candle_layout.addWidget(self.settings_candle_size_line, 1, 1)
+    self.settings_candle_layout.addWidget(self.settings_candle_border_label, 2, 0)
+    self.settings_candle_layout.addWidget(self.settings_candle_p_border_line, 2, 1)
+    self.settings_candle_layout.addWidget(self.settings_candle_m_border_line, 2, 2)
+    self.settings_candle_layout.addWidget(self.settings_candle_fill_label, 3, 0)
+    self.settings_candle_layout.addWidget(self.settings_candle_p_fill_line, 3, 1)
+    self.settings_candle_layout.addWidget(self.settings_candle_m_fill_line, 3, 2)
+    self.settings_candle_layout.setSpacing(0)
+    self.settings_candle_layout.setContentsMargins(0,0,0,0)
+    self.settings_candle_widget.setLayout(self.settings_candle_layout)
+    self.settings_vol_layout.addWidget(self.settings_vol_exemple_p_item, 0, 0)
+    self.settings_vol_layout.addWidget(self.settings_vol_exemple_m_item, 0, 1)
+    self.settings_vol_layout.addWidget(self.settings_vol_size_label, 1, 0)
+    self.settings_vol_layout.addWidget(self.settings_vol_size_line, 1, 1)
+    self.settings_vol_layout.addWidget(self.settings_vol_border_label, 2, 0)
+    self.settings_vol_layout.addWidget(self.settings_vol_p_border_line, 2, 1)
+    self.settings_vol_layout.addWidget(self.settings_vol_m_border_line, 2, 2)
+    self.settings_vol_layout.addWidget(self.settings_vol_fill_label, 3, 0)
+    self.settings_vol_layout.addWidget(self.settings_vol_p_fill_line, 3, 1)
+    self.settings_vol_layout.addWidget(self.settings_vol_m_fill_line, 3, 2)
+    self.settings_vol_layout.setSpacing(0)
+    self.settings_vol_layout.setContentsMargins(0,0,0,0)
+    self.settings_vol_widget.setLayout(self.settings_vol_layout)
+#______________________________________________________________________________________________________________________
+    """ Set widget """
+    self.settings_background_widget.setHidden(False)
+    self.settings_tab_widget.addTab(self.settings_theme_widget, str(_t['settings_theme_widget'][_l]))
+    self.settings_tab_widget.addTab(self.settings_background_background_widget, str(_t['settings_background_background_widget'][_l]))
+    self.settings_tab_widget.addTab(self.settings_price_widget, str(_t['settings_price_widget'][_l]))
+    self.settings_tab_widget.addTab(self.settings_candle_widget, str(_t['settings_candle_widget'][_l]))
+    self.settings_tab_widget.addTab(self.settings_vol_widget, str(_t['settings_vol_widget'][_l]))
+#______________________________________________________________________________________________________________________
+    """ Set label """
+    self.settings_title_label.setAlignment(Qt.AlignCenter)
+    self.settings_theme_label.setAlignment(Qt.AlignCenter)
+    self.settings_background_background_color_label.setAlignment(Qt.AlignCenter)
+    self.settings_background_net_type_label.setAlignment(Qt.AlignCenter)
+    self.settings_background_net_color_label.setAlignment(Qt.AlignCenter)
+    self.settings_price_background_color_label.setAlignment(Qt.AlignCenter)
+    self.settings_price_font_color_label.setAlignment(Qt.AlignCenter)
+    self.settings_price_font_size_label.setAlignment(Qt.AlignCenter)
+    self.settings_candle_size_label.setAlignment(Qt.AlignCenter)
+    self.settings_candle_border_label.setAlignment(Qt.AlignCenter)
+    self.settings_candle_fill_label.setAlignment(Qt.AlignCenter)
+    self.settings_vol_size_label.setAlignment(Qt.AlignCenter)
+    self.settings_vol_border_label.setAlignment(Qt.AlignCenter)
+    self.settings_vol_fill_label.setAlignment(Qt.AlignCenter)
+#______________________________________________________________________________________________________________________
+    """ Set line edit """
+    self.settings_background_background_color_line.setText(_m[''])
+    self.settings_background_net_color_line.setText(_m[''])
+    self.settings_price_background_color_line.setText(_m[''])
+    self.settings_price_font_color_line.setText(_m[''])
+    self.settings_price_font_size_line.setText(_m[''])
+    self.settings_candle_size_line.setText(_m[''])
+    self.settings_candle_p_border_line.setText(_m[''])
+    self.settings_candle_m_border_line.setText(_m[''])
+    self.settings_candle_p_fill_line.setText(_m[''])
+    self.settings_candle_m_fill_line.setText(_m[''])
+    self.settings_vol_size_line.setText(_m[''])
+    self.settings_vol_p_border_line.setText(_m[''])
+    self.settings_vol_m_border_line.setText(_m[''])
+    self.settings_vol_p_fill_line.setText(_m[''])
+    self.settings_vol_m_fill_line.setText(_m[''])
+#______________________________________________________________________________________________________________________
+    """ Set combo box """
+#______________________________________________________________________________________________________________________
+    """ Set push button """
+    self.settings_exit_button.clicked.connect(exit_settings_widget)
+#______________________________________________________________________________________________________________________
+    """ Set size """
+    self.settings_background_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_tab_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_theme_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_theme_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_theme_combo.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_background_background_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_background_background_exemple_item.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_background_background_color_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_background_background_color_line.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_background_net_type_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_background_net_type_combo.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_background_net_color_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_background_net_color_line.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_price_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_price_exemple_item.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_price_background_color_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_price_background_color_line.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_price_font_color_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_price_font_color_line.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_price_font_size_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_price_font_size_line.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_candle_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_candle_exemple_p_item.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_candle_exemple_m_item.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_candle_size_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_candle_size_line.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_candle_border_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_candle_p_border_line.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_candle_m_border_line.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_candle_fill_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_candle_p_fill_line.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_candle_m_fill_line.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_vol_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_vol_exemple_p_item.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_vol_exemple_m_item.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_vol_size_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_vol_size_line.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_vol_border_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_vol_p_border_line.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_vol_m_border_line.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_vol_fill_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_vol_p_fill_line.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_vol_m_fill_line.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_exit_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+#______________________________________________________________________________________________________________________
+    """ Set translate """
+    self.settings_title_label.setText(_t['settings_title_label'][_l])
+    self.settings_theme_label.setText(_t['settings_theme_label'][_l])
+    self.settings_background_background_color_label.setText(_t['settings_background_background_color_label'][_l])
+    self.settings_background_net_type_label.setText(_t['settings_background_net_type_label'][_l])
+    self.settings_background_net_color_label.setText(_t['settings_background_net_color_label'][_l])
+    self.settings_price_background_color_label.setText(_t['settings_price_background_color_label'][_l])
+    self.settings_price_font_color_label.setText(_t['settings_price_font_color_label'][_l])
+    self.settings_price_font_size_label.setText(_t['settings_price_font_size_label'][_l])
+    self.settings_candle_size_label.setText(_t['settings_candle_size_label'][_l])
+    self.settings_candle_border_label.setText(_t['settings_candle_border_label'][_l])
+    self.settings_candle_fill_label.setText(_t['settings_candle_fill_label'][_l])
+    self.settings_vol_size_label.setText(_t['settings_vol_size_label'][_l])
+    self.settings_vol_border_label.setText(_t['settings_vol_border_label'][_l])
+    self.settings_vol_fill_label.setText(_t['settings_vol_fill_label'][_l])
+    self.settings_exit_button.setText(_t['settings_exit_button'][_l])
+#______________________________________________________________________________________________________________________
 
-
-
-
-
+#######################################################################################################################
+""" Save setting """
+def save_setting(self):
+    pass
+#######################################################################################################################
+""" Exit settings widget """
+def exit_settings_widget(self):
+    pass
 #######################################################################################################################
 """ Full screan """
 def full_screan(self):
