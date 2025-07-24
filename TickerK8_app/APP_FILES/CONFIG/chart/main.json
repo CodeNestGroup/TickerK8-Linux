@@ -1,7 +1,8 @@
 {
     "full_screan": false,
     "theme": 0,
-    "net": false,
+    "type": "candle",
+    "net": 0,
     "volume": false,
     "interval": 0
 }

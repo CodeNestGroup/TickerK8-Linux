@@ -21,31 +21,21 @@ from PyQt5.QtCore import QRectF, Qt, QPointF
 from .candle_chart import Candle_chart
 #######################################################################################################################
 """ Create chart """
-def create_chart(self, value):
+def create_chart(self):
     """ Get data """
     chart_object = self.global_config['mid_object']
     chart_data = json.load(open(self.main_path+'/test_chart_data/AGX100/agx100_1min.json', 'r'))
+
+
     database = sqlite3.connect(database=self.main_path+'/CONFIG/GLOBAL/local_data_prototype.db') # Create connect 
     cursor = database.cursor() # Create cursor 
     object_data = cursor.execute(f'SELECT name FROM {chart_object[0]} WHERE id={chart_object[1]};').fetchall()[0] # Get data 
     cursor.close() # Close cursor connection  
     database.close() # Close database connection
 #______________________________________________________________________________________________________________________
-    """ Set chart """
-    if chart_type == 0:
-        self.main_chart_graphics_view = Candle_chart(chart_data, self)
-        self.main_chart_graphics_view.setObjectName('main_chart_graphics_view')
-    self.main_layout.addWidget(self.main_chart_graphics_view, 10, 0, 80, 100)
-#______________________________________________________________________________________________________________________
-    """ Create main chart graphics view """
-#______________________________________________________________________________________________________________________
-    """ Set object name """
-#______________________________________________________________________________________________________________________
-    """ Set main chart graphics view to main layout """
-#______________________________________________________________________________________________________________________
-    """ Set alignemnt """
-#______________________________________________________________________________________________________________________
-    """ Set size """
+    if self.main_config['type'] == 'candle':
+        self.main_chart_graphics_scene = Candle_chart()
+        self.main_chart_graphics_view.setScene(self.main_chart_graphics_scene)
 #______________________________________________________________________________________________________________________
     """ Set char title """
     self.top_title_label.setText(f'{object_data[0]}')
@@ -53,9 +43,14 @@ def create_chart(self, value):
 """ Settings """
 def settings_widget(self):
     """ Config data """
-    _m = self.main_config
-    _t = self.chart_translate
-    _l = self.global_config['__language__']
+    _main_config = self.main_config
+    _sheets = self.sheets
+    _background_config = self.background_config
+    _chart_config = self.chart_config
+    _price_config = self.price_config
+    _volume_config = self.volume_config if self.volume_config else None
+    _translate = self.chart_translate
+    _language = self.global_config['__language__']
 #______________________________________________________________________________________________________________________
     """ Create objects """
     self.settings_background_widget = QWidget(self)
@@ -289,23 +284,44 @@ def settings_widget(self):
     self.settings_vol_fill_label.setAlignment(Qt.AlignCenter)
 #______________________________________________________________________________________________________________________
     """ Set line edit """
-    self.settings_background_background_color_line.setText(_m[''])
-    self.settings_background_net_color_line.setText(_m[''])
-    self.settings_price_background_color_line.setText(_m[''])
-    self.settings_price_font_color_line.setText(_m[''])
-    self.settings_price_font_size_line.setText(_m[''])
-    self.settings_candle_size_line.setText(_m[''])
-    self.settings_candle_p_border_line.setText(_m[''])
-    self.settings_candle_m_border_line.setText(_m[''])
-    self.settings_candle_p_fill_line.setText(_m[''])
-    self.settings_candle_m_fill_line.setText(_m[''])
-    self.settings_vol_size_line.setText(_m[''])
-    self.settings_vol_p_border_line.setText(_m[''])
-    self.settings_vol_m_border_line.setText(_m[''])
-    self.settings_vol_p_fill_line.setText(_m[''])
-    self.settings_vol_m_fill_line.setText(_m[''])
+    self.settings_background_background_color_line.setText(_background_config['background_color'])
+    #self.settings_background_background_color_line.textChanged.connect()
+    self.settings_background_net_color_line.setText(_m['net_color'])
+    #self.settings_background_net_color_line.textChanged.connect()
+    self.settings_price_background_color_line.setText(_m['price_info_background_color'])
+    #self.settings_price_background_color_line.textChanged.connect()
+    self.settings_price_font_color_line.setText(_m['price_info_font_color'])
+    #self.settings_price_font_color_line.textChanged.connect()
+    self.settings_price_font_size_line.setText(_m['price_info_font_size'])
+    #self.settings_price_font_size_line.textChanged.connect()
+    self.settings_candle_size_line.setText(_m['size'])
+    #self.settings_candle_size_line.textChanged.connect()
+    self.settings_candle_p_border_line.setText(_m['+_border_color'])
+    #self.settings_candle_p_border_line.textChanged.connect()
+    self.settings_candle_m_border_line.setText(_m['-_border_color'])
+    #self.settings_candle_m_border_line.textChanged.connect()
+    self.settings_candle_p_fill_line.setText(_m['+_fill_color'])
+    #self.settings_candle_p_fill_line.textChanged.connect()
+    self.settings_candle_m_fill_line.setText(_m['-_fill_color'])
+    #self.settings_candle_m_fill_line.textChanged.connect()
+    self.settings_vol_size_line.setText(_m['size'])
+    #self.settings_vol_size_line.textChanged.connect()
+    self.settings_vol_p_border_line.setText(_m['+_border_color'])
+    #self.settings_vol_p_border_line.textChanged.connect()
+    self.settings_vol_m_border_line.setText(_m['-_border_color'])
+    #self.settings_vol_m_border_line.textChanged.connect()
+    self.settings_vol_p_fill_line.setText(_m['+_fill_color'])
+    #self.settings_vol_p_fill_line.textChanged.connect()
+    self.settings_vol_m_fill_line.setText(_m['-_fill_color'])
+    #self.settings_vol_m_fill_line.textChanged.connect()
 #______________________________________________________________________________________________________________________
     """ Set combo box """
+    for theme in _sheets: self.settings_theme_combo.addItem(theme[_language])
+    self.settings_theme_combo.setCurrentIndex(_main_config['theme'])
+    #self.settings_theme_combo.currentIndexChanged.connect()
+    for net in _translate['settings_background_net_type_combo']: self.settings_background_net_type_combo.addItem(net[_language])
+    self.settings_background_net_type_combo.setCurrentIndex(_main_config['net'])
+    #self.settings_theme_combo.currentIndexChanged.connect()
 #______________________________________________________________________________________________________________________
     """ Set push button """
     self.settings_exit_button.clicked.connect(exit_settings_widget)
@@ -378,12 +394,16 @@ def settings_widget(self):
 
 #######################################################################################################################
 """ Save setting """
-def save_setting(self):
-    pass
+def save_setting(self, conf, file, var):
+    with open(self.main_path+'/CONFIG/chart/{file}.json', 'w') as _w:
+        json.dump(conf, _w, indent=4)
+    var = json.load(open(self.main_path+'/CONFIG/chart/{file}.json', 'r'))
 #######################################################################################################################
 """ Exit settings widget """
 def exit_settings_widget(self):
-    pass
+    self.settings_background_widget.deleteLater()
+    self.settings_background_widget = None
+    create_chart(self)
 #######################################################################################################################
 """ Full screan """
 def full_screan(self):

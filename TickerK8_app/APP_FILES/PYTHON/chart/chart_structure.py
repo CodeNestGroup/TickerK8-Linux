@@ -35,6 +35,14 @@ class Chart_widget(QWidget):
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2]) # Set main path, path to TickerK8 folder.
         self.global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data
         self.main_config = json.load(open(self.main_path+'/CONFIG/chart/main.json', 'r')) # Get main config data
+        self.sheets = json.load(open(self.main_path+'/CONFIG/chart/sheets.json', 'r')) # Get main config data
+        self.background_config = json.load(open(self.main_path+f'/CONFIG/chart/background_{self.main_config['theme']}.json')) # Get background config
+        self.chart_config = json.load(open(self.main_path+f'/CONFIG/chart/{self.main_config['type']}_{self.main_config['theme']}.json')) # Get candle config
+        self.price_config = json.load(open(self.main_path+f'/CONFIG/chart/price_{self.main_config['theme']}.json')) # Get background config
+        if self.main_config['volume']:
+                self.volume_config = json.load(open(self.main_path+f'/CONFIG/chart/vol_{self.main_config['theme']}.json')) # Get volume config
+        else: 
+                self.volume_config = None
         self.chart_translate = json.load(open(self.main_path+'/CONFIG/chart/translate.json', 'r')) # Get main translate data
 #______________________________________________________________________________________________________________________
         """ Create objects """
@@ -65,12 +73,12 @@ class Chart_widget(QWidget):
 #______________________________________________________________________________________________________________________
         """ Connect  functions """
         self.top_fullscrean_button.clicked.connect(full_screan)
-        self.top_settings_button.clicked.connect(settings_widget)
-        self.bottom_1d_button.clicked.connect(lambda: create_chart(self, 0))
-        self.bottom_5d_button.clicked.connect(lambda: create_chart(self, 1))
-        self.bottom_1m_button.clicked.connect(lambda: create_chart(self, 2))
-        self.bottom_3m_button.clicked.connect(lambda: create_chart(self, 3))
-        self.bottom_1y_button.clicked.connect(lambda: create_chart(self, 4))
-        self.bottom_ytd_button.clicked.connect(lambda: create_chart(self, 5))
-        self.bottom_all_button.clicked.connect(lambda: create_chart(self, 6))
+        self.top_settings_button.clicked.connect(lambda: settings_widget(self))
+        self.bottom_1d_button.clicked.connect(lambda: create_chart(self))
+        self.bottom_5d_button.clicked.connect(lambda: create_chart(self))
+        self.bottom_1m_button.clicked.connect(lambda: create_chart(self))
+        self.bottom_3m_button.clicked.connect(lambda: create_chart(self))
+        self.bottom_1y_button.clicked.connect(lambda: create_chart(self))
+        self.bottom_ytd_button.clicked.connect(lambda: create_chart(self))
+        self.bottom_all_button.clicked.connect(lambda: create_chart(self))
 #######################################################################################################################
