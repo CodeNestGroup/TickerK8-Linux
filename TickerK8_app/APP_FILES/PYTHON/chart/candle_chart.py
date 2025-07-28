@@ -27,7 +27,7 @@ from PyQt5.QtCore import (
 )
 #######################################################################################################################
 """ Candy chart """
-class Candle_chart(QGraphicsView):
+class Candle_chart(QGraphicsScene):
     """ __init__ """
     def __init__(self, data, parent=None):
         super().__init__(parent)
@@ -51,9 +51,7 @@ class Candle_chart(QGraphicsView):
         self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 #______________________________________________________________________________________________________________________
         """ Config Graphic scene """
-        self.scene = QGraphicsScene(self) # Create Scene 
-        self.scene.setObjectName('main_chart_graphics_scene') # Set object name
-        self.setScene(self.scene) # Set scene for view 
+        self.setObjectName('main_chart_graphics_scene') # Set object name
 #______________________________________________________________________________________________________________________
         """ Call get min max function """
         self.get_min_max()
@@ -82,7 +80,7 @@ class Candle_chart(QGraphicsView):
             _color_wick = self.global_config['charts_config'][0]['+_border'] if _close >= _open else self.global_config['charts_config'][0]['-_border']
             _color_body = self.global_config['charts_config'][0]['+_body'] if _close >= _open else self.global_config['charts_config'][0]['-_body']
             _space_between += 4
-            self.scene.addItem(Candle(_space_between, _open, _high, _close, _low, _color_wick, _color_body)) # Add candle to scene
+            self.addItem(Candle(_space_between, _open, _high, _close, _low, _color_wick, _color_body)) # Add candle to scene
         self.setSceneRect(QRectF(0, self.global_config['charts_config'][0]['y_margin'], _space_between+self.global_config['charts_config'][0]['x_margin'], int(self.height()-(self.global_config['charts_config'][0]['y_margin']*2))))
         self.fitInView(QRectF(_space_between-200, self.global_config['charts_config'][0]['y_margin'], self.width(), int(self.height()-(self.global_config['charts_config'][0]['y_margin']*2))), Qt.KeepAspectRatio)
 #______________________________________________________________________________________________________________________

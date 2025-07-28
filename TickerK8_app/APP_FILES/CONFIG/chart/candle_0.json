@@ -1,5 +1,6 @@
 {
     "size": 6,
+    "x_offest": 2,
     "+_border_color": "#000000",
     "+_fill_color": "#00ff00",
     "-_border_color": "#000000",

@@ -12,9 +12,10 @@ from PyQt5.QtWidgets import (
     QGraphicsView,
     QGraphicsScene,
     QGraphicsItem,
+    QGraphicsTextItem,
     QSizePolicy
 )
-from PyQt5.QtGui import QPainter, QBrush, QPen, QFont
+from PyQt5.QtGui import QPainter, QBrush, QPen, QFont, QColor
 from PyQt5.QtCore import QRectF, Qt, QPointF
 #______________________________________________________________________________________________________________________
 """ Charts types import """
@@ -24,18 +25,58 @@ from .candle_chart import Candle_chart
 def create_chart(self):
     """ Get data """
     chart_object = self.global_config['mid_object']
-    chart_data = json.load(open(self.main_path+'/test_chart_data/AGX100/agx100_1min.json', 'r'))
-
-
+    chart_data = list(json.load(open(self.main_path+'/test_chart_data/AGX100/agx100_1min.json', 'r')))
+    _background_config = self.background_config # Get background config
+    _chart_config = self.chart_config # Get chart config
+#______________________________________________________________________________________________________________________
+    """ Object info data """
     database = sqlite3.connect(database=self.main_path+'/CONFIG/GLOBAL/local_data_prototype.db') # Create connect 
     cursor = database.cursor() # Create cursor 
     object_data = cursor.execute(f'SELECT name FROM {chart_object[0]} WHERE id={chart_object[1]};').fetchall()[0] # Get data 
     cursor.close() # Close cursor connection  
     database.close() # Close database connection
 #______________________________________________________________________________________________________________________
-    if self.main_config['type'] == 'candle':
-        self.main_chart_graphics_scene = Candle_chart()
-        self.main_chart_graphics_view.setScene(self.main_chart_graphics_scene)
+    """ Create and set scene """
+    self.main_chart_graphics_scene = QGraphicsScene(self.main_chart_graphics_view) # Create scene 
+    self.main_chart_graphics_scene.setObjectName('main_chart_graphics_scene') # Set scene name
+    self.main_chart_graphics_view.setScene(self.main_chart_graphics_scene) # Set scene to view
+    self.main_chart_graphics_view.setBackgroundBrush(QColor(_background_config['background_color'])) # Set background color for view
+    """ Get size of scene """
+    _scene_width = int((len(chart_data)*(_chart_config['size']+_chart_config['x_offest']))+250) # Width in int
+    _scene_height = 864 # Height in int
+    self.main_chart_graphics_scene.setSceneRect(0, 0, _scene_width, _scene_height) # Set scene rect 
+    """ Get time range """
+    start_time, stop_time, interval = chart_data[0]['d'][10:], chart_data[-1]['d'][10:], chart_data[0]['i'][:-1] # Get start, stop and interval time
+    """ Get price range """
+    price_list = [] 
+    max_price = int
+    min_price = int 
+    for s in chart_data: price_list += [s['h'], s['l']]# Loop for data, serch highest and lowest price
+    max_price, min_price = max(price_list), min(price_list) # Get highest, lowest price 
+#______________________________________________________________________________________________________________________
+    """ Create no more data info """
+    no_more_data_item = QGraphicsTextItem("No more data")
+    no_more_data_item.setFont(QFont("Arial", 20))
+    no_more_data_item.setDefaultTextColor(QColor(_background_config['net_color']))
+    no_more_data_item.setPos(10, int((_scene_height//2)-10))
+    self.main_chart_graphics_scene.addItem(no_more_data_item)
+#______________________________________________________________________________________________________________________
+    """ Create grid, scale time """
+    if _background_config['net_type'] == 1 or _background_config['net_type'] == 3:
+        pen = QPen(QColor(_background_config['net_color']))
+        _x_pos = 250
+        for line in chart_data[::10]:
+            _date_text = line['d'][10:16]
+            self.main_chart_graphics_scene.addLine(_x_pos, 0, _x_pos,int(_scene_height-20), QColor(_background_config['net_color']))
+            self.main_chart_graphics_scene.addText(_date_text).setPos(_x_pos-35, _scene_height-10)
+            _x_pos += int((_chart_config['size']+_chart_config['x_offest'])*10)
+
+
+
+#______________________________________________________________________________________________________________________
+    """ Create price chart """
+#______________________________________________________________________________________________________________________
+    """ Create vol chart """
 #______________________________________________________________________________________________________________________
     """ Set char title """
     self.top_title_label.setText(f'{object_data[0]}')
