@@ -11,7 +11,6 @@ from PyQt5.QtWidgets import (
     QLineEdit, # Input line
     QComboBox, # Drop down list
     QGridLayout, # Grid layout
-    QVboxLayout # Vertical layout 
 )
 from PyQt5.QtCore import Qt
 #______________________________________________________________________________________________________________________
@@ -28,6 +27,7 @@ class Main_search_widget(QWidget):
         super().__init__()
         self.setAttribute(Qt.WA_StyledBackground, True) # Force widget to draw background
         self.setParent(parent) # Set parent
+        self.parent= parent # Set local parent
 #______________________________________________________________________________________________________________________
         """ Set paths, file name"""
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2]) # Set main path, path to TickerK8 folder.
@@ -58,4 +58,5 @@ class Main_search_widget(QWidget):
         main_search_retranslate(self)
 #______________________________________________________________________________________________________________________
         """ Connect functions """
+        self.panel_exit_button.clicked.connect(lambda: self.deleteLater())
 #######################################################################################################################

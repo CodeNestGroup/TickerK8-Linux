@@ -84,6 +84,7 @@ def main_search_ui(self):
 #______________________________________________________________________________________________________________________
     """ Set size """
     self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.setGeometry(0, 0, self.parent.width(), self.parent.height())
     self.panel_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.panel_search_icon_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.panel_search_lineedit.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -101,7 +102,7 @@ def main_search_ui(self):
 #######################################################################################################################
 """ Main search style """
 def main_search_reload_style(self):
-    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/MAIN_SEARCH/'+self.global_config['__theme__']+'.css')).read())
+    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/main_search/'+self.global_config['__theme__']+'.css')).read())
 #######################################################################################################################
 """ Main search retranslate """
 def main_search_retranslate(self):

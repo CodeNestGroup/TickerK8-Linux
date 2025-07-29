@@ -72,7 +72,7 @@ def main_settings_ui(self):
     self.update_advanced_capacity_name_label.setObjectName('update_advanced_capacity_name_label')
     self.update_advanced_capacity_content_combobox.setObjectName('update_advanced_capacity_content_combobox')
     self.update_advanced_file_verification_name_label.setObjectName('update_advanced_file_verification_name_label')
-    self.update_advanced_file_verification_content_label.setObjectName('update_advanced_file_verification_content_label')
+    self.update_advanced_file_verification_content_button.setObjectName('update_advanced_file_verification_content_label')
     self.language_widget.setObjectName('language_widget')
     self.language_title_label.setObjectName('language_title_label')
     self.language_langauge_name_label.setObjectName('language_langauge_name_label')
@@ -85,17 +85,12 @@ def main_settings_ui(self):
     self.report_send_report_content_button.setObjectName('report_send_report_content_button')
 #______________________________________________________________________________________________________________________
     """ Set Property """
-    self.navi_scroll.setProperty('class', 'main_scroll')
-    self.panel_right_scroll.setProperty('class', 'main_scroll')
-    self.navi_widget.setProperty('class', 'scroll_widget')
-    self.panel_right_widget.setProperty('class', 'scroll_widget')
     self.navi_user_button.setProperty('class', 'navi_button')
     self.navi_style_button.setProperty('class', 'navi_button')
     self.navi_sound_button.setProperty('class', 'navi_button')
     self.navi_update_button.setProperty('class', 'navi_button')
     self.navi_language_button.setProperty('class', 'navi_button')
     self.navi_report_button.setProperty('class', 'navi_button')
-    self.navi_exit_button.setProperty('class', 'navi_button')
     self.user_widget.setProperty('class', 'panel_right_widgets')
     self.style_widget.setProperty('class', 'panel_right_widgets')
     self.sound_widget.setProperty('class', 'panel_right_widgets')
@@ -139,7 +134,9 @@ def main_settings_ui(self):
     self.sound_alert_content_button.setProperty('class', 'panel_right_content_button')
     self.sound_notification_content_button.setProperty('class', 'panel_right_content_button')
     self.update_version_changelog_content_button.setProperty('class', 'panel_right_content_button')
+    self.update_options_auto_update_content_button.setProperty('class', 'panel_right_content_button')
     self.update_options_check_update_content_button.setProperty('class', 'panel_right_content_button')
+    self.update_advanced_file_verification_content_button.setProperty('class', 'panel_right_content_button')
     self.report_auto_report_content_button.setProperty('class', 'panel_right_content_button')
     self.report_send_report_content_button.setProperty('class', 'panel_right_content_button')
     self.style_theme_themes_content_combobox.setProperty('class', 'panel_right_content_combobox')
@@ -173,9 +170,6 @@ def main_settings_ui(self):
     self.panel_right_layout.addWidget(self.report_widget)
     self.panel_right_layout.setSpacing(0)
     self.panel_right_layout.setContentsMargins(0,0,0,0)
-    for enc in range(100):
-        self.panel_right_layout.setRowStretch(enc, 1)
-        self.panel_right_layout.setColumnStretch(enc, 1)
     self.panel_right_widget.setLayout(self.panel_right_layout)
     self.user_layout.addWidget(self.user_title_label, 0, 0, 1, 100)
     self.user_layout.addWidget(self.user_image_button, 1, 30, 1, 40)
@@ -209,7 +203,7 @@ def main_settings_ui(self):
     self.sound_layout.addWidget(self.sound_alert_name_label, 2, 0, 1, 50)
     self.sound_layout.addWidget(self.sound_alert_content_button, 2, 50, 1, 50)
     self.sound_layout.addWidget(self.sound_notification_name_label, 3, 0, 1, 50)
-    self.sound_layout.addWidget(self.sound_notification_name_label, 3, 50, 1, 50)
+    self.sound_layout.addWidget(self.sound_notification_content_button, 3, 50, 1, 50)
     self.sound_layout.setSpacing(0)
     self.sound_layout.setContentsMargins(0,0,0,0)
     for enc in range(100):
@@ -231,7 +225,7 @@ def main_settings_ui(self):
     self.update_layout.addWidget(self.update_advanced_capacity_name_label, 8, 0, 1, 50)
     self.update_layout.addWidget(self.update_advanced_capacity_content_combobox, 8, 50, 1, 50)
     self.update_layout.addWidget(self.update_advanced_file_verification_name_label, 9, 0, 1, 50)
-    self.update_layout.addWidget(self.update_advanced_file_verification_content_label, 9, 50, 1, 50)
+    self.update_layout.addWidget(self.update_advanced_file_verification_content_button, 9, 50, 1, 50)
     self.update_layout.setSpacing(0)
     self.update_layout.setContentsMargins(0,0,0,0)
     for enc in range(100):
@@ -268,7 +262,9 @@ def main_settings_ui(self):
     self.language_widget.setHidden(True)
     self.report_widget.setHidden(True)
     self.navi_scroll.setWidgetResizable(True)
+    self.navi_scroll.setWidget(self.navi_widget)
     self.panel_right_scroll.setWidgetResizable(True)
+    self.panel_right_scroll.setWidget(self.panel_right_widget)
 #______________________________________________________________________________________________________________________
     """ Set label """
     self.user_title_label.setAlignment(Qt.AlignCenter)
@@ -298,14 +294,11 @@ def main_settings_ui(self):
     self.update_advanced_subtitle_label.setAlignment(Qt.AlignCenter)
     self.update_advanced_capacity_name_label.setAlignment(Qt.AlignCenter)
     self.update_advanced_file_verification_name_label.setAlignment(Qt.AlignCenter)
-    self.update_advanced_file_verification_content_label.setAlignment(Qt.AlignCenter)
     self.language_title_label.setAlignment(Qt.AlignCenter)
     self.language_langauge_name_label.setAlignment(Qt.AlignCenter)
     self.report_title_label.setAlignment(Qt.AlignCenter)
     self.report_auto_report_name_label.setAlignment(Qt.AlignCenter)
     self.report_send_report_name_label.setAlignment(Qt.AlignCenter)
-#______________________________________________________________________________________________________________________
-    """ Set line edit """
 #______________________________________________________________________________________________________________________
     """ Set size"""
     self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -361,7 +354,7 @@ def main_settings_ui(self):
     self.update_advanced_capacity_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.update_advanced_capacity_content_combobox.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.update_advanced_file_verification_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.update_advanced_file_verification_content_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.update_advanced_file_verification_content_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.language_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.language_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.language_langauge_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -386,7 +379,7 @@ def main_settings_ui(self):
 #######################################################################################################################
 """ Main settings tyle """
 def main_settings_reload_style(self):
-    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/MAIN_SETTINGS/'+self.global_config['__theme__']+'.css')).read())
+    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/main_settings/'+self.global_config['__theme__']+'.css')).read())
 #######################################################################################################################
 """ Main settings retranslate """
 def main_settings_retranslate(self):
@@ -430,7 +423,7 @@ def main_settings_retranslate(self):
     self.update_advanced_subtitle_label.setText(_t['update_advanced_subtitle_label'][_l])
     self.update_advanced_capacity_name_label.setText(_t['update_advanced_capacity_name_label'][_l])
     self.update_advanced_file_verification_name_label.setText(_t['update_advanced_file_verification_name_label'][_l])
-    self.update_advanced_file_verification_content_label.setText(_t['update_advanced_file_verification_content_label'][_l])
+    self.update_advanced_file_verification_content_button.setText(_t['update_advanced_file_verification_content_label'][_l])
     self.language_title_label.setText(_t['language_title_label'][_l])
     self.language_langauge_name_label.setText(_t['language_langauge_name_label'][_l])
     self.report_title_label.setText(_t['report_title_label'][_l])

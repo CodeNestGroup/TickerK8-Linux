@@ -29,9 +29,6 @@ def main_ui(self):
     """ Set object name """
     self.setObjectName('main_widget')
     self.top_widget.setObjectName('top_widget')
-    self.top_exit_button.setObjectName('top_exit_button')
-    self.top_window_button.setObjectName('top_window_button')
-    self.top_minimize_button.setObjectName('top_minimize_button')
     self.top_search_button.setObjectName('top_search_button')
     self.top_settings_button.setObjectName('top_settings_button')
     self.mid_widget.setObjectName('mid_widget')
@@ -45,9 +42,6 @@ def main_ui(self):
     self.bottom_right_world_button.setObjectName('bottom_right_world_button')
 #______________________________________________________________________________________________________________________
     """ Set property """
-    self.top_exit_button.setProperty('class', 'top_button')
-    self.top_window_button.setProperty('class', 'top_button')
-    self.top_minimize_button.setProperty('class', 'top_button')
     self.top_settings_button.setProperty('class', 'top_button')
     self.bottom_left_news_button.setProperty('class', 'bottom_button')
     self.bottom_left_chart_button.setProperty('class', 'bottom_button')
@@ -67,9 +61,6 @@ def main_ui(self):
         self.main_layout.setRowStretch(enc, 1)
         self.main_layout.setColumnStretch(enc, 1)
     self.setLayout(self.main_layout)
-    self.top_widget_layout.addWidget(self.top_exit_button, 15, 2, 25, 3)
-    self.top_widget_layout.addWidget(self.top_window_button, 15, 6, 25, 3)
-    self.top_widget_layout.addWidget(self.top_minimize_button, 15, 10, 25, 3)
     self.top_widget_layout.addWidget(self.top_search_button, 30, 40, 40, 20)
     self.top_widget_layout.addWidget(self.top_settings_button, 15, 95, 25, 3)
     self.top_widget_layout.setSpacing(0)
@@ -111,9 +102,6 @@ def main_ui(self):
     """ Set size """
     self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.top_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.top_exit_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.top_window_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.top_minimize_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.top_search_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.top_settings_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.mid_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -132,12 +120,6 @@ def main_ui(self):
 """ Main style """
 def main_reload_style(self):
     self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/main/'+self.global_config['__theme__']+'.css')).read())
-    self.top_exit_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/exit_'+self.global_config['__theme__']+'.svg'), 256, 256)))
-    self.top_exit_button.setIconSize(self.top_exit_button.size())
-    self.top_window_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/window_'+self.global_config['__theme__']+'.svg'), 256, 256)))
-    self.top_window_button.setIconSize(self.top_window_button.size())
-    self.top_minimize_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/minimize_'+self.global_config['__theme__']+'.svg'), 256, 256)))
-    self.top_minimize_button.setIconSize(self.top_minimize_button.size())
     self.top_search_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/search_'+self.global_config['__theme__']+'.svg'), 256, 256)))
     self.top_search_button.setIconSize(self.top_settings_button.size())
     self.top_settings_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/settings_'+self.global_config['__theme__']+'.svg'), 256, 256)))

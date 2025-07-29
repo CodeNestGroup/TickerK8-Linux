@@ -21,6 +21,9 @@ from .main_ui import *
 """ Import main logic """
 from .main_logic import *
 #______________________________________________________________________________________________________________________
+""" Import main search """
+from main_search.main_search_structure import Main_search_widget
+#______________________________________________________________________________________________________________________
 """ Import main mid object list """
 from main_mid_object_list.main_mid_object_list_structure import Main_mid_object_list_widget
 #______________________________________________________________________________________________________________________
@@ -55,9 +58,6 @@ class Main_widget(QWidget):
         self.main_layout = QGridLayout(self)
         self.top_widget = QWidget(self)
         self.top_widget_layout = QGridLayout(self.top_widget)
-        self.top_exit_button = QPushButton(self.top_widget)
-        self.top_window_button = QPushButton(self.top_widget)
-        self.top_minimize_button = QPushButton(self.top_widget)
         self.top_search_button = QPushButton(self.top_widget)
         self.top_settings_button = QPushButton(self.top_widget)
         self.mid_widget = QWidget(self)
@@ -81,6 +81,7 @@ class Main_widget(QWidget):
         main_retranslate(self) # Call main retranslate function
 #______________________________________________________________________________________________________________________
         """ Connect  functions """
+        self.top_search_button.clicked.connect(lambda: Main_search_widget(self))
         self.mid_object_list_widget.config_changed.connect(lambda: main_mid_object_changed(self))
         self.mid_news_widget.open_news.connect(lambda val: open_main_news(self, val))
 #        self.bottom_left_news_button.clicked.connect(lambda: open_main_news_list(self, self.globa))

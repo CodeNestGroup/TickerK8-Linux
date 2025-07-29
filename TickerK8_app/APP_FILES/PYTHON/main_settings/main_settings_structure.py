@@ -93,7 +93,7 @@ class Main_settings_widget(QWidget):
         self.update_advanced_capacity_name_label = QLabel(self.update_widget)
         self.update_advanced_capacity_content_combobox = QComboBox(self.update_widget)
         self.update_advanced_file_verification_name_label = QLabel(self.update_widget)
-        self.update_advanced_file_verification_content_label = QLabel(self.update_widget)
+        self.update_advanced_file_verification_content_button = QPushButton(self.update_widget)
         self.language_widget = QWidget(self.panel_right_widget)
         self.language_layout = QGridLayout(self.language_widget)
         self.language_title_label = QLabel(self.language_widget)
@@ -113,4 +113,11 @@ class Main_settings_widget(QWidget):
         main_settings_retranslate(self)
 #______________________________________________________________________________________________________________________
         """ Connect functions """
+        self.controller_settings = controller_settings()
+        self.navi_user_button.clicked.connect(lambda: self.controller_settings.open_sub_widget(self.user_widget))
+        self.navi_style_button.clicked.connect(lambda: self.controller_settings.open_sub_widget(self.style_widget))
+        self.navi_sound_button.clicked.connect(lambda: self.controller_settings.open_sub_widget(self.sound_widget))
+        self.navi_update_button.clicked.connect(lambda: self.controller_settings.open_sub_widget(self.update_widget))
+        self.navi_language_button.clicked.connect(lambda: self.controller_settings.open_sub_widget(self.language_widget))
+        self.navi_report_button.clicked.connect(lambda: self.controller_settings.open_sub_widget(self.report_widget))
 #######################################################################################################################
