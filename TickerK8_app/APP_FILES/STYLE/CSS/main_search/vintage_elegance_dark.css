@@ -4,6 +4,19 @@
 #panel_widget{
     background-color: #1b1b1b;
 }
+#panel_scroll{
+    background-color: #00000000;
+}
+#panel_search_lineedit{
+    color: #FAFAFA;
+    background-color: #252525;
+    border: 0;
+    border-radius: 0.5em;
+    padding: 0.3em;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+}
 .panel_type_buttons{
     color: #FAFAFA;
     background-color: #252525;
@@ -13,5 +26,22 @@
     font-size: 14px;
 }
 .panel_type_buttons:hover{
+    background-color: #031913;
+}
+.panel_tags{
+    color: #FAFAFA;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 300;
+}
+#panel_exit_button{
+    color: #FAFAFA;
+    background-color: #252525;
+    border: 0;
+    border-radius: 0.5em;
+    padding: 0.3em;
+    font-size: 16px;
+}
+#panel_exit_button:hover{
     background-color: #031913;
 }
