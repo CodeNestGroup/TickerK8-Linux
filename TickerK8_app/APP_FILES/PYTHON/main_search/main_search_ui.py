@@ -8,13 +8,15 @@ from PyQt5.QtWidgets import (
 #______________________________________________________________________________________________________________________
 """ Import PyQt5 Core """
 from PyQt5.QtCore import (
-    Qt # Qt settings
+    Qt, # Qt settings
+    QSize
 )
 #______________________________________________________________________________________________________________________
 """ Import PyQt5 Gui """
 from PyQt5.QtGui import (
     QIcon, # Icon
-    QPixmap
+    QPixmap,
+    QPainter
 )
 #_______________________________________________________________________________________________________________________
 """ Import PyQt5 Svg """
@@ -67,7 +69,7 @@ def main_search_ui(self):
     self.panel_layout.addWidget(self.panel_id_label, 20, 7, 3, 5)
     self.panel_layout.addWidget(self.panel_object_name_label, 20, 26, 3, 26)
     self.panel_layout.addWidget(self.panel_market_name_label, 20, 66, 3, 26)
-    self.panel_layout.addWidget(self.panel_scroll, 23, 5, 67, 90)
+    self.panel_layout.addWidget(self.panel_scroll, 23, 5, 72, 90)
     self.panel_layout.addWidget(self.panel_exit_button, 2, 5, 6, 5)
     self.panel_layout.setSpacing(0)
     self.panel_layout.setContentsMargins(0,0,0,0)

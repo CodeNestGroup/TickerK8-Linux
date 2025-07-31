@@ -50,12 +50,28 @@ class Main_search_widget(QWidget):
         self.panel_market_name_label = QLabel(self.panel_widget)
         self.panel_scroll = QScrollArea(self.panel_widget)
         self.panel_exit_button = QPushButton(self.panel_widget)
+        self.button_list = [
+                self.panel_type_stock_button,
+                self.panel_type_etf_button,
+                self.panel_type_forex_button,
+                self.panel_type_index_button,
+                self.panel_type_market_button,
+                self.panel_type_country_button
+        ]
 #______________________________________________________________________________________________________________________
         """ Call functions """
         main_search_ui(self)
         main_search_reload_style(self)
         main_search_retranslate(self)
+        filters_load(self)
 #______________________________________________________________________________________________________________________
         """ Connect functions """
+        self.panel_search_lineedit.textChanged.connect(lambda: text_changed(self))
+        self.panel_type_stock_button.clicked.connect(lambda: filters_changed(self, 0))
+        self.panel_type_etf_button.clicked.connect(lambda: filters_changed(self, 1))
+        self.panel_type_forex_button.clicked.connect(lambda: filters_changed(self, 2))
+        self.panel_type_index_button.clicked.connect(lambda: filters_changed(self, 3))
+        self.panel_type_market_button.clicked.connect(lambda: filters_changed(self, 4))
+        self.panel_type_country_button.clicked.connect(lambda: filters_changed(self, 5))
         self.panel_exit_button.clicked.connect(lambda: self.deleteLater())
 #######################################################################################################################

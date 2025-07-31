@@ -4,9 +4,9 @@
     "main_search_filters": [
         false,
         true,
-        true,
         false,
         true,
+        false,
         true
     ],
     "mid_object_list_tags": [
