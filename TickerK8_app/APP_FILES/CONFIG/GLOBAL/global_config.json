@@ -3,9 +3,9 @@
     "__theme__": "vintage_elegance_dark",
     "main_search_filters": [
         false,
-        true,
         false,
-        true,
+        false,
+        false,
         false,
         true
     ],
