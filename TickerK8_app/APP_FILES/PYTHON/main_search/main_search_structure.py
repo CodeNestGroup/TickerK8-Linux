@@ -49,6 +49,7 @@ class Main_search_widget(QWidget):
         self.panel_object_name_label = QLabel(self.panel_widget)
         self.panel_market_name_label = QLabel(self.panel_widget)
         self.panel_scroll = QScrollArea(self.panel_widget)
+        self.panel_scroll_widget = None 
         self.panel_exit_button = QPushButton(self.panel_widget)
         self.button_list = [
                 self.panel_type_stock_button,
@@ -64,6 +65,7 @@ class Main_search_widget(QWidget):
         main_search_reload_style(self)
         main_search_retranslate(self)
         filters_load(self)
+        text_changed(self)
 #______________________________________________________________________________________________________________________
         """ Connect functions """
         self.panel_search_lineedit.textChanged.connect(lambda: text_changed(self))

@@ -7,6 +7,68 @@
 #panel_scroll{
     background-color: #00000000;
 }
+#panel_scroll QScrollBar:vertical{
+    border: none;
+    background: #1e1e1e;
+    width: 8px;
+    margin: 0;
+}
+#panel_scroll QScrollBar::handle:vertical{
+    background: #353535;
+    min-height: 15px;
+    border-radius: 2px;
+}
+#panel_scroll QScrollBar::handle:vertical:hover{
+    background: #031913;
+}
+
+#panel_scroll QScrollBar::add-line:vertical, #panel_scroll QScrollBar::sub-line:vertical{
+    border: none;
+    background: none;
+}
+
+#panel_scroll QScrollBar::add-page:vertical, #panel_scroll QScrollBar::sub-page:vertical{
+    background: none;
+}
+#panel_scroll_widget{
+    background-color: #00000000;
+}
+#index_label{
+    color: #FAFAFA;
+    background-color: #00000000;
+    margin-bottom: 0.5em;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+}
+#object_logo_label{
+    background-color: #00000000;
+    margin-bottom: 0.5em;
+}
+#object_name_button{
+    color: #FAFAFA;
+    background-color: #252525;
+    margin-bottom: 0.5em;
+    border: 0;
+    border-radius: 0.2em;
+    padding: 0.2em;
+    font-size: 12px;
+}
+#object_name_button:hover{
+    background-color: #031913;
+}
+#market_logo_label{
+    background-color: #00000000;
+    margin-bottom: 0.5em;
+}
+#market_name_label{
+    color: #FAFAFA;
+    margin-bottom: 0.5em;
+    border: 0;
+    border-radius: 0.2em;
+    padding: 0.2em;
+    font-size: 12px;
+}
 #panel_search_lineedit{
     color: #FAFAFA;
     background-color: #252525;

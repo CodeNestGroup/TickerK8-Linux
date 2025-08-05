@@ -80,9 +80,14 @@ def main_search_ui(self):
 #______________________________________________________________________________________________________________________
     """ Set widget """
     self.setHidden(False)
+    self.panel_scroll.setWidgetResizable(True)
+    self.panel_type_etf_button.setDisabled(True)
+    self.panel_type_forex_button.setDisabled(True)
 #______________________________________________________________________________________________________________________
     """ Set label """
     self.panel_id_label.setAlignment(Qt.AlignCenter)
+    self.panel_object_name_label.setAlignment(Qt.AlignCenter)
+    self.panel_market_name_label.setAlignment(Qt.AlignCenter)
 #______________________________________________________________________________________________________________________
     """ Set line edit """
 #______________________________________________________________________________________________________________________
@@ -117,7 +122,7 @@ def main_search_retranslate(self):
     self.panel_type_etf_button.setText(_t['panel_type_etf_button'][_l])
     self.panel_type_forex_button.setText(_t['panel_type_forex_button'][_l])
     self.panel_type_index_button.setText(_t['panel_type_index_button'][_l])
-    self.panel_type_market_button.setText(_t['panel_type_index_button'][_l])
+    self.panel_type_market_button.setText(_t['panel_type_market_button'][_l])
     self.panel_type_country_button.setText(_t['panel_type_country_button'][_l])
     self.panel_id_label.setText('#')
     self.panel_object_name_label.setText(_t['panel_object_name_label'][_l])

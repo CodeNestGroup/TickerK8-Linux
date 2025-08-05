@@ -2,11 +2,11 @@
     "__language__": 0,
     "__theme__": "vintage_elegance_dark",
     "main_search_filters": [
+        true,
         false,
         false,
-        false,
-        false,
-        false,
+        true,
+        true,
         true
     ],
     "mid_object_list_tags": [
@@ -152,7 +152,7 @@
         ]
     },
     "mid_object": [
-        "market",
+        "stock",
         1
     ],
     "main_mid_object_chart_type": [
