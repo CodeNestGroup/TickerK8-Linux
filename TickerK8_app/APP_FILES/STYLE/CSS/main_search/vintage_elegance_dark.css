@@ -33,13 +33,17 @@
 #panel_scroll_widget{
     background-color: #00000000;
 }
-#index_label{
+#index_button{
     color: #FAFAFA;
     background-color: #00000000;
+    border-radius: 0.3em;
     margin-bottom: 0.5em;
     font-size: 16px;
     font-weight: 400;
     letter-spacing: 0.3em;
+}
+#index_button:hover{
+    background-color: #084a38;
 }
 #object_logo_label{
     background-color: #00000000;

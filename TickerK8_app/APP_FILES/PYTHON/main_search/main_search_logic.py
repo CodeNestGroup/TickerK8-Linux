@@ -7,6 +7,7 @@ from PyQt5.QtWidgets import (
     QLabel, # Simple label
     QPushButton, # Simple button
     QGridLayout, # Grid layout
+    QVBoxLayout, # Vertical layout 
     QSizePolicy # Size policy 
 )
 #______________________________________________________________________________________________________________________
@@ -108,27 +109,26 @@ def text_changed(self):
         self.panel_scroll_layout.setColumnStretch(enc, 1)
     self.panel_scroll_widget.setLayout(self.panel_scroll_layout)
     for i, list_object in enumerate(all_data, start=1):
-        index_label = QLabel(self.panel_widget)
+        index_button = QPushButton(self.panel_widget)
         object_logo_label = QLabel(self.panel_widget)
         object_name_button = QPushButton(self.panel_widget)
         market_logo_label = QLabel(self.panel_widget)
         market_name_label = QLabel(self.panel_widget)
-        index_label.setObjectName('index_label')
+        index_button.setObjectName('index_button')
         object_logo_label.setObjectName('object_logo_label')
         object_name_button.setObjectName('object_name_button')
         market_logo_label.setObjectName('market_logo_label')
         market_name_label.setObjectName('market_name_label')
-        self.panel_scroll_layout.addWidget(index_label, i, 2, 1, 5)
+        self.panel_scroll_layout.addWidget(index_button, i, 2, 1, 5)
         self.panel_scroll_layout.addWidget(object_logo_label, i, 7, 1, 16)
         self.panel_scroll_layout.addWidget(object_name_button, i, 23, 1, 29)
         self.panel_scroll_layout.addWidget(market_logo_label, i, 52, 1, 16)
         self.panel_scroll_layout.addWidget(market_name_label, i, 68, 1, 29)
-        index_label.setAlignment(Qt.AlignCenter)
         object_logo_label.setAlignment(Qt.AlignCenter)
         market_logo_label.setAlignment(Qt.AlignCenter)
         market_name_label.setAlignment(Qt.AlignCenter)
-        index_label.setMaximumHeight(50)
-        index_label.setSizePolicy(QSizePolicy.Expanding ,QSizePolicy.Expanding)
+        index_button.setMaximumHeight(50)
+        index_button.setSizePolicy(QSizePolicy.Expanding ,QSizePolicy.Expanding)
         object_logo_label.setMaximumHeight(50)
         object_logo_label.setSizePolicy(QSizePolicy.Expanding ,QSizePolicy.Expanding)
         object_name_button.setMaximumHeight(50)
@@ -137,14 +137,12 @@ def text_changed(self):
         market_logo_label.setSizePolicy(QSizePolicy.Expanding ,QSizePolicy.Expanding)
         market_name_label.setMaximumHeight(50)
         market_name_label.setSizePolicy(QSizePolicy.Expanding ,QSizePolicy.Expanding)
-        index_label.setText(f' {i}')
+        index_button.setText(f' {i}')
         object_name_button.setText(f'{list_object[1]}')
         object_logo_label.setPixmap(load_svg(self.main_path+'/STYLE/IMG/'+list_object[0]+'.svg', int(object_logo_label.height()), int(object_logo_label.height())))
         if len(list_object) > 2:
             market_name_label.setText(f'{list_object[3]}')
             market_logo_label.setPixmap(load_svg(self.main_path+'/STYLE/IMG/'+list_object[2]+'.svg', int(market_logo_label.height()), int(market_logo_label.height())))
-
-
 #######################################################################################################################
 def filters_changed(self, index):
     self.global_config['main_search_filters'][index] = not self.global_config['main_search_filters'][index] # Change
@@ -160,6 +158,25 @@ def filters_load(self):
             self.button_list[index].setStyleSheet('background-color: #031913;')
         else:
             self.button_list[index].setStyleSheet('background-color: #252525;')
+#######################################################################################################################
+def add_object(self):
+    """ Create objects """
+    self.panel_add_widget = QWidget(self.panel_scroll)
+    self.panel_add_layout = QVboxLayout(self.panel_add_widget)
+    """ Set object name """
+    self.panel_add_widget.setObjectName('panel_add_widget')
+    self.panel_add_layout.setSpacing(0)
+    self.panel_add_layout.setContentsMargins(0,0,0,0)
+    for keys, in self.global_config['mid_object_lists'].keys():
+        button = QPushButton(self.panel_add_widget)
+        button.setObjectName(f'panel_add_{keys}_button')
+        button.setProperty('class', 'panel_add_button')
+        self.lists_scroll_layout.addWidget(button)
+        button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        button.setText(f'{keys}')
+        #button.clicked.connect()
+
+
 
 #######################################################################################################################
 """ Load svg script """

@@ -50,6 +50,7 @@ class Main_search_widget(QWidget):
         self.panel_market_name_label = QLabel(self.panel_widget)
         self.panel_scroll = QScrollArea(self.panel_widget)
         self.panel_scroll_widget = None 
+        self.panel_add_widget = None
         self.panel_exit_button = QPushButton(self.panel_widget)
         self.button_list = [
                 self.panel_type_stock_button,
