@@ -4,6 +4,7 @@ import sqlite3
 """ Import PyQt5 Widgets """
 from PyQt5.QtWidgets import (
     QWidget, # Simple widget, window
+    QScrollArea, # Scroll 
     QLabel, # Simple label
     QPushButton, # Simple button
     QGridLayout, # Grid layout
@@ -143,6 +144,7 @@ def text_changed(self):
         if len(list_object) > 2:
             market_name_label.setText(f'{list_object[3]}')
             market_logo_label.setPixmap(load_svg(self.main_path+'/STYLE/IMG/'+list_object[2]+'.svg', int(market_logo_label.height()), int(market_logo_label.height())))
+        index_button.clicked.connect(lambda: add_object__lists(self))
 #######################################################################################################################
 def filters_changed(self, index):
     self.global_config['main_search_filters'][index] = not self.global_config['main_search_filters'][index] # Change
@@ -159,25 +161,110 @@ def filters_load(self):
         else:
             self.button_list[index].setStyleSheet('background-color: #252525;')
 #######################################################################################################################
-def add_object(self):
-    """ Create objects """
+""" Add object lists """
+def add_object__lists(self):
+    """ Set deafoult  """
+    if self.panel_add_widget:
+        self.panel_add_widget.deleteLater()
+        self.panel_add_widget = None
+    """ Create objects """ 
     self.panel_add_widget = QWidget(self.panel_scroll)
-    self.panel_add_layout = QVboxLayout(self.panel_add_widget)
+    self.panel_add_layout = QGridLayout(self.panel_add_widget)
+    self.panel_add_exit_button = QPushButton(self.panel_add_widget)
+    self.panel_add_title_label = QLabel(self.panel_add_widget)
+    self.panel_add_path_label = QLabel(self.panel_add_widget)
+    self.panel_add_scroll = QScrollArea(self.panel_add_widget)
+    self.panel_add_scroll_widget = QWidget(self.panel_add_scroll)
+    self.panel_add_scroll_layout = QVBoxLayout(self.panel_add_scroll_widget)
     """ Set object name """
     self.panel_add_widget.setObjectName('panel_add_widget')
+    self.panel_add_exit_button.setObjectName('panel_add_exit_button')
+    self.panel_add_title_label.setObjectName('panel_add_title_label')
+    self.panel_add_path_label.setObjectName('panel_add_path_label')
+    self.panel_add_scroll.setObjectName('panel_add_scroll')
+    self.panel_add_scroll_widget.setObjectName('panel_add_scroll_widget')
+    """ Set Layout """
+    self.panel_layout.addWidget(self.panel_add_widget)
+    self.panel_add_layout.addWidget(self.panel_add_exit_button, 2, 5, 6, 5)
+    self.panel_add_layout.addWidget(self.panel_add_title_label, 5, 30, 5, 40)
+    self.panel_add_layout.addWidget(self.panel_add_path_label, 15, 5, 3, 90)
+    self.panel_add_layout.addWidget(self.panel_add_scroll, 20, 5, 80, 90)
     self.panel_add_layout.setSpacing(0)
     self.panel_add_layout.setContentsMargins(0,0,0,0)
-    for keys, in self.global_config['mid_object_lists'].keys():
+    for enc in range(100):
+        self.panel_add_layout.setRowStretch(enc, 1)
+        self.panel_add_layout.setColumnStretch(enc, 1)
+    self.panel_add_widget.setLayout(self.panel_add_layout)
+    self.panel_add_scroll_layout.setSpacing(0)
+    self.panel_add_scroll_layout.setContentsMargins(0,0,0,0)
+    self.panel_add_scroll_widget.setLayout(self.panel_add_scroll_layout)
+    """ Set widget """
+    self.panel_search_widget.setHidden(True)
+    self.panel_add_widget.setHidden(False)
+    self.panel_add_scroll.setWidgetResizable(True)
+    self.panel_add_scroll.setWidget(self.panel_add_scroll_widget)
+    """ Set label """
+    self.panel_add_title_label.setAlignment(Qt.AlignCenter)
+    self.panel_add_path_label.setAlignment(Qt.AlignCenter)
+    """ Set size """
+    self.panel_add_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.panel_add_exit_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.panel_add_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.panel_add_path_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.panel_add_scroll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.panel_add_scroll_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    """ Set text """
+    _t = self.main_search_translate # Translate texts 
+    _l = self.global_config['__language__'] # Language
+    self.panel_add_title_label.setText(_t['panel_add_title_label'][_l])
+    self.panel_add_path_label.setText(f"{_t['panel_add_path_label'][_l]} > ")
+    """ Set graphics """
+    self.panel_add_exit_button.setIcon(QIcon(load_svg(self.main_path+'/STYLE/IMG/icons/main/exit_'+self.global_config['__theme__']+'.svg', 256, 256)))
+    """ Add lists """
+    for keys in self.global_config['mid_object_lists'].keys():
         button = QPushButton(self.panel_add_widget)
         button.setObjectName(f'panel_add_{keys}_button')
         button.setProperty('class', 'panel_add_button')
-        self.lists_scroll_layout.addWidget(button)
+        self.panel_add_scroll_layout.addWidget(button)
         button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         button.setText(f'{keys}')
-        #button.clicked.connect()
-
-
-
+        button.clicked.connect(lambda _, c_l=keys: add_object__section(self, choosen_list=c_l))
+    """ Connect functions """
+    self.panel_add_exit_button.clicked.connect(lambda: add_object__lists_exit(self))
+#######################################################################################################################
+""" Add object lists exit """
+def add_object__lists_exit(self):
+    if self.panel_add_widget:
+        self.panel_add_widget.deleteLater()
+        self.panel_add_widget = None
+    self.panel_search_widget.setHidden(False)
+#######################################################################################################################
+""" Add object section """
+def add_object__section(self, choosen_list):
+    self.choosen_list = choosen_list
+    for index, section in enumerate(self.global_config['mid_object_lists'][self.choosen_list], start=0):
+        name = section.keys()[0]
+        button = QPushButton()
+        button.setObjectName(f'panel_add_{name}_button')
+        button.setProperty('class', 'panel_add_button')
+        self.panel_add_scroll_layout.addWidget(button)
+        button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        button.setText(f'{name}')
+        button.clicked.connect(lambda _, c_s=index: add_object__objects(self, choosen_section=c_s))
+#######################################################################################################################
+""" Add object section exit """
+def add_object__section_exit(self):
+    pass
+#######################################################################################################################
+""" Add object objects """
+def add_object__objects(self, choosen_section):
+    self.choosen_section = choosen_section
+    for objects in self.global_configp['mid_object_lists'][self.choosen_list][self.choosen_section].values():
+        print(objects)
+#######################################################################################################################
+""" Add object objects exit """
+def add_object__objects_exit(self):
+    pass
 #######################################################################################################################
 """ Load svg script """
 def load_svg(svg_path, width, height):

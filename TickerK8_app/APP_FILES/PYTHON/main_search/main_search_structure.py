@@ -33,25 +33,27 @@ class Main_search_widget(QWidget):
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2]) # Set main path, path to TickerK8 folder.
         self.global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data
         self.main_search_translate = json.load(open(self.main_path+'/CONFIG/main_search/translate.json', 'r')) # Get main search translate data
+        self.add_object = None 
 #______________________________________________________________________________________________________________________
         """ Create objects """
         self.main_layout = QGridLayout(self)
         self.panel_widget = QWidget(self)
-        self.panel_layout = QGridLayout(self.panel_widget)
-        self.panel_search_lineedit = QLineEdit(self.panel_widget)
-        self.panel_type_stock_button = QPushButton(self.panel_widget)
-        self.panel_type_etf_button = QPushButton(self.panel_widget)
-        self.panel_type_forex_button = QPushButton(self.panel_widget)
-        self.panel_type_index_button = QPushButton(self.panel_widget)
-        self.panel_type_market_button = QPushButton(self.panel_widget)
-        self.panel_type_country_button = QPushButton(self.panel_widget)
-        self.panel_id_label = QLabel(self.panel_widget)
-        self.panel_object_name_label = QLabel(self.panel_widget)
-        self.panel_market_name_label = QLabel(self.panel_widget)
-        self.panel_scroll = QScrollArea(self.panel_widget)
+        self.panel_layout = QVBoxLayout(self.panel_widget)
+        self.panel_search_widget = QWidget(self.panel_widget)
+        self.panel_search_layout = QGridLayout(self.panel_search_widget)
+        self.panel_search_lineedit = QLineEdit(self.panel_search_widget)
+        self.panel_type_stock_button = QPushButton(self.panel_search_widget)
+        self.panel_type_etf_button = QPushButton(self.panel_search_widget)
+        self.panel_type_forex_button = QPushButton(self.panel_search_widget)
+        self.panel_type_index_button = QPushButton(self.panel_search_widget)
+        self.panel_type_market_button = QPushButton(self.panel_search_widget)
+        self.panel_type_country_button = QPushButton(self.panel_search_widget)
+        self.panel_id_label = QLabel(self.panel_search_widget)
+        self.panel_object_name_label = QLabel(self.panel_search_widget)
+        self.panel_market_name_label = QLabel(self.panel_search_widget)
+        self.panel_scroll = QScrollArea(self.panel_search_widget)
         self.panel_scroll_widget = None 
-        self.panel_add_widget = None
-        self.panel_exit_button = QPushButton(self.panel_widget)
+        self.panel_exit_button = QPushButton(self.panel_search_widget)
         self.button_list = [
                 self.panel_type_stock_button,
                 self.panel_type_etf_button,
@@ -60,6 +62,7 @@ class Main_search_widget(QWidget):
                 self.panel_type_market_button,
                 self.panel_type_country_button
         ]
+        self.panel_add_widget = None 
 #______________________________________________________________________________________________________________________
         """ Call functions """
         main_search_ui(self)

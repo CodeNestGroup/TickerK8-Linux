@@ -2,35 +2,38 @@
     background-color: #60000000;
 }
 #panel_widget{
-    background-color: #1b1b1b;
-}
-#panel_scroll{
     background-color: #00000000;
 }
-#panel_scroll QScrollBar:vertical{
+#panel_search_widget{
+    background-color: #1b1b1b;
+}
+#panel_scroll, #panel_add_scroll{
+    background-color: #00000000;
+}
+#panel_scroll QScrollBar:vertical, #panel_add_scroll QScrollBar:vertical{
     border: none;
     background: #1e1e1e;
     width: 8px;
     margin: 0;
 }
-#panel_scroll QScrollBar::handle:vertical{
+#panel_scroll QScrollBar::handle:vertical, #panel_add_scroll QScrollBar::handle:vertical{
     background: #353535;
     min-height: 15px;
     border-radius: 2px;
 }
-#panel_scroll QScrollBar::handle:vertical:hover{
+#panel_scroll QScrollBar::handle:vertical:hover, #panel_add_scroll QScrollBar::handle:vertical:hover{
     background: #031913;
 }
 
-#panel_scroll QScrollBar::add-line:vertical, #panel_scroll QScrollBar::sub-line:vertical{
+#panel_scroll QScrollBar::add-line:vertical, #panel_scroll QScrollBar::sub-line:vertical, #panel_add_scroll QScrollBar::add-line:vertical, #panel_add_scroll QScrollBar::sub-line:vertical{
     border: none;
     background: none;
 }
 
-#panel_scroll QScrollBar::add-page:vertical, #panel_scroll QScrollBar::sub-page:vertical{
+#panel_scroll QScrollBar::add-page:vertical, #panel_scroll QScrollBar::sub-page:vertical, #panel_add_scroll QScrollBar::add-page:vertical, #panel_add_scroll QScrollBar::sub-page:vertical{
     background: none;
 }
-#panel_scroll_widget{
+#panel_scroll_widget, #panel_add_scroll_widget{
     background-color: #00000000;
 }
 #index_button{
@@ -106,5 +109,45 @@
     font-size: 16px;
 }
 #panel_exit_button:hover{
+    background-color: #031913;
+}
+#panel_add_widget{
+    background-color: #1b1b1b;
+}
+#panel_add_exit_button{
+    color: #FAFAFA;
+    background-color: #252525;
+    border: 0;
+    border-radius: 0.5em;
+    padding: 0.3em;
+    font-size: 16px;
+}
+#panel_add_exit_button:hover{
+    background-color: #031913;
+}
+#panel_add_title_label{
+    color: #FAFAFA;
+    padding: 0.3em;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+}
+#panel_add_path_label{
+    color: #FAFAFA;
+    padding: 0.3em;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+}
+.panel_add_button{
+    color: #FAFAFA;
+    background-color: #252525;
+    border: 0;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    padding: 0.4em;
+}
+.panel_add_button:hover{
     background-color: #031913;
 }
