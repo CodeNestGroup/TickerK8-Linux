@@ -63,6 +63,10 @@ class Main_search_widget(QWidget):
                 self.panel_type_country_button
         ]
         self.panel_add_widget = None 
+        self.panel_add_section_scroll = None 
+        self.panel_add_section_exit_button = None 
+        self.panel_add_object_scroll = None 
+        self.panel_add_object_exit_button = None 
 #______________________________________________________________________________________________________________________
         """ Call functions """
         main_search_ui(self)

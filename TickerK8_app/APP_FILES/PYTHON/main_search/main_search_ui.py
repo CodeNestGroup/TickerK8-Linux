@@ -51,6 +51,8 @@ def main_search_ui(self):
     self.panel_id_label.setProperty('class', 'panel_tags')
     self.panel_object_name_label.setProperty('class', 'panel_tags')
     self.panel_market_name_label.setProperty('class', 'panel_tags')
+    self.panel_scroll.setProperty('class', 'panel_scroll_class')
+    self.panel_exit_button.setProperty('class', 'panel_exit_button_class')
 #______________________________________________________________________________________________________________________
     """ Set layout """
     self.main_layout.addWidget(self.panel_widget, 10, 20, 80, 60)
