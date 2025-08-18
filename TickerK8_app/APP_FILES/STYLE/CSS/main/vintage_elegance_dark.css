@@ -1,5 +1,5 @@
 #main_widget{
-    background-color: #252525;
+    background-color: #1b1b1b;
 }
 #top_widget{
     background-color: #1e1e1e;
@@ -29,13 +29,13 @@
     background-color: #1b1b1b;
 }
 #bottom_widget{
-    background-color: #1e1e1e;
+    background-color: #1b1b1b;
 }
 .bottom_button{
     color: #FAFAFA;
     background-color: #1e1e1e;
     border: 0;
-    padding: 0.3em;
+    padding: 0em;
     font-size: 16px;
     font-weight: 600;
     letter-spacing: 0.5em;

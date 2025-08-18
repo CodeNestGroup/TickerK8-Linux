@@ -40,16 +40,18 @@ def text_changed(self):
     database = sqlite3.connect(database=self.main_path+'/CONFIG/GLOBAL/local_data_prototype.db') # Create connect 
     cursor = database.cursor() # Create cursor
     all_data = []
+    all_data_id = []
     if _active_filters[0]:
         if _text != '':
             where = f'WHERE stock.name like "%{_text}%"'
         else:
             where = ''
         database_data = cursor.execute(f'''
-            SELECT stock.icon, stock.name, market.icon, market.name FROM stock JOIN market ON stock.id_market=market.id {where};
+            SELECT stock.id, stock.icon, stock.name, market.icon, market.name FROM stock JOIN market ON stock.id_market=market.id {where};
         ''').fetchall()
         if database_data:
             for e in database_data: all_data.append(e)
+            for d in database_data: all_data_id.append({"stock": d[0]})
     if _active_filters[1]:
         all_data.append(cursor.execute(f'''
             SELECT logo, name, logo, name FROM etf WHERE name like "%{_text}%";
@@ -66,30 +68,33 @@ def text_changed(self):
         else:
             where = ''
         database_data = cursor.execute(f'''
-            SELECT market_index.icon, market_index.name, market.icon, market.name FROM market_index JOIN market ON market_index.id_market=market.id {where};
+            SELECT market_index.id, market_index.icon, market_index.name, market.icon, market.name FROM market_index JOIN market ON market_index.id_market=market.id {where};
         ''').fetchall()
         if database_data:
             for e in database_data: all_data.append(e)
+            for d in database_data: all_data_id.append({"market_index": d[0]})
     if _active_filters[4]: 
         if _text != '':
             where = f'WHERE name like "%{_text}%"'
         else:
             where = ''
         database_data = cursor.execute(f'''
-            SELECT icon, name FROM market {where};
+            SELECT market.id, market.icon, market.name FROM market {where};
         ''').fetchall()
         if database_data:
             for e in database_data: all_data.append(e)
+            for d in database_data: all_data_id.append({"market": d[0]})
     if _active_filters[5]:
         if _text != '':
             where = f'WHERE name like "%{_text}%"'
         else:
             where = ''
         database_data = cursor.execute(f'''
-            SELECT icon, name FROM country {where};
+            SELECT country.id, country.icon, country.name FROM country {where};
         ''').fetchall()
         if database_data:
             for e in database_data: all_data.append(e)
+            for d in database_data: all_data_id.append({"country": d[0]})
     cursor.close()
     database.close()
 #______________________________________________________________________________________________________________________
@@ -140,12 +145,12 @@ def text_changed(self):
         market_name_label.setMaximumHeight(50)
         market_name_label.setSizePolicy(QSizePolicy.Expanding ,QSizePolicy.Expanding)
         index_button.setText(f' {i}')
-        object_name_button.setText(f'{list_object[1]}')
-        object_logo_label.setPixmap(load_svg(self.main_path+'/STYLE/IMG/'+list_object[0]+'.svg', int(object_logo_label.height()), int(object_logo_label.height())))
-        if len(list_object) > 2:
-            market_name_label.setText(f'{list_object[3]}')
-            market_logo_label.setPixmap(load_svg(self.main_path+'/STYLE/IMG/'+list_object[2]+'.svg', int(market_logo_label.height()), int(market_logo_label.height())))
-        index_button.clicked.connect(lambda: add_object__lists(self))
+        object_name_button.setText(f'{list_object[2]}')
+        object_logo_label.setPixmap(load_svg(self.main_path+'/STYLE/IMG/'+list_object[1]+'.svg', int(object_logo_label.height()), int(object_logo_label.height())))
+        if len(list_object) > 3:
+            market_name_label.setText(f'{list_object[4]}')
+            market_logo_label.setPixmap(load_svg(self.main_path+'/STYLE/IMG/'+list_object[3]+'.svg', int(market_logo_label.height()), int(market_logo_label.height())))
+        index_button.clicked.connect(lambda _, o=all_data_id[i-1]: add_object__lists(self, a_o=o))
 #######################################################################################################################
 def filters_changed(self, index):
     self.global_config['main_search_filters'][index] = not self.global_config['main_search_filters'][index] # Change
@@ -163,8 +168,9 @@ def filters_load(self):
             self.button_list[index].setStyleSheet('background-color: #252525;')
 #######################################################################################################################
 """ Add object lists """
-def add_object__lists(self):
+def add_object__lists(self, a_o):
     """ Set deafoult  """
+    self.add_object = a_o
     if self.panel_add_widget:
         self.panel_add_widget.deleteLater()
         self.panel_add_widget = None
@@ -242,6 +248,7 @@ def add_object__lists_exit(self):
     self.panel_add_widget.deleteLater()
     self.panel_add_widget = None
     self.panel_search_widget.setHidden(False)
+    self.add_object = None
 #######################################################################################################################
 """ Add object section """
 def add_object__section(self, choosen_list):
@@ -391,13 +398,14 @@ def add_object__objects_exit(self):
 #######################################################################################################################
 """ Add object to list """
 def add_object_to_list(self, place):
-    add_object = {"stock": 1}
     conf = self.global_config['mid_object_lists'][self.choosen_list][self.choosen_section_id][self.choosen_section_name]
-    conf.insert(place, add_object)
+    conf.insert(place, self.add_object)
     json.dump(self.global_config, open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'w'), indent=4)
     self.global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data
-
-
+    self.parent.mid_object_list_widget.open_list()
+    add_object__objects_exit(self)
+    add_object__section_exit(self)
+    add_object__lists_exit(self)
 #######################################################################################################################
 """ Load svg script """
 def load_svg(svg_path, width, height):

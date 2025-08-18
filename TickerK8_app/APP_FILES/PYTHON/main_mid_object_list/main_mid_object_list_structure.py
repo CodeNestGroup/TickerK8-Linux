@@ -45,19 +45,17 @@ class Main_mid_object_list_widget(QWidget):
         self.tag_layout = QGridLayout(self)
         self.list_scroll = QScrollArea(self)
         self.list_widget = None 
-        self.type_list_button = QPushButton(self)
         self.lists_background_widget = None 
-        self.data_list_button = QPushButton(self)
         self.lists_edit_data_background_widget = None 
 #______________________________________________________________________________________________________________________
         """ Call functions """
         main_mid_object_list_ui(self)
         main_mid_object_list_reload_style(self)
         main_mid_object_list_retranslate(self)
-        for title, value in self.global_config['mid_object_list'].items():
-                open_list(self, title, value)
+        open_list(self)
+        self.open_list = lambda: open_list(self)
+        self.show_lists = lambda: show_lists(self)
+        self.show_edit_list_data = lambda: show_edit_list_data(self)
 #______________________________________________________________________________________________________________________
         """ Connect functions """
-        self.type_list_button.clicked.connect(lambda: show_lists(self))
-        self.data_list_button.clicked.connect(lambda: show_edit_list_data(self))
 #######################################################################################################################

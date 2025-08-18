@@ -70,10 +70,12 @@ class Main_widget(QWidget):
         self.bottom_left_news_button = QPushButton(self.bottom_widget)
         self.bottom_left_chart_button = QPushButton(self.bottom_widget)
         self.bottom_left_stats_button = QPushButton(self.bottom_widget)
-        self.bottom_center_add_button = QPushButton(self.bottom_widget) 
+        self.bottom_mid_type_list_button = QPushButton(self.bottom_widget)
+        self.bottom_mid_data_list_button = QPushButton(self.bottom_widget)
         self.bottom_right_market_button = QPushButton(self.bottom_widget)
         self.bottom_right_country_button = QPushButton(self.bottom_widget)
         self.bottom_right_world_button = QPushButton(self.bottom_widget)
+        
 #______________________________________________________________________________________________________________________
         """ Call functions """
         main_ui(self) # Call main ui function
@@ -85,6 +87,8 @@ class Main_widget(QWidget):
         self.mid_object_list_widget.config_changed.connect(lambda: main_mid_object_changed(self))
         self.mid_news_widget.open_news.connect(lambda val: open_main_news(self, val))
 #        self.bottom_left_news_button.clicked.connect(lambda: open_main_news_list(self, self.globa))
+        self.bottom_mid_type_list_button.clicked.connect(self.mid_object_list_widget.show_lists)
+        self.bottom_mid_data_list_button.clicked.connect(self.mid_object_list_widget.show_edit_list_data)
         self.bottom_right_market_button.clicked.connect(lambda: open_main_news_list(self,0))
         self.bottom_right_country_button.clicked.connect(lambda: open_main_news_list(self, 1))
         self.bottom_right_world_button.clicked.connect(lambda: open_main_news_list(self, 1))

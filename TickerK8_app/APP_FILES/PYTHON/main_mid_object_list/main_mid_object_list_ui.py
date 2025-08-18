@@ -28,19 +28,13 @@ def main_mid_object_list_ui(self):
     self.title_label.setObjectName('title_label')
     self.tag_widget.setObjectName('tag_widget')
     self.list_scroll.setObjectName('list_scroll')
-    self.type_list_button.setObjectName('type_list_button')
-    self.data_list_button.setObjectName('data_list_button')
 #______________________________________________________________________________________________________________________
     """ Set property """
-    self.type_list_button.setProperty('class', 'controll_button')
-    self.data_list_button.setProperty('class', 'controll_button')
 #______________________________________________________________________________________________________________________
     """ Set layout """
     self.main_layout.addWidget(self.title_label, 0, 0, 10, 100)
     self.main_layout.addWidget(self.tag_widget, 10, 0, 5, 100)
-    self.main_layout.addWidget(self.list_scroll, 15, 0, 77, 100)
-    self.main_layout.addWidget(self.type_list_button, 92, 0, 8, 50)
-    self.main_layout.addWidget(self.data_list_button, 92, 50, 8, 50)
+    self.main_layout.addWidget(self.list_scroll, 15, 0, 85, 100)
     self.main_layout.setSpacing(0)
     self.main_layout.setContentsMargins(0,0,0,0)
     for enc in range(100):
@@ -62,23 +56,15 @@ def main_mid_object_list_ui(self):
     self.title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.tag_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.list_scroll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.type_list_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.data_list_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 #######################################################################################################################
 """ Main mid object list tyle """
 def main_mid_object_list_reload_style(self):
     self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/main_mid_object_list/'+self.global_config['__theme__']+'.css')).read())
-    self.type_list_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/list_'+self.global_config['__theme__']+'.svg'), 256, 256)))
-    self.type_list_button.setIconSize(self.type_list_button.size())
-    self.data_list_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/edit_table_data_'+self.global_config['__theme__']+'.svg'), 256, 256)))
-    self.data_list_button.setIconSize(self.data_list_button.size())
 #######################################################################################################################
 """ Main settings retranslate """
 def main_mid_object_list_retranslate(self):
     _t = self.main_mid_object_list_translate # Translate texts
     _l = self.global_config['__language__'] # Language
-    self.type_list_button.setText(_t['type_list_button'][_l])
-    self.data_list_button.setText(_t['data_list_button'][_l])
 #######################################################################################################################
 """ Load svg script """
 def load_svg(svg_path, width, height):

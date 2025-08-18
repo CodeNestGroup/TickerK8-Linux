@@ -9,18 +9,6 @@
     font-weight: 600;
     letter-spacing: 0.4em;
 }
-.controll_button{
-    color: #FAFAFA;
-    background-color: #252525;
-    border: 0;
-    padding: 0.3em;
-    font-size: 16px;
-    font-weight: 600;
-    letter-spacing: 0.3em;
-}
-.controll_button:hover{
-    background-color: #031913;
-}
 #list_scroll{
     background-color: #202020;
     border: 0;
@@ -87,7 +75,7 @@
     font-weight: 600;
     letter-spacing: 0.4em;
 }
-.index_label{
+.index_button{
     color: #FAFAFA;
     background-color: #00000000;
     border: 0;
@@ -95,6 +83,9 @@
     font-size: 18px;
     font-weight: 400;
     letter-spacing: 0.3em;
+}
+.index_button:hover{
+    background-color: #b40808;
 }
 .data_label{
     color: #FAFAFA;

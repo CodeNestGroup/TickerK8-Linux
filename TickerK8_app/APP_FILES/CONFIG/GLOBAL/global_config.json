@@ -10,7 +10,8 @@
         true
     ],
     "mid_object_list_tags": [
-        "name"
+        "name",
+        "icon"
     ],
     "mid_object_lists": {
         "Favourite": [
@@ -50,25 +51,7 @@
                         "stock": 1
                     },
                     {
-                        "stock": 2
-                    },
-                    {
-                        "stock": 3
-                    },
-                    {
                         "stock": 4
-                    },
-                    {
-                        "stock": 5
-                    },
-                    {
-                        "stock": 6
-                    },
-                    {
-                        "stock": 7
-                    },
-                    {
-                        "stock": 8
                     }
                 ]
             }
@@ -77,82 +60,21 @@
             {
                 "AGX": [
                     {
-                        "market_index": 1
-                    },
-                    {
-                        "market_index": 3
-                    },
-                    {
-                        "market_index": 4
-                    }
-                ]
-            }
-        ]
-    },
-    "mid_object_list": {
-        "Favourite": [
-            {
-                "Countries": [
-                    {
                         "country": 1
-                    }
-                ]
-            },
-            {
-                "Markets": [
-                    {
-                        "market": 1
-                    }
-                ]
-            },
-            {
-                "Indexes": [
+                    },
                     {
                         "market_index": 1
-                    },
-                    {
-                        "market_index": 2
-                    },
-                    {
-                        "market_index": 3
                     },
                     {
                         "market_index": 4
                     }
                 ]
-            },
-            {
-                "Stocks": [
-                    {
-                        "stock": 1
-                    },
-                    {
-                        "stock": 2
-                    },
-                    {
-                        "stock": 3
-                    },
-                    {
-                        "stock": 4
-                    },
-                    {
-                        "stock": 5
-                    },
-                    {
-                        "stock": 6
-                    },
-                    {
-                        "stock": 7
-                    },
-                    {
-                        "stock": 8
-                    }
-                ]
             }
         ]
     },
+    "mid_object_list": "Favourite",
     "mid_object": [
-        "stock",
+        "country",
         1
     ],
     "main_mid_object_chart_type": [

@@ -1,7 +1,5 @@
 {   
-    "type_list_button": ["  Lists", "   Listy"],
     "lists_title_label": ["Lists", "Listy"],
-    "data_list_button": ["  Edit list data", "    Edytuj dane listy"],
     "lists_edit_data_title_label": ["Data", "Dane"],
     "lists_edit_data_icon_button": ["Icon", "Ikona"],
     "lists_edit_data_ticker_button": ["Ticker", "Ticker"],

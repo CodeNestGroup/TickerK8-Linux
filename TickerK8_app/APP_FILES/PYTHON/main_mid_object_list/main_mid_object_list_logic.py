@@ -31,11 +31,11 @@ from PyQt5.QtSvg import QSvgRenderer # Render Svg.
 #_______________________________________________________________________________________________________________________
 #######################################################################################################################
 """ Open lsit """
-def open_list(self, title, list_objects):
+def open_list(self):
     """ Set config """
-    self.global_config['mid_object_list'] = {f"{title}": list_objects}
-    json.dump(self.global_config, open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'w'), indent=4)
-    self.global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
+    self.global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data
+    list_object = self.global_config['mid_object_list']
+    open_list_data = self.global_config['mid_object_lists'][list_object]
 #______________________________________________________________________________________________________________________
     """ Setup widget """
     if self.list_widget:
@@ -63,14 +63,14 @@ def open_list(self, title, list_objects):
     self.list_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 #______________________________________________________________________________________________________________________
     """ Set texts """
-    self.title_label.setText(f'{title}')
+    self.title_label.setText(f'{list_object}')
 #______________________________________________________________________________________________________________________
     """ Set graphics """
 #______________________________________________________________________________________________________________________
     """ Connect """
 #______________________________________________________________________________________________________________________
     """ Add items """
-    for section in list_objects:
+    for section_index, section in enumerate(open_list_data, start=0):
         """ Section data """
         section_dict = dict(section)
         for key, value in section_dict.items():
@@ -141,13 +141,13 @@ def open_list(self, title, list_objects):
             cursor = database.cursor()
             if value:
                 for row, item in enumerate(value, start=1):
-                    index_label = QLabel(items_widget)
-                    index_label.setObjectName(f'index_{row}_label')
-                    index_label.setProperty('class', 'index_label')
-                    items_layout.addWidget(index_label, row, 0)
-                    index_label.setAlignment(Qt.AlignCenter)
-                    index_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-                    index_label.setText(f'{row}')
+                    index_button = QPushButton(items_widget)
+                    index_button.setObjectName(f'index_{row}_button')
+                    index_button.setProperty('class', 'index_button')
+                    items_layout.addWidget(index_button, row, 0)
+                    index_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+                    index_button.setText(f'{row}')
+                    index_button.clicked.connect(lambda _, s_i=section_index, s_n=key, i=row-1: delete_object(self, section_index=s_i, section_name=s_n, index=i))
                     for table, id_id in dict(item).items():
                         for column, tag in enumerate(self.global_config['mid_object_list_tags'], start=1):
                             try:
@@ -171,10 +171,17 @@ def open_list(self, title, list_objects):
                                     data_object.setText(str(text))
                             data_object.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
                             items_layout.addWidget(data_object, row, column)
-#______________________________________________________________________________________________________________________
-    """ Exit form lists widget  """
-    if self.lists_background_widget:
-        lists_exit(self)
+#######################################################################################################################
+""" Delete object """
+def delete_object(self, section_index, section_name, index):
+    list_object_name = self.global_config['mid_object_list']
+    object_in_section = self.global_config['mid_object_lists'][list_object_name][section_index][section_name]
+    object_in_section.pop(index)
+    json.dump(self.global_config, open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'w'), indent=4) # Save config
+    self.global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data
+    open_list(self)
+
+
 #######################################################################################################################
 """ Show lists """
 def show_lists(self):
@@ -267,12 +274,20 @@ def show_lists(self):
         self.lists_scroll_layout.addWidget(button)
         button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         button.setText(f'{keys}')
-        button.clicked.connect(lambda _, key=keys, value=values: open_list(self, key, value))
+        button.clicked.connect(lambda _, name=keys: set_list(self, name=name))
 #######################################################################################################################
 """ Lists exit """
 def lists_exit(self):
     self.lists_background_widget.deleteLater()
-    self.lists_background_widget = None 
+    self.lists_background_widget = None
+#######################################################################################################################
+""" Set list """
+def set_list(self, name):
+    self.global_config['mid_object_list'] = name
+    json.dump(self.global_config, open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'w'), indent=4) # Save config
+    self.global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data
+    open_list(self)
+    lists_exit(self)
 #######################################################################################################################
 """ Edit list data """
 def show_edit_list_data(self):
@@ -447,8 +462,7 @@ def lists_edit_data_controller(self, val):
 def lists_edit_data_set(self):
     json.dump(self.global_config, open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'w'), indent=4) # Save config
     lists_edit_data_exit(self)
-    for title, value in self.global_config['mid_object_list'].items():
-        open_list(self, title, value)
+    open_list(self)
 #######################################################################################################################
 """ Load svg script """
 def load_svg(svg_path, width, height):
