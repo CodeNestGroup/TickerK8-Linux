@@ -29,6 +29,8 @@ from PyQt5.QtGui import (QPixmap, # Graphic.
 """ Import PyQt5 Svg """
 from PyQt5.QtSvg import QSvgRenderer # Render Svg.
 #_______________________________________________________________________________________________________________________
+""" Import main chart """
+from main_chart.main_chart_structure import Main_chart
 #######################################################################################################################
 """ Setup widget """
 def setup_widget(self):
@@ -523,6 +525,7 @@ def stock_widget(self):
     self.main_icon_label = QLabel(self.main_widget)
     self.main_short_name_label = QLabel(self.main_widget)
     self.main_name_label = QLabel(self.main_widget)
+    self.main_chart_widget = Main_chart(self.main_widget)
     self.main_statistics_widget = QWidget(self.main_widget)
     self.main_statistics_layout = QGridLayout(self.main_statistics_widget)
     self.main_capitalization_name_label = QLabel(self.main_statistics_widget)
@@ -563,6 +566,7 @@ def stock_widget(self):
     self.main_layout.addWidget(self.main_icon_label,0,0)
     self.main_layout.addWidget(self.main_short_name_label,1,0)
     self.main_layout.addWidget(self.main_name_label,2,0)
+    self.main_layout.addWidget(self.main_chart_widget,3,0)
     self.main_layout.addWidget(self.main_statistics_widget,4,0)
     self.main_layout.setSpacing(0)
     self.main_layout.setContentsMargins(0,0,0,0)
@@ -611,8 +615,8 @@ def stock_widget(self):
     self.main_dividend_yield_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 #______________________________________________________________________________________________________________________
     """ Set text """
-    self.main_short_name_label.setText(f'{stock_data[0]}')
-    self.main_name_label.setText(f'{stock_data[1]}')
+    self.main_short_name_label.setText(f'{stock_data[1]}')
+    self.main_name_label.setText(f'{stock_data[0]}')
     self.main_capitalization_name_label.setText(f'{self.translate['main_capitalization_name_label'][self.global_config['__language__']]}:')
     self.main_capitalization_value_label.setText(f'{stock_data[3]}')
     self.main_pe_ratio_name_label.setText(f'{self.translate['main_pe_ratio_name_label'][self.global_config['__language__']]}:')

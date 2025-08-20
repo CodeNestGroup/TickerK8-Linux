@@ -32,9 +32,6 @@
             {
                 "Indexes": [
                     {
-                        "market_index": 1
-                    },
-                    {
                         "market_index": 2
                     },
                     {
@@ -74,8 +71,8 @@
     },
     "mid_object_list": "Favourite",
     "mid_object": [
-        "country",
-        1
+        "stock",
+        4
     ],
     "main_mid_object_chart_type": [
         0,
