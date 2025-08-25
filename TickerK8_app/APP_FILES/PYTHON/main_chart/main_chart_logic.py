@@ -40,18 +40,18 @@ class Candle(QGraphicsItem):
         self.h = h
         self.c = c
         self.l = l
-        self.color_wick = QColor('#000000')
+        self.color_wick = QColor('#ff0000') if self.o < self.c else QColor('#00ff00')
         self.color_body = QColor('#ff0000') if self.o < self.c else QColor('#00ff00')
         print(self.x, self.o, self.h, self.c, self.l)
 #______________________________________________________________________________________________________________________
     """ boundig rect """
     def boundingRect(self):
-        return QRectF(self.x, self.h, 4, int(self.l-self.h))
+        return QRectF(self.x, self.h, 2, int(self.l-self.h))
 #______________________________________________________________________________________________________________________
     """ paint """
     def paint(self, painter, option, widget=None):
         painter.setPen(QPen(self.color_wick, 1)) # Set pen color, size to create high, low price line
-        painter.drawLine(QPointF(self.x+2, self.h), QPointF(self.x+2, self.l)) # Draw line
+        painter.drawLine(QPointF(self.x+1, self.h), QPointF(self.x+1, self.l)) # Draw line
         painter.setBrush(QBrush(self.color_body)) # Set brush color to create body 
-        painter.drawRect(QRectF(self.x, min(self.o, self.c), 4, abs(self.o-self.c))) # Create body 
+        painter.drawRect(QRectF(self.x, min(self.o, self.c), 2, abs(self.o-self.c))) # Create body 
 #######################################################################################################################

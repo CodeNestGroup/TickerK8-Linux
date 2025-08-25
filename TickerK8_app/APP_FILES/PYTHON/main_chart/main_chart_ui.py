@@ -8,8 +8,12 @@ from PyQt5.QtWidgets import (
     QGraphicsItem,
     QSizePolicy
 )
-from PyQt5.QtCore import Qt
 #______________________________________________________________________________________________________________________
+""" Import PyQt5 core """
+from PyQt5.QtCore import (
+    Qt,
+    QRectF
+)
 #######################################################################################################################
 """ Main chart ui """
 def main_chart_ui(self):
@@ -25,10 +29,13 @@ def main_chart_ui(self):
 #______________________________________________________________________________________________________________________
     """ Set graphics """
     self.setScene(self.main_scence)
+    self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+    self.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+    self.setDragMode(QGraphicsView.NoDrag)
 #______________________________________________________________________________________________________________________
     """ Set size """
     self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.main_scence.setSceneRect(0, 0, self.width(), self.height())
+    self.main_scence.setSceneRect(QRectF(self.rect()))
 #######################################################################################################################
 """ Main chart style """
 def main_chart_reload_style(self):
