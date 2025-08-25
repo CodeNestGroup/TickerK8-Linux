@@ -32,6 +32,8 @@
 #main_icon_label{
     background: #00000000;
     border: 0;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 #main_flag_label{
     background-color: #00000000;
@@ -41,6 +43,8 @@
     font-size: 34px;
     font-weight: 600;
     letter-spacing: 0.4em;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 #main_name_label{
     color: #FAFAFA;
@@ -48,6 +52,8 @@
     font-size: 28px;
     font-weight: 600;
     letter-spacing: 0.4em;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 #main_timezone_label{
     color: #FAFAFA;
@@ -56,19 +62,21 @@
     letter-spacing: 0.3em;
 }
 #main_statistics_widget{
+    margin-top: 15px;
+    padding: 0.2em;
     background-color: #252525;
 }
 .main_name_label{
     color: #FAFAFA;
-    padding: 0.3em;
+    padding: 0.5em;
     font-size: 16px;
     font-weight: 600;
     letter-spacing: 0.4em;
 }
 .main_value_label{
     color: #FAFAFA;
-    padding: 0.3em;
-    font-size: 14px;
+    padding: 0.5em;
+    font-size: 15px;
     font-weight: 400;
     letter-spacing: 0.3em;
 }

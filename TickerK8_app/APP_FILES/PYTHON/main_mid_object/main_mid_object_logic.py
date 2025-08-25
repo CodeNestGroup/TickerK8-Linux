@@ -388,6 +388,7 @@ def index_widget(self):
     WHERE index_stock.id_index={self.global_config['mid_object'][1]};''').fetchall() # Execute
     cursor.close()
     database.close()
+    chart_data = json.load(open(self.main_path+f'/CHART_DATA/{market_index_data[0]}_15.json', 'r'))
 #______________________________________________________________________________________________________________________
     """ Setup widget """
     if self.main_widget:
@@ -399,8 +400,8 @@ def index_widget(self):
     self.main_layout = QGridLayout(self.main_widget)
     self.main_icon_label = QLabel(self.main_widget)
     self.main_name_label = QLabel(self.main_widget)
-    self.main_objects_scroll = QScrollArea(self.main_widget)
-    self.main_objects_widget = QWidget(self.main_objects_scroll)
+    self.main_chart_widget = Main_chart(self.main_widget, chart_data)
+    self.main_objects_widget = QWidget(self.main_widget)
     self.main_objects_layout = QGridLayout(self.main_objects_widget)
     self.main_objects_title_label = QLabel(self.main_objects_widget)
     self.main_objects_index_label = QLabel(self.main_objects_widget)
@@ -411,7 +412,6 @@ def index_widget(self):
     self.main_widget.setObjectName('main_widget')
     self.main_icon_label.setObjectName('main_icon_label')
     self.main_name_label.setObjectName('main_name_label')
-    self.main_objects_scroll.setObjectName('main_objects_scroll')
     self.main_objects_widget.setObjectName('main_objects_widget')
     self.main_objects_title_label.setObjectName('main_objects_title_label')
     self.main_objects_index_label.setObjectName('main_objects_index_label')
@@ -426,7 +426,8 @@ def index_widget(self):
     """ Set layout """
     self.main_layout.addWidget(self.main_icon_label, 0, 0)
     self.main_layout.addWidget(self.main_name_label, 1, 0)
-    self.main_layout.addWidget(self.main_objects_scroll, 2, 0)
+    self.main_layout.addWidget(self.main_chart_widget, 2, 0)
+    self.main_layout.addWidget(self.main_objects_widget, 3, 0)
     self.main_layout.setSpacing(0)
     self.main_layout.setContentsMargins(0,0,0,0)
     self.main_widget.setLayout(self.main_layout)
@@ -440,8 +441,6 @@ def index_widget(self):
 #______________________________________________________________________________________________________________________
     """ Set widget """
     self.setWidget(self.main_widget)
-    self.main_objects_scroll.setWidgetResizable(True)
-    self.main_objects_scroll.setWidget(self.main_objects_widget)
 #______________________________________________________________________________________________________________________
     """ Set label """
     self.main_icon_label.setAlignment(Qt.AlignCenter)
@@ -455,7 +454,6 @@ def index_widget(self):
     self.main_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_icon_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.main_objects_scroll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_objects_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_objects_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_objects_index_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -513,6 +511,7 @@ def stock_widget(self):
     WHERE stock.id={self.global_config['mid_object'][1]};''').fetchall()[0] # Execute
     cursor.close()
     database.close()
+    chart_data = json.load(open(self.main_path+f'/CHART_DATA/{stock_data[1]}_15.json', 'r'))
 #______________________________________________________________________________________________________________________
     """ Setup widget """
     if self.main_widget:
@@ -525,7 +524,7 @@ def stock_widget(self):
     self.main_icon_label = QLabel(self.main_widget)
     self.main_short_name_label = QLabel(self.main_widget)
     self.main_name_label = QLabel(self.main_widget)
-    self.main_chart_widget = Main_chart(self.main_widget)
+    self.main_chart_widget = Main_chart(self.main_widget, chart_data)
     self.main_statistics_widget = QWidget(self.main_widget)
     self.main_statistics_layout = QGridLayout(self.main_statistics_widget)
     self.main_capitalization_name_label = QLabel(self.main_statistics_widget)

@@ -49,6 +49,9 @@
                     },
                     {
                         "stock": 4
+                    },
+                    {
+                        "stock": 8
                     }
                 ]
             }
@@ -71,7 +74,7 @@
     },
     "mid_object_list": "Favourite",
     "mid_object": [
-        "stock",
+        "market_index",
         4
     ],
     "main_mid_object_chart_type": [

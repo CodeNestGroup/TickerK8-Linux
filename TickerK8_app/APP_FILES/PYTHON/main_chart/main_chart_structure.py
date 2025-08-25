@@ -19,7 +19,7 @@ from .main_chart_logic import *
 """ Main mid object widget """
 class Main_chart(QGraphicsView):
     """ Init, creating items, set base variables like paths, screen size, etc. """
-    def __init__(self, parent):
+    def __init__(self, parent, data):
         super().__init__()
         self.setAttribute(Qt.WA_StyledBackground, True) # Force widget to draw background
         self.setParent(parent) # Set parent
@@ -27,17 +27,7 @@ class Main_chart(QGraphicsView):
         """ Set paths, file name"""
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2]) # Set main path, path to TickerK8 folder.
         self.global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data
-        query_set = self.global_config['mid_object']
-        if query_set[0] == 'market_index':
-                query = f'SELECT name FROM market_index WHERE id={query_set[1]};'
-        elif query_set[0] == 'stock':
-                query = f'SELECT ticker FROM stock WHERE id={query_set[1]};'
-        database = sqlite3.connect(database=self.main_path+'/CONFIG/GLOBAL/local_data_prototype.db') # Create connect 
-        cursor = database.cursor() # Create cursor 
-        data_name = cursor.execute(query).fetchall()[0][0]
-        cursor.close()
-        database.close()
-        self.chart_data = json.load(open(self.main_path+f'/CHART_DATA/{data_name}_15.json', 'r')) # Get chart data 
+        self.chart_data = data
 #______________________________________________________________________________________________________________________
         self.main_scence = QGraphicsScene(self)
 #______________________________________________________________________________________________________________________
