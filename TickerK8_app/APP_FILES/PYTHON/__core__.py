@@ -1,9 +1,28 @@
+""" Import packages """
+""" Import system and operating system packages """
+import sys # Sys package, access to system func.
+import pathlib # Pathlib package, for get path to application.
+#_______________________________________________________________________________________________________________________
+""" Import PyQt5 packages """
 """ Import PyQt5 Widgets """
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QApplication
+from PyQt5.QtWidgets import (
+    QApplication, # Application, define application.
+    QWidget, # Widget, simple widget.
+    QVBoxLayout # Vertical Layout.
+    )
 #______________________________________________________________________________________________________________________
 """ Import PyQt5 Core """
-from PyQt5.QtCore import QRect
+from PyQt5.QtCore import (
+    QRect # Rectengle, pos, size.
+)
 #______________________________________________________________________________________________________________________
+""" Import PyQt5 Gui """
+from PyQt5.QtGui import (
+    QFontDatabase, # Font database for add new font to app.
+    QFont # Font for add new font to app.
+    )
+#______________________________________________________________________________________________________________________
+""" Import application modules """
 """ Import login widget """
 from login.login_structure import Login_widget
 #______________________________________________________________________________________________________________________
@@ -27,26 +46,26 @@ from chart.chart_structure import Chart_widget
 #######################################################################################################################
 """ App controller """
 class app_controller(QWidget):
+    """ Init """
     def __init__(self):
         super().__init__()
         self.setObjectName('window')
         self.layout = QVBoxLayout(self) # Create layout for responsiwe design
-        self.layout.setSpacing(0)
-        self.layout.setContentsMargins(0,0,0,0)
+        self.layout.setSpacing(0) # Set spacing 
+        self.layout.setContentsMargins(0,0,0,0) # Set contents marigns 
         self.setLayout(self.layout) # Set layout 
-        
-        self.login_widget = None # Set dafault
-        self.register_widget = None # Set dafault
-        self.recover_password_widget = None # Set dafault
-        self.main_widget = None # Set dafault
-        self.settings_widget = None # Set dafault
-        self.statistics_widget = None # Set dafault
-        self.chart_widget = None # Set dafault
-
+        self.login_widget = None # Set default
+        self.register_widget = None # Set default
+        self.recover_password_widget = None # Set default
+        self.main_widget = None # Set default
+        self.settings_widget = None # Set default
+        self.statistics_widget = None # Set default
+        self.chart_widget = None # Set default
         self.primary_screen_size = QApplication.primaryScreen().size() # Get screen size
         self.login_setup() # Set on start of application
 #______________________________________________________________________________________________________________________
     """ Login """
+    """ Login setup """
     def login_setup(self):
         self.login_widget = Login_widget(self) # Creat login widget
         self.layout.addWidget(self.login_widget) # Add login widget to main layoyt
@@ -215,4 +234,16 @@ class app_controller(QWidget):
         self.chart_widget = None # Set dafault
         self.main_setup() # Call main setup function 
 #######################################################################################################################
-    
+""" Set font """
+def set_font():
+    font_id = QFontDatabase.addApplicationFont(str(pathlib.Path(__file__).resolve().parents[3])+'/TickerK8_app/APP_FILES/STYLE/FONTS/NotoSerif-VariableFont_wdth,wght.ttf') # Get font.
+    font_families = QFontDatabase.applicationFontFamilies(font_id) # Set font family.
+    return QFont(font_families[0]) # Return new font.
+#######################################################################################################################
+""" Start application """
+if __name__ == '__main__':
+    application = QApplication(sys.argv)
+    application.setFont(set_font())
+    controller = app_controller()
+    controller.setHidden(False) 
+    sys.exit(application.exec_())
