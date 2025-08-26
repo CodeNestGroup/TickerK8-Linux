@@ -45,16 +45,18 @@ class Login_widget(QWidget):
         self.login_password_lineedit = QLineEdit(self) # Create password input line.
         self.login_login_button = QPushButton(self) # Create login button.
         self.login_register_button = QPushButton(self) # Create register button.
-        self.login_welcome_label = QLabel(self) # Create welcome label.
+        self.login_welcome_title_label = QLabel(self) # Create welcome label.
+        self.login_welcome_sub_label = QLabel(self) # Create welcome sub label.
+        self.login_welcome_icon_label = QLabel(self) # Create welcome icon label.
 #______________________________________________________________________________________________________________________
         """ Call functions """
         login_ui(self) # Call login ui function.
         login_reload_style(self) # Call login style function.
         login_retranslate(self) # Call login retranslte funcion.
         self._now = 0
-        login_widget_background(self)
+        self.login_widget_background = lambda: login_widget_background(self)
         self.timer = QTimer(self)
-        self.timer.timeout.connect(lambda: login_widget_background(self))
+        self.timer.timeout.connect(self.login_widget_background)
         self.timer.start(1)
 #______________________________________________________________________________________________________________________
         """ Connect functions """

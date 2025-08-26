@@ -27,21 +27,23 @@ def login_ui(self):
     self.login_password_lineedit.setObjectName('login_password_lineedit')
     self.login_login_button.setObjectName('login_login_button')
     self.login_register_button.setObjectName('login_register_button')
-    self.login_welcome_label.setObjectName('login_welcome_label')
+    self.login_welcome_title_label.setObjectName('login_welcome_title_label')
+    self.login_welcome_sub_label.setObjectName('login_welcome_sub_label')
+    self.login_welcome_icon_label.setObjectName('login_welcome_icon_label')
 #______________________________________________________________________________________________________________________
     """ Set property """
     self.setProperty('class', 'parent_widget')
     self.login_login_lineedit.setProperty('class', 'login_input_line')
     self.login_password_lineedit.setProperty('class', 'login_input_line')
-    self.login_login_button.setProperty('class', 'login_control_button')
-    self.login_register_button.setProperty('class', 'login_control_button')
 #______________________________________________________________________________________________________________________
     """ Set layout """
-    self.login_layout.addWidget(self.login_login_lineedit, 40, 5, 5, 40)
-    self.login_layout.addWidget(self.login_password_lineedit, 55, 5, 5, 40)
-    self.login_layout.addWidget(self.login_login_button, 70, 5, 3, 40)
-    self.login_layout.addWidget(self.login_register_button, 95, 10, 3, 20)
-    self.login_layout.addWidget(self.login_welcome_label, 0, 50, 100, 50)
+    self.login_layout.addWidget(self.login_login_lineedit, 42, 4, 4, 42)
+    self.login_layout.addWidget(self.login_password_lineedit, 48, 4, 4, 42)
+    self.login_layout.addWidget(self.login_login_button, 56, 12, 2, 26)
+    self.login_layout.addWidget(self.login_register_button, 97, 15, 1, 20)
+    self.login_layout.addWidget(self.login_welcome_title_label, 30, 50, 15, 50)
+    self.login_layout.addWidget(self.login_welcome_sub_label, 45, 50, 10, 50)
+    self.login_layout.addWidget(self.login_welcome_icon_label, 55, 50, 10, 50)
     self.login_layout.setSpacing(0)
     self.login_layout.setContentsMargins(0,0,0,0)
     for enc in range(100):
@@ -53,7 +55,9 @@ def login_ui(self):
     self.setHidden(False)
 #______________________________________________________________________________________________________________________
     """ Set label """
-    self.login_welcome_label.setAlignment(Qt.AlignCenter)
+    self.login_welcome_title_label.setAlignment(Qt.AlignCenter)
+    self.login_welcome_sub_label.setAlignment(Qt.AlignCenter)
+    self.login_welcome_icon_label.setAlignment(Qt.AlignCenter)
 #______________________________________________________________________________________________________________________
     """ Set line edit """
     self.login_password_lineedit.setEchoMode(QLineEdit.Password)
@@ -64,7 +68,9 @@ def login_ui(self):
     self.login_password_lineedit.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.login_login_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.login_register_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.login_welcome_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.login_welcome_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.login_welcome_sub_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.login_welcome_icon_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 #######################################################################################################################
 """ Login style """
 def login_reload_style(self):
@@ -78,5 +84,4 @@ def login_retranslate(self):
     self.login_password_lineedit.setPlaceholderText(_t['login_password_lineedit'][_l])
     self.login_login_button.setText(_t['login_login_button'][_l])
     self.login_register_button.setText(_t['login_register_button'][_l])
-    self.login_welcome_label.setText('Good morning!')
 #######################################################################################################################
