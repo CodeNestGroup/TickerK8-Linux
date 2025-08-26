@@ -1,8 +1,4 @@
 {
-    "login_title_label": [
-        "TickerK8",
-        "TickerK8"
-    ],
     "login_login_lineedit": [
         "Login",
         "Login"
@@ -12,15 +8,11 @@
         "Hasło"
     ],
     "login_login_button": [
-        "Log in",
+        "Sign in",
         "Zaloguj się"
     ],
     "login_register_button": [
         "Register",
         "Zarejestrój się"
-    ],
-    "login_forgot_password_button": [
-        "Recover\npassword",
-        "Odzyskaj\nhasło"
     ]
 }

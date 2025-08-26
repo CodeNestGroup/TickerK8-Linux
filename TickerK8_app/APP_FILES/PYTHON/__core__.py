@@ -50,34 +50,33 @@ class app_controller(QWidget):
     def __init__(self):
         super().__init__()
         self.setObjectName('window')
-        self.layout = QVBoxLayout(self) # Create layout for responsiwe design
-        self.layout.setSpacing(0) # Set spacing 
-        self.layout.setContentsMargins(0,0,0,0) # Set contents marigns 
-        self.setLayout(self.layout) # Set layout 
-        self.login_widget = None # Set default
-        self.register_widget = None # Set default
-        self.recover_password_widget = None # Set default
-        self.main_widget = None # Set default
-        self.settings_widget = None # Set default
-        self.statistics_widget = None # Set default
-        self.chart_widget = None # Set default
-        self.primary_screen_size = QApplication.primaryScreen().size() # Get screen size
-        self.login_setup() # Set on start of application
+        self.layout = QVBoxLayout(self) # Create layout for responsiwe design.
+        self.layout.setSpacing(0) # Set spacing.
+        self.layout.setContentsMargins(0,0,0,0) # Set contents marigns.
+        self.setLayout(self.layout) # Set layout.
+        self.login_widget = None # Set default.
+        self.register_widget = None # Set default.
+        self.recover_password_widget = None # Set default.
+        self.main_widget = None # Set default.
+        self.settings_widget = None # Set default.
+        self.statistics_widget = None # Set default.
+        self.chart_widget = None # Set default.
+        self.primary_screen_size = QApplication.primaryScreen().size() # Get screen size.
+        self.login_setup() # Set on start of application.
 #______________________________________________________________________________________________________________________
     """ Login """
     """ Login setup """
     def login_setup(self):
-        self.login_widget = Login_widget(self) # Creat login widget
-        self.layout.addWidget(self.login_widget) # Add login widget to main layoyt
-        self.set_size_login() # Set size of main window for login setup
-        self.login_widget.login_login_button.clicked.connect(self.login_correct_controller) # Connect function 
-        self.login_widget.login_register_button.clicked.connect(self.login_to_register) # Connect function
-        self.login_widget.login_forgot_password_button.clicked.connect(self.login_to_forgot_password) # Conenct exit function
+        self.login_widget = Login_widget(self) # Creat login widget.
+        self.layout.addWidget(self.login_widget) # Add login widget to main layoyt.
+        self.set_size_login() # Set size of main window for login setup.
+        self.login_widget.login_login_button.clicked.connect(self.login_correct_controller) # Connect function.
+        self.login_widget.login_register_button.clicked.connect(self.login_to_register) # Connect function.
 #______________________________________________________________________________________________________________________
     """ Set size login"""
     def set_size_login(self):
-        x, y, width, height = int(self.primary_screen_size.width()//4), int(self.primary_screen_size.height()//12), int(self.primary_screen_size.width()//2), int(self.primary_screen_size.height()//1.25) # Set size
-        self.setGeometry(QRect(x, y, width, height)) # Set geometry 
+        x, y, width, height = int(self.primary_screen_size.width()//4), int(self.primary_screen_size.height()//12), int(self.primary_screen_size.width()//2), int(self.primary_screen_size.height()//1.25) # Set size.
+        self.setGeometry(QRect(x, y, width, height)) # Set geometry.
 #______________________________________________________________________________________________________________________
     """ Login correct controller """
     def login_correct_controller(self):

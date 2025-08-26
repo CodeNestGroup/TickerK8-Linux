@@ -1,21 +1,3 @@
-#login_widget{
-    background-color: #252525;
-}
-#login_title_label{
-    color: #FAFAFA;
-    padding: 0.5em;
-    font-size: 32px;
-    font-weight: 600;
-    letter-spacing: 0.3em;
-}
-#login_day_night_button{
-    background-color: #1e1e1e;
-    border-radius: 1.85em;
-    padding: 0.5em;
-}
-#login_day_night_button:hover{
-    background-color: #031913;
-}
 .login_input_line{
     color: #FAFAFA;
     background-color: #1e1e1e;
@@ -37,4 +19,22 @@
 }
 .login_control_button:hover{
     background-color: #031913;
+}
+#login_welcome_label{
+    color: #FAFAFA;
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: 0.5em;
+}
+#dasd{
+    color: #FFD9A3;
+    color: #FFF5B7;
+    color: #87CEEB;
+    color: #00bfff;
+    color: #FFD580;
+    color: #FFB347;
+    color: #FF6F61;
+    color: #6A5ACD;
+    color: #191970;
+    color: #0B0C10;
 }
