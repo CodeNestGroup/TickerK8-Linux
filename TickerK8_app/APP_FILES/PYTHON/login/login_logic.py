@@ -55,130 +55,184 @@ def login_widget_background(self):
         _color_2 = f'#{_alpha_2}{_colors[1]}'
 
     elif _today_sec == 8640:
-        _index_1, _index_2 = 1, 1
         _x_1, _x_2 = 0.0, 1.0
+        _color_1 = f'#ff{_colors[1]}'
+        _color_2 = _color_1
 
     elif _today_sec > 8640 and _today_sec < 17280:
         _percent = (17280-_today_sec)/8640
         if _percent <= 0.5:
-             _x_1 = 0.0
-             _x_2 = _percent*2
+            _x_1 = 0.0
+            _x_2 = _percent*2
+            _alpha_1 = f'{int(255 *(_percent / 0.5)):02X}'
+            _alpha_2 = 'ff'
         else:
             _x_1 = (_percent-0.5)*2
             _x_2 = 1.0
-        _index_1, _index_2 = 1, 2
+            _alpha_1 = 'ff'
+            _alpha_2 = f'{255-int(255 *(_percent - 0.5) / 0.5):02X}'
+        _color_1 = f'#{_alpha_1}{_colors[1]}'
+        _color_2 = f'#{_alpha_2}{_colors[2]}'
 
     elif _today_sec == 17280:
-        _index_1, _index_2 = 2, 2
         _x_1, _x_2 = 0.0, 1.0
+        _color_1 = f'#ff{_colors[2]}'
+        _color_2 = _color_1
 
     elif _today_sec > 17280 and _today_sec < 25920:
         _percent = (25920-_today_sec)/8640
         if _percent <= 0.5:
-             _x_1 = 0.0
-             _x_2 = _percent*2
+            _x_1 = 0.0
+            _x_2 = _percent*2
+            _alpha_1 = f'{int(255 *(_percent / 0.5)):02X}'
+            _alpha_2 = 'ff'
         else:
             _x_1 = (_percent-0.5)*2
             _x_2 = 1.0
-        _index_1, _index_2 = 2, 3
+            _alpha_1 = 'ff'
+            _alpha_2 = f'{255-int(255 *(_percent - 0.5) / 0.5):02X}'
+        _color_1 = f'#{_alpha_1}{_colors[2]}'
+        _color_2 = f'#{_alpha_2}{_colors[3]}'
         
     elif _today_sec == 25920:
-        _index_1, _index_2 = 3, 3
         _x_1, _x_2 = 0.0, 1.0
+        _color_1 = f'#ff{_colors[3]}'
+        _color_2 = _color_1
 
     elif _today_sec > 25920 and _today_sec < 34560:
         _percent = (34560-_today_sec)/8640
         if _percent <= 0.5:
-             _x_1 = 0.0
-             _x_2 = _percent*2
+            _x_1 = 0.0
+            _x_2 = _percent*2
+            _alpha_1 = f'{int(255 *(_percent / 0.5)):02X}'
+            _alpha_2 = 'ff'
         else:
             _x_1 = (_percent-0.5)*2
             _x_2 = 1.0
-        _index_1, _index_2 = 3, 4
+            _alpha_1 = 'ff'
+            _alpha_2 = f'{255-int(255 *(_percent - 0.5) / 0.5):02X}'
+        _color_1 = f'#{_alpha_1}{_colors[3]}'
+        _color_2 = f'#{_alpha_2}{_colors[4]}'
 
     elif _today_sec == 34560:
-        _index_1, _index_2 = 4, 4
         _x_1, _x_2 = 0.0, 1.0
+        _color_1 = f'#ff{_colors[4]}'
+        _color_2 = _color_1
 
     elif _today_sec > 34560 and _today_sec < 43200:
         _percent = (43200-_today_sec)/8640
         if _percent <= 0.5:
-             _x_1 = 0.0
-             _x_2 = _percent*2
+            _x_1 = 0.0
+            _x_2 = _percent*2
+            _alpha_1 = f'{int(255 *(_percent / 0.5)):02X}'
+            _alpha_2 = 'ff'
         else:
             _x_1 = (_percent-0.5)*2
             _x_2 = 1.0
-        _index_1, _index_2 = 4, 5
+            _alpha_1 = 'ff'
+            _alpha_2 = f'{255-int(255 *(_percent - 0.5) / 0.5):02X}'
+        _color_1 = f'#{_alpha_1}{_colors[4]}'
+        _color_2 = f'#{_alpha_2}{_colors[5]}'
 
     elif _today_sec == 43200:
-        _index_1, _index_2 = 5, 5
         _x_1, _x_2 = 0.0, 1.0
+        _color_1 = f'#ff{_colors[5]}'
+        _color_2 = _color_1
 
     elif _today_sec > 43200 and _today_sec < 51840:
         _percent = (51840-_today_sec)/8640
         if _percent <= 0.5:
-             _x_1 = 0.0
-             _x_2 = _percent*2
+            _x_1 = 0.0
+            _x_2 = _percent*2
+            _alpha_1 = f'{int(255 *(_percent / 0.5)):02X}'
+            _alpha_2 = 'ff'
         else:
             _x_1 = (_percent-0.5)*2
             _x_2 = 1.0
-        _index_1, _index_2 = 5, 6
+            _alpha_1 = 'ff'
+            _alpha_2 = f'{255-int(255 *(_percent - 0.5) / 0.5):02X}'
+        _color_1 = f'#{_alpha_1}{_colors[5]}'
+        _color_2 = f'#{_alpha_2}{_colors[6]}'
 
     elif _today_sec == 51840:
-        _index_1, _index_2 = 6, 6
         _x_1, _x_2 = 0.0, 1.0
+        _color_1 = f'#ff{_colors[6]}'
+        _color_2 = _color_1
 
     elif _today_sec > 51840 and _today_sec < 60480:
         _percent = (60480-_today_sec)/8640
         if _percent <= 0.5:
-             _x_1 = 0.0
-             _x_2 = _percent*2
+            _x_1 = 0.0
+            _x_2 = _percent*2
+            _alpha_1 = f'{int(255 *(_percent / 0.5)):02X}'
+            _alpha_2 = 'ff'
         else:
             _x_1 = (_percent-0.5)*2
             _x_2 = 1.0
-        _index_1, _index_2 = 6, 7
+            _alpha_1 = 'ff'
+            _alpha_2 = f'{255-int(255 *(_percent - 0.5) / 0.5):02X}'
+        _color_1 = f'#{_alpha_1}{_colors[6]}'
+        _color_2 = f'#{_alpha_2}{_colors[7]}'
 
     elif _today_sec == 60480:
-        _index_1, _index_2 = 7, 7
         _x_1, _x_2 = 0.0, 1.0
+        _color_1 = f'#ff{_colors[7]}'
+        _color_2 = _color_1
 
     elif _today_sec > 60480 and _today_sec < 69120:
         _percent = (69120-_today_sec)/8640
         if _percent <= 0.5:
-             _x_1 = 0.0
-             _x_2 = _percent*2
+            _x_1 = 0.0
+            _x_2 = _percent*2
+            _alpha_1 = f'{int(255 *(_percent / 0.5)):02X}'
+            _alpha_2 = 'ff'
         else:
             _x_1 = (_percent-0.5)*2
             _x_2 = 1.0
-        _index_1, _index_2 = 7, 8
+            _alpha_1 = 'ff'
+            _alpha_2 = f'{255-int(255 *(_percent - 0.5) / 0.5):02X}'
+        _color_1 = f'#{_alpha_1}{_colors[7]}'
+        _color_2 = f'#{_alpha_2}{_colors[8]}'
 
     elif _today_sec == 69120:
-        _index_1, _index_2 = 8, 8
         _x_1, _x_2 = 0.0, 1.0
+        _color_1 = f'#ff{_colors[8]}'
+        _color_2 = _color_1
 
     elif _today_sec > 69120 and _today_sec < 77760:
         _percent = (77760-_today_sec)/8640
         if _percent <= 0.5:
-             _x_1 = 0.0
-             _x_2 = _percent*2
+            _x_1 = 0.0
+            _x_2 = _percent*2
+            _alpha_1 = f'{int(255 *(_percent / 0.5)):02X}'
+            _alpha_2 = 'ff'
         else:
             _x_1 = (_percent-0.5)*2
             _x_2 = 1.0
-        _index_1, _index_2 = 8, 9
+            _alpha_1 = 'ff'
+            _alpha_2 = f'{255-int(255 *(_percent - 0.5) / 0.5):02X}'
+        _color_1 = f'#{_alpha_1}{_colors[8]}'
+        _color_2 = f'#{_alpha_2}{_colors[9]}'
 
     elif _today_sec == 77760:
-        _index_1, _index_2 = 9, 9
         _x_1, _x_2 = 0.0, 1.0
+        _color_1 = f'#ff{_colors[9]}'
+        _color_2 = _color_1
 
     elif _today_sec > 77760 and _today_sec < 86400:
         _percent = (86400-_today_sec)/8640
         if _percent <= 0.5:
-             _x_1 = 0.0
-             _x_2 = _percent*2
+            _x_1 = 0.0
+            _x_2 = _percent*2
+            _alpha_1 = f'{int(255 *(_percent / 0.5)):02X}'
+            _alpha_2 = 'ff'
         else:
             _x_1 = (_percent-0.5)*2
             _x_2 = 1.0
-        _index_1, _index_2 = 9, 0
+            _alpha_1 = 'ff'
+            _alpha_2 = f'{255-int(255 *(_percent - 0.5) / 0.5):02X}'
+        _color_1 = f'#{_alpha_1}{_colors[9]}'
+        _color_2 = f'#{_alpha_2}{_colors[0]}'
 
     """ Create gradient """
     gradient = QLinearGradient()
@@ -190,4 +244,5 @@ def login_widget_background(self):
     palette.setBrush(QPalette.Window, QBrush(gradient))
     self.setAutoFillBackground(True)
     self.setPalette(palette)
+    #print(_x_1, _x_2, _color_1, _color_2)
 
