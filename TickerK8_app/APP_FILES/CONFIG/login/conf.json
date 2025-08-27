@@ -10,5 +10,17 @@
         "FF6F61",
         "6A5ACD",
         "191970"
+    ],
+    "icon": [
+        "chart",
+        "country",
+        "edit",
+        "list",
+        "market",
+        "news",
+        "search",
+        "settings",
+        "statistics",
+        "world"
     ]
 }

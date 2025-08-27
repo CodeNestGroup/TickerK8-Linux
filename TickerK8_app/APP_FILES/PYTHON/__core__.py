@@ -70,28 +70,13 @@ class app_controller(QWidget):
         self.login_widget = Login_widget(self) # Creat login widget.
         self.layout.addWidget(self.login_widget) # Add login widget to main layoyt.
         self.set_size_login() # Set size of main window for login setup.
-        self.login_widget.login_login_button.clicked.connect(self.login_correct_controller) # Connect function.
+        self.login_widget.correct_login.connect(self.login_to_main) # Call function when correct login.
         self.login_widget.login_register_button.clicked.connect(self.login_to_register) # Connect function.
 #______________________________________________________________________________________________________________________
     """ Set size login"""
     def set_size_login(self):
         x, y, width, height = int(self.primary_screen_size.width()//4), int(self.primary_screen_size.height()//12), int(self.primary_screen_size.width()//2), int(self.primary_screen_size.height()//1.25) # Set size.
         self.setGeometry(QRect(x, y, width, height)) # Set geometry.
-#______________________________________________________________________________________________________________________
-    """ Login correct controller """
-    def login_correct_controller(self):
-        if self.login_correct():
-            self.login_to_main()
-        else:
-            self.login_widget.login_login_lineedit.setStyleSheet("border: 2px solid red;")
-            self.login_widget.login_password_lineedit.setStyleSheet("border: 2px solid red;")
-#______________________________________________________________________________________________________________________
-    """ Login correct """
-    def login_correct(self):
-        if self.login_widget.login_login_lineedit.text() == 'x' and self.login_widget.login_password_lineedit.text() == 'x':
-            return True
-        else:
-            return False
 #______________________________________________________________________________________________________________________
     """ Register """
     def register_setup(self):

@@ -74,7 +74,7 @@ def login_ui(self):
 #######################################################################################################################
 """ Login style """
 def login_reload_style(self):
-    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/login/'+self.global_config['__theme__']+'.css')).read())
+    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/login/vintage_elegance_dark.css')).read())
 #######################################################################################################################
 """ Login retranslate"""
 def login_retranslate(self):
