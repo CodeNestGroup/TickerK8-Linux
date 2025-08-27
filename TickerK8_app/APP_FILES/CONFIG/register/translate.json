@@ -10,7 +10,7 @@
     "register_country_subtitle_label": ["Country", "Kraj"],
     "register_password_subtitle_label": ["Password", "Hasło"],
     "register_password_lineedit": ["Password", "Hasło"],
-    "register_password_requirements_label": ["15-24 signs, use phrases,\nspecial characters and numbers", "15-24 znaków, użyj fraz, znaki specjalne i cyfry"],
+    "register_password_requirements_label": ["Minimum 8 signs, use phrases,\nspecial characters and numbers", "Minimum 8 znaków, używaj fraz,\n znaki specjalne i cyfry"],
     "register_password_show_button": [["Hide", "Show"], ["Schowaj", "Pokarz"]],
     "register_password_confirm_lineedit": ["Confirm password", "Potwierdź hasło"],
     "register_password_confirm_show_button": [["Hide", "Show"], ["Schowaj", "Pokarz"]],

@@ -34,7 +34,7 @@ class Login_widget(QWidget):
     def __init__(self, parent):
         super().__init__()
         self.setAttribute(Qt.WA_StyledBackground, True) # Force widget to draw background.
-        self.setParent(parent) # Set parent
+        self.setParent(parent) # Set parent.
 #______________________________________________________________________________________________________________________
         """ Set paths, file name"""
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2]) # Set main path, path to TickerK8 folder.
@@ -57,7 +57,7 @@ class Login_widget(QWidget):
         """ Call functions """
         login_ui(self) # Call login ui function.
         login_reload_style(self) # Call login style function.
-        login_retranslate(self) # Call login retranslte funcion.datetime
+        login_retranslate(self) # Call login retranslte funcion.
         login_widget_background_painter(self)
         self.login_widget_background = lambda: login_widget_background_painter(self) # Function for background.
         self.timer.timeout.connect(self.login_widget_background) # Connect.

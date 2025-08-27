@@ -32,7 +32,6 @@ def login_ui(self):
     self.login_welcome_icon_label.setObjectName('login_welcome_icon_label')
 #______________________________________________________________________________________________________________________
     """ Set property """
-    self.setProperty('class', 'parent_widget')
     self.login_login_lineedit.setProperty('class', 'login_input_line')
     self.login_password_lineedit.setProperty('class', 'login_input_line')
 #______________________________________________________________________________________________________________________
@@ -78,8 +77,8 @@ def login_reload_style(self):
 #######################################################################################################################
 """ Login retranslate"""
 def login_retranslate(self):
-    _t = self.login_translate # Translate texts 
-    _l = self.global_config['__language__'] # Language 
+    _t = self.login_translate # Translate texts.
+    _l = self.global_config['__language__'] # Language.
     self.login_login_lineedit.setPlaceholderText(_t['login_login_lineedit'][_l])
     self.login_password_lineedit.setPlaceholderText(_t['login_password_lineedit'][_l])
     self.login_login_button.setText(_t['login_login_button'][_l])
