@@ -21,6 +21,8 @@ def show_hide_password(self):
 """ Register controller """
 def register_controller(self):
     """ Variables """
+    _t = self.register_translate
+    _l = self.global_config['__language__']
     c_n = None
     c_e = None
     c_p = None
@@ -43,13 +45,15 @@ def register_controller(self):
         c_n = self.register_name_lineedit.text()
     else:
         c_n = None
+        self.register_name_label.setHidden(False)
 #______________________________________________________________________________________________________________________
     """ Check if emial exists"""
     cursor.execute('SELECT id FROM WHERE name=%s;', (self.register_emial_lineedit.text()))
     if not c_e_e and self.register_emial_confirm_lineedit.text() == self.register_emial_lineedit.text():
         c_e = self.register_emial_confirm_lineedit.text() # Set correct email
     else:
-        c_e = None 
+        c_e = None
+        self.register_email_label.setHidden(False)
 #______________________________________________________________________________________________________________________
     """ Check if phone correct """
     try:
@@ -58,6 +62,9 @@ def register_controller(self):
             c_p = f'{self.register_phonenumber_combobox.currentText()}{self.register_phonenumber_lineedit.text()}'
     except:
         c_p = None
+        self.register_phonenumber_lineedit.clear()
+        self.register_phonenumber_lineedit.setText(f'{_t['register_phonenumber_fail_lineedit'][_l]}')
+        self.register_phonenumber_lineedit.setStyleSheet('border: 2px solid red;')
 #______________________________________________________________________________________________________________________
     """ Country set """
     c_c = self.register_country_combobox.currentText()
