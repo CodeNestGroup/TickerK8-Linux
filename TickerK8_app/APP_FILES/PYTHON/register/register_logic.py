@@ -46,6 +46,8 @@ def register_controller(self):
     else:
         c_n = None
         self.register_name_label.setHidden(False)
+        self.register_name_lineedit.clear()
+        self.register_name_lineedit.setStyleSheet('border: 2px solid red;')
 #______________________________________________________________________________________________________________________
     """ Check if emial exists"""
     cursor.execute('SELECT id FROM WHERE name=%s;', (self.register_emial_lineedit.text()))
@@ -54,6 +56,8 @@ def register_controller(self):
     else:
         c_e = None
         self.register_email_label.setHidden(False)
+        self.register_emial_confirm_lineedit.clear()
+        self.register_emial_confirm_lineedit.setStyleSheet('border: 2px solid red;')
 #______________________________________________________________________________________________________________________
     """ Check if phone correct """
     try:
@@ -71,10 +75,23 @@ def register_controller(self):
 #______________________________________________________________________________________________________________________
     """ Check if password correct"""
     _password_confirm = self.register_password_confirm_lineedit.text()
-    if self.register_password_lineedit.text() == _password_confirm and len(_password_confirm) >= 8 and any(h.isupper() for h in _password_confirm) and any(h.isdigit() for h in _password_confirm) and any(h in string.punctuation for h in _password_confirm):
-        c_pass = _password_confirm
+    if len(_password_confirm) >= 8 and any(h.isupper() for h in _password_confirm) and any(h.isdigit() for h in _password_confirm) and any(h in string.punctuation for h in _password_confirm):
+        if self.register_password_lineedit.text() == _password_confirm:
+            c_pass = _password_confirm
+        else:
+            c_pass = None
+            self.register_password_lineedit.clear()
+            self.register_password_lineedit.setStyleSheet('border: 2px solid red;')
+            self.register_password_lineedit.setText('Confirm sie nie zgadza')
+            self.register_password_confirm_lineedit.clear()
+            self.register_password_confirm_lineedit.setStyleSheet('border: 2px solid red;')
     else:
-        c_pass = None 
+        c_pass = None
+        self.register_password_lineedit.clear()
+        self.register_password_lineedit.setStyleSheet('border: 2px solid red;')
+        self.register_password_lineedit.setText('nie spelnia wymagan')
+        self.register_password_confirm_lineedit.clear()
+        self.register_password_confirm_lineedit.setStyleSheet('border: 2px solid red;')
 #______________________________________________________________________________________________________________________
     """ Correct register call function """
     if c_n and c_e and c_p and c_c and c_pass:
