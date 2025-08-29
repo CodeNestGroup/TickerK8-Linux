@@ -46,6 +46,7 @@ def register_controller(self):
     else:
         c_n = None
         self.register_name_label.setHidden(False)
+        self.register_name_label.setText(f'{_t['register_name_label'][_l]}')
         self.register_name_lineedit.clear()
         self.register_name_lineedit.setStyleSheet('border: 2px solid red;')
 #______________________________________________________________________________________________________________________
@@ -56,6 +57,7 @@ def register_controller(self):
     else:
         c_e = None
         self.register_email_label.setHidden(False)
+        self.register_email_label.setText(f'{_t['register_email_label'][_l]}')
         self.register_emial_confirm_lineedit.clear()
         self.register_emial_confirm_lineedit.setStyleSheet('border: 2px solid red;')
 #______________________________________________________________________________________________________________________
@@ -67,7 +69,7 @@ def register_controller(self):
     except:
         c_p = None
         self.register_phonenumber_lineedit.clear()
-        self.register_phonenumber_lineedit.setText(f'{_t['register_phonenumber_fail_lineedit'][_l]}')
+        self.register_phonenumber_lineedit.setText(f'{_t['register_phonenumber_lineedit_error'][_l]}')
         self.register_phonenumber_lineedit.setStyleSheet('border: 2px solid red;')
 #______________________________________________________________________________________________________________________
     """ Country set """
@@ -82,14 +84,14 @@ def register_controller(self):
             c_pass = None
             self.register_password_lineedit.clear()
             self.register_password_lineedit.setStyleSheet('border: 2px solid red;')
-            self.register_password_lineedit.setText('Confirm sie nie zgadza')
+            self.register_password_lineedit.setText(f'{_t['register_password_lineedit_error'][0][_l]}')
             self.register_password_confirm_lineedit.clear()
             self.register_password_confirm_lineedit.setStyleSheet('border: 2px solid red;')
     else:
         c_pass = None
         self.register_password_lineedit.clear()
         self.register_password_lineedit.setStyleSheet('border: 2px solid red;')
-        self.register_password_lineedit.setText('nie spelnia wymagan')
+        self.register_password_lineedit.setText(f'{_t['register_password_lineedit'][1][_l]}')
         self.register_password_confirm_lineedit.clear()
         self.register_password_confirm_lineedit.setStyleSheet('border: 2px solid red;')
 #______________________________________________________________________________________________________________________
@@ -101,6 +103,7 @@ def register_controller(self):
     cursor.close()
     connect.close()
 #######################################################################################################################
+""" Correct register """
 def correct_register(self, name, email, phone, country, password):
     """ Variables """
     _name = name
@@ -121,4 +124,20 @@ def correct_register(self, name, email, phone, country, password):
     connect.commit() # Commit changes.
     cursor.close() # Close connection.
     connect.close()
+#######################################################################################################################
+""" Reset name """
+def reset_name(self):
+    pass
+#######################################################################################################################
+""" Reset email """
+def reset_email(self):
+    pass
+#######################################################################################################################
+""" Reset phone """
+def reset_phone(self):
+    pass
+#######################################################################################################################
+""" Reset password """
+def reset_password(self):
+    pass
 #######################################################################################################################
