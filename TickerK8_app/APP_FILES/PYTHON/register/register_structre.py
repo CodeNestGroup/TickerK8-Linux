@@ -41,7 +41,6 @@ class Register_widget(QWidget):
 #______________________________________________________________________________________________________________________
         """ Create objects """
         self.register_layout = QGridLayout(self) # Create layout.
-        self.register_title_label = QLabel(self) # Create title label.
         self.register_name_subtitle_label = QLabel(self) # Create name sub title label.
         self.register_name_lineedit = QLineEdit(self) # Create name input line.
         self.register_name_label = QLabel(self) # Create label for info if name is already used.
@@ -68,6 +67,12 @@ class Register_widget(QWidget):
         register_retranslate(self) # Call register retranslate.
 #______________________________________________________________________________________________________________________
         """ Connect local functions """
+        self.register_name_lineedit.textChanged.connect(lambda: reset_name(self))
+        self.register_emial_lineedit.textChanged.connect(lambda: reset_email(self))
+        self.register_emial_confirm_lineedit.textChanged.connect(lambda: reset_confirm_email(self))
+        self.register_phonenumber_lineedit.textChanged.connect(lambda: reset_phone(self))
+        self.register_password_lineedit.textChanged.connect(lambda: reset_password(self))
+        self.register_password_confirm_lineedit.textChanged.connect(lambda: reset_confirm_password(self))
         self.register_register_button.clicked.connect(lambda: register_controller(self))
         self.register_password_show_button.clicked.connect(lambda: show_hide_password(self))
 #######################################################################################################################
