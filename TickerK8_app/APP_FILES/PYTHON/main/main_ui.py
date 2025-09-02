@@ -1,20 +1,18 @@
+""" Import PyQt5 packages """
 """ Import PyQt5 Widgets """
 from PyQt5.QtWidgets import (
-    QWidget, # Simple widget, window
-    QPushButton, # Simple button
-    QGridLayout, # Grid layout
-    QSizePolicy # Size policy 
+    QSizePolicy # Size policy.
 )
 #______________________________________________________________________________________________________________________
 """ Import PyQt5 Core """
 from PyQt5.QtCore import (
-    Qt, # Qt settings
-    QSize # Size 
+    Qt, # Qt settings.
+    QSize # Size.
 )
 #______________________________________________________________________________________________________________________
 """ Import PyQt5 Gui """
 from PyQt5.QtGui import (
-    QIcon # Icon
+    QIcon # Icon.
 )
 #______________________________________________________________________________________________________________________
 """ Import PyQt5 Gui """
@@ -100,7 +98,10 @@ def main_ui(self):
 #______________________________________________________________________________________________________________________
     """ Set label """
 #______________________________________________________________________________________________________________________
-    """ Set line edit """
+    """ Set button """
+    self.bottom_left_news_button.setDisabled(True)
+    self.bottom_left_chart_button.setDisabled(True)
+    self.bottom_left_stats_button.setDisabled(True)
 #______________________________________________________________________________________________________________________
     """ Set size """
     self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -148,8 +149,8 @@ def main_reload_style(self):
 #######################################################################################################################
 """ Main retranslate """
 def main_retranslate(self):
-    _t = self.main_translate # Translate texts 
-    _l = self.global_config['__language__'] # Language
+    _t = self.main_translate # Translate texts.
+    _l = self.global_config['__language__'] # Language.
     self.top_search_button.setText(_t['top_search_button'][_l])
     self.bottom_left_news_button.setText(_t['bottom_left_news_button'][_l])
     self.bottom_left_chart_button.setText(_t['bottom_left_chart_button'][_l])
@@ -162,12 +163,12 @@ def main_retranslate(self):
 #######################################################################################################################
 """ Load svg script """
 def load_svg(svg_path, width, height):
-    renderer = QSvgRenderer(svg_path) # Render svg
-    pixmap = QPixmap(width, height) # Create pixmap
-    pixmap.fill(Qt.transparent) # Transparent
-    painter = QPainter(pixmap) # Render graphic 
-    renderer.render(painter) # Render graphic
-    painter.end() # Render graphic
-    scaled_pixmap = pixmap.scaled(QSize(width, height), Qt.KeepAspectRatio, Qt.SmoothTransformation) # Scal pixmap
+    renderer = QSvgRenderer(svg_path) # Render svg.
+    pixmap = QPixmap(width, height) # Create pixmap.
+    pixmap.fill(Qt.transparent) # Transparent.
+    painter = QPainter(pixmap) # Render graphic .
+    renderer.render(painter) # Render graphic.
+    painter.end() # Render graphic.
+    scaled_pixmap = pixmap.scaled(QSize(width, height), Qt.KeepAspectRatio, Qt.SmoothTransformation) # Scal pixmap.
     return scaled_pixmap
 #######################################################################################################################

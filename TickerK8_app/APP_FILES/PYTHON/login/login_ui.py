@@ -1,22 +1,12 @@
 """ Import PyQt5 packages """
 """ Import PyQt5 Widgets """
 from PyQt5.QtWidgets import (
-    QWidget, # Simple widget, window.
-    QLabel, # Simple label.
-    QPushButton, # Simple button.
-    QLineEdit, # Simple line edit.
-    QGridLayout, # Grid layout.
     QSizePolicy # Size policy.
 )
 #______________________________________________________________________________________________________________________
 """ Import PyQt5 Core """
 from PyQt5.QtCore import (
     Qt # Qt.
-)
-#______________________________________________________________________________________________________________________
-""" Import PyQt5 Gui """
-from PyQt5.QtGui import (
-    QIcon # Icon.
 )
 #######################################################################################################################
 """ Login Ui """

@@ -1,4 +1,7 @@
-import json
+""" Import packages """
+""" Import system and operating system packages """
+import json # For json files.
+#______________________________________________________________________________________________________________________
 """ Import main news """
 from main_news.main_news_structure import Main_news_widget
 #_______________________________________________________________________________________________________________________

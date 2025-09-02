@@ -1,12 +1,6 @@
 """ Import PyQt5 packages """
 """ Import PyQt5 Widgets """
 from PyQt5.QtWidgets import (
-    QWidget, # Simple widget, window.
-    QLabel, # Simple label.
-    QPushButton, # Simple button.
-    QLineEdit, # Simple line edit.
-    QComboBox, # Drop down list.
-    QGridLayout, # Grid layout.
     QSizePolicy # Size policy.
         )
 #______________________________________________________________________________________________________________________
