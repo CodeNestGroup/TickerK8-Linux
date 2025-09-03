@@ -19,11 +19,7 @@ def open_main_news_list(self, news_type_index):
 #######################################################################################################################
 """ main mid object changed """
 def main_mid_object_changed(self):
-    self.global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data
-    _o = self.global_config['mid_object'][0]
-    if _o == 'country' or _o == 'market':
-        self.bottom_left_chart_button.setHidden(True)
-    else:
-        self.bottom_left_chart_button.setHidden(False)
+    self.global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data.
+    _o = self.global_config['mid_object'][0] # Get mid object data.
     self.mid_object_scroll.setup_widget()
 #######################################################################################################################

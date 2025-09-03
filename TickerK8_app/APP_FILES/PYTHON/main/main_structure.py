@@ -50,6 +50,7 @@ class Main_widget(QWidget):
         self.setParent(parent) # Set parent.
         self.main_news = None # Set default.
         self.main_news_list = None # Set default.
+        self.main_search_widget = None # Set default.
 #______________________________________________________________________________________________________________________
         """ Set paths, file name"""
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2]) # Set main path, path to TickerK8 folder.
@@ -58,25 +59,24 @@ class Main_widget(QWidget):
 #______________________________________________________________________________________________________________________
         """ Create objects """
         self.main_layout = QGridLayout(self) # Create grid layout.
-        self.top_widget = QWidget(self) # Create top widget. 
-        self.top_widget_layout = QGridLayout(self.top_widget) # Create grid layout for top widget.
-        self.top_search_button = QPushButton(self.top_widget) # Create search button, top widget.
-        self.top_settings_button = QPushButton(self.top_widget) # Create settings button, top widget.
-        self.mid_widget = QWidget(self) # Create mid widget.
-        self.mid_widget_layout = QGridLayout(self.mid_widget) # Create grid layout for mid widget.
-        self.mid_object_scroll = Main_mid_object_scroll(self.mid_widget) # Create object scroll, mid widget, left side.
-        self.mid_object_list_widget = Main_mid_object_list_widget(self.mid_widget) # Create object list widget, mid widget, center side.
-        self.mid_news_widget = Main_mid_news_widget(self.mid_widget) # Create news widget, mid widget, right side.
-        self.bottom_widget = QWidget(self) # Create bottom widget.
-        self.bottom_widget_layout = QGridLayout(self.bottom_widget) # Create grid layout for bottom widget.
-        self.bottom_left_news_button = QPushButton(self.bottom_widget) # Create news button, bottom widget, left, left.
-        self.bottom_left_chart_button = QPushButton(self.bottom_widget) # Create chart button, bottom widget, left, mid.
-        self.bottom_left_stats_button = QPushButton(self.bottom_widget) # Create stats button, bottom widget, left, right.
-        self.bottom_mid_type_list_button = QPushButton(self.bottom_widget) # Create typelist button, bottom widget, mid, left.
-        self.bottom_mid_data_list_button = QPushButton(self.bottom_widget) # Create data list button, bottom widget, mid, right.
-        self.bottom_right_market_button = QPushButton(self.bottom_widget) # Create market news button, bottom wigdet, right, left.
-        self.bottom_right_country_button = QPushButton(self.bottom_widget) # Create country news button, bottom widget, right, mid.
-        self.bottom_right_world_button = QPushButton(self.bottom_widget) # Create world news button, bottom widget, right, right.
+        self.nav_widget = QWidget(self) # Create nav widget, left side.
+        self.nav_layout = QGridLayout(self.nav_widget) # Create nav layout
+        self.nav_search_button = QPushButton(self.nav_widget) # Create search button, nav widget, top.
+        self.nav_object_list_widget = Nav_object_list_widget(self.nav_widget) # Create object list widget, nav widget, center side.
+        self.nav_type_list_button = QPushButton(self.nav_widget) # Create typelist button, nav widget, bottom, left.
+        self.nav_data_list_button = QPushButton(self.nav_widget) # Create data list button, nav widget, bottom, right.
+        self.nav_settings_button = QPushButton(self.nav_widget) # Create settings button, top widget.
+        self.nav_logout_button = QPushButton(self.nav_widget) # Create nav log out button, left.
+        
+        self.object_scroll = Object_scroll(self) # Create object scroll, center side.
+        self.news_widget = News_widget(self) # Create news widget,right side.
+
+        self.news_object_button = QPushButton(self) # Create news button, left, left.
+        self.chart_button = QPushButton(self) # Create chart button, left, mid.
+        self.stats_button = QPushButton(self) # Create stats button, left, right.
+        self.news_market_button = QPushButton(self) # Create market news button, bottom wigdet, right, left.
+        self.news_country_button = QPushButton(self) # Create country news button, right, mid.
+        self.news_world_button = QPushButton(self) # Create world news button, right, right.
 #______________________________________________________________________________________________________________________
         """ Call functions """
         main_ui(self) # Call main ui function.
@@ -84,12 +84,12 @@ class Main_widget(QWidget):
         main_retranslate(self) # Call main retranslate function.
 #______________________________________________________________________________________________________________________
         """ Connect  functions """
-        self.top_search_button.clicked.connect(lambda: Main_search_widget(self))
-        self.mid_object_list_widget.config_changed.connect(lambda: main_mid_object_changed(self))
-        self.mid_news_widget.open_news.connect(lambda val: open_main_news(self, val))
-        self.bottom_mid_type_list_button.clicked.connect(self.mid_object_list_widget.show_lists)
-        self.bottom_mid_data_list_button.clicked.connect(self.mid_object_list_widget.show_edit_list_data)
-        self.bottom_right_market_button.clicked.connect(lambda: open_main_news_list(self,0))
-        self.bottom_right_country_button.clicked.connect(lambda: open_main_news_list(self, 1))
-        self.bottom_right_world_button.clicked.connect(lambda: open_main_news_list(self, 1))
+        self.nav_search_button.clicked.connect(lambda: Main_search_widget(self))
+        self.nav_object_list_widget.config_changed.connect(lambda: main_mid_object_changed(self))
+        self.news_widget.open_news.connect(lambda val: open_main_news(self, val))
+        self.nav_type_list_button.clicked.connect(self.nav_object_list_widget.show_lists)
+        self.nav_data_list_button.clicked.connect(self.nav_object_list_widget.show_edit_list_data)
+        self.news_market_button.clicked.connect(lambda: open_main_news_list(self,0))
+        self.news_country_button.clicked.connect(lambda: open_main_news_list(self, 1))
+        self.news_world_button.clicked.connect(lambda: open_main_news_list(self, 1))
 #######################################################################################################################

@@ -1,6 +1,7 @@
 """ Import PyQt5 packages """
 """ Import PyQt5 Widgets """
 from PyQt5.QtWidgets import (
+    QLineEdit, # Simple line edit.
     QSizePolicy # Size policy.
 )
 #______________________________________________________________________________________________________________________
