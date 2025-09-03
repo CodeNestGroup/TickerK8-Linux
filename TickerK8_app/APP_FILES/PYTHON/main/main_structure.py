@@ -67,10 +67,8 @@ class Main_widget(QWidget):
         self.nav_data_list_button = QPushButton(self.nav_widget) # Create data list button, nav widget, bottom, right.
         self.nav_settings_button = QPushButton(self.nav_widget) # Create settings button, top widget.
         self.nav_logout_button = QPushButton(self.nav_widget) # Create nav log out button, left.
-        
         self.object_scroll = Object_scroll(self) # Create object scroll, center side.
         self.news_widget = News_widget(self) # Create news widget,right side.
-
         self.news_object_button = QPushButton(self) # Create news button, left, left.
         self.chart_button = QPushButton(self) # Create chart button, left, mid.
         self.stats_button = QPushButton(self) # Create stats button, left, right.
