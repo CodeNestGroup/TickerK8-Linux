@@ -1,42 +1,48 @@
-import pathlib # For get path to folders
-import json # For json files
+""" Import packages """
+""" Import system and operating system packages """
+import pathlib # For get path to folders.
+import json # For json files.
 #______________________________________________________________________________________________________________________
+""" Import PyQt5 packages """
 """ Import PyQt5 Widgets """
 from PyQt5.QtWidgets import (
-    QWidget, # Simple widget, window
-    QScrollArea, # Simple scroll widget
-    QStackedWidget, # Stacked widget 
-    QLabel, # Simple label
-    QPushButton, # Simple button
-    QComboBox, # Drop down list
-    QGridLayout, # Grid layout
-    QVBoxLayout # Vertical layout 
+    QWidget, # Simple widget, window.
+    QScrollArea, # Simple scroll widget.
+    QStackedWidget, # Stacked widget .
+    QLabel, # Simple label.
+    QPushButton, # Simple button.
+    QComboBox, # Drop down list.
+    QGridLayout, # Grid layout.
+    QVBoxLayout # Vertical layout .
 )
+#______________________________________________________________________________________________________________________
+""" Import PyQt5 Core """
 from PyQt5.QtCore import (
-    Qt,
-    pyqtSignal
+    Qt, # Qt.
+    pyqtSignal # Signal.
 )
 #______________________________________________________________________________________________________________________
-""" Import main mid object list ui """
-from .main_mid_object_list_ui import *
+""" Impport nav object list modules """
+""" Import nav object list ui """
+from .nav_object_list_ui import *
 #______________________________________________________________________________________________________________________
-""" Import main mid object list logic """
-from .main_mid_object_list_logic import *
+""" Import nav object list logic """
+from .nav_object_list_logic import *
 #######################################################################################################################
-""" Main mid object widget """
-class Main_mid_object_list_widget(QWidget):
+""" Nav object widget """
+class Nav_object_list_widget(QWidget):
     """ Init, creating items, set base variables like paths, screen size, etc. """
     config_changed = pyqtSignal()
     def __init__(self, parent):
         super().__init__()
-        self.setAttribute(Qt.WA_StyledBackground, True) # Force widget to draw background
-        self.setParent(parent) # Set parent
+        self.setAttribute(Qt.WA_StyledBackground, True) # Force widget to draw background.
+        self.setParent(parent) # Set parent.
 #______________________________________________________________________________________________________________________
         """ Set paths, file name"""
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2]) # Set main path, path to TickerK8 folder.
-        self.global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data
-        self.main_mid_object_list_translate = json.load(open(self.main_path+'/CONFIG/main_mid_object_list/translate.json', 'r')) # Get main mid object list settings translate data
-        self.local_database = self.main_path+'/CONFIG/GLOBAL/local_data_prototype.db' # Get database path
+        self.global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data.
+        self.nav_object_list_translate = json.load(open(self.main_path+'/CONFIG/nav_object_list/translate.json', 'r')) # Get main mid object list settings translate data.
+        self.local_database = self.main_path+'/CONFIG/GLOBAL/local_data_prototype.db' # Get database path.
 #______________________________________________________________________________________________________________________
         """ Create objects """
         self.main_layout = QGridLayout(self)
@@ -49,9 +55,9 @@ class Main_mid_object_list_widget(QWidget):
         self.lists_edit_data_background_widget = None 
 #______________________________________________________________________________________________________________________
         """ Call functions """
-        main_mid_object_list_ui(self)
-        main_mid_object_list_reload_style(self)
-        main_mid_object_list_retranslate(self)
+        nav_object_list_ui(self)
+        nav_object_list_reload_style(self)
+        nav_object_list_retranslate(self)
         open_list(self)
         self.open_list = lambda: open_list(self)
         self.show_lists = lambda: show_lists(self)

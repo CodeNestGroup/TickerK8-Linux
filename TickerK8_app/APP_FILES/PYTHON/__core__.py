@@ -107,9 +107,9 @@ class app_controller(QWidget):
         self.main_widget = Main_widget(self) # Creat main widget
         self.layout.addWidget(self.main_widget) # Add main widget to main layout 
         self.set_size_main() # Set size if main window fir main widget
-        self.main_widget.top_settings_button.clicked.connect(self.main_to_settings) # Connect open settings widget
-        self.main_widget.bottom_left_stats_button.clicked.connect(self.main_to_statistics) # Connect open statistics widget
-        self.main_widget.bottom_left_chart_button.clicked.connect(self.main_to_chart) # Connect open chart widget
+        self.main_widget.nav_settings_button.clicked.connect(self.main_to_settings) # Connect open settings widget
+        self.main_widget.stats_button.clicked.connect(self.main_to_statistics) # Connect open statistics widget
+        self.main_widget.chart_button.clicked.connect(self.main_to_chart) # Connect open chart widget
 #______________________________________________________________________________________________________________________
     """ Set size main """
     def set_size_main(self):

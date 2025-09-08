@@ -1,25 +1,26 @@
+""" Import PyQt5 packages """
 """ Import PyQt5 Widgets """
 from PyQt5.QtWidgets import (
-    QWidget, # Simple widget, window
-    QPushButton, # Simple button
-    QGridLayout, # Grid layout
-    QSizePolicy # Size policy 
+    QWidget, # Simple widget, window.
+    QPushButton, # Simple button.
+    QGridLayout, # Grid layout.
+    QSizePolicy # Size policy.
 )
 #______________________________________________________________________________________________________________________
 """ Import PyQt5 Core """
 from PyQt5.QtCore import (
-    Qt # Qt settings
+    Qt # Qt.
 )
 #______________________________________________________________________________________________________________________
 """ Import PyQt5 Gui """
 from PyQt5.QtGui import (
-    QIcon # Icon
+    QIcon # Icon.
 )
 #######################################################################################################################
-""" Main mid object Ui """
-def main_mid_object_ui(self):
+""" object ui """
+def main_object_ui(self):
     """ Set object name """
-    self.setObjectName('main_mid_object_scroll')
+    self.setObjectName('main_object_scroll')
 #_______________________________________________________________________________________________________________________
     """ Set property """
 #_______________________________________________________________________________________________________________________
@@ -33,6 +34,7 @@ def main_mid_object_ui(self):
 #______________________________________________________________________________________________________________________
     """ Set size """
 ########################################################################################################################
-def main_mid_object_reload_style(self):
-    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/main_mid_object/'+self.global_config['__theme__']+'.css')).read())
+""" object reload style """
+def main_object_reload_style(self):
+    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/main_object/'+self.global_config['__theme__']+'.css')).read())
 #######################################################################################################################

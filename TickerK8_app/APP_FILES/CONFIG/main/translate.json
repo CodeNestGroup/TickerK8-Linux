@@ -1,12 +1,11 @@
 {
-    "top_search_button": ["Search...", "Wyszukaj..."],
-    "top_settings_button": ["S", "S"],
-    "bottom_left_news_button": ["   News", "    Wiadmomości"],
-    "bottom_left_chart_button": ["  Chart", "   Wykres"],
-    "bottom_left_stats_button": ["  Statistics", "  Statystyki"],
-    "bottom_mid_type_list_button": ["  Lists", "   Listy"],
-    "bottom_mid_data_list_button": ["  Edit list data", "    Edytuj dane listy"],
-    "bottom_right_market_button": ["    Market", "  Rynek"],
-    "bottom_right_country_button": ["   Country", " Kraj"],
-    "bottom_right_world_button": [" World", "   Świat"]
+    "nav_search_button": ["Search...", "Wyszukaj..."],
+    "news_object_button": ["   News", "    Wiadmomości"],
+    "chart_button": ["  Chart", "   Wykres"],
+    "stats_button": ["  Statistics", "  Statystyki"],
+    "nav_type_list_button": ["  Lists", "   Listy"],
+    "nav_data_list_button": ["  Edit list data", "    Edytuj dane listy"],
+    "news_market_button": ["    Market", "  Rynek"],
+    "news_country_button": ["   Country", " Kraj"],
+    "news_world_button": [" World", "   Świat"]
 }

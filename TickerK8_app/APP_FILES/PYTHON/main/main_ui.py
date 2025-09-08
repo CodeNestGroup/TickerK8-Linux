@@ -117,7 +117,7 @@ def main_reload_style(self):
     self.nav_settings_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/settings_'+self.global_config['__theme__']+'.svg'), 256, 256)))
     self.nav_settings_button.setIconSize(self.nav_settings_button.size())
     self.nav_logout_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/exit_'+self.global_config['__theme__']+'.svg'), 256, 256)))
-    self.nav_logout_button.setIconSize(self.nav_logout_button)
+    self.nav_logout_button.setIconSize(self.nav_logout_button.size())
     self.news_object_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/news_'+self.global_config['__theme__']+'.svg'), 256, 256)))
     self.news_object_button.setIconSize(self.news_object_button.size())
     self.chart_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/chart_'+self.global_config['__theme__']+'.svg'), 256, 256)))
@@ -141,9 +141,9 @@ def main_retranslate(self):
     self.stats_button.setText(_t['stats_button'][_l])
     self.nav_type_list_button.setText(_t['nav_type_list_button'][_l])
     self.nav_data_list_button.setText(_t['nav_data_list_button'][_l])
-    self.bottom_right_market_button.setText(_t['bottom_right_market_button'][_l])
-    self.bottom_right_country_button.setText(_t['bottom_right_country_button'][_l])
-    self.bottom_right_world_button.setText(_t['bottom_right_world_button'][_l])
+    self.news_market_button.setText(_t['news_market_button'][_l])
+    self.news_country_button.setText(_t['news_country_button'][_l])
+    self.news_world_button.setText(_t['news_world_button'][_l])
 #######################################################################################################################
 """ Load svg script """
 def load_svg(svg_path, width, height):

@@ -27,13 +27,13 @@ from .main_logic import *
 from main_search.main_search_structure import Main_search_widget
 #______________________________________________________________________________________________________________________
 """ Import main mid object list """
-from main_mid_object_list.main_mid_object_list_structure import Main_mid_object_list_widget
+from nav_object_list.nav_object_list_structure import Nav_object_list_widget
 #______________________________________________________________________________________________________________________
-""" Import main mid object """
-from main_mid_object.main_mid_object_structure import Main_mid_object_scroll
+""" Import main object """
+from main_object.main_object_structure import Main_object_scroll
 #______________________________________________________________________________________________________________________
 """ Import main mid news """
-from main_mid_news.main_mid_news_structure import Main_mid_news_widget
+from main_news.main_news_structure import Main_news_widget
 #______________________________________________________________________________________________________________________
 """ Import main news structure """
 from main_news.main_news_structure import Main_news_widget
@@ -67,8 +67,8 @@ class Main_widget(QWidget):
         self.nav_data_list_button = QPushButton(self.nav_widget) # Create data list button, nav widget, bottom, right.
         self.nav_settings_button = QPushButton(self.nav_widget) # Create settings button, top widget.
         self.nav_logout_button = QPushButton(self.nav_widget) # Create nav log out button, left.
-        self.object_scroll = Object_scroll(self) # Create object scroll, center side.
-        self.news_widget = News_widget(self) # Create news widget,right side.
+        self.object_scroll = Main_object_scroll(self) # Create object scroll, center side.
+        self.news_widget = Main_news_widget(self) # Create main news widget,right side.
         self.news_object_button = QPushButton(self) # Create news button, left, left.
         self.chart_button = QPushButton(self) # Create chart button, left, mid.
         self.stats_button = QPushButton(self) # Create stats button, left, right.

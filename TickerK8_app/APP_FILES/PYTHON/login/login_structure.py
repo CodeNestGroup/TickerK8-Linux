@@ -16,8 +16,8 @@ from PyQt5.QtWidgets import (
 """ Import PyQt5 Core """
 from PyQt5.QtCore import (
         Qt, # Qt.
-        QTimer, # Timer
-        pyqtSignal # Signal 
+        QTimer, # Timer.
+        pyqtSignal # Signal.
         )
 #______________________________________________________________________________________________________________________
 """ Import login modules """

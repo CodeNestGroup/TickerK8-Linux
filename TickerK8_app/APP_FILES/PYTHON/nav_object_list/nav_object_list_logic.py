@@ -134,7 +134,7 @@ def open_list(self):
                 items_layout.addWidget(label, 0, index)
                 label.setAlignment(Qt.AlignCenter)
                 label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-                label.setText(f'{self.main_mid_object_list_translate['list_tags'][f'{tag}'][self.global_config['__language__']]}')
+                label.setText(f'{self.nav_object_list_translate['list_tags'][f'{tag}'][self.global_config['__language__']]}')
 #_____________________________________________________________________________________________________________________
             """ Create items """
             database = sqlite3.connect(database=self.local_database)
@@ -408,7 +408,7 @@ def show_edit_list_data(self):
     self.lists_edit_data_set_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 #______________________________________________________________________________________________________________________
     """ Set text """
-    _t = self.main_mid_object_list_translate # Translate texts
+    _t = self.main_object_list_translate # Translate texts
     _l = self.global_config['__language__'] # Language
     self.lists_edit_data_title_label.setText(_t['lists_edit_data_title_label'][_l])
     self.lists_edit_data_icon_button.setText(_t['lists_edit_data_icon_button'][_l])
