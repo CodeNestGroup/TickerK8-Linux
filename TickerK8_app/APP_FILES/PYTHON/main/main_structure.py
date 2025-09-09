@@ -13,7 +13,8 @@ from PyQt5.QtWidgets import (
 #______________________________________________________________________________________________________________________
 
 from PyQt5.QtCore import (
-    Qt # Qt.
+    Qt, # Qt.
+    QTimer # Timer.
 )
 #______________________________________________________________________________________________________________________
 """ Import main modules """
@@ -55,6 +56,7 @@ class Main_widget(QWidget):
         """ Set paths, file name"""
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2]) # Set main path, path to TickerK8 folder.
         self.global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data.
+        self.main_conf = json.load(open(self.main_path+'/CONFIG/main/conf.json', 'r')) # Get main translate data.
         self.main_translate = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r')) # Get main translate data.
 #______________________________________________________________________________________________________________________
         """ Create objects """
@@ -75,11 +77,15 @@ class Main_widget(QWidget):
         self.news_market_button = QPushButton(self) # Create market news button, bottom wigdet, right, left.
         self.news_country_button = QPushButton(self) # Create country news button, right, mid.
         self.news_world_button = QPushButton(self) # Create world news button, right, right.
+        self.timer = QTimer(self) # Create timer.
 #______________________________________________________________________________________________________________________
         """ Call functions """
         main_ui(self) # Call main ui function.
         main_reload_style(self) # Call main style function .
         main_retranslate(self) # Call main retranslate function.
+        self.main_widget_background = lambda: main_widget_background_painter(self) # Function for background.
+        self.timer.timeout.connect(self.main_widget_background) # Connect.
+        self.timer.start(1) # Start timer.
 #______________________________________________________________________________________________________________________
         """ Connect  functions """
         self.nav_search_button.clicked.connect(lambda: Main_search_widget(self))
