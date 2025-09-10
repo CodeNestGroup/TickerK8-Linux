@@ -1,47 +1,50 @@
 #nav_widget{
-    background-color: #1e1e1e;
+    background-color: #45090a0a;
 }
 #nav_search_button{
-    color: #FAFAFA;
-    background-color: #252525;
+    color: #d7d7d7;
+    background-color: #1a1a1a;
     border: 0;
-    padding: 0.3em;
+    padding: 0.1em;
     font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
 }
 #nav_search_button:hover{
-    background-color: #031913;
+    background-color: #282828;
 }
 .nav_list_button{
-    color: #FAFAFA;
-    background-color: #252525;
+    color: #d7d7d7;
+    background-color: #1a1a1a;
     border: 0;
-    border-radius: 17px;
-    padding: 0.3em;
-    font-size: 14px;
+    border-radius: 15px;
+    padding: 0.1em;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
 }
 .nav_list_button:hover{
-    background-color: #031913;
+    background-color: #282828;
 }
 .nav_bottom_button{
-    color: #FAFAFA;
-    background-color: #252525;
+    color: #d7d7d7;
+    background-color: #1a1a1a;
     border: 0;
-    border-radius: 17px;
-    padding: 0.3em;
-    font-size: 14px;
+    border-radius: 0.3em;
+    padding: 0.1em;
 }
 .nav_bottom_button:hover{
-    background-color: #031913;
+    background-color: #282828;
 }
 .bottom_button{
-    color: #FAFAFA;
+    color: #d7d7d7;
     background-color: #1e1e1e;
     border: 0;
     padding: 0em;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 600;
-    letter-spacing: 0.5em;
+    letter-spacing: 0.2em;
 }
 .bottom_button:hover{
-    background-color: #031913;
+    background-color: #282828;
 }

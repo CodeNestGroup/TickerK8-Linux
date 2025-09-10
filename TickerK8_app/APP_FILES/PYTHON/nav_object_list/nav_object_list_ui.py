@@ -33,8 +33,8 @@ def nav_object_list_ui(self):
     """ Set property """
 #______________________________________________________________________________________________________________________
     """ Set layout """
-    self.main_layout.addWidget(self.title_label, 0, 0, 10, 100)
-    self.main_layout.addWidget(self.tag_widget, 10, 0, 5, 100)
+    self.main_layout.addWidget(self.title_label, 0, 0, 5, 100)
+    self.main_layout.addWidget(self.tag_widget, 5, 0, 5, 100)
     self.main_layout.addWidget(self.list_scroll, 15, 0, 85, 100)
     self.main_layout.setSpacing(0)
     self.main_layout.setContentsMargins(0,0,0,0)

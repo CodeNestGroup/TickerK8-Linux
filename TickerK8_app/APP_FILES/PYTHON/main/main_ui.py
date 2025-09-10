@@ -53,10 +53,7 @@ def main_ui(self):
     self.news_world_button.setProperty('class', 'bottom_button')
 #______________________________________________________________________________________________________________________
     """ Set layout """
-    for enc in range(100):
-        self.main_layout.setRowStretch(enc, 1)
-        self.main_layout.setColumnStretch(enc, 1)
-    self.main_layout.addWidget(self.nav_widget, 0, 0, 100, 10)
+    self.main_layout.addWidget(self.nav_widget, 0, 0, 100, 5)
     self.main_layout.addWidget(self.object_scroll, 0, 25, 90, 50)
     self.main_layout.addWidget(self.news_object_button, 90, 25, 10, 15)
     self.main_layout.addWidget(self.chart_button, 90, 40, 10, 20)
@@ -67,14 +64,17 @@ def main_ui(self):
     self.main_layout.addWidget(self.news_world_button, 90, 95, 10, 5)
     self.main_layout.setSpacing(0)
     self.main_layout.setContentsMargins(0,0,0,0)
+    for enc in range(100):
+        self.main_layout.setRowStretch(enc, 1)
+        self.main_layout.setColumnStretch(enc, 1)
     self.setLayout(self.main_layout)
-    self.nav_layout.addWidget(self.nav_search_button, 5, 5, 15, 90)
+    self.nav_layout.addWidget(self.nav_search_button, 5, 20, 5, 60)
     self.nav_layout.addWidget(self.nav_object_list_widget, 20, 0, 60, 100)
     self.nav_layout.addWidget(self.nav_type_list_button, 80, 0, 5, 50)
     self.nav_layout.addWidget(self.nav_data_list_button, 80, 50, 5, 50)
     self.nav_layout.addWidget(self.nav_settings_button, 90, 25, 5, 15)
     self.nav_layout.addWidget(self.nav_logout_button, 90, 60, 6, 15)
-    for enc in range(15):
+    for enc in range(100):
         self.nav_layout.setRowStretch(enc, 1)
         self.nav_layout.setColumnStretch(enc, 1)
     self.nav_widget.setLayout(self.nav_layout)  
