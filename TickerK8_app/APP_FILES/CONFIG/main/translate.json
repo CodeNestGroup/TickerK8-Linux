@@ -1,10 +1,10 @@
 {
-    "nav_search_button": ["Search...", "Wyszukaj..."],
+    "main_search_button": ["Search...", "Wyszukaj..."],
     "news_object_button": ["   News", "    Wiadmomości"],
     "chart_button": ["  Chart", "   Wykres"],
     "stats_button": ["  Statistics", "  Statystyki"],
-    "nav_type_list_button": ["  Lists", "   Listy"],
-    "nav_data_list_button": ["  Edit list data", "    Edytuj dane listy"],
+    "main_type_list_button": ["  Lists", "   Listy"],
+    "main_data_list_button": ["  Edit list data", "    Edytuj dane listy"],
     "news_market_button": ["    Market", "  Rynek"],
     "news_country_button": ["   Country", " Kraj"],
     "news_world_button": [" World", "   Świat"]

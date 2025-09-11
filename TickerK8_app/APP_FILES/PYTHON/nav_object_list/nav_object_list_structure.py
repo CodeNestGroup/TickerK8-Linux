@@ -47,8 +47,6 @@ class Nav_object_list_widget(QWidget):
         """ Create objects """
         self.main_layout = QGridLayout(self)
         self.title_label = QLabel(self)
-        self.tag_widget = QWidget(self)
-        self.tag_layout = QGridLayout(self)
         self.list_scroll = QScrollArea(self)
         self.list_widget = None 
         self.lists_background_widget = None 

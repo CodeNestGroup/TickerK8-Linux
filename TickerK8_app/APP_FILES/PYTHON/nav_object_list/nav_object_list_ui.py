@@ -27,14 +27,12 @@ def nav_object_list_ui(self):
     """ Set object name """
     self.setObjectName('nav_object_list')
     self.title_label.setObjectName('title_label')
-    self.tag_widget.setObjectName('tag_widget')
     self.list_scroll.setObjectName('list_scroll')
 #______________________________________________________________________________________________________________________
     """ Set property """
 #______________________________________________________________________________________________________________________
     """ Set layout """
     self.main_layout.addWidget(self.title_label, 0, 0, 5, 100)
-    self.main_layout.addWidget(self.tag_widget, 5, 0, 5, 100)
     self.main_layout.addWidget(self.list_scroll, 15, 0, 85, 100)
     self.main_layout.setSpacing(0)
     self.main_layout.setContentsMargins(0,0,0,0)
@@ -55,7 +53,6 @@ def nav_object_list_ui(self):
 #______________________________________________________________________________________________________________________
     """ Set size """
     self.title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.tag_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.list_scroll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 #######################################################################################################################
 """ nav object list tyle """
