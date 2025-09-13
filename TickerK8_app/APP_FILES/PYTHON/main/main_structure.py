@@ -8,6 +8,8 @@ import json # For json files.
 from PyQt5.QtWidgets import (
     QWidget, # Simple widget, window.
     QPushButton, # Simple button.
+    QLabel,
+    QScrollArea,
     QGridLayout # Grid layout.
 )
 #______________________________________________________________________________________________________________________
@@ -26,9 +28,6 @@ from .main_logic import *
 #______________________________________________________________________________________________________________________
 """ Import main search """
 from main_search.main_search_structure import Main_search_widget
-#______________________________________________________________________________________________________________________
-""" Import main mid object list """
-from nav_object_list.nav_object_list_structure import Nav_object_list_widget
 #______________________________________________________________________________________________________________________
 """ Import main object """
 from main_object.main_object_structure import Main_object_scroll
@@ -52,12 +51,11 @@ class Main_widget(QWidget):
         self.main_news = None # Set default.
         self.main_news_list = None # Set default.
         self.main_search_widget = None # Set default.
+        self.main_objects_list_widget = None # Set default.
 #______________________________________________________________________________________________________________________
         """ Set paths, file name"""
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2]) # Set main path, path to TickerK8 folder.
-        self.global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data.
-        self.main_conf = json.load(open(self.main_path+'/CONFIG/main/conf.json', 'r')) # Get main translate data.
-        self.main_translate = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r')) # Get main translate data.
+        self.local_database = self.main_path+'/CONFIG/GLOBAL/local_data_prototype.db' # Get database path.
 #______________________________________________________________________________________________________________________
         """ Create objects """
         self.main_layout = QGridLayout(self) # Create grid layout.
@@ -91,9 +89,12 @@ class Main_widget(QWidget):
         self.main_widget_background = lambda: main_widget_background_painter(self) # Function for background.
         self.timer.timeout.connect(self.main_widget_background) # Connect.
         self.timer.start(1) # Start timer.
+        main_objects_list_open(self)
 #______________________________________________________________________________________________________________________
         """ Connect  functions """
         self.main_search_button.clicked.connect(lambda: Main_search_widget(self))
+        self.main_type_list_button.clicked.connect(self.Main_objects_list_lists_open)
+        self.main_data_list_button.clicked.connect(self.Main_objects_list_edit_open)
         #self.nav_object_list_widget.config_changed.connect(lambda: main_mid_object_changed(self))
         #self.news_widget.open_news.connect(lambda val: open_main_news(self, val))
         #self.main_type_list_button.clicked.connect(self.nav_object_list_widget.show_lists)
@@ -101,4 +102,61 @@ class Main_widget(QWidget):
         #self.news_market_button.clicked.connect(lambda: open_main_news_list(self,0))
         #self.news_country_button.clicked.connect(lambda: open_main_news_list(self, 1))
         #self.news_world_button.clicked.connect(lambda: open_main_news_list(self, 1))
+#______________________________________________________________________________________________________________________
+    """ Main objects list lists open """
+    def Main_objects_list_lists_open(self):
+        """ Set config """
+        self.main_objects_list_title.hide()
+        self.main_objects_list_scroll.hide()
+        self.main_type_list_button.hide()
+        self.main_data_list_button.hide()
+#______________________________________________________________________________________________________________________
+        """ Create objects """
+        self.main_objects_list_lists_title_label = QLabel(self)
+        self.main_objects_list_lists_scroll = QScrollArea(self)
+        self.main_objects_list_lists_widget = QWidget(self.main_objects_list_lists_scroll)
+        self.main_objects_list_lists_layout = QVBoxLayout(self.main_objects_list_lists_widget)
+        self.main_objects_list_lists_exit_button = QPushButton(self)
+#______________________________________________________________________________________________________________________
+        """ Call functions """
+        main_object_list_lists_ui(self)
+        main_object_list_lists_reload_style(self)
+        main_object_list_lists_retranslate(self)
+        main_object_list_lists_scroll_setup(self)
+#______________________________________________________________________________________________________________________
+        """ Connect functions """
+        self.main_objects_list_lists_exit_button.clicked.connect(lambda: main_object_list_lists_exit(self))
+#______________________________________________________________________________________________________________________
+    """ Main objects list lists open """
+    def Main_objects_list_edit_open(self):
+        """ Set config """
+        self.main_objects_list_title.hide()
+        self.main_objects_list_scroll.hide()
+        self.main_type_list_button.hide()
+        self.main_data_list_button.hide()
+#______________________________________________________________________________________________________________________
+        """ Create objects """
+        self.main_object_list_edit_title_label = QLabel(self)
+        self.main_object_list_edit_scroll = QScrollArea(self)
+        self.main_object_list_edit_widget = QWidget(self.main_object_list_edit_scroll)
+        self.main_object_list_edit_layout = QGridLayout(self.main_object_list_edit_widget)
+        self.main_object_list_edit_icon_button = QPushButton(self.main_object_list_edit_widget)
+        self.main_object_list_edit_ticker_button = QPushButton(self.main_object_list_edit_widget)
+        self.main_object_list_edit_pe_ratio_button = QPushButton(self.main_object_list_edit_widget)
+        self.main_object_list_edit_eps_button = QPushButton(self.main_object_list_edit_widget)
+        self.main_object_list_edit_dividend_yield_button = QPushButton(self.main_object_list_edit_widget)
+        self.main_object_list_edit_capitalization_button = QPushButton(self.main_object_list_edit_widget)
+        self.main_object_list_edit_capital_button = QPushButton(self.main_object_list_edit_widget)
+        self.main_object_list_edit_set_button = QPushButton(self)
+        self.main_object_list_edit_exit_button = QPushButton(self)
+#______________________________________________________________________________________________________________________
+        """ Call functions """
+        main_object_list_edit_ui(self)
+        main_object_list_edit_reload_style(self)
+        main_object_list_edit_retranslate(self)
+        main_object_list_edit_scroll_setup(self)
+#______________________________________________________________________________________________________________________
+        """ Connect functions """
+        self.main_object_list_edit_set_button.clicked.connect(lambda: main_object_list_edit_set(self))
+        self.main_object_list_edit_exit_button.clicked.connect(lambda: main_object_list_edit_exit(self))
 #######################################################################################################################
