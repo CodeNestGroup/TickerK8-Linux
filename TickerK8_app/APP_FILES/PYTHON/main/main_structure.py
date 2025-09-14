@@ -147,7 +147,6 @@ class Main_widget(QWidget):
         self.main_object_list_edit_dividend_yield_button = QPushButton(self.main_object_list_edit_widget)
         self.main_object_list_edit_capitalization_button = QPushButton(self.main_object_list_edit_widget)
         self.main_object_list_edit_capital_button = QPushButton(self.main_object_list_edit_widget)
-        self.main_object_list_edit_set_button = QPushButton(self)
         self.main_object_list_edit_exit_button = QPushButton(self)
 #______________________________________________________________________________________________________________________
         """ Call functions """
@@ -155,8 +154,15 @@ class Main_widget(QWidget):
         main_object_list_edit_reload_style(self)
         main_object_list_edit_retranslate(self)
         main_object_list_edit_scroll_setup(self)
+        main_object_list_edit_check_selected(self)
 #______________________________________________________________________________________________________________________
         """ Connect functions """
-        self.main_object_list_edit_set_button.clicked.connect(lambda: main_object_list_edit_set(self))
+        self.main_object_list_edit_icon_button.clicked.connect(lambda: main_object_list_edit_save(self, 'icon'))
+        self.main_object_list_edit_ticker_button.clicked.connect(lambda: main_object_list_edit_save(self, 'ticker'))
+        self.main_object_list_edit_pe_ratio_button.clicked.connect(lambda: main_object_list_edit_save(self, 'pe_ratio'))
+        self.main_object_list_edit_eps_button.clicked.connect(lambda: main_object_list_edit_save(self, 'eps'))
+        self.main_object_list_edit_dividend_yield_button.clicked.connect(lambda: main_object_list_edit_save(self, 'dividend_yield'))
+        self.main_object_list_edit_capitalization_button.clicked.connect(lambda: main_object_list_edit_save(self, 'capitalization'))
+        self.main_object_list_edit_capital_button.clicked.connect(lambda: main_object_list_edit_save(self, 'capital'))
         self.main_object_list_edit_exit_button.clicked.connect(lambda: main_object_list_edit_exit(self))
 #######################################################################################################################

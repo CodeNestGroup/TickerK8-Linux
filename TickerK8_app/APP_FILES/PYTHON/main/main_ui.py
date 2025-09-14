@@ -161,7 +161,7 @@ def main_object_list_lists_ui(self):
     self.main_objects_list_lists_title_label.setAlignment(Qt.AlignCenter)
 #______________________________________________________________________________________________________________________
     """ Set size """
-    self.main_objects_list_lists_title_label..setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.main_objects_list_lists_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_objects_list_lists_scroll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_objects_list_lists_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_objects_list_lists_exit_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -190,13 +190,11 @@ def main_object_list_edit_ui(self):
     self.main_object_list_edit_dividend_yield_button.setObjectName('main_object_list_edit_dividend_yield_button')
     self.main_object_list_edit_capitalization_button.setObjectName('main_object_list_edit_capitalization_button')
     self.main_object_list_edit_capital_button.setObjectName('main_object_list_edit_capital_button')
-    self.main_object_list_edit_set_button.setObjectName('main_object_list_edit_set_button')
     self.main_object_list_edit_exit_button.setObjectName('main_object_list_edit_exit_button')
 #______________________________________________________________________________________________________________________
     """ Set layout """
     self.main_layout.addWidget(self.main_object_list_edit_title_label)
     self.main_layout.addWidget(self.main_object_list_edit_scroll)
-    self.main_layout.addWidget(self.main_object_list_edit_set_button)
     self.main_layout.addWidget(self.main_object_list_edit_exit_button)
 #______________________________________________________________________________________________________________________
     """ Set widget """
@@ -217,24 +215,11 @@ def main_object_list_edit_ui(self):
     self.main_object_list_edit_dividend_yield_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_object_list_edit_capitalization_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_object_list_edit_capital_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.main_object_list_edit_set_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_object_list_edit_exit_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 #######################################################################################################################
 """ main object list edit reload style """
 def main_object_list_edit_reload_style(self):
-    _t = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r')) # Translate texts.
-    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['__language__'] # Language.
-    self.main_object_list_edit_title_label.setText(_t['main_object_list_edit_title_label'][_l])
-    self.main_object_list_edit_icon_button.setText(_t['main_object_list_edit_icon_button'][_l])
-    self.main_object_list_edit_ticker_button.setText(_t['main_object_list_edit_ticker_button'][_l])
-    self.main_object_list_edit_pe_ratio_button.setText(_t['main_object_list_edit_pe_ratio_button'][_l])
-    self.main_object_list_edit_eps_button.setText(_t['main_object_list_edit_eps_button'][_l])
-    self.main_object_list_edit_dividend_yield_button.setText(_t['main_object_list_edit_dividend_yield_button'][_l])
-    self.main_object_list_edit_capitalization_button.setText(_t['main_object_list_edit_capitalization_button'][_l])
-    self.main_object_list_edit_capital_button.setText(_t['main_object_list_edit_capital_button'][_l])
-    self.main_object_list_edit_set_button.setText(_t['main_object_list_edit_set_button'][_l])
-    self.main_object_list_edit_exit_button.setText(_t['main_object_list_edit_exit_button'][_l])
-
+    self.lists_edit_data_exit_button.setIcon(QIcon(load_svg(self.main_path+'/STYLE/IMG/icons/main/exit_'+self.global_config['__theme__']+'.svg', 256, 256)))
 #######################################################################################################################
 """ main object list edit retranslate """
 def main_object_list_edit_retranslate(self):
@@ -248,7 +233,6 @@ def main_object_list_edit_retranslate(self):
     self.main_object_list_edit_dividend_yield_button.setText(_t['main_object_list_edit_dividend_yield_button'][_l])
     self.main_object_list_edit_capitalization_button.setText(_t['main_object_list_edit_capitalization_button'][_l])
     self.main_object_list_edit_capital_button.setText(_t['main_object_list_edit_capital_button'][_l])
-    self.main_object_list_edit_set_button.setText(_t['main_object_list_edit_set_button'][_l])
     self.main_object_list_edit_exit_button.setText(_t['main_object_list_edit_exit_button'][_l])
 #######################################################################################################################
 """ Load svg script """
