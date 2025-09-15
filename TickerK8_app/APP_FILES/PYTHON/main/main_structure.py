@@ -153,7 +153,6 @@ class Main_widget(QWidget):
         main_object_list_edit_ui(self)
         main_object_list_edit_reload_style(self)
         main_object_list_edit_retranslate(self)
-        main_object_list_edit_scroll_setup(self)
         main_object_list_edit_check_selected(self)
 #______________________________________________________________________________________________________________________
         """ Connect functions """

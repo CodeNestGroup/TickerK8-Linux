@@ -268,8 +268,8 @@ def main_object_list_lists_exit(self):
 #______________________________________________________________________________________________________________________
     """ Delete objects """
     self.main_objects_list_lists_title_label.deleteLater()
-    self.main_objects_list_lists_exit_button.deleteLater()
     self.main_objects_list_lists_scroll.deleteLater()
+    self.main_objects_list_lists_exit_button.deleteLater()
 #######################################################################################################################
 def main_object_list_set_list(self, name):
     """ Set local data """
@@ -286,19 +286,20 @@ def main_object_list_edit_check_selected(self):
         if val == 'name':
             pass
         else:
-            button = getattr(self, f'lists_edit_data_{val}_button')       
+            button = getattr(self, f'main_object_list_edit_{val}_button')       
             button.setStyleSheet('background-color: #031913;')
 #######################################################################################################################
 """ Main object list edit save """
 def main_object_list_edit_save(self):
-    _global_config = 
-    button = getattr(self, f'lists_edit_data_{val}_button')
-    if val not in self.global_config['mid_object_list_tags']:
-        self.global_config['mid_object_list_tags'].append(val)       
+    _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data
+    button = getattr(self, f'main_object_list_edit_{val}_button')
+    if val not in _global_config['mid_object_list_tags']:
+        _global_config['mid_object_list_tags'].append(val)       
         button.setStyleSheet('background-color: #031913;')
     else:
-        self.global_config['mid_object_list_tags'].remove(val)       
+        _global_config['mid_object_list_tags'].remove(val)       
         button.setStyleSheet('background-color: #252525;')
+    json.dump(_global_config, open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'w'), indent=4) # Save confi
 #######################################################################################################################
 """ Main object list edit exit """
 def main_object_list_edit_exit(self):
@@ -311,10 +312,8 @@ def main_object_list_edit_exit(self):
     """ Delete objects """
     self.main_object_list_edit_title_label.deleteLater()
     self.main_object_list_edit_scroll.deleteLater()
-    self.main_object_list_edit_set_button.deleteLater()
     self.main_object_list_edit_exit_button.deleteLater()
-
-    open_list
+    main_objects_list_open(self)
 #######################################################################################################################
 """ Open main news """
 def open_main_news(self, id_news):

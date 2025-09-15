@@ -115,7 +115,7 @@
     background-color: #282828;
 }
 #main_objects_list_lists_title_label{
-   color: #303030;
+    color: #303030;
     font-size: 32px;
     font-weight: 700;
     letter-spacing: 0.2em;
@@ -176,13 +176,44 @@
 #main_objects_list_lists_exit_button:hover{
     background-color: #282828;
 }
+#main_object_list_edit_title_label{
+    color: #303030;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+}
+#main_object_list_edit_scroll{
+    background-color: #1a1a1a;
+    border: 0;
+}
+#main_object_list_edit_scroll QScrollBar:vertical{
+    border: none;
+    background: #1e1e1e;
+    width: 8px;
+    margin: 0;
+}
+#main_object_list_edit_scroll QScrollBar::handle:vertical {
+    background: #353535;
+    min-height: 15px;
+    border-radius: 2px;
+}
 
+#main_object_list_edit_scroll QScrollBar::handle:vertical:hover {
+    background: #282828;
+}
 
+#main_object_list_edit_scroll QScrollBar::add-line:vertical, #main_object_list_edit_scroll QScrollBar::sub-line:vertical {
+    border: none;
+    background: none;
+}
 
-
-
-
-.lists_edit_data_button{
+#main_object_list_edit_scroll QScrollBar::add-page:vertical, #main_object_list_edit_scroll QScrollBar::sub-page:vertical {
+    background: none;
+}
+#main_object_list_edit_widget{
+    background-color: #1a1a1a;
+}
+.main_object_list_edit_data_button{
     color: #c3c3c3;
     background-color: #252525;
     border: 0;
@@ -191,11 +222,11 @@
     letter-spacing: 0.2em;
     padding: 0.1em;
 }
-.lists_edit_data_button:hover{
+.main_object_list_edit_data_button:hover{
     background-color: #282828;
 }
-#lists_edit_data_set_button{
-    color: blue;
+#main_object_list_edit_exit_button{
+    color: #c3c3c3;
     background-color: #252525;
     border: 0;
     font-size: 15px;
@@ -203,12 +234,9 @@
     letter-spacing: 0.2em;
     padding: 0.1em;
 }
-#lists_edit_data_set_button:hover{
+#main_object_list_edit_exit_button:hover{
     background-color: #282828;
 }
-
-
-
 .main_list_button{
     color: #d7d7d7;
     background-color: #1a1a1a;
