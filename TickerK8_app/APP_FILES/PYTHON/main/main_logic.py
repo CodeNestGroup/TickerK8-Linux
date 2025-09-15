@@ -287,18 +287,18 @@ def main_object_list_edit_check_selected(self):
             pass
         else:
             button = getattr(self, f'main_object_list_edit_{val}_button')       
-            button.setStyleSheet('background-color: #031913;')
+            button.setStyleSheet('background-color: #282828;')
 #######################################################################################################################
 """ Main object list edit save """
-def main_object_list_edit_save(self):
+def main_object_list_edit_save(self, val):
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data
     button = getattr(self, f'main_object_list_edit_{val}_button')
     if val not in _global_config['mid_object_list_tags']:
         _global_config['mid_object_list_tags'].append(val)       
-        button.setStyleSheet('background-color: #031913;')
+        button.setStyleSheet('background-color: #282828;')
     else:
         _global_config['mid_object_list_tags'].remove(val)       
-        button.setStyleSheet('background-color: #252525;')
+        button.setStyleSheet('background-color: #1a1a1a;')
     json.dump(_global_config, open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'w'), indent=4) # Save confi
 #######################################################################################################################
 """ Main object list edit exit """

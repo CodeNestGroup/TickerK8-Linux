@@ -28,7 +28,7 @@ def main_ui(self):
     """ Set object name """
     self.setObjectName('main_widget')
     self.main_search_button.setObjectName('main_search_button')
-    self.main_objects_list_title.setObjectName('main_objects_list_title')
+    self.main_objects_list_title_label.setObjectName('main_objects_list_title_label')
     self.main_objects_list_scroll.setObjectName('main_objects_list_scroll')
     self.main_type_list_button.setObjectName('main_type_list_button')
     self.main_data_list_button.setObjectName('main_data_list_button')
@@ -55,7 +55,7 @@ def main_ui(self):
 #______________________________________________________________________________________________________________________
     """ Set layout """
     self.main_layout.addWidget(self.main_search_button, 1, 1, 3, 11)
-    self.main_layout.addWidget(self.main_objects_list_title, 8, 1, 2, 11)
+    self.main_layout.addWidget(self.main_objects_list_title_label, 8, 1, 2, 11)
     self.main_layout.addWidget(self.main_objects_list_scroll, 15, 1, 72, 11)
     self.main_layout.addWidget(self.main_type_list_button, 90, 1, 2, 5)
     self.main_layout.addWidget(self.main_data_list_button, 90, 7, 2, 5)
@@ -73,7 +73,7 @@ def main_ui(self):
     self.main_objects_list_scroll.setWidgetResizable(True)
 #______________________________________________________________________________________________________________________
     """ Set label """
-    self.main_objects_list_title.setAlignment(Qt.AlignCenter)
+    self.main_objects_list_title_label.setAlignment(Qt.AlignCenter)
 #______________________________________________________________________________________________________________________
     """ Set button """
     #self.news_object_button.setDisabled(True)
@@ -83,7 +83,7 @@ def main_ui(self):
     """ Set size """
     self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_search_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.main_objects_list_title.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.main_objects_list_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_objects_list_scroll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_type_list_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_data_list_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -142,7 +142,7 @@ def main_object_list_lists_ui(self):
     """ Set object name """
     self.main_objects_list_lists_title_label.setObjectName('main_objects_list_lists_title_label')
     self.main_objects_list_lists_scroll.setObjectName('main_objects_list_lists_scroll')
-    self.main_objects_list_lists_scroll_widget.setObjectName('main_objects_list_lists_widget')
+    self.main_objects_list_lists_widget.setObjectName('main_objects_list_lists_widget')
     self.main_objects_list_lists_exit_button.setObjectName('main_objects_list_lists_exit_button')
 #______________________________________________________________________________________________________________________
     """ Set layout """
@@ -228,19 +228,12 @@ def main_object_list_edit_ui(self):
     self.main_object_list_edit_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_object_list_edit_scroll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_object_list_edit_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.main_object_list_edit_icon_button.setFixedHeight(self.main_object_list_edit_scroll.height()//2)
     self.main_object_list_edit_icon_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.main_object_list_edit_ticker_button.setFixedHeight(self.main_object_list_edit_scroll.height()//2)
     self.main_object_list_edit_ticker_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.main_object_list_edit_pe_ratio_button.setFixedHeight(self.main_object_list_edit_scroll.height()//2)
     self.main_object_list_edit_pe_ratio_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.main_object_list_edit_eps_button.setFixedHeight(self.main_object_list_edit_scroll.height()//2)
     self.main_object_list_edit_eps_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.main_object_list_edit_dividend_yield_button.setFixedHeight(self.main_object_list_edit_scroll.height()//2)
     self.main_object_list_edit_dividend_yield_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.main_object_list_edit_capitalization_button.setFixedHeight(self.main_object_list_edit_scroll.height()//2)
     self.main_object_list_edit_capitalization_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.main_object_list_edit_capital_button.setFixedHeight(self.main_object_list_edit_scroll.height()//2)
     self.main_object_list_edit_capital_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.main_object_list_edit_exit_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 #######################################################################################################################

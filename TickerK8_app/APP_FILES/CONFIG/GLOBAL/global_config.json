@@ -10,8 +10,7 @@
         true
     ],
     "mid_object_list_tags": [
-        "name",
-        "icon"
+        "name"
     ],
     "mid_object_lists": {
         "Favourite": [
