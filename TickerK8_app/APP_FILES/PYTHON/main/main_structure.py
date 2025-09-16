@@ -48,10 +48,10 @@ class Main_widget(QWidget):
         super().__init__()
         self.setAttribute(Qt.WA_StyledBackground, True) # Force widget to draw background.
         self.setParent(parent) # Set parent.
-        self.main_news = None # Set default.
-        self.main_news_list = None # Set default.
-        self.main_search_widget = None # Set default.
-        self.main_objects_list_widget = None # Set default.
+        self.news = None # Set default.
+        self.news_list = None # Set default.
+        self.search_widget = None # Set default.
+        self.objects_list_widget = None # Set default.
 #______________________________________________________________________________________________________________________
         """ Set paths, file name"""
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2]) # Set main path, path to TickerK8 folder.
@@ -65,15 +65,15 @@ class Main_widget(QWidget):
         self.type_list_button = QPushButton(self) # Create typelist button, nav widget, bottom, left.
         self.data_list_button = QPushButton(self) # Create data list button, nav widget, bottom, right.
         self.settings_button = QPushButton(self) # Create settings button, top widget.
-        self.logout_button = QPushButton(self) # Create nav log out button, left.
+        self.logout_button = QPushButton(self) # Create log out button, left.
 
-        self.news_title_label
-        self.
-        self.news_next_left_button
-        self.news_next_right_button
-        self.news_market_button
-        self.news_country_button
-        self.news_world_button
+        self.news_button_list = [] # Create news button list.
+        self.news_button_index = 0 # Create news index.
+        self.news_next_left_button = QPushButton(self) # Create news next left button.
+        self.news_next_right_button = QPushButton(self) # Create news next right button.
+        self.news_market_button = QPushButton(self) # Create news market button.
+        self.news_country_button = QPushButton(self) # Create news country button.
+        self.news_world_button = QPushButton(self) # Create news  world button. 
 
         #self.object_scroll = Main_object_scroll(self) # Create object scroll, center side.
         #self.news_widget = Main_news_widget(self) # Create main news widget,right side.
@@ -92,7 +92,7 @@ class Main_widget(QWidget):
         self.widget_background = lambda: widget_background_painter(self) # Function for background.
         self.timer.timeout.connect(self.widget_background) # Connect.
         self.timer.start(1) # Start timer.
-        objects_list_open(self)
+        #objects_list_open(self)
 #______________________________________________________________________________________________________________________
         """ Connect  functions """
         self.search_button.clicked.connect(lambda: Search_widget(self))
@@ -109,7 +109,7 @@ class Main_widget(QWidget):
     """ Main objects list lists open """
     def objects_list_lists_open(self):
         """ Set config """
-        self.objects_list_title.hide()
+        self.objects_list_title_label.hide()
         self.objects_list_scroll.hide()
         self.type_list_button.hide()
         self.data_list_button.hide()
@@ -133,7 +133,7 @@ class Main_widget(QWidget):
     """ objects list lists open """
     def objects_list_edit_open(self):
         """ Set config """
-        self.objects_list_title.hide()
+        self.objects_list_title_label.hide()
         self.objects_list_scroll.hide()
         self.type_list_button.hide()
         self.data_list_button.hide()

@@ -43,8 +43,8 @@ from main_news.main_news_structure import Main_news_widget
 """ Import main news list """
 from main_news_list.main_news_list_structure import Main_news_list_widget
 #######################################################################################################################
-""" main widget background painter """
-def main_widget_background_painter(self):
+""" widget background painter """
+def widget_background_painter(self):
     """ Variables """
     """ Colors """
     _colors = json.load(open(self.main_path+'/CONFIG/main/conf.json', 'r'))['background'] # Get colors list, local.
@@ -96,39 +96,39 @@ def main_widget_background_painter(self):
     self.setAutoFillBackground(True) # Set fill background for login widget.
     self.setPalette(palette) # Set palette for login widget.
 #######################################################################################################################
-""" main objects list open"""
-def main_objects_list_open(self):
+""" objects list open"""
+def objects_list_open(self):
     """ Set config """
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data
-    _list_object = _global_config['mid_object_list'] # Get list objects name, key.
-    _open_list_data = _global_config['mid_object_lists'][_list_object] # Get list objects, data.
+    _list_object = _global_config['object_list'] # Get list objects name, key.
+    _open_list_data = _global_config['object_lists'][_list_object] # Get list objects, data.
     _t = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r')) # Translate texts.
 #______________________________________________________________________________________________________________________
     """ Setup widget """
-    if self.main_objects_list_widget:
-        self.main_objects_list_widget.deleteLater()
-        self.main_objects_list_widget = None 
+    if self.objects_list_widget:
+        self.objects_list_widget.deleteLater()
+        self.objects_list_widget = None 
 #______________________________________________________________________________________________________________________
     """ Create object """
-    self.main_objects_list_widget = QWidget(self.main_objects_list_scroll)
-    self.main_objects_list_layout = QVBoxLayout(self.main_objects_list_widget)
+    self.objects_list_widget = QWidget(self.objects_list_scroll)
+    self.objects_list_layout = QVBoxLayout(self.objects_list_widget)
 #______________________________________________________________________________________________________________________
     """ Set object name """
-    self.main_objects_list_widget.setObjectName('main_objects_list_widget')
+    self.objects_list_widget.setObjectName('objects_list_widget')
 #______________________________________________________________________________________________________________________
     """ Set layout """
-    self.main_objects_list_layout.setSpacing(0)
-    self.main_objects_list_layout.setContentsMargins(0,0,0,0)
-    self.main_objects_list_widget.setLayout(self.main_objects_list_layout)
+    self.objects_list_layout.setSpacing(0)
+    self.objects_list_layout.setContentsMargins(0,0,0,0)
+    self.objects_list_widget.setLayout(self.objects_list_layout)
 #______________________________________________________________________________________________________________________
     """ Set widget """
-    self.main_objects_list_scroll.setWidget(self.main_objects_list_widget)
+    self.objects_list_scroll.setWidget(self.objects_list_widget)
 #______________________________________________________________________________________________________________________
     """ Set size """
-    self.main_objects_list_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.objects_list_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 #______________________________________________________________________________________________________________________
     """ Set texts """
-    self.main_objects_list_title.setText(f'{_list_object}')
+    self.objects_list_title_label.setText(f'{_list_object}')
 #______________________________________________________________________________________________________________________
     """ Add items """
     for section_index, section in enumerate(_open_list_data, start=0):
@@ -136,184 +136,184 @@ def main_objects_list_open(self):
         section_dict = dict(section)
         for key, value in section_dict.items():
             """ Create widget """
-            main_objects_list_section_widget = QWidget(self.main_objects_list_widget)
-            main_objects_list_section_layout = QGridLayout(main_objects_list_section_widget)
-            main_objects_list_section_open_button = QPushButton(main_objects_list_section_widget)
-            main_objects_list_items_widget = QWidget(main_objects_list_section_widget)
-            main_objects_list_items_layout = QGridLayout(main_objects_list_items_widget)
-            main_objects_list_items_hash_tag = QLabel(main_objects_list_items_widget)
+            objects_list_section_widget = QWidget(self.objects_list_widget)
+            objects_list_section_layout = QGridLayout(objects_list_section_widget)
+            objects_list_section_open_button = QPushButton(objects_list_section_widget)
+            objects_list_items_widget = QWidget(objects_list_section_widget)
+            objects_list_items_layout = QGridLayout(objects_list_items_widget)
+            objects_list_items_hash_tag = QLabel(objects_list_items_widget)
 #______________________________________________________________________________________________________________________
             """ Set object name """
-            main_objects_list_section_widget.setObjectName(f'main_objects_list_section_{key}_widget')
-            main_objects_list_section_open_button.setObjectName(f'main_objects_list_section_{key}_open_button')
-            main_objects_list_items_widget.setObjectName(f'main_objects_list_section_{key}_widget')
-            main_objects_list_items_hash_tag.setObjectName(f'main_objects_list_section_{key}hash_tag')
+            objects_list_section_widget.setObjectName(f'objects_list_section_{key}_widget')
+            objects_list_section_open_button.setObjectName(f'objects_list_section_{key}_open_button')
+            objects_list_items_widget.setObjectName(f'objects_list_section_{key}_widget')
+            objects_list_items_hash_tag.setObjectName(f'objects_list_section_{key}hash_tag')
 #______________________________________________________________________________________________________________________
             """ Set property """
-            main_objects_list_section_widget.setProperty('class', 'main_objects_list_section_widget')
-            main_objects_list_section_open_button.setProperty('class', 'main_objects_list_section_open_button')
-            main_objects_list_items_widget.setProperty('class', 'main_objects_list_items_widget')
-            main_objects_list_items_hash_tag.setProperty('class', 'main_objects_list_items_hash_tag')
+            objects_list_section_widget.setProperty('class', 'objects_list_section_widget')
+            objects_list_section_open_button.setProperty('class', 'objects_list_section_open_button')
+            objects_list_items_widget.setProperty('class', 'objects_list_items_widget')
+            objects_list_items_hash_tag.setProperty('class', 'objects_list_items_hash_tag')
 #______________________________________________________________________________________________________________________
             """ Set layout """
-            self.main_objects_list_layout.addWidget(main_objects_list_section_widget)
-            main_objects_list_section_layout.addWidget(main_objects_list_section_open_button,0,0)
-            main_objects_list_section_layout.addWidget(main_objects_list_items_widget,1,0)
-            main_objects_list_section_layout.setSpacing(0)
-            main_objects_list_section_layout.setContentsMargins(0,0,0,0)
-            main_objects_list_section_widget.setLayout(main_objects_list_section_layout)
-            main_objects_list_items_layout.addWidget(main_objects_list_items_hash_tag, 0, 0)
-            main_objects_list_items_layout.setSpacing(0)
-            main_objects_list_items_layout.setContentsMargins(0,0,0,0)
-            main_objects_list_items_widget.setLayout(main_objects_list_items_layout)
+            self.objects_list_layout.addWidget(objects_list_section_widget)
+            objects_list_section_layout.addWidget(objects_list_section_open_button,0,0)
+            objects_list_section_layout.addWidget(objects_list_items_widget,1,0)
+            objects_list_section_layout.setSpacing(0)
+            objects_list_section_layout.setContentsMargins(0,0,0,0)
+            objects_list_section_widget.setLayout(objects_list_section_layout)
+            objects_list_items_layout.addWidget(objects_list_items_hash_tag, 0, 0)
+            objects_list_items_layout.setSpacing(0)
+            objects_list_items_layout.setContentsMargins(0,0,0,0)
+            objects_list_items_widget.setLayout(objects_list_items_layout)
 #______________________________________________________________________________________________________________________
             """ Set widget """
-            main_objects_list_items_widget.setHidden(False)
+            objects_list_items_widget.setHidden(False)
 #______________________________________________________________________________________________________________________
             """ Set label """
-            main_objects_list_items_hash_tag.setAlignment(Qt.AlignCenter)
+            objects_list_items_hash_tag.setAlignment(Qt.AlignCenter)
 #______________________________________________________________________________________________________________________
             """ Set size """
-            main_objects_list_section_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-            main_objects_list_section_open_button.setFixedHeight(int(self.height()*0.1))
-            main_objects_list_section_open_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-            main_objects_list_items_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-            main_objects_list_items_hash_tag.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+            objects_list_section_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+            objects_list_section_open_button.setFixedHeight(int(self.height()*0.1))
+            objects_list_section_open_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+            objects_list_items_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+            objects_list_items_hash_tag.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 #______________________________________________________________________________________________________________________
             """ Set text """
-            main_objects_list_section_open_button.setText(f'{key}')
-            main_objects_list_items_hash_tag.setText('#')
+            objects_list_section_open_button.setText(f'{key}')
+            objects_list_items_hash_tag.setText('#')
 #______________________________________________________________________________________________________________________
             """ Connect """
-            main_objects_list_section_open_button.clicked.connect(lambda _, widget=main_objects_list_items_widget: widget.setHidden(not widget.isHidden()))
+            objects_list_section_open_button.clicked.connect(lambda _, widget=objects_list_items_widget: widget.setHidden(not widget.isHidden()))
 #______________________________________________________________________________________________________________________
             """ Create tags """
-            for index, tag in enumerate(_global_config['mid_object_list_tags'], start=1):
-                main_objects_list_tag_label = QLabel(main_objects_list_items_widget)
-                main_objects_list_tag_label.setObjectName(f'main_objects_list_tag_label_{index}')
-                main_objects_list_tag_label.setProperty('class', 'main_objects_list_tag_label')
-                main_objects_list_items_layout.addWidget(main_objects_list_tag_label, 0, index)
-                main_objects_list_tag_label.setAlignment(Qt.AlignCenter)
-                main_objects_list_tag_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-                main_objects_list_tag_label.setText(f'{_t['main_objects_list_tags'][f'{tag}'][_global_config['__language__']]}')
+            for index, tag in enumerate(_global_config['object_list_tags'], start=1):
+                objects_list_tag_label = QLabel(objects_list_items_widget)
+                objects_list_tag_label.setObjectName(f'objects_list_tag_label_{index}')
+                objects_list_tag_label.setProperty('class', 'objects_list_tag_label')
+                objects_list_items_layout.addWidget(objects_list_tag_label, 0, index)
+                objects_list_tag_label.setAlignment(Qt.AlignCenter)
+                objects_list_tag_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+                objects_list_tag_label.setText(f'{_t['objects_list_tags'][f'{tag}'][_global_config['__language__']]}')
 #_____________________________________________________________________________________________________________________
             """ Create items """
             database = sqlite3.connect(database=self.local_database)
             cursor = database.cursor()
             if value:
                 for row, item in enumerate(value, start=1):
-                    main_objects_list_index_button = QPushButton(main_objects_list_items_widget)
-                    main_objects_list_index_button.setObjectName(f'main_objects_list_index_{row}_button')
-                    main_objects_list_index_button.setProperty('class', 'main_objects_list_index_button')
-                    main_objects_list_items_layout.addWidget(main_objects_list_index_button, row, 0)
-                    main_objects_list_index_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-                    main_objects_list_index_button.setText(f'{row}')
-                    main_objects_list_index_button.clicked.connect(lambda _, s_i=section_index, s_n=key, i=row-1: main_objects_list_delete_object(self, section_index=s_i, section_name=s_n, index=i))
+                    objects_list_index_button = QPushButton(objects_list_items_widget)
+                    objects_list_index_button.setObjectName(f'objects_list_index_{row}_button')
+                    objects_list_index_button.setProperty('class', 'objects_list_index_button')
+                    objects_list_items_layout.addWidget(objects_list_index_button, row, 0)
+                    objects_list_index_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+                    objects_list_index_button.setText(f'{row}')
+                    objects_list_index_button.clicked.connect(lambda _, s_i=section_index, s_n=key, i=row-1: objects_list_delete_object(self, section_index=s_i, section_name=s_n, index=i))
                     for table, id_id in dict(item).items():
-                        for column, tag in enumerate(_global_config['mid_object_list_tags'], start=1):
+                        for column, tag in enumerate(_global_config['object_list_tags'], start=1):
                             try:
                                 text = cursor.execute(f'SELECT {tag} FROM {table} WHERE id={id_id};').fetchall()[0][0]
                             except:
                                 text = '---'
                             if tag == 'name':
-                                main_objects_list_data_object = QPushButton(main_objects_list_items_widget)
-                                main_objects_list_data_object.setObjectName(f'main_objects_list_data_{tag}_{id_id}_button')
-                                main_objects_list_data_object.setProperty('class', 'main_objects_list_data_button')
-                                main_objects_list_data_object.setText(str(text))
-                                main_objects_list_data_object.clicked.connect(lambda _, t=table, i=id_id: main_object_set(self, [t, i]))
+                                objects_list_data_object = QPushButton(objects_list_items_widget)
+                                objects_list_data_object.setObjectName(f'objects_list_data_{tag}_{id_id}_button')
+                                objects_list_data_object.setProperty('class', 'objects_list_data_button')
+                                objects_list_data_object.setText(str(text))
+                                objects_list_data_object.clicked.connect(lambda _, t=table, i=id_id: object_set(self, [t, i]))
                             else:
-                                main_objects_list_data_object = QLabel(main_objects_list_items_widget)
-                                main_objects_list_data_object.setObjectName(f'main_objects_list_data_{tag}_{id_id}_label')
-                                main_objects_list_data_object.setProperty('class', 'main_objects_list_data_label')
-                                main_objects_list_data_object.setAlignment(Qt.AlignCenter)
+                                objects_list_data_object = QLabel(main_objects_list_items_widget)
+                                objects_list_data_object.setObjectName(f'objects_list_data_{tag}_{id_id}_label')
+                                objects_list_data_object.setProperty('class', 'objects_list_data_label')
+                                objects_list_data_object.setAlignment(Qt.AlignCenter)
                                 if tag == 'icon' and text != '---':
-                                    main_objects_list_data_object.setPixmap(load_svg(self.main_path+'/STYLE/IMG/'+text+'.svg', main_objects_list_data_object.height(), main_objects_list_data_object.height()))
+                                    objects_list_data_object.setPixmap(load_svg(self.main_path+'/STYLE/IMG/'+text+'.svg', objects_list_data_object.height(), objects_list_data_object.height()))
                                 else:
-                                    main_objects_list_data_object.setText(str(text))
-                            main_objects_list_data_object.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-                            main_objects_list_items_layout.addWidget(main_objects_list_data_object, row, column)
+                                    objects_list_data_object.setText(str(text))
+                            objects_list_data_object.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+                            objects_list_items_layout.addWidget(objects_list_data_object, row, column)
 #######################################################################################################################
-""" main objects list delete object """
-def main_objects_list_delete_object(self, section_index, section_name, index):
+""" objects list delete object """
+def objects_list_delete_object(self, section_index, section_name, index):
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data
-    list_object_name = _global_config['mid_object_list']
-    object_in_section = _global_config['mid_object_lists'][list_object_name][section_index][section_name]
+    object_name = _global_config['object_list']
+    object_in_section = _global_config['object_lists'][object_name][section_index][section_name]
     object_in_section.pop(index)
     json.dump(_global_config, open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'w'), indent=4) # Save config
-    main_objects_list_open(self)
+    objects_list_open(self)
 #######################################################################################################################
-""" main object set """
-def main_object_set(self):
+""" object set """
+def object_set(self):
     pass
 #######################################################################################################################
-def main_object_list_lists_scroll_setup(self):
+def object_list_lists_scroll_setup(self):
     """ Set local data """
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data
     """ Add lists items """
-    for keys, values in _global_config['mid_object_lists'].items():
-        main_objects_list_lists_button = QPushButton(self.main_objects_list_lists_widget)
-        main_objects_list_lists_button.setObjectName(f'main_objects_list_lists_{keys}_button')
-        main_objects_list_lists_button.setProperty('class', 'main_objects_list_lists_button')
-        self.main_objects_list_lists_layout.addWidget(main_objects_list_lists_button)
-        main_objects_list_lists_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        main_objects_list_lists_button.setText(f'{keys}')
-        main_objects_list_lists_button.clicked.connect(lambda _, name=keys: main_object_list_set_list(self, name=name))
+    for keys, values in _global_config['object_lists'].items():
+        objects_list_lists_button = QPushButton(self.objects_list_lists_widget)
+        objects_list_lists_button.setObjectName(f'objects_list_lists_{keys}_button')
+        objects_list_lists_button.setProperty('class', 'objects_list_lists_button')
+        self.objects_list_lists_layout.addWidget(objects_list_lists_button)
+        objects_list_lists_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        objects_list_lists_button.setText(f'{keys}')
+        objects_list_lists_button.clicked.connect(lambda _, name=keys: object_list_set_list(self, name=name))
 #######################################################################################################################
-def main_object_list_lists_exit(self):
+def object_list_lists_exit(self):
     """ Set config """
-    self.main_objects_list_title.show()
-    self.main_objects_list_scroll.show()
-    self.main_type_list_button.show()
-    self.main_data_list_button.show()
+    self.objects_list_title_label.show()
+    self.objects_list_scroll.show()
+    self.type_list_button.show()
+    self.data_list_button.show()
 #______________________________________________________________________________________________________________________
     """ Delete objects """
-    self.main_objects_list_lists_title_label.deleteLater()
-    self.main_objects_list_lists_scroll.deleteLater()
-    self.main_objects_list_lists_exit_button.deleteLater()
+    self.objects_list_lists_title_label.deleteLater()
+    self.objects_list_lists_scroll.deleteLater()
+    self.objects_list_lists_exit_button.deleteLater()
 #######################################################################################################################
-def main_object_list_set_list(self, name):
+def object_list_set_list(self, name):
     """ Set local data """
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data
     _global_config['mid_object_list'] = name
     json.dump(_global_config, open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'w'), indent=4) # Save config
-    main_objects_list_open(self)
-    main_object_list_lists_exit(self)
+    objects_list_open(self)
+    object_list_lists_exit(self)
 #######################################################################################################################
-""" Main object list edit check selected """
-def main_object_list_edit_check_selected(self):
+""" object list edit check selected """
+def object_list_edit_check_selected(self):
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data
-    for val in _global_config['mid_object_list_tags']:
+    for val in _global_config['object_list_tags']:
         if val == 'name':
             pass
         else:
-            button = getattr(self, f'main_object_list_edit_{val}_button')       
+            button = getattr(self, f'object_list_edit_{val}_button')       
             button.setStyleSheet('background-color: #282828;')
 #######################################################################################################################
-""" Main object list edit save """
-def main_object_list_edit_save(self, val):
+""" object list edit save """
+def object_list_edit_save(self, val):
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data
-    button = getattr(self, f'main_object_list_edit_{val}_button')
-    if val not in _global_config['mid_object_list_tags']:
-        _global_config['mid_object_list_tags'].append(val)       
+    button = getattr(self, f'object_list_edit_{val}_button')
+    if val not in _global_config['object_list_tags']:
+        _global_config['object_list_tags'].append(val)       
         button.setStyleSheet('background-color: #282828;')
     else:
-        _global_config['mid_object_list_tags'].remove(val)       
+        _global_config['object_list_tags'].remove(val)       
         button.setStyleSheet('background-color: #1a1a1a;')
     json.dump(_global_config, open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'w'), indent=4) # Save confi
 #######################################################################################################################
-""" Main object list edit exit """
-def main_object_list_edit_exit(self):
+""" object list edit exit """
+def object_list_edit_exit(self):
     """ Set config """
-    self.main_objects_list_title.show()
-    self.main_objects_list_scroll.show()
-    self.main_type_list_button.show()
-    self.main_data_list_button.show()
+    self.objects_list_title_label.show()
+    self.objects_list_scroll.show()
+    self.type_list_button.show()
+    self.data_list_button.show()
 #______________________________________________________________________________________________________________________
     """ Delete objects """
-    self.main_object_list_edit_title_label.deleteLater()
-    self.main_object_list_edit_scroll.deleteLater()
-    self.main_object_list_edit_exit_button.deleteLater()
-    main_objects_list_open(self)
+    self.object_list_edit_title_label.deleteLater()
+    self.object_list_edit_scroll.deleteLater()
+    self.object_list_edit_exit_button.deleteLater()
+    objects_list_open(self)
 #######################################################################################################################
 """ Open main news """
 def open_main_news(self, id_news):

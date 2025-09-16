@@ -1,7 +1,7 @@
 {
     "__language__": 0,
     "__theme__": "vintage_elegance_dark",
-    "main_search_filters": [
+    "search_filters": [
         true,
         false,
         false,
@@ -9,10 +9,10 @@
         true,
         true
     ],
-    "mid_object_list_tags": [
+    "object_list_tags": [
         "name"
     ],
-    "mid_object_lists": {
+    "object_lists": {
         "Favourite": [
             {
                 "Countries": [
@@ -65,12 +65,12 @@
             }
         ]
     },
-    "mid_object_list": "Favourite",
-    "mid_object": [
+    "object_list": "Favourite",
+    "object": [
         "stock",
         1
     ],
-    "main_mid_object_chart_type": [
+    "object_chart_type": [
         0,
         0
     ]

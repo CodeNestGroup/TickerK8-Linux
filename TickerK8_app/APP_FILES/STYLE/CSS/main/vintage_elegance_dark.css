@@ -1,4 +1,4 @@
-#main_search_button{
+#search_button{
     color: #c3c3c3;
     background-color: #1a1a1a;
     border: 0;
@@ -8,47 +8,47 @@
     font-weight: 700;
     letter-spacing: 0.2em;
 }
-#main_search_button:hover{
+#search_button:hover{
     background-color: #282828;
 }
-#main_objects_list_title_label{
+#objects_list_title_label{
     color: #303030;
     font-size: 32px;
     font-weight: 700;
     letter-spacing: 0.2em;
 }
-#main_objects_list_scroll{
+#objects_list_scroll{
     background-color: #1a1a1a;
     border: 0;
 }
-#main_objects_list_scroll  QScrollBar:vertical,#main_objects_list_scroll QScrollBar:horizontal{
+#objects_list_scroll  QScrollBar:vertical, #objects_list_scroll QScrollBar:horizontal{
     border: none;
     background: #1e1e1e;
     width: 8px;
     margin: 0;
 }
-#main_objects_list_scroll QScrollBar::handle:vertical, #main_objects_list_scroll QScrollBar::handle:horizontal{
+#objects_list_scroll QScrollBar::handle:vertical, #objects_list_scroll QScrollBar::handle:horizontal{
     background: #353535;
     min-height: 15px;
     border-radius: 2px;
 }
-#main_objects_list_scroll QScrollBar::handle:vertical:hover, #main_objects_list_scroll QScrollBar::handle:horizontal:hover{
+#objects_list_scroll QScrollBar::handle:vertical:hover, #objects_list_scroll QScrollBar::handle:horizontal:hover{
     background: #282828;
 }
-#main_objects_list_scroll QScrollBar::add-line:vertical, #main_objects_list_scroll QScrollBar::sub-line:vertical, #main_objects_list_scroll QScrollBar::add-line:horizontal, #main_objects_list_scroll QScrollBar::sub-line:horizontal{
+#objects_list_scroll QScrollBar::add-line:vertical, #objects_list_scroll QScrollBar::sub-line:vertical, #objects_list_scroll QScrollBar::add-line:horizontal, #objects_list_scroll QScrollBar::sub-line:horizontal{
     border: none;
     background: none;
 }
-#main_objects_list_scroll QScrollBar::add-page:vertical, #main_objects_list_scroll QScrollBar::sub-page:vertical, #main_objects_list_scroll QScrollBar::add-page:horizontal, #main_objects_list_scroll QScrollBar::sub-page:horizontal{
+#objects_list_scroll QScrollBar::add-page:vertical, #objects_list_scroll QScrollBar::sub-page:vertical, #objects_list_scroll QScrollBar::add-page:horizontal, #objects_list_scroll QScrollBar::sub-page:horizontal{
     background: none;
 }
-#main_objects_list_widget{
+#objects_list_widget{
     background-color: #1a1a1a;
 }
-.main_objects_list_section_widget{
+.objects_list_section_widget{
     background-color: #1a1a1a;
 }
-.main_objects_list_section_open_button{
+.objects_list_section_open_button{
     color: #c3c3c3;
     background-color: #1a1a1a;
     border: 0;
@@ -57,13 +57,13 @@
     font-weight: 600;
     letter-spacing: 0.2em;
 }
-.main_objects_list_section_open_button:hover{
+.objects_list_section_open_button:hover{
     background-color: #282828;
 }
-.main_objects_list_items_widget{
+.objects_list_items_widget{
     background-color: #1a1a1a;
 }
-.main_objects_list_items_hash_tag{
+.objects_list_items_hash_tag{
     color: #c3c3c3;
     background-color: #00000000;
     border: 0;
@@ -72,7 +72,7 @@
     font-weight: 600;
     letter-spacing: 0.1em;
 }
-.main_objects_list_tag_label{
+.objects_list_tag_label{
     color: #c3c3c3;
     background-color: #00000000;
     border: 0;
@@ -81,7 +81,7 @@
     font-weight: 600;
     letter-spacing: 0.1em;
 }
-.main_objects_list_index_button{
+.objects_list_index_button{
     color: #c3c3c3;
     background-color: #00000000;
     border: 0;
@@ -90,10 +90,10 @@
     font-weight: 400;
     letter-spacing: 0.1em;
 }
-.main_objects_list_index_button:hover{
+.objects_list_index_button:hover{
     background-color: #b40808;
 }
-.main_objects_list_data_label{
+.objects_list_data_label{
     color: #c3c3c3;
     background-color: #00000000;
     border: 0;
@@ -102,7 +102,7 @@
     font-weight: 400;
     letter-spacing: 0.2em;
 }
-.main_objects_list_data_button{
+.objects_list_data_button{
     color: #c3c3c3;
     background-color: #252525;
     border: 0;
@@ -111,47 +111,47 @@
     font-weight: 600;
     letter-spacing: 0.2em;
 }
-.main_objects_list_data_button:hover{
+.objects_list_data_button:hover{
     background-color: #282828;
 }
-#main_objects_list_lists_title_label{
+#objects_list_lists_title_label{
     color: #303030;
     font-size: 32px;
     font-weight: 700;
     letter-spacing: 0.2em;
 }
-#main_objects_list_lists_scroll{
+#objects_list_lists_scroll{
     background-color: #1a1a1a;
     border: 0;
 }
-#main_objects_list_lists_scroll QScrollBar:vertical{
+#objects_list_lists_scroll QScrollBar:vertical{
     border: none;
     background: #1e1e1e;
     width: 8px;
     margin: 0;
 }
-#main_objects_list_lists_scroll QScrollBar::handle:vertical {
+#objects_list_lists_scroll QScrollBar::handle:vertical {
     background: #353535;
     min-height: 15px;
     border-radius: 2px;
 }
 
-#main_objects_list_lists_scroll QScrollBar::handle:vertical:hover {
+#objects_list_lists_scroll QScrollBar::handle:vertical:hover {
     background: #282828;
 }
 
-#main_objects_list_lists_scroll QScrollBar::add-line:vertical, #main_objects_list_lists_scroll QScrollBar::sub-line:vertical {
+#objects_list_lists_scroll QScrollBar::add-line:vertical, #objects_list_lists_scroll QScrollBar::sub-line:vertical {
     border: none;
     background: none;
 }
 
-#main_objects_list_lists_scroll QScrollBar::add-page:vertical, #main_objects_list_lists_scroll QScrollBar::sub-page:vertical {
+#objects_list_lists_scroll QScrollBar::add-page:vertical, #objects_list_lists_scroll QScrollBar::sub-page:vertical {
     background: none;
 }
-#main_objects_list_lists_widget{
+#objects_list_lists_widget{
     background-color: #1a1a1a;
 }
-.main_objects_list_lists_button{
+.objects_list_lists_button{
     color: #c3c3c3;
     background-color: #1a1a1a;
     border: 0;
@@ -160,10 +160,10 @@
     font-weight: 600;
     letter-spacing: 0.2em;
 }
-.main_objects_list_lists_button:hover{
+.objects_list_lists_button:hover{
     background-color: #282828;
 }
-#main_objects_list_lists_exit_button{
+#objects_list_lists_exit_button{
     color: #d7d7d7;
     background-color: #1a1a1a;
     border: 0;
@@ -173,47 +173,47 @@
     font-weight: 600;
     letter-spacing: 0.2em;
 }
-#main_objects_list_lists_exit_button:hover{
+#objects_list_lists_exit_button:hover{
     background-color: #282828;
 }
-#main_object_list_edit_title_label{
+#object_list_edit_title_label{
     color: #303030;
     font-size: 32px;
     font-weight: 700;
     letter-spacing: 0.2em;
 }
-#main_object_list_edit_scroll{
+#object_list_edit_scroll{
     background-color: #1a1a1a;
     border: 0;
 }
-#main_object_list_edit_scroll QScrollBar:vertical{
+#object_list_edit_scroll QScrollBar:vertical{
     border: none;
     background: #1e1e1e;
     width: 8px;
     margin: 0;
 }
-#main_object_list_edit_scroll QScrollBar::handle:vertical {
+#object_list_edit_scroll QScrollBar::handle:vertical {
     background: #353535;
     min-height: 15px;
     border-radius: 2px;
 }
 
-#main_object_list_edit_scroll QScrollBar::handle:vertical:hover {
+#object_list_edit_scroll QScrollBar::handle:vertical:hover {
     background: #282828;
 }
 
-#main_object_list_edit_scroll QScrollBar::add-line:vertical, #main_object_list_edit_scroll QScrollBar::sub-line:vertical {
+#object_list_edit_scroll QScrollBar::add-line:vertical, #object_list_edit_scroll QScrollBar::sub-line:vertical {
     border: none;
     background: none;
 }
 
-#main_object_list_edit_scroll QScrollBar::add-page:vertical, #main_object_list_edit_scroll QScrollBar::sub-page:vertical {
+#object_list_edit_scroll QScrollBar::add-page:vertical, #object_list_edit_scroll QScrollBar::sub-page:vertical {
     background: none;
 }
-#main_object_list_edit_widget{
+#object_list_edit_widget{
     background-color: #1a1a1a;
 }
-.main_object_list_edit_data_button{
+.object_list_edit_data_button{
     color: #c3c3c3;
     background-color: #1a1a1a;
     border: 0;
@@ -222,44 +222,71 @@
     font-weight: 600;
     letter-spacing: 0.2em;
 }
-.main_object_list_edit_data_button:hover{
+.object_list_edit_data_button:hover{
     background-color: #282828;
 }
-#main_object_list_edit_exit_button{
-    color: #d7d7d7;
-    background-color: #1a1a1a;
-    border: 0;
-    border-radius: 0.25em;   
-    padding: 0.3em;
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-}
-#main_object_list_edit_exit_button:hover{
-    background-color: #282828;
-}
-.main_list_button{
-    color: #d7d7d7;
-    background-color: #1a1a1a;
-    border: 0;
-    border-radius: 0.25em;   
-    padding: 0.3em;
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-}
-.main_list_button:hover{
-    background-color: #282828;
-}
-.main_bottom_button{
+#object_list_edit_exit_button{
     color: #c3c3c3;
     background-color: #1a1a1a;
     border: 0;
-    border-radius: 0.25em;
+    border-radius: 0.25em;   
     padding: 0.3em;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
 }
-.main_bottom_button:hover{
+#object_list_edit_exit_button:hover{
     background-color: #282828;
 }
-
-
+.list_button{
+    color: #c3c3c3;
+    background-color: #1a1a1a;
+    border: 0;
+    border-radius: 0.25em;   
+    padding: 0.3em;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+}
+.list_button:hover{
+    background-color: #282828;
+}
+.news_nav_button{
+    color: #c3c3c3;
+    background-color: #1a1a1a;
+    border: 0;
+    border-radius: 0.25em;   
+    padding: 0.3em;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+}
+.news_nav_button:hover{
+    background-color: #282828;
+}
+.news_type_button{
+    color: #c3c3c3;
+    background-color: #1a1a1a;
+    border: 0;
+    border-radius: 0.25em;   
+    padding: 0.3em;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+}
+.news_type_button:hover{
+    background-color: #282828;
+}
+.bottom_button{
+    color: #c3c3c3;
+    background-color: #1a1a1a;
+    border: 0;
+    border-radius: 0.25em;   
+    padding: 0.3em;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+}
+.bottom_button:hover{
+    background-color: #282828;
+}
