@@ -41,6 +41,8 @@ def main_ui(self):
     self.news_country_button.setObjectName('news_country_button')
     self.news_world_button.setObjectName('news_world_button')
 
+
+
     #self.news_object_button.setObjectName('news_object_button')
     #self.chart_button.setObjectName('chart_button')
     #self.stats_button.setObjectName('stats_button')
@@ -75,11 +77,11 @@ def main_ui(self):
     self.layout.addWidget(self.data_list_button, 90, 7, 2, 5)
     self.layout.addWidget(self.settings_button, 96, 1, 2, 2)
     self.layout.addWidget(self.logout_button, 96, 4, 2, 2)
-    self.layout.addWidget(self.news_next_left_button, 90, 80, 4, 6)
-    self.layout.addWidget(self.news_next_right_button, 90, 93, 4, 6)
-    self.layout.addWidget(self.news_market_button, 94,  80, 5, 4)
-    self.layout.addWidget(self.news_country_button, 94,  7, 5, 4)
-    self.layout.addWidget(self.news_world_button, 94,  95, 5, 4)
+    self.layout.addWidget(self.news_next_left_button, 90, 69, 3, 15)
+    self.layout.addWidget(self.news_next_right_button, 90, 84, 3, 15)
+    self.layout.addWidget(self.news_market_button, 93,  69, 5, 10)
+    self.layout.addWidget(self.news_country_button, 93,  79, 5, 10)
+    self.layout.addWidget(self.news_world_button, 93,  89, 5, 10)
     self.layout.setSpacing(0)
     self.layout.setContentsMargins(0,0,0,0)
     for enc in range(100):

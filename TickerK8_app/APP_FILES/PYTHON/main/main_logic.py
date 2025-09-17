@@ -315,6 +315,18 @@ def object_list_edit_exit(self):
     self.object_list_edit_exit_button.deleteLater()
     objects_list_open(self)
 #######################################################################################################################
+
+
+
+
+
+#######################################################################################################################
+""" news create buttons """
+def 
+
+
+
+
 """ Open main news """
 def open_main_news(self, id_news):
     self.main_news = Main_news_widget(self, id_news)
