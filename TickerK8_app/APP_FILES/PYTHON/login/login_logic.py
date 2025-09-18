@@ -2,7 +2,7 @@
 """ Import system and operating system packages """
 import json # For json files.
 import datetime # For get time.
-import mysql  # For connect with database.
+import mysql.connector  # For connect with database.
 #______________________________________________________________________________________________________________________
 """ Import PyQt5 packages """
 """ Import PyQt5 Widgets """

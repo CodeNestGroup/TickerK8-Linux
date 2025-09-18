@@ -32,12 +32,6 @@ from main_search.main_search_structure import Main_search_widget
 """ Import main object """
 from main_object.main_object_structure import Main_object_scroll
 #______________________________________________________________________________________________________________________
-""" Import main mid news """
-from main_news.main_news_structure import Main_news_widget
-#______________________________________________________________________________________________________________________
-""" Import main news structure """
-from main_news.main_news_structure import Main_news_widget
-#______________________________________________________________________________________________________________________
 """ Import main news list structure """
 from main_news_list.main_news_list_structure import Main_news_list_widget
 #######################################################################################################################
@@ -67,6 +61,14 @@ class Main_widget(QWidget):
         self.settings_button = QPushButton(self) # Create settings button, top widget.
         self.logout_button = QPushButton(self) # Create log out button, left.
 
+        self.object_icon_label = QLabel(self)
+        self.object_ticker_label = QLabel(self)
+        self.object_name_label = QLabel(self)
+        self.object_statistics_widget
+        self.object_sta
+
+        self.chart_widget = QWidget(self)
+
         self.news_button_list = [] # Create news button list.
         self.news_button_index = 0 # Create news index.
         self.news_next_left_button = QPushButton(self) # Create news next left button.
@@ -84,6 +86,7 @@ class Main_widget(QWidget):
         #self.news_country_button = QPushButton(self) # Create country news button, right, mid.
         #self.news_world_button = QPushButton(self) # Create world news button, right, right.
         self.timer = QTimer(self) # Create timer.
+        self.news_timer = QTimer(self) # Create news timer.
 #______________________________________________________________________________________________________________________
         """ Call functions """
         main_ui(self) # Call main ui function.
@@ -92,12 +95,17 @@ class Main_widget(QWidget):
         self.widget_background = lambda: widget_background_painter(self) # Function for background.
         self.timer.timeout.connect(self.widget_background) # Connect.
         self.timer.start(1) # Start timer.
-        #objects_list_open(self)
+        objects_list_open(self)
+        news_creator(self)
 #______________________________________________________________________________________________________________________
         """ Connect  functions """
         self.search_button.clicked.connect(lambda: Search_widget(self))
         self.type_list_button.clicked.connect(self.objects_list_lists_open)
         self.data_list_button.clicked.connect(self.objects_list_edit_open)
+
+
+        self.news_next_left_button.clicked.connect(lambda: news_next(self))
+        self.news_next_right_button.clicked.connect(lambda: news_previous(self))
         #self.nav_object_list_widget.config_changed.connect(lambda: main_mid_object_changed(self))
         #self.news_widget.open_news.connect(lambda val: open_main_news(self, val))
         #self.main_type_list_button.clicked.connect(self.nav_object_list_widget.show_lists)

@@ -172,7 +172,7 @@ def market_widget(self):
     SELECT
     market.name, 
     market.short_name,
-    market.icon, 
+    market.icon,
     market.city, 
     market.website, 
     market.founded_date,

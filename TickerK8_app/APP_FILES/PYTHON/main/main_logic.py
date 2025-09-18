@@ -3,6 +3,9 @@
 import json # For json files.
 import datetime # For get time.
 import sqlite3 # For databases.
+import mysql # For online databases.
+import requests
+from io import BytesIO
 #______________________________________________________________________________________________________________________
 """ Import PyQt5 Widgets """
 from PyQt5.QtWidgets import (
@@ -37,8 +40,6 @@ from PyQt5.QtGui import (
 """ Import PyQt5 Svg """
 from PyQt5.QtSvg import QSvgRenderer # Render Svg.
 #______________________________________________________________________________________________________________________
-""" Import main news """
-from main_news.main_news_structure import Main_news_widget
 #_______________________________________________________________________________________________________________________
 """ Import main news list """
 from main_news_list.main_news_list_structure import Main_news_list_widget
@@ -315,18 +316,95 @@ def object_list_edit_exit(self):
     self.object_list_edit_exit_button.deleteLater()
     objects_list_open(self)
 #######################################################################################################################
+""" news creator """
+def news_creator(self):
+    _news_button_list = self.news_button_list # Get local data.
+    connect = mysql.connector.connect( # Create connect with database
+        host = "localhost",
+        user = "client",
+        password = "Qwerty123456#",
+        database = "TickerK8"
+    )
+    cursor = connect.cursor() # Create cursor
+    cursor.execute('SELECT id, json_file FROM news ORDER BY date DESC LIMIT 3;')
+    news_list = cursor.fetchall()
+    for index, data in enumerate(news_list, start=1):
+        json_data = json.loads(data[1])
+        news_id = data[0]
+        """ Create objects """
+        news_button = QPushButton(self)
+        news_layout = QVBoxLayout(news_button)
+        news_text_label = QLabel(news_button)
+#______________________________________________________________________________________________________________________
+        """ Set object name """
+        news_button.setObjectName(f'news_button_{index}')
+        news_text_label.setObjectName(f'text_label_{index}')
+#______________________________________________________________________________________________________________________
+        """ Set property """
+        news_button.setProperty('class', 'news_button')
+        news_text_label.setProperty('class', 'news_text_label')
+#______________________________________________________________________________________________________________________
+        """ Set layout """
+        self.layout.addWidget(news_button, 45, 52, 42, 47)
+        news_layout.addWidget(news_text_label)  
+        news_layout.setContentsMargins(0,0,0,0)
+        news_layout.setSpacing(0)
+#______________________________________________________________________________________________________________________
+        """ Set Widget """
+        news_button.setHidden(True)
+#______________________________________________________________________________________________________________________
+        """ Set label """
+        news_text_label.setAlignment(Qt.AlignCenter)
+        news_text_label.setWordWrap(True)
+#______________________________________________________________________________________________________________________
+        """ Set size """
+        news_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        news_text_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        news_text_label.setGeometry(QRect(0,0,news_button.width(),news_button.height()))
+#______________________________________________________________________________________________________________________
+        """ Set text """
+        news_text_label.setText(json_data['title'])
+#______________________________________________________________________________________________________________________
+        """ Set graphics """
+        #photo = requests.get(json_data["photo"]["original"])
+        #photo.raise_for_status()
+        #pix = QPixmap()
+        #pix.loadFromData(BytesIO(photo.content).read())
 
-
-
-
-
+        #zoomed_pix = pix.scaled(news_button.width(), news_button.height(), Qt.KeepAspectRatioByExpanding, Qt.SmoothTransformation)
+        #cropped_pix = zoomed_pix.copy(
+        #    (zoomed_pix.width() - news_button.width()) // 2,
+        #    (zoomed_pix.height() - news_button.height()) // 2,
+        #    news_button.width(),
+        #    news_button.height()
+        #)
+        #news_button.setIcon(QIcon(cropped_pix))
+        #news_button.setIconSize(news_button.size())
+#______________________________________________________________________________________________________________________
+        """ Set connect function for open """
+#______________________________________________________________________________________________________________________
+        _news_button_list.append(news_button)
+    self.news_button_list = _news_button_list
+    self.news_button_list[self.news_button_index].setHidden(False)
+    self.news_timer.timeout.connect(lambda: news_next(self))
+    self.news_timer.start(5000)
 #######################################################################################################################
-""" news create buttons """
-def 
-
-
-
-
+""" news next  """
+def news_next(self):
+    self.news_timer.stop()
+    self.news_timer.start(5000)
+    self.news_button_list[self.news_button_index].setHidden(True)
+    self.news_button_index = (self.news_button_index+1)%len(self.news_button_list)
+    self.news_button_list[self.news_button_index].setHidden(False)
+#######################################################################################################################
+""" News previous """
+def news_previous(self):
+    self.news_timer.stop()
+    self.news_timer.start(5000)
+    self.news_button_list[self.news_button_index].setHidden(True)
+    self.news_button_index = (self.news_button_index-1)%len(self.news_button_list)
+    self.news_button_list[self.news_button_index].setHidden(False)
+#######################################################################################################################
 """ Open main news """
 def open_main_news(self, id_news):
     self.main_news = Main_news_widget(self, id_news)
