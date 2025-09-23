@@ -64,8 +64,11 @@ class Main_widget(QWidget):
         self.object_icon_label = QLabel(self)
         self.object_ticker_label = QLabel(self)
         self.object_name_label = QLabel(self)
-        self.object_statistics_widget
-        self.object_sta
+        self.object_time_widget = QWidget(self)
+        self.object_statistics_widget = QWidget(self)
+        self.object_news_button = QPushButton(self)
+        self.object_chart_button = QPushButton(self)
+        self.object_stats_button = QPushButton(self)
 
         self.chart_widget = QWidget(self)
 
