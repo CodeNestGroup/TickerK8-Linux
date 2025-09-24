@@ -34,40 +34,33 @@ def main_ui(self):
     self.data_list_button.setObjectName('data_list_button')
     self.settings_button.setObjectName('settings_button')
     self.logout_button.setObjectName('logout_button')
-
+    self.object_icon_label.setObjectName('object_icon_label')
+    self.object_ticker_label.setObjectName('object_ticker_label')
+    self.object_name_label.setObjectName('object_name_label')
+    self.object_time_widget.setObjectName('object_time_widget')
+    self.object_statistics_widget.setObjectName('object_statistics_widget')
+    self.object_news_button.setObjectName('object_news_button')
+    self.object_chart_button.setObjectName('object_chart_button')
+    self.object_stats_button.setObjectName('object_stats_button')
     self.news_next_left_button.setObjectName('news_next_left_button')
     self.news_next_right_button.setObjectName('news_next_right_button')
     self.news_market_button.setObjectName('news_market_button')
     self.news_country_button.setObjectName('news_country_button')
     self.news_world_button.setObjectName('news_world_button')
-
-
-
-    #self.news_object_button.setObjectName('news_object_button')
-    #self.chart_button.setObjectName('chart_button')
-    #self.stats_button.setObjectName('stats_button')
-    #self.news_market_button.setObjectName('news_market_button')
-    #self.news_country_button.setObjectName('news_country_button')
-    #self.news_world_button.setObjectName('news_world_button')
 #______________________________________________________________________________________________________________________
     """ Set property """
     self.type_list_button.setProperty('class', 'list_button')
     self.data_list_button.setProperty('class', 'list_button')
     self.settings_button.setProperty('class', 'bottom_button')
     self.logout_button.setProperty('class', 'bottom_button')
-
+    self.object_news_button.setProperty('class', 'object_button')
+    self.object_chart_button.setProperty('class', 'object_button')
+    self.object_stats_button.setProperty('class', 'object_button')
     self.news_next_left_button.setProperty('class', 'news_nav_button')
     self.news_next_right_button.setProperty('class', 'news_nav_button')
     self.news_market_button.setProperty('class', 'news_type_button')
     self.news_country_button.setProperty('class', 'news_type_button')
     self.news_world_button.setProperty('class', 'news_type_button')
-
-    #self.news_object_button.setProperty('class', 'bottom_button')
-    #self.chart_button.setProperty('class', 'bottom_button')
-    #self.stats_button.setProperty('class', 'bottom_button')
-    #self.news_market_button.setProperty('class', 'bottom_button')
-    #self.news_country_button.setProperty('class', 'bottom_button')
-    #self.news_world_button.setProperty('class', 'bottom_button')
 #______________________________________________________________________________________________________________________
     """ Set layout """
     self.layout.addWidget(self.search_button, 1, 1, 3, 11)
@@ -77,6 +70,15 @@ def main_ui(self):
     self.layout.addWidget(self.data_list_button, 90, 7, 2, 5)
     self.layout.addWidget(self.settings_button, 96, 1, 2, 2)
     self.layout.addWidget(self.logout_button, 96, 4, 2, 2)
+    self.layout.addWidget(self.object_icon_label, 1, 13, 5, 38)
+    self.layout.addWidget(self.object_ticker_label, 8, 13, 2, 38)
+    self.layout.addWidget(self.object_name_label, 11, 13, 2, 38)
+    self.layout.addWidget(self.object_time_widget, 14, 13, 5, 38)
+    self.layout.addWidget(self.object_statistics_widget, 50, 13, 40, 38)
+    self.layout.addWidget(self.object_news_button, 90, 13, 2, 12)
+    self.layout.addWidget(self.object_chart_button, 90, 26, 2, 12)
+    self.layout.addWidget(self.object_stats_button, 90, 39, 2, 12)
+    self.layout.addWidget(self.chart_widget, 1, 52, 49, 47)
     self.layout.addWidget(self.news_next_left_button, 90, 52, 2, 23)
     self.layout.addWidget(self.news_next_right_button, 90, 76, 2, 23)
     self.layout.addWidget(self.news_market_button, 96, 52, 2, 15)
@@ -91,15 +93,20 @@ def main_ui(self):
 #______________________________________________________________________________________________________________________
     """ Set widget """
     self.setHidden(False)
+    self.object_ticker_label.setHidden(True)
+    self.object_time_widget.setHidden(True)
     self.objects_list_scroll.setWidgetResizable(True)
 #______________________________________________________________________________________________________________________
     """ Set label """
     self.objects_list_title_label.setAlignment(Qt.AlignCenter)
+    self.object_icon_label.setAlignment(Qt.AlignCenter)
+    self.object_ticker_label.setAlignment(Qt.AlignCenter)
+    self.object_name_label.setAlignment(Qt.AlignCenter)
 #______________________________________________________________________________________________________________________
     """ Set button """
-    #self.news_object_button.setDisabled(True)
-    #self.chart_button.setDisabled(True)
-    #self.stats_button.setDisabled(True)
+    self.object_news_button.setDisabled(True)
+    self.object_chart_button.setDisabled(True)
+    self.object_stats_button.setDisabled(True)
 #______________________________________________________________________________________________________________________
     """ Set size """
     self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -110,6 +117,8 @@ def main_ui(self):
     self.data_list_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.settings_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.logout_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.object_icon_label
+    self.object_ticker_label
     self.news_next_left_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.news_next_right_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.news_market_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)

@@ -53,25 +53,22 @@ class Main_widget(QWidget):
 #______________________________________________________________________________________________________________________
         """ Create objects """
         self.layout = QGridLayout(self) # Create grid layout.
-        self.search_button = QPushButton(self) # Create search button, nav widget, top.
+        self.search_button = QPushButton(self) # Create search button.
         self.objects_list_title_label = QLabel(self) # Create objects list title label.
         self.objects_list_scroll = QScrollArea(self) # Create objects list scroll.
-        self.type_list_button = QPushButton(self) # Create typelist button, nav widget, bottom, left.
-        self.data_list_button = QPushButton(self) # Create data list button, nav widget, bottom, right.
-        self.settings_button = QPushButton(self) # Create settings button, top widget.
-        self.logout_button = QPushButton(self) # Create log out button, left.
-
-        self.object_icon_label = QLabel(self)
-        self.object_ticker_label = QLabel(self)
-        self.object_name_label = QLabel(self)
-        self.object_time_widget = QWidget(self)
-        self.object_statistics_widget = QWidget(self)
-        self.object_news_button = QPushButton(self)
-        self.object_chart_button = QPushButton(self)
-        self.object_stats_button = QPushButton(self)
-
-        self.chart_widget = QWidget(self)
-
+        self.type_list_button = QPushButton(self) # Create typelist button.
+        self.data_list_button = QPushButton(self) # Create data list button.
+        self.settings_button = QPushButton(self) # Create settings button.
+        self.logout_button = QPushButton(self) # Create log out button.
+        self.object_icon_label = QLabel(self) # Create object icon label.
+        self.object_ticker_label = QLabel(self) # Create object ticker label.
+        self.object_name_label = QLabel(self) # Create object name label.
+        self.object_time_widget = QWidget(self) # Create object time widget.
+        self.object_statistics_widget = QWidget(self) # Create object statistics widget.
+        self.object_news_button = QPushButton(self) # Create object news button.
+        self.object_chart_button = QPushButton(self) # Create object chart button.
+        self.object_stats_button = QPushButton(self) # Create object stats button.
+        self.chart_widget = QWidget(self) # Create chart widget. 
         self.news_button_list = [] # Create news button list.
         self.news_button_index = 0 # Create news index.
         self.news_next_left_button = QPushButton(self) # Create news next left button.
@@ -80,14 +77,6 @@ class Main_widget(QWidget):
         self.news_country_button = QPushButton(self) # Create news country button.
         self.news_world_button = QPushButton(self) # Create news  world button. 
 
-        #self.object_scroll = Main_object_scroll(self) # Create object scroll, center side.
-        #self.news_widget = Main_news_widget(self) # Create main news widget,right side.
-        #self.news_object_button = QPushButton(self) # Create news button, left, left.
-        #self.chart_button = QPushButton(self) # Create chart button, left, mid.
-        #self.stats_button = QPushButton(self) # Create stats button, left, right.
-        #self.news_market_button = QPushButton(self) # Create market news button, bottom wigdet, right, left.
-        #self.news_country_button = QPushButton(self) # Create country news button, right, mid.
-        #self.news_world_button = QPushButton(self) # Create world news button, right, right.
         self.timer = QTimer(self) # Create timer.
         self.news_timer = QTimer(self) # Create news timer.
 #______________________________________________________________________________________________________________________
@@ -109,13 +98,6 @@ class Main_widget(QWidget):
 
         self.news_next_left_button.clicked.connect(lambda: news_next(self))
         self.news_next_right_button.clicked.connect(lambda: news_previous(self))
-        #self.nav_object_list_widget.config_changed.connect(lambda: main_mid_object_changed(self))
-        #self.news_widget.open_news.connect(lambda val: open_main_news(self, val))
-        #self.main_type_list_button.clicked.connect(self.nav_object_list_widget.show_lists)
-        #self.main_data_list_button.clicked.connect(self.nav_object_list_widget.show_edit_list_data)
-        #self.news_market_button.clicked.connect(lambda: open_main_news_list(self,0))
-        #self.news_country_button.clicked.connect(lambda: open_main_news_list(self, 1))
-        #self.news_world_button.clicked.connect(lambda: open_main_news_list(self, 1))
 #______________________________________________________________________________________________________________________
     """ Main objects list lists open """
     def objects_list_lists_open(self):
