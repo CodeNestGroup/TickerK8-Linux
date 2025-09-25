@@ -19,9 +19,9 @@
         "capitalization": ["Capitalization", "Kapitalizacja"],
         "capital": ["Capital", "Stolica"]
     },
-    "news_object_button": ["   News", "    Wiadmomości"],
-    "chart_button": ["  Chart", "   Wykres"],
-    "stats_button": ["  Statistics", "  Statystyki"],
+    "object_news_button": ["   News", "    Wiadmomości"],
+    "object_chart_button": ["  Chart", "   Wykres"],
+    "object_stats_button": ["  Statistics", "  Statystyki"],
     "type_list_button": ["  Lists", "   Listy"],
     "data_list_button": ["  Edit list data", "    Edytuj dane listy"],
     "news_market_button": ["    Market", "  Rynek"],

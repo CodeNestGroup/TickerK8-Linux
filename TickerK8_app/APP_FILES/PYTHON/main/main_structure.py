@@ -63,8 +63,8 @@ class Main_widget(QWidget):
         self.object_icon_label = QLabel(self) # Create object icon label.
         self.object_ticker_label = QLabel(self) # Create object ticker label.
         self.object_name_label = QLabel(self) # Create object name label.
-        self.object_time_widget = QWidget(self) # Create object time widget.
-        self.object_statistics_widget = QWidget(self) # Create object statistics widget.
+        self.object_time_widget = None # Set dafoult object time widget.
+        self.object_statistics_widget = None # Set dafoult object statistics widget.
         self.object_news_button = QPushButton(self) # Create object news button.
         self.object_chart_button = QPushButton(self) # Create object chart button.
         self.object_stats_button = QPushButton(self) # Create object stats button.

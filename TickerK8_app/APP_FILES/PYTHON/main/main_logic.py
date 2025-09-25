@@ -316,6 +316,306 @@ def object_list_edit_exit(self):
     self.object_list_edit_exit_button.deleteLater()
     objects_list_open(self)
 #######################################################################################################################
+""" object setup """
+def object_setup(self):
+    _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data
+    if _global_config['mid_object'][0] == 'country':
+        country_widget(self)
+    elif _global_config['mid_object'][0] == 'market':
+        market_widget(self)
+    elif _global_config['mid_object'][0] == 'market_index':
+        index_widget(self)
+    elif _global_config['mid_object'][0] == 'stock':
+        stock_widget(self)
+#######################################################################################################################
+""" object country """
+def object_country(self):
+    """ Get data """
+    database = sqlite3.connect(database=self.main_path+'/CONFIG/GLOBAL/local_data_prototype.db') # Create connect 
+    cursor = database.cursor() # Create cursor 
+    country_data = cursor.execute(f'''
+    SELECT
+    country.name, 
+    country.icon, 
+    country.capital, 
+    country.currency_code, 
+    timezone.name, 
+    population.number
+    FROM country 
+    JOIN timezone ON country.id_timezone=timezone.id
+    JOIN population ON country.id=population.id_country
+    WHERE country.id=={self.global_config['mid_object'][1]};''').fetchall()[0] # Execute
+    cursor.close()
+    database.close()
+#______________________________________________________________________________________________________________________
+    """ Create """
+    if self.object_statistics_widget:
+        self.object_statistics_widget.deleteLater()
+        self.object_statistics_widget = None 
+    self.object_statistics_widget = QWidget(self)
+    self.object_statistics_layout = QGridLayout(self.object_statistics_widget)
+    population_name_label = QLabel(self.object_statistics_widget)
+    population_value_label = QLabel(self.object_statistics_widget)
+    capital_name_label = QLabel(self.object_statistics_widget)
+    capital_value_label = QLabel(self.object_statistics_widget)
+    timezone_name_label = QLabel(self.object_statistics_widget)
+    timezone_value_label = QLabel(self.object_statistics_widget)
+    currency_name_label = QLabel(self.object_statistics_widget)
+    currency_value_label = QLabel(self.object_statistics_widget)
+#______________________________________________________________________________________________________________________
+    """ Setup """
+    """ Set object name """
+    self.object_statistics_widget.setObjectName('object_statistics_widget')
+    population_name_label.setObjectName('population_name_label')
+    population_value_label.setObjectName('population_value_label')
+    capital_name_label.setObjectName('capital_name_label')
+    capital_value_label.setObjectName('capital_value_label')
+    timezone_name_label.setObjectName('timezone_name_label')
+    timezone_value_label.setObjectName('timezone_value_label')
+    currency_name_label.setObjectName('currency_name_label')
+    currency_value_label.setObjectName('currency_value_label')
+#______________________________________________________________________________________________________________________
+    """ Set property """
+    population_name_label.setProperty('class', 'object_statistics_name_label')
+    capital_name_label.setProperty('class', 'object_statistics_name_label')
+    timezone_name_label.setProperty('class', 'object_statistics_name_label')
+    currency_name_label.setProperty('class', 'object_statistics_name_label')
+    population_value_label.setProperty('class', 'object_statistics_value_label')
+    capital_value_label.setProperty('class', 'object_statistics_value_label')
+    timezone_value_label.setProperty('class', 'object_statistics_value_label')
+    currency_value_label.setProperty('class', 'object_statistics_value_label')
+#______________________________________________________________________________________________________________________
+    """ Set layout """
+    self.layout.addWidget(self.object_statistics_widget, 50, 13, 40, 38)
+    self.object_statistics_layout.addWidget(population_name_label,0,0)
+    self.object_statistics_layout.addWidget(population_value_label,0,1)
+    self.object_statistics_layout.addWidget(capital_name_label,1,0)
+    self.object_statistics_layout.addWidget(capital_value_label,1,1)
+    self.object_statistics_layout.addWidget(timezone_name_label,2,0)
+    self.object_statistics_layout.addWidget(timezone_value_label,2,1)
+    self.object_statistics_layout.addWidget(currency_name_label,3,0)
+    self.object_statistics_layout.addWidget(currency_value_label,3,1)
+    self.object_statistics_layout.setSpacing(0)
+    self.object_statistics_layout.setContentsMargins(0,0,0,0)
+    self.object_statistics_widget.setLayout(self.object_statistics_layout)
+#______________________________________________________________________________________________________________________
+    """ Set widget """
+    self.object_ticker_label.setHidden(True)
+#______________________________________________________________________________________________________________________
+    """ Set label """
+    population_name_label.setAlignment(Qt.AlignCenter)
+    population_value_label.setAlignment(Qt.AlignCenter)
+    capital_name_label.setAlignment(Qt.AlignCenter)
+    capital_value_label.setAlignment(Qt.AlignCenter)
+    timezone_name_label.setAlignment(Qt.AlignCenter)
+    timezone_value_label.setAlignment(Qt.AlignCenter)
+    currency_name_label.setAlignment(Qt.AlignCenter)
+    currency_value_label.setAlignment(Qt.AlignCenter)
+#______________________________________________________________________________________________________________________
+    """ Set size """
+    self.object_statistics_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    population_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    population_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    capital_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    capital_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    timezone_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    timezone_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    currency_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    currency_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+#______________________________________________________________________________________________________________________
+    """ Set text """
+    _t = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r')) # Translate texts.
+    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['__language__'] # Language.
+    self.object_name_label.setText(country_data[0])
+    population_name_label.setText(f'{_t['population_name_label'][_l]}:')
+    population_value_label.setText(country_data[5])
+    capital_name_label.setText(f'{_t['capital_name_label'][_l]}:')
+    capital_value_label.setText(country_data[2])
+    timezone_name_label.setText(f'{_t['timezone_name_label'][_l]}:')
+    timezone_value_label.setText(country_data[4])
+    currency_name_label.setText(f'{_t['currency_name_label'][_l]}:')
+    currency_value_label.setText(country_data[3])
+#______________________________________________________________________________________________________________________
+    """ Set graphics """
+    self.object_icon_label.setPixmap(load_svg(self.main_path+'/STYLE/IMG/'+country_data[1]+'.svg', int(self.width()*0.3), int(self.width()*0.3)))
+#######################################################################################################################
+""" object market """
+def object_market(self):
+    """ Get data """
+    database = sqlite3.connect(database=self.main_path+'/CONFIG/GLOBAL/local_data_prototype.db') # Create connect 
+    cursor = database.cursor() # Create cursor 
+    market_data = cursor.execute(f'''
+    SELECT
+    market.name, 
+    market.short_name,
+    market.icon,
+    market.city, 
+    market.website, 
+    market.founded_date,
+    market.capitalization,
+    market.pre_open_time,
+    market.open_time,
+    market.close_time,
+    market.post_close_time,
+    timezone.id
+    FROM market
+    JOIN country ON market.id_country=country.id
+    JOIN timezone ON country.id_timezone=timezone.id
+    WHERE market.id={self.global_config['mid_object'][1]};''').fetchall()[0] # Execute
+    cursor.close()
+    database.close()
+#______________________________________________________________________________________________________________________
+    """ Create """
+    if self.object_statistics_widget:
+        self.object_statistics_widget.deleteLater()
+        self.object_statistics_widget = None 
+    self.object_statistics_widget = QWidget(self)
+    self.object_statistics_layout = QGridLayout(self.object_statistics_widget)
+    if self.object_time_widget:
+        self.object_time_widget.deleteLater()
+        self.object_time_widget = None
+    self.object_time_widget = QWidget(self)
+    time_close_1_label = QLabel(self.object_time_widget)
+    time_pre_open_label = QLabel(self.object_time_widget)
+    time_open_label = QLabel(self.object_time_widget)
+    time_post_close_label = QLabel(self.object_time_widget)
+    time_close_2_label = QLabel(self.object_time_widget)
+    time_dot_label = QLabel(self.object_time_widget)
+    capitalization_name_label = QLabel(self.object_statistics_widget)
+    capitalization_value_label = QLabel(self.object_statistics_widget)
+    city_name_label = QLabel(self.object_statistics_widget)
+    city_value_label = QLabel(self.object_statistics_widget)
+    founded_date_name_label = QLabel(self.object_statistics_widget)
+    founded_data_value_label = QLabel(self.object_statistics_widget)
+    website_name_label = QLabel(self.object_statistics_widget)
+    website_value_label = QLabel(self.object_statistics_widget)
+#______________________________________________________________________________________________________________________
+    """ Setup """
+    """ Set object name """
+    self.object_statistics_widget.setObjectName('object_statistics_widget')
+    self.object_time_widget.setObjectName('object_time_widget')
+    time_close_1_label.setObjectName('time_close_1_label')
+    time_pre_open_label.setObjectName('time_pre_open_label')
+    time_open_label.setObjectName('time_open_label')
+    time_post_close_label.setObjectName('time_post_close_label')
+    time_close_2_label.setObjectName('time_close_2_label')
+    time_dot_label.setObjectName('time_dot_label')
+    capitalization_name_label.setObjectName('capitalization_name_label')
+    capitalization_value_label.setObjectName('capitalization_value_label')
+    city_name_label.setObjectName('city_name_label')
+    city_value_label.setObjectName('city_value_label')
+    founded_date_name_label.setObjectName('founded_date_name_label')
+    founded_data_value_label.setObjectName('founded_data_value_label')
+    website_name_label.setObjectName('website_name_label')
+    website_value_label.setObjectName('website_value_label')
+#______________________________________________________________________________________________________________________
+    """ Set property """
+    capitalization_name_label.setProperty('class', 'object_statistics_name_label')
+    city_name_label.setProperty('class', 'object_statistics_name_label')
+    founded_date_name_label.setProperty('class', 'object_statistics_name_label')
+    website_name_label.setProperty('class', 'object_statistics_name_label')
+    capitalization_value_label.setProperty('class', 'object_statistics_value_label')
+    city_value_label.setProperty('class', 'object_statistics_value_label')
+    founded_data_value_label.setProperty('class', 'object_statistics_value_label')
+    website_value_label.setProperty('class', 'object_statistics_value_label')
+#______________________________________________________________________________________________________________________
+    """ Set layout """
+    self.layout.addWidget(self.object_time_widget, 14, 13, 5, 38)
+    self.layout.addWidget(self.object_statistics_widget, 50, 13, 40, 38)
+    self.object_statistics_layout.addWidget(capitalization_name_label,0,0)
+    self.object_statistics_layout.addWidget(capitalization_value_label,0,1)
+    self.object_statistics_layout.addWidget(city_name_label,1,0)
+    self.object_statistics_layout.addWidget(city_value_label,1,1)
+    self.object_statistics_layout.addWidget(founded_date_name_label,2,0)
+    self.object_statistics_layout.addWidget(founded_data_value_label,2,1)
+    self.object_statistics_layout.addWidget(website_name_label,3,0)
+    self.object_statistics_layout.addWidget(website_value_label,3,1)
+    self.object_statistics_layout.setSpacing(0)
+    self.object_statistics_layout.setContentsMargins(0,0,0,0)
+    self.object_statistics_widget.setLayout(self.object_statistics_layout)
+#______________________________________________________________________________________________________________________
+    """ Set widget """
+#______________________________________________________________________________________________________________________
+    """ Set label """
+    capitalization_name_label.setAlignment(Qt.AlignCenter)
+    capitalization_value_label.setAlignment(Qt.AlignCenter)
+    city_name_label.setAlignment(Qt.AlignCenter)
+    city_value_label.setAlignment(Qt.AlignCenter)
+    founded_date_name_label.setAlignment(Qt.AlignCenter)
+    founded_data_value_label.setAlignment(Qt.AlignCenter)
+    website_name_label.setAlignment(Qt.AlignCenter)
+    website_value_label.setAlignment(Qt.AlignCenter)
+#______________________________________________________________________________________________________________________
+    """ Set size """
+    self.object_time_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.object_statistics_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    capitalization_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    capitalization_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    city_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    city_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    founded_date_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    founded_data_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    website_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    website_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+#______________________________________________________________________________________________________________________
+    """ Set text """
+    _t = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r')) # Translate texts.
+    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['__language__'] # Language.
+    self.object_ticker_label.setText(market_data[1])
+    self.object_name_label.setText(market_data[0])
+    capitalization_name_label.setText(f'{_t['capitalization_name_label'][_l]}:')
+    capitalization_value_label.setText(market_data[6])
+    city_name_label.setText(f'{_t['city_name_label'][_l]}:')
+    city_value_label.setText(market_data[3])
+    founded_date_name_label.setText(f'{_t['founded_date_name_label'][_l]}:')
+    founded_data_value_label.setText(market_data[5])
+    website_name_label.setText(f'{_t['website_name_label'][_l]}:')
+    website_value_label.setText(market_data[4])
+#______________________________________________________________________________________________________________________
+    """ Set graphics """
+    self.object_icon_label.setPixmap(load_svg(self.main_path+'/STYLE/IMG/'+market_data[2]+'.svg', int(self.width()*0.3), int(self.width()*0.3)))
+#______________________________________________________________________________________________________________________
+    """ Setup time widget """
+    total_sec = 86400
+    pre_open_time = int(market_data[7])
+    open_time = int(market_data[8])
+    close_time = int(market_data[9])
+    post_close_time = int(market_data[10])
+    margins_x = int(self.main_time_widget.width()*0.05)
+    pos_y = int(self.main_time_widget.height()*0.45)
+    width = int(self.main_time_widget.width()-margins_x)
+    height = int(self.main_time_widget.height()*0.1)
+
+    close_1_pos = int(0+(margins_x//2)) # Pos
+    close_1_width = int((pre_open_time/total_sec)*width) # Width
+    pre_open_time_pos = int(close_1_pos+close_1_width) # Pos
+    pre_open_time_width = int(((open_time-pre_open_time)/total_sec)*width) # Width
+    open_time_pos = int(pre_open_time_pos+pre_open_time_width) # Pos
+    open_time_width = int(((close_time-pre_open_time)/total_sec)*width) # Width
+    post_close_pos = int(open_time_pos+open_time_width) # Pos
+    post_close_width = int(((post_close_time-close_time)/total_sec)*width) # Width
+    close_2_pos = int(post_close_pos+post_close_width) # Pos
+    close_2_width = int(width-close_1_width-pre_open_time_width-open_time_width-post_close_width) # Width
+    
+    close_1_label.setGeometry(QRect(close_1_pos, int(pos_y), close_1_width, int(height)))
+    pre_open_label.setGeometry(QRect(pre_open_time_pos, int(pos_y), pre_open_time_width, int(height)))
+    open_label.setGeometry(QRect(open_time_pos, int(pos_y), open_time_width, int(height)))
+    post_close_label.setGeometry(QRect(post_close_pos, int(pos_y), post_close_width, int(height)))
+    close_2_label.setGeometry(QRect(close_2_pos, int(pos_y), close_2_width, int(height)))
+    dot_label.setFixedSize(QSize(int(height*1.5), int(height*1.5)))
+
+    self.main_time_timer = QTimer(self.main_time_widget)
+    self.main_time_timer.timeout.connect(lambda w=width, h=pos_y: update_dot(self, w, h))
+    self.main_time_timer.start(1000)
+#######################################################################################################################
+""" object index """
+def object_index(self):
+    pass
+#######################################################################################################################
+""" object stock """
+def object_stock(self):
+    pass
+#######################################################################################################################
 """ news creator """
 def news_creator(self):
     _news_button_list = self.news_button_list # Get local data.
