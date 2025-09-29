@@ -29,9 +29,6 @@ from .main_logic import *
 """ Import main search """
 from main_search.main_search_structure import Main_search_widget
 #______________________________________________________________________________________________________________________
-""" Import main object """
-from main_object.main_object_structure import Main_object_scroll
-#______________________________________________________________________________________________________________________
 """ Import main news list structure """
 from main_news_list.main_news_list_structure import Main_news_list_widget
 #######################################################################################################################
@@ -68,7 +65,7 @@ class Main_widget(QWidget):
         self.object_news_button = QPushButton(self) # Create object news button.
         self.object_chart_button = QPushButton(self) # Create object chart button.
         self.object_stats_button = QPushButton(self) # Create object stats button.
-        self.chart_widget = QWidget(self) # Create chart widget. 
+        self.chart_widget = None
         self.news_button_list = [] # Create news button list.
         self.news_button_index = 0 # Create news index.
         self.news_next_left_button = QPushButton(self) # Create news next left button.
@@ -88,6 +85,7 @@ class Main_widget(QWidget):
         self.timer.timeout.connect(self.widget_background) # Connect.
         self.timer.start(1) # Start timer.
         objects_list_open(self)
+        object_setup(self)
         news_creator(self)
 #______________________________________________________________________________________________________________________
         """ Connect  functions """

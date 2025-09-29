@@ -61,7 +61,7 @@ def main_ui(self):
     self.news_world_button.setProperty('class', 'news_type_button')
 #______________________________________________________________________________________________________________________
     """ Set layout """
-    self.layout.addWidget(self.search_button, 1, 1, 3, 11)
+    self.layout.addWidget(self.search_button, 2, 1, 3, 11)
     self.layout.addWidget(self.objects_list_title_label, 8, 1, 2, 11)
     self.layout.addWidget(self.objects_list_scroll, 15, 1, 72, 11)
     self.layout.addWidget(self.type_list_button, 90, 1, 2, 5)
@@ -90,7 +90,6 @@ def main_ui(self):
     """ Set widget """
     self.setHidden(False)
     self.object_ticker_label.setHidden(True)
-    self.object_time_widget.setHidden(True)
     self.objects_list_scroll.setWidgetResizable(True)
 #______________________________________________________________________________________________________________________
     """ Set label """
@@ -116,8 +115,6 @@ def main_ui(self):
     self.object_icon_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.object_ticker_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.object_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.object_time_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.object_statistics_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.object_news_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.object_chart_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.object_stats_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -144,7 +141,7 @@ def main_reload_style(self):
     self.object_news_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/news_'+_global_config['__theme__']+'.svg'), 256, 256)))
     self.object_news_button.setIconSize(self.object_news_button.size())
     self.object_chart_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/chart_'+_global_config['__theme__']+'.svg'), 256, 256)))
-    self.object_chart_button.setIconSize(self.object_chart_button)
+    self.object_chart_button.setIconSize(self.object_chart_button.size())
     self.object_stats_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/statistics_'+_global_config['__theme__']+'.svg'), 256, 256)))
     self.object_stats_button.setIconSize(self.object_stats_button.size())
     self.news_next_left_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/arrow_left_'+_global_config['__theme__']+'.svg'), 256, 256)))

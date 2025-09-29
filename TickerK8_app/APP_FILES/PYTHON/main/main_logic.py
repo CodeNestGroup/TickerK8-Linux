@@ -319,17 +319,18 @@ def object_list_edit_exit(self):
 """ object setup """
 def object_setup(self):
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data
-    if _global_config['mid_object'][0] == 'country':
-        country_widget(self)
-    elif _global_config['mid_object'][0] == 'market':
-        market_widget(self)
-    elif _global_config['mid_object'][0] == 'market_index':
-        index_widget(self)
-    elif _global_config['mid_object'][0] == 'stock':
-        stock_widget(self)
+    if _global_config['object'][0] == 'country':
+        object_country(self)
+    elif _global_config['object'][0] == 'market':
+        object_market(self)
+    elif _global_config['object'][0] == 'market_index':
+        object_index(self)
+    elif _global_config['object'][0] == 'stock':
+        object_stock(self)
 #######################################################################################################################
 """ object country """
 def object_country(self):
+    _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data
     """ Get data """
     database = sqlite3.connect(database=self.main_path+'/CONFIG/GLOBAL/local_data_prototype.db') # Create connect 
     cursor = database.cursor() # Create cursor 
@@ -344,7 +345,7 @@ def object_country(self):
     FROM country 
     JOIN timezone ON country.id_timezone=timezone.id
     JOIN population ON country.id=population.id_country
-    WHERE country.id=={self.global_config['mid_object'][1]};''').fetchall()[0] # Execute
+    WHERE country.id=={_global_config['object'][1]};''').fetchall()[0] # Execute
     cursor.close()
     database.close()
 #______________________________________________________________________________________________________________________
@@ -386,7 +387,7 @@ def object_country(self):
     currency_value_label.setProperty('class', 'object_statistics_value_label')
 #______________________________________________________________________________________________________________________
     """ Set layout """
-    self.layout.addWidget(self.object_statistics_widget, 50, 13, 40, 38)
+    self.layout.addWidget(self.object_statistics_widget, 45, 13, 42, 38)
     self.object_statistics_layout.addWidget(population_name_label,0,0)
     self.object_statistics_layout.addWidget(population_value_label,0,1)
     self.object_statistics_layout.addWidget(capital_name_label,1,0)
@@ -428,19 +429,20 @@ def object_country(self):
     _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['__language__'] # Language.
     self.object_name_label.setText(country_data[0])
     population_name_label.setText(f'{_t['population_name_label'][_l]}:')
-    population_value_label.setText(country_data[5])
+    population_value_label.setText(str(country_data[5]))
     capital_name_label.setText(f'{_t['capital_name_label'][_l]}:')
-    capital_value_label.setText(country_data[2])
+    capital_value_label.setText(str(country_data[2]))
     timezone_name_label.setText(f'{_t['timezone_name_label'][_l]}:')
-    timezone_value_label.setText(country_data[4])
+    timezone_value_label.setText(str(country_data[4]))
     currency_name_label.setText(f'{_t['currency_name_label'][_l]}:')
-    currency_value_label.setText(country_data[3])
+    currency_value_label.setText(str(country_data[3]))
 #______________________________________________________________________________________________________________________
     """ Set graphics """
     self.object_icon_label.setPixmap(load_svg(self.main_path+'/STYLE/IMG/'+country_data[1]+'.svg', int(self.width()*0.3), int(self.width()*0.3)))
 #######################################################################################################################
 """ object market """
 def object_market(self):
+    _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data
     """ Get data """
     database = sqlite3.connect(database=self.main_path+'/CONFIG/GLOBAL/local_data_prototype.db') # Create connect 
     cursor = database.cursor() # Create cursor 
@@ -461,7 +463,7 @@ def object_market(self):
     FROM market
     JOIN country ON market.id_country=country.id
     JOIN timezone ON country.id_timezone=timezone.id
-    WHERE market.id={self.global_config['mid_object'][1]};''').fetchall()[0] # Execute
+    WHERE market.id={_global_config['object'][1]};''').fetchall()[0] # Execute
     cursor.close()
     database.close()
 #______________________________________________________________________________________________________________________
@@ -576,45 +578,269 @@ def object_market(self):
     self.object_icon_label.setPixmap(load_svg(self.main_path+'/STYLE/IMG/'+market_data[2]+'.svg', int(self.width()*0.3), int(self.width()*0.3)))
 #______________________________________________________________________________________________________________________
     """ Setup time widget """
-    total_sec = 86400
-    pre_open_time = int(market_data[7])
-    open_time = int(market_data[8])
-    close_time = int(market_data[9])
-    post_close_time = int(market_data[10])
-    margins_x = int(self.main_time_widget.width()*0.05)
-    pos_y = int(self.main_time_widget.height()*0.45)
-    width = int(self.main_time_widget.width()-margins_x)
-    height = int(self.main_time_widget.height()*0.1)
+    #total_sec = 86400
+    #pre_open_time = int(market_data[7])
+    #open_time = int(market_data[8])
+    #close_time = int(market_data[9])
+    #post_close_time = int(market_data[10])
+    #margins_x = int(self.main_time_widget.width()*0.05)
+    #pos_y = int(self.main_time_widget.height()*0.45)
+    #width = int(self.main_time_widget.width()-margins_x)
+    #height = int(self.main_time_widget.height()*0.1)
 
-    close_1_pos = int(0+(margins_x//2)) # Pos
-    close_1_width = int((pre_open_time/total_sec)*width) # Width
-    pre_open_time_pos = int(close_1_pos+close_1_width) # Pos
-    pre_open_time_width = int(((open_time-pre_open_time)/total_sec)*width) # Width
-    open_time_pos = int(pre_open_time_pos+pre_open_time_width) # Pos
-    open_time_width = int(((close_time-pre_open_time)/total_sec)*width) # Width
-    post_close_pos = int(open_time_pos+open_time_width) # Pos
-    post_close_width = int(((post_close_time-close_time)/total_sec)*width) # Width
-    close_2_pos = int(post_close_pos+post_close_width) # Pos
-    close_2_width = int(width-close_1_width-pre_open_time_width-open_time_width-post_close_width) # Width
+    #close_1_pos = int(0+(margins_x//2)) # Pos
+    #close_1_width = int((pre_open_time/total_sec)*width) # Width
+    #pre_open_time_pos = int(close_1_pos+close_1_width) # Pos
+    #pre_open_time_width = int(((open_time-pre_open_time)/total_sec)*width) # Width
+    #open_time_pos = int(pre_open_time_pos+pre_open_time_width) # Pos
+    #open_time_width = int(((close_time-pre_open_time)/total_sec)*width) # Width
+    #post_close_pos = int(open_time_pos+open_time_width) # Pos
+    #post_close_width = int(((post_close_time-close_time)/total_sec)*width) # Width
+    #close_2_pos = int(post_close_pos+post_close_width) # Pos
+    #close_2_width = int(width-close_1_width-pre_open_time_width-open_time_width-post_close_width) # Width
     
-    close_1_label.setGeometry(QRect(close_1_pos, int(pos_y), close_1_width, int(height)))
-    pre_open_label.setGeometry(QRect(pre_open_time_pos, int(pos_y), pre_open_time_width, int(height)))
-    open_label.setGeometry(QRect(open_time_pos, int(pos_y), open_time_width, int(height)))
-    post_close_label.setGeometry(QRect(post_close_pos, int(pos_y), post_close_width, int(height)))
-    close_2_label.setGeometry(QRect(close_2_pos, int(pos_y), close_2_width, int(height)))
-    dot_label.setFixedSize(QSize(int(height*1.5), int(height*1.5)))
+    #close_1_label.setGeometry(QRect(close_1_pos, int(pos_y), close_1_width, int(height)))
+    #pre_open_label.setGeometry(QRect(pre_open_time_pos, int(pos_y), pre_open_time_width, int(height)))
+    #open_label.setGeometry(QRect(open_time_pos, int(pos_y), open_time_width, int(height)))
+    #post_close_label.setGeometry(QRect(post_close_pos, int(pos_y), post_close_width, int(height)))
+    #close_2_label.setGeometry(QRect(close_2_pos, int(pos_y), close_2_width, int(height)))
+    #dot_label.setFixedSize(QSize(int(height*1.5), int(height*1.5)))
 
-    self.main_time_timer = QTimer(self.main_time_widget)
-    self.main_time_timer.timeout.connect(lambda w=width, h=pos_y: update_dot(self, w, h))
-    self.main_time_timer.start(1000)
+    #self.main_time_timer = QTimer(self.main_time_widget)
+    #self.main_time_timer.timeout.connect(lambda w=width, h=pos_y: update_dot(self, w, h))
+    #self.main_time_timer.start(1000)
 #######################################################################################################################
 """ object index """
 def object_index(self):
-    pass
+    _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data
+    """ Get data """
+    database = sqlite3.connect(database=self.main_path+'/CONFIG/GLOBAL/local_data_prototype.db') # Create connect 
+    cursor = database.cursor() # Create cursor 
+    index_data = cursor.execute(f'''
+    SELECT
+    market_index.name, 
+    market_index.icon 
+    FROM market_index 
+    WHERE market_index.id={self.global_config['object'][1]};''').fetchall()[0] # Execute
+    objects_of_index = cursor.execute(f'''
+    SELECT 
+    stock.icon, 
+    stock.ticker
+    FROM stock
+    JOIN index_stock ON stock.id=index_stock.id_stock
+    WHERE index_stock.id_index={_global_config['object'][1]};''').fetchall() # Execute
+    cursor.close()
+    database.close()
+    chart_data = json.load(open(self.main_path+f'/CHART_DATA/{index_data[0]}_15.json', 'r'))
+#______________________________________________________________________________________________________________________
+    """ Create """
+    if self.object_statistics_widget:
+        self.object_statistics_widget.deleteLater()
+        self.object_statistics_widget = None 
+    self.object_statistics_widget = QWidget(self)
+    self.object_statistics_layout = QGridLayout(self.object_statistics_widget)
+    index_label = QLabel(self.object_statistics_widget)
+    ticker_label = QLabel(self.object_statistics_widget)
+    icon_blank_label = QLabel(self.object_statistics_widget)
+    stocks_scroll = QScrollArea(self.object_statistics_widget)
+    stocks_widget = QWidget(stocks_scroll)
+    stocks_layout = QGridLayout(stocks_widget)
+#______________________________________________________________________________________________________________________
+    """ Setup widget """
+    """ Set object name """
+    self.object_statistics_widget.setObjectName('object_statistics_widget')
+    index_label.setObjectName('index_label')
+    ticker_label.setObjectName('ticker_label')
+    icon_blank_label.setObjectName('icon_blank_label')
+    stocks_scroll.setObjectName('stocks_scroll')
+    stocks_widget.setObjectName('stocks_widget')
+#______________________________________________________________________________________________________________________
+    """ Set property """
+#______________________________________________________________________________________________________________________
+    """ Set layout """
+    self.object_statistics_layout.addWidget(index_label, 0, 0, 10, 10)
+    self.object_statistics_layout.addWidget(ticker_label,0, 10, 10, 70)
+    self.object_statistics_layout.addWidget(icon_blank_label,0, 80, 10, 20)
+    self.object_statistics_layout.addWidget(stocks_scroll, 10, 0, 90, 100)
+    self.object_statistics_layout.setSpacing(0)
+    self.object_statistics_layout.setContentsMargins(0,0,0,0)
+    for enc in range(100):
+        self.object_statistics_layout.setRowStretch(enc, 1)
+        self.object_statistics_layout.setColumnStretch(enc,1)
+    self.object_statistics_widget.setLayout(self.object_statistics_layout)
+    stocks_layout.setSpacing(0)
+    stocks_layout.setContentsMargins(0,0,0,0)
+    for enc in range(100):
+        stocks_layout.setColumnStretch(enc, 1)
+    stocks_widget.setLayout(stocks_layout)
+#______________________________________________________________________________________________________________________
+    """ Set widget """
+    stocks_scroll.setWidgetResizable(True)
+    stocks_scroll.setWidget(stocks_widget)
+#______________________________________________________________________________________________________________________
+    """ Set label """
+    index_label.setAlignment(Qt.AlignCenter)
+    ticker_label.setAlignment(Qt.AlignCenter)
+#______________________________________________________________________________________________________________________
+    """ Set size """
+    self.object_statistics_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    index_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    ticker_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    icon_blank_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    stocks_scroll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    stocks_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+#______________________________________________________________________________________________________________________
+    """ Set text """
+    _t = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r')) # Translate texts.
+    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['__language__'] # Language.
+    index_label.setText('#')
+    ticker_label.setText(_t['ticker_label'][_l])
+#______________________________________________________________________________________________________________________
+    """ Set graphics """
+    self.object_icon_label.setPixmap(load_svg(self.main_path+'/STYLE/IMG/'+index_data[1]+'.svg', int(self.width()*0.3), int(self.width()*0.3)))
+#______________________________________________________________________________________________________________________
+    """ Creat stocks list"""
+    for row, item_list in enumerate(objects_of_index, start=0):
+        """ Create objects """
+        stock_index_label = QLabel(stocks_widget)
+        stock_ticker_label = QLabel(stocks_widget)
+        stock_logo_label = QLabel(stocks_widget)
+        """ Set object name """
+        stock_index_label.setObjectName(f'stokc_index_{row}_label')
+        stock_ticker_label.setObjectName(f'stock_ticker_{row}_label')
+        stock_logo_label.setObjectName(f'stock_logo_{row}_label')
+        """ Set property """
+        stock_index_label.setProperty('class', 'index_label')
+        stock_ticker_label.setProperty('class', 'ticker_label')
+        stock_logo_label.setProperty('class', 'logo_label')
+        """ Set layout """
+        stocks_layout.addWidget(stock_index_label, row, 0, 1, 10)
+        stocks_layout.addWidget(stock_ticker_label, row, 10, 1, 70)
+        stocks_layout.addWidget(stock_logo_label, row, 80, 1, 20)
+        """ Set label """
+        stock_index_label.setAlignment(Qt.AlignCenter)
+        stock_ticker_label.setAlignment(Qt.AlignCenter)
+        stock_logo_label.setAlignment(Qt.AlignCenter)
+        """ Set size """
+        stock_index_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        stock_ticker_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        stock_logo_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        """ Set text """
+        stock_index_label.setText(f'{row+1}.')
+        stock_ticker_label.setText(item_list[1])
+        """ Set graphic """
+        stock_logo_label.setPixmap(load_svg(self.main_path+'/STYLE/IMG/'+item_list[0]+'.svg', item_label.height(), item_label.height()))
 #######################################################################################################################
 """ object stock """
 def object_stock(self):
-    pass
+    _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data
+    """ Get data """
+    database = sqlite3.connect(database=self.main_path+'/CONFIG/GLOBAL/local_data_prototype.db') # Create connect 
+    cursor = database.cursor() # Create cursor 
+    stock_data = cursor.execute(f'''
+    SELECT
+    stock.name,
+    stock.ticker,
+    stock.icon,
+    stock.capitalization,
+    stock.pe_ratio,
+    stock.eps,
+    stock.dividend_yield
+    FROM stock
+    WHERE stock.id={_global_config['object'][1]};''').fetchall()[0] # Execute
+    cursor.close()
+    database.close()
+    chart_data = json.load(open(self.main_path+f'/CHART_DATA/{stock_data[1]}_15.json', 'r'))
+#______________________________________________________________________________________________________________________
+    """ Create """
+    if self.object_statistics_widget:
+        self.object_statistics_widget.deleteLater()
+        self.object_statistics_widget = None 
+    self.object_statistics_widget = QWidget(self)
+    self.object_statistics_layout = QGridLayout(self.object_statistics_widget)
+    capitalization_name_label = QLabel(self.object_statistics_widget)
+    capitalization_value_label = QLabel(self.object_statistics_widget)
+    pe_ratio_name_label = QLabel(self.object_statistics_widget)
+    pe_ratio_value_label = QLabel(self.object_statistics_widget)
+    eps_name_label = QLabel(self.object_statistics_widget)
+    eps_value_label = QLabel(self.object_statistics_widget)
+    dividend_yield_name_label = QLabel(self.object_statistics_widget)
+    dividend_yield_value_label = QLabel(self.object_statistics_widget)
+#______________________________________________________________________________________________________________________
+    """ Setup widget """
+    """ Set object name """
+    self.object_statistics_widget.setObjectName('object_statistics_widget')
+    capitalization_name_label.setObjectName('capitalization_name_label')
+    capitalization_value_label.setObjectName('capitalization_value_label')
+    pe_ratio_name_label.setObjectName('pe_ratio_name_label')
+    pe_ratio_value_label.setObjectName('pe_ratio_value_label')
+    eps_name_label.setObjectName('eps_name_label')
+    eps_value_label.setObjectName('eps_value_label')
+    dividend_yield_name_label.setObjectName('dividend_yield_name_label')
+    dividend_yield_value_label.setObjectName('dividend_yield_value_label')
+#______________________________________________________________________________________________________________________
+    """ Set property """
+    capitalization_name_label.setProperty('class', 'object_statistics_name_label')
+    pe_ratio_name_label.setProperty('class', 'object_statistics_name_label')
+    eps_name_label.setProperty('class', 'object_statistics_name_label')
+    dividend_yield_name_label.setProperty('class', 'object_statistics_name_label')
+    capitalization_value_label.setProperty('class', 'object_statistics_value_label')
+    pe_ratio_value_label.setProperty('class', 'object_statistics_value_label')
+    eps_value_label.setProperty('class', 'object_statistics_value_label')
+    dividend_yield_value_label.setProperty('class', 'object_statistics_value_label')
+#______________________________________________________________________________________________________________________
+    """ Set layout """
+    self.object_statistics_layout.addWidget(capitalization_name_label,0,0)
+    self.object_statistics_layout.addWidget(capitalization_value_label,0,1)
+    self.object_statistics_layout.addWidget(pe_ratio_name_label,1,0)
+    self.object_statistics_layout.addWidget(pe_ratio_value_label,1,1)
+    self.object_statistics_layout.addWidget(eps_name_label,2,0)
+    self.object_statistics_layout.addWidget(eps_value_label,2,1)
+    self.object_statistics_layout.addWidget(dividend_yield_name_label,3,0)
+    self.object_statistics_layout.addWidget(dividend_yield_value_label,3,1)
+    self.object_statistics_layout.setSpacing(0)
+    self.object_statistics_layout.setContentsMargins(0,0,0,0)
+    self.object_statistics_widget.setLayout(self.object_statistics_layout)
+#______________________________________________________________________________________________________________________
+    """ Set widget """
+#______________________________________________________________________________________________________________________
+    """ Set label """
+    capitalization_name_label.setAlignment(Qt.AlignCenter)
+    capitalization_value_label.setAlignment(Qt.AlignCenter)
+    pe_ratio_name_label.setAlignment(Qt.AlignCenter)
+    pe_ratio_value_label.setAlignment(Qt.AlignCenter)
+    eps_name_label.setAlignment(Qt.AlignCenter)
+    eps_value_label.setAlignment(Qt.AlignCenter)
+    dividend_yield_name_label.setAlignment(Qt.AlignCenter)
+    dividend_yield_value_label.setAlignment(Qt.AlignCenter)
+#______________________________________________________________________________________________________________________
+    """ Set size """
+    self.object_statistics_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    capitalization_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    capitalization_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    pe_ratio_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    pe_ratio_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    eps_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    eps_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    dividend_yield_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    dividend_yield_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+#______________________________________________________________________________________________________________________
+    """ Set text """
+    _t = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r')) # Translate texts.
+    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['__language__'] # Language.
+    self.object_ticker_label.setText(stock_data[1])
+    self.object_name_label.setText(stock_data[0])
+    capitalization_name_label.setText(f'{_t['capitalization_name_label'][_l]}:')
+    capitalization_value_label.setText(stock_data[3])
+    pe_ratio_name_label.setText(f'{_t['pe_ratio_name_label'][_l]}:')
+    pe_ratio_value_label.setText(stock_data[4])
+    eps_name_label.setText(f'{_t['eps_name_label'][_l]}:')
+    eps_value_label.setText(stock_data[5])
+    dividend_yield_name_label.setText(f'{_t['dividend_yield_name_label'][_l]}:')
+    dividend_yield_value_label.setText(stock_data[6])
+#______________________________________________________________________________________________________________________
+    """ Set graphics """
+    self.object_icon_label.setPixmap(load_svg(self.main_path+'/STYLE/IMG/'+stock_data[2]+'.svg', int(self.width()*0.3), int(self.width()*0.3)))
 #######################################################################################################################
 """ news creator """
 def news_creator(self):
