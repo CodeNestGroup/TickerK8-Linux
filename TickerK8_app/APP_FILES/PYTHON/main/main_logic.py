@@ -119,7 +119,7 @@ def objects_list_open(self):
 #______________________________________________________________________________________________________________________
     """ Set layout """
     self.objects_list_layout.setSpacing(0)
-    self.objects_list_layout.setContentsMargins(0,0,0,0)
+    self.objects_list_layout.setContentsMargins(10,10,10,10)
     self.objects_list_widget.setLayout(self.objects_list_layout)
 #______________________________________________________________________________________________________________________
     """ Set widget """
@@ -349,96 +349,150 @@ def object_country(self):
     cursor.close()
     database.close()
 #______________________________________________________________________________________________________________________
-    """ Create """
+    """ Setup dafoult for country data """
+    if self.object_time_widget:
+        self.object_time_widget.deleteLater()
+        self.object_time_widget = None
+    if self.object_chart_widget:
+        self.object_chart_widget.deleteLater()
+        self.object_chart_widget = None
+    if self. object_info_widget:
+        self.object_info_widget.deleteLater()
+        self.object_info_widget = None
     if self.object_statistics_widget:
         self.object_statistics_widget.deleteLater()
         self.object_statistics_widget = None 
+    self.object_ticker_label.setHidden(True)
+    self.object_ticker_label.setText('')
+#______________________________________________________________________________________________________________________
+    """ Create """
+    self.object_time_widget = QWidget(self)
+    self.object_info_widget = QWidget(self)
+    self.object_info_layout = QGridLayout(self.object_info_widget)
+    info_title_label = QLabel(self.object_info_widget)
+    info_index_name_label = QLabel(self.object_info_widget)
+    info_name_name_label = QLabel(self.object_info_widget) 
+    info_capitalization_name_label = QLabel(self.object_info_widget)
     self.object_statistics_widget = QWidget(self)
     self.object_statistics_layout = QGridLayout(self.object_statistics_widget)
-    population_name_label = QLabel(self.object_statistics_widget)
-    population_value_label = QLabel(self.object_statistics_widget)
-    capital_name_label = QLabel(self.object_statistics_widget)
-    capital_value_label = QLabel(self.object_statistics_widget)
-    timezone_name_label = QLabel(self.object_statistics_widget)
-    timezone_value_label = QLabel(self.object_statistics_widget)
-    currency_name_label = QLabel(self.object_statistics_widget)
-    currency_value_label = QLabel(self.object_statistics_widget)
+    statistics_population_name_label = QLabel(self.object_statistics_widget)
+    statistics_population_value_label = QLabel(self.object_statistics_widget)
+    statistics_capital_name_label = QLabel(self.object_statistics_widget)
+    statistics_capital_value_label = QLabel(self.object_statistics_widget)
+    statistics_timezone_name_label = QLabel(self.object_statistics_widget)
+    statistics_timezone_value_label = QLabel(self.object_statistics_widget)
+    statistics_currency_name_label = QLabel(self.object_statistics_widget)
+    statistics_currency_value_label = QLabel(self.object_statistics_widget)
 #______________________________________________________________________________________________________________________
     """ Setup """
     """ Set object name """
+    self.object_time_widget.setObjectName('object_time_widget')
+    self.object_info_widget.setObjectName('object_info_widget')
+    info_title_label.setObjectName('info_title_label')
+    info_index_name_label.setObjectName('info_index_name_label')
+    info_name_name_label.setObjectName('info_name_name_label')
+    info_capitalization_name_label.setObjectName('info_capitalization_name_label')
     self.object_statistics_widget.setObjectName('object_statistics_widget')
-    population_name_label.setObjectName('population_name_label')
-    population_value_label.setObjectName('population_value_label')
-    capital_name_label.setObjectName('capital_name_label')
-    capital_value_label.setObjectName('capital_value_label')
-    timezone_name_label.setObjectName('timezone_name_label')
-    timezone_value_label.setObjectName('timezone_value_label')
-    currency_name_label.setObjectName('currency_name_label')
-    currency_value_label.setObjectName('currency_value_label')
+    statistics_population_name_label.setObjectName('statisctics_population_name_label')
+    statistics_population_value_label.setObjectName('statisctics_population_value_label')
+    statistics_capital_name_label.setObjectName('statisctics_capital_name_label')
+    statistics_capital_value_label.setObjectName('statisctics_capital_value_label')
+    statistics_timezone_name_label.setObjectName('statisctics_timezone_name_label')
+    statistics_timezone_value_label.setObjectName('statisctics_timezone_value_label')
+    statistics_currency_name_label.setObjectName('statisctics_currency_name_label')
+    statistics_currency_value_label.setObjectName('statisctics_currency_value_label')
 #______________________________________________________________________________________________________________________
     """ Set property """
-    population_name_label.setProperty('class', 'object_statistics_name_label')
-    capital_name_label.setProperty('class', 'object_statistics_name_label')
-    timezone_name_label.setProperty('class', 'object_statistics_name_label')
-    currency_name_label.setProperty('class', 'object_statistics_name_label')
-    population_value_label.setProperty('class', 'object_statistics_value_label')
-    capital_value_label.setProperty('class', 'object_statistics_value_label')
-    timezone_value_label.setProperty('class', 'object_statistics_value_label')
-    currency_value_label.setProperty('class', 'object_statistics_value_label')
+    statistics_population_name_label.setProperty('class', 'object_statistics_name_label')
+    statistics_capital_name_label.setProperty('class', 'object_statistics_name_label')
+    statistics_timezone_name_label.setProperty('class', 'object_statistics_name_label')
+    statistics_currency_name_label.setProperty('class', 'object_statistics_name_label')
+    statistics_population_value_label.setProperty('class', 'object_statistics_value_label')
+    statistics_capital_value_label.setProperty('class', 'object_statistics_value_label')
+    statistics_timezone_value_label.setProperty('class', 'object_statistics_value_label')
+    statistics_currency_value_label.setProperty('class', 'object_statistics_value_label')
 #______________________________________________________________________________________________________________________
     """ Set layout """
-    self.layout.addWidget(self.object_statistics_widget, 45, 13, 42, 38)
-    self.object_statistics_layout.addWidget(population_name_label,0,0)
-    self.object_statistics_layout.addWidget(population_value_label,0,1)
-    self.object_statistics_layout.addWidget(capital_name_label,1,0)
-    self.object_statistics_layout.addWidget(capital_value_label,1,1)
-    self.object_statistics_layout.addWidget(timezone_name_label,2,0)
-    self.object_statistics_layout.addWidget(timezone_value_label,2,1)
-    self.object_statistics_layout.addWidget(currency_name_label,3,0)
-    self.object_statistics_layout.addWidget(currency_value_label,3,1)
+    self.layout.addWidget(self.object_time_widget, 6, 13, 3, 38)
+    self.layout.addWidget(self.object_info_widget, 10, 13, 32, 38)
+    self.object_info_layout.addWidget(info_title_label, 0, 0, 10, 100)
+    self.object_info_layout.addWidget(info_index_name_label, 10, 0, 10, 10)
+    self.object_info_layout.addWidget(info_name_name_label, 10, 10, 10, 45)
+    self.object_info_layout.addWidget(info_capitalization_name_label, 10, 55, 10, 45)
+    self.object_info_layout.setSpacing(0)
+    self.object_info_layout.setContentsMargins(0,0,0,0)
+    for enc in range(100):
+        self.object_info_layout.setRowStretch(enc, 1)
+        self.object_info_layout.setColumnStretch(enc, 1)
+    self.object_info_widget.setLayout(self.object_info_layout)
+    self.layout.addWidget(self.object_statistics_widget, 55, 13, 32, 38)
+    self.object_statistics_layout.addWidget(statistics_population_name_label,0,0)
+    self.object_statistics_layout.addWidget(statistics_population_value_label,0,1)
+    self.object_statistics_layout.addWidget(statistics_capital_name_label,1,0)
+    self.object_statistics_layout.addWidget(statistics_capital_value_label,1,1)
+    self.object_statistics_layout.addWidget(statistics_timezone_name_label,2,0)
+    self.object_statistics_layout.addWidget(statistics_timezone_value_label,2,1)
+    self.object_statistics_layout.addWidget(statistics_currency_name_label,3,0)
+    self.object_statistics_layout.addWidget(statistics_currency_value_label,3,1)
     self.object_statistics_layout.setSpacing(0)
     self.object_statistics_layout.setContentsMargins(0,0,0,0)
     self.object_statistics_widget.setLayout(self.object_statistics_layout)
 #______________________________________________________________________________________________________________________
     """ Set widget """
-    self.object_ticker_label.setHidden(True)
 #______________________________________________________________________________________________________________________
     """ Set label """
-    population_name_label.setAlignment(Qt.AlignCenter)
-    population_value_label.setAlignment(Qt.AlignCenter)
-    capital_name_label.setAlignment(Qt.AlignCenter)
-    capital_value_label.setAlignment(Qt.AlignCenter)
-    timezone_name_label.setAlignment(Qt.AlignCenter)
-    timezone_value_label.setAlignment(Qt.AlignCenter)
-    currency_name_label.setAlignment(Qt.AlignCenter)
-    currency_value_label.setAlignment(Qt.AlignCenter)
+    info_title_label.setAlignment(Qt.AlignCenter)
+    info_index_name_label.setAlignment(Qt.AlignCenter)
+    info_name_name_label.setAlignment(Qt.AlignCenter)
+    info_capitalization_name_label.setAlignment(Qt.AlignCenter)
+    statistics_population_name_label.setAlignment(Qt.AlignCenter)
+    statistics_population_value_label.setAlignment(Qt.AlignCenter)
+    statistics_capital_name_label.setAlignment(Qt.AlignCenter)
+    statistics_capital_value_label.setAlignment(Qt.AlignCenter)
+    statistics_timezone_name_label.setAlignment(Qt.AlignCenter)
+    statistics_timezone_value_label.setAlignment(Qt.AlignCenter)
+    statistics_currency_name_label.setAlignment(Qt.AlignCenter)
+    statistics_currency_value_label.setAlignment(Qt.AlignCenter)
 #______________________________________________________________________________________________________________________
     """ Set size """
+    self.object_time_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.object_info_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    info_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    info_index_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    info_name_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    info_capitalization_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.object_statistics_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    population_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    population_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    capital_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    capital_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    timezone_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    timezone_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    currency_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    currency_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    statistics_population_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    statistics_population_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    statistics_capital_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    statistics_capital_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    statistics_timezone_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    statistics_timezone_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    statistics_currency_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    statistics_currency_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 #______________________________________________________________________________________________________________________
     """ Set text """
     _t = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r')) # Translate texts.
     _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['__language__'] # Language.
     self.object_name_label.setText(country_data[0])
-    population_name_label.setText(f'{_t['population_name_label'][_l]}:')
-    population_value_label.setText(str(country_data[5]))
-    capital_name_label.setText(f'{_t['capital_name_label'][_l]}:')
-    capital_value_label.setText(str(country_data[2]))
-    timezone_name_label.setText(f'{_t['timezone_name_label'][_l]}:')
-    timezone_value_label.setText(str(country_data[4]))
-    currency_name_label.setText(f'{_t['currency_name_label'][_l]}:')
-    currency_value_label.setText(str(country_data[3]))
+    info_title_label.setText(f'{_t['info_title_label'][_l]}:')
+    info_index_name_label.setText('#')
+    info_name_name_label.setText(f'{_t['info_name_name_label'][_l]}:')
+    info_capitalization_name_label.setText(f'{_t['info_capitalization_name_label'][_l]}:')
+    statistics_population_name_label.setText(f'{_t['statistics_population_name_label'][_l]}:')
+    statistics_population_value_label.setText(str(country_data[5]))
+    statistics_capital_name_label.setText(f'{_t['statistics_capital_name_label'][_l]}:')
+    statistics_capital_value_label.setText(str(country_data[2]))
+    statistics_timezone_name_label.setText(f'{_t['statistics_timezone_name_label'][_l]}:')
+    statistics_timezone_value_label.setText(str(country_data[4]))
+    statistics_currency_name_label.setText(f'{_t['statistics_currency_name_label'][_l]}:')
+    statistics_currency_value_label.setText(str(country_data[3]))
 #______________________________________________________________________________________________________________________
     """ Set graphics """
-    self.object_icon_label.setPixmap(load_svg(self.main_path+'/STYLE/IMG/'+country_data[1]+'.svg', int(self.width()*0.3), int(self.width()*0.3)))
+    self.object_icon_label.setPixmap(load_svg(self.main_path+'/STYLE/IMG/'+country_data[1]+'.svg', int(self.object_icon_label.height()), int(self.object_icon_label.height())))
+#______________________________________________________________________________________________________________________
+    """ Create info list """
+
 #######################################################################################################################
 """ object market """
 def object_market(self):
@@ -871,7 +925,7 @@ def news_creator(self):
         news_text_label.setProperty('class', 'news_text_label')
 #______________________________________________________________________________________________________________________
         """ Set layout """
-        self.layout.addWidget(news_button, 45, 52, 42, 47)
+        self.layout.addWidget(news_button, 2, 52, 85, 47)
         news_layout.addWidget(news_text_label)  
         news_layout.setContentsMargins(0,0,0,0)
         news_layout.setSpacing(0)
