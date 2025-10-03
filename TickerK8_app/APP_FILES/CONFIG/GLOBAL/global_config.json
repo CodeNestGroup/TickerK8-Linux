@@ -10,7 +10,8 @@
         true
     ],
     "object_list_tags": [
-        "name"
+        "name",
+        "icon"
     ],
     "object_lists": {
         "Favourite": [
@@ -73,5 +74,6 @@
     "object_chart_type": [
         0,
         0
-    ]
+    ],
+    "mid_object_list": "Indexes"
 }

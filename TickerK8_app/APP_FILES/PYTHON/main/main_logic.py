@@ -223,7 +223,7 @@ def objects_list_open(self):
                                 objects_list_data_object.setText(str(text))
                                 objects_list_data_object.clicked.connect(lambda _, t=table, i=id_id: object_set(self, [t, i]))
                             else:
-                                objects_list_data_object = QLabel(main_objects_list_items_widget)
+                                objects_list_data_object = QLabel(objects_list_items_widget)
                                 objects_list_data_object.setObjectName(f'objects_list_data_{tag}_{id_id}_label')
                                 objects_list_data_object.setProperty('class', 'objects_list_data_label')
                                 objects_list_data_object.setAlignment(Qt.AlignCenter)
@@ -244,8 +244,13 @@ def objects_list_delete_object(self, section_index, section_name, index):
     objects_list_open(self)
 #######################################################################################################################
 """ object set """
-def object_set(self):
-    pass
+def object_set(self, object_info):
+    """ Set local data """
+    _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data
+    _global_config['object'] = object_info
+    json.dump(_global_config, open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'w'), indent=4) # Save config
+    """ Reload object """
+    object_setup(self)
 #######################################################################################################################
 def object_list_lists_scroll_setup(self):
     """ Set local data """
@@ -345,7 +350,16 @@ def object_country(self):
     FROM country 
     JOIN timezone ON country.id_timezone=timezone.id
     JOIN population ON country.id=population.id_country
-    WHERE country.id=={_global_config['object'][1]};''').fetchall()[0] # Execute
+    WHERE country.id=={_global_config['object'][1]};''').fetchall()[0] # Execute query 
+    country_stocks_data = cursor.execute(f'''
+    SELECT 
+    stock.name,
+    stock.capitalization
+    FROM stock 
+    JOIN market ON stock.id_market=market.id
+    JOIN country ON market.id_country=country.id
+    WHERE country.id=={_global_config['object'][1]} ORDER BY stock.capitalization DESC LIMIT 5
+    ''').fetchall() # Execute query 
     cursor.close()
     database.close()
 #______________________________________________________________________________________________________________________
@@ -413,8 +427,9 @@ def object_country(self):
     statistics_currency_value_label.setProperty('class', 'object_statistics_value_label')
 #______________________________________________________________________________________________________________________
     """ Set layout """
-    self.layout.addWidget(self.object_time_widget, 6, 13, 3, 38)
-    self.layout.addWidget(self.object_info_widget, 10, 13, 32, 38)
+    self.layout.addWidget(self.object_time_widget, 16, 15, 2, 42)
+    self.layout.addWidget(self.object_info_widget, 26, 15, 32, 42)
+    self.layout.addWidget(self.object_statistics_widget, 60, 15, 32, 42)
     self.object_info_layout.addWidget(info_title_label, 0, 0, 10, 100)
     self.object_info_layout.addWidget(info_index_name_label, 10, 0, 10, 10)
     self.object_info_layout.addWidget(info_name_name_label, 10, 10, 10, 45)
@@ -425,7 +440,6 @@ def object_country(self):
         self.object_info_layout.setRowStretch(enc, 1)
         self.object_info_layout.setColumnStretch(enc, 1)
     self.object_info_widget.setLayout(self.object_info_layout)
-    self.layout.addWidget(self.object_statistics_widget, 55, 13, 32, 38)
     self.object_statistics_layout.addWidget(statistics_population_name_label,0,0)
     self.object_statistics_layout.addWidget(statistics_population_value_label,0,1)
     self.object_statistics_layout.addWidget(statistics_capital_name_label,1,0)
@@ -492,7 +506,39 @@ def object_country(self):
     self.object_icon_label.setPixmap(load_svg(self.main_path+'/STYLE/IMG/'+country_data[1]+'.svg', int(self.object_icon_label.height()), int(self.object_icon_label.height())))
 #______________________________________________________________________________________________________________________
     """ Create info list """
-
+    for index, stock_data in enumerate(country_stocks_data, start=1):
+        _row = (index*10)+15
+        """ Create """
+        index_label = QLabel(self.object_info_widget)
+        name_label = QLabel(self.object_info_widget)
+        capitalization_label = QLabel(self.object_info_widget)
+        """ Set object name """
+        index_label.setObjectName('index_label')
+        name_label.setObjectName('name_label')
+        capitalization_label.setObjectName('capitalization_label')
+        """ Set property """
+        index_label.setProperty('class', 'object_info_index_label')
+        name_label.setProperty('class', 'object_info_name_label')
+        capitalization_label.setProperty('class', 'object_info_capitalization_label')
+        """ Set layout """
+        self.object_info_layout.addWidget(info_index_name_label, 10, 0, 10, 10)
+        self.object_info_layout.addWidget(info_name_name_label, 10, 10, 10, 45)
+        self.object_info_layout.addWidget(info_capitalization_name_label, 10, 55, 10, 45)
+        self.object_info_layout.addWidget(index_label, _row, 0, 10, 10)
+        self.object_info_layout.addWidget(name_label, _row, 10, 10, 45)
+        self.object_info_layout.addWidget(capitalization_label, _row, 55, 10, 45)
+        """ Set Label """
+        index_label.setAlignment(Qt.AlignCenter)
+        name_label.setAlignment(Qt.AlignCenter)
+        capitalization_label.setAlignment(Qt.AlignCenter)
+        """ Set size """
+        index_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        capitalization_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        """ Set text """
+        index_label.setText(f'{index}.')
+        name_label.setText(f'{stock_data[0]}')
+        capitalization_label.setText(f'{stock_data[1]}')
 #######################################################################################################################
 """ object market """
 def object_market(self):
@@ -925,7 +971,7 @@ def news_creator(self):
         news_text_label.setProperty('class', 'news_text_label')
 #______________________________________________________________________________________________________________________
         """ Set layout """
-        self.layout.addWidget(news_button, 2, 52, 85, 47)
+        self.layout.addWidget(news_button, 2, 58, 85, 41)
         news_layout.addWidget(news_text_label)  
         news_layout.setContentsMargins(0,0,0,0)
         news_layout.setSpacing(0)
