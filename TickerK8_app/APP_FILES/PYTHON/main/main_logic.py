@@ -567,15 +567,21 @@ def object_market(self):
     cursor.close()
     database.close()
 #______________________________________________________________________________________________________________________
-    """ Create """
+    """ Setup dafoult for market data """
+    if self.object_time_widget:
+        self.object_time_widget.deleteLater()
+        self.object_time_widget = None 
+    if self.object_chart_widget:
+        self.object_chart_widget.deleteLater()
+        self.object_chart_widget = None
+    if self. object_info_widget:
+        self.object_info_widget.deleteLater()
+        self.object_info_widget = None
     if self.object_statistics_widget:
         self.object_statistics_widget.deleteLater()
         self.object_statistics_widget = None 
-    self.object_statistics_widget = QWidget(self)
-    self.object_statistics_layout = QGridLayout(self.object_statistics_widget)
-    if self.object_time_widget:
-        self.object_time_widget.deleteLater()
-        self.object_time_widget = None
+#______________________________________________________________________________________________________________________
+    """ Create """
     self.object_time_widget = QWidget(self)
     time_close_1_label = QLabel(self.object_time_widget)
     time_pre_open_label = QLabel(self.object_time_widget)
@@ -583,18 +589,21 @@ def object_market(self):
     time_post_close_label = QLabel(self.object_time_widget)
     time_close_2_label = QLabel(self.object_time_widget)
     time_dot_label = QLabel(self.object_time_widget)
-    capitalization_name_label = QLabel(self.object_statistics_widget)
-    capitalization_value_label = QLabel(self.object_statistics_widget)
+    self.object_info_widget = QWidget(self)
+    self.object_info_layout = QGridLayout(self.object_info_widget)
     city_name_label = QLabel(self.object_statistics_widget)
     city_value_label = QLabel(self.object_statistics_widget)
     founded_date_name_label = QLabel(self.object_statistics_widget)
     founded_data_value_label = QLabel(self.object_statistics_widget)
     website_name_label = QLabel(self.object_statistics_widget)
     website_value_label = QLabel(self.object_statistics_widget)
+    self.object_statistics_widget = QWidget(self)
+    self.object_statistics_layout = QGridLayout(self.object_statistics_widget)
+    capitalization_name_label = QLabel(self.object_statistics_widget)
+    capitalization_value_label = QLabel(self.object_statistics_widget)
 #______________________________________________________________________________________________________________________
     """ Setup """
     """ Set object name """
-    self.object_statistics_widget.setObjectName('object_statistics_widget')
     self.object_time_widget.setObjectName('object_time_widget')
     time_close_1_label.setObjectName('time_close_1_label')
     time_pre_open_label.setObjectName('time_pre_open_label')
@@ -602,24 +611,26 @@ def object_market(self):
     time_post_close_label.setObjectName('time_post_close_label')
     time_close_2_label.setObjectName('time_close_2_label')
     time_dot_label.setObjectName('time_dot_label')
-    capitalization_name_label.setObjectName('capitalization_name_label')
-    capitalization_value_label.setObjectName('capitalization_value_label')
+    self.object_info_widget.setObjectName('object_info_widget')
     city_name_label.setObjectName('city_name_label')
     city_value_label.setObjectName('city_value_label')
     founded_date_name_label.setObjectName('founded_date_name_label')
     founded_data_value_label.setObjectName('founded_data_value_label')
     website_name_label.setObjectName('website_name_label')
     website_value_label.setObjectName('website_value_label')
+    self.object_statistics_widget.setObjectName('object_statistics_widget')
+    capitalization_name_label.setObjectName('capitalization_name_label')
+    capitalization_value_label.setObjectName('capitalization_value_label')
 #______________________________________________________________________________________________________________________
     """ Set property """
+    city_name_label.setProperty('class', 'object_info_name_label')
+    founded_date_name_label.setProperty('class', 'object_info_name_label')
+    website_name_label.setProperty('class', 'object_info_name_label')
+    city_value_label.setProperty('class', 'object_info_value_label')
+    founded_data_value_label.setProperty('class', 'object_info_value_label')
+    website_value_label.setProperty('class', 'object_info_value_label')
     capitalization_name_label.setProperty('class', 'object_statistics_name_label')
-    city_name_label.setProperty('class', 'object_statistics_name_label')
-    founded_date_name_label.setProperty('class', 'object_statistics_name_label')
-    website_name_label.setProperty('class', 'object_statistics_name_label')
     capitalization_value_label.setProperty('class', 'object_statistics_value_label')
-    city_value_label.setProperty('class', 'object_statistics_value_label')
-    founded_data_value_label.setProperty('class', 'object_statistics_value_label')
-    website_value_label.setProperty('class', 'object_statistics_value_label')
 #______________________________________________________________________________________________________________________
     """ Set layout """
     self.layout.addWidget(self.object_time_widget, 14, 13, 5, 38)
