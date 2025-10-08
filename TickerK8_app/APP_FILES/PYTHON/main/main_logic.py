@@ -639,85 +639,99 @@ def object_market(self):
     self.layout.addWidget(self.object_statistics_widget, 60, 15, 32, 42)
     self.object_time_layout.setSpacing(0)
     self.object_time_layout.setContentsMargins(0,0,0,0)
-    for enc in range(8640):
+    for enc in range(86400):
         self.object_time_layout.setRowStretch(enc, 1)
-    self.object_time_widget.setWidget(self.object_time_layout)
-    self.object_info_layout.addWidget(self.city_name_label, 0, 0)
-    self.object_info_layout.addWidget(self.city_value_label, 0, 1)
-    self.object_info_layout.addWidget(self.founded_date_name_label, 1, 0)
-    self.object_info_layout.addWidget(self.founded_data_value_label, 1, 1)
-    self.object_info_layout.addWidget(self.website_name_label, 2, 0)
-    self.object_info_layout.addWidget(self.website_value_label, 2, 1)
+    self.object_time_widget.setLayout(self.object_time_layout)
+    self.object_info_layout.addWidget(city_name_label, 0, 0)
+    self.object_info_layout.addWidget(city_value_label, 0, 1)
+    self.object_info_layout.addWidget(founded_date_name_label, 1, 0)
+    self.object_info_layout.addWidget(founded_data_value_label, 1, 1)
+    self.object_info_layout.addWidget(website_name_label, 2, 0)
+    self.object_info_layout.addWidget(website_value_label, 2, 1)
     self.object_info_layout.setSpacing(0)
     self.object_info_layout.setContentsMargins(0,0,0,0)
     self.object_info_widget.setLayout(self.object_info_layout)
     self.object_statistics_layout.addWidget(capitalization_name_label,0,0)
     self.object_statistics_layout.addWidget(capitalization_value_label,0,1)
-    self.object_statistics_layout.set
-    
+    self.object_statistics_layout.setSpacing(0)
+    self.object_statistics_layout.setContentsMargins(0,0,0,0)
+    self.object_statistics_widget.setLayout(self.object_statistics_layout)
 #______________________________________________________________________________________________________________________
     """ Set widget """
 #______________________________________________________________________________________________________________________
     """ Set label """
-    capitalization_name_label.setAlignment(Qt.AlignCenter)
-    capitalization_value_label.setAlignment(Qt.AlignCenter)
     city_name_label.setAlignment(Qt.AlignCenter)
     city_value_label.setAlignment(Qt.AlignCenter)
     founded_date_name_label.setAlignment(Qt.AlignCenter)
     founded_data_value_label.setAlignment(Qt.AlignCenter)
     website_name_label.setAlignment(Qt.AlignCenter)
     website_value_label.setAlignment(Qt.AlignCenter)
+    capitalization_name_label.setAlignment(Qt.AlignCenter)
+    capitalization_value_label.setAlignment(Qt.AlignCenter)
 #______________________________________________________________________________________________________________________
     """ Set size """
     self.object_time_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.object_info_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.object_statistics_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    capitalization_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    capitalization_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    time_close_1_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    time_pre_open_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    time_open_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    time_post_close_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    time_close_2_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    time_dot_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     city_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     city_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     founded_date_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     founded_data_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     website_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     website_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    capitalization_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    capitalization_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 #______________________________________________________________________________________________________________________
     """ Set text """
     _t = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r')) # Translate texts.
     _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['__language__'] # Language.
     self.object_ticker_label.setText(market_data[1])
     self.object_name_label.setText(market_data[0])
-    capitalization_name_label.setText(f'{_t['capitalization_name_label'][_l]}:')
-    capitalization_value_label.setText(market_data[6])
     city_name_label.setText(f'{_t['city_name_label'][_l]}:')
-    city_value_label.setText(market_data[3])
+    city_value_label.setText(f'{market_data[3]}')
     founded_date_name_label.setText(f'{_t['founded_date_name_label'][_l]}:')
-    founded_data_value_label.setText(market_data[5])
+    founded_data_value_label.setText(f'{market_data[5]}')
     website_name_label.setText(f'{_t['website_name_label'][_l]}:')
-    website_value_label.setText(market_data[4])
+    website_value_label.setText(f'{market_data[4]}')
+    capitalization_name_label.setText(f'{_t['capitalization_name_label'][_l]}:')
+    capitalization_value_label.setText(f'{market_data[6]}')
 #______________________________________________________________________________________________________________________
     """ Set graphics """
-    self.object_icon_label.setPixmap(load_svg(self.main_path+'/STYLE/IMG/'+market_data[2]+'.svg', int(self.width()*0.3), int(self.width()*0.3)))
+    self.object_icon_label.setPixmap(load_svg(self.main_path+'/STYLE/IMG/'+market_data[2]+'.svg', int(self.object_icon_label.height()), int(self.object_icon_label.height())))
 #______________________________________________________________________________________________________________________
     """ Setup time widget """
-    #total_sec = 86400
-    #pre_open_time = int(market_data[7])
-    #open_time = int(market_data[8])
-    #close_time = int(market_data[9])
-    #post_close_time = int(market_data[10])
+    total_sec = 86400
+    pre_open_time = int(market_data[7])
+    open_time = int(market_data[8])
+    close_time = int(market_data[9])
+    post_close_time = int(market_data[10])
+
+    self.object_time_layout.addWidget(time_close_1_label, 0, 0, 1, pre_open_time)
+    self.object_time_layout.addWidget(time_pre_open_label, 0, pre_open_time, 1, )
+    self.object_time_layout.addWidget(time_open_label, 0, )
+    self.object_time_layout.addWidget(time_post_close_label, 0, )
+    self.object_time_layout.addWidget(time_close_2_label, 0, )
     #margins_x = int(self.main_time_widget.width()*0.05)
     #pos_y = int(self.main_time_widget.height()*0.45)
     #width = int(self.main_time_widget.width()-margins_x)
     #height = int(self.main_time_widget.height()*0.1)
 
-    #close_1_pos = int(0+(margins_x//2)) # Pos
-    #close_1_width = int((pre_open_time/total_sec)*width) # Width
-    #pre_open_time_pos = int(close_1_pos+close_1_width) # Pos
-    #pre_open_time_width = int(((open_time-pre_open_time)/total_sec)*width) # Width
-    #open_time_pos = int(pre_open_time_pos+pre_open_time_width) # Pos
-    #open_time_width = int(((close_time-pre_open_time)/total_sec)*width) # Width
-    #post_close_pos = int(open_time_pos+open_time_width) # Pos
-    #post_close_width = int(((post_close_time-close_time)/total_sec)*width) # Width
-    #close_2_pos = int(post_close_pos+post_close_width) # Pos
-    #close_2_width = int(width-close_1_width-pre_open_time_width-open_time_width-post_close_width) # Width
+    #close_1_pos = int(0+(margins_x//2))
+    #close_1_width = int((pre_open_time/total_sec)*width)
+    #pre_open_time_pos = int(close_1_pos+close_1_width)
+    #pre_open_time_width = int(((open_time-pre_open_time)/total_sec)*width)
+    #open_time_pos = int(pre_open_time_pos+pre_open_time_width)
+    #open_time_width = int(((close_time-pre_open_time)/total_sec)*width)
+    #post_close_pos = int(open_time_pos+open_time_width)
+    #post_close_width = int(((post_close_time-close_time)/total_sec)*width)
+    #close_2_pos = int(post_close_pos+post_close_width)
+    #close_2_width = int(width-close_1_width-pre_open_time_width-open_time_width-post_close_width)
     
     #close_1_label.setGeometry(QRect(close_1_pos, int(pos_y), close_1_width, int(height)))
     #pre_open_label.setGeometry(QRect(pre_open_time_pos, int(pos_y), pre_open_time_width, int(height)))
