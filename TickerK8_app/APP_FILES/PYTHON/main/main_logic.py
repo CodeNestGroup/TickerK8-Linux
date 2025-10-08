@@ -583,6 +583,7 @@ def object_market(self):
 #______________________________________________________________________________________________________________________
     """ Create """
     self.object_time_widget = QWidget(self)
+    self.object_time_layout = QGridLayout(self)
     time_close_1_label = QLabel(self.object_time_widget)
     time_pre_open_label = QLabel(self.object_time_widget)
     time_open_label = QLabel(self.object_time_widget)
@@ -633,19 +634,27 @@ def object_market(self):
     capitalization_value_label.setProperty('class', 'object_statistics_value_label')
 #______________________________________________________________________________________________________________________
     """ Set layout """
-    self.layout.addWidget(self.object_time_widget, 14, 13, 5, 38)
-    self.layout.addWidget(self.object_statistics_widget, 50, 13, 40, 38)
+    self.layout.addWidget(self.object_time_widget, 16, 15, 2, 42)
+    self.layout.addWidget(self.object_info_widget, 26, 15, 32, 42)
+    self.layout.addWidget(self.object_statistics_widget, 60, 15, 32, 42)
+    self.object_time_layout.setSpacing(0)
+    self.object_time_layout.setContentsMargins(0,0,0,0)
+    for enc in range(8640):
+        self.object_time_layout.setRowStretch(enc, 1)
+    self.object_time_widget.setWidget(self.object_time_layout)
+    self.object_info_layout.addWidget(self.city_name_label, 0, 0)
+    self.object_info_layout.addWidget(self.city_value_label, 0, 1)
+    self.object_info_layout.addWidget(self.founded_date_name_label, 1, 0)
+    self.object_info_layout.addWidget(self.founded_data_value_label, 1, 1)
+    self.object_info_layout.addWidget(self.website_name_label, 2, 0)
+    self.object_info_layout.addWidget(self.website_value_label, 2, 1)
+    self.object_info_layout.setSpacing(0)
+    self.object_info_layout.setContentsMargins(0,0,0,0)
+    self.object_info_widget.setLayout(self.object_info_layout)
     self.object_statistics_layout.addWidget(capitalization_name_label,0,0)
     self.object_statistics_layout.addWidget(capitalization_value_label,0,1)
-    self.object_statistics_layout.addWidget(city_name_label,1,0)
-    self.object_statistics_layout.addWidget(city_value_label,1,1)
-    self.object_statistics_layout.addWidget(founded_date_name_label,2,0)
-    self.object_statistics_layout.addWidget(founded_data_value_label,2,1)
-    self.object_statistics_layout.addWidget(website_name_label,3,0)
-    self.object_statistics_layout.addWidget(website_value_label,3,1)
-    self.object_statistics_layout.setSpacing(0)
-    self.object_statistics_layout.setContentsMargins(0,0,0,0)
-    self.object_statistics_widget.setLayout(self.object_statistics_layout)
+    self.object_statistics_layout.set
+    
 #______________________________________________________________________________________________________________________
     """ Set widget """
 #______________________________________________________________________________________________________________________
