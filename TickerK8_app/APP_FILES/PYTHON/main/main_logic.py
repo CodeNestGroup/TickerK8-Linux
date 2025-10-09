@@ -589,7 +589,7 @@ def object_market(self):
     time_open_label = QLabel(self.object_time_widget)
     time_post_close_label = QLabel(self.object_time_widget)
     time_close_2_label = QLabel(self.object_time_widget)
-    time_dot_label = QLabel(self.object_time_widget)
+    #time_dot_label = QLabel(self.object_time_widget)
     self.object_info_widget = QWidget(self)
     self.object_info_layout = QGridLayout(self.object_info_widget)
     city_name_label = QLabel(self.object_statistics_widget)
@@ -611,7 +611,7 @@ def object_market(self):
     time_open_label.setObjectName('time_open_label')
     time_post_close_label.setObjectName('time_post_close_label')
     time_close_2_label.setObjectName('time_close_2_label')
-    time_dot_label.setObjectName('time_dot_label')
+    #time_dot_label.setObjectName('time_dot_label')
     self.object_info_widget.setObjectName('object_info_widget')
     city_name_label.setObjectName('city_name_label')
     city_value_label.setObjectName('city_value_label')
@@ -640,7 +640,7 @@ def object_market(self):
     self.object_time_layout.setSpacing(0)
     self.object_time_layout.setContentsMargins(0,0,0,0)
     for enc in range(86400):
-        self.object_time_layout.setRowStretch(enc, 1)
+        self.object_time_layout.setColumnStretch(enc, 1)
     self.object_time_widget.setLayout(self.object_time_layout)
     self.object_info_layout.addWidget(city_name_label, 0, 0)
     self.object_info_layout.addWidget(city_value_label, 0, 1)
@@ -678,7 +678,7 @@ def object_market(self):
     time_open_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     time_post_close_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     time_close_2_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    time_dot_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    #time_dot_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     city_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     city_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     founded_date_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -706,43 +706,16 @@ def object_market(self):
     self.object_icon_label.setPixmap(load_svg(self.main_path+'/STYLE/IMG/'+market_data[2]+'.svg', int(self.object_icon_label.height()), int(self.object_icon_label.height())))
 #______________________________________________________________________________________________________________________
     """ Setup time widget """
-    total_sec = 86400
     pre_open_time = int(market_data[7])
     open_time = int(market_data[8])
     close_time = int(market_data[9])
     post_close_time = int(market_data[10])
 
     self.object_time_layout.addWidget(time_close_1_label, 0, 0, 1, pre_open_time)
-    self.object_time_layout.addWidget(time_pre_open_label, 0, pre_open_time, 1, )
-    self.object_time_layout.addWidget(time_open_label, 0, )
-    self.object_time_layout.addWidget(time_post_close_label, 0, )
-    self.object_time_layout.addWidget(time_close_2_label, 0, )
-    #margins_x = int(self.main_time_widget.width()*0.05)
-    #pos_y = int(self.main_time_widget.height()*0.45)
-    #width = int(self.main_time_widget.width()-margins_x)
-    #height = int(self.main_time_widget.height()*0.1)
-
-    #close_1_pos = int(0+(margins_x//2))
-    #close_1_width = int((pre_open_time/total_sec)*width)
-    #pre_open_time_pos = int(close_1_pos+close_1_width)
-    #pre_open_time_width = int(((open_time-pre_open_time)/total_sec)*width)
-    #open_time_pos = int(pre_open_time_pos+pre_open_time_width)
-    #open_time_width = int(((close_time-pre_open_time)/total_sec)*width)
-    #post_close_pos = int(open_time_pos+open_time_width)
-    #post_close_width = int(((post_close_time-close_time)/total_sec)*width)
-    #close_2_pos = int(post_close_pos+post_close_width)
-    #close_2_width = int(width-close_1_width-pre_open_time_width-open_time_width-post_close_width)
-    
-    #close_1_label.setGeometry(QRect(close_1_pos, int(pos_y), close_1_width, int(height)))
-    #pre_open_label.setGeometry(QRect(pre_open_time_pos, int(pos_y), pre_open_time_width, int(height)))
-    #open_label.setGeometry(QRect(open_time_pos, int(pos_y), open_time_width, int(height)))
-    #post_close_label.setGeometry(QRect(post_close_pos, int(pos_y), post_close_width, int(height)))
-    #close_2_label.setGeometry(QRect(close_2_pos, int(pos_y), close_2_width, int(height)))
-    #dot_label.setFixedSize(QSize(int(height*1.5), int(height*1.5)))
-
-    #self.main_time_timer = QTimer(self.main_time_widget)
-    #self.main_time_timer.timeout.connect(lambda w=width, h=pos_y: update_dot(self, w, h))
-    #self.main_time_timer.start(1000)
+    self.object_time_layout.addWidget(time_pre_open_label, 0, pre_open_time, 1, open_time-pre_open_time)
+    self.object_time_layout.addWidget(time_open_label, 0, open_time, 1, close_time-open_time)
+    self.object_time_layout.addWidget(time_post_close_label, 0, close_time, 1, post_close_time-close_time)
+    self.object_time_layout.addWidget(time_close_2_label, 0, post_close_time, 1, 86400-post_close_time)
 #######################################################################################################################
 """ object index """
 def object_index(self):

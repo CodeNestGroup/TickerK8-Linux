@@ -285,9 +285,28 @@
     letter-spacing: 0.2em;
 }
 #object_time_widget{
-    background-color: #1a1a1a;
+    background-color: #00000000;
     border: 0;
     border-radius: 0.25em;
+}
+#time_close_1_label{
+    background-color: #1a1a1a;
+}
+#time_pre_open_label{
+    background-color: #353535;
+}
+#time_open_label{
+    background-color: #0f691c;
+}
+#time_post_close_label{
+    background-color: #353535;
+
+}
+#time_close_2_label{
+    background-color: #1a1a1a;
+}
+#time_dot_label{
+    background-color: white;
 }
 #object_info_widget{
     background-color: #1a1a1a;
@@ -329,7 +348,7 @@
     font-weight: 600;
     letter-spacing: 0.2em;
 }
-.object_info_capitalization_label{
+.object_info_value_label{
     color: #c3c3c3;
     font-size: 15px;
     font-weight: 600;
