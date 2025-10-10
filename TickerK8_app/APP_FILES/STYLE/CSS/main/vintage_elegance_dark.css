@@ -308,50 +308,26 @@
 #time_dot_label{
     background-color: white;
 }
+#object_chart_widget{
+    background-color: #1a1a1a;
+    border: 0;
+    border-radius: 0.25em;
+}
 #object_info_widget{
     background-color: #1a1a1a;
     border: 0;
     border-radius: 0.25em;
 }
-#info_title_label{
-    color: #c3c3c3;
-    font-size: 24px;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-}
-#info_index_name_label{
-    color: #c3c3c3;
-    font-size: 24px;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-}
-#info_name_name_label{
-    color: #c3c3c3;
-    font-size: 17px;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-}
-#info_capitalization_name_label{
-    color: #c3c3c3;
-    font-size: 17px;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-}.object_info_index_label{
-    color: #c3c3c3;
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-}
 .object_info_name_label{
     color: #c3c3c3;
-    font-size: 15px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 700;
     letter-spacing: 0.2em;
 }
 .object_info_value_label{
     color: #c3c3c3;
-    font-size: 15px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 500;
     letter-spacing: 0.2em;
 }
 #object_statistics_widget{
@@ -359,18 +335,51 @@
     border: 0;
     border-radius: 0.25em;
 }
+#statistics_title_label{
+    color: #c3c3c3;
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+}
+#statistics_index_name_label{
+    color: #c3c3c3;
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+}
+#statistics_name_name_label{
+    color: #c3c3c3;
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+}
+#statistics_capitalization_name_label{
+    color: #c3c3c3;
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+}.object_statistics_index_label{
+    color: #c3c3c3;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+}
 .object_statistics_name_label{
     color: #c3c3c3;
-    font-size: 18px;
-    font-weight: 700;
+    font-size: 15px;
+    font-weight: 600;
     letter-spacing: 0.2em;
 }
 .object_statistics_value_label{
     color: #c3c3c3;
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 15px;
+    font-weight: 600;
     letter-spacing: 0.2em;
 }
+#statistics_stocks_scroll, #statistics_stocks_widget{
+    background-color: #00000000;
+}
+
 .object_button{
     color: #c3c3c3;
     background-color: #1a1a1a;

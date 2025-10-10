@@ -28,17 +28,20 @@ from PyQt5.QtGui import (
 )
 #######################################################################################################################
 """ News widget """
-def news_widget(self, id):
+def news_widget(self, id_id):
     """ Get data """
     connect = mysql.connector.connect(
-        host = "localhost",
-        user = "client",
-        password = "Qwerty123456#",
-        database = "TickerK8"
+    host="localhost",
+    user="client",
+    password="Qwerty123456#",
+    database="TickerK8"
     )
     cursor = connect.cursor()
-    cursor.execute(f'SELECT json_file FROM news WHERE id={id};')
-    json_file = json.loads(cursor.fetchall()[0][0])
+    cursor.execute(f"SELECT json_file FROM news WHERE id={id_id};")
+    result = cursor.fetchone()[0]
+    json_file = json.loads(result)
+    cursor.close()
+    connect.close()
 #______________________________________________________________________________________________________________________
     """ Create objects """
     self.news_widget = QWidget(self.news_scroll)

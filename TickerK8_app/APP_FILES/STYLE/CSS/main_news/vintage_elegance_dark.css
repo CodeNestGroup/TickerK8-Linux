@@ -2,15 +2,15 @@
     background-color: #60000000;
 }
 #panel_widget{
-    background-color: #1b1b1b;
+    background-color: #1a1a1a;
 }
 #news_scroll{
-    background-color: #1e1e1e;
+    background-color: #1a1a1a;
     border: 0;
 }
 #news_scroll QScrollBar:vertical{
     border: none;
-    background: #1e1e1e;
+    background: #1a1a1a;
     width: 8px;
     margin: 0;
 }
@@ -21,7 +21,7 @@
 }
 
 #news_scroll QScrollBar::handle:vertical:hover {
-    background: #031913;
+    background: #282828;
 }
 
 #news_scroll QScrollBar::add-line:vertical, #news_scroll QScrollBar::sub-line:vertical {
@@ -34,23 +34,23 @@
 }
 #panel_exit_button{
     color: #FAFAFA;
-    background-color: #252525;
+    background-color: #1e1e1e;
     border: 0;
     border-radius: 0.5em;
     padding: 0.3em;
     font-size: 14px;
 }
 #panel_exit_button:hover{
-    background-color: #031913;
+    background-color: #282828;
 }
 #news_widget{
-    background-color: #1e1e1e;
+    background-color: #1a1a1a;
 }
 #news_photo_label{
     background-color: #00000000;
 }
 #news_title_label{
-    color: #FAFAFA;
+    color: #c3c3c3;
     background-color: #00000000;
     border: 0;
     padding: 1em;
@@ -59,7 +59,7 @@
     letter-spacing: 0.3em;
 }
 #news_date_label{
-    color: #FAFAFA;
+    color: #c3c3c3;
     background-color: #00000000;
     border: 0;
     padding: 1em;
@@ -71,7 +71,7 @@
     background-color: #00000000;
 }
 #news_source_title_label{
-    color: #FAFAFA;
+    color: #c3c3c3;
     background-color: #00000000;
     border: 0;
     padding: 1em;
@@ -80,8 +80,8 @@
     letter-spacing: 0.3em;
 }
 .source_button{
-    color: #FAFAFA;
-    background-color: #252525;
+    color: #c3c3c3;
+    background-color: #1e1e1e;
     margin: 0.5em;
     border: 0;
     border-radius: 0.3em;
@@ -89,10 +89,10 @@
     font-size: 12px;
 }
 .source_button:hover{
-    background-color: #031913;
+    background-color: #282828;
 }
 #news_hash_title_label{
-    color: #FAFAFA;
+    color: #c3c3c3;
     background-color: #00000000;
     border: 0;
     padding: 1em;
@@ -101,8 +101,8 @@
     letter-spacing: 0.3em;
 }
 .hash_button{
-    color: #FAFAFA;
-    background-color: #252525;
+    color: #c3c3c3;
+    background-color: #1e1e1e;
     margin: 0.5em;
     border: 0;
     border-radius: 0.3em;
@@ -110,5 +110,5 @@
     font-size: 12px;
 }
 .hash_button:hover{
-    background-color: #031913;
+    background-color: #282828;
 }

@@ -28,7 +28,7 @@ def main_news_ui(self):
     """ Set property """
 #______________________________________________________________________________________________________________________
     """ Set layout """
-    self.main_layout.addWidget(self.panel_widget, 2, 20, 96, 60)
+    self.main_layout.addWidget(self.panel_widget, 1, 20, 98, 60)
     self.main_layout.setSpacing(0)
     self.main_layout.setContentsMargins(0,0,0,0)
     for enc in range(100):
