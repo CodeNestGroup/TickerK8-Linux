@@ -69,51 +69,7 @@ def news_list_widget(self):
     self.news_list_widget.setMaximumWidth(self.news_list_scroll.width())
     self.news_list_widget.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
 #______________________________________________________________________________________________________________________
-    #""" Make news widget content """
-    #for keys, values in result:
-    #    """ Create objects """
-    #    subtitle_widget = QWidget(self.news_list_widget)
-    #    subtitle_layout = QGridLayout(subtitle_label)
-    #    logo_label = QLabel(subtitle_widget)
-    #    subtitle_label = QLabel(self.news_list_widget)
-#______________________________________________________________________________________________________________________
-    #    """ Set object name """
-    #    subtitle_widget.setObjectName(f'subtitle_widget_{keys}')
-    #    logo_label.setObjectName(f'logo_label_{keys}')
-    #    subtitle_label.setObjectName(f'subtitle_label_{keys}')
-#______________________________________________________________________________________________________________________
-    #    """ Set property """
-    #    subtitle_widget.setProperty('class', 'subtitle_widget')
-    #    logo_label.setProperty('class', 'logo_label')
-    #    subtitle_label.setProperty('class', 'subtitle_label')
-#______________________________________________________________________________________________________________________
-    #    """ Set layout """
-    #    subtitle_layout.addWidget(logo_label, 0, 20, 100, 20)
-    #    subtitle_layout.addWidget(subtitle_label, 0, 40, 100, 20)
-    #    subtitle_layout.setSpacing(0)
-    #    subtitle_layout.setContentsMargins(0,0,0,0)
-    #    for enc in range(100):
-    #        subtitle_layout.setRowStretch(enc, 1)
-    #        subtitle_layout.setColumnStretch(enc, 1)
-    #    subtitle_widget.setLayout(subtitle_layout)
-#______________________________________________________________________________________________________________________
-    #    """ Set widget """
-#______________________________________________________________________________________________________________________
-    #    """ Set label """
-    #    logo_label.setAlignment(Qt.AlignCenter)
-    #    subtitle_label.setAlignment(Qt.AlignCenter)
-#______________________________________________________________________________________________________________________
-    #    """ Set size """
-    #    subtitle_label.setFixedSize(QSize(self.news_list_widget.width(), int(self.news_list_widget.height()//7)))
-    #    subtitle_widget.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
-    #    logo_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    #    subtitle_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-#______________________________________________________________________________________________________________________
-    #    """ Set text """
-#______________________________________________________________________________________________________________________
-    #    """ Set graphic """
-#______________________________________________________________________________________________________________________
-
+    """ Create news """
     for index, rows in enumerate(result, start=0):
         """ Create objects """
         news_button = QPushButton(self.news_list_widget)

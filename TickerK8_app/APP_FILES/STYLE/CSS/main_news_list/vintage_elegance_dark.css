@@ -2,21 +2,21 @@
     background-color: #60000000;
 }
 #panel_widget{
-    background-color: #1b1b1b;
+    background-color: #1a1a1a;
 }
 #title_label{
-    color: #FAFAFA;
+    color: #c3c3c3;
     font-size: 32px;
     font-weight: 600;
     letter-spacing: 0.3em;
 }
 #news_list_scroll{
-    background-color: #1e1e1e;
+    background-color: #1a1a1a;
     border: 0;
 }
 #news_list_scroll QScrollBar:vertical{
     border: none;
-    background: #1e1e1e;
+    background: #1a1a1a;
     width: 8px;
     margin: 0;
 }
@@ -27,7 +27,7 @@
 }
 
 #news_list_scroll QScrollBar::handle:vertical:hover {
-    background: #031913;
+    background: #282828;
 }
 
 #news_list_scroll QScrollBar::add-line:vertical, #news_list_scroll QScrollBar::sub-line:vertical {
@@ -39,11 +39,11 @@
     background: none;
 }
 #news_list_widget{
-    background-color: #1e1e1e;
+    background-color: #1a1a1a;
 }
 .news_button{
-    color: #FAFAFA;
-    background-color: #252525;
+    color: #c3c3c3;
+    background-color: #1e1e1e;
     margin-bottom: 4px;
     border: 0;
     font-size: 14px;
@@ -51,30 +51,30 @@
     letter-spacing: 0.4em;
 }
 .news_button:hover{
-    background-color: #031913;
+    background-color: #282828;
 }
 .date_label{
-    color: #FAFAFA;
+    color: #c3c3c3;
     background-color: #00000000;
     font-size: 12px;
     font-weight: 400;
     letter-spacing: 0.3em;
 }
 .text_label{
-    color: #FAFAFA;
+    color: #c3c3c3;
     background-color: #00000000;   
     font-size: 18px;
     font-weight: 400;
     letter-spacing: 0.3em; 
 }
 #exit_button{
-    color: #FAFAFA;
-    background-color: #252525;
+    color: #c3c3c3;
+    background-color: #1e1e1e;
     border: 0;
     border-radius: 0.5em;
     padding: 0.3em;
     font-size: 14px;
 }
 #exit_button:hover{
-    background-color: #031913;
+    background-color: #282828;
 }

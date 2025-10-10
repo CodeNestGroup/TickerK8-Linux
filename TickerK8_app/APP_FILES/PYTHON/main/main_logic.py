@@ -1,24 +1,26 @@
 """ Import packages """
 """ Import system and operating system packages """
-import json # For json files.
-import datetime # For get time.
-import sqlite3 # For databases.
-import mysql # For online databases.
+import json
+import datetime
+import sqlite3
+import mysql
 import requests
 from io import BytesIO
 #______________________________________________________________________________________________________________________
+""" Import PyQt5 packages """
 """ Import PyQt5 Widgets """
 from PyQt5.QtWidgets import (
-    QWidget, # Simple widget, window
-    QScrollArea, # Simple scroll widget
-    QLabel, # Simple label
-    QPushButton, # Simple button
-    QComboBox, # Drop down list
-    QGridLayout, # Grid layout
-    QSizePolicy, # Size policy
-    QVBoxLayout # Vertical layout 
+    QWidget,
+    QScrollArea,
+    QLabel,
+    QPushButton,
+    QComboBox,
+    QGridLayout,
+    QSizePolicy,
+    QVBoxLayout
 )
 #______________________________________________________________________________________________________________________
+
 """ Import PyQt5 QtCore """
 from PyQt5.QtCore import (
     Qt,
@@ -28,20 +30,22 @@ from PyQt5.QtCore import (
 #______________________________________________________________________________________________________________________
 """ Import PyQt5 Gui """
 from PyQt5.QtGui import (
-    QLinearGradient, # Gradient.
-    QPalette, # Palette.
-    QBrush, # Brush.
-    QColor, # Color.
-    QPixmap, # Image.
-    QIcon, # Icon.
-    QPainter # Painter.
+    QLinearGradient,
+    QPalette,
+    QBrush,
+    QColor,
+    QPixmap,
+    QIcon,
+    QPainter
 )
 #_______________________________________________________________________________________________________________________
 """ Import PyQt5 Svg """
-from PyQt5.QtSvg import QSvgRenderer # Render Svg.
+from PyQt5.QtSvg import (
+    QSvgRenderer
+)
 #______________________________________________________________________________________________________________________
 """ Import main news """
-from news.main_news_structure import Main_news_widget
+from main_news.main_news_structure import Main_news_widget
 #______________________________________________________________________________________________________________________
 """ Import main news list """
 from main_news_list.main_news_list_structure import Main_news_list_widget
@@ -101,11 +105,11 @@ def widget_background_painter(self):
 #######################################################################################################################
 """ objects list open"""
 def objects_list_open(self):
-    """ Set config """
-    _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data
-    _list_object = _global_config['object_list'] # Get list objects name, key.
-    _open_list_data = _global_config['object_lists'][_list_object] # Get list objects, data.
-    _t = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r')) # Translate texts.
+    """ Get config """
+    _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
+    _list_object = _global_config['object_list']
+    _open_list_data = _global_config['object_lists'][_list_object]
+    _t = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r'))
 #______________________________________________________________________________________________________________________
     """ Setup widget """
     if self.objects_list_widget:
@@ -997,20 +1001,6 @@ def news_creator(self):
         news_text_label.setText(json_data['title'])
 #______________________________________________________________________________________________________________________
         """ Set graphics """
-        #photo = requests.get(json_data["photo"]["original"])
-        #photo.raise_for_status()
-        #pix = QPixmap()
-        #pix.loadFromData(BytesIO(photo.content).read())
-
-        #zoomed_pix = pix.scaled(news_button.width(), news_button.height(), Qt.KeepAspectRatioByExpanding, Qt.SmoothTransformation)
-        #cropped_pix = zoomed_pix.copy(
-        #    (zoomed_pix.width() - news_button.width()) // 2,
-        #    (zoomed_pix.height() - news_button.height()) // 2,
-        #    news_button.width(),
-        #    news_button.height()
-        #)
-        #news_button.setIcon(QIcon(cropped_pix))
-        #news_button.setIconSize(news_button.size())
 #______________________________________________________________________________________________________________________
         """ Set connect function for open """
         news_button.clicked.connect(lambda _, id_n=news_id: open_main_news(self, id_n))
@@ -1045,12 +1035,6 @@ def open_main_news(self, id_news):
 def open_main_news_list(self, news_type_index):
     self.main_news_list = Main_news_list_widget(self, news_type_index)
     self.main_news_list.open_news.connect(lambda val: open_main_news(self, val))
-#######################################################################################################################
-""" main mid object changed """
-def main_mid_object_changed(self):
-    self.global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data.
-    _o = self.global_config['mid_object'][0] # Get mid object data.
-    self.mid_object_scroll.setup_widget()
 #######################################################################################################################
 """ Load svg script """
 def load_svg(svg_path, width, height):

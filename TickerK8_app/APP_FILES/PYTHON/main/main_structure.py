@@ -1,22 +1,22 @@
 """ Import packages """
 """ Import system and operating system packages """
-import pathlib # For get path to folders.
-import json # For json files.
+import pathlib 
+import json
 #______________________________________________________________________________________________________________________
 """ Import PyQt5 packages """
 """ Import PyQt5 Widgets """
 from PyQt5.QtWidgets import (
-    QWidget, # Simple widget, window.
-    QPushButton, # Simple button.
-    QLabel,
+    QWidget,
+    QPushButton,
+    QLabel, 
     QScrollArea,
-    QGridLayout # Grid layout.
+    QGridLayout
 )
 #______________________________________________________________________________________________________________________
-
+""" Import PyQt5 Core """
 from PyQt5.QtCore import (
-    Qt, # Qt.
-    QTimer # Timer.
+    Qt,
+    QTimer
 )
 #______________________________________________________________________________________________________________________
 """ Import main modules """
@@ -37,67 +37,68 @@ class Main_widget(QWidget):
     """ Init, creating items, set base variables like paths, screen size, etc. """
     def __init__(self, parent):
         super().__init__()
-        self.setAttribute(Qt.WA_StyledBackground, True) # Force widget to draw background.
-        self.setParent(parent) # Set parent.
-        self.news = None # Set default.
-        self.news_list = None # Set default.
-        self.search_widget = None # Set default.
-        self.objects_list_widget = None # Set default.
+        self.setAttribute(Qt.WA_StyledBackground, True)
+        self.setParent(parent)
+        self.news = None
+        self.news_list = None
+        self.search_widget = None
+        self.objects_list_widget = None
 #______________________________________________________________________________________________________________________
         """ Set paths, file name"""
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2]) # Set main path, path to TickerK8 folder.
-        self.local_database = self.main_path+'/CONFIG/GLOBAL/local_data_prototype.db' # Get database path.
+        self.local_database = self.main_path+'/CONFIG/GLOBAL/local_data_prototype.db'
 #______________________________________________________________________________________________________________________
         """ Create objects """
-        self.layout = QGridLayout(self) # Create grid layout.
-        self.search_button = QPushButton(self) # Create search button.
-        self.objects_list_title_label = QLabel(self) # Create objects list title label.
-        self.objects_list_scroll = QScrollArea(self) # Create objects list scroll.
-        self.type_list_button = QPushButton(self) # Create typelist button.
-        self.data_list_button = QPushButton(self) # Create data list button.
-        self.settings_button = QPushButton(self) # Create settings button.
-        self.logout_button = QPushButton(self) # Create log out button.
-        self.object_icon_label = QLabel(self) # Create object icon label.
-        self.object_ticker_label = QLabel(self) # Create object ticker label.
-        self.object_name_label = QLabel(self) # Create object name label.
-        self.object_time_widget = None # Set dafoult object time widget.
-        self.object_chart_widget = None # Set dafoult object chart widget.
-        self.object_info_widget = None # Set dafoult object info widget.
-        self.object_statistics_widget = None # Set dafoult object statistics widget.
-        self.object_news_button = QPushButton(self) # Create object news button.
-        self.object_chart_button = QPushButton(self) # Create object chart button.
-        self.object_stats_button = QPushButton(self) # Create object stats button.
+        self.layout = QGridLayout(self)
+        self.search_button = QPushButton(self)
+        self.objects_list_title_label = QLabel(self)
+        self.objects_list_scroll = QScrollArea(self)
+        self.type_list_button = QPushButton(self)
+        self.data_list_button = QPushButton(self)
+        self.settings_button = QPushButton(self)
+        self.logout_button = QPushButton(self)
+        self.object_icon_label = QLabel(self)
+        self.object_ticker_label = QLabel(self)
+        self.object_name_label = QLabel(self)
+        self.object_time_widget = None
+        self.object_chart_widget = None
+        self.object_info_widget = None
+        self.object_statistics_widget = None
+        self.object_news_button = QPushButton(self)
+        self.object_chart_button = QPushButton(self)
+        self.object_stats_button = QPushButton(self)
         self.chart_widget = None
-        self.news_button_list = [] # Create news button list.
-        self.news_button_index = 0 # Create news index.
-        self.news_next_left_button = QPushButton(self) # Create news next left button.
-        self.news_next_right_button = QPushButton(self) # Create news next right button.
-        self.news_market_button = QPushButton(self) # Create news market button.
-        self.news_country_button = QPushButton(self) # Create news country button.
-        self.news_world_button = QPushButton(self) # Create news  world button. 
+        self.news_button_list = []
+        self.news_button_index = 0
+        self.news_next_left_button = QPushButton(self)
+        self.news_next_right_button = QPushButton(self)
+        self.news_market_button = QPushButton(self)
+        self.news_country_button = QPushButton(self)
+        self.news_world_button = QPushButton(self)
 
-        self.timer = QTimer(self) # Create timer.
-        self.news_timer = QTimer(self) # Create news timer.
+        self.timer = QTimer(self)
+        self.news_timer = QTimer(self)
 #______________________________________________________________________________________________________________________
         """ Call functions """
-        main_ui(self) # Call main ui function.
-        main_reload_style(self) # Call main style function .
-        main_retranslate(self) # Call main retranslate function.
-        self.widget_background = lambda: widget_background_painter(self) # Function for background.
-        self.timer.timeout.connect(self.widget_background) # Connect.
-        self.timer.start(1) # Start timer.
+        main_ui(self) 
+        main_reload_style(self) 
+        main_retranslate(self)
+        self.widget_background = lambda: widget_background_painter(self)
+        self.timer.timeout.connect(self.widget_background)
+        self.timer.start(1)
         objects_list_open(self)
         object_setup(self)
         news_creator(self)
 #______________________________________________________________________________________________________________________
         """ Connect  functions """
-        self.search_button.clicked.connect(lambda: Search_widget(self))
+        self.search_button.clicked.connect(lambda: Main_search_widget(self))
         self.type_list_button.clicked.connect(self.objects_list_lists_open)
         self.data_list_button.clicked.connect(self.objects_list_edit_open)
-
-
         self.news_next_left_button.clicked.connect(lambda: news_next(self))
         self.news_next_right_button.clicked.connect(lambda: news_previous(self))
+        self.news_market_button.clicked.connect(lambda: open_main_news_list(self, 0))
+        self.news_country_button.clicked.connect(lambda: open_main_news_list(self, 1))
+        self.news_world_button.clicked.connect(lambda: open_main_news_list(self, 2))
 #______________________________________________________________________________________________________________________
     """ Main objects list lists open """
     def objects_list_lists_open(self):

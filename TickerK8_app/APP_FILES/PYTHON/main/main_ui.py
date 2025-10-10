@@ -1,27 +1,33 @@
+""" Import packages """
+""" Import system and operating system packages """
 import json
+#______________________________________________________________________________________________________________________
 """ Import PyQt5 packages """
 """ Import PyQt5 Widgets """
 from PyQt5.QtWidgets import (
-    QSizePolicy # Size policy.
+    QSizePolicy
 )
 #______________________________________________________________________________________________________________________
 """ Import PyQt5 Core """
 from PyQt5.QtCore import (
-    Qt, # Qt settings.
-    QSize # Size.
+    Qt,
+    QSize
 )
 #______________________________________________________________________________________________________________________
 """ Import PyQt5 Gui """
 from PyQt5.QtGui import (
-    QIcon # Icon.
+    QIcon
 )
 #______________________________________________________________________________________________________________________
 """ Import PyQt5 Gui """
-from PyQt5.QtGui import (QPixmap, # Graphic.
-                         QPainter) # Painter.
+from PyQt5.QtGui import (QPixmap,
+                         QPainter
+) 
 #_______________________________________________________________________________________________________________________
 """ Import PyQt5 Svg """
-from PyQt5.QtSvg import QSvgRenderer # Render Svg.
+from PyQt5.QtSvg import (
+    QSvgRenderer
+)
 #######################################################################################################################
 """ Main Ui """
 def main_ui(self):
@@ -102,6 +108,7 @@ def main_ui(self):
     self.object_news_button.setDisabled(True)
     self.object_chart_button.setDisabled(True)
     self.object_stats_button.setDisabled(True)
+    self.news_world_button.setDisabled(True)
 #______________________________________________________________________________________________________________________
     """ Set size """
     self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -126,7 +133,7 @@ def main_ui(self):
 #######################################################################################################################
 """ Main style """
 def main_reload_style(self):
-    _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data.
+    _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
     self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/main/'+_global_config['__theme__']+'.css')).read())
     self.search_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/search_'+_global_config['__theme__']+'.svg'), 256, 256)))
     self.search_button.setIconSize(self.search_button.size())
@@ -157,8 +164,8 @@ def main_reload_style(self):
 #######################################################################################################################
 """ Main retranslate """
 def main_retranslate(self):
-    _t = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r')) # Translate texts.
-    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['__language__'] # Language.
+    _t = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r'))
+    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['__language__']
     self.search_button.setText(_t['search_button'][_l])
     self.type_list_button.setText(_t['type_list_button'][_l])
     self.data_list_button.setText(_t['data_list_button'][_l])
@@ -200,14 +207,14 @@ def object_list_lists_ui(self):
 #######################################################################################################################
 """ object list lists reload style """
 def object_list_lists_reload_style(self):
-    _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data.
+    _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
     self.objects_list_lists_exit_button.setIcon(QIcon(load_svg(self.main_path+'/STYLE/IMG/icons/main/exit_'+_global_config['__theme__']+'.svg', 256, 256)))
     self.objects_list_lists_exit_button.setIconSize(self.objects_list_lists_exit_button.size())
 #######################################################################################################################
 """ object list lists retranslate """
 def object_list_lists_retranslate(self):
-    _t = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r')) # Translate texts.
-    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['__language__'] # Language.
+    _t = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r'))
+    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['__language__']
     self.objects_list_lists_title_label.setText(_t['objects_list_lists_title_label'][_l])
 #######################################################################################################################
 """ object list edit ui """
@@ -277,8 +284,8 @@ def object_list_edit_reload_style(self):
 #######################################################################################################################
 """ object list edit retranslate """
 def object_list_edit_retranslate(self):
-    _t = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r')) # Translate texts.
-    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['__language__'] # Language.
+    _t = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r'))
+    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['__language__']
     self.object_list_edit_title_label.setText(_t['object_list_edit_title_label'][_l])
     self.object_list_edit_icon_button.setText(_t['object_list_edit_icon_button'][_l])
     self.object_list_edit_ticker_button.setText(_t['object_list_edit_ticker_button'][_l])
@@ -290,12 +297,12 @@ def object_list_edit_retranslate(self):
 #######################################################################################################################
 """ Load svg script """
 def load_svg(svg_path, width, height):
-    renderer = QSvgRenderer(svg_path) # Render svg.
-    pixmap = QPixmap(width, height) # Create pixmap.
-    pixmap.fill(Qt.transparent) # Transparent.
-    painter = QPainter(pixmap) # Render graphic .
-    renderer.render(painter) # Render graphic.
-    painter.end() # Render graphic.
-    scaled_pixmap = pixmap.scaled(QSize(width, height), Qt.KeepAspectRatio, Qt.SmoothTransformation) # Scal pixmap.
+    renderer = QSvgRenderer(svg_path) 
+    pixmap = QPixmap(width, height) 
+    pixmap.fill(Qt.transparent) 
+    painter = QPainter(pixmap) 
+    renderer.render(painter)
+    painter.end()
+    scaled_pixmap = pixmap.scaled(QSize(width, height), Qt.KeepAspectRatio, Qt.SmoothTransformation)
     return scaled_pixmap
 #######################################################################################################################

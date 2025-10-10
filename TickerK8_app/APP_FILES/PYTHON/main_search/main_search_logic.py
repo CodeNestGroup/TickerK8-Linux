@@ -1,44 +1,48 @@
+""" Import packages """
+""" Import system and operating system packages """
 import json
 import sqlite3
 #______________________________________________________________________________________________________________________
+""" Import PyQt5 packages """
 """ Import PyQt5 Widgets """
 from PyQt5.QtWidgets import (
-    QWidget, # Simple widget, window
-    QScrollArea, # Scroll 
-    QLabel, # Simple label
-    QPushButton, # Simple button
-    QGridLayout, # Grid layout
-    QVBoxLayout, # Vertical layout 
-    QSizePolicy # Size policy 
+    QWidget,
+    QScrollArea,
+    QLabel,
+    QPushButton,
+    QGridLayout,
+    QVBoxLayout,
+    QSizePolicy
 )
 #______________________________________________________________________________________________________________________
 """ Import PyQt5 Core """
 from PyQt5.QtCore import (
-    Qt, # Qt settings
+    Qt,
     QSize
 )
 #______________________________________________________________________________________________________________________
 """ Import PyQt5 Gui """
 from PyQt5.QtGui import (
-    QIcon, # Icon
+    QIcon,
     QPixmap,
     QPainter
 )
 #_______________________________________________________________________________________________________________________
 """ Import PyQt5 Svg """
-from PyQt5.QtSvg import QSvgRenderer # Render Svg.
+from PyQt5.QtSvg import (
+    QSvgRenderer
+)
 #######################################################################################################################
-
-def load_history(self):
-    pass
-#######################################################################################################################
+""" text changed """
 def text_changed(self):
-    _text = self.panel_search_lineedit.text() # Get searching text
-    _active_filters = self.global_config['main_search_filters'] # Get filters 
+    """ Get config """
+    _text = self.panel_search_lineedit.text()
+    _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
+    _active_filters = _global_config['search_filters']
 #______________________________________________________________________________________________________________________
     """ Get data """
-    database = sqlite3.connect(database=self.main_path+'/CONFIG/GLOBAL/local_data_prototype.db') # Create connect 
-    cursor = database.cursor() # Create cursor
+    database = sqlite3.connect(database=self.main_path+'/CONFIG/GLOBAL/local_data_prototype.db')
+    cursor = database.cursor()
     all_data = []
     all_data_id = []
     if _active_filters[0]:
@@ -153,14 +157,18 @@ def text_changed(self):
         index_button.clicked.connect(lambda _, o=all_data_id[i-1]: add_object__lists(self, a_o=o))
 #######################################################################################################################
 def filters_changed(self, index):
-    self.global_config['main_search_filters'][index] = not self.global_config['main_search_filters'][index] # Change
-    json.dump(self.global_config, open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'w'), indent=4) # Save 
-    self.global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Reload
+    """ Get config """
+    _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
+    _active_filters = _global_config['search_filters']
+    """ Get data """
+    self.global_config['search_filters'][index] = not self.global_config['search_filters'][index] 
+    json.dump(self.global_config, open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'w'), indent=4) 
+    self.global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
     filters_load(self)
     text_changed(self)
 #######################################################################################################################
 def filters_load(self):
-    _active_filters = self.global_config['main_search_filters']
+    _active_filters = self.global_config['search_filters']
     for index, f in enumerate(_active_filters, start=0):
         if f:
             self.button_list[index].setStyleSheet('background-color: #031913;')
