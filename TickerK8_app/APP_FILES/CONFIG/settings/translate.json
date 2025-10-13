@@ -5,7 +5,6 @@
     "navi_update_button": ["Update", "Aktualizacja"],
     "navi_language_button": ["Language", "Język"],
     "navi_report_button": ["Report", "Raport"],
-    "navi_exit_button": ["Exit", "Wyjście"],
     "user_title_label": ["User", "Użytkownik"],
     "user_info_subtitle_label": ["Informations", "Informacje"],
     "user_name_name_label": ["Name:", "Nazwa:"],

@@ -87,6 +87,7 @@ class Main_widget(QWidget):
         self.timer.timeout.connect(self.widget_background)
         self.timer.start(1)
         objects_list_open(self)
+        self.object_list_open = lambda: objects_list_open(self)
         object_setup(self)
         news_creator(self)
 #______________________________________________________________________________________________________________________

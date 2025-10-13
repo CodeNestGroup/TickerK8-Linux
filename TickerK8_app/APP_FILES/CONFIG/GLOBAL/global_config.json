@@ -42,7 +42,10 @@
             {
                 "Stocks": [
                     {
-                        "stock": 1
+                        "stock": 3
+                    },
+                    {
+                        "stock": 5
                     },
                     {
                         "stock": 4
@@ -68,12 +71,12 @@
     },
     "object_list": "Favourite",
     "object": [
-        "country",
-        1
+        "stock",
+        4
     ],
     "object_chart_type": [
         0,
         0
     ],
-    "mid_object_list": "Indexes"
+    "mid_object_list": "Favourite"
 }

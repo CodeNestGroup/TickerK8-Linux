@@ -39,4 +39,5 @@ def main_chart_ui(self):
 #######################################################################################################################
 """ Main chart style """
 def main_chart_reload_style(self):
-    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/main_chart/'+self.global_config['__theme__']+'.css')).read())
+    _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data
+    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/main_chart/'+_global_config['__theme__']+'.css')).read())

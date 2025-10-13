@@ -26,7 +26,6 @@ class Main_chart(QGraphicsView):
 #______________________________________________________________________________________________________________________
         """ Set paths, file name"""
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2]) # Set main path, path to TickerK8 folder.
-        self.global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data
         self.chart_data = data
 #______________________________________________________________________________________________________________________
         self.main_scence = QGraphicsScene(self)

@@ -1,37 +1,43 @@
-""" Import """
-import pathlib # For get path to folders
-import json # For json files
+""" Import packages """
+""" Import system and operating system packages """
+import pathlib
+import json
 #______________________________________________________________________________________________________________________
+""" Import PyQt5 packages """
 """ Import PyQt5 Widgets """
 from PyQt5.QtWidgets import (
-    QWidget, # Simple widget, window
-    QScrollArea, # Simple scroll widget 
-    QLabel, # Simple label
-    QPushButton, # Simple button
-    QComboBox, # Drop down list
-    QGridLayout, # Grid layout
-    QVBoxLayout # Vertical layout 
+    QWidget,
+    QScrollArea,
+    QLabel,
+    QPushButton,
+    QComboBox, 
+    QGridLayout,
+    QVBoxLayout 
 )
-from PyQt5.QtCore import Qt
 #______________________________________________________________________________________________________________________
-""" Import main ui """
-from .main_settings_ui import *
+""" Import PyQt5 Core """
+from PyQt5.QtCore import (
+    Qt
+)
 #______________________________________________________________________________________________________________________
-""" Import main logic """
-from .main_settings_logic import *
+""" Import settings modules """
+""" Import settings ui """
+from .settings_ui import *
+#______________________________________________________________________________________________________________________
+""" Import settings logic """
+from .settings_logic import *
 #######################################################################################################################
 """ Main settings widget """
-class Main_settings_widget(QWidget):
+class Settings_widget(QWidget):
     """ Init, creating items, set base variables like paths, screen size, etc. """
     def __init__(self, parent):
         super().__init__()
-        self.setAttribute(Qt.WA_StyledBackground, True) # Force widget to draw background
-        self.setParent(parent) # Set parent
+        self.setAttribute(Qt.WA_StyledBackground, True)
+        self.setParent(parent)
+        self.opened_sub_widget = None
 #______________________________________________________________________________________________________________________
         """ Set paths, file name"""
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2]) # Set main path, path to TickerK8 folder.
-        self.global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data
-        self.main_settings_translate = json.load(open(self.main_path+'/CONFIG/main_settings/translate.json', 'r')) # Get main settings translate data
 #______________________________________________________________________________________________________________________
         """ Create objects """
         self.main_layout = QGridLayout(self)
@@ -108,16 +114,18 @@ class Main_settings_widget(QWidget):
         self.report_send_report_content_button = QPushButton(self.report_widget)
 #______________________________________________________________________________________________________________________
         """ Call functions """
-        main_settings_ui(self)
-        main_settings_reload_style(self)
-        main_settings_retranslate(self)
+        settings_ui(self)
+        settings_reload_style(self)
+        self.settings_reload_style = lambda: settings_reload_style(self)
+        settings_retranslate(self)
+        self.settings_retranslate = lambda: settings_retranslate(self)
 #______________________________________________________________________________________________________________________
         """ Connect functions """
-        self.controller_settings = controller_settings()
-        self.navi_user_button.clicked.connect(lambda: self.controller_settings.open_sub_widget(self.user_widget))
-        self.navi_style_button.clicked.connect(lambda: self.controller_settings.open_sub_widget(self.style_widget))
-        self.navi_sound_button.clicked.connect(lambda: self.controller_settings.open_sub_widget(self.sound_widget))
-        self.navi_update_button.clicked.connect(lambda: self.controller_settings.open_sub_widget(self.update_widget))
-        self.navi_language_button.clicked.connect(lambda: self.controller_settings.open_sub_widget(self.language_widget))
-        self.navi_report_button.clicked.connect(lambda: self.controller_settings.open_sub_widget(self.report_widget))
+        self.navi_user_button.clicked.connect(lambda: open_sub_widget(self, self.user_widget))
+        self.navi_style_button.clicked.connect(lambda: open_sub_widget(self, self.style_widget))
+        self.navi_sound_button.clicked.connect(lambda: open_sub_widget(self, self.sound_widget))
+        self.navi_update_button.clicked.connect(lambda: open_sub_widget(self, self.update_widget))
+        self.navi_language_button.clicked.connect(lambda: open_sub_widget(self, self.language_widget))
+        self.navi_report_button.clicked.connect(lambda: open_sub_widget(self, self.report_widget))
+        self.language_langauge_content_combobox.currentIndexChanged.connect(lambda: change_language(self))
 #######################################################################################################################

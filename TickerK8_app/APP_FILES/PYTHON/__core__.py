@@ -8,12 +8,14 @@ import pathlib # Pathlib package, for get path to application.
 from PyQt5.QtWidgets import (
     QApplication, # Application, define application.
     QWidget, # Widget, simple widget.
-    QVBoxLayout # Vertical Layout.
+    QVBoxLayout, # Vertical Layout.
+    QDesktopWidget,
+    QMainWindow
     )
 #______________________________________________________________________________________________________________________
 """ Import PyQt5 Core """
 from PyQt5.QtCore import (
-    QRect # Rectengle, pos, size.
+    QRect
 )
 #______________________________________________________________________________________________________________________
 """ Import PyQt5 Gui """
@@ -36,7 +38,7 @@ from recover_password.recover_password_structure import Recover_password_widget
 from main.main_structure import Main_widget 
 #______________________________________________________________________________________________________________________
 """ Import settings widget """
-from main_settings.main_settings_structure import Main_settings_widget
+from settings.settings_structure import Settings_widget
 #______________________________________________________________________________________________________________________
 """ Import statistics widget """
 from statistics.statistics_structure import Statistics_widget
@@ -107,26 +109,28 @@ class app_controller(QWidget):
         self.main_widget = Main_widget(self) # Creat main widget
         self.layout.addWidget(self.main_widget) # Add main widget to main layout 
         self.set_size_main() # Set size if main window fir main widget
-        #self.main_widget.nav_settings_button.clicked.connect(self.main_to_settings) # Connect open settings widget
-        #self.main_widget.stats_button.clicked.connect(self.main_to_statistics) # Connect open statistics widget
-        #self.main_widget.chart_button.clicked.connect(self.main_to_chart) # Connect open chart widget
+        self.main_widget.settings_button.clicked.connect(self.main_to_settings)
 #______________________________________________________________________________________________________________________
     """ Set size main """
     def set_size_main(self):
-        x, y, width, height = 0, 0, int(self.primary_screen_size.width()), int(self.primary_screen_size.height()) # Set size
-        self.setGeometry(QRect(x, y, width, height)) # Set geometry
+        screen = self.windowHandle().screen()
+        geometry = screen.availableGeometry()
+        #self.setGeometry(geometry)
+        self.showMaximized()
 #______________________________________________________________________________________________________________________
     """ Settings """
     def settings_setup(self):
-        self.settings_widget = Main_settings_widget(self) # Create settings widget
+        self.settings_widget = Settings_widget(self) # Create settings widget
         self.layout.addWidget(self.settings_widget) # Add settings widget to main layout
         self.set_size_settings() # Set size
         self.settings_widget.navi_exit_button.clicked.connect(self.settings_to_main) # Connect exit function 
 #______________________________________________________________________________________________________________________
     """ Set size settings """
     def set_size_settings(self):
-        x, y, width, height = 0, 0, int(self.primary_screen_size.width()), int(self.primary_screen_size.height()) # Set size
-        self.setGeometry(QRect(x, y, width, height)) # Set geometry
+        screen = self.windowHandle().screen()
+        geometry = screen.availableGeometry()
+        #self.setGeometry(geometry)
+        self.showMaximized()
 #______________________________________________________________________________________________________________________
     """ Statistics """
     def statistics_setup(self):

@@ -1,23 +1,33 @@
+""" Import packages """
+""" Import system and operating system packages """
+import json
+#______________________________________________________________________________________________________________________
+""" Import PyQt5 packages """
 """ Import PyQt5 Widgets """
 from PyQt5.QtWidgets import (
-    QWidget, # Simple widget, window
-    QPushButton, # Simple button
-    QGridLayout, # Grid layout
-    QSizePolicy # Size policy 
+    QSizePolicy
 )
 #______________________________________________________________________________________________________________________
 """ Import PyQt5 Core """
 from PyQt5.QtCore import (
-    Qt # Qt settings
+    Qt,
+    QSize
 )
 #______________________________________________________________________________________________________________________
 """ Import PyQt5 Gui """
 from PyQt5.QtGui import (
-    QIcon # Icon
+    QIcon,
+    QPixmap,
+    QPainter
+)
+#_______________________________________________________________________________________________________________________
+""" Import PyQt5 Svg """
+from PyQt5.QtSvg import (
+    QSvgRenderer
 )
 #######################################################################################################################
-""" Main settings Ui """
-def main_settings_ui(self):
+""" settings Ui """
+def settings_ui(self):
     """ Set object name """
     self.setObjectName('main_settings_widget')
     self.navi_scroll.setObjectName('navi_scroll')
@@ -377,22 +387,25 @@ def main_settings_ui(self):
     self.language_langauge_content_combobox.addItem("English / English")
     self.language_langauge_content_combobox.addItem("Polski / Polish")
 #######################################################################################################################
-""" Main settings tyle """
-def main_settings_reload_style(self):
-    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/main_settings/'+self.global_config['__theme__']+'.css')).read())
+""" settings tyle """
+def settings_reload_style(self):
+    _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
+    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/settings/'+_global_config['__theme__']+'.css')).read())
+    self.navi_exit_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/exit_'+_global_config['__theme__']+'.svg'), 256, 256)))
+    self.navi_exit_button.setIconSize(self.navi_exit_button.size())
 #######################################################################################################################
-""" Main settings retranslate """
-def main_settings_retranslate(self):
-    _t = self.main_settings_translate # Translate texts 
-    _l = self.global_config['__language__'] # Language
-    _m = self.global_config['__theme__'] # Theme
+""" settings retranslate """
+def settings_retranslate(self):
+    _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
+    _t = json.load(open(self.main_path+'/CONFIG/settings/translate.json', 'r'))
+    _l = _global_config['__language__']
+    _m = _global_config['__theme__'] # Theme
     self.navi_user_button.setText(_t['navi_user_button'][_l])
     self.navi_style_button.setText(_t['navi_style_button'][_l])
     self.navi_sound_button.setText(_t['navi_sound_button'][_l])
     self.navi_update_button.setText(_t['navi_update_button'][_l])
     self.navi_language_button.setText(_t['navi_language_button'][_l])
     self.navi_report_button.setText(_t['navi_report_button'][_l])
-    self.navi_exit_button.setText(_t['navi_exit_button'][_l])
     self.user_title_label.setText(_t['user_title_label'][_l])
     self.user_info_subtitle_label.setText(_t['user_info_subtitle_label'][_l])
     self.user_name_name_label.setText(_t['user_name_name_label'][_l])
@@ -431,4 +444,15 @@ def main_settings_retranslate(self):
     self.report_auto_report_content_button.setText(_t['report_auto_report_content_button'][_l][0])
     self.report_send_report_name_label.setText(_t['report_send_report_name_label'][_l])
     self.report_send_report_content_button.setText(_t['report_send_report_content_button'][_l])
+#######################################################################################################################
+""" Load svg script """
+def load_svg(svg_path, width, height):
+    renderer = QSvgRenderer(svg_path) # Render svg
+    pixmap = QPixmap(width, height) # Create pixmap
+    pixmap.fill(Qt.transparent) # Transparent
+    painter = QPainter(pixmap) # Render graphic 
+    renderer.render(painter) # Render graphic
+    painter.end() # Render graphic
+    scaled_pixmap = pixmap.scaled(QSize(width, height), Qt.KeepAspectRatio, Qt.SmoothTransformation) # Scal pixmap
+    return scaled_pixmap
 #######################################################################################################################

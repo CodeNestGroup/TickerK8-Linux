@@ -44,6 +44,9 @@ from PyQt5.QtSvg import (
     QSvgRenderer
 )
 #______________________________________________________________________________________________________________________
+""" Import main chart """
+from main_chart.main_chart_structure import Main_chart
+#______________________________________________________________________________________________________________________
 """ Import main news """
 from main_news.main_news_structure import Main_news_widget
 #______________________________________________________________________________________________________________________
@@ -733,10 +736,10 @@ def object_index(self):
     WHERE index_stock.id_index={_global_config['object'][1]};''').fetchall() # Execute
     cursor.close()
     database.close()
-    chart_data = json.load(open(self.main_path+f'/CHART_DATA/{index_data[0]}_15.json', 'r'))
 #______________________________________________________________________________________________________________________
     """ Create """
-    self.object_chart_widget = QWidget(self)
+    _chart_data = json.load(open(self.main_path+f'/CHART_DATA/{index_data[0]}_15.json', 'r'))
+    self.object_chart_widget = Main_chart(self, _chart_data)
     self.object_statistics_widget = QWidget(self)
     self.object_statistics_layout = QGridLayout(self.object_statistics_widget)
     statistics_title_label = QLabel(self.object_statistics_widget)
@@ -856,10 +859,10 @@ def object_stock(self):
     WHERE stock.id={_global_config['object'][1]};''').fetchall()[0] # Execute
     cursor.close()
     database.close()
-    chart_data = json.load(open(self.main_path+f'/CHART_DATA/{stock_data[1]}_15.json', 'r'))
 #______________________________________________________________________________________________________________________
     """ Create """
-    self.object_chart_widget = QWidget(self)
+    _chart_data = json.load(open(self.main_path+f'/CHART_DATA/{stock_data[1]}_15.json', 'r'))
+    self.object_chart_widget = Main_chart(self, _chart_data)
     self.object_statistics_widget = QWidget(self)
     self.object_statistics_layout = QGridLayout(self.object_statistics_widget)
     statistics_capitalization_name_label = QLabel(self.object_statistics_widget)
@@ -910,6 +913,8 @@ def object_stock(self):
     self.object_statistics_widget.setLayout(self.object_statistics_layout)
 #______________________________________________________________________________________________________________________
     """ Set widget """
+    self.object_ticker_label.setHidden(False)
+    self.object_name_label.setHidden(False)
 #______________________________________________________________________________________________________________________
     """ Set label """
     statistics_capitalization_name_label.setAlignment(Qt.AlignCenter)

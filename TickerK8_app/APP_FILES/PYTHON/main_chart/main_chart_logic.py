@@ -42,7 +42,6 @@ class Candle(QGraphicsItem):
         self.l = l
         self.color_wick = QColor('#ff0000') if self.o < self.c else QColor('#00ff00')
         self.color_body = QColor('#ff0000') if self.o < self.c else QColor('#00ff00')
-        print(self.x, self.o, self.h, self.c, self.l)
 #______________________________________________________________________________________________________________________
     """ boundig rect """
     def boundingRect(self):
