@@ -968,53 +968,63 @@ def news_creator(self):
     news_list = cursor.fetchall()
     cursor.close()
     connect.close()
-    for index, data in enumerate(news_list, start=1):
-        json_data = json.loads(data[1])
-        news_id = data[0]
-        """ Create objects """
-        news_button = QPushButton(self)
-        news_layout = QVBoxLayout(news_button)
-        news_text_label = QLabel(news_button)
+    if news_list:
+        for index, data in enumerate(news_list, start=1):
+            json_data = json.loads(data[1])
+            news_id = data[0]
+            """ Create objects """
+            news_button = QPushButton(self)
+            news_layout = QVBoxLayout(news_button)
+            news_text_label = QLabel(news_button)
 #______________________________________________________________________________________________________________________
-        """ Set object name """
-        news_button.setObjectName(f'news_button_{index}')
-        news_text_label.setObjectName(f'text_label_{index}')
+            """ Set object name """
+            news_button.setObjectName(f'news_button_{index}')
+            news_text_label.setObjectName(f'text_label_{index}')
 #______________________________________________________________________________________________________________________
-        """ Set property """
-        news_button.setProperty('class', 'news_button')
-        news_text_label.setProperty('class', 'news_text_label')
+            """ Set property """
+            news_button.setProperty('class', 'news_button')
+            news_text_label.setProperty('class', 'news_text_label')
 #______________________________________________________________________________________________________________________
-        """ Set layout """
-        self.layout.addWidget(news_button, 2, 58, 85, 41)
-        news_layout.addWidget(news_text_label)  
-        news_layout.setContentsMargins(0,0,0,0)
-        news_layout.setSpacing(0)
+            """ Set layout """
+            self.layout.addWidget(news_button, 2, 58, 85, 41)
+            news_layout.addWidget(news_text_label)  
+            news_layout.setContentsMargins(0,0,0,0)
+            news_layout.setSpacing(0)
 #______________________________________________________________________________________________________________________
-        """ Set Widget """
-        news_button.setHidden(True)
+            """ Set Widget """
+            news_button.setHidden(True)
 #______________________________________________________________________________________________________________________
-        """ Set label """
-        news_text_label.setAlignment(Qt.AlignCenter)
-        news_text_label.setWordWrap(True)
+            """ Set label """
+            news_text_label.setAlignment(Qt.AlignCenter)
+            news_text_label.setWordWrap(True)
 #______________________________________________________________________________________________________________________
-        """ Set size """
-        news_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        news_text_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        news_text_label.setGeometry(QRect(0,0,news_button.width(),news_button.height()))
+            """ Set size """
+            news_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+            news_text_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+            news_text_label.setGeometry(QRect(0,0,news_button.width(),news_button.height()))
 #______________________________________________________________________________________________________________________
-        """ Set text """
-        news_text_label.setText(json_data['title'])
+            """ Set text """
+            news_text_label.setText(json_data['title'])
 #______________________________________________________________________________________________________________________
-        """ Set graphics """
+            """ Set graphics """
 #______________________________________________________________________________________________________________________
-        """ Set connect function for open """
-        news_button.clicked.connect(lambda _, id_n=news_id: open_main_news(self, id_n))
+            """ Set connect function for open """
+            news_button.clicked.connect(lambda _, id_n=news_id: open_main_news(self, id_n))
 #______________________________________________________________________________________________________________________
-        _news_button_list.append(news_button)
-    self.news_button_list = _news_button_list
-    self.news_button_list[self.news_button_index].setHidden(False)
-    self.news_timer.timeout.connect(lambda: news_next(self))
-    self.news_timer.start(5000)
+            _news_button_list.append(news_button)
+        self.news_button_list = _news_button_list
+        self.news_button_list[self.news_button_index].setHidden(False)
+        self.news_timer.timeout.connect(lambda: news_next(self))
+        self.news_timer.start(5000)
+    else:
+        news_label = QLabel(self)
+        news_label.setObjectName('news_label')
+        self.layout.addWidget(news_label, 2, 58, 85, 41)
+        news_label.setAlignment(Qt.AlignCenter)
+        news_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        news_label.setText('...')
+        self.news_next_left_button.setDisabled(True)
+        self.news_next_right_button.setDisabled(True)
 #######################################################################################################################
 """ news next  """
 def news_next(self):

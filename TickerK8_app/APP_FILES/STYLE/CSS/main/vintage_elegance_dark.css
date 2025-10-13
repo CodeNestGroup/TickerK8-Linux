@@ -393,6 +393,14 @@
 .object_button{
     background-color: #282828;
 }
+#news_label{
+    background-color: #1a1a1a;
+    border: 0;
+    border-radius: 0.25em;
+    font-size: 35px;
+    font-weight: 700;
+    letter-spacing: 0.5em;
+}
 .news_button{
     background-color: #1a1a1a;
     border: 0;

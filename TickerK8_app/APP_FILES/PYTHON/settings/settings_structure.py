@@ -128,4 +128,7 @@ class Settings_widget(QWidget):
         self.navi_language_button.clicked.connect(lambda: open_sub_widget(self, self.language_widget))
         self.navi_report_button.clicked.connect(lambda: open_sub_widget(self, self.report_widget))
         self.language_langauge_content_combobox.currentIndexChanged.connect(lambda: change_language(self))
+        self.sound_button_content_button.clicked.connect(lambda: set_sound_d_e(self, '_button_'))
+        self.sound_alert_content_button.clicked.connect(lambda: set_sound_d_e(self, '_alert_'))
+        self.sound_notification_content_button.clicked.connect(lambda: set_sound_d_e(self, '_notification_'))
 #######################################################################################################################

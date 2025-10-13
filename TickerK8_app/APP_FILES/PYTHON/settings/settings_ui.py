@@ -275,6 +275,9 @@ def settings_ui(self):
     self.navi_scroll.setWidget(self.navi_widget)
     self.panel_right_scroll.setWidgetResizable(True)
     self.panel_right_scroll.setWidget(self.panel_right_widget)
+    self.navi_user_button.setDisabled(True)
+    self.navi_update_button.setDisabled(True)
+    self.navi_report_button.setDisabled(True)
 #______________________________________________________________________________________________________________________
     """ Set label """
     self.user_title_label.setAlignment(Qt.AlignCenter)
@@ -399,7 +402,7 @@ def settings_retranslate(self):
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
     _t = json.load(open(self.main_path+'/CONFIG/settings/translate.json', 'r'))
     _l = _global_config['__language__']
-    _m = _global_config['__theme__'] # Theme
+    _m = _global_config['__theme__'] 
     self.navi_user_button.setText(_t['navi_user_button'][_l])
     self.navi_style_button.setText(_t['navi_style_button'][_l])
     self.navi_sound_button.setText(_t['navi_sound_button'][_l])
@@ -414,7 +417,7 @@ def settings_retranslate(self):
     self.style_title_label.setText(_t['style_title_label'][_l])
     self.style_theme_subtitle_label.setText(_t['style_theme_subtitle_label'][_l])
     self.style_theme_d_n_name_label.setText(_t['style_theme_d_n_name_label'][_l])
-    self.style_theme_d_n_content_button.setText(_t['style_theme_d_n_content_button'][_l][0])
+    self.style_theme_d_n_content_button.setText(_t['style_theme_d_n_content_button'][_l][1])
     self.style_theme_themes_name_label.setText(_t['style_theme_themes_name_label'][_l])
     self.sound_title_label.setText(_t['sound_title_label'][_l])
     self.sound_button_name_label.setText(_t['sound_button_name_label'][_l])

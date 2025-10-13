@@ -30,22 +30,22 @@ def change_theme(self):
 #______________________________________________________________________________________________________________________
 """ Set sound disabled and enabled """
 def set_sound_d_e(self, _type):
-    
-    self.main_self.settings_config_file[_type] = not self.main_self.settings_config_file[_type] # Change config
-    json.dump(self.main_self.settings_config_file, open(self.main_self.main_path+'/TickerK8_updater/APP_FILES/CONFIG/_00_settings_config.json', 'w'), indent=4) # Save config
-    self.main_self.settings_config_file = json.load(open(self.main_self.main_path+'/TickerK8_updater/APP_FILES/CONFIG/_00_settings_config.json', 'r')) # Reload settings config file
-    button = None # Set deafoult
-    if _type == '__sound_button__':
-        button = self.main_self.settings_sound_button_button
-    elif _type == '__sound_alert__':
-        button = self.main_self.settings_sound_alert_button
-    elif _type == '__sound_notification__':
-        button = self.main_self.settings_sound_notification_button
+    """ get config """
+    _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
+    _t = json.load(open(self.main_path+'/CONFIG/settings/translate.json', 'r'))
+    _l = _global_config['__language__']
+    _global_config['sound'][_type] = not _global_config['sound'][_type] 
+    _new_value = _global_config['sound'][_type]
+    json.dump(_global_config, open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'w'), indent=4) # Save config
+    button = None
+    if _type == '_button_':
+        button = self.sound_button_content_button
+    elif _type == '_alert_':
+        button = self.sound_alert_content_button
+    elif _type == '_notification_':
+        button = self.sound_notification_content_button
     if button:
-        button.setText(self.main_self.settings_translate_file[f'settings{_type[1:-1]}button'][self.main_self.settings_config_file['__language__']][self.main_self.settings_config_file[_type]]) # Change text of button
-    self.main_self.notification_background_widget.setHidden(False) # Show notification widget
-    self.main_self.notification_text_label.setText(self.main_self.settings_translate_file['notification_text_label'][self.main_self.settings_config_file['__language__']][4]) # Set text
-    self.main_self.controller_notification.open() # Open notification
+        button.setText(_t[f'sound{_type}content_button'][_l][_new_value])
 #_______________________________________________________________________________________________________________________
 """ Change language """
 def change_language(self):

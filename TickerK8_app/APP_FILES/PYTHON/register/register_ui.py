@@ -1,7 +1,8 @@
 """ Import PyQt5 packages """
 """ Import PyQt5 Widgets """
 from PyQt5.QtWidgets import (
-    QSizePolicy # Size policy.
+    QSizePolicy, # Size policy.
+    QLineEdit
         )
 #______________________________________________________________________________________________________________________
 """ Import PyQt5 Core """

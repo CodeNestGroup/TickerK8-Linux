@@ -1,6 +1,11 @@
 {
-    "__language__": 0,
-    "__theme__": "vintage_elegance_dark",
+    "language": 0,
+    "theme": "vintage_elegance_dark",
+    "sound": {
+        "_button_": false,
+        "_alert_": false,
+        "_notification_": false
+    },
     "search_filters": [
         true,
         false,
@@ -77,6 +82,5 @@
     "object_chart_type": [
         0,
         0
-    ],
-    "mid_object_list": "Favourite"
+    ]
 }

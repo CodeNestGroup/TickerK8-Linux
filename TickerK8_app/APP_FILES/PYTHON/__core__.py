@@ -110,6 +110,7 @@ class app_controller(QWidget):
         self.layout.addWidget(self.main_widget) # Add main widget to main layout 
         self.set_size_main() # Set size if main window fir main widget
         self.main_widget.settings_button.clicked.connect(self.main_to_settings)
+        self.main_widget.logout_button.clicked.connect(self.main_to_login)
 #______________________________________________________________________________________________________________________
     """ Set size main """
     def set_size_main(self):
@@ -185,6 +186,11 @@ class app_controller(QWidget):
         self.login_widget.deleteLater() # Delete login widget
         self.login_widget = None # Set default  
         self.main_setup() # Call main setup function
+#______________________________________________________________________________________________________________________
+    def main_to_login(self):
+        self.main_widget.deleteLater()
+        self.main_widget = None
+        self.login_setup()
 #______________________________________________________________________________________________________________________
     """ From main to settings """
     def main_to_settings(self):
