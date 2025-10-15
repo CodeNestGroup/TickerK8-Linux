@@ -43,165 +43,133 @@ class app_controller(QWidget):
         self.settings_widget = None
         self.statistics_widget = None
         self.chart_widget = None
-        self.primary_screen_size = QApplication.primaryScreen().size()
+        self.screen = self.windowHandle().screen()
+        self.geometry = screen.availableGeometry()
         self.login_setup()
 #______________________________________________________________________________________________________________________
-    """ Login """
-    """ Login setup """
+    """ login setup """
     def login_setup(self):
         self.login_widget = Login_widget(self)
         self.layout.addWidget(self.login_widget)
-        self.set_size_login()
-        
+        pos_x = int(self.geometry.width()//4)
+        pos_y = int(self.geometry.height()//12)
+        width = int(self.geometry.width()//2)
+        height = int(self.geometry.height()//1.25)
+        self.setGeometry(QRect(pos_x, pos_y, width, height))
         self.login_widget.correct_login.connect(self.login_to_main)
         self.login_widget.login_register_button.clicked.connect(self.login_to_register)
-#______________________________________________________________________________________________________________________
-    """ Set size login"""
-    def set_size_login(self):
-        x, y, width, height = int(self.primary_screen_size.width()//4), int(self.primary_screen_size.height()//12), int(self.primary_screen_size.width()//2), int(self.primary_screen_size.height()//1.25)
-        self.setGeometry(QRect(x, y, width, height)) 
 #______________________________________________________________________________________________________________________
     """ Register """
     def register_setup(self):
         self.register_widget = Register_widget(self)
         self.layout.addWidget(self.register_widget)
-        self.set_size_register()
+        pos_x = int(self.geometry.width()//4)
+        pos_y = int(self.geometry.height()//12)
+        width = int(self.geometry.width()//2)
+        height = int(self.geometry.height()//1.25)
+        self.setGeometry(QRect(pos_x, pos_y, width, height))
         self.register_widget.register_exit_button.clicked.connect(self.register_to_login)
-#______________________________________________________________________________________________________________________
-    """ Set size register """
-    def set_size_register(self):
-        x, y, width, height = int(self.primary_screen_size.width()//4), int(self.primary_screen_size.height()//12), int(self.primary_screen_size.width()//2), int(self.primary_screen_size.height()//1.25)
-        self.setGeometry(QRect(x, y, width, height))
 #______________________________________________________________________________________________________________________
     """ Recover password """
     def recover_password_setup(self):
         self.recover_password_widget = Recover_password_widget(self)
         self.layout.addWidget(self.recover_password_widget)
-        self.set_size_recover_password()
+        pos_x = int(self.geometry.width()//4)
+        pos_y = int(self.geometry.height()//12)
+        width = int(self.geometry.width()//2)
+        height = int(self.geometry.height()//1.25)
+        self.setGeometry(QRect(pos_x, pos_y, width, height))
         self.recover_password_widget.recover_password_exit_button.clicked.connect(self.forgot_password_to_login)
-#______________________________________________________________________________________________________________________
-    """ Set size recover password """
-    def set_size_recover_password(self):
-        x, y, width, height = int(self.primary_screen_size.width()//4), int(self.primary_screen_size.height()//12), int(self.primary_screen_size.width()//2), int(self.primary_screen_size.height()//1.25)
-        self.setGeometry(QRect(x, y, width, height))
 #______________________________________________________________________________________________________________________
     """ Main """
     def main_setup(self):
         self.main_widget = Main_widget(self)
         self.layout.addWidget(self.main_widget)
-        self.set_size_main()
+        self.setGeometry(self.geometry)
+        self.showMaximized()
         self.main_widget.settings_button.clicked.connect(self.main_to_settings)
         self.main_widget.logout_button.clicked.connect(self.main_to_login)
-#______________________________________________________________________________________________________________________
-    """ Set size main """
-    def set_size_main(self):
-        screen = self.windowHandle().screen()
-        geometry = screen.availableGeometry()
-        self.showMaximized()
 #______________________________________________________________________________________________________________________
     """ Settings """
     def settings_setup(self):
         self.settings_widget = Settings_widget(self)
         self.layout.addWidget(self.settings_widget)
-        self.set_size_settings()
-        self.settings_widget.navi_exit_button.clicked.connect(self.settings_to_main)
-#______________________________________________________________________________________________________________________
-    """ Set size settings """
-    def set_size_settings(self):
-        screen = self.windowHandle().screen()
-        geometry = screen.availableGeometry()
+        self.setGeometry(self.geometry)
         self.showMaximized()
+        self.settings_widget.navi_exit_button.clicked.connect(self.settings_to_main)
 #______________________________________________________________________________________________________________________
     """ Statistics """
     def statistics_setup(self):
         self.statistics_widget = Statistics_widget(self)
         self.layout.addWidget(self.statistics_widget)
-        self.set_size_statistics()
+        self.setGeometry(self.geometry)
+        self.showMaximized()
         self.statistics_widget.main_exit_button.clicked.connect(self.statistics_to_main)
-#______________________________________________________________________________________________________________________
-    """ Set size statistics """
-    def set_size_statistics(self):
-        x, y, width, height = 0, 0, int(self.primary_screen_size.width()), int(self.primary_screen_size.height())
-        self.setGeometry(QRect(x, y, width, height))
 #______________________________________________________________________________________________________________________
     """ Chart """
     def chart_setup(self):
         self.chart_widget = Chart_widget(self)
         self.layout.addWidget(self.chart_widget)
-        self.set_size_chart()
+        self.setGeometry(self.geometry)
+        self.showMaximized()
         self.chart_widget.top_exit_button.clicked.connect(self.chart_to_main)
 #______________________________________________________________________________________________________________________
-    """ Set size chart """
-    def set_size_chart(self):
-        x, y, width, height = 0, 0, int(self.primary_screen_size.width()), int(self.primary_screen_size.height()) 
-        self.setGeometry(QRect(x, y, width, height))
-#______________________________________________________________________________________________________________________
-    """ From login to register """
+    """ From ... to ... setup """
     def login_to_register(self):
         self.login_widget.deleteLater()
         self.login_widget = None 
         self.register_setup()
-#______________________________________________________________________________________________________________________
-    """ From register to login """
+
     def register_to_login(self):
         self.register_widget.deleteLater()
         self.register_widget = None
         self.login_setup()
-#______________________________________________________________________________________________________________________
-    """ From login to forgot password """
+
     def login_to_forgot_password(self):
         self.login_widget.deleteLater()
         self.login_widget = None
         self.recover_password_setup()
-#______________________________________________________________________________________________________________________
-    """ From forgot password to login """
+
     def forgot_password_to_login(self):
         self.recover_password_widget.deleteLater()
         self.recover_password_widget = None
         self.login_setup()
-#______________________________________________________________________________________________________________________
-    """ From login to main """
+
     def login_to_main(self):
         self.login_widget.deleteLater()
         self.login_widget = None
         self.main_setup()
-#______________________________________________________________________________________________________________________
+
     def main_to_login(self):
         self.main_widget.deleteLater()
         self.main_widget = None
         self.login_setup()
-#______________________________________________________________________________________________________________________
-    """ From main to settings """
+#
     def main_to_settings(self):
         self.main_widget.deleteLater()
         self.main_widget = None
         self.settings_setup()
-#______________________________________________________________________________________________________________________
-    """ From settings to main """
+
     def settings_to_main(self):
         self.settings_widget.deleteLater()
         self.settings_widget = None
         self.main_setup()
-#______________________________________________________________________________________________________________________
-    """ From main to statistics """
+
     def main_to_statistics(self):
         self.main_widget.deleteLater()
         self.main_widget = None
         self.statistics_setup()
-#______________________________________________________________________________________________________________________
-    """ From statistics to main """
+
     def statistics_to_main(self):
         self.statistics_widget.deleteLater() 
         self.statistics_widget = None
         self.main_setup()
-#______________________________________________________________________________________________________________________
-    """ From main to chart """
+
     def main_to_chart(self):
         self.main_widget.deleteLater()
         self.main_widget = None 
         self.chart_setup()
-#______________________________________________________________________________________________________________________
-    """ From chart to main """
+
     def chart_to_main(self):
         self.chart_widget.deleteLater()
         self.chart_widget = None 

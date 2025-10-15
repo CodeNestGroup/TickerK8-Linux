@@ -1,16 +1,16 @@
-""" Import PyQt5 packages """
-""" Import PyQt5 Widgets """
-from PyQt5.QtWidgets import (
-    QLineEdit, # Simple line edit.
-    QSizePolicy # Size policy.
-)
+""" Import packages """
+import json
 #______________________________________________________________________________________________________________________
-""" Import PyQt5 Core """
+""" Import PyQt5 packages """
+from PyQt5.QtWidgets import (
+    QLineEdit,
+    QSizePolicy
+)
 from PyQt5.QtCore import (
     Qt # Qt.
 )
-#######################################################################################################################
-""" Login Ui """
+#______________________________________________________________________________________________________________________
+""" login ui """
 def login_ui(self):
     """ Set object name """
     self.setObjectName('login_widget')
@@ -61,17 +61,17 @@ def login_ui(self):
     self.login_welcome_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.login_welcome_sub_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.login_welcome_icon_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-#######################################################################################################################
-""" Login style """
+#______________________________________________________________________________________________________________________
+""" Login reload style """
 def login_reload_style(self):
     self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/login/vintage_elegance_dark.css')).read())
-#######################################################################################################################
+#______________________________________________________________________________________________________________________
 """ Login retranslate"""
 def login_retranslate(self):
-    _t = self.login_translate # Translate texts.
-    _l = self.global_config['__language__'] # Language.
+    _t = json.load(open(self.main_path+'/CONFIG/login/translate.json', 'r'))
+    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['__language__']
     self.login_login_lineedit.setPlaceholderText(_t['login_login_lineedit'][_l])
     self.login_password_lineedit.setPlaceholderText(_t['login_password_lineedit'][_l])
     self.login_login_button.setText(_t['login_login_button'][_l])
     self.login_register_button.setText(_t['login_register_button'][_l])
-#######################################################################################################################
+#______________________________________________________________________________________________________________________
