@@ -1,5 +1,4 @@
 """ Import packages """
-""" Import system and operating system packages """
 import json
 import datetime
 import sqlite3
@@ -8,7 +7,6 @@ import requests
 from io import BytesIO
 #______________________________________________________________________________________________________________________
 """ Import PyQt5 packages """
-""" Import PyQt5 Widgets """
 from PyQt5.QtWidgets import (
     QWidget,
     QScrollArea,
@@ -19,16 +17,11 @@ from PyQt5.QtWidgets import (
     QSizePolicy,
     QVBoxLayout
 )
-#______________________________________________________________________________________________________________________
-
-""" Import PyQt5 QtCore """
 from PyQt5.QtCore import (
     Qt,
     QSize,
     QRect
 )
-#______________________________________________________________________________________________________________________
-""" Import PyQt5 Gui """
 from PyQt5.QtGui import (
     QLinearGradient,
     QPalette,
@@ -38,43 +31,33 @@ from PyQt5.QtGui import (
     QIcon,
     QPainter
 )
-#_______________________________________________________________________________________________________________________
-""" Import PyQt5 Svg """
 from PyQt5.QtSvg import (
     QSvgRenderer
 )
 #______________________________________________________________________________________________________________________
-""" Import main chart """
+""" Import main modules """
 from main_chart.main_chart_structure import Main_chart
-#______________________________________________________________________________________________________________________
-""" Import main news """
 from main_news.main_news_structure import Main_news_widget
-#______________________________________________________________________________________________________________________
-""" Import main news list """
 from main_news_list.main_news_list_structure import Main_news_list_widget
-#######################################################################################################################
+#______________________________________________________________________________________________________________________
 """ widget background painter """
 def widget_background_painter(self):
-    """ Variables """
-    """ Colors """
     _colors = json.load(open(self.main_path+'/CONFIG/main/conf.json', 'r'))['background'] # Get colors list, local.
     _color_0 = '#000000'
     _color_1 = '#000000'
     _color_2 = '#000000'
-    """ Colors alpha """
     _alpha_1 = 'ff'
     _alpha_2 = 'ff'
-    """ Colors positions """
     _x_1 = 0.0
     _x_2 = 1.0 
 #______________________________________________________________________________________________________________________
     """ Calculate index and precent """
-    _now = datetime.datetime.now() # Get current time.
-    _today_sec = _now.hour*3600+_now.minute*60+_now.second # Total today time left.
-    if _today_sec >=86400: # Check if extra sec.
+    _now = datetime.datetime.now()
+    _today_sec = _now.hour*3600+_now.minute*60+_now.second
+    if _today_sec >=86400:
         _today_sec = 86399
-    _index = _today_sec//8640 # Index, segment of the day.
-    _percent = (_today_sec/8640)-_index # Percetn of time left in segmnet.
+    _index = _today_sec//8640
+    _percent = (_today_sec/8640)-_index
 #______________________________________________________________________________________________________________________
     """ Set colors """
     if _percent <= 0.5:
@@ -82,30 +65,30 @@ def widget_background_painter(self):
         _x_2 = 1.0
         _alpha_1 = 'ff'
         _alpha_2 = f'{int(255 *(_percent / 0.5)):02X}'
-        _color_0 = f'#ff{_colors[_index-1]}' # Set background color.
+        _color_0 = f'#ff{_colors[_index-1]}'
     else:
         _x_1 = 0.0
         _x_2 = 1-(_percent-0.5)*2
         _alpha_1 = f'{255-int(255 *(_percent - 0.5) / 0.5):02X}'
         _alpha_2 = 'ff'
-        _color_0 = f'#ff{_colors[_index]}' # Set background color.
-    _color_1 = f'#{_alpha_1}{_colors[_index-1]}' # Set first color.
-    _color_2 = f'#{_alpha_2}{_colors[_index]}' # Set sec color.
+        _color_0 = f'#ff{_colors[_index]}' 
+    _color_1 = f'#{_alpha_1}{_colors[_index-1]}'
+    _color_2 = f'#{_alpha_2}{_colors[_index]}'
 #______________________________________________________________________________________________________________________
     """ Paint background """
-    pixmap = QPixmap(self.size()) # Create img, size of login widget.
-    pixmap.fill(QColor(_color_0)) # Fill img by background color.
-    painter = QPainter(pixmap) # Create painter.
-    gradient = QLinearGradient(0,0,self.width(), 0) # Create gradient.
-    gradient.setColorAt(_x_1, QColor(_color_1)) # Set first color.
-    gradient.setColorAt(_x_2, QColor(_color_2)) # Set secound color.
-    painter.fillRect(self.rect(), gradient) # Fill by gradient.
-    painter.end() # End painting.
-    palette = self.palette() # Create palette.
-    palette.setBrush(QPalette.Window, QBrush(pixmap)) # Set brush.
-    self.setAutoFillBackground(True) # Set fill background for login widget.
-    self.setPalette(palette) # Set palette for login widget.
-#######################################################################################################################
+    pixmap = QPixmap(self.size())
+    pixmap.fill(QColor(_color_0))
+    painter = QPainter(pixmap)
+    gradient = QLinearGradient(0,0,self.width(), 0)
+    gradient.setColorAt(_x_1, QColor(_color_1))
+    gradient.setColorAt(_x_2, QColor(_color_2))
+    painter.fillRect(self.rect(), gradient)
+    painter.end()
+    palette = self.palette()
+    palette.setBrush(QPalette.Window, QBrush(pixmap))
+    self.setAutoFillBackground(True)
+    self.setPalette(palette)
+#______________________________________________________________________________________________________________________
 """ objects list open"""
 def objects_list_open(self):
     """ Get config """
@@ -208,7 +191,7 @@ def objects_list_open(self):
                 objects_list_tag_label.setText(f'{_t['objects_list_tags'][f'{tag}'][_global_config['__language__']]}')
 #_____________________________________________________________________________________________________________________
             """ Create items """
-            database = sqlite3.connect(database=self.local_database)
+            database = sqlite3.connect(database=self.main_path+'/CONFIG/GLOBAL/local_data_prototype.db')
             cursor = database.cursor()
             if value:
                 for row, item in enumerate(value, start=1):

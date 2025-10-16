@@ -1,35 +1,24 @@
 """ Import packages """
-""" Import system and operating system packages """
 import json
 #______________________________________________________________________________________________________________________
 """ Import PyQt5 packages """
-""" Import PyQt5 Widgets """
 from PyQt5.QtWidgets import (
     QSizePolicy
 )
-#______________________________________________________________________________________________________________________
-""" Import PyQt5 Core """
 from PyQt5.QtCore import (
     Qt,
     QSize
 )
-#______________________________________________________________________________________________________________________
-""" Import PyQt5 Gui """
 from PyQt5.QtGui import (
-    QIcon
+    QPixmap,
+    QIcon,
+    QPainter
 )
-#______________________________________________________________________________________________________________________
-""" Import PyQt5 Gui """
-from PyQt5.QtGui import (QPixmap,
-                         QPainter
-) 
-#_______________________________________________________________________________________________________________________
-""" Import PyQt5 Svg """
 from PyQt5.QtSvg import (
     QSvgRenderer
 )
-#######################################################################################################################
-""" Main Ui """
+#______________________________________________________________________________________________________________________
+""" main ui """
 def main_ui(self):
     """ Set object name """
     self.setObjectName('main_widget')
@@ -80,7 +69,6 @@ def main_ui(self):
     self.layout.addWidget(self.object_news_button, 96, 15, 2, 13)
     self.layout.addWidget(self.object_chart_button, 96, 29, 2, 14)
     self.layout.addWidget(self.object_stats_button, 96, 44, 2, 13)
-    self.layout.addWidget(self.chart_widget, 1, 52, 49, 47)
     self.layout.addWidget(self.news_next_left_button, 90, 58, 2, 20)
     self.layout.addWidget(self.news_next_right_button, 90, 79, 2, 20)
     self.layout.addWidget(self.news_market_button, 96, 58, 2, 13)
@@ -130,8 +118,8 @@ def main_ui(self):
     self.news_market_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.news_country_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.news_world_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-#######################################################################################################################
-""" Main style """
+#______________________________________________________________________________________________________________________
+""" main reload style """
 def main_reload_style(self):
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
     self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/main/'+_global_config['__theme__']+'.css')).read())
@@ -161,8 +149,8 @@ def main_reload_style(self):
     self.news_country_button.setIconSize(self.news_country_button.size())
     self.news_world_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/world_'+_global_config['__theme__']+'.svg'), 256, 256)))
     self.news_world_button.setIconSize(self.news_world_button.size())
-#######################################################################################################################
-""" Main retranslate """
+#______________________________________________________________________________________________________________________
+""" main retranslate """
 def main_retranslate(self):
     _t = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r'))
     _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['__language__']
@@ -175,7 +163,7 @@ def main_retranslate(self):
     self.news_market_button.setText(_t['news_market_button'][_l])
     self.news_country_button.setText(_t['news_country_button'][_l])
     self.news_world_button.setText(_t['news_world_button'][_l])
-#######################################################################################################################
+#______________________________________________________________________________________________________________________
 """ object list lists ui"""
 def object_list_lists_ui(self):
     """ Set object name """
@@ -204,19 +192,19 @@ def object_list_lists_ui(self):
     self.objects_list_lists_scroll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.objects_list_lists_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.objects_list_lists_exit_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-#######################################################################################################################
+#______________________________________________________________________________________________________________________
 """ object list lists reload style """
 def object_list_lists_reload_style(self):
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
     self.objects_list_lists_exit_button.setIcon(QIcon(load_svg(self.main_path+'/STYLE/IMG/icons/main/exit_'+_global_config['__theme__']+'.svg', 256, 256)))
     self.objects_list_lists_exit_button.setIconSize(self.objects_list_lists_exit_button.size())
-#######################################################################################################################
+#______________________________________________________________________________________________________________________
 """ object list lists retranslate """
 def object_list_lists_retranslate(self):
     _t = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r'))
     _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['__language__']
     self.objects_list_lists_title_label.setText(_t['objects_list_lists_title_label'][_l])
-#######################################################################################################################
+#______________________________________________________________________________________________________________________
 """ object list edit ui """
 def object_list_edit_ui(self):
     """ Set object name """
@@ -275,13 +263,13 @@ def object_list_edit_ui(self):
     self.object_list_edit_capitalization_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.object_list_edit_capital_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.object_list_edit_exit_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-#######################################################################################################################
+#______________________________________________________________________________________________________________________
 """ object list edit reload style """
 def object_list_edit_reload_style(self):
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
     self.object_list_edit_exit_button.setIcon(QIcon(load_svg(self.main_path+'/STYLE/IMG/icons/main/exit_'+_global_config['__theme__']+'.svg', 256, 256)))
     self.object_list_edit_exit_button.setIconSize(self.object_list_edit_exit_button.size())
-#######################################################################################################################
+#______________________________________________________________________________________________________________________
 """ object list edit retranslate """
 def object_list_edit_retranslate(self):
     _t = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r'))
@@ -294,8 +282,8 @@ def object_list_edit_retranslate(self):
     self.object_list_edit_dividend_yield_button.setText(_t['object_list_edit_dividend_yield_button'][_l])
     self.object_list_edit_capitalization_button.setText(_t['object_list_edit_capitalization_button'][_l])
     self.object_list_edit_capital_button.setText(_t['object_list_edit_capital_button'][_l])
-#######################################################################################################################
-""" Load svg script """
+#______________________________________________________________________________________________________________________
+""" load svg """
 def load_svg(svg_path, width, height):
     renderer = QSvgRenderer(svg_path) 
     pixmap = QPixmap(width, height) 
@@ -305,4 +293,4 @@ def load_svg(svg_path, width, height):
     painter.end()
     scaled_pixmap = pixmap.scaled(QSize(width, height), Qt.KeepAspectRatio, Qt.SmoothTransformation)
     return scaled_pixmap
-#######################################################################################################################
+#______________________________________________________________________________________________________________________

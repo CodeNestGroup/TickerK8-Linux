@@ -1,10 +1,8 @@
 """ Import packages """
-""" Import system and operating system packages """
 import pathlib 
 import json
 #______________________________________________________________________________________________________________________
 """ Import PyQt5 packages """
-""" Import PyQt5 Widgets """
 from PyQt5.QtWidgets import (
     QWidget,
     QPushButton,
@@ -12,29 +10,19 @@ from PyQt5.QtWidgets import (
     QScrollArea,
     QGridLayout
 )
-#______________________________________________________________________________________________________________________
-""" Import PyQt5 Core """
 from PyQt5.QtCore import (
     Qt,
     QTimer
 )
 #______________________________________________________________________________________________________________________
 """ Import main modules """
-""" Import main ui """
 from .main_ui import *
-#______________________________________________________________________________________________________________________
-""" Import main logic """
 from .main_logic import *
-#______________________________________________________________________________________________________________________
-""" Import main search """
 from main_search.main_search_structure import Main_search_widget
-#______________________________________________________________________________________________________________________
-""" Import main news list structure """
 from main_news_list.main_news_list_structure import Main_news_list_widget
-#######################################################################################################################
+#______________________________________________________________________________________________________________________
 """ Main widget """
 class Main_widget(QWidget):
-    """ Init, creating items, set base variables like paths, screen size, etc. """
     def __init__(self, parent):
         super().__init__()
         self.setAttribute(Qt.WA_StyledBackground, True)
@@ -45,8 +33,7 @@ class Main_widget(QWidget):
         self.objects_list_widget = None
 #______________________________________________________________________________________________________________________
         """ Set paths, file name"""
-        self.main_path = str(pathlib.Path(__file__).resolve().parents[2]) # Set main path, path to TickerK8 folder.
-        self.local_database = self.main_path+'/CONFIG/GLOBAL/local_data_prototype.db'
+        self.main_path = str(pathlib.Path(__file__).resolve().parents[2])
 #______________________________________________________________________________________________________________________
         """ Create objects """
         self.layout = QGridLayout(self)
@@ -67,7 +54,6 @@ class Main_widget(QWidget):
         self.object_news_button = QPushButton(self)
         self.object_chart_button = QPushButton(self)
         self.object_stats_button = QPushButton(self)
-        self.chart_widget = None
         self.news_button_list = []
         self.news_button_index = 0
         self.news_next_left_button = QPushButton(self)
@@ -162,4 +148,4 @@ class Main_widget(QWidget):
         self.object_list_edit_capitalization_button.clicked.connect(lambda: object_list_edit_save(self, 'capitalization'))
         self.object_list_edit_capital_button.clicked.connect(lambda: object_list_edit_save(self, 'capital'))
         self.object_list_edit_exit_button.clicked.connect(lambda: object_list_edit_exit(self))
-#######################################################################################################################
+#______________________________________________________________________________________________________________________
