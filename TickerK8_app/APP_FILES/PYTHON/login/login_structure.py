@@ -1,7 +1,6 @@
 """ Import packages """
 import pathlib
 import json
-#______________________________________________________________________________________________________________________
 """ Import PyQt5 packages """
 from PyQt5.QtWidgets import (
     QWidget,
@@ -15,7 +14,6 @@ from PyQt5.QtCore import (
         QTimer,
         pyqtSignal
         )
-#______________________________________________________________________________________________________________________
 """ Import login modules """
 from .login_ui import *
 from .login_logic import *
@@ -27,14 +25,12 @@ class Login_widget(QWidget):
         super().__init__()
         self.setAttribute(Qt.WA_StyledBackground, True)
         self.setParent(parent)
-#______________________________________________________________________________________________________________________
         """ Set paths, file name"""
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2])
         self.global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
         self.login_translate = json.load(open(self.main_path+'/CONFIG/login/translate.json', 'r'))
         self.login_conf = json.load(open(self.main_path+'/CONFIG/login/conf.json', 'r'))
         self.index_changed = -10
-#______________________________________________________________________________________________________________________
         """ Create objects """
         self.login_layout = QGridLayout(self)
         self.login_login_lineedit = QLineEdit(self)
@@ -45,7 +41,6 @@ class Login_widget(QWidget):
         self.login_welcome_sub_label = QLabel(self)
         self.login_welcome_icon_label = QLabel(self)
         self.timer = QTimer(self)
-#______________________________________________________________________________________________________________________
         """ Call functions """
         login_ui(self)
         login_reload_style(self)
@@ -54,7 +49,6 @@ class Login_widget(QWidget):
         self.login_widget_background = lambda: login_widget_background_painter(self)
         self.timer.timeout.connect(self.login_widget_background)
         self.timer.start(1)
-#______________________________________________________________________________________________________________________
         """ Connect functions """
         self.login_login_button.clicked.connect(lambda: sign_in_controller(self))
         self.login_login_lineedit.textChanged.connect(lambda: reset_style(self))

@@ -2,7 +2,6 @@
 import json
 import datetime
 import mysql.connector 
-#______________________________________________________________________________________________________________________
 """ Import PyQt5 packages """
 from PyQt5.QtWidgets import (
     QWidget
@@ -36,7 +35,6 @@ def login_widget_background_painter(self):
     _x_1 = 0.0
     _x_2 = 1.0 
     _icons = self.login_conf['icon']
-#______________________________________________________________________________________________________________________
     """ Calculate index and precent """
     _now = datetime.datetime.now()
     _today_sec = _now.hour*3600+_now.minute*60+_now.second
@@ -44,7 +42,6 @@ def login_widget_background_painter(self):
         _today_sec = 86399
     _index = _today_sec//8640 
     _percent = (_today_sec/8640)-_index 
-#______________________________________________________________________________________________________________________
     """ Set colors """
     if _percent <= 0.5:
         _x_1 = 1-(_percent*2)
@@ -60,7 +57,6 @@ def login_widget_background_painter(self):
         _color_0 = f'#ff{_colors[_index]}'
     _color_1 = f'#{_alpha_1}{_colors[_index-1]}'
     _color_2 = f'#{_alpha_2}{_colors[_index]}'
-#______________________________________________________________________________________________________________________
     """ Paint background """
     pixmap = QPixmap(self.size())
     pixmap.fill(QColor(_color_0))
@@ -74,7 +70,6 @@ def login_widget_background_painter(self):
     palette.setBrush(QPalette.Window, QBrush(pixmap))
     self.setAutoFillBackground(True)
     self.setPalette(palette)
-#______________________________________________________________________________________________________________________
     """ Call text and icon change """
     if self.index_changed != _index:
         _icon = f'{self.main_path}/STYLE/IMG/icons/login/{_icons[_index]}.svg'
@@ -87,11 +82,9 @@ def change_text_icon(self, title='', sub='', icon=''):
     _title = title
     _sub = sub
     _icon = icon
-#______________________________________________________________________________________________________________________
     """ Set text """
     self.login_welcome_title_label.setText(_title)
     self.login_welcome_sub_label.setText(_sub)
-#______________________________________________________________________________________________________________________
     """ Set icon """
     render = QSvgRenderer(_icon)
     icon_pixmap = QPixmap(self.login_welcome_icon_label.height(), self.login_welcome_icon_label.height())
@@ -127,7 +120,7 @@ def sign_in_controller(self):
         self.login_login_lineedit.setStyleSheet('border: 2px solid red;')
         self.login_password_lineedit.setStyleSheet('border: 2px solid red;')
 #______________________________________________________________________________________________________________________
-""" Reset style """
+""" reset style """
 def reset_style(self):
     self.login_login_lineedit.setStyleSheet('border: 0;')
     self.login_password_lineedit.setStyleSheet('border: 0;')

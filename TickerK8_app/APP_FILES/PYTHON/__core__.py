@@ -1,7 +1,6 @@
 """ Import packages """
 import sys
 import pathlib
-#_______________________________________________________________________________________________________________________
 """ Import PyQt5 packages """
 from PyQt5.QtWidgets import (
     QApplication,
@@ -17,7 +16,6 @@ from PyQt5.QtGui import (
     QFontDatabase,
     QFont
     )
-#______________________________________________________________________________________________________________________
 """ Import application modules """
 from login.login_structure import Login_widget
 from register.register_structre import Register_widget
@@ -27,7 +25,7 @@ from settings.settings_structure import Settings_widget
 from statistics.statistics_structure import Statistics_widget
 from chart.chart_structure import Chart_widget
 #______________________________________________________________________________________________________________________
-""" App controller """
+""" app controller """
 class app_controller(QWidget):
     def __init__(self):
         super().__init__()
@@ -47,7 +45,7 @@ class app_controller(QWidget):
         self.geometry = screen.availableGeometry()
         self.login_setup()
 #______________________________________________________________________________________________________________________
-    """ login setup """
+    """ Setup """
     def login_setup(self):
         self.login_widget = Login_widget(self)
         self.layout.addWidget(self.login_widget)
@@ -58,8 +56,7 @@ class app_controller(QWidget):
         self.setGeometry(QRect(pos_x, pos_y, width, height))
         self.login_widget.correct_login.connect(self.login_to_main)
         self.login_widget.login_register_button.clicked.connect(self.login_to_register)
-#______________________________________________________________________________________________________________________
-    """ Register """
+    
     def register_setup(self):
         self.register_widget = Register_widget(self)
         self.layout.addWidget(self.register_widget)
@@ -69,8 +66,7 @@ class app_controller(QWidget):
         height = int(self.geometry.height()//1.25)
         self.setGeometry(QRect(pos_x, pos_y, width, height))
         self.register_widget.register_exit_button.clicked.connect(self.register_to_login)
-#______________________________________________________________________________________________________________________
-    """ Recover password """
+    
     def recover_password_setup(self):
         self.recover_password_widget = Recover_password_widget(self)
         self.layout.addWidget(self.recover_password_widget)
@@ -80,8 +76,7 @@ class app_controller(QWidget):
         height = int(self.geometry.height()//1.25)
         self.setGeometry(QRect(pos_x, pos_y, width, height))
         self.recover_password_widget.recover_password_exit_button.clicked.connect(self.forgot_password_to_login)
-#______________________________________________________________________________________________________________________
-    """ Main """
+    
     def main_setup(self):
         self.main_widget = Main_widget(self)
         self.layout.addWidget(self.main_widget)
@@ -89,24 +84,21 @@ class app_controller(QWidget):
         self.showMaximized()
         self.main_widget.settings_button.clicked.connect(self.main_to_settings)
         self.main_widget.logout_button.clicked.connect(self.main_to_login)
-#______________________________________________________________________________________________________________________
-    """ Settings """
+    
     def settings_setup(self):
         self.settings_widget = Settings_widget(self)
         self.layout.addWidget(self.settings_widget)
         self.setGeometry(self.geometry)
         self.showMaximized()
         self.settings_widget.navi_exit_button.clicked.connect(self.settings_to_main)
-#______________________________________________________________________________________________________________________
-    """ Statistics """
+    
     def statistics_setup(self):
         self.statistics_widget = Statistics_widget(self)
         self.layout.addWidget(self.statistics_widget)
         self.setGeometry(self.geometry)
         self.showMaximized()
         self.statistics_widget.main_exit_button.clicked.connect(self.statistics_to_main)
-#______________________________________________________________________________________________________________________
-    """ Chart """
+    
     def chart_setup(self):
         self.chart_widget = Chart_widget(self)
         self.layout.addWidget(self.chart_widget)

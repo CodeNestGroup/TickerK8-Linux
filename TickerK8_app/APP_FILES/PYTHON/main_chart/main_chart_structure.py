@@ -1,31 +1,27 @@
-import pathlib # For get path to folders
-import json # For json files
+""" Import packages """
+import pathlib
+import json
 import sqlite3
-#______________________________________________________________________________________________________________________
-""" Import PyQt5 Widgets """
+""" Import PyQt5 packages """
 from PyQt5.QtWidgets import (
     QGraphicsView,
     QGraphicsScene,
     QGraphicsItem
 )
 from PyQt5.QtCore import Qt
-#______________________________________________________________________________________________________________________
-""" Import main chart ui """
+""" Import main chart modules """
 from .main_chart_ui import *
-#______________________________________________________________________________________________________________________
-""" Import main chart logic """
 from .main_chart_logic import *
-#######################################################################################################################
+#______________________________________________________________________________________________________________________
 """ Main mid object widget """
 class Main_chart(QGraphicsView):
-    """ Init, creating items, set base variables like paths, screen size, etc. """
     def __init__(self, parent, data):
         super().__init__()
-        self.setAttribute(Qt.WA_StyledBackground, True) # Force widget to draw background
-        self.setParent(parent) # Set parent
+        self.setAttribute(Qt.WA_StyledBackground, True)
+        self.setParent(parent)
 #______________________________________________________________________________________________________________________
         """ Set paths, file name"""
-        self.main_path = str(pathlib.Path(__file__).resolve().parents[2]) # Set main path, path to TickerK8 folder.
+        self.main_path = str(pathlib.Path(__file__).resolve().parents[2])
         self.chart_data = data
 #______________________________________________________________________________________________________________________
         self.main_scence = QGraphicsScene(self)
@@ -34,4 +30,4 @@ class Main_chart(QGraphicsView):
         main_chart_ui(self)
         main_chart_reload_style(self)
         candle_chart(self)
-#######################################################################################################################
+#______________________________________________________________________________________________________________________

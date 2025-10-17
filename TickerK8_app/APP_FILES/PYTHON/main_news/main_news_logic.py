@@ -1,35 +1,30 @@
-""" Import """
+""" Import pacakges """
 import mysql
 import json
 import requests
 from io import BytesIO
 #______________________________________________________________________________________________________________________
-""" Import PyQt5 Widgets """
+""" Import PyQt5 packages """
 from PyQt5.QtWidgets import (
-    QWidget, # Simple widget, window
-    QPushButton, # Simple button
+    QWidget,
+    QPushButton,
     QLabel, 
-    QGridLayout, # Grid layout
-    QSizePolicy, # Size policy
+    QGridLayout,
+    QSizePolicy,
     QVBoxLayout,
     QSizePolicy
 )
-#______________________________________________________________________________________________________________________
-""" Import PyQt5 Core """
 from PyQt5.QtCore import (
-    Qt, # Qt settings
-    QSize # Size
+    Qt,
+    QSize
 )
-#______________________________________________________________________________________________________________________
-""" Import PyQt5 Gui """
 from PyQt5.QtGui import (
-    QIcon, # Icon
+    QIcon,
     QPixmap
 )
-#######################################################################################################################
-""" News widget """
+#______________________________________________________________________________________________________________________
+""" news widget """
 def news_widget(self, id_id):
-    """ Get data """
     connect = mysql.connector.connect(
     host="localhost",
     user="client",
@@ -42,7 +37,6 @@ def news_widget(self, id_id):
     json_file = json.loads(result)
     cursor.close()
     connect.close()
-#______________________________________________________________________________________________________________________
     """ Create objects """
     self.news_widget = QWidget(self.news_scroll)
     self.news_layout = QVBoxLayout(self.news_widget)
@@ -57,7 +51,6 @@ def news_widget(self, id_id):
     self.news_hash_widget = QWidget(self.news_widget)
     self.news_hash_layout = QGridLayout(self.news_hash_widget)
     self.news_hash_title_label = QLabel(self.news_hash_widget)
-#______________________________________________________________________________________________________________________
     """ Set object name """
     self.news_widget.setObjectName('news_widget')
     self.news_photo_label.setObjectName('news_photo_label')
@@ -68,12 +61,10 @@ def news_widget(self, id_id):
     self.news_source_title_label.setObjectName('news_source_title_label')
     self.news_hash_widget.setObjectName('news_hash_widget')
     self.news_hash_title_label.setObjectName('news_hash_title_label')
-#______________________________________________________________________________________________________________________
     """ Set property """
     self.news_content_widget.setProperty('class', 'news_div_widget')
     self.news_source_widget.setProperty('class', 'news_div_widget')
     self.news_hash_widget.setProperty('class', 'news_div_widget')
-#______________________________________________________________________________________________________________________
     """ Set layout """
     self.news_layout.addWidget(self.news_photo_label)
     self.news_layout.addWidget(self.news_title_label)
@@ -101,15 +92,12 @@ def news_widget(self, id_id):
     for enc in range(100):
         self.news_hash_layout.setColumnStretch(enc, 1)
     self.news_hash_widget.setLayout(self.news_hash_layout)
-#______________________________________________________________________________________________________________________
     """ Set widget """
     self.news_scroll.setWidget(self.news_widget)
-#______________________________________________________________________________________________________________________
     """ Set label """
     self.news_title_label.setAlignment(Qt.AlignCenter)
     self.news_title_label.setWordWrap(True)
     self.news_date_label.setAlignment(Qt.AlignLeft)
-#______________________________________________________________________________________________________________________
     """ Set size """
     self.news_widget.setMaximumWidth(self.news_scroll.width())
     self.news_widget.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
@@ -130,15 +118,13 @@ def news_widget(self, id_id):
     self.news_hash_widget.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
     self.news_hash_title_label.setMaximumWidth(self.news_scroll.width())
     self.news_hash_title_label.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
-#______________________________________________________________________________________________________________________
     """ Set text """
-    _t = self.main_news_translate # Translate texts 
-    _l = self.global_config['__language__'] # Language
+    _t = json.load(open(self.main_path+'/CONFIG/main_news/translate.json', 'r'))
+    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['__language__']
     self.news_title_label.setText(json_file['title'])
     self.news_date_label.setText(json_file['date'])
     self.news_source_title_label.setText(_t['news_source_title_label'][_l])
     self.news_hash_title_label.setText(_t['news_hash_title_label'][_l])
-#______________________________________________________________________________________________________________________
     """ Set photo """
     photo = requests.get(json_file['photo']['original'])
     photo.raise_for_status()
@@ -152,7 +138,6 @@ def news_widget(self, id_id):
         self.news_photo_label.height()
     )
     self.news_photo_label.setPixmap(cropped_pix)
-#______________________________________________________________________________________________________________________
     """ Make content """
     for index, rows in enumerate(json_file['content'], start=0):
         label = QLabel(self.news_content_widget)
@@ -179,7 +164,6 @@ def news_widget(self, id_id):
             label.setObjectName(f"Heading_4_Text_{index}")
             label.setAlignment(Qt.AlignLeft)
         self.news_content_layout.addWidget(label, index, 2, 1, 96)
-#______________________________________________________________________________________________________________________
     """ Make source """
     for index, rows in enumerate(json_file['source'], start=1):
         button = QPushButton(self.news_source_widget)
@@ -187,7 +171,6 @@ def news_widget(self, id_id):
         button.setProperty('class', 'source_button')
         button.setText(str(rows))
         self.news_source_layout.addWidget(button, index, 2, 1, 25)
-#______________________________________________________________________________________________________________________
     """ Make hash """
     for index, rows in enumerate(json_file['hash'], start=1):
         button = QPushButton(self.news_hash_widget)
@@ -195,4 +178,4 @@ def news_widget(self, id_id):
         button.setProperty('class', 'hash_button')
         button.setText(str(rows))
         self.news_hash_layout.addWidget(button, index, 2, 1, 25)
-#######################################################################################################################
+#______________________________________________________________________________________________________________________

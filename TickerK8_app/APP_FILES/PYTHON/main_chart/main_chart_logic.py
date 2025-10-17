@@ -6,19 +6,18 @@ from PyQt5.QtCore import (
     QRectF,
     QPointF
 )
-""" Import from QtGui """
 from PyQt5.QtGui import (
-    QPainter, # Painter, tool that create/paint item
-    QBrush, # Brush 
-    QPen, # Pen for single line 
-    QColor # For set color 
+    QPainter,
+    QBrush,
+    QPen,
+    QColor
 )
-#######################################################################################################################
+#______________________________________________________________________________________________________________________
 """ Candle chart """
 def candle_chart(self):
-    local_list = [] # Create local variable
-    for s in self.chart_data: local_list += [s['h'], s['l']]# Loop for data, serch highest and lowest price
-    max_price, min_price = max(local_list), min(local_list) # Get highest, lowest price 
+    local_list = [] 
+    for s in self.chart_data: local_list += [s['h'], s['l']]
+    max_price, min_price = max(local_list), min(local_list)
     _space_between = 0
     _view_height = self.height()
     _scale = (max_price-min_price)*_view_height
@@ -29,7 +28,7 @@ def candle_chart(self):
         _close = ((max_price-single_data['c'])/_scale)*100000
         _low = ((max_price-single_data['l'])/_scale)*100000
         self.main_scence.addItem(Candle(_space_between, _open, _high, _close, _low))
-#######################################################################################################################
+#______________________________________________________________________________________________________________________
 """ Candle """
 class Candle(QGraphicsItem):
     """ __init__ """
@@ -49,8 +48,8 @@ class Candle(QGraphicsItem):
 #______________________________________________________________________________________________________________________
     """ paint """
     def paint(self, painter, option, widget=None):
-        painter.setPen(QPen(self.color_wick, 1)) # Set pen color, size to create high, low price line
-        painter.drawLine(QPointF(self.x+1, self.h), QPointF(self.x+1, self.l)) # Draw line
-        painter.setBrush(QBrush(self.color_body)) # Set brush color to create body 
-        painter.drawRect(QRectF(self.x, min(self.o, self.c), 2, abs(self.o-self.c))) # Create body 
-#######################################################################################################################
+        painter.setPen(QPen(self.color_wick, 1))
+        painter.drawLine(QPointF(self.x+1, self.h), QPointF(self.x+1, self.l))
+        painter.setBrush(QBrush(self.color_body))
+        painter.drawRect(QRectF(self.x, min(self.o, self.c), 2, abs(self.o-self.c))) 
+#______________________________________________________________________________________________________________________

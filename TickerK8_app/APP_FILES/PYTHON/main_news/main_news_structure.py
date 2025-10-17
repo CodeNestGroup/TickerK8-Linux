@@ -1,55 +1,46 @@
-""" Import """
-import pathlib # For get path to folders
-import json # For json files
+""" Import packages """
+import pathlib 
+import json
 #______________________________________________________________________________________________________________________
-""" Import PyQt5 Widgets """
+""" Import PyQt5 packages """
 from PyQt5.QtWidgets import (
-    QWidget, # Simple widget, window
-    QScrollArea, # Simple scroll widget 
-    QLabel, # Simple label
-    QPushButton, # Simple button
-    QComboBox, # Drop down list
-    QGridLayout, # Grid layout
-    QVBoxLayout # Vertical layout 
+    QWidget,
+    QScrollArea,
+    QLabel,
+    QPushButton, 
+    QComboBox,
+    QGridLayout, 
+    QVBoxLayout
 )
 from PyQt5.QtCore import (
         Qt
 )
 #______________________________________________________________________________________________________________________
-""" Import main ui """
+""" Import main news packages """
 from .main_news_ui import *
-#______________________________________________________________________________________________________________________
-""" Import main logic """
 from .main_news_logic import *
-#######################################################################################################################
+#______________________________________________________________________________________________________________________
 """ Main news widget """
 class Main_news_widget(QWidget):
-    """ Init, creating items, set base variables like paths, screen size, etc. """
     def __init__(self, parent, id_news):
         super().__init__()
-        self.setAttribute(Qt.WA_StyledBackground, True) # Force widget to draw background
-        self.setParent(parent) # Set parent
-        self.parent = parent # Set parent, main widget
-        self.id_news = id_news # Set id news
-#______________________________________________________________________________________________________________________
+        self.setAttribute(Qt.WA_StyledBackground, True)
+        self.setParent(parent)
+        self.parent = parent
+        self.id_news = id_news
         """ Set paths, file name"""
-        self.main_path = str(pathlib.Path(__file__).resolve().parents[2]) # Set main path, path to TickerK8 folder.
-        self.global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r')) # Get global config data
-        self.main_news_translate = json.load(open(self.main_path+'/CONFIG/main_news/translate.json', 'r')) # Get main news translate data
-#______________________________________________________________________________________________________________________
+        self.main_path = str(pathlib.Path(__file__).resolve().parents[2])
         """ Create objects """
         self.main_layout = QGridLayout(self)
         self.panel_widget = QWidget(self)
         self.panel_layout = QGridLayout(self.panel_widget)
         self.news_scroll = QScrollArea(self.panel_widget)
         self.panel_exit_button = QPushButton(self.panel_widget)
-#______________________________________________________________________________________________________________________
         """ Call functions"""
         main_news_ui(self)
         main_news_reload_style(self)
         main_news_retranslate(self)
         news_widget(self, self.id_news)
-#______________________________________________________________________________________________________________________
         """ Connect functions """
         self.panel_exit_button.clicked.connect(lambda: self.deleteLater())
-#######################################################################################################################
+#______________________________________________________________________________________________________________________

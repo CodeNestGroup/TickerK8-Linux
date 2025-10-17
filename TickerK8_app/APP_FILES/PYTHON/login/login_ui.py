@@ -1,13 +1,12 @@
 """ Import packages """
 import json
-#______________________________________________________________________________________________________________________
 """ Import PyQt5 packages """
 from PyQt5.QtWidgets import (
     QLineEdit,
     QSizePolicy
 )
 from PyQt5.QtCore import (
-    Qt # Qt.
+    Qt
 )
 #______________________________________________________________________________________________________________________
 """ login ui """
@@ -21,11 +20,9 @@ def login_ui(self):
     self.login_welcome_title_label.setObjectName('login_welcome_title_label')
     self.login_welcome_sub_label.setObjectName('login_welcome_sub_label')
     self.login_welcome_icon_label.setObjectName('login_welcome_icon_label')
-#______________________________________________________________________________________________________________________
     """ Set property """
     self.login_login_lineedit.setProperty('class', 'login_input_line')
     self.login_password_lineedit.setProperty('class', 'login_input_line')
-#______________________________________________________________________________________________________________________
     """ Set layout """
     self.login_layout.addWidget(self.login_login_lineedit, 42, 4, 4, 42)
     self.login_layout.addWidget(self.login_password_lineedit, 48, 4, 4, 42)
@@ -40,18 +37,14 @@ def login_ui(self):
         self.login_layout.setRowStretch(enc, 1)
         self.login_layout.setColumnStretch(enc, 1)
     self.setLayout(self.login_layout)
-#______________________________________________________________________________________________________________________
     """ Set widget"""
     self.setHidden(False)
-#______________________________________________________________________________________________________________________
     """ Set label """
     self.login_welcome_title_label.setAlignment(Qt.AlignCenter)
     self.login_welcome_sub_label.setAlignment(Qt.AlignCenter)
     self.login_welcome_icon_label.setAlignment(Qt.AlignCenter)
-#______________________________________________________________________________________________________________________
     """ Set line edit """
     self.login_password_lineedit.setEchoMode(QLineEdit.Password)
-#______________________________________________________________________________________________________________________
     """ Set size """
     self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.login_login_lineedit.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -68,8 +61,8 @@ def login_reload_style(self):
 #______________________________________________________________________________________________________________________
 """ Login retranslate"""
 def login_retranslate(self):
-    _t = json.load(open(self.main_path+'/CONFIG/login/translate.json', 'r'))
-    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['__language__']
+    _t = self.login_translate
+    _l = self.global_config['__language__']
     self.login_login_lineedit.setPlaceholderText(_t['login_login_lineedit'][_l])
     self.login_password_lineedit.setPlaceholderText(_t['login_password_lineedit'][_l])
     self.login_login_button.setText(_t['login_login_button'][_l])

@@ -1,7 +1,6 @@
 """ Import packages """
 import pathlib 
 import json
-#______________________________________________________________________________________________________________________
 """ Import PyQt5 packages """
 from PyQt5.QtWidgets import (
     QWidget,
@@ -14,7 +13,6 @@ from PyQt5.QtCore import (
     Qt,
     QTimer
 )
-#______________________________________________________________________________________________________________________
 """ Import main modules """
 from .main_ui import *
 from .main_logic import *
@@ -31,10 +29,8 @@ class Main_widget(QWidget):
         self.news_list = None
         self.search_widget = None
         self.objects_list_widget = None
-#______________________________________________________________________________________________________________________
         """ Set paths, file name"""
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2])
-#______________________________________________________________________________________________________________________
         """ Create objects """
         self.layout = QGridLayout(self)
         self.search_button = QPushButton(self)
@@ -64,7 +60,6 @@ class Main_widget(QWidget):
 
         self.timer = QTimer(self)
         self.news_timer = QTimer(self)
-#______________________________________________________________________________________________________________________
         """ Call functions """
         main_ui(self) 
         main_reload_style(self) 
@@ -76,7 +71,6 @@ class Main_widget(QWidget):
         self.object_list_open = lambda: objects_list_open(self)
         object_setup(self)
         news_creator(self)
-#______________________________________________________________________________________________________________________
         """ Connect  functions """
         self.search_button.clicked.connect(lambda: Main_search_widget(self))
         self.type_list_button.clicked.connect(self.objects_list_lists_open)
@@ -94,20 +88,17 @@ class Main_widget(QWidget):
         self.objects_list_scroll.hide()
         self.type_list_button.hide()
         self.data_list_button.hide()
-#______________________________________________________________________________________________________________________
         """ Create objects """
         self.objects_list_lists_title_label = QLabel(self)
         self.objects_list_lists_scroll = QScrollArea(self)
         self.objects_list_lists_widget = QWidget(self.objects_list_lists_scroll)
         self.objects_list_lists_layout = QVBoxLayout(self.objects_list_lists_widget)
         self.objects_list_lists_exit_button = QPushButton(self)
-#______________________________________________________________________________________________________________________
         """ Call functions """
         object_list_lists_ui(self)
         object_list_lists_reload_style(self)
         object_list_lists_retranslate(self)
         object_list_lists_scroll_setup(self)
-#______________________________________________________________________________________________________________________
         """ Connect functions """
         self.objects_list_lists_exit_button.clicked.connect(lambda: object_list_lists_exit(self))
 #______________________________________________________________________________________________________________________
@@ -118,7 +109,6 @@ class Main_widget(QWidget):
         self.objects_list_scroll.hide()
         self.type_list_button.hide()
         self.data_list_button.hide()
-#______________________________________________________________________________________________________________________
         """ Create objects """
         self.object_list_edit_title_label = QLabel(self)
         self.object_list_edit_scroll = QScrollArea(self)
@@ -132,13 +122,11 @@ class Main_widget(QWidget):
         self.object_list_edit_capitalization_button = QPushButton(self.object_list_edit_widget)
         self.object_list_edit_capital_button = QPushButton(self.object_list_edit_widget)
         self.object_list_edit_exit_button = QPushButton(self)
-#______________________________________________________________________________________________________________________
         """ Call functions """
         object_list_edit_ui(self)
         object_list_edit_reload_style(self)
         object_list_edit_retranslate(self)
         object_list_edit_check_selected(self)
-#______________________________________________________________________________________________________________________
         """ Connect functions """
         self.object_list_edit_icon_button.clicked.connect(lambda: object_list_edit_save(self, 'icon'))
         self.object_list_edit_ticker_button.clicked.connect(lambda: object_list_edit_save(self, 'ticker'))

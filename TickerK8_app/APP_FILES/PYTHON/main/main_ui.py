@@ -1,6 +1,5 @@
 """ Import packages """
 import json
-#______________________________________________________________________________________________________________________
 """ Import PyQt5 packages """
 from PyQt5.QtWidgets import (
     QSizePolicy
@@ -40,7 +39,6 @@ def main_ui(self):
     self.news_market_button.setObjectName('news_market_button')
     self.news_country_button.setObjectName('news_country_button')
     self.news_world_button.setObjectName('news_world_button')
-#______________________________________________________________________________________________________________________
     """ Set property """
     self.type_list_button.setProperty('class', 'list_button')
     self.data_list_button.setProperty('class', 'list_button')
@@ -54,7 +52,6 @@ def main_ui(self):
     self.news_market_button.setProperty('class', 'news_type_button')
     self.news_country_button.setProperty('class', 'news_type_button')
     self.news_world_button.setProperty('class', 'news_type_button')
-#______________________________________________________________________________________________________________________
     """ Set layout """
     self.layout.addWidget(self.search_button, 2, 1, 1, 13)
     self.layout.addWidget(self.objects_list_title_label, 8, 1, 2, 13)
@@ -80,24 +77,20 @@ def main_ui(self):
         self.layout.setRowStretch(enc, 1)
         self.layout.setColumnStretch(enc, 1)
     self.setLayout(self.layout)
-#______________________________________________________________________________________________________________________
     """ Set widget """
     self.setHidden(False)
     self.object_ticker_label.setHidden(True)
     self.objects_list_scroll.setWidgetResizable(True)
-#______________________________________________________________________________________________________________________
     """ Set label """
     self.objects_list_title_label.setAlignment(Qt.AlignCenter)
     self.object_icon_label.setAlignment(Qt.AlignCenter)
     self.object_ticker_label.setAlignment(Qt.AlignCenter)
     self.object_name_label.setAlignment(Qt.AlignCenter)
-#______________________________________________________________________________________________________________________
     """ Set button """
     self.object_news_button.setDisabled(True)
     self.object_chart_button.setDisabled(True)
     self.object_stats_button.setDisabled(True)
     self.news_world_button.setDisabled(True)
-#______________________________________________________________________________________________________________________
     """ Set size """
     self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.search_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -171,7 +164,6 @@ def object_list_lists_ui(self):
     self.objects_list_lists_scroll.setObjectName('objects_list_lists_scroll')
     self.objects_list_lists_widget.setObjectName('objects_list_lists_widget')
     self.objects_list_lists_exit_button.setObjectName('objects_list_lists_exit_button')
-#______________________________________________________________________________________________________________________
     """ Set layout """
     self.layout.addWidget(self.objects_list_lists_title_label, 8, 1, 2, 11)
     self.layout.addWidget(self.objects_list_lists_scroll, 15, 1, 72, 11)
@@ -179,14 +171,11 @@ def object_list_lists_ui(self):
     self.objects_list_lists_layout.setSpacing(0)
     self.objects_list_lists_layout.setContentsMargins(0,0,0,0)
     self.objects_list_lists_widget.setLayout(self.objects_list_lists_layout)
-#______________________________________________________________________________________________________________________
     """ Set widget """
     self.objects_list_lists_scroll.setWidgetResizable(True)
     self.objects_list_lists_scroll.setWidget(self.objects_list_lists_widget)
-#______________________________________________________________________________________________________________________
     """ Set label """
     self.objects_list_lists_title_label.setAlignment(Qt.AlignCenter)
-#______________________________________________________________________________________________________________________
     """ Set size """
     self.objects_list_lists_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.objects_list_lists_scroll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -219,7 +208,6 @@ def object_list_edit_ui(self):
     self.object_list_edit_capitalization_button.setObjectName('object_list_edit_capitalization_button')
     self.object_list_edit_capital_button.setObjectName('object_list_edit_capital_button')
     self.object_list_edit_exit_button.setObjectName('object_list_edit_exit_button')
-#______________________________________________________________________________________________________________________
     """ Set property """
     self.object_list_edit_icon_button.setProperty('class', 'object_list_edit_data_button')
     self.object_list_edit_ticker_button.setProperty('class', 'object_list_edit_data_button')
@@ -228,7 +216,6 @@ def object_list_edit_ui(self):
     self.object_list_edit_dividend_yield_button.setProperty('class', 'object_list_edit_data_button')
     self.object_list_edit_capitalization_button.setProperty('class', 'object_list_edit_data_button')
     self.object_list_edit_capital_button.setProperty('class', 'object_list_edit_data_button')
-#______________________________________________________________________________________________________________________
     """ Set layout """
     self.layout.addWidget(self.object_list_edit_title_label, 8, 1, 2, 11)
     self.layout.addWidget(self.object_list_edit_scroll, 15, 1, 72, 11)
@@ -243,14 +230,11 @@ def object_list_edit_ui(self):
     self.object_list_edit_layout.setSpacing(0)
     self.object_list_edit_layout.setContentsMargins(0,0,0,0)
     self.object_list_edit_widget.setLayout(self.object_list_edit_layout)
-#______________________________________________________________________________________________________________________
     """ Set widget """
     self.object_list_edit_scroll.setWidgetResizable(True)
     self.object_list_edit_scroll.setWidget(self.object_list_edit_widget)
-#______________________________________________________________________________________________________________________
     """ Set label """
     self.object_list_edit_title_label.setAlignment(Qt.AlignCenter)
-#______________________________________________________________________________________________________________________
     """ Set size """
     self.object_list_edit_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.object_list_edit_scroll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
