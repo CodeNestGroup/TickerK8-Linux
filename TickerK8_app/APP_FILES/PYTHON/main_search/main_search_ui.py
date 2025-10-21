@@ -1,35 +1,23 @@
 """ Import packages """
-""" Import system and operating system packages """
 import json
-#______________________________________________________________________________________________________________________
 """ Import PyQt5 packages """
-""" Import PyQt5 Widgets """
 from PyQt5.QtWidgets import (
-    QWidget,
-    QPushButton,
-    QGridLayout,
     QSizePolicy
 )
-#______________________________________________________________________________________________________________________
-""" Import PyQt5 Core """
 from PyQt5.QtCore import (
     Qt,
     QSize
 )
-#______________________________________________________________________________________________________________________
-""" Import PyQt5 Gui """
 from PyQt5.QtGui import (
     QIcon,
     QPixmap,
     QPainter
 )
-#_______________________________________________________________________________________________________________________
-""" Import PyQt5 Svg """
 from PyQt5.QtSvg import (
     QSvgRenderer
 )
-#######################################################################################################################
-""" Main search Ui """
+#______________________________________________________________________________________________________________________
+""" main search Ui """
 def main_search_ui(self):
     """ Set object name """
     self.setObjectName('main_search_widget')
@@ -47,7 +35,6 @@ def main_search_ui(self):
     self.panel_market_name_label.setObjectName('panel_market_name_label')
     self.panel_scroll.setObjectName('panel_scroll')
     self.panel_exit_button.setObjectName('panel_exit_button')
-#______________________________________________________________________________________________________________________
     """ Set property """
     self.panel_type_stock_button.setProperty('class', 'panel_type_buttons')
     self.panel_type_etf_button.setProperty('class', 'panel_type_buttons')
@@ -60,7 +47,6 @@ def main_search_ui(self):
     self.panel_market_name_label.setProperty('class', 'panel_tags')
     self.panel_scroll.setProperty('class', 'panel_scroll_class')
     self.panel_exit_button.setProperty('class', 'panel_exit_button_class')
-#______________________________________________________________________________________________________________________
     """ Set layout """
     self.main_layout.addWidget(self.panel_widget, 10, 20, 80, 60)
     self.main_layout.setSpacing(0)
@@ -91,7 +77,6 @@ def main_search_ui(self):
         self.panel_search_layout.setRowStretch(enc, 1)
         self.panel_search_layout.setColumnStretch(enc, 1)
     self.panel_search_widget.setLayout(self.panel_search_layout)
-#______________________________________________________________________________________________________________________
     """ Set widget """
     self.setHidden(False)
     self.panel_widget.setHidden(False)
@@ -99,14 +84,10 @@ def main_search_ui(self):
     self.panel_scroll.setWidgetResizable(True)
     self.panel_type_etf_button.setDisabled(True)
     self.panel_type_forex_button.setDisabled(True)
-#______________________________________________________________________________________________________________________
     """ Set label """
     self.panel_id_label.setAlignment(Qt.AlignCenter)
     self.panel_object_name_label.setAlignment(Qt.AlignCenter)
     self.panel_market_name_label.setAlignment(Qt.AlignCenter)
-#______________________________________________________________________________________________________________________
-    """ Set line edit """
-#______________________________________________________________________________________________________________________
     """ Set size """
     self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.setGeometry(0, 0, self.parent.width(), self.parent.height())
@@ -124,14 +105,14 @@ def main_search_ui(self):
     self.panel_market_name_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.panel_scroll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.panel_exit_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-#######################################################################################################################
-""" Main search style """
+#______________________________________________________________________________________________________________________
+""" main search reload style """
 def main_search_reload_style(self):
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
     self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/main_search/'+_global_config['__theme__']+'.css')).read())
     self.panel_exit_button.setIcon(QIcon(load_svg(self.main_path+'/STYLE/IMG/icons/main/exit_'+_global_config['__theme__']+'.svg', 256, 256)))
-#######################################################################################################################
-""" Main search retranslate """
+#______________________________________________________________________________________________________________________
+""" main search retranslate """
 def main_search_retranslate(self):
     _t = json.load(open(self.main_path+'/CONFIG/main_search/translate.json', 'r'))
     _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['__language__']
@@ -145,8 +126,8 @@ def main_search_retranslate(self):
     self.panel_id_label.setText('#')
     self.panel_object_name_label.setText(_t['panel_object_name_label'][_l])
     self.panel_market_name_label.setText(_t['panel_market_name_label'][_l])
-#######################################################################################################################
-""" Load svg script """
+#______________________________________________________________________________________________________________________
+""" load svg """
 def load_svg(svg_path, width, height):
     renderer = QSvgRenderer(svg_path)
     pixmap = QPixmap(width, height)
@@ -156,5 +137,4 @@ def load_svg(svg_path, width, height):
     painter.end()
     scaled_pixmap = pixmap.scaled(QSize(width, height), Qt.KeepAspectRatio, Qt.SmoothTransformation)
     return scaled_pixmap
-#######################################################################################################################
-
+#______________________________________________________________________________________________________________________

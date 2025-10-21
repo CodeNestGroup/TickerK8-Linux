@@ -1,10 +1,7 @@
 """ Import packages """
-""" Import system and operating system packages """
 import pathlib
 import json
-#______________________________________________________________________________________________________________________
 """ Import PyQt5 packages """
-""" Import PyQt5 Widgets """
 from PyQt5.QtWidgets import (
     QWidget,
     QScrollArea,
@@ -14,30 +11,23 @@ from PyQt5.QtWidgets import (
     QComboBox,
     QGridLayout,
 )
-#______________________________________________________________________________________________________________________
-""" Import PyQt5 Core """
-from PyQt5.QtCore import Qt
-#______________________________________________________________________________________________________________________
-""" Import main modules """
-""" Import main search ui """
+from PyQt5.QtCore import (
+    Qt
+)
+""" Import main search modules """
 from .main_search_ui import *
-#______________________________________________________________________________________________________________________
-""" Import main search logic """
 from .main_search_logic import *
-#######################################################################################################################
+#______________________________________________________________________________________________________________________
 """ Main search widget """
 class Main_search_widget(QWidget):
-    """ Init, creating items, set base variables like paths, screen size, etc. """
     def __init__(self, parent):
         super().__init__()
-        self.setAttribute(Qt.WA_StyledBackground, True) # Force widget to draw background
+        self.setAttribute(Qt.WA_StyledBackground, True)
         self.setParent(parent)
         self.parent= parent
-#______________________________________________________________________________________________________________________
         """ Set paths, file name"""
-        self.main_path = str(pathlib.Path(__file__).resolve().parents[2]) # Set main path, path to TickerK8 folder.
+        self.main_path = str(pathlib.Path(__file__).resolve().parents[2])
         self.add_object = None
-#______________________________________________________________________________________________________________________
         """ Create objects """
         self.main_layout = QGridLayout(self)
         self.panel_widget = QWidget(self)
@@ -71,14 +61,12 @@ class Main_search_widget(QWidget):
         self.panel_add_section_exit_button = None 
         self.panel_add_object_scroll = None 
         self.panel_add_object_exit_button = None 
-#______________________________________________________________________________________________________________________
         """ Call functions """
         main_search_ui(self)
         main_search_reload_style(self)
         main_search_retranslate(self)
         filters_load(self)
         text_changed(self)
-#______________________________________________________________________________________________________________________
         """ Connect functions """
         self.panel_search_lineedit.textChanged.connect(lambda: text_changed(self))
         self.panel_type_stock_button.clicked.connect(lambda: filters_changed(self, 0))
@@ -88,4 +76,4 @@ class Main_search_widget(QWidget):
         self.panel_type_market_button.clicked.connect(lambda: filters_changed(self, 4))
         self.panel_type_country_button.clicked.connect(lambda: filters_changed(self, 5))
         self.panel_exit_button.clicked.connect(lambda: self.deleteLater())
-#######################################################################################################################
+#______________________________________________________________________________________________________________________

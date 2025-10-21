@@ -57,7 +57,6 @@ class Main_widget(QWidget):
         self.news_market_button = QPushButton(self)
         self.news_country_button = QPushButton(self)
         self.news_world_button = QPushButton(self)
-
         self.timer = QTimer(self)
         self.news_timer = QTimer(self)
         """ Call functions """
