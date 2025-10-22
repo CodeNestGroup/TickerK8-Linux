@@ -18,7 +18,7 @@ from PyQt5.QtCore import (
 from .login_ui import *
 from .login_logic import *
 #______________________________________________________________________________________________________________________
-""" Login widget """
+
 class Login_widget(QWidget):
     correct_login = pyqtSignal()
     def __init__(self, parent):

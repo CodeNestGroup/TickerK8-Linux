@@ -19,7 +19,7 @@ from .main_logic import *
 from main_search.main_search_structure import Main_search_widget
 from main_news_list.main_news_list_structure import Main_news_list_widget
 #______________________________________________________________________________________________________________________
-""" Main widget """
+
 class Main_widget(QWidget):
     def __init__(self, parent):
         super().__init__()
@@ -80,7 +80,7 @@ class Main_widget(QWidget):
         self.news_country_button.clicked.connect(lambda: open_main_news_list(self, 1))
         self.news_world_button.clicked.connect(lambda: open_main_news_list(self, 2))
 #______________________________________________________________________________________________________________________
-    """ Main objects list lists open """
+
     def objects_list_lists_open(self):
         """ Set config """
         self.objects_list_title_label.hide()
@@ -101,7 +101,7 @@ class Main_widget(QWidget):
         """ Connect functions """
         self.objects_list_lists_exit_button.clicked.connect(lambda: object_list_lists_exit(self))
 #______________________________________________________________________________________________________________________
-    """ objects list lists open """
+
     def objects_list_edit_open(self):
         """ Set config """
         self.objects_list_title_label.hide()

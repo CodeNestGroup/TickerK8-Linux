@@ -9,7 +9,7 @@ from PyQt5.QtCore import (
     Qt
 )
 #______________________________________________________________________________________________________________________
-""" login ui """
+
 def login_ui(self):
     """ Set object name """
     self.setObjectName('login_widget')
@@ -55,11 +55,11 @@ def login_ui(self):
     self.login_welcome_sub_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.login_welcome_icon_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 #______________________________________________________________________________________________________________________
-""" Login reload style """
+
 def login_reload_style(self):
     self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/login/vintage_elegance_dark.css')).read())
 #______________________________________________________________________________________________________________________
-""" Login retranslate"""
+
 def login_retranslate(self):
     _t = self.login_translate
     _l = self.global_config['__language__']

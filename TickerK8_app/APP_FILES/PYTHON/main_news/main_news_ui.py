@@ -1,6 +1,5 @@
 """ Import packages """
 import json
-#______________________________________________________________________________________________________________________
 """ Import PyQt5 packages """
 from PyQt5.QtWidgets import (
     QWidget,

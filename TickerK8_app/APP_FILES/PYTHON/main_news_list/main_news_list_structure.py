@@ -1,7 +1,6 @@
 """ Import packages """
 import pathlib
 import json
-#______________________________________________________________________________________________________________________
 """ Import PyQt5 packages """
 from PyQt5.QtWidgets import (
     QWidget,
@@ -16,7 +15,6 @@ from PyQt5.QtCore import (
         Qt,
         pyqtSignal
 )
-#______________________________________________________________________________________________________________________
 """ Import main list pacakges """
 from .main_news_list_ui import *
 from .main_news_list_logic import *

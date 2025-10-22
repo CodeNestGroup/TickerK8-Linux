@@ -17,7 +17,7 @@ from PyQt5.QtSvg import (
     QSvgRenderer
 )
 #______________________________________________________________________________________________________________________
-""" main ui """
+
 def main_ui(self):
     """ Set object name """
     self.setObjectName('main_widget')
@@ -112,7 +112,7 @@ def main_ui(self):
     self.news_country_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.news_world_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 #______________________________________________________________________________________________________________________
-""" main reload style """
+
 def main_reload_style(self):
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
     self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/main/'+_global_config['__theme__']+'.css')).read())
@@ -143,7 +143,7 @@ def main_reload_style(self):
     self.news_world_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/world_'+_global_config['__theme__']+'.svg'), 256, 256)))
     self.news_world_button.setIconSize(self.news_world_button.size())
 #______________________________________________________________________________________________________________________
-""" main retranslate """
+
 def main_retranslate(self):
     _t = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r'))
     _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['__language__']
@@ -157,7 +157,7 @@ def main_retranslate(self):
     self.news_country_button.setText(_t['news_country_button'][_l])
     self.news_world_button.setText(_t['news_world_button'][_l])
 #______________________________________________________________________________________________________________________
-""" object list lists ui"""
+
 def object_list_lists_ui(self):
     """ Set object name """
     self.objects_list_lists_title_label.setObjectName('objects_list_lists_title_label')
@@ -182,19 +182,19 @@ def object_list_lists_ui(self):
     self.objects_list_lists_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.objects_list_lists_exit_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 #______________________________________________________________________________________________________________________
-""" object list lists reload style """
+
 def object_list_lists_reload_style(self):
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
     self.objects_list_lists_exit_button.setIcon(QIcon(load_svg(self.main_path+'/STYLE/IMG/icons/main/exit_'+_global_config['__theme__']+'.svg', 256, 256)))
     self.objects_list_lists_exit_button.setIconSize(self.objects_list_lists_exit_button.size())
 #______________________________________________________________________________________________________________________
-""" object list lists retranslate """
+
 def object_list_lists_retranslate(self):
     _t = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r'))
     _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['__language__']
     self.objects_list_lists_title_label.setText(_t['objects_list_lists_title_label'][_l])
 #______________________________________________________________________________________________________________________
-""" object list edit ui """
+
 def object_list_edit_ui(self):
     """ Set object name """
     self.object_list_edit_title_label.setObjectName('object_list_edit_title_label')
@@ -248,13 +248,13 @@ def object_list_edit_ui(self):
     self.object_list_edit_capital_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.object_list_edit_exit_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 #______________________________________________________________________________________________________________________
-""" object list edit reload style """
+
 def object_list_edit_reload_style(self):
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
     self.object_list_edit_exit_button.setIcon(QIcon(load_svg(self.main_path+'/STYLE/IMG/icons/main/exit_'+_global_config['__theme__']+'.svg', 256, 256)))
     self.object_list_edit_exit_button.setIconSize(self.object_list_edit_exit_button.size())
 #______________________________________________________________________________________________________________________
-""" object list edit retranslate """
+
 def object_list_edit_retranslate(self):
     _t = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r'))
     _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['__language__']
@@ -267,7 +267,7 @@ def object_list_edit_retranslate(self):
     self.object_list_edit_capitalization_button.setText(_t['object_list_edit_capitalization_button'][_l])
     self.object_list_edit_capital_button.setText(_t['object_list_edit_capital_button'][_l])
 #______________________________________________________________________________________________________________________
-""" load svg """
+
 def load_svg(svg_path, width, height):
     renderer = QSvgRenderer(svg_path) 
     pixmap = QPixmap(width, height) 

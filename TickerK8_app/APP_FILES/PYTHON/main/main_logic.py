@@ -38,7 +38,7 @@ from main_chart.main_chart_structure import Main_chart
 from main_news.main_news_structure import Main_news_widget
 from main_news_list.main_news_list_structure import Main_news_list_widget
 #______________________________________________________________________________________________________________________
-""" widget background painter """
+
 def widget_background_painter(self):
     _colors = json.load(open(self.main_path+'/CONFIG/main/conf.json', 'r'))['background']
     _color_0 = '#000000'
@@ -84,7 +84,7 @@ def widget_background_painter(self):
     self.setAutoFillBackground(True)
     self.setPalette(palette)
 #______________________________________________________________________________________________________________________
-""" objects list open"""
+
 def objects_list_open(self):
     """ Get config """
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
@@ -203,7 +203,7 @@ def objects_list_open(self):
                             objects_list_data_object.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
                             objects_list_items_layout.addWidget(objects_list_data_object, row, column)
 #______________________________________________________________________________________________________________________
-""" objects list delete object """
+
 def objects_list_delete_object(self, section_index, section_name, index):
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
     object_name = _global_config['object_list']
@@ -212,7 +212,7 @@ def objects_list_delete_object(self, section_index, section_name, index):
     json.dump(_global_config, open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'w'), indent=4)
     objects_list_open(self)
 #______________________________________________________________________________________________________________________
-""" object set """
+
 def object_set(self, object_info):
     """ Set local data """
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
@@ -221,6 +221,7 @@ def object_set(self, object_info):
     """ Reload object """
     object_setup(self)
 #______________________________________________________________________________________________________________________
+
 def object_list_lists_scroll_setup(self):
     """ Set local data """
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
@@ -234,6 +235,7 @@ def object_list_lists_scroll_setup(self):
         objects_list_lists_button.setText(f'{keys}')
         objects_list_lists_button.clicked.connect(lambda _, name=keys: object_list_set_list(self, name=name))
 #______________________________________________________________________________________________________________________
+
 def object_list_lists_exit(self):
     """ Set config """
     self.objects_list_title_label.show()
@@ -244,6 +246,7 @@ def object_list_lists_exit(self):
     self.objects_list_lists_scroll.deleteLater()
     self.objects_list_lists_exit_button.deleteLater()
 #______________________________________________________________________________________________________________________
+
 def object_list_set_list(self, name):
     """ Set local data """
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
@@ -252,7 +255,7 @@ def object_list_set_list(self, name):
     objects_list_open(self)
     object_list_lists_exit(self)
 #______________________________________________________________________________________________________________________
-""" object list edit check selected """
+
 def object_list_edit_check_selected(self):
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
     for val in _global_config['object_list_tags']:
@@ -262,7 +265,7 @@ def object_list_edit_check_selected(self):
             button = getattr(self, f'object_list_edit_{val}_button')       
             button.setStyleSheet('background-color: #282828;')
 #______________________________________________________________________________________________________________________
-""" object list edit save """
+
 def object_list_edit_save(self, val):
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
     button = getattr(self, f'object_list_edit_{val}_button')
@@ -274,7 +277,7 @@ def object_list_edit_save(self, val):
         button.setStyleSheet('background-color: #1a1a1a;')
     json.dump(_global_config, open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'w'), indent=4)
 #______________________________________________________________________________________________________________________
-""" object list edit exit """
+
 def object_list_edit_exit(self):
     """ Set config """
     self.objects_list_title_label.show()
@@ -287,7 +290,7 @@ def object_list_edit_exit(self):
     self.object_list_edit_exit_button.deleteLater()
     objects_list_open(self)
 #______________________________________________________________________________________________________________________
-""" object setup """
+
 def object_setup(self):
     """ Set dafoult """
     if self.object_time_widget:
@@ -317,7 +320,7 @@ def object_setup(self):
     elif _global_config['object'][0] == 'stock':
         object_stock(self)
 #______________________________________________________________________________________________________________________
-""" object country """
+
 def object_country(self):
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
     database = sqlite3.connect(database=self.main_path+'/CONFIG/GLOBAL/local_data_prototype.db')
@@ -494,7 +497,7 @@ def object_country(self):
         name_label.setText(f'{stock_data[0]}')
         capitalization_label.setText(f'{stock_data[1]}')
 #______________________________________________________________________________________________________________________
-""" object market """
+
 def object_market(self):
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
     """ Get data """
@@ -648,7 +651,7 @@ def object_market(self):
     self.object_time_layout.addWidget(time_post_close_label, 0, close_time, 1, post_close_time-close_time)
     self.object_time_layout.addWidget(time_close_2_label, 0, post_close_time, 1, 86400-post_close_time)
 #______________________________________________________________________________________________________________________
-""" object index """
+
 def object_index(self):
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
     database = sqlite3.connect(database=self.main_path+'/CONFIG/GLOBAL/local_data_prototype.db')
@@ -760,7 +763,7 @@ def object_index(self):
         """ Set graphic """
         logo_label.setPixmap(load_svg(self.main_path+'/STYLE/IMG/'+item_list[0]+'.svg', logo_label.height(), logo_label.height()))
 #______________________________________________________________________________________________________________________
-""" object stock """
+
 def object_stock(self):
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
     database = sqlite3.connect(database=self.main_path+'/CONFIG/GLOBAL/local_data_prototype.db')
@@ -863,7 +866,7 @@ def object_stock(self):
     """ Set graphics """
     self.object_icon_label.setPixmap(load_svg(self.main_path+'/STYLE/IMG/'+stock_data[2]+'.svg', int(self.object_icon_label.height()), int(self.object_icon_label.height())))
 #______________________________________________________________________________________________________________________
-""" news creator """
+
 def news_creator(self):
     _news_button_list = self.news_button_list
     connect = mysql.connector.connect(
@@ -925,7 +928,7 @@ def news_creator(self):
         self.news_next_left_button.setDisabled(True)
         self.news_next_right_button.setDisabled(True)
 #______________________________________________________________________________________________________________________
-""" news next  """
+
 def news_next(self):
     self.news_timer.stop()
     self.news_timer.start(5000)
@@ -933,7 +936,7 @@ def news_next(self):
     self.news_button_index = (self.news_button_index+1)%len(self.news_button_list)
     self.news_button_list[self.news_button_index].setHidden(False)
 #______________________________________________________________________________________________________________________
-""" News previous """
+
 def news_previous(self):
     self.news_timer.stop()
     self.news_timer.start(5000)
@@ -941,16 +944,16 @@ def news_previous(self):
     self.news_button_index = (self.news_button_index-1)%len(self.news_button_list)
     self.news_button_list[self.news_button_index].setHidden(False)
 #______________________________________________________________________________________________________________________
-""" Open main news """
+
 def open_main_news(self, id_news):
     self.main_news = Main_news_widget(self, id_news)
 #______________________________________________________________________________________________________________________
-""" Open main news list """
+
 def open_main_news_list(self, news_type_index):
     self.main_news_list = Main_news_list_widget(self, news_type_index)
     self.main_news_list.open_news.connect(lambda val: open_main_news(self, val))
 #______________________________________________________________________________________________________________________
-""" Load svg script """
+
 def load_svg(svg_path, width, height):
     renderer = QSvgRenderer(svg_path)
     pixmap = QPixmap(width, height)

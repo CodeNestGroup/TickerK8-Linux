@@ -1,10 +1,7 @@
 """ Import packages """
-""" Import system and operating system packages """
 import json
 import sqlite3
-#______________________________________________________________________________________________________________________
 """ Import PyQt5 packages """
-""" Import PyQt5 Widgets """
 from PyQt5.QtWidgets import (
     QWidget,
     QScrollArea,
@@ -14,32 +11,25 @@ from PyQt5.QtWidgets import (
     QVBoxLayout,
     QSizePolicy
 )
-#______________________________________________________________________________________________________________________
-""" Import PyQt5 Core """
 from PyQt5.QtCore import (
     Qt,
     QSize
 )
-#______________________________________________________________________________________________________________________
-""" Import PyQt5 Gui """
 from PyQt5.QtGui import (
     QIcon,
     QPixmap,
     QPainter
 )
-#_______________________________________________________________________________________________________________________
-""" Import PyQt5 Svg """
 from PyQt5.QtSvg import (
     QSvgRenderer
 )
-#######################################################################################################################
+#______________________________________________________________________________________________________________________
 """ text changed """
 def text_changed(self):
     """ Get config """
     _text = self.panel_search_lineedit.text()
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
     _active_filters = _global_config['search_filters']
-#______________________________________________________________________________________________________________________
     """ Get data """
     database = sqlite3.connect(database=self.main_path+'/CONFIG/GLOBAL/local_data_prototype.db')
     cursor = database.cursor()
@@ -101,7 +91,6 @@ def text_changed(self):
             for d in database_data: all_data_id.append({"country": d[0]})
     cursor.close()
     database.close()
-#______________________________________________________________________________________________________________________
     """ Set up """
     if self.panel_scroll_widget:
         self.panel_scroll_widget.deleteLater()
@@ -155,7 +144,7 @@ def text_changed(self):
             market_name_label.setText(f'{list_object[4]}')
             market_logo_label.setPixmap(load_svg(self.main_path+'/STYLE/IMG/'+list_object[3]+'.svg', int(market_logo_label.height()), int(market_logo_label.height())))
         index_button.clicked.connect(lambda _, o=all_data_id[i-1]: add_object__lists(self, a_o=o))
-#######################################################################################################################
+#______________________________________________________________________________________________________________________
 def filters_changed(self, index):
     """ Get config """
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
@@ -164,7 +153,8 @@ def filters_changed(self, index):
     json.dump(_global_config, open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'w'), indent=4) 
     filters_load(self)
     text_changed(self)
-#######################################################################################################################
+#______________________________________________________________________________________________________________________
+""" filters load """
 def filters_load(self):
     """ Get config """
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
@@ -174,8 +164,8 @@ def filters_load(self):
             self.button_list[index].setStyleSheet('background-color: #282828;')
         else:
             self.button_list[index].setStyleSheet('background-color: #1a1a1a;')
-#######################################################################################################################
-""" Add object lists """
+#______________________________________________________________________________________________________________________
+""" add object lists """
 def add_object__lists(self, a_o):
     """ Get config """
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
@@ -242,7 +232,7 @@ def add_object__lists(self, a_o):
     """ Set graphics """
     self.panel_add_exit_button.setIcon(QIcon(load_svg(self.main_path+'/STYLE/IMG/icons/main/exit_'+_global_config['__theme__']+'.svg', 256, 256)))
     """ Connect functions """
-    self.panel_add_exit_button.clicked.connect(lambda: add_object__lists_exit(self))
+    self.panel_add_exit_button.clicked.connect(lambda: add_object_lists_exit(self))
     """ Create scroll objects  """
     for keys in _global_config['object_lists'].keys():
         button = QPushButton(self.panel_add_widget)
@@ -251,17 +241,17 @@ def add_object__lists(self, a_o):
         self.panel_add_scroll_layout.addWidget(button)
         button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         button.setText(f'{keys}')
-        button.clicked.connect(lambda _, c_l=keys: add_object__section(self, choosen_list=c_l))
-#######################################################################################################################
-""" Add object lists exit """
-def add_object__lists_exit(self):
+        button.clicked.connect(lambda _, c_l=keys: add_object_section(self, choosen_list=c_l))
+#______________________________________________________________________________________________________________________
+""" add object lists exit """
+def add_object_lists_exit(self):
     self.panel_add_widget.deleteLater()
     self.panel_add_widget = None
     self.panel_search_widget.setHidden(False)
     self.add_object = None
-#######################################################################################################################
-""" Add object section """
-def add_object__section(self, choosen_list):
+#______________________________________________________________________________________________________________________
+""" add object section """
+def add_object_section(self, choosen_list):
     """ Get config """
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
     """ Set deafoult """
@@ -302,7 +292,7 @@ def add_object__section(self, choosen_list):
     """ Set Graphics """
     self.panel_add_section_exit_button.setIcon(QIcon(load_svg(self.main_path+'/STYLE/IMG/icons/main/exit_'+_global_config['__theme__']+'.svg', 256, 256)))
     """ Connect functions """
-    self.panel_add_section_exit_button.clicked.connect(lambda: add_object__section_exit(self))
+    self.panel_add_section_exit_button.clicked.connect(lambda: add_object_section_exit(self))
     """ Create scroll objects """
     for index, section in enumerate(_global_config['object_lists'][self.choosen_list], start=0):
         name = list(section.keys())[0]
@@ -312,10 +302,10 @@ def add_object__section(self, choosen_list):
         self.panel_add_section_layout.addWidget(button)
         button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         button.setText(f'{name}')
-        button.clicked.connect(lambda _, c_s=index: add_object__objects(self, choosen_section=c_s))
-#######################################################################################################################
-""" Add object section exit """
-def add_object__section_exit(self):
+        button.clicked.connect(lambda _, c_s=index: add_object_objects(self, choosen_section=c_s))
+#______________________________________________________________________________________________________________________
+""" add object section exit """
+def add_object_section_exit(self):
     self.panel_add_section_scroll.deleteLater()
     self.panel_add_section_exit_button.deleteLater()
     self.panel_add_section_scroll = None
@@ -324,9 +314,9 @@ def add_object__section_exit(self):
     self.panel_add_exit_button.setHidden(False)
     _t = self.panel_add_path_label.text()
     self.panel_add_path_label.setText(str(_t)[:len(_t)-len(self.choosen_list)-3])
-#######################################################################################################################
-""" Add object objects """
-def add_object__objects(self, choosen_section):
+#______________________________________________________________________________________________________________________
+""" add object objects """
+def add_object_objects(self, choosen_section):
     """ Get config """
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
     """ Set deafoult """
@@ -368,7 +358,7 @@ def add_object__objects(self, choosen_section):
     """ Set Graphics """
     self.panel_add_object_exit_button.setIcon(QIcon(load_svg(self.main_path+'/STYLE/IMG/icons/main/exit_'+_global_config['__theme__']+'.svg', 256, 256)))
     """ Connect functions """
-    self.panel_add_object_exit_button.clicked.connect(lambda: add_object__objects_exit(self))
+    self.panel_add_object_exit_button.clicked.connect(lambda: add_object_objects_exit(self))
     """ Create scroll objects """
     database = sqlite3.connect(database=self.main_path+'/CONFIG/GLOBAL/local_data_prototype.db')
     cursor = database.cursor()
@@ -398,9 +388,9 @@ def add_object__objects(self, choosen_section):
         button.clicked.connect(lambda _, index_x=index: add_object_to_list(self, place=index_x))
     cursor.close()
     database.close()
-#######################################################################################################################
-""" Add object objects exit """
-def add_object__objects_exit(self):
+#______________________________________________________________________________________________________________________
+""" add object objects exit """
+def add_object_objects_exit(self):
     self.panel_add_object_scroll.deleteLater()
     self.panel_add_object_exit_button.deleteLater()
     self.panel_add_object_scroll = None
@@ -409,8 +399,8 @@ def add_object__objects_exit(self):
     self.panel_add_section_exit_button.setHidden(False)
     _t = self.panel_add_path_label.text()
     self.panel_add_path_label.setText(str(_t)[:len(_t)-len(self.choosen_section_name)-3])
-#######################################################################################################################
-""" Add object to list """
+#______________________________________________________________________________________________________________________
+""" add object to list """
 def add_object_to_list(self, place):
     """ Get config """
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
@@ -418,18 +408,18 @@ def add_object_to_list(self, place):
     conf.insert(place, self.add_object)
     json.dump(_global_config, open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'w'), indent=4)
     self.parent.object_list_open()
-    add_object__objects_exit(self)
-    add_object__section_exit(self)
-    add_object__lists_exit(self)
-#######################################################################################################################
-""" Load svg script """
+    add_object_objects_exit(self)
+    add_object_section_exit(self)
+    add_object_lists_exit(self)
+#______________________________________________________________________________________________________________________
+""" load svg script """
 def load_svg(svg_path, width, height):
-    renderer = QSvgRenderer(svg_path) # Render svg
-    pixmap = QPixmap(width, height) # Create pixmap
-    pixmap.fill(Qt.transparent) # Transparent
-    painter = QPainter(pixmap) # Render graphic 
-    renderer.render(painter) # Render graphic
-    painter.end() # Render graphic
-    scaled_pixmap = pixmap.scaled(QSize(width, height), Qt.KeepAspectRatio, Qt.SmoothTransformation) # Scal pixmap
+    renderer = QSvgRenderer(svg_path)
+    pixmap = QPixmap(width, height)
+    pixmap.fill(Qt.transparent)
+    painter = QPainter(pixmap)
+    renderer.render(painter)
+    painter.end()
+    scaled_pixmap = pixmap.scaled(QSize(width, height), Qt.KeepAspectRatio, Qt.SmoothTransformation)
     return scaled_pixmap
-#######################################################################################################################
+#______________________________________________________________________________________________________________________
