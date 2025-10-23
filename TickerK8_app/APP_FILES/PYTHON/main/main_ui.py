@@ -115,38 +115,38 @@ def main_ui(self):
 
 def main_reload_style(self):
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
-    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/main/'+_global_config['__theme__']+'.css')).read())
-    self.search_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/search_'+_global_config['__theme__']+'.svg'), 256, 256)))
+    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/main/'+_global_config['theme']+'.css')).read())
+    self.search_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/search_'+_global_config['theme']+'.svg'), 256, 256)))
     self.search_button.setIconSize(self.search_button.size())
-    self.type_list_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/list_'+_global_config['__theme__']+'.svg'), 256, 256)))
+    self.type_list_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/list_'+_global_config['theme']+'.svg'), 256, 256)))
     self.type_list_button.setIconSize(self.type_list_button.size())
-    self.data_list_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/edit_table_data_'+_global_config['__theme__']+'.svg'), 256, 256)))
+    self.data_list_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/edit_table_data_'+_global_config['theme']+'.svg'), 256, 256)))
     self.data_list_button.setIconSize(self.data_list_button.size())
-    self.settings_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/settings_'+_global_config['__theme__']+'.svg'), 256, 256)))
+    self.settings_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/settings_'+_global_config['theme']+'.svg'), 256, 256)))
     self.settings_button.setIconSize(self.settings_button.size())
-    self.logout_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/exit_'+_global_config['__theme__']+'.svg'), 256, 256)))
+    self.logout_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/exit_'+_global_config['theme']+'.svg'), 256, 256)))
     self.logout_button.setIconSize(self.logout_button.size())
-    self.object_news_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/news_'+_global_config['__theme__']+'.svg'), 256, 256)))
+    self.object_news_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/news_'+_global_config['theme']+'.svg'), 256, 256)))
     self.object_news_button.setIconSize(self.object_news_button.size())
-    self.object_chart_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/chart_'+_global_config['__theme__']+'.svg'), 256, 256)))
+    self.object_chart_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/chart_'+_global_config['theme']+'.svg'), 256, 256)))
     self.object_chart_button.setIconSize(self.object_chart_button.size())
-    self.object_stats_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/statistics_'+_global_config['__theme__']+'.svg'), 256, 256)))
+    self.object_stats_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/statistics_'+_global_config['theme']+'.svg'), 256, 256)))
     self.object_stats_button.setIconSize(self.object_stats_button.size())
-    self.news_next_left_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/arrow_left_'+_global_config['__theme__']+'.svg'), 256, 256)))
+    self.news_next_left_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/arrow_left_'+_global_config['theme']+'.svg'), 256, 256)))
     self.news_next_left_button.setIconSize(self.news_next_left_button.size())
-    self.news_next_right_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/arrow_right_'+_global_config['__theme__']+'.svg'), 256, 256)))
+    self.news_next_right_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/arrow_right_'+_global_config['theme']+'.svg'), 256, 256)))
     self.news_next_right_button.setIconSize(self.news_next_right_button.size())
-    self.news_market_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/market_'+_global_config['__theme__']+'.svg'), 256, 256)))
+    self.news_market_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/market_'+_global_config['theme']+'.svg'), 256, 256)))
     self.news_market_button.setIconSize(self.news_market_button.size())
-    self.news_country_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/country_'+_global_config['__theme__']+'.svg'), 256, 256)))
+    self.news_country_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/country_'+_global_config['theme']+'.svg'), 256, 256)))
     self.news_country_button.setIconSize(self.news_country_button.size())
-    self.news_world_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/world_'+_global_config['__theme__']+'.svg'), 256, 256)))
+    self.news_world_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/world_'+_global_config['theme']+'.svg'), 256, 256)))
     self.news_world_button.setIconSize(self.news_world_button.size())
 #______________________________________________________________________________________________________________________
 
 def main_retranslate(self):
     _t = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r'))
-    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['__language__']
+    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
     self.search_button.setText(_t['search_button'][_l])
     self.type_list_button.setText(_t['type_list_button'][_l])
     self.data_list_button.setText(_t['data_list_button'][_l])
@@ -185,13 +185,13 @@ def object_list_lists_ui(self):
 
 def object_list_lists_reload_style(self):
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
-    self.objects_list_lists_exit_button.setIcon(QIcon(load_svg(self.main_path+'/STYLE/IMG/icons/main/exit_'+_global_config['__theme__']+'.svg', 256, 256)))
+    self.objects_list_lists_exit_button.setIcon(QIcon(load_svg(self.main_path+'/STYLE/IMG/icons/main/exit_'+_global_config['theme']+'.svg', 256, 256)))
     self.objects_list_lists_exit_button.setIconSize(self.objects_list_lists_exit_button.size())
 #______________________________________________________________________________________________________________________
 
 def object_list_lists_retranslate(self):
     _t = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r'))
-    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['__language__']
+    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
     self.objects_list_lists_title_label.setText(_t['objects_list_lists_title_label'][_l])
 #______________________________________________________________________________________________________________________
 
@@ -251,13 +251,13 @@ def object_list_edit_ui(self):
 
 def object_list_edit_reload_style(self):
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
-    self.object_list_edit_exit_button.setIcon(QIcon(load_svg(self.main_path+'/STYLE/IMG/icons/main/exit_'+_global_config['__theme__']+'.svg', 256, 256)))
+    self.object_list_edit_exit_button.setIcon(QIcon(load_svg(self.main_path+'/STYLE/IMG/icons/main/exit_'+_global_config['theme']+'.svg', 256, 256)))
     self.object_list_edit_exit_button.setIconSize(self.object_list_edit_exit_button.size())
 #______________________________________________________________________________________________________________________
 
 def object_list_edit_retranslate(self):
     _t = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r'))
-    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['__language__']
+    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
     self.object_list_edit_title_label.setText(_t['object_list_edit_title_label'][_l])
     self.object_list_edit_icon_button.setText(_t['object_list_edit_icon_button'][_l])
     self.object_list_edit_ticker_button.setText(_t['object_list_edit_ticker_button'][_l])

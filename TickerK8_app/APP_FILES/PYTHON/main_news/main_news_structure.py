@@ -18,7 +18,7 @@ from PyQt5.QtCore import (
 from .main_news_ui import *
 from .main_news_logic import *
 #______________________________________________________________________________________________________________________
-""" Main news widget """
+
 class Main_news_widget(QWidget):
     def __init__(self, parent, id_news):
         super().__init__()

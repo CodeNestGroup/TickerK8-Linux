@@ -29,7 +29,7 @@ class Login_widget(QWidget):
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2])
         self.global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
         self.login_translate = json.load(open(self.main_path+'/CONFIG/login/translate.json', 'r'))
-        self.login_conf = json.load(open(self.main_path+'/CONFIG/login/conf.json', 'r'))
+        self.login_conf = json.load(open(self.main_path+'/CONFIG/login/background_conf.json', 'r'))
         self.index_changed = -10
         """ Create objects """
         self.login_layout = QGridLayout(self)

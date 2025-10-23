@@ -17,7 +17,7 @@ from PyQt5.QtSvg import (
     QSvgRenderer
 )
 #______________________________________________________________________________________________________________________
-""" main search Ui """
+
 def main_search_ui(self):
     """ Set object name """
     self.setObjectName('main_search_widget')
@@ -106,16 +106,16 @@ def main_search_ui(self):
     self.panel_scroll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.panel_exit_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 #______________________________________________________________________________________________________________________
-""" main search reload style """
+
 def main_search_reload_style(self):
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
-    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/main_search/'+_global_config['__theme__']+'.css')).read())
-    self.panel_exit_button.setIcon(QIcon(load_svg(self.main_path+'/STYLE/IMG/icons/main/exit_'+_global_config['__theme__']+'.svg', 256, 256)))
+    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/main_search/'+_global_config['theme']+'.css')).read())
+    self.panel_exit_button.setIcon(QIcon(load_svg(self.main_path+'/STYLE/IMG/icons/main/exit_'+_global_config['theme']+'.svg', 256, 256)))
 #______________________________________________________________________________________________________________________
-""" main search retranslate """
+
 def main_search_retranslate(self):
     _t = json.load(open(self.main_path+'/CONFIG/main_search/translate.json', 'r'))
-    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['__language__']
+    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
     self.panel_search_lineedit.setPlaceholderText(_t['panel_search_lineedit'][_l])
     self.panel_type_stock_button.setText(_t['panel_type_stock_button'][_l])
     self.panel_type_etf_button.setText(_t['panel_type_etf_button'][_l])
@@ -127,7 +127,7 @@ def main_search_retranslate(self):
     self.panel_object_name_label.setText(_t['panel_object_name_label'][_l])
     self.panel_market_name_label.setText(_t['panel_market_name_label'][_l])
 #______________________________________________________________________________________________________________________
-""" load svg """
+
 def load_svg(svg_path, width, height):
     renderer = QSvgRenderer(svg_path)
     pixmap = QPixmap(width, height)

@@ -40,7 +40,7 @@ from main_news_list.main_news_list_structure import Main_news_list_widget
 #______________________________________________________________________________________________________________________
 
 def widget_background_painter(self):
-    _colors = json.load(open(self.main_path+'/CONFIG/main/conf.json', 'r'))['background']
+    _colors = self.main_conf['background']
     _color_0 = '#000000'
     _color_1 = '#000000'
     _color_2 = '#000000'
@@ -166,7 +166,7 @@ def objects_list_open(self):
                 objects_list_items_layout.addWidget(objects_list_tag_label, 0, index)
                 objects_list_tag_label.setAlignment(Qt.AlignCenter)
                 objects_list_tag_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-                objects_list_tag_label.setText(f'{_t['objects_list_tags'][f'{tag}'][_global_config['__language__']]}')
+                objects_list_tag_label.setText(f'{_t['objects_list_tags'][f'{tag}'][_global_config['language']]}')
             """ Create items """
             database = sqlite3.connect(database=self.main_path+'/CONFIG/GLOBAL/local_data_prototype.db')
             cursor = database.cursor()
@@ -449,7 +449,7 @@ def object_country(self):
     info_currency_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     """ Set text """
     _t = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r'))
-    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['__language__']
+    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
     self.object_name_label.setText(country_data[0])
     statistics_title_label.setText(f'{_t['statistics_title_top_label'][_l]}:')
     statistics_index_name_label.setText('#')
@@ -626,7 +626,7 @@ def object_market(self):
     statistics_capitalization_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     """ Set text """
     _t = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r'))
-    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['__language__']
+    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
     self.object_ticker_label.setText(market_data[1])
     self.object_name_label.setText(market_data[0])
     info_city_name_label.setText(f'{_t['city_name_label'][_l]}:')
@@ -724,7 +724,7 @@ def object_index(self):
     statistics_stocks_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     """ Set text """
     _t = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r'))
-    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['__language__']
+    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
     self.object_name_label.setText(f'{index_data[0]}')
     statistics_title_label.setText(_t['statistics_title_stock_label'][_l])
     statistics_index_label.setText('#')
@@ -852,7 +852,7 @@ def object_stock(self):
     statistics_dividend_yield_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     """ Set text """
     _t = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r'))
-    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['__language__']
+    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
     self.object_ticker_label.setText(f'{stock_data[1]}')
     self.object_name_label.setText(f'{stock_data[0]}')
     statistics_capitalization_name_label.setText(f'{_t['capitalization_name_label'][_l]}:')

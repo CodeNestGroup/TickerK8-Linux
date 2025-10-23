@@ -19,7 +19,7 @@ from PyQt5.QtCore import (
 from .main_news_list_ui import *
 from .main_news_list_logic import *
 #______________________________________________________________________________________________________________________
-""" Main news widget """
+
 class Main_news_list_widget(QWidget):
     open_news = pyqtSignal(int)
     def __init__(self, parent, news_type):

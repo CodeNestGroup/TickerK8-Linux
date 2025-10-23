@@ -62,7 +62,7 @@ def login_reload_style(self):
 
 def login_retranslate(self):
     _t = self.login_translate
-    _l = self.global_config['__language__']
+    _l = self.global_config['language']
     self.login_login_lineedit.setPlaceholderText(_t['login_login_lineedit'][_l])
     self.login_password_lineedit.setPlaceholderText(_t['login_password_lineedit'][_l])
     self.login_login_button.setText(_t['login_login_button'][_l])

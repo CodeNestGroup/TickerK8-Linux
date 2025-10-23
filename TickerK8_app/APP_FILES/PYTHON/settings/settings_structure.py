@@ -1,10 +1,7 @@
 """ Import packages """
-""" Import system and operating system packages """
 import pathlib
 import json
-#______________________________________________________________________________________________________________________
 """ Import PyQt5 packages """
-""" Import PyQt5 Widgets """
 from PyQt5.QtWidgets import (
     QWidget,
     QScrollArea,
@@ -14,31 +11,22 @@ from PyQt5.QtWidgets import (
     QGridLayout,
     QVBoxLayout 
 )
-#______________________________________________________________________________________________________________________
-""" Import PyQt5 Core """
 from PyQt5.QtCore import (
     Qt
 )
-#______________________________________________________________________________________________________________________
 """ Import settings modules """
-""" Import settings ui """
 from .settings_ui import *
-#______________________________________________________________________________________________________________________
-""" Import settings logic """
 from .settings_logic import *
-#######################################################################################################################
-""" Main settings widget """
+#______________________________________________________________________________________________________________________
+
 class Settings_widget(QWidget):
-    """ Init, creating items, set base variables like paths, screen size, etc. """
     def __init__(self, parent):
         super().__init__()
         self.setAttribute(Qt.WA_StyledBackground, True)
         self.setParent(parent)
         self.opened_sub_widget = None
-#______________________________________________________________________________________________________________________
         """ Set paths, file name"""
-        self.main_path = str(pathlib.Path(__file__).resolve().parents[2]) # Set main path, path to TickerK8 folder.
-#______________________________________________________________________________________________________________________
+        self.main_path = str(pathlib.Path(__file__).resolve().parents[2])
         """ Create objects """
         self.main_layout = QGridLayout(self)
         self.navi_scroll = QScrollArea(self)
@@ -112,14 +100,12 @@ class Settings_widget(QWidget):
         self.report_auto_report_content_button = QPushButton(self.report_widget)
         self.report_send_report_name_label = QLabel(self.report_widget)
         self.report_send_report_content_button = QPushButton(self.report_widget)
-#______________________________________________________________________________________________________________________
         """ Call functions """
         settings_ui(self)
         settings_reload_style(self)
         self.settings_reload_style = lambda: settings_reload_style(self)
         settings_retranslate(self)
         self.settings_retranslate = lambda: settings_retranslate(self)
-#______________________________________________________________________________________________________________________
         """ Connect functions """
         self.navi_user_button.clicked.connect(lambda: open_sub_widget(self, self.user_widget))
         self.navi_style_button.clicked.connect(lambda: open_sub_widget(self, self.style_widget))
@@ -131,4 +117,4 @@ class Settings_widget(QWidget):
         self.sound_button_content_button.clicked.connect(lambda: set_sound_d_e(self, '_button_'))
         self.sound_alert_content_button.clicked.connect(lambda: set_sound_d_e(self, '_alert_'))
         self.sound_notification_content_button.clicked.connect(lambda: set_sound_d_e(self, '_notification_'))
-#######################################################################################################################
+#______________________________________________________________________________________________________________________

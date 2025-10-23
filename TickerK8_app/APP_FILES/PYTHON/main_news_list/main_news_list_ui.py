@@ -16,7 +16,7 @@ from PyQt5.QtGui import (
     QIcon
 )
 #______________________________________________________________________________________________________________________
-""" main news list ui """
+
 def main_news_list_ui(self):
     """ Set object name """
     self.setObjectName('main_news_list_widget')
@@ -58,13 +58,15 @@ def main_news_list_ui(self):
     self.exit_button.setMaximumWidth(self.panel_widget.width())
     self.exit_button.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
 #______________________________________________________________________________________________________________________
+
 def main_news_list_reload_style(self):
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
-    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/main_news_list/'+_global_config['__theme__']+'.css')).read())
+    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/main_news_list/'+_global_config['theme']+'.css')).read())
 #______________________________________________________________________________________________________________________
+
 def main_news_list_retranslate(self):
     _t = json.load(open(self.main_path+'/CONFIG/main_news_list/translate.json', 'r'))
-    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['__language__']
+    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
     _type = self.news_type
     self.title_label.setText(_t['title_label'][_l][_type])
     self.exit_button.setText(_t['exit_button'][_l])

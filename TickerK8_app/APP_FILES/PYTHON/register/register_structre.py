@@ -17,7 +17,7 @@ from PyQt5.QtCore import (
 from .register_ui import *
 from .register_logic import *
 #______________________________________________________________________________________________________________________
-""" Register widget """
+
 class Register_widget(QWidget):
     def __init__(self, parent):
         super().__init__()
@@ -25,8 +25,6 @@ class Register_widget(QWidget):
         self.setParent(parent)
         """ Set paths, file name"""
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2])
-        self.global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
-        self.register_translate = json.load(open(self.main_path+'/CONFIG/register/translate.json', 'r'))
         """ Create objects """
         self.register_layout = QGridLayout(self)
         self.register_name_subtitle_label = QLabel(self)

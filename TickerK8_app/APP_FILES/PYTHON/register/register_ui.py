@@ -1,16 +1,13 @@
 """ Import PyQt5 packages """
-""" Import PyQt5 Widgets """
 from PyQt5.QtWidgets import (
-    QSizePolicy, # Size policy.
+    QSizePolicy,
     QLineEdit
         )
-#______________________________________________________________________________________________________________________
-""" Import PyQt5 Core """
 from PyQt5.QtCore import (
-    Qt # Qt settings.
+    Qt
 )
-#######################################################################################################################
-""" Register ui """
+#______________________________________________________________________________________________________________________
+
 def register_ui(self):
     """ Set object name """
     self.setObjectName('register_widget')
@@ -33,7 +30,6 @@ def register_ui(self):
     self.register_password_confirm_lineedit.setObjectName('register_password_confirm_lineedit')
     self.register_register_button.setObjectName('register_register_button')
     self.register_exit_button.setObjectName('register_exit_button')
-#______________________________________________________________________________________________________________________
     """ Set property """
     self.register_name_subtitle_label.setProperty('class', 'register_sub_title')
     self.register_emial_subtitle_label.setProperty('class', 'register_sub_title')
@@ -53,7 +49,6 @@ def register_ui(self):
     self.register_password_show_button.setProperty('class', 'register_password_show_button')
     self.register_register_button.setProperty('class', 'register_button')
     self.register_exit_button.setProperty('class', 'register_button')
-#______________________________________________________________________________________________________________________
     """ Set layout"""
     self.register_layout.addWidget(self.register_name_subtitle_label, 5, 5, 3, 40)
     self.register_layout.addWidget(self.register_name_lineedit, 10, 5, 2, 40)
@@ -80,12 +75,10 @@ def register_ui(self):
         self.register_layout.setRowStretch(enc, 1)
         self.register_layout.setColumnStretch(enc, 1)
     self.setLayout(self.register_layout)
-#______________________________________________________________________________________________________________________
     """ Set widget """
     self.setHidden(False)
     self.register_name_label.setHidden(True)
     self.register_email_label.setHidden(True)
-#______________________________________________________________________________________________________________________
     """ Set label """
     self.register_name_subtitle_label.setAlignment(Qt.AlignCenter)
     self.register_name_label.setAlignment(Qt.AlignCenter)
@@ -95,11 +88,9 @@ def register_ui(self):
     self.register_country_subtitle_label.setAlignment(Qt.AlignCenter)
     self.register_password_subtitle_label.setAlignment(Qt.AlignCenter)
     self.register_password_requirements_label.setAlignment(Qt.AlignCenter)
-#______________________________________________________________________________________________________________________
     """ Set line edit """
     self.register_password_lineedit.setEchoMode(QLineEdit.Password)
     self.register_password_confirm_lineedit.setEchoMode(QLineEdit.Password)
-#______________________________________________________________________________________________________________________
     """ Set size """
     self.register_name_subtitle_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.register_name_lineedit.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -120,7 +111,6 @@ def register_ui(self):
     self.register_password_confirm_lineedit.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.register_register_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.register_exit_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-#______________________________________________________________________________________________________________________
     """ Combo box add item """
     self.register_phonenumber_combobox.addItems(
         [
@@ -135,15 +125,16 @@ def register_ui(self):
             "Polska"
         ]
     )
-#######################################################################################################################
-""" Register reload style """
+#______________________________________________________________________________________________________________________
+
 def register_reload_style(self):
-    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/register/'+self.global_config['__theme__']+'.css')).read())
-#######################################################################################################################
-""" Register retranslate"""
+    _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
+    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/register/'+_global_config['theme']+'.css')).read())
+#______________________________________________________________________________________________________________________
+
 def register_retranslate(self):
-    _t = self.register_translate # Translate texts 
-    _l = self.global_config['__language__'] # Laguage 
+    _t = json.load(open(self.main_path+'/CONFIG/register/translate.json', 'r'))
+    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
     self.register_name_subtitle_label.setText(_t['register_name_subtitle_label'][_l])
     self.register_name_lineedit.setPlaceholderText(_t['register_name_lineedit'][_l])
     self.register_emial_subtitle_label.setText(_t['register_emial_subtitle_label'][_l])
@@ -159,4 +150,4 @@ def register_retranslate(self):
     self.register_password_confirm_lineedit.setPlaceholderText(_t['register_password_confirm_lineedit'][_l])
     self.register_register_button.setText(_t['register_register_button'][0][_l])
     self.register_exit_button.setText(_t['register_exit_button'][_l])
-#######################################################################################################################
+#______________________________________________________________________________________________________________________

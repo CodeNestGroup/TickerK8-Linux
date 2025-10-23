@@ -1,7 +1,6 @@
 """ Import packages """
 import mysql
 import json
-#______________________________________________________________________________________________________________________
 """ Import PyQt5 Widgets """
 from PyQt5.QtWidgets import (
     QWidget,
@@ -18,7 +17,7 @@ from PyQt5.QtCore import (
     QRect
 )
 #______________________________________________________________________________________________________________________
-""" news list widget """
+
 def news_list_widget(self):
     """ Load user settings """
     user_setting = list(dict(json.load(open(self.main_path+'/CONFIG/GLOBAL/logged_user.json', 'r'))).values())[self.news_type]

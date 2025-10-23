@@ -3,7 +3,6 @@ import mysql
 import json
 import requests
 from io import BytesIO
-#______________________________________________________________________________________________________________________
 """ Import PyQt5 packages """
 from PyQt5.QtWidgets import (
     QWidget,
@@ -23,7 +22,7 @@ from PyQt5.QtGui import (
     QPixmap
 )
 #______________________________________________________________________________________________________________________
-""" news widget """
+
 def news_widget(self, id_id):
     connect = mysql.connector.connect(
     host="localhost",
@@ -120,7 +119,7 @@ def news_widget(self, id_id):
     self.news_hash_title_label.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
     """ Set text """
     _t = json.load(open(self.main_path+'/CONFIG/main_news/translate.json', 'r'))
-    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['__language__']
+    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
     self.news_title_label.setText(json_file['title'])
     self.news_date_label.setText(json_file['date'])
     self.news_source_title_label.setText(_t['news_source_title_label'][_l])

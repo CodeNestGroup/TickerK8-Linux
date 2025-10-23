@@ -13,7 +13,7 @@ from PyQt5.QtGui import (
     QColor
 )
 #______________________________________________________________________________________________________________________
-""" Candle chart """
+
 def candle_chart(self):
     local_list = [] 
     for s in self.chart_data: local_list += [s['h'], s['l']]
@@ -29,7 +29,7 @@ def candle_chart(self):
         _low = ((max_price-single_data['l'])/_scale)*100000
         self.main_scence.addItem(Candle(_space_between, _open, _high, _close, _low))
 #______________________________________________________________________________________________________________________
-""" Candle """
+
 class Candle(QGraphicsItem):
     """ __init__ """
     def __init__(self, x=int, o=int, h=int, c=int, l=int):
@@ -42,11 +42,11 @@ class Candle(QGraphicsItem):
         self.color_wick = QColor('#ff0000') if self.o < self.c else QColor('#00ff00')
         self.color_body = QColor('#ff0000') if self.o < self.c else QColor('#00ff00')
 #______________________________________________________________________________________________________________________
-    """ boundig rect """
+
     def boundingRect(self):
         return QRectF(self.x, self.h, 2, int(self.l-self.h))
 #______________________________________________________________________________________________________________________
-    """ paint """
+
     def paint(self, painter, option, widget=None):
         painter.setPen(QPen(self.color_wick, 1))
         painter.drawLine(QPointF(self.x+1, self.h), QPointF(self.x+1, self.l))

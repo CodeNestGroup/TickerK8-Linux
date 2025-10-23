@@ -21,9 +21,9 @@ from PyQt5.QtSvg import (
     QSvgRenderer
 )
 #______________________________________________________________________________________________________________________
-""" login widget background painter """
+
 def login_widget_background_painter(self):
-    _language = self.global_config['__language__']
+    _language = self.global_config['language']
     _texts_title = self.login_translate['login_welcome_title_label']
     _texts_sub = self.login_translate['login_welcome_sub_label']
     _colors = self.login_conf['background']

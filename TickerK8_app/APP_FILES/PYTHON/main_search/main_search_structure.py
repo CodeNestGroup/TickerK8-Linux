@@ -18,7 +18,7 @@ from PyQt5.QtCore import (
 from .main_search_ui import *
 from .main_search_logic import *
 #______________________________________________________________________________________________________________________
-""" Main search widget """
+
 class Main_search_widget(QWidget):
     def __init__(self, parent):
         super().__init__()
