@@ -227,7 +227,7 @@ def add_object__lists(self, a_o):
     self.panel_add_scroll_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     """ Set text """
     _t = json.load(open(self.main_path+'/CONFIG/main_search/translate.json', 'r'))
-    _l = _global_config['__language__']
+    _l = _global_config['language']
     self.panel_add_title_label.setText(_t['panel_add_title_label'][_l])
     self.panel_add_path_label.setText(f"{_t['panel_add_path_label'][_l]}")
     """ Set graphics """

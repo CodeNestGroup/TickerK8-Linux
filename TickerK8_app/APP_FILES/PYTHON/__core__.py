@@ -11,7 +11,7 @@ from PyQt5.QtWidgets import (
     )
 from PyQt5.QtCore import (
     QRect
-)
+    )
 from PyQt5.QtGui import (
     QFontDatabase,
     QFont
@@ -25,7 +25,7 @@ from settings.settings_structure import Settings_widget
 from statistics.statistics_structure import Statistics_widget
 from chart.chart_structure import Chart_widget
 #______________________________________________________________________________________________________________________
-""" app controller """
+
 class app_controller(QWidget):
     def __init__(self):
         super().__init__()
@@ -41,11 +41,11 @@ class app_controller(QWidget):
         self.settings_widget = None
         self.statistics_widget = None
         self.chart_widget = None
-        self.screen = self.windowHandle().screen()
-        self.geometry = screen.availableGeometry()
+        self.screen = QApplication.primaryScreen()
+        self.geometry = self.screen.availableGeometry()
         self.login_setup()
 #______________________________________________________________________________________________________________________
-    """ Setup """
+
     def login_setup(self):
         self.login_widget = Login_widget(self)
         self.layout.addWidget(self.login_widget)
@@ -106,7 +106,7 @@ class app_controller(QWidget):
         self.showMaximized()
         self.chart_widget.top_exit_button.clicked.connect(self.chart_to_main)
 #______________________________________________________________________________________________________________________
-    """ From ... to ... setup """
+    
     def login_to_register(self):
         self.login_widget.deleteLater()
         self.login_widget = None 
@@ -136,7 +136,7 @@ class app_controller(QWidget):
         self.main_widget.deleteLater()
         self.main_widget = None
         self.login_setup()
-#
+
     def main_to_settings(self):
         self.main_widget.deleteLater()
         self.main_widget = None
@@ -167,13 +167,13 @@ class app_controller(QWidget):
         self.chart_widget = None 
         self.main_setup()
 #______________________________________________________________________________________________________________________
-""" Set font """
+
 def set_font():
     font_id = QFontDatabase.addApplicationFont(str(pathlib.Path(__file__).resolve().parents[3])+'/TickerK8_app/APP_FILES/STYLE/FONTS/NotoSerif-VariableFont_wdth,wght.ttf')
     font_families = QFontDatabase.applicationFontFamilies(font_id) 
     return QFont(font_families[0])
 #______________________________________________________________________________________________________________________
-""" Start application """
+
 if __name__ == '__main__':
     application = QApplication(sys.argv)
     application.setFont(set_font())

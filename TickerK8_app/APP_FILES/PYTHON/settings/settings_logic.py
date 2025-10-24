@@ -26,7 +26,7 @@ def change_day_night(self):
 
 def change_theme(self):
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
-    _global_config['__theme__'] = int(self.style_theme_themes_content_combobox.currentIndex())
+    _global_config['theme'] = int(self.style_theme_themes_content_combobox.currentIndex())
     json.dump(_global_config, open(self.main_self.main_path+'/CONFIG/GLOBAL/global_config.json', 'w'), indent=4)
     self.settings_reload_style()
 #______________________________________________________________________________________________________________________
@@ -35,7 +35,7 @@ def set_sound_d_e(self, _type):
     """ get config """
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
     _t = json.load(open(self.main_path+'/CONFIG/settings/translate.json', 'r'))
-    _l = _global_config['__language__']
+    _l = _global_config['language']
     _global_config['sound'][_type] = not _global_config['sound'][_type] 
     _new_value = _global_config['sound'][_type]
     json.dump(_global_config, open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'w'), indent=4)
@@ -53,7 +53,7 @@ def set_sound_d_e(self, _type):
 def change_language(self):
     """ Get data """
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
-    _global_config['__language__'] = int(self.language_langauge_content_combobox.currentIndex())  
+    _global_config['language'] = int(self.language_langauge_content_combobox.currentIndex())  
     json.dump(_global_config, open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'w'), indent=4)
     self.settings_retranslate()
 #______________________________________________________________________________________________________________________
