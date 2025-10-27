@@ -1,3 +1,5 @@
+""" Import packages """
+import json
 """ Import PyQt5 packages """
 from PyQt5.QtWidgets import (
     QSizePolicy,
