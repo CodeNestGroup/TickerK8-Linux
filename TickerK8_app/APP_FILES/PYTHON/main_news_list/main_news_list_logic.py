@@ -37,7 +37,7 @@ def news_list_widget(self):
         database = "TickerK8"
     )
     cursor = connect.cursor()
-    cursor.execute(f'SELECT id, title, date  FROM news WHERE {news_type_name}={user_setting};')
+    cursor.execute(f'SELECT id, title, date  FROM News WHERE {news_type_name}={user_setting};')
     result = cursor.fetchall()
     cursor.close()
     connect.close()

@@ -876,7 +876,7 @@ def news_creator(self):
         database = "TickerK8"
     )
     cursor = connect.cursor()
-    cursor.execute('SELECT id, json_file FROM news ORDER BY date DESC LIMIT 5;')
+    cursor.execute('SELECT id, json_file FROM News ORDER BY date DESC LIMIT 5;')
     news_list = cursor.fetchall()
     cursor.close()
     connect.close()

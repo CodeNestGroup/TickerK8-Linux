@@ -31,7 +31,7 @@ def news_widget(self, id_id):
     database="TickerK8"
     )
     cursor = connect.cursor()
-    cursor.execute(f"SELECT json_file FROM news WHERE id={id_id};")
+    cursor.execute(f"SELECT json_file FROM News WHERE id={id_id};")
     result = cursor.fetchone()[0]
     json_file = json.loads(result)
     cursor.close()

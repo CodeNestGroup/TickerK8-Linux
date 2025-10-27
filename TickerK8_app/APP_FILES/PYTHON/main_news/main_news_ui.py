@@ -53,7 +53,7 @@ def main_news_ui(self):
 
 def main_news_reload_style(self):
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
-    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/main_news/'+self.global_config['theme']+'.css')).read())
+    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/main_news/'+_global_config['theme']+'.css')).read())
 #______________________________________________________________________________________________________________________
 
 def main_news_retranslate(self):
