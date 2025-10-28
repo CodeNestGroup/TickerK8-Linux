@@ -15,8 +15,8 @@ from PyQt5.QtCore import (
     Qt
 )
 """ Import settings modules """
-from .settings_ui import *
-from .settings_logic import *
+from .ui import *
+from .logic import *
 #______________________________________________________________________________________________________________________
 
 class Settings_widget(QWidget):

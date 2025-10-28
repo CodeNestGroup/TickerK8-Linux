@@ -13,10 +13,10 @@ from PyQt5.QtWidgets import (
 from PyQt5.QtCore import Qt
 #______________________________________________________________________________________________________________________
 """ Import statistics ui """
-from .statistics_ui import *
+from .ui import *
 #______________________________________________________________________________________________________________________
 """ Import statistics logic """
-from .statistics_logic import *
+from .logic import *
 #######################################################################################################################
 """ Statistics widget """
 class Statistics_widget(QWidget):

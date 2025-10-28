@@ -10,8 +10,8 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtCore import Qt
 """ Import main chart modules """
-from .main_chart_ui import *
-from .main_chart_logic import *
+from .ui import *
+from .logic import *
 #______________________________________________________________________________________________________________________
 
 class Main_chart(QGraphicsView):

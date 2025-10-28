@@ -34,9 +34,9 @@ from PyQt5.QtSvg import (
     QSvgRenderer
 )
 """ Import main modules """
-from main_chart.main_chart_structure import Main_chart
-from main_news.main_news_structure import Main_news_widget
-from main_news_list.main_news_list_structure import Main_news_list_widget
+from main_chart.structure import Main_chart
+from main_news.structure import Main_news_widget
+from main_news_list.structure import Main_news_list_widget
 #______________________________________________________________________________________________________________________
 
 def widget_background_painter(self):

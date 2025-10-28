@@ -17,10 +17,10 @@ from PyQt5.QtWidgets import (
 from PyQt5.QtCore import Qt
 #______________________________________________________________________________________________________________________
 """ Import chart ui """
-from .chart_ui import *
+from .ui import *
 #______________________________________________________________________________________________________________________
 """ Import chart logic """
-from .chart_logic import *
+from .logic import *
 #######################################################################################################################
 class Chart_widget(QWidget):
     """ Init, creating items, set base variables like paths, screen size, etc. """

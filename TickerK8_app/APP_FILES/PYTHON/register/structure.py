@@ -14,8 +14,8 @@ from PyQt5.QtCore import (
         Qt
         )
 """ Import register modules """
-from .register_ui import *
-from .register_logic import *
+from .ui import *
+from .logic import *
 #______________________________________________________________________________________________________________________
 
 class Register_widget(QWidget):

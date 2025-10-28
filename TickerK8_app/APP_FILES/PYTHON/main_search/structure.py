@@ -15,8 +15,8 @@ from PyQt5.QtCore import (
     Qt
 )
 """ Import main search modules """
-from .main_search_ui import *
-from .main_search_logic import *
+from .ui import *
+from .logic import *
 #______________________________________________________________________________________________________________________
 
 class Main_search_widget(QWidget):

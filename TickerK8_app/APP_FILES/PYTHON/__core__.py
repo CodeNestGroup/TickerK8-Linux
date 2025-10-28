@@ -17,13 +17,13 @@ from PyQt5.QtGui import (
     QFont
     )
 """ Import application modules """
-from login.login_structure import Login_widget
-from register.register_structre import Register_widget
-from recover_password.recover_password_structure import Recover_password_widget
-from main.main_structure import Main_widget 
-from settings.settings_structure import Settings_widget
-from statistics.statistics_structure import Statistics_widget
-from chart.chart_structure import Chart_widget
+from login.structure import Login_widget
+from register.structure import Register_widget
+from recover_password.structure import Recover_password_widget
+from main.structure import Main_widget 
+from settings.structure import Settings_widget
+from statistics.structure import Statistics_widget
+from chart.structure import Chart_widget
 #______________________________________________________________________________________________________________________
 
 class app_controller(QWidget):

@@ -13,10 +13,10 @@ from PyQt5.QtWidgets import (
 from PyQt5.QtCore import Qt
 #______________________________________________________________________________________________________________________
 """ Import recover password ui """
-from .recover_password_ui import *
+from .ui import *
 #______________________________________________________________________________________________________________________
 """ Import recover password logic """
-from .recover_password_logic import *
+from .logic import *
 #######################################################################################################################
 """ Recover password widget """
 class Recover_password_widget(QWidget):

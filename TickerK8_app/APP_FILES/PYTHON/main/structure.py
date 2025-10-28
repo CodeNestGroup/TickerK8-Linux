@@ -14,10 +14,10 @@ from PyQt5.QtCore import (
     QTimer
 )
 """ Import main modules """
-from .main_ui import *
-from .main_logic import *
-from main_search.main_search_structure import Main_search_widget
-from main_news_list.main_news_list_structure import Main_news_list_widget
+from .ui import *
+from .logic import *
+from main_search.structure import Main_search_widget
+from main_news_list.structure import Main_news_list_widget
 #______________________________________________________________________________________________________________________
 
 class Main_widget(QWidget):

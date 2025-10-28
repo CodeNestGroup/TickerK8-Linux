@@ -15,8 +15,8 @@ from PyQt5.QtCore import (
         pyqtSignal
         )
 """ Import login modules """
-from .login_ui import *
-from .login_logic import *
+from .ui import *
+from .logic import *
 #______________________________________________________________________________________________________________________
 
 class Login_widget(QWidget):
