@@ -180,3 +180,4 @@ if __name__ == '__main__':
     controller = app_controller()
     controller.setHidden(False) 
     sys.exit(application.exec_())
+    
