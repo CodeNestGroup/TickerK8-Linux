@@ -28,6 +28,7 @@ class Main_widget(QWidget):
         self.main_conf = json.load(open(self.main_path+'/CONFIG/main/background_conf.json', 'r'))
         """ Create objects """
         self.layout = QGridLayout(self)
+        self.changelog_error_widget = Changelog_error_widget(self)
         self.changelog_scroll = QScrollArea(self)
         self.update_progressbar = QProgressBar(self)
         self.update_label = QLabel(self)
@@ -43,11 +44,10 @@ class Main_widget(QWidget):
         main_reload_style(self)
         main_retranslate(self)
         """ Connect functions """
-        self.settings_button.clicked.connect(lambda: )
-        self.instagram_button.clicked.connect(lambda: )
-        self.github_button.clicked.connect(lambda: )
-        self.discord_button.clicked.connect(lambda: )
-        self.start_button.clicked.connect(lambda: )
-
+        #self.settings_button.clicked.connect(lambda: open_instagram(self))
+        #self.instagram_button.clicked.connect(lambda: open_instagram(self))
+        #self.github_button.clicked.connect(lambda: open_github(self))
+        #self.discord_button.clicked.connect(lambda: open_discord(self))
+        #self.start_button.clicked.connect(lambda: start_tickerk8(self))
 #______________________________________________________________________________________________________________________
 

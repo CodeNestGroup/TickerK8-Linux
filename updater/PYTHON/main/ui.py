@@ -1,0 +1,66 @@
+""" Import packages """
+import pathlib 
+import json
+""" Import PyQt5 packages """
+from PyQt5.QtWidgets import (
+    QSizePolicy
+)
+from PyQt5.QtCore import (
+    Qt,
+    QRectF
+)
+#______________________________________________________________________________________________________________________
+
+def main_ui(self):
+    """ Set object name """
+    self.setObjectName('main_widget')
+    self.changelog_scroll.setObjectName('changelog_scroll')
+    self.update_progressbar.setObjectName('update_progressbar')
+    self.update_label.setObjectName('update_label')
+    self.logo_c_n_g_label.setObjectName('logo_c_n_g_label')
+    self.logo_ticker_label.setObjectName('logo_ticker_label')
+    self.settings_button.setObjectName('settings_button')
+    self.instagram_button.setObjectName('instagram_button')
+    self.github_button.setObjectName('github_button')
+    self.discord_button.setObjectName('discord_button')
+    self.start_button.setObjectName('start_button')
+    """ Set property """
+    self.logo_c_n_g_label.setProperty('class', 'icon_label')
+    self.logo_ticker_label.setProperty('class', 'icon_label')
+    self.settings_button.setProperty('class', 'open_button')
+    self.instagram_button.setProperty('class', 'open_button')
+    self.github_button.setProperty('class', 'open_button')
+    self.discord_button.setProperty('class', 'open_button')
+    """ Set layout """
+    self.layout.addWidget(self.changelog_error_widget, 0, 0, 90, 50)
+    self.layout.addWidget(self.changelog_scroll, 0, 0, 90, 50)
+    self.layout.addWidget(self.update_progressbar, 90, 0, 10, 50)
+    self.layout.addWidget(self.update_label, 90, 0, 10, 50)
+    self.layout.addWidget(self.logo_c_n_g_label, 0, 50, 25, 25)
+    self.layout.addWidget(self.logo_ticker_label, 0, 75, 25, 25)
+    self.layout.addWidget(self.settings_button, 30, 51, 25, 23)
+    self.layout.addWidget(self.instagram_button, 30, 66, 25, 23)
+    self.layout.addWidget(self.github_button, 56, 51, 25, 23)
+    self.layout.addWidget(self.discord_button, 56, 66, 25, 23)
+    self.layout.addWidget(self.start_button, 90, 50, 10, 50)
+    self.layout.setSpacing(0)
+    self.layout.setContentsMargins(0,0,0,0)
+    for enc in range(100):
+        self.layout.setRowStretch(enc, 1)
+        self.layout.setColumnStretch(enc, 1)
+    self.setLayout(self.layout)
+    """ Set widget """
+    self.changelog_error_widget.setHidden(False)
+    self.changelog_scroll.setHidden(True)
+    self.update_progressbar.setHidden(True)
+    self.update_label.setHidden(True)
+    self.changelog_scroll.setWidgetResizable(True)
+    self.changelog_scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+    """ Set label """
+    self.logo_c_n_g_label.setAlignment(Qt.AlignCenter)
+    self.logo_ticker_label.setAlignment(Qt.AlignCenter)
+    """ Set button """
+    
+
+
+    
