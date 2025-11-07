@@ -25,7 +25,6 @@ class Main_widget(QWidget):
         self.setParent(parent)
         """" Set paths, file name """
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2])
-        self.main_conf = json.load(open(self.main_path+'/CONFIG/main/background_conf.json', 'r'))
         """ Create objects """
         self.layout = QGridLayout(self)
         self.changelog_error_widget = Changelog_error_widget(self)

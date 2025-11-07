@@ -60,7 +60,26 @@ def main_ui(self):
     self.logo_c_n_g_label.setAlignment(Qt.AlignCenter)
     self.logo_ticker_label.setAlignment(Qt.AlignCenter)
     """ Set button """
+    self.instagram_button.setDisabled(True)
+    self.github_button.setDisabled(True)
+    self.discord_button.setDisabled(True)
+    self.start_button.setDisabled(True)
+    """ Set size """
+    self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.changelog_scroll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.update_progressbar.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.update_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.logo_c_n_g_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.logo_ticker_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.settings_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.instagram_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.github_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.discord_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.start_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+#______________________________________________________________________________________________________________________
+
+def main_reload_style(self):
+    _global_config = json.load(open(self.main_path+'/CONFIG/main/background_conf.json', 'r'))
+    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/main/'+_global_config['theme']+'.css')).read())
     
-
-
     
