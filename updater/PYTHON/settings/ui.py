@@ -374,3 +374,68 @@ def language_ui(self):
     self.language_type_combobox.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 #______________________________________________________________________________________________________________________
 
+def labguage_retranslate(self):
+    _t = json.load(open(self.main_path+'/CONFIG/settings/translate.json', 'r'))
+    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
+    self.language_title_label.setText(_t['language_title_label'][_l])
+    self.language_type_label.setText(_t['language_type_label'][_l])
+    self.language_type_combobox.setCurrentIndex(_l)
+#______________________________________________________________________________________________________________________
+
+def report_ui(self):
+    """ Set object name """
+    self.sub_menu_scroll.setObjectName('sub_menu_scroll')
+    self.report_widget.setObjectName('report_widget')
+    self.report_title_label.setObjectName('report_title_label')
+    self.report_autoreport_title_label.setObjectName('report_autoreport_title_label')
+    self.report_autoreport_button.setObjectName('report_autoreport_button')
+    self.report_sendreport_title_label.setObjectName('report_sendreport_title_label')
+    self.report_sendreport_button.setObjectName('report_sendreport_button')
+    """ Set property """
+    self.report_widget.setProperty('class', 'sub_widgets')
+    self.report_title_label.setProperty('class', 'titles')
+    self.report_autoreport_title_label.setProperty('class', 'sub_titles')
+    self.report_autoreport_button.setProperty('class', 'sub_buttons')
+    self.report_sendreport_title_label.setProperty('class', 'sub_titles')
+    self.report_sendreport_button.setProperty('class', 'sub_buttons')
+    """ Set layout """
+    self.layout.addWidget(self.sub_menu_scroll, 0, 30, 100, 70)
+    self.report_layout.addWidget(self.report_title_label, 0, 0, 1, 100)
+    self.report_layout.addWidget(self.report_autoreport_title_label, 1, 0, 1, 50)
+    self.report_layout.addWidget(self.report_autoreport_button, 1, 50, 1, 50)
+    self.report_layout.addWidget(self.report_sendreport_title_label, 2, 0, 1, 50)
+    self.report_layout.addWidget(self.report_sendreport_button, 2, 50, 1, 50)
+    self.report_layout.setSpacing(0)
+    self.report_layout.setContentsMargins(0,0,0,0)
+    for enc in range(100):
+        self.report_layout.setRowStretch(enc, 1)
+        self.report_layout.setColumnStretch(enc, 1)
+    self.report_widget.setLayout(self.report_layout)
+    """ Set widget """
+    self.sub_menu_scroll.setWidgetResizable(True)
+    self.sub_menu_scroll.setWidget(self.report_widget)
+    self.sub_menu_scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+    self.report_widget.setHidden(False)
+    """ Set label """
+    self.report_title_label.setAlignment(Qt.AlignCenter)
+    self.report_autoreport_title_label.setAlignment(Qt.AlignCenter)
+    self.report_sendreport_title_label.setAlignment(Qt.AlignCenter)
+    """ Set button """
+    """ Set size """
+    self.report_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.report_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.report_autoreport_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.report_autoreport_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.report_sendreport_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.report_sendreport_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+#______________________________________________________________________________________________________________________
+
+def report_retranslate(self):
+    _t = json.load(open(self.main_path+'/CONFIG/settings/translate.json', 'r'))
+    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
+    self.report_title_label.setText(_t['report_title_label'][_l])
+    self.report_autoreport_title_label.setText(_t['report_autoreport_title_label'][_l])
+    self.report_autoreport_button.setText(_t['report_autoreport_button'][_l][conf])
+    self.report_sendreport_title_label.setText(_t['report_sendreport_title_label'][_l])
+    self.report_sendreport_button.setText(_t['report_sendreport_button'][_l])
+#______________________________________________________________________________________________________________________

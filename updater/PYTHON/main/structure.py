@@ -4,19 +4,14 @@ import json
 """ Import PyQt5 packages """
 from PyQt5.QtWidgets import (
     QWidget,
-    QPushButton,
     QLabel, 
     QScrollArea,
     QGridLayout
 )
-from PyQt5.QtCore import (
-    Qt,
-    QTimer
-)
 """ Import main modules """
 from .ui import *
 from .logic import *
-""" Import application modules """
+
 #______________________________________________________________________________________________________________________
 
 class Main_widget(QWidget):

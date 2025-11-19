@@ -1,6 +1,5 @@
 """ Import packages """
 import pathlib 
-import json
 """ Import PyQt5 packages """
 from PyQt5.QtWidgets import (
     QWidget,
@@ -9,14 +8,9 @@ from PyQt5.QtWidgets import (
     QScrollArea,
     QGridLayout
 )
-from PyQt5.QtCore import (
-    Qt,
-    QTimer
-)
-""" Import main modules """
+""" Import settings modules """
 from .ui import *
 from .logic import *
-""" Import application modules """
 #______________________________________________________________________________________________________________________
 
 class Settings_widget(QWidget):
