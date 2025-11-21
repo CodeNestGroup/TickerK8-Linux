@@ -1,17 +1,15 @@
 """ Import packages """
 import pathlib 
-import json
 """ Import PyQt5 packages """
 from PyQt5.QtWidgets import (
     QWidget,
-    QLabel, 
+    QLabel,
     QScrollArea,
     QGridLayout
 )
 """ Import main modules """
 from .ui import *
 from .logic import *
-
 #______________________________________________________________________________________________________________________
 
 class Main_widget(QWidget):

@@ -86,61 +86,66 @@ def settings_retranslate(self):
     self.exit_button.setText(_t['exit_button'][_l])
 #______________________________________________________________________________________________________________________
 
-def theme_ui(self):
+def sub_menu_ui(self):
     """ Set object name """
     self.sub_menu_scroll.setObjectName('sub_menu_scroll')
-    self.theme_widget.setObjectName('theme_widget')
-    self.theme_title_label.setObjectName('theme_title_label')
-    self.theme_d_n_label.setObjectName('theme_d_n_label')
-    self.theme_d_n_button.setObjectName('theme_d_n_button')
-    self.theme_list_label.setObjectName('theme_list_label')
-    self.theme_list_combobox.setObjectName('theme_list_combobox')
-    """ Set property """
-    self.theme_widget.setProperty('class', 'sub_widgets')
-    self.theme_title_label.setProperty('class', 'titles')
-    self.theme_d_n_label.setProperty('class', 'sub_titles')
-    self.theme_d_n_button.setProperty('class', 'sub_titles')
-    self.theme_list_label.setProperty('class', 'sub_titles')
-    self.theme_list_combobox.setProperty('class', 'sub_combobox')
+    self.sub_menu_widget.setObjectName('sub_menu_widget')
     """ Set layout """
-    self.layout.addWidget(self.sub_menu_scroll, 0, 30, 100, 70)
-    self.theme_layout.addWidget(self.theme_title_label, 0, 0, 10, 100)
-    self.theme_layout.addWidget(self.theme_d_n_label, 20, 0, 30, 50)
-    self.theme_layout.addWidget(self.theme_d_n_button, 25, 50, 20, 50)
-    self.theme_layout.addWidget(self.theme_list_label, 60, 0, 30, 50)
-    self.theme_layout.addWidget(self.theme_list_combobox, 65, 50, 20, 50)
-    self.theme_layout.setSpacing(0)
-    self.theme_layout.setContentsMargins(0,0,0,0)
+    self.sub_menu_layout.setSpacing(0)
+    self.sub_menu_layout.setContentsMargins(0,0,0,0)
     for enc in range(100):
-        self.theme_layout.setRowStretch(enc, 1)
-        self.theme_layout.setColumnStretch(enc, 1)
-    self.theme_widget.setLayout(self.theme_layout)
+        self.sub_menu_layout.setRowStretch(enc, 1)
+        self.sub_menu_layout.setColumnStretch(enc, 1)
+    self.sub_menu_widget.setLayout(self.sub_menu_layout)
     """ Set widget """
     self.sub_menu_scroll.setWidgetResizable(True)
-    self.sub_menu_scroll.setWidget(self.theme_widget)
+    self.sub_menu_scroll.setWidget(self.sub_menu_widget)
     self.sub_menu_scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-    self.theme_widget.setHidden(False)
-    """ Set label """
-    self.theme_title_label.setAlignment(Qt.AlignCenter)
-    self.theme_d_n_label.setAlignment(Qt.AlignCenter)
-    self.theme_list_label.setAlignment(Qt.AlignCenter)
-    """ Set button """
     """ Set size """
     self.sub_menu_scroll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.theme_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.theme_d_n_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.theme_d_n_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.theme_list_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.theme_list_combobox.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.sub_menu_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+#______________________________________________________________________________________________________________________
+
+def theme_ui(self):
+    """ Set object name """
+    self.title_label.setObjectName('title_label')
+    self.day_night_label.setObjectName('day_night_label')
+    self.day_night_button.setObjectName('day_night_button')
+    self.list_label.setObjectName('list_label')
+    self.list_combobox.setObjectName('list_combobox')
+    """ Set property """
+    self.day_night_label.setProperty('class', 'heading_1')
+    self.day_night_button.setProperty('class', 'heading_1')
+    self.list_label.setProperty('class', 'heading_1')
+    self.list_combobox.setProperty('class', 'combobox')
+    """ Set layout """
+    self.layout.addWidget(self.sub_menu_scroll, 0, 30, 100, 70)
+    self.sub_menu_layout.addWidget(self.title_label, 0, 0, 10, 100)
+    self.sub_menu_layout.addWidget(self.day_night_label, 20, 0, 30, 50)
+    self.sub_menu_layout.addWidget(self.day_night_button, 25, 50, 20, 50)
+    self.sub_menu_layout.addWidget(self.list_label, 60, 0, 30, 50)
+    self.sub_menu_layout.addWidget(self.list_combobox, 65, 50, 20, 50)
+    """ Set widget """
+    """ Set label """
+    self.title_label.setAlignment(Qt.AlignCenter)
+    self.day_night_label.setAlignment(Qt.AlignCenter)
+    self.list_label.setAlignment(Qt.AlignCenter)
+    """ Set button """
+    """ Set size """
+    self.title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.day_night_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.day_night_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.list_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.list_combobox.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 #______________________________________________________________________________________________________________________
 
 def theme_retranslate(self):
     _t = json.load(open(self.main_path+'/CONFIG/settings/translate.json', 'r'))
     _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
-    self.theme_title_label.setText(_t['theme_title_label'][_l])
-    self.theme_d_n_label.setText(_t['theme_d_n_label'][_l])
-    self.theme_d_n_button.setText(_t['theme_d_n_button'][_l][config d n ])
-    self.theme_list_label.setText(_t['theme_list_label'][_l])
+    self.title_label.setText(_t['title_label'][_l])
+    self.day_night_label.setText(_t['day_night_label'][_l])
+    self.day_night_button.setText(_t['day_night_button'][_l][config d n ])
+    self.list_label.setText(_t['list_label'][_l])
 #______________________________________________________________________________________________________________________
 
 def sound_ui(self):

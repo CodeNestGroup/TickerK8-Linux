@@ -35,23 +35,36 @@ class Settings_widget(QWidget):
         settings_ui(self)
         settings_reload_style(self)
         settings_retranslate(self)
+        sub_menu_open(self, theme_widget_open(self))
         """ Connect functions """
+        self.menu_theme_button.clicked.connect(sub_menu_ui(self, theme_widget_open(self)))
+        self.menu_sound_button.clicked.connect(sub_menu_ui(self, sound_widget_open(self)))
+        self.menu_update_button.clicked.connect(sub_menu_ui(self, update_widget_open(self)))
+        self.menu_language_button.clicked.connect(sub_menu_ui(self, language_widget_open(self)))
+        self.menu_report_button.clicked.connect(sub_menu_ui(self, report_widget_open(self)))
 #______________________________________________________________________________________________________________________
 
-    def theme_widget_open(self):
+    def sub_menu_open(self, open_func):
         if self.sub_menu_scroll:
             self.sub_menu_scroll.deleteLater()
         """ Create objects """
         self.sub_menu_scroll = QScrollArea(self)
-        self.theme_widget = QWidget(self.sub_menu_scroll)
-        self.theme_layout = QGridLayout(self.theme_widget)
-        self.theme_title_label = QLabel(self.theme_widget)
-        self.theme_d_n_label = QLabel(self.theme_widget)
-        self.theme_d_n_button = QPushButton_sound(self.theme_widget)
-        self.theme_list_label = QLabel(self.theme_widget)
-        self.theme_list_combobox = QComboBox(self.theme_widget)
-        self.theme_list_combobox.addItem("Vintage Elegance Light")
-        self.theme_list_combobox.addItem("Vintage Elegance Dark")
+        self.sub_menu_widget = QWidget(self.sub_menu_scroll)
+        self.sub_menu_layout = QGridLayout(self.sub_menu_widget)
+        """ Call functions """
+        sub_menu_ui(self)
+        open_func()
+#______________________________________________________________________________________________________________________
+    
+    def theme_widget_open(self):
+        """ Create objects """
+        self.title_label = QLabel(self.sub_menu_widget)
+        self.day_night_label = QLabel(self.sub_menu_widget)
+        self.day_night_button = QPushButton_sound(self.sub_menu_widget)
+        self.list_label = QLabel(self.sub_menu_widget)
+        self.list_combobox = QComboBox(self.sub_menu_widget)
+        self.list_combobox.addItem("Vintage Elegance Light")
+        self.list_combobox.addItem("Vintage Elegance Dark")
         """ Call functions """
         theme_ui(self)
         theme_retranslate(self)
@@ -59,19 +72,14 @@ class Settings_widget(QWidget):
 #______________________________________________________________________________________________________________________
 
     def sound_widget_open(self):
-        if self.sub_menu_scroll:
-            self.sub_menu_scroll.deleteLater()
         """ Create objects """
-        self.sub_menu_scroll = QScrollArea(self)
-        self.sound_widget = QWidget(self.sub_menu_scroll)
-        self.sound_layout = QGridLayout(self.sound_widget)
-        self.sound_title_label = QLabel(self.sound_widget)
-        self.sound_button_label = QLabel(self.sound_widget)
-        self.sound_button_button = QPushButton_sound(self.sound_widget)
-        self.sound_alert_label = QLabel(self.sound_widget)
-        self.sound_alert_button = QPushButton_sound(self.sound_widget)
-        self.sound_notification_label = QLabel(self.sound_widget)
-        self.sound_notification_button = QPushButton_sound(self.sound_widget)
+        self.title_label = QLabel(self.sub_menu_widget)
+        self.button_label = QLabel(self.sub_menu_widget)
+        self.button_button = QPushButton_sound(self.sub_menu_widget)
+        self.alert_label = QLabel(self.sub_menu_widget)
+        self.alert_button = QPushButton_sound(self.sub_menu_widget)
+        self.notification_label = QLabel(self.sub_menu_widget)
+        self.notification_button = QPushButton_sound(self.sub_menu_widget)
         """ Call functions """
         sound_ui(self)
         sound_retranslate(self)

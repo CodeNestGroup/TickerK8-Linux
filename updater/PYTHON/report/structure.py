@@ -1,17 +1,11 @@
 """ Import packages """
 import pathlib 
-import json
 """ Import PyQt5 packages """
 from PyQt5.QtWidgets import (
     QWidget,
-    QPushButton,
-    QLabel, 
+    QTextEdit,
     QScrollArea,
     QGridLayout
-)
-from PyQt5.QtCore import (
-    Qt,
-    QTimer
 )
 """ Import main modules """
 from .ui import *
@@ -27,13 +21,16 @@ class Report_widget(QWidget):
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2])
         """ Create objects """
         self.layout = QGridLayout(self)
-        self.report_textfield_textarea
-        self.report_send_button
-        self.report_clear_button
-        self.report_exit_button
+        self.textfield_textarea = QTextEdit(self)
+        self.send_button = QPushButton_sound(self, self)
+        self.clear_button = QPushButton_sound(self, self)
+        self.exit_button = QPushButton_sound(self, self)
         """ Call functions """
         report_ui(self)
         report_reload_style(self)
         report_retranslate(self)
         """ Connect functions """
+        #self.send_button.clicked.connect()
+        #self.clear_button.clicked.connect()
+        #self.exit_button.clicked.connect()
 #______________________________________________________________________________________________________________________
