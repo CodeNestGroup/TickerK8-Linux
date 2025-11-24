@@ -51,6 +51,7 @@ class Settings_widget(QWidget):
         self.sub_menu_scroll = QScrollArea(self)
         self.sub_menu_widget = QWidget(self.sub_menu_scroll)
         self.sub_menu_layout = QGridLayout(self.sub_menu_widget)
+        self.title_label = QLabel(self.sub_menu_widget)
         """ Call functions """
         sub_menu_ui(self)
         open_func()
@@ -58,7 +59,6 @@ class Settings_widget(QWidget):
     
     def theme_widget_open(self):
         """ Create objects """
-        self.title_label = QLabel(self.sub_menu_widget)
         self.day_night_label = QLabel(self.sub_menu_widget)
         self.day_night_button = QPushButton_sound(self.sub_menu_widget)
         self.list_label = QLabel(self.sub_menu_widget)
@@ -73,7 +73,6 @@ class Settings_widget(QWidget):
 
     def sound_widget_open(self):
         """ Create objects """
-        self.title_label = QLabel(self.sub_menu_widget)
         self.button_label = QLabel(self.sub_menu_widget)
         self.button_button = QPushButton_sound(self.sub_menu_widget)
         self.alert_label = QLabel(self.sub_menu_widget)
@@ -87,33 +86,27 @@ class Settings_widget(QWidget):
 #______________________________________________________________________________________________________________________
 
     def update_widget_open(self):
-        if self.sub_menu_scroll:
-            self.sub_menu_scroll.deleteLater()
         """ Create objects """
-        self.sub_menu_scroll = QScrollArea(self)
-        self.update_widget = QWidget(self.sub_menu_scroll)
-        self.update_layout = QGridLayout(self.update_widget)
-        self.update_title_label = QLabel(self.update_widget)
-        self.update_version_subtitle_label = QLabel(self.update_widget)
-        self.update_version_desc_title_label = QLabel(self.update_widget)
-        self.update_version_desc_label = QLabel(self.update_widget)
-        self.update_version_changelog_title_label = QLabel(self.update_widget)
-        self.update_version_changelog_button = QPushButton_sound(self.update_widget)
-        self.update_option_subtitle_label = QLabel(self.update_widget)
-        self.update_option_autoupdate_title_label = QLabel(self.update_widget)
-        self.update_option_autoupdate_button = QPushButton_sound(self.update_widget)
-        self.update_option_check_title_label = QLabel(self.update_widget)
-        self.update_option_check_button = QPushButton_sound(self.update_widget)
-        self.update_advanced_subtitle_label = QLabel(self.update_widget)
-        self.update_advanced_capacity_title_label = QLabel(self.update_widget)
-        self.update_advanced_capacity_combobox = QComboBox(self.update_widget)
-        self.update_advanced_capacity_combobox.addItem("500 KB/s")
-        self.update_advanced_capacity_combobox.addItem("1000KB/s")
-        self.update_advanced_capacity_combobox.addItem("2000KB/s")
-        self.update_advanced_capacity_combobox.addItem("5000KB/s")
-        self.update_advanced_capacity_combobox.addItem("Unlimited")
-        self.update_advanced_verification_title_label = QLabel(self.update_widget)
-        self.update_advanced_verification_button = QPushButton_sound(self.update_widget)
+        self.version_heading1_label = QLabel(self.sub_menu_widget)
+        self.version_desc_label = QLabel(self.sub_menu_widget)
+        self.version_desc_value_label = QLabel(self.sub_menu_widget)
+        self.version_changelog_label = QLabel(self.sub_menu_widget)
+        self.version_changelog_button = QPushButton_sound(self.sub_menu_widget)
+        self.option_subtitle_label = QLabel(self.sub_menu_widget)
+        self.option_autoupdate_title_label = QLabel(self.sub_menu_widget)
+        self.option_autoupdate_button = QPushButton_sound(self.sub_menu_widget)
+        self.option_check_title_label = QLabel(self.sub_menu_widget)
+        self.option_check_button = QPushButton_sound(self.sub_menu_widget)
+        self.advanced_subtitle_label = QLabel(self.sub_menu_widget)
+        self.advanced_capacity_title_label = QLabel(self.sub_menu_widget)
+        self.advanced_capacity_combobox = QComboBox(self.sub_menu_widget)
+        self.advanced_capacity_combobox.addItem("500 KB/s")
+        self.advanced_capacity_combobox.addItem("1000KB/s")
+        self.advanced_capacity_combobox.addItem("2000KB/s")
+        self.advanced_capacity_combobox.addItem("5000KB/s")
+        self.advanced_capacity_combobox.addItem("Unlimited")
+        self.advanced_verification_title_label = QLabel(self.sub_menu_widget)
+        self.advanced_verification_button = QPushButton_sound(self.sub_menu_widget)
         """ Call functions """
         update_ui(self)
         update_retranslate(self)
