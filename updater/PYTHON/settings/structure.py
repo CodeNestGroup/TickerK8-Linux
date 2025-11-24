@@ -115,8 +115,6 @@ class Settings_widget(QWidget):
 #______________________________________________________________________________________________________________________
 
     def language_widget_open(self):
-        if self.sub_menu_scroll:
-            self.sub_menu_scroll.deleteLater()
         """ Create objects """
         self.sub_menu_scroll = QScrollArea(self)
         self.language_widget = QWidget(self.sub_menu_scroll)
