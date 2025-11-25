@@ -79,8 +79,8 @@ def main_ui(self):
 #______________________________________________________________________________________________________________________
 
 def main_reload_style(self):
-    _global_config = json.load(open(self.main_path+'/CONFIG/global/global_config.json', 'r'))
-    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/main/'+_global_config['theme']+'.css')).read())
+    _t = json.load(open(self.main_path+'/CONFIG/global/global_config.json', 'r'))['theme']
+    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/main/'+_t+'.css')).read())
     self.settings_button.setIcon(QIcon(load_svg(str(), 256, 256)))
     self.settings_button.setIconSize(self.settings_button.size())
     self.instagram_button.setIcon(QIcon(load_svg(str(), 256, 256)))
@@ -89,7 +89,6 @@ def main_reload_style(self):
     self.github_button.setIconSize(self.github_button.size())
     self.discord_button.setIcon(QIcon(load_svg(str(), 256, 256)))
     self.discord_button.setIconSize(self.discord_button.size())
-    
 #______________________________________________________________________________________________________________________
 
 def main_retranslate(self):

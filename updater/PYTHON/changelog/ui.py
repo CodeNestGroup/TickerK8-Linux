@@ -52,8 +52,8 @@ def changelog_reload_style(self):
 #______________________________________________________________________________________________________________________
 
 def changelog_retranslate(self):
-    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
     _t = json.load(open(self.main_path+'/CONFIG/changelog/translate.json', 'r'))
+    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
     self.title_label.setText(_t['title_label'][_l])
     self.download_button.setText(_t['download_button'][_l])
     self.exit_button.setText(_t['exit_button'][_l])

@@ -111,38 +111,25 @@ class Settings_widget(QWidget):
         update_ui(self)
         update_retranslate(self)
         """ Connect functions """
-
 #______________________________________________________________________________________________________________________
 
     def language_widget_open(self):
         """ Create objects """
-        self.sub_menu_scroll = QScrollArea(self)
-        self.language_widget = QWidget(self.sub_menu_scroll)
-        self.language_layout = QGridLayout(self.language_widget)
-        self.language_title_label = QLabel(self.language_widget)
-        self.language_type_label = QLabel(self.language_widget)
-        self.language_type_combobox = QComboBox(self.language_widget)
-        self.language_type_combobox.addItem("English / English")
-        self.language_type_combobox.addItem("Polski / Polish ")
+        self.type_label = QLabel(self.sub_menu_widget)
+        self.type_combobox = QComboBox(self.sub_menu_widget)
+        self.type_combobox.addItem("English / English")
+        self.type_combobox.addItem("Polski / Polish ")
         """ Call functions """
         language_ui(self)
         language_retranslate(self)
         """ Connect functions """
-
 #______________________________________________________________________________________________________________________
     
     def report_widget_open(self):
-        if self.sub_menu_scroll:
-            self.sub_menu_scroll.deleteLater()
-        """ Create objects """
-        self.sub_menu_scroll = QScrollArea(self)
-        self.report_widget = QWidget(self.sub_menu_scroll)
-        self.report_layout = QGridLayout(self.report_widget)
-        self.report_title_label = QLabel(self.report_widget)
-        self.report_autoreport_title_label = QLabel(self.report_widget)
-        self.report_autoreport_button = QPushButton_sound(self.report_widget)
-        self.report_sendreport_title_label = QLabel(self.report_widget)
-        self.report_sendreport_button = QPushButton_sound(self.report_widget)
+        self.autoreport_title_label = QLabel(self.report_widget)
+        self.autoreport_button = QPushButton_sound(self.report_widget)
+        self.sendreport_title_label = QLabel(self.report_widget)
+        self.sendreport_button = QPushButton_sound(self.report_widget)
         """ Call functions """
         report_ui(self)
         report_retranslate(self)

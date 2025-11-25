@@ -1,0 +1,9 @@
+{
+    "title_label": ["Sound", "Dźwięk"],
+    "button_label": ["Button", "Guzik"],
+    "button_button": [["Disabled", "Enabled"], ["Wyłączone","Włączone"]],
+    "alert_label": ["Alert:", "Alarm:"],
+    "alert_button": [["Disabled", "Enabled"], ["Wyłączone","Włączone"]],
+    "notification_label": ["Notification:", "Powiadomienie:"],
+    "notification_button": [["Disabled", "Enabled"], ["Wyłączone","Włączone"]]
+}
