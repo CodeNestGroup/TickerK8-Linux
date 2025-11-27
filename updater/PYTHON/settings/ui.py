@@ -142,7 +142,9 @@ def theme_ui(self):
 
 def theme_retranslate(self):
     _t = json.load(open(self.main_path+'/CONFIG/settings/theme_translate.json', 'r'))
-    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
+    _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
+    _l = _global_config['language']
+    
     self.title_label.setText(_t['title_label'][_l])
     self.day_night_label.setText(_t['day_night_label'][_l])
     self.day_night_button.setText(_t['day_night_button'][_l][config d n ])
