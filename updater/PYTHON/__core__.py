@@ -20,6 +20,7 @@ from PyQt5.QtGui import (
 from main.structure import Main_widget
 from settings.structure import Settings_widget
 from changelog.structure import Changelog_widget
+from report.structure import Report_widget
 #______________________________________________________________________________________________________________________
 
 class app_controller(QWidget):
@@ -33,6 +34,7 @@ class app_controller(QWidget):
         self.main_widget = None
         self.settings_widget = None
         self.changelog_widget = None
+        self.report_widget = None 
         self.screen = QApplication.primaryScreen()
         self.geometry = self.screen.availableGeometry()
         self.main_setup()
@@ -59,6 +61,15 @@ class app_controller(QWidget):
     def changelog_setup(self):
         self.changelog_widget = Changelog_widget(self)
         self.layout.addWidget(self.changelog_widget)
+        pos_x = int(self.geometry.width()//4)
+        pos_y = int(self.geometry.height()//4)
+        width = int(self.geometry.width()//2)
+        height = int(self.geometry.height()//2)
+        self.setGeometry(QRect(pos_x, pos_y, width, height))
+
+    def report_setup(self):
+        self.report_widget = Report_widget(self)
+        self.layout.addWidget(self.report_widget)
         pos_x = int(self.geometry.width()//4)
         pos_y = int(self.geometry.height()//4)
         width = int(self.geometry.width()//2)
@@ -94,7 +105,17 @@ class app_controller(QWidget):
     def changelog_to_settings(self):
         self.changelog_widget.deleteLater()
         self.changelog_widget = None
-        self.settings_widget()
+        self.settings_setup()
+    
+    def settings_to_report(self):
+        self.settings_widget.deleteLater()
+        self.settings_widget = None
+        self.report_setup()
+
+    def report_to_settings(self):
+        self.report_widget.deleteLater()
+        self.report_widget = None
+        self.settings_setup()
 
 #______________________________________________________________________________________________________________________
 

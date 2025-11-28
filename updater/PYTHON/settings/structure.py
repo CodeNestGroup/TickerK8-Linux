@@ -11,6 +11,8 @@ from PyQt5.QtWidgets import (
 """ Import settings modules """
 from .ui import *
 from .logic import *
+""" Import button modules """
+from shadowbutton.structure import QPushButton_sound
 #______________________________________________________________________________________________________________________
 
 class Settings_widget(QWidget):

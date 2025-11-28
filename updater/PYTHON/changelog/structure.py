@@ -10,7 +10,8 @@ from PyQt5.QtWidgets import (
 """ Import main modules """
 from .ui import *
 from .logic import *
-""" Import application modules """
+""" Import button modules """
+from soundbutton.structure import QPushButton_sound
 #______________________________________________________________________________________________________________________
 
 class Changelog_widget(QWidget):

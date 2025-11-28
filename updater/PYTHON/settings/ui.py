@@ -144,10 +144,10 @@ def theme_retranslate(self):
     _t = json.load(open(self.main_path+'/CONFIG/settings/theme_translate.json', 'r'))
     _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
     _l = _global_config['language']
-    
+    _d = _global_config['theme']
     self.title_label.setText(_t['title_label'][_l])
     self.day_night_label.setText(_t['day_night_label'][_l])
-    self.day_night_button.setText(_t['day_night_button'][_l][config d n ])
+    self.day_night_button.setText(_t['day_night_button'][_l][_d])
     self.list_label.setText(_t['list_label'][_l])
 #______________________________________________________________________________________________________________________
 
@@ -191,14 +191,16 @@ def sound_ui(self):
 
 def sound_retranslate(self):
     _t = json.load(open(self.main_path+'/CONFIG/settings/sound_translate.json', 'r'))
-    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
+    _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
+    _l = _global_config['language']
+    _s = _global_config['sound']
     self.title_label.setText(_t['title_label'][_l])
     self.button_label.setText(_t['button_label'][_l])
-    self.button_button.setText(_t['button_button'][_l][config])
+    self.button_button.setText(_t['button_button'][_l][_s['_button_']])
     self.alert_label.setText(_t['alert_label'][_l])
-    self.alert_button.setText(_t['alert_button'][_l][config])
+    self.alert_button.setText(_t['alert_button'][_l][_s['_alert_']])
     self.notification_label.setText(_t['notification_label'][_l])
-    self.notification_button.setText(_t['notification_button'][_l][config])
+    self.notification_button.setText(_t['notification_button'][_l][_s['_notification_']])
 #______________________________________________________________________________________________________________________
 
 def update_ui(self):
@@ -286,22 +288,26 @@ def update_ui(self):
 
 def update_retranslate(self):
     _t = json.load(open(self.main_path+'/CONFIG/settings/update_translate.json', 'r'))
-    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
+    _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
+    _desc = json.load(open(self.main_path+'/CONFIG/GLOBAL/changelog.json', 'r'))['name']
+    _l = _global_config['language']
+    _a = _global_config['auto_update']
+    _c = _global_config['capacity']
     # Dorobić zmienna dla desc
     self.title_label.setText(_t['title_label'][_l])
     self.version_heading1_label.setText(_t['version_heading1_label'][_l])
     self.version_desc_label.setText(_t['version_desc_label'][_l])
-    #self.version_desc_value_label.setText(_t['version_desc_value_label'][_l])
+    self.version_desc_value_label.setText(_desc)
     self.version_changelog_label.setText(_t['version_changelog_label'][_l])
     self.version_changelog_button.setText(_t['version_changelog_button'][_l])
     self.option_heading1_label.setText(_t['option_heading1_label'][_l])
     self.option_autoupdate_label.setText(_t['option_autoupdate_label'][_l])
-    self.option_autoupdate_button.setText(_t['option_autoupdate_button'][_l][config])
+    self.option_autoupdate_button.setText(_t['option_autoupdate_button'][_l][_a])
     self.option_check_label.setText(_t['option_check_label'][_l])
     self.option_check_button.setText(_t['option_check_button'][_l])
     self.advanced_heading1_label.setText(_t['advanced_heading1_label'][_l])
     self.advanced_capacity_label.setText(_t['advanced_capacity_label'][_l])
-    self.advanced_capacity_combobox.setCurrentIndex(config)
+    self.advanced_capacity_combobox.setCurrentIndex(_c)
     self.advanced_verification_label.setText(_t['advanced_verification_label'][_l])
     self.advanced_verification_button.setText(_t['advanced_verification_button'][_l])
 #______________________________________________________________________________________________________________________
@@ -363,10 +369,12 @@ def report_ui(self):
 
 def report_retranslate(self):
     _t = json.load(open(self.main_path+'/CONFIG/settings/translate.json', 'r'))
-    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
+    _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
+    _l = _global_config['language']
+    _a = _global_config['auto_report']
     self.title_label.setText(_t['title_label'][_l])
     self.autoreport_label.setText(_t['autoreport_label'][_l])
-    self.autoreport_button.setText(_t['autoreport_button'][_l][conf])
+    self.autoreport_button.setText(_t['autoreport_button'][_l][_a])
     self.sendreport_label.setText(_t['sendreport_label'][_l])
     self.sendreport_button.setText(_t['sendreport_button'][_l])
 #______________________________________________________________________________________________________________________

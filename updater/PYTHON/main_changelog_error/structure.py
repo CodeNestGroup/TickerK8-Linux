@@ -3,36 +3,28 @@ import pathlib
 """ Import PyQt5 packages """
 from PyQt5.QtWidgets import (
     QWidget,
-    QTextEdit,
-    QScrollArea,
+    QLabel,
     QGridLayout
 )
 """ Import main modules """
 from .ui import *
 from .logic import *
-""" Import application modules """
-""" Import button modules """
-from shadowbutton.structure import QPushButton_sound
 #______________________________________________________________________________________________________________________
 
-class Report_widget(QWidget):
+class Main_changelog_error_widget(QWidget):
     def __init__(self, parent):
         super().__init__()
         self.setParent(parent)
-        """" Set paths, file name """
+        """ Set paths, file name """
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2])
         """ Create objects """
         self.layout = QGridLayout(self)
-        self.textfield_textarea = QTextEdit(self)
-        self.send_button = QPushButton_sound(self, self)
-        self.clear_button = QPushButton_sound(self, self)
-        self.exit_button = QPushButton_sound(self, self)
+        self.icon_label = QLabel(self)
+        self.loading_message_label = QLabel(self)
+        self.animation = None
         """ Call functions """
-        report_ui(self)
-        report_reload_style(self)
-        report_retranslate(self)
+        main_changelog_error_ui(self)
+        main_changelog_error_reload_style(self)
+        self.setup()
         """ Connect functions """
-        #self.send_button.clicked.connect()
-        #self.clear_button.clicked.connect()
-        #self.exit_button.clicked.connect()
 #______________________________________________________________________________________________________________________

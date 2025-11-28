@@ -10,6 +10,8 @@ from PyQt5.QtWidgets import (
 """ Import main modules """
 from .ui import *
 from .logic import *
+""" Import button modules """
+from shadowbutton.structure import QPushButton_shadow
 #______________________________________________________________________________________________________________________
 
 class Main_widget(QWidget):
@@ -26,11 +28,11 @@ class Main_widget(QWidget):
         self.update_label = QLabel(self)
         self.logo_c_n_g_label = QLabel(self)
         self.logo_ticker_label = QLabel(self)
-        self.settings_button = ShadowButton(self, self)
-        self.instagram_button = ShadowButton(self, self)
-        self.github_button = ShadowButton(self, self)
-        self.discord_button = ShadowButton(self, self)
-        self.start_button = ShadowButton(self, self)
+        self.settings_button = QPushButton_shadow(self, self)
+        self.instagram_button = QPushButton_shadow(self, self)
+        self.github_button = QPushButton_shadow(self, self)
+        self.discord_button = QPushButton_shadow(self, self)
+        self.start_button = QPushButton_shadow(self, self)
         """ Call functions """
         main_ui(self)
         main_reload_style(self)

@@ -45,7 +45,7 @@ class ShadowButton(QPushButton):
     """ Init Shadow function, setup shadow for button"""
     def initShadow(self):
         self.shadow = QGraphicsDropShadowEffect() # Create graphics effect
-        self.shadow.setBlurRadius(10) # Setup graphic effect, blur radius
+        self.shadow.setBlurRadius(10) # Setup graphic effect, blur radius1
         self.shadow.setXOffset(0) # Setup graphic effect, x offest
         self.shadow.setYOffset(0) # Setup graphic effect, y offest
         self.shadow.setColor(QColor(0, 0, 0, 240)) # Setup graphic effect, color

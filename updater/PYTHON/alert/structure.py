@@ -3,36 +3,34 @@ import pathlib
 """ Import PyQt5 packages """
 from PyQt5.QtWidgets import (
     QWidget,
-    QTextEdit,
+    QLabel,
     QScrollArea,
     QGridLayout
 )
 """ Import main modules """
 from .ui import *
 from .logic import *
-""" Import application modules """
 """ Import button modules """
-from shadowbutton.structure import QPushButton_sound
+from soundbutton.structure import QPushButton_sound
 #______________________________________________________________________________________________________________________
 
-class Report_widget(QWidget):
+class Alert_widget(QWidget):
     def __init__(self, parent):
         super().__init__()
         self.setParent(parent)
         """" Set paths, file name """
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2])
+        self.message_index = 0
         """ Create objects """
-        self.layout = QGridLayout(self)
-        self.textfield_textarea = QTextEdit(self)
-        self.send_button = QPushButton_sound(self, self)
-        self.clear_button = QPushButton_sound(self, self)
-        self.exit_button = QPushButton_sound(self, self)
+        self.background_layout = QGridLayout(self)
+        self.widget = QWidget(self)
+        self.layout = QGridLayout(self.widget)
+        self.text_label = QLabel(self.widget)
+        self.download_button = QPushButton_sound(self.widget)
+        self.exit_button = QPushButton_sound(self.widget)
         """ Call functions """
-        report_ui(self)
-        report_reload_style(self)
-        report_retranslate(self)
+        alert_ui(self)
+        alert_reload_style(self)
+        alert_retranslate(self)
         """ Connect functions """
-        #self.send_button.clicked.connect()
-        #self.clear_button.clicked.connect()
-        #self.exit_button.clicked.connect()
 #______________________________________________________________________________________________________________________
