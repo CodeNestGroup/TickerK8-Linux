@@ -35,5 +35,5 @@ class QPushButton_sound(QPushButton):
             print('click')
 
     def check_config(self):
-        return json.load(open(self.main_self.main_path+'/TickerK8_updater/APP_FILES/CONFIG/_00_settings_config.json', 'r'))['__sound_button__']
+        return json.load(open(self.main_self.main_path+'/TickerK8_updater/APP_FILES/CONFIG/_00_settings_config.json', 'r'))['sound_button']
 #______________________________________________________________________________________________________________________

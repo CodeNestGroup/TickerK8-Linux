@@ -27,10 +27,10 @@ def main_ui(self):
     """ Set property """
     self.logo_c_n_g_label.setProperty('class', 'icon_label')
     self.logo_ticker_label.setProperty('class', 'icon_label')
-    self.settings_button.setProperty('class', 'open_button')
-    self.instagram_button.setProperty('class', 'open_button')
-    self.github_button.setProperty('class', 'open_button')
-    self.discord_button.setProperty('class', 'open_button')
+    self.settings_button.setProperty('class', 'button')
+    self.instagram_button.setProperty('class', 'button')
+    self.github_button.setProperty('class', 'button')
+    self.discord_button.setProperty('class', 'button')
     """ Set layout """
     self.layout.addWidget(self.changelog_error_widget, 0, 0, 90, 50)
     self.layout.addWidget(self.changelog_scroll, 0, 0, 90, 50)
