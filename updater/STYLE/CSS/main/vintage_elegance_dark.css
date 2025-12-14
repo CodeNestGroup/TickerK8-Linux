@@ -1,18 +1,44 @@
 #main_widget{
-
+    background-color: #1a1a1a;
+    border: 0;
 }
 #changelog_scroll{
-
+    background-color: #282828;
+    border: 0;
 }
-#update_pregressbar{
-
+#update_progressbar{
+    color: #00000000;
+    background-color: #00000000;
+    border: 0;
+    margin-top: 2px;
+    text-align: right;
+    font-weight: 600;
+}
+#update_progressbar::chunk{
+    background-color: #282828;
+    margin: 0;
 }
 #update_label{
-
+    color: #c3c3c3;
+    background-color: #00000000;
+    border: 0;
+    padding: 0.5em;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
 }
 .icon_label{
-
+    background-color: #00000000
 }
 .button{
-    
+    color: #c3c3c3;
+    background-color: #282828;
+    border: 0;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+}
+.button:hover{
+    background-color: #282828;
 }

@@ -1,40 +1,111 @@
 #settings_widget{
-
+    background-color: #c3c3c3;
+    border: 0;
 }
 #menu_scroll{
-
+    background-color: #d4d4d4;
+    border: 0;
 }
 #menu_scroll_widget{
-
+    background-color: #00000000;
+    border: 0;
 }
 .menu_buttons{
-
+    color: #1a1a1a;
+    background-color: #c3c3c3;
+    border: 0;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+}
+.menu_buttons:hover{
+    background-color: #d4d4d4;
 }
 #exit_button{
-
+    color: #1a1a1a;
+    background-color: #c3c3c3;
+    border: 0;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+}
+#exit_button:hover{
+    background-color: #d4d4d4;
 }
 #sub_menu_scroll{
-
+    background-color: #d4d4d4;
+    border: 0;
 }
 #sub_menu_widget{
-
+    background-color: #00000000;
+    border: 0;
 }
 #title_label{
-
+    color: #1a1a1a;
+    padding: 1em;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
 }
 .heading1{
-
+    color: #1a1a1a;
+    background-color: #00000000;
+    padding: 1em;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.3em;
 }
-
 .name_label{
-
+    color: #1a1a1a;
+    background-color: #00000000;
+    padding: 2em;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
 }
 .value_label{
-    
+    color: #1a1a1a;
+    background-color: #00000000;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
 }
 .value_button{
-
+    color: #1a1a1a;
+    background-color: #c3c3c3;
+    border: 0;
+    margin: 2em 1em 2em 1em;
+    padding: 1em;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+}
+.value_button:hover{
+    background-color: #d4d4d4;
 }
 .value_combobox{
-
+    color: #1a1a1a;
+    background-color: #c3c3c3;
+    border: 0;
+    margin: 2em 1em 2em 1em;
+    padding: 1em;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+}
+.value_combobox:hover{
+    background-color: #d4d4d4;
+}
+.value_combobox QAbstractItemView{
+    color: #1a1a1a;
+    background-color: #c3c3c3;
+}
+.value_combobox::drop-down{
+    border: 0;
+    background-color: #c3c3c3;
 }

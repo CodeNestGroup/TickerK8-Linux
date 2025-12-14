@@ -5,7 +5,8 @@ from PyQt5.QtWidgets import (
     QWidget,
     QScrollArea,
     QLabel,
-    QGridLayout
+    QGridLayout,
+    QVBoxLayout
 )
 """ Import main modules """
 from .ui import *
@@ -18,13 +19,18 @@ class Changelog_widget(QWidget):
     def __init__(self, parent):
         super().__init__()
         self.setParent(parent)
+        self.changelog_data = data
         """" Set paths, file name """
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2])
         """ Create objects """
         self.layout = QGridLayout(self)
         self.title_label = QLabel(self)
         self.scroll = QScrollArea(self)
-        # Widget adding by script 
+        self.update_widget = QWidget(self.scroll)
+        self.update_layout = QVBoxLayout(self.update_widget)
+        self.update_title_label = QLabel(self.update_widget)
+        self.update_date_label = QLabel(self.update_widget)
+        self.update_text_label = QLabel(self.update_widget)
         self.download_button = QPushButton_sound(self)
         self.exit_button = QPushButton_sound(self)
         """ Call functions """
