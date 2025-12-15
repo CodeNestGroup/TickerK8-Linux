@@ -1,7 +1,16 @@
 """ Import packages """
+import json
 """ Import PyQt5 packages """
 from PyQt5.QtWidgets import (
-    QPushButton
+    QPushButton,
+    QGraphicsDropShadowEffect
+)
+from PyQt5.QtCore import (
+    pyqtProperty,
+    QPropertyAnimation
+)
+from PyQt5.QtGui import (
+    QColor
 )
 """ Import shadow button modules """
 from .ui import *
@@ -71,5 +80,6 @@ class QPushButton_shadow(QPushButton):
             print('click')
    
     def check_config(self):
-        return json.load(open(self.main_self.main_path+'/TickerK8_updater/APP_FILES/CONFIG/_00_settings_config.json', 'r'))['__sound_button__'] # Returning config
+        return 1
+        #return json.load(open(self.main_path+'/updater/CONFIG/GLOBAL/global_config.json', 'r'))['sound']['button'] # Returning config
 #______________________________________________________________________________________________________________________

@@ -22,26 +22,27 @@ class Main_widget(QWidget):
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2])
         """ Create objects """
         self.layout = QGridLayout(self)
-        self.changelog_error_widget = Changelog_error_widget(self)
-        self.changelog_scroll = QScrollArea(self)
-        self.update_progressbar = QProgressBar(self)
+        # Custo widget który przyjmuje tylko instrukcje co ma robic
+        # Dorobić ping, który sprawdza połączenie 
+        #self.changelog_error_widget = Changelog_error_widget(self)
+        #self.changelog_scroll = QScrollArea(self)
+        #self.update_progressbar = QProgressBar(self)
         self.update_label = QLabel(self)
         self.logo_c_n_g_label = QLabel(self)
         self.logo_ticker_label = QLabel(self)
-        self.settings_button = QPushButton_shadow(self, self)
-        self.instagram_button = QPushButton_shadow(self, self)
-        self.github_button = QPushButton_shadow(self, self)
-        self.discord_button = QPushButton_shadow(self, self)
-        self.start_button = QPushButton_shadow(self, self)
+        self.settings_button = QPushButton_shadow(self)
+        self.instagram_button = QPushButton_shadow(self)
+        self.github_button = QPushButton_shadow(self)
+        self.discord_button = QPushButton_shadow(self)
+        self.start_button = QPushButton_shadow(self)
         """ Call functions """
         main_ui(self)
         main_reload_style(self)
         main_retranslate(self)
         """ Connect functions """
-        #self.settings_button.clicked.connect(lambda: open_instagram(self))
-        #self.instagram_button.clicked.connect(lambda: open_instagram(self))
-        #self.github_button.clicked.connect(lambda: open_github(self))
-        #self.discord_button.clicked.connect(lambda: open_discord(self))
-        #self.start_button.clicked.connect(lambda: start_tickerk8(self))
+        self.instagram_button.clicked.connect(open_instagram)
+        self.github_button.clicked.connect(open_github)
+        self.discord_button.clicked.connect(open_discord)
+        self.start_button.clicked.connect(lambda: open_main_app(self))
 #______________________________________________________________________________________________________________________
 

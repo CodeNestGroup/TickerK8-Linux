@@ -7,16 +7,25 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtCore import (
     Qt,
-    QRectF
+    QRectF,
+    QSize
+)
+from PyQt5.QtGui import (
+    QIcon,
+    QPixmap,
+    QPainter
+)
+from PyQt5.QtSvg import (
+    QSvgRenderer
 )
 #______________________________________________________________________________________________________________________
 
 def main_ui(self):
     """ Set object name """
     self.setObjectName('main_widget')
-    self.changelog_scroll.setObjectName('changelog_scroll')
-    self.update_progressbar.setObjectName('update_progressbar')
-    self.update_label.setObjectName('update_label')
+    #self.changelog_scroll.setObjectName('changelog_scroll')
+    #self.update_progressbar.setObjectName('update_progressbar')
+    #self.update_label.setObjectName('update_label')
     self.logo_c_n_g_label.setObjectName('logo_c_n_g_label')
     self.logo_ticker_label.setObjectName('logo_ticker_label')
     self.settings_button.setObjectName('settings_button')
@@ -32,10 +41,10 @@ def main_ui(self):
     self.github_button.setProperty('class', 'button')
     self.discord_button.setProperty('class', 'button')
     """ Set layout """
-    self.layout.addWidget(self.changelog_error_widget, 0, 0, 90, 50)
-    self.layout.addWidget(self.changelog_scroll, 0, 0, 90, 50)
-    self.layout.addWidget(self.update_progressbar, 90, 0, 10, 50)
-    self.layout.addWidget(self.update_label, 90, 0, 10, 50)
+    #self.layout.addWidget(self.changelog_error_widget, 0, 0, 90, 50)
+    #self.layout.addWidget(self.changelog_scroll, 0, 0, 90, 50)
+    #self.layout.addWidget(self.update_progressbar, 90, 0, 10, 50)
+    #self.layout.addWidget(self.update_label, 90, 0, 10, 50)
     self.layout.addWidget(self.logo_c_n_g_label, 0, 50, 25, 25)
     self.layout.addWidget(self.logo_ticker_label, 0, 75, 25, 25)
     self.layout.addWidget(self.settings_button, 30, 51, 25, 23)
@@ -50,12 +59,12 @@ def main_ui(self):
         self.layout.setColumnStretch(enc, 1)
     self.setLayout(self.layout)
     """ Set widget """
-    self.changelog_error_widget.setHidden(False)
-    self.changelog_scroll.setHidden(True)
-    self.update_progressbar.setHidden(True)
-    self.update_label.setHidden(True)
-    self.changelog_scroll.setWidgetResizable(True)
-    self.changelog_scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+    #self.changelog_error_widget.setHidden(False)
+    #self.changelog_scroll.setHidden(True)
+    #self.update_progressbar.setHidden(True)
+    #self.update_label.setHidden(True)
+    #self.changelog_scroll.setWidgetResizable(True)
+    #self.changelog_scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
     """ Set label """
     self.logo_c_n_g_label.setAlignment(Qt.AlignCenter)
     self.logo_ticker_label.setAlignment(Qt.AlignCenter)
@@ -66,9 +75,9 @@ def main_ui(self):
     self.start_button.setDisabled(True)
     """ Set size """
     self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.changelog_scroll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.update_progressbar.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.update_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    #self.changelog_scroll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    #self.update_progressbar.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    #self.update_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.logo_c_n_g_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.logo_ticker_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.settings_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -79,7 +88,7 @@ def main_ui(self):
 #______________________________________________________________________________________________________________________
 
 def main_reload_style(self):
-    _t = json.load(open(self.main_path+'/CONFIG/global/global_config.json', 'r'))['theme']
+    _t = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['theme']
     self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/main/'+_t+'.css')).read())
     self.settings_button.setIcon(QIcon(load_svg(str(), 256, 256)))
     self.settings_button.setIconSize(self.settings_button.size())
@@ -95,4 +104,16 @@ def main_retranslate(self):
     _t = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r'))
     _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
     self.start_button.setText(_t['start_button'][0][_l])
+#______________________________________________________________________________________________________________________
+
+def load_svg(svg_path, width, height):
+    renderer = QSvgRenderer(svg_path) 
+    pixmap = QPixmap(width, height) 
+    pixmap.fill(Qt.transparent) 
+    painter = QPainter(pixmap) 
+    renderer.render(painter)
+    painter.end()
+    scaled_pixmap = pixmap.scaled(QSize(width, height), Qt.KeepAspectRatio, Qt.SmoothTransformation)
+    return scaled_pixmap
+#______________________________________________________________________________________________________________________
 

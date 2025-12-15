@@ -15,12 +15,14 @@ from soundbutton.structure import QPushButton_sound
 #______________________________________________________________________________________________________________________
 
 class Alert_widget(QWidget):
-    def __init__(self, parent):
+    def __init__(self, parent, message_index=0):
         super().__init__()
         self.setParent(parent)
+        self.parent_width = parent.width()
+        self.parent_height = parent.height()
         """" Set paths, file name """
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2])
-        self.message_index = 0
+        self.message_index = message_index
         """ Create objects """
         self.background_layout = QGridLayout(self)
         self.widget = QWidget(self)

@@ -48,6 +48,7 @@ class app_controller(QWidget):
         width = int(self.geometry.width()//2)
         height = int(self.geometry.height()//2)
         self.setGeometry(QRect(pos_x, pos_y, width, height))
+        self.main_widget.settings_button.clicked.connect(lambda: main_to_settings(self))
 
     def settings_setup(self):
         self.settings_widget = Settings_widget(self)
@@ -57,6 +58,8 @@ class app_controller(QWidget):
         width = int(self.geometry.width()//2)
         height = int(self.geometry.height()//2)
         self.setGeometry(QRect(pos_x, pos_y, width, height))
+        #self.settings_widget.
+        self.settings_widget.exit_button.clicked.connect(lambda: settings_to_main(self))
     
     def changelog_setup(self):
         self.changelog_widget = Changelog_widget(self)
@@ -66,6 +69,7 @@ class app_controller(QWidget):
         width = int(self.geometry.width()//2)
         height = int(self.geometry.height()//2)
         self.setGeometry(QRect(pos_x, pos_y, width, height))
+        # Dodanie, że albo z settings albo z main 
 
     def report_setup(self):
         self.report_widget = Report_widget(self)
@@ -75,6 +79,7 @@ class app_controller(QWidget):
         width = int(self.geometry.width()//2)
         height = int(self.geometry.height()//2)
         self.setGeometry(QRect(pos_x, pos_y, width, height))
+        self.report_widget.exit_button.clicked.connect(lambda: report_to_settings(self))
 #______________________________________________________________________________________________________________________
 
     def main_to_settings(self):
@@ -120,7 +125,7 @@ class app_controller(QWidget):
 #______________________________________________________________________________________________________________________
 
 def set_font():
-    font_id = QFontDatabase.addApplicationFont(str(pathlib.Path(__file__).resolve().parents[3])+'/updater/STYLE/FONTS/NotoSerif-VariableFont_wdth,wght.ttf')
+    font_id = QFontDatabase.addApplicationFont(str(pathlib.Path(__file__).resolve().parents[2])+'/updater/STYLE/FONTS/NotoSerif-VariableFont_wdth,wght.ttf')
     font_families = QFontDatabase.applicationFontFamilies(font_id) 
     return QFont(font_families[0])
 #______________________________________________________________________________________________________________________
@@ -130,4 +135,4 @@ if __name__ == '__main__':
     application.setFont(set_font())
     controller = app_controller()
     controller.setHidden(False)
-    sys.exit(app.exec_())
+    sys.exit(application.exec_())

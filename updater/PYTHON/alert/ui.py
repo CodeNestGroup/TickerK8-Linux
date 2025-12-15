@@ -40,6 +40,7 @@ def alert_ui(self):
     """ Set label """
     self.text_label.setAlignment(Qt.AlignCenter)
     """ Set Size """
+    self.setGeometry(QRect(0,0,self.parent_width, self.parent_height))
     self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.text_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)

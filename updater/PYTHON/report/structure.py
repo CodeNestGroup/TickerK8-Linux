@@ -12,7 +12,7 @@ from .ui import *
 from .logic import *
 """ Import application modules """
 """ Import button modules """
-from shadowbutton.structure import QPushButton_sound
+from soundbutton.structure import QPushButton_sound
 #______________________________________________________________________________________________________________________
 
 class Report_widget(QWidget):
@@ -32,7 +32,6 @@ class Report_widget(QWidget):
         report_reload_style(self)
         report_retranslate(self)
         """ Connect functions """
-        #self.send_button.clicked.connect()
-        #self.clear_button.clicked.connect()
-        #self.exit_button.clicked.connect()
+        self.send_button.clicked.connect(lambda: send_report(self))
+        self.clear_button.clicked.connect(self.textfield_textarea.setText(''))
 #______________________________________________________________________________________________________________________

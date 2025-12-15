@@ -37,6 +37,8 @@ def notification_ui(self):
     """ Set label """
     self.text_label.setAlignment(Qt.AlignCenter)
     """ Set size """
+    self.setFixedSize(QSize(self.parent_width, self.parent_height//5))
+    self.setGeometry(QRect(0, 0, self.width(), self.height()//5))
     self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.text_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)

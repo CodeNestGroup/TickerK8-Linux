@@ -18,12 +18,15 @@ from shadowbutton.structure import QPushButton_sound
 #______________________________________________________________________________________________________________________
 
 class Notification_widget(QWidget):
-    def __init__(self, parent):
+    def __init__(self, parent, message_index=0):
         super().__init__()
         self.setParent(parent)
+        self.parent_width = parent.width()
+        self.parent_height = parent.height()
         """" Set paths, file name """
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2])
-        self.message_index = 0
+        self.message_index = message_index
+        self.opened = False
         """ Create objects """
         self.background_layout = QGridLayout(self)
         self.widget = QWidget(self)
@@ -35,5 +38,6 @@ class Notification_widget(QWidget):
         notification_ui(self)
         notification_reload_style(self)
         notification_retranslate(self)
+        open(self)
         """ Connect functions """
 #______________________________________________________________________________________________________________________
