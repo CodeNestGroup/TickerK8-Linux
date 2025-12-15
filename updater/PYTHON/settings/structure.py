@@ -71,6 +71,8 @@ class Settings_widget(QWidget):
         theme_ui(self)
         theme_retranslate(self)
         """ Connect functions """
+        self.day_night_button.clicked.connect(lambda: change_d_n(self))
+        self.list_combobox.changed.connect(lambda: change_theme(self))
 #______________________________________________________________________________________________________________________
 
     def sound_widget_open(self):
@@ -85,6 +87,9 @@ class Settings_widget(QWidget):
         sound_ui(self)
         sound_retranslate(self)
         """ Connect functions """
+        self.button_button.clicked.connect(lambda: change_sound_d_e(self, 'button'))
+        self.alert_button.clicked.connect(lambda: change_sound_d_e(self, 'alert'))
+        self.notification_button.clicked.connect(lambda: change_sound_d_e(self, 'notification'))
 #______________________________________________________________________________________________________________________
 
     def update_widget_open(self):
@@ -113,6 +118,11 @@ class Settings_widget(QWidget):
         update_ui(self)
         update_retranslate(self)
         """ Connect functions """
+        self.version_changelog_button.clicked.connect()
+        self.option_autoupdate_button.clicked.connect()
+        self.option_check_button.clicked.connect()
+        self.advanced_capacity_combobox.changed.connect(lambda: change_capacity(self))
+        self.advanced_verification_button.clicked.connect()
 #______________________________________________________________________________________________________________________
 
     def language_widget_open(self):
@@ -125,6 +135,7 @@ class Settings_widget(QWidget):
         language_ui(self)
         language_retranslate(self)
         """ Connect functions """
+        self.type_combobox.changed.connect(lambda: change_language(self))
 #______________________________________________________________________________________________________________________
     
     def report_widget_open(self):
@@ -136,5 +147,7 @@ class Settings_widget(QWidget):
         report_ui(self)
         report_retranslate(self)
         """ Connect functions """
+        self.autoreport_button.clicked.connect(lambda: change_auto_report(self))
+        # Podpiąć send report w core 
 #______________________________________________________________________________________________________________________
 

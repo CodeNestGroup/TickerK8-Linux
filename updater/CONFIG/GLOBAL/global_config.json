@@ -3,9 +3,9 @@
     "theme": "vintage_elegance_dark",
     "theme_index" : 1,
     "sound": {
-        "_button_": 0,
-        "_alert_": 0,
-        "_notification_": 0
+        "button": 0,
+        "alert": 0,
+        "notification": 0
     },
     "auto_update": 0,
     "capacity": 4,
