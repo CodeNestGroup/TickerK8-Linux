@@ -1,4 +1,6 @@
 """ Import packages """
+import json
+import pathlib
 """ Import PyQt5 packages """
 from PyQt5.QtWidgets import (
     QPushButton
@@ -12,6 +14,8 @@ class QPushButton_sound(QPushButton):
     def __init__(self, parent):
         super().__init__()
         self.setParent(parent)
+        """" Set paths, file name """
+        self.main_path = str(pathlib.Path(__file__).resolve().parents[2])
         self.clicked.connect(self.click_sound) 
 
     def enterEvent(self, event):
@@ -35,5 +39,5 @@ class QPushButton_sound(QPushButton):
             print('click')
 
     def check_config(self):
-        return json.load(open(self.main_self.main_path+'/TickerK8_updater/APP_FILES/CONFIG/_00_settings_config.json', 'r'))['sound_button']
+        return json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['sound']['button']
 #______________________________________________________________________________________________________________________

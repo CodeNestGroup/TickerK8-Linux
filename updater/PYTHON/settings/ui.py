@@ -141,14 +141,14 @@ def theme_ui(self):
 #______________________________________________________________________________________________________________________
 
 def theme_retranslate(self):
-    _t = json.load(open(self.main_path+'/CONFIG/settings/theme_translate.json', 'r'))
-    _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
-    _l = _global_config['language']
-    _d = _global_config['theme']
-    self.title_label.setText(_t['title_label'][_l])
-    self.day_night_label.setText(_t['day_night_label'][_l])
-    self.day_night_button.setText(_t['day_night_button'][_l][_d])
-    self.list_label.setText(_t['list_label'][_l])
+    t = json.load(open(self.main_path+'/CONFIG/settings/theme_translate.json', 'r'))
+    g = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
+    l = g['language']
+    d = g['theme_index']
+    self.title_label.setText(t['title_label'][l])
+    self.day_night_label.setText(t['day_night_label'][l])
+    self.day_night_button.setText(t['day_night_button'][l][d])
+    self.list_label.setText(t['list_label'][l])
 #______________________________________________________________________________________________________________________
 
 def sound_ui(self):

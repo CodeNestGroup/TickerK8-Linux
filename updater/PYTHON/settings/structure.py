@@ -5,8 +5,10 @@ from PyQt5.QtWidgets import (
     QWidget,
     QPushButton,
     QLabel, 
+    QComboBox,
     QScrollArea,
-    QGridLayout
+    QGridLayout,
+    QVBoxLayout
 )
 """ Import settings modules """
 from .ui import *
@@ -37,13 +39,13 @@ class Settings_widget(QWidget):
         settings_ui(self)
         settings_reload_style(self)
         settings_retranslate(self)
-        sub_menu_open(self, theme_widget_open(self))
+        self.sub_menu_open(self.theme_widget_open)
         """ Connect functions """
-        self.menu_theme_button.clicked.connect(sub_menu_ui(self, theme_widget_open(self)))
-        self.menu_sound_button.clicked.connect(sub_menu_ui(self, sound_widget_open(self)))
-        self.menu_update_button.clicked.connect(sub_menu_ui(self, update_widget_open(self)))
-        self.menu_language_button.clicked.connect(sub_menu_ui(self, language_widget_open(self)))
-        self.menu_report_button.clicked.connect(sub_menu_ui(self, report_widget_open(self)))
+        self.menu_theme_button.clicked.connect(lambda: self.sub_menu_open(self.theme_widget_open))
+        self.menu_sound_button.clicked.connect(lambda: self.sub_menu_open(self.sound_widget_open))
+        self.menu_update_button.clicked.connect(lambda: self.sub_menu_open(self.update_widget_open))
+        self.menu_language_button.clicked.connect(lambda: self.sub_menu_open(self.language_widget_open))
+        self.menu_report_button.clicked.connect(lambda: self.sub_menu_open(self.report_widget_open))
 #______________________________________________________________________________________________________________________
 
     def sub_menu_open(self, open_func):
@@ -72,7 +74,7 @@ class Settings_widget(QWidget):
         theme_retranslate(self)
         """ Connect functions """
         self.day_night_button.clicked.connect(lambda: change_d_n(self))
-        self.list_combobox.changed.connect(lambda: change_theme(self))
+        self.list_combobox.currentIndexChanged.connect(lambda: change_theme(self))
 #______________________________________________________________________________________________________________________
 
     def sound_widget_open(self):

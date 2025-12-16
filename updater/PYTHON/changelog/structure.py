@@ -16,7 +16,7 @@ from soundbutton.structure import QPushButton_sound
 #______________________________________________________________________________________________________________________
 
 class Changelog_widget(QWidget):
-    def __init__(self, parent):
+    def __init__(self, parent, data):
         super().__init__()
         self.setParent(parent)
         self.changelog_data = data
