@@ -1,7 +1,4 @@
 """ Import packages """
-import json
-import urllib.request
-import requests
 """ Import PyQT5 packages """
 from PyQt5.QtCore import (
     QTimer,

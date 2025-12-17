@@ -1,8 +1,7 @@
 {
     "start_button": [
-        ["Open", "Otwórz"],
-        ["Updating", "Aktualizowanie"],
-        ["Update failed", "Błąd aktualizacji"],
-        ["No connection", "Brak połączenia"]
+        ["Checking", "Sprawdzanie"],
+        ["Download", "Pobierz"],
+        ["Open", "Otwórz"]
     ]
 }

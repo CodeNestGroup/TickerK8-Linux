@@ -59,7 +59,7 @@ class app_controller(QWidget):
         self.ping_thread.signal.connect(self.main_widget.main_connect_controller)
         self.main_widget.changelog_widget.connection_signal.connect(self.main_changelog_connect)
         self.main_widget.settings_button.clicked.connect(self.main_to_settings)
-
+    
     def settings_setup(self):
         self.settings_widget = Settings_widget(self)
         self.layout.addWidget(self.settings_widget)
@@ -148,7 +148,6 @@ class app_controller(QWidget):
         signal = pyqtSignal(bool)
         def __init__(self):
             super().__init__()
-            self.is_connect = None
 
         def run(self):
             while True:
@@ -159,13 +158,9 @@ class app_controller(QWidget):
             try:
                 socket.setdefaulttimeout(3)
                 socket.socket(socket.AF_INET, socket.SOCK_STREAM).connect(("8.8.8.8", 53))
-                if self.is_connect == False or self.is_connect == None:
-                    self.is_connect = True
-                    self.signal.emit(self.is_connect)
+                self.signal.emit(True)
             except socket.error:
-                if self.is_connect == True or self.is_connect == None:
-                    self.is_connect = False
-                    self.signal.emit(self.is_connect)
+                self.signal.emit(False)
 #______________________________________________________________________________________________________________________
 
 def set_font():

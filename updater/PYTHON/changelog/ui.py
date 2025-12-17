@@ -18,16 +18,12 @@ def changelog_ui(self):
     self.update_title_label.setObjectName('update_title_label')
     self.update_date_label.setObjectName('update_date_label')
     self.update_text_label.setObjectName('update_text_label')
-    self.download_button.setObjectName('download_button')
     self.exit_button.setObjectName('exit_button')
     """ Set property """
-    self.download_button.setProperty('class', 'buttons')
-    self.exit_button.setProperty('class', 'buttons')
     """ Set layout """
     self.layout.addWidget(self.title_label, 5, 5, 10, 90)
     self.layout.addWidget(self.scroll, 20, 5, 60, 90)
-    self.layout.addWidget(self.download_button, 85, 40, 4, 20)
-    self.layout.addWidget(self.exit_button, 91, 40, 4, 20)
+    self.layout.addWidget(self.exit_button, 89, 40, 6, 20)
     self.layout.setSpacing(0)
     self.layout.setContentsMargins(0,0,0,0)
     for enc in range(100):
@@ -51,7 +47,6 @@ def changelog_ui(self):
     self.update_date_label.setAlignment(Qt.AlignCenter)
     self.update_text_label.setWordWrap(True)
     """ Set button """
-    self.download_button.setDisabled(True)
     """ Set size """
     self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -60,7 +55,6 @@ def changelog_ui(self):
     self.update_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.update_date_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.update_text_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.download_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.exit_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 #______________________________________________________________________________________________________________________
 
@@ -77,7 +71,6 @@ def changelog_retranslate(self):
     self.update_title_label.setText(_c['name'])
     self.update_date_label.setText(str(_c['published_at']).replace('T', ' ').replace('Z', ''))
     self.update_text_label.setText(_c['body'])
-    self.download_button.setText(_t['download_button'][_l])
     self.exit_button.setText(_t['exit_button'][_l])
 #______________________________________________________________________________________________________________________    
     

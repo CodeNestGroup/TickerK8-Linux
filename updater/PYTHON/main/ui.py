@@ -59,6 +59,7 @@ def main_ui(self):
     self.logo_c_n_g_label.setAlignment(Qt.AlignCenter)
     self.logo_ticker_label.setAlignment(Qt.AlignCenter)
     """ Set button """
+    self.start_button.setDisabled(True)
     """ Set size """
     self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.logo_c_n_g_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)

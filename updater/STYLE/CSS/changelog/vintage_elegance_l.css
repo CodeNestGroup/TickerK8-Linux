@@ -38,7 +38,7 @@
     font-weight: 400;
     letter-spacing: 0.3em;
 }
-.buttons{
+#exit_button{
     color: #1a1a1a;
     background-color: #c3c3c3;
     border: 0;
@@ -46,6 +46,6 @@
     font-weight: 400;
     letter-spacing: 0.3em;
 }
-.buttons:hover{
+.exit_button:hover{
     background-color: #d4d4d4;
 }

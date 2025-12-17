@@ -1,0 +1,13 @@
+{
+    "label": [
+      ["Creating backup...", "Tworzenie kopii zapasowej..."],
+      ["Downloading...","Pobieranie..."],
+      ["Unpacking...", "Rozpakowywanie..."],
+      ["Checking compatibility...", "Sprawdzanie kontatybilności..."],
+      ["Installing...", "Instalowanie..."],
+      ["Deleting backup...", "Usuwanie kopii zapasowej..."],
+      ["You have actuall version", "Masz aktualną wersje"],
+      ["Update failed", "Błąd aktualizacji"],
+      ["Update stopped. Waiting for connection.", "Pobieranie zapauzowane. Oczekiwanie do połączenie."]
+   ]
+}

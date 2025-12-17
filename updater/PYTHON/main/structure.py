@@ -22,6 +22,7 @@ class Main_widget(QWidget):
         self.setParent(parent)
         """" Set paths, file name """
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2])
+        self.last_ping = False
         """ Create objects """
         self.layout = QGridLayout(self)
         self.changelog_widget = Changelog_widget(self)
@@ -41,12 +42,17 @@ class Main_widget(QWidget):
         self.instagram_button.clicked.connect(open_instagram)
         self.github_button.clicked.connect(open_github)
         self.discord_button.clicked.connect(open_discord)
-        self.start_button.clicked.connect(lambda: open_main_app(self))
+        self.update_widget.update_status.connect(self.update_status_handel)
     
     def main_connect_controller(self, b):
-        if b:
+        if b and not self.last_ping:
             main_connect(self)
-        else:
+            self.last_ping = True
+        elif not b and self.last_ping:
             main_no_connect(self)
+            self.last_ping = False
+    
+    def update_status_handel(self, b):
+        update_status_controller(self, b)
 #______________________________________________________________________________________________________________________
 

@@ -33,13 +33,10 @@ class Changelog_widget(QWidget):
         self.update_title_label = QLabel(self.update_widget)
         self.update_date_label = QLabel(self.update_widget)
         self.update_text_label = QLabel(self.update_widget)
-        self.download_button = QPushButton_sound(self)
         self.exit_button = QPushButton_sound(self)
         """ Call functions """
         changelog_ui(self)
         changelog_reload_style(self)
         changelog_retranslate(self)
         """ Connect functions  """
-        #self.download_button.clicked.connect()
-        #self.exit_button.clicked.connect()
 #______________________________________________________________________________________________________________________
