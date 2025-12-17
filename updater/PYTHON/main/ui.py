@@ -39,7 +39,7 @@ def main_ui(self):
     self.discord_button.setProperty('class', 'button')
     """ Set layout """
     self.layout.addWidget(self.changelog_widget, 0, 0, 90, 50)
-    
+    self.layout.addWidget(self.update_widget, 90, 0, 10, 50)
     self.layout.addWidget(self.logo_c_n_g_label, 0, 50, 25, 25)
     self.layout.addWidget(self.logo_ticker_label, 0, 75, 25, 25)
     self.layout.addWidget(self.settings_button, 30, 51, 25, 23)

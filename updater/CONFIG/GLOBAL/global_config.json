@@ -1,13 +1,13 @@
 {
     "language": 0,
-    "theme": "vintage_elegance_dark",
-    "theme_index" : 1,
+    "theme": "vintage_elegance_d",
+    "theme_index": 1,
     "sound": {
-        "button": 0,
-        "alert": 0,
-        "notification": 0
+        "button": false,
+        "alert": false,
+        "notification": false
     },
-    "auto_update": 0,
+    "auto_update": true,
     "capacity": 4,
-    "auto_report": 0
+    "auto_report": false
 }

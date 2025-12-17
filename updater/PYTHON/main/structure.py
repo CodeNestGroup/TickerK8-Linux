@@ -13,6 +13,7 @@ from .logic import *
 """ Import custom modules """
 from soundbutton.structure import QPushButton_sound
 from main_changelog.structure import Changelog_widget
+from main_update.structure import Update_widget
 #______________________________________________________________________________________________________________________
 
 class Main_widget(QWidget):
@@ -24,7 +25,7 @@ class Main_widget(QWidget):
         """ Create objects """
         self.layout = QGridLayout(self)
         self.changelog_widget = Changelog_widget(self)
-        
+        self.update_widget = Update_widget(self)
         self.logo_c_n_g_label = QLabel(self)
         self.logo_ticker_label = QLabel(self)
         self.settings_button = QPushButton_sound(self)

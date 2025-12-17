@@ -10,6 +10,9 @@ from PyQt5.QtWidgets import (
     QGridLayout,
     QVBoxLayout
 )
+from PyQt5.QtCore import (
+    pyqtSignal
+)
 """ Import settings modules """
 from .ui import *
 from .logic import *
@@ -18,6 +21,8 @@ from soundbutton.structure import QPushButton_sound
 #______________________________________________________________________________________________________________________
 
 class Settings_widget(QWidget):
+    report_created = pyqtSignal()
+    update_created = pyqtSignal()
     def __init__(self, parent):
         super().__init__()
         self.setParent(parent)
@@ -101,30 +106,30 @@ class Settings_widget(QWidget):
         self.version_desc_value_label = QLabel(self.sub_menu_widget)
         self.version_changelog_label = QLabel(self.sub_menu_widget)
         self.version_changelog_button = QPushButton_sound(self.sub_menu_widget)
-        self.option_subtitle_label = QLabel(self.sub_menu_widget)
-        self.option_autoupdate_title_label = QLabel(self.sub_menu_widget)
+        self.option_heading1_label = QLabel(self.sub_menu_widget)
+        self.option_autoupdate_label = QLabel(self.sub_menu_widget)
         self.option_autoupdate_button = QPushButton_sound(self.sub_menu_widget)
-        self.option_check_title_label = QLabel(self.sub_menu_widget)
+        self.option_check_label = QLabel(self.sub_menu_widget)
         self.option_check_button = QPushButton_sound(self.sub_menu_widget)
-        self.advanced_subtitle_label = QLabel(self.sub_menu_widget)
-        self.advanced_capacity_title_label = QLabel(self.sub_menu_widget)
+        self.advanced_heading1_label = QLabel(self.sub_menu_widget)
+        self.advanced_capacity_label = QLabel(self.sub_menu_widget)
         self.advanced_capacity_combobox = QComboBox(self.sub_menu_widget)
         self.advanced_capacity_combobox.addItem("500 KB/s")
         self.advanced_capacity_combobox.addItem("1000KB/s")
         self.advanced_capacity_combobox.addItem("2000KB/s")
         self.advanced_capacity_combobox.addItem("5000KB/s")
         self.advanced_capacity_combobox.addItem("Unlimited")
-        self.advanced_verification_title_label = QLabel(self.sub_menu_widget)
+        self.advanced_verification_label = QLabel(self.sub_menu_widget)
         self.advanced_verification_button = QPushButton_sound(self.sub_menu_widget)
         """ Call functions """
         update_ui(self)
         update_retranslate(self)
         """ Connect functions """
-        self.version_changelog_button.clicked.connect()
-        self.option_autoupdate_button.clicked.connect()
-        self.option_check_button.clicked.connect()
-        self.advanced_capacity_combobox.changed.connect(lambda: change_capacity(self))
-        self.advanced_verification_button.clicked.connect()
+        self.option_autoupdate_button.clicked.connect(lambda: change_auto_update(self))
+        self.option_check_button.clicked.connect(lambda: get_releases_file(self))
+        self.advanced_capacity_combobox.currentIndexChanged.connect(lambda: change_capacity(self))
+        self.advanced_verification_button.clicked.connect(lambda: check_compatibility(self))
+        self.update_created.emit()
 #______________________________________________________________________________________________________________________
 
     def language_widget_open(self):
@@ -137,19 +142,19 @@ class Settings_widget(QWidget):
         language_ui(self)
         language_retranslate(self)
         """ Connect functions """
-        self.type_combobox.changed.connect(lambda: change_language(self))
+        self.type_combobox.currentIndexChanged.connect(lambda: change_language(self))
 #______________________________________________________________________________________________________________________
     
     def report_widget_open(self):
-        self.autoreport_title_label = QLabel(self.report_widget)
-        self.autoreport_button = QPushButton_sound(self.report_widget)
-        self.sendreport_title_label = QLabel(self.report_widget)
-        self.sendreport_button = QPushButton_sound(self.report_widget)
+        self.autoreport_label = QLabel(self.sub_menu_widget)
+        self.autoreport_button = QPushButton_sound(self.sub_menu_widget)
+        self.sendreport_label = QLabel(self.sub_menu_widget)
+        self.sendreport_button = QPushButton_sound(self.sub_menu_widget)
         """ Call functions """
         report_ui(self)
         report_retranslate(self)
         """ Connect functions """
         self.autoreport_button.clicked.connect(lambda: change_auto_report(self))
-        # Podpiąć send report w core 
+        self.report_created.emit()
 #______________________________________________________________________________________________________________________
 

@@ -19,9 +19,11 @@ class Changelog_widget(QWidget):
     def __init__(self, parent, data):
         super().__init__()
         self.setParent(parent)
-        self.changelog_data = data
         """" Set paths, file name """
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2])
+        if data == '':
+            data = json.load(open(self.main_path+'/CONFIG/GLOBAL/changelog.json', 'r'))
+        self.changelog_data = data
         """ Create objects """
         self.layout = QGridLayout(self)
         self.title_label = QLabel(self)

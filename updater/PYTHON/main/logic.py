@@ -2,7 +2,7 @@
 import json 
 import sys
 import subprocess
-import urllib.request
+import urllib
 """ Import PyQT5 packages """
 from PyQt5.QtCore import (
     QUrl,

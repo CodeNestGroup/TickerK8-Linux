@@ -57,7 +57,7 @@ class app_controller(QWidget):
         height = int(self.geometry.height()//2)
         self.setGeometry(QRect(pos_x, pos_y, width, height))
         self.ping_thread.signal.connect(self.main_widget.main_connect_controller)
-        self.main_widget.changelog_widget.open.connect(self.main_to_changelog)
+        self.main_widget.changelog_widget.connection_signal.connect(self.main_changelog_connect)
         self.main_widget.settings_button.clicked.connect(self.main_to_settings)
 
     def settings_setup(self):
@@ -69,8 +69,10 @@ class app_controller(QWidget):
         height = int(self.geometry.height()//2)
         self.setGeometry(QRect(pos_x, pos_y, width, height))
         self.settings_widget.exit_button.clicked.connect(self.settings_to_main)
+        self.settings_widget.report_created.connect(lambda: self.settings_widget.sendreport_button.clicked.connect(self.settings_to_report))
+        self.settings_widget.update_created.connect(lambda: self.settings_widget.version_changelog_button.clicked.connect(lambda: self.settings_to_changelog('', 's')))
     
-    def changelog_setup(self, data):
+    def changelog_setup(self, data, f):
         self.changelog_widget = Changelog_widget(self, data)
         self.layout.addWidget(self.changelog_widget)
         pos_x = int(self.geometry.width()//4)
@@ -78,7 +80,10 @@ class app_controller(QWidget):
         width = int(self.geometry.width()//2)
         height = int(self.geometry.height()//2)
         self.setGeometry(QRect(pos_x, pos_y, width, height))
-        # Dodanie, że albo z settings albo z main 
+        if f == 'm':
+            self.changelog_widget.exit_button.clicked.connect(self.changelog_to_main)
+        elif f == 's':
+            self.changelog_widget.exit_button.clicked.connect(self.changelog_to_settings)
 
     def report_setup(self):
         self.report_widget = Report_widget(self)
@@ -95,49 +100,48 @@ class app_controller(QWidget):
         self.main_widget.deleteLater()
         self.main_widget = None
         self.settings_setup()
-        self.ping_thread.signal.disconnect()
 
     def settings_to_main(self):
         self.settings_widget.deleteLater()
         self.settings_widget = None
         self.main_setup()
-        self.ping_thread.signal.disconnect()
 
-    def main_to_changelog(self):
+    def main_to_changelog(self, data, f):
         self.main_widget.deleteLater()
         self.main_widget = None
-        self.changelog_setup(data)
-        self.ping_thread.signal.disconnect()
+        self.changelog_setup(data, f)
     
     def changelog_to_main(self):
         self.changelog_widget.deleteLater()
         self.changelog_widget = None
         self.main_setup()
-        self.ping_thread.signal.disconnect()
     
-    def settings_to_changelog(self):
+    def settings_to_changelog(self, data, f):
         self.settings_widget.deleteLater()
         self.settings_widget = None
-        self.changelog_setup()
-        self.ping_thread.signal.disconnect()
+        self.changelog_setup(data, f)
     
     def changelog_to_settings(self):
         self.changelog_widget.deleteLater()
         self.changelog_widget = None
         self.settings_setup()
-        self.ping_thread.signal.disconnect()
     
     def settings_to_report(self):
         self.settings_widget.deleteLater()
         self.settings_widget = None
         self.report_setup()
-        self.ping_thread.signal.disconnect()
 
     def report_to_settings(self):
         self.report_widget.deleteLater()
         self.report_widget = None
         self.settings_setup()
-        self.ping_thread.signal.disconnect()
+#______________________________________________________________________________________________________________________
+    
+    def main_changelog_connect(self):
+        d = self.main_widget.changelog_widget.release_data
+        b = self.main_widget.changelog_widget.releases_button_list
+        for index, release in enumerate(d, start=0):
+            b[index].clicked.connect(lambda _, i=release: self.main_to_changelog(i, 'm'))
 #______________________________________________________________________________________________________________________
 
     class controller_ping(QThread):

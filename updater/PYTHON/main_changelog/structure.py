@@ -9,12 +9,16 @@ from PyQt5.QtWidgets import (
     QGridLayout,
     QVBoxLayout
 )
+from PyQt5.QtCore import (
+    pyqtSignal
+)
 """ Import main modules """
 from .ui import *
 from .logic import *
 #______________________________________________________________________________________________________________________
 
 class Changelog_widget(QWidget):
+    connection_signal = pyqtSignal()
     def __init__(self, parent):
         super().__init__()
         self.setParent(parent)
@@ -70,11 +74,12 @@ class Changelog_widget(QWidget):
         self.scroll = QScrollArea(self)
         self.widget = QWidget(self.scroll)
         self.widget_layout = QVBoxLayout(self.widget)
-        for button in self.release_data:
+        for button in range(len(self.release_data)):
             button = QPushButton(self.widget)
             self.releases_button_list.append(button)
         """ Call functions """
         connection_ui(self)
         connection_reload_style(self)
         connection_retranslate(self)
+        self.connection_signal.emit()
 #______________________________________________________________________________________________________________________

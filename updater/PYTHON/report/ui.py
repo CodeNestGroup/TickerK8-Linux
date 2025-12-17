@@ -25,14 +25,13 @@ def report_ui(self):
     self.layout.setSpacing(0)
     self.layout.setContentsMargins(0,0,0,0)
     for enc in range(100):
-        self.layout
-        self.layout
+        self.layout.setRowStretch(enc, 1)
+        self.layout.setColumnStretch(enc, 1)
     self.setLayout(self.layout)
     """ Set widget """
     self.setHidden(False)
     """ Set label """
     """ Set button """
-    self.send_button.setDisabled(True)
     """ Set size """
     self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.textfield_textarea.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -42,15 +41,15 @@ def report_ui(self):
 #______________________________________________________________________________________________________________________
 
 def report_reload_style(self):
-    _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
-    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/report/'+_global_config['theme']+'.css')).read())
+    g = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
+    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/report/'+g['theme']+'.css')).read())
 #______________________________________________________________________________________________________________________
 
 def report_retranslate(self):
-    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
-    _t = json.load(open(self.main_path+'/CONFIG/report/translate.json', 'r'))
-    self.send_button.setText(_t['send_button'][_l])
-    self.clear_button.setText(_t['clear_button'][_l])
-    self.exit_button.setText(_t['exit_button'][_l])
+    l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
+    t = json.load(open(self.main_path+'/CONFIG/report/translate.json', 'r'))
+    self.send_button.setText(t['send_button'][l])
+    self.clear_button.setText(t['clear_button'][l])
+    self.exit_button.setText(t['exit_button'][l])
 #______________________________________________________________________________________________________________________
 

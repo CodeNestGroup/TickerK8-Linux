@@ -71,19 +71,19 @@ def settings_ui(self):
 #______________________________________________________________________________________________________________________
 
 def settings_reload_style(self):
-    _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
-    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/settings/'+_global_config['theme']+'.css')).read())
+    g = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
+    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/settings/'+g['theme']+'.css')).read())
 #______________________________________________________________________________________________________________________
 
 def settings_retranslate(self):
-    _t = json.load(open(self.main_path+'/CONFIG/settings/menu_translate.json', 'r'))
-    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
-    self.menu_theme_button.setText(_t['menu_theme_button'][_l])
-    self.menu_sound_button.setText(_t['menu_sound_button'][_l])
-    self.menu_update_button.setText(_t['menu_update_button'][_l])
-    self.menu_language_button.setText(_t['menu_language_button'][_l])
-    self.menu_report_button.setText(_t['menu_report_button'][_l])
-    self.exit_button.setText(_t['exit_button'][_l])
+    t = json.load(open(self.main_path+'/CONFIG/settings/menu_translate.json', 'r'))
+    l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
+    self.menu_theme_button.setText(t['menu_theme_button'][l])
+    self.menu_sound_button.setText(t['menu_sound_button'][l])
+    self.menu_update_button.setText(t['menu_update_button'][l])
+    self.menu_language_button.setText(t['menu_language_button'][l])
+    self.menu_report_button.setText(t['menu_report_button'][l])
+    self.exit_button.setText(t['exit_button'][l])
 #______________________________________________________________________________________________________________________
 
 def sub_menu_ui(self):
@@ -93,7 +93,7 @@ def sub_menu_ui(self):
     self.title_label.setObjectName('title_label')
     """ Set layout """
     self.layout.addWidget(self.sub_menu_scroll, 0, 30, 100, 70)
-    self.sub_menu_layout.addWidget(self.title_label, 0, 0,10, 100)
+    self.sub_menu_layout.addWidget(self.title_label, 0, 0, 10, 100)
     self.sub_menu_layout.setSpacing(0)
     self.sub_menu_layout.setContentsMargins(0,0,0,0)
     for enc in range(100):
@@ -125,9 +125,9 @@ def theme_ui(self):
     self.list_combobox.setProperty('class', 'value_combobox')
     """ Set layout """
     self.sub_menu_layout.addWidget(self.day_night_label, 20, 0, 30, 50)
-    self.sub_menu_layout.addWidget(self.day_night_button, 25, 50, 20, 50)
+    self.sub_menu_layout.addWidget(self.day_night_button, 20, 50, 30, 50)
     self.sub_menu_layout.addWidget(self.list_label, 60, 0, 30, 50)
-    self.sub_menu_layout.addWidget(self.list_combobox, 65, 50, 20, 50)
+    self.sub_menu_layout.addWidget(self.list_combobox, 60, 50, 30, 50)
     """ Set widget """
     """ Set label """
     self.day_night_label.setAlignment(Qt.AlignCenter)
@@ -148,6 +148,7 @@ def theme_retranslate(self):
     self.title_label.setText(t['title_label'][l])
     self.day_night_label.setText(t['day_night_label'][l])
     self.day_night_button.setText(t['day_night_button'][l][d])
+    self.list_combobox.setCurrentIndex(d)
     self.list_label.setText(t['list_label'][l])
 #______________________________________________________________________________________________________________________
 
@@ -167,12 +168,12 @@ def sound_ui(self):
     self.notification_label.setProperty('class', 'name_label')
     self.notification_button.setProperty('class', 'value_button')
     """ Set layout """
-    self.sub_menu_layout.addWidget(self.button_label, 1, 0, 1, 50)
-    self.sub_menu_layout.addWidget(self.button_button, 1, 50, 1, 50)
-    self.sub_menu_layout.addWidget(self.alert_label, 2, 0, 1, 50)
-    self.sub_menu_layout.addWidget(self.alert_button, 2, 50, 1, 50)
-    self.sub_menu_layout.addWidget(self.notification_label, 3, 0, 1, 50)
-    self.sub_menu_layout.addWidget(self.notification_button, 3, 50, 1, 50)
+    self.sub_menu_layout.addWidget(self.button_label, 20, 0, 15, 50)
+    self.sub_menu_layout.addWidget(self.button_button, 20, 50, 15, 50)
+    self.sub_menu_layout.addWidget(self.alert_label, 50, 0, 15, 50)
+    self.sub_menu_layout.addWidget(self.alert_button, 50, 50, 15, 50)
+    self.sub_menu_layout.addWidget(self.notification_label, 70, 0, 15, 50)
+    self.sub_menu_layout.addWidget(self.notification_button, 70, 50, 15, 50)
     """ Set widget """
     """ Set label """
     self.title_label.setAlignment(Qt.AlignCenter)
@@ -190,17 +191,17 @@ def sound_ui(self):
 #______________________________________________________________________________________________________________________
 
 def sound_retranslate(self):
-    _t = json.load(open(self.main_path+'/CONFIG/settings/sound_translate.json', 'r'))
-    _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
-    _l = _global_config['language']
-    _s = _global_config['sound']
-    self.title_label.setText(_t['title_label'][_l])
-    self.button_label.setText(_t['button_label'][_l])
-    self.button_button.setText(_t['button_button'][_l][_s['_button_']])
-    self.alert_label.setText(_t['alert_label'][_l])
-    self.alert_button.setText(_t['alert_button'][_l][_s['_alert_']])
-    self.notification_label.setText(_t['notification_label'][_l])
-    self.notification_button.setText(_t['notification_button'][_l][_s['_notification_']])
+    t = json.load(open(self.main_path+'/CONFIG/settings/sound_translate.json', 'r'))
+    g = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
+    l = g['language']
+    s = g['sound']
+    self.title_label.setText(t['title_label'][l])
+    self.button_label.setText(t['button_label'][l])
+    self.button_button.setText(t['button_button'][l][s['button']])
+    self.alert_label.setText(t['alert_label'][l])
+    self.alert_button.setText(t['alert_button'][l][s['alert']])
+    self.notification_label.setText(t['notification_label'][l])
+    self.notification_button.setText(t['notification_button'][l][s['notification']])
 #______________________________________________________________________________________________________________________
 
 def update_ui(self):
@@ -237,36 +238,41 @@ def update_ui(self):
     self.advanced_verification_label.setProperty('class', 'name_label')
     self.advanced_verification_button.setProperty('class', 'value_button')
     """ Set layout """
-    self.sub_menu_layout.addWidget(self.version_heading1_label, 1, 0, 1, 100)
-    self.sub_menu_layout.addWidget(self.version_desc_label, 2, 0, 1, 50)
-    self.sub_menu_layout.addWidget(self.version_desc_value_label, 2, 50, 1, 50)
-    self.sub_menu_layout.addWidget(self.version_changelog_label, 3, 0, 1, 50)
-    self.sub_menu_layout.addWidget(self.version_changelog_button, 3, 50, 1, 50)
-    self.sub_menu_layout.addWidget(self.option_heading1_label, 4, 0, 1, 100)
-    self.sub_menu_layout.addWidget(self.option_autoupdate_label, 5, 0, 1, 50)
-    self.sub_menu_layout.addWidget(self.option_autoupdate_button, 5, 50, 1, 50)
-    self.sub_menu_layout.addWidget(self.option_check_label, 6, 0, 1, 50)
-    self.sub_menu_layout.addWidget(self.option_check_button, 6, 50, 1, 50)
-    self.sub_menu_layout.addWidget(self.advanced_heading1_label, 7, 0, 1, 100)
-    self.sub_menu_layout.addWidget(self.advanced_capacity_label, 8, 0, 1, 50)
-    self.sub_menu_layout.addWidget(self.advanced_capacity_combobox, 8, 50, 1, 50)
-    self.sub_menu_layout.addWidget(self.advanced_verification_label, 9, 0, 1, 50)
-    self.sub_menu_layout.addWidget(self.advanced_verification_button, 9, 50, 1, 50)
+    self.sub_menu_layout.addWidget(self.version_heading1_label, 20, 0, 10, 100)
+    self.sub_menu_layout.addWidget(self.version_desc_label, 35, 0, 5, 50)
+    self.sub_menu_layout.addWidget(self.version_desc_value_label, 35, 50, 5, 50)
+    self.sub_menu_layout.addWidget(self.version_changelog_label, 45, 0, 5, 50)
+    self.sub_menu_layout.addWidget(self.version_changelog_button, 45, 50, 5, 50)
+    self.sub_menu_layout.addWidget(self.option_heading1_label, 55, 0, 10, 100)
+    self.sub_menu_layout.addWidget(self.option_autoupdate_label, 70, 0, 5, 50)
+    self.sub_menu_layout.addWidget(self.option_autoupdate_button, 70, 50, 5, 50)
+    self.sub_menu_layout.addWidget(self.option_check_label, 80, 0, 5, 50)
+    self.sub_menu_layout.addWidget(self.option_check_button, 80, 50, 5, 50)
+    self.sub_menu_layout.addWidget(self.advanced_heading1_label, 90, 0, 10, 100)
+    self.sub_menu_layout.addWidget(self.advanced_capacity_label, 105, 0, 5, 50)
+    self.sub_menu_layout.addWidget(self.advanced_capacity_combobox, 105, 50, 5, 50)
+    self.sub_menu_layout.addWidget(self.advanced_verification_label, 115, 0, 5, 50)
+    self.sub_menu_layout.addWidget(self.advanced_verification_button, 115, 50, 5, 50)
     """ Set widget """
     """ Set label """
     self.version_heading1_label.setAlignment(Qt.AlignCenter)
     self.version_desc_label.setAlignment(Qt.AlignCenter)
+    self.version_desc_label.setWordWrap(True)
     self.version_desc_value_label.setAlignment(Qt.AlignCenter)
     self.version_desc_value_label.setWordWrap(True)
     self.version_changelog_label.setAlignment(Qt.AlignCenter)
+    self.version_changelog_label.setWordWrap(True)
     self.option_heading1_label.setAlignment(Qt.AlignCenter)
     self.option_autoupdate_label.setAlignment(Qt.AlignCenter)
+    self.option_autoupdate_label.setWordWrap(True)
     self.option_check_label.setAlignment(Qt.AlignCenter)
+    self.option_check_label.setWordWrap(True)
     self.advanced_heading1_label.setAlignment(Qt.AlignCenter)
     self.advanced_capacity_label.setAlignment(Qt.AlignCenter)
+    self.advanced_capacity_label.setWordWrap(True)
     self.advanced_verification_label.setAlignment(Qt.AlignCenter)
+    self.advanced_verification_label.setWordWrap(True)
     """ Set button """
-    self.option_check_button.setDisabled(True)
     """ Set size """
     self.title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.version_heading1_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -287,29 +293,29 @@ def update_ui(self):
 #______________________________________________________________________________________________________________________
 
 def update_retranslate(self):
-    _t = json.load(open(self.main_path+'/CONFIG/settings/update_translate.json', 'r'))
-    _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
-    _desc = json.load(open(self.main_path+'/CONFIG/GLOBAL/changelog.json', 'r'))['name']
-    _l = _global_config['language']
-    _a = _global_config['auto_update']
-    _c = _global_config['capacity']
+    t = json.load(open(self.main_path+'/CONFIG/settings/update_translate.json', 'r'))
+    g = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
+    d = json.load(open(self.main_path+'/CONFIG/GLOBAL/changelog.json', 'r'))['name']
+    l = g['language']
+    a = g['auto_update']
+    c = g['capacity']
     # Dorobić zmienna dla desc
-    self.title_label.setText(_t['title_label'][_l])
-    self.version_heading1_label.setText(_t['version_heading1_label'][_l])
-    self.version_desc_label.setText(_t['version_desc_label'][_l])
-    self.version_desc_value_label.setText(_desc)
-    self.version_changelog_label.setText(_t['version_changelog_label'][_l])
-    self.version_changelog_button.setText(_t['version_changelog_button'][_l])
-    self.option_heading1_label.setText(_t['option_heading1_label'][_l])
-    self.option_autoupdate_label.setText(_t['option_autoupdate_label'][_l])
-    self.option_autoupdate_button.setText(_t['option_autoupdate_button'][_l][_a])
-    self.option_check_label.setText(_t['option_check_label'][_l])
-    self.option_check_button.setText(_t['option_check_button'][_l])
-    self.advanced_heading1_label.setText(_t['advanced_heading1_label'][_l])
-    self.advanced_capacity_label.setText(_t['advanced_capacity_label'][_l])
-    self.advanced_capacity_combobox.setCurrentIndex(_c)
-    self.advanced_verification_label.setText(_t['advanced_verification_label'][_l])
-    self.advanced_verification_button.setText(_t['advanced_verification_button'][_l])
+    self.title_label.setText(t['title_label'][l])
+    self.version_heading1_label.setText(t['version_heading1_label'][l])
+    self.version_desc_label.setText(t['version_desc_label'][l])
+    self.version_desc_value_label.setText(d)
+    self.version_changelog_label.setText(t['version_changelog_label'][l])
+    self.version_changelog_button.setText(t['version_changelog_button'][l])
+    self.option_heading1_label.setText(t['option_heading1_label'][l])
+    self.option_autoupdate_label.setText(t['option_autoupdate_label'][l])
+    self.option_autoupdate_button.setText(t['option_autoupdate_button'][l][a])
+    self.option_check_label.setText(t['option_check_label'][l])
+    self.option_check_button.setText(t['option_check_button'][l][0])
+    self.advanced_heading1_label.setText(t['advanced_heading1_label'][l])
+    self.advanced_capacity_label.setText(t['advanced_capacity_label'][l])
+    self.advanced_capacity_combobox.setCurrentIndex(c)
+    self.advanced_verification_label.setText(t['advanced_verification_label'][l])
+    self.advanced_verification_button.setText(t['advanced_verification_button'][l])
 #______________________________________________________________________________________________________________________
 
 def language_ui(self):
@@ -320,8 +326,8 @@ def language_ui(self):
     self.type_label.setProperty('class', 'name_label')
     self.type_combobox.setProperty('class', 'value_combobox')
     """ Set layout """
-    self.sub_menu_layout.addWidget(self.type_label, 1, 0, 1, 50)
-    self.sub_menu_layout.addWidget(self.type_combobox, 1, 50, 1, 50)
+    self.sub_menu_layout.addWidget(self.type_label, 35, 0, 5, 50)
+    self.sub_menu_layout.addWidget(self.type_combobox, 35, 50, 5, 50)
     """ Set widget """
     """ Set label """
     self.type_label.setAlignment(Qt.AlignCenter)
@@ -332,11 +338,11 @@ def language_ui(self):
 #______________________________________________________________________________________________________________________
 
 def language_retranslate(self):
-    _t = json.load(open(self.main_path+'/CONFIG/settings/translate.json', 'r'))
-    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
-    self.title_label.setText(_t['title_label'][_l])
-    self.type_label.setText(_t['type_label'][_l])
-    self.type_combobox.setCurrentIndex(_l)
+    t = json.load(open(self.main_path+'/CONFIG/settings/language_translate.json', 'r'))
+    l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
+    self.title_label.setText(t['title_label'][l])
+    self.type_label.setText(t['type_label'][l])
+    self.type_combobox.setCurrentIndex(l)
 #______________________________________________________________________________________________________________________
 
 def report_ui(self):
@@ -351,30 +357,30 @@ def report_ui(self):
     self.sendreport_label.setProperty('class', 'name_label')
     self.sendreport_button.setProperty('class', 'value_button')
     """ Set layout """
-    self.sub_menu_layout.addWidget(self.autoreport_label, 1, 0, 1, 50)
-    self.sub_menu_layout.addWidget(self.autoreport_button, 1, 50, 1, 50)
-    self.sub_menu_layout.addWidget(self.sendreport_label, 2, 0, 1, 50)
-    self.sub_menu_layout.addWidget(self.sendreport_button, 2, 50, 1, 50)
+    self.sub_menu_layout.addWidget(self.autoreport_label, 35, 0, 5, 50)
+    self.sub_menu_layout.addWidget(self.autoreport_button, 35, 50, 5, 50)
+    self.sub_menu_layout.addWidget(self.sendreport_label, 45, 0, 5, 50)
+    self.sub_menu_layout.addWidget(self.sendreport_button, 45, 50, 5, 50)
     """ Set widget """
     """ Set label """
     self.autoreport_label.setAlignment(Qt.AlignCenter)
     self.sendreport_label.setAlignment(Qt.AlignCenter)
     """ Set button """
     """ Set size """
-    self.autoreport_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.autoreport_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.autoreport_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.sendreport_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.sendreport_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.sendreport_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 #______________________________________________________________________________________________________________________
 
 def report_retranslate(self):
-    _t = json.load(open(self.main_path+'/CONFIG/settings/translate.json', 'r'))
-    _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
-    _l = _global_config['language']
-    _a = _global_config['auto_report']
-    self.title_label.setText(_t['title_label'][_l])
-    self.autoreport_label.setText(_t['autoreport_label'][_l])
-    self.autoreport_button.setText(_t['autoreport_button'][_l][_a])
-    self.sendreport_label.setText(_t['sendreport_label'][_l])
-    self.sendreport_button.setText(_t['sendreport_button'][_l])
+    t = json.load(open(self.main_path+'/CONFIG/settings/report_translate.json', 'r'))
+    g = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
+    l = g['language']
+    a = g['auto_report']
+    self.title_label.setText(t['title_label'][l])
+    self.autoreport_label.setText(t['autoreport_label'][l])
+    self.autoreport_button.setText(t['autoreport_button'][l][a])
+    self.sendreport_label.setText(t['sendreport_label'][l])
+    self.sendreport_button.setText(t['sendreport_button'][l])
 #______________________________________________________________________________________________________________________

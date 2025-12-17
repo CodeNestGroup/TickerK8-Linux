@@ -24,14 +24,14 @@ class Report_widget(QWidget):
         """ Create objects """
         self.layout = QGridLayout(self)
         self.textfield_textarea = QTextEdit(self)
-        self.send_button = QPushButton_sound(self, self)
-        self.clear_button = QPushButton_sound(self, self)
-        self.exit_button = QPushButton_sound(self, self)
+        self.send_button = QPushButton_sound(self)
+        self.clear_button = QPushButton_sound(self)
+        self.exit_button = QPushButton_sound(self)
         """ Call functions """
         report_ui(self)
         report_reload_style(self)
         report_retranslate(self)
         """ Connect functions """
         self.send_button.clicked.connect(lambda: send_report(self))
-        self.clear_button.clicked.connect(self.textfield_textarea.setText(''))
+        self.clear_button.clicked.connect(lambda: self.textfield_textarea.setText(''))
 #______________________________________________________________________________________________________________________
