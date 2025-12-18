@@ -30,6 +30,8 @@ class Update_widget(QWidget):
         self.dots_label = None
         self.progressbar = None
         self.timer = None
+        self.text = None
+        self.language = None
         """ Call functions """
         update_ui(self)
         update_reload_style(self)
@@ -50,6 +52,10 @@ class Update_widget(QWidget):
             self.timer.stop()
             self.timer.deleteLater()
             self.timer = None 
+        if self.text:
+            self.text = None
+        if self.language:
+            self.language = None
     
     def updated(self):
         self.reset()
@@ -67,12 +73,17 @@ class Update_widget(QWidget):
         """ Create objects """
         self.progressbar = QProgressBar(self)
         self.label = QLabel(self.progressbar)
-        #self.dots_label
+        self.dots_label = QLabel(self.progressbar)
         """ Call functions """
         updating_ui(self)
         updating_retranslate(self)
         """ Connect functions """
-        install_update(self)
+        loading_thread(self)
+        load_text(self)
+        self.controller_download = controller_download()
+        self.controller_download.progress.connect(self.progress_label_handel)
+        self.controller_download.progress_bar_value.connect(self.progressbar.setValue)
+        self.controller_download.start()
 #______________________________________________________________________________________________________________________
 
     def check_version(self, release_data):
@@ -95,5 +106,13 @@ class Update_widget(QWidget):
             self.timer.stop()
             self.timer.deleteLater()
             self.timer = None
-        print(g_t, l_t)
+#______________________________________________________________________________________________________________________
+
+    def progress_label_handel(self, v):
+        t = self.text
+        l = self.language
+        self.label.setText(t['label'][v][l])
+        if v == 6:
+            self.timer.stop()
+            self.dots_label.setHidden(True)
 #______________________________________________________________________________________________________________________

@@ -58,12 +58,25 @@ def updating_ui(self):
     """ Set layout """
     self.layout.addWidget(self.progressbar)
     """ Set widget """
+    """ Set progress bar """
+    self.progressbar.setRange(0, 100)
+    self.progressbar.setValue(0)
+    self.progressbar.setTextVisible(False)
     """ Set label """
-    self.label.setAlignment(Qt.AlignLeft)
+    self.label.setAlignment(Qt.AlignRight)
+    self.label.setAttribute(Qt.WA_TransparentForMouseEvents)
+    self.dots_label.setAlignment(Qt.AlignLeft)
+    self.dots_label.setAttribute(Qt.WA_TransparentForMouseEvents)
     """ Set button """
     """ Set size """
     self.progressbar.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.label.resize(self.progressbar.width()//2, self.progressbar.height())
+    self.label.move(0, 0)
+    self.dots_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.dots_label.resize(self.progressbar.width()//2, self.progressbar.height())
+    self.dots_label.move(50, 0)
+
 
 def updating_retranslate(self):
     t = json.load(open(self.main_path+'/CONFIG/main_update/updating_translate.json', 'r'))
