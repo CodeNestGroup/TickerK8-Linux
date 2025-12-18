@@ -32,6 +32,7 @@ class Update_widget(QWidget):
         self.timer = None
         self.text = None
         self.language = None
+        self.update_url = None
         """ Call functions """
         update_ui(self)
         update_reload_style(self)
@@ -80,7 +81,7 @@ class Update_widget(QWidget):
         """ Connect functions """
         loading_thread(self)
         load_text(self)
-        self.controller_download = controller_download()
+        self.controller_download = controller_download(url=self.update_url)
         self.controller_download.progress.connect(self.progress_label_handel)
         self.controller_download.progress_bar_value.connect(self.progressbar.setValue)
         self.controller_download.start()
@@ -99,6 +100,7 @@ class Update_widget(QWidget):
         elif g_t > l_t:
             self.label.setText(t['label'][1][l])
             self.update_status.emit(False)
+            self.update_url = release_data[0]['zipball_url']
         if self.dots_label:
             self.dots_label.deleteLater()
             self.dots_label = None
