@@ -39,7 +39,7 @@ class app_controller(QWidget):
         self.report_widget = None 
         self.screen = QApplication.primaryScreen()
         self.geometry = self.screen.availableGeometry()
-        self.setGeometry(self.)
+        self.setGeometry(self)
         self.ping_thread = self.controller_ping()
         self.ping_thread.start()
         self.main_setup()
