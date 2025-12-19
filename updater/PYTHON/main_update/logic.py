@@ -47,7 +47,12 @@ class controller_download(QThread):
     """
     0 - Creating backup
     1 - Downloading
-    10 - Error 
+    2 - Un zip 
+    3 - Check update compatibility
+    4 - Install 
+    5 - Delete backup 
+    6 - Error
+    7 - No connection  
     """
     progress_bar_value = pyqtSignal(int)
     """ Init, creating items, set base variables like paths, screen size, etc. """
@@ -80,29 +85,17 @@ class controller_download(QThread):
         try:
             self.progress.emit(0)
             self.progress_bar_value.emit(0)
-            b = os.path.join(self.backup_path, '.backup')
-            m = self.main_path
-            i = len(os.listdir(m))
-            j = 0
-            if not os.path.exists(b):
-                os.mkdir(b)
-                for item in os.listdir(m):
-                    if item == '.backup':
-                        continue
-                    source_item = os.path.join(m, item)
-                    backup_item = os.path.join(b, item)
-                    if os.path.isdir(source_item):
-                        shutil.copytree(source_item, backup_item)
-                    else:
-                        shutil.copy2(source_item, backup_item)
-                    j += 1
-                    self.progress_bar_value.emit(int((j/i)*100))
+            n = self.main_path[-(len(self.main_path)-len(self.backup_path)):]
+            b = self.backup_path+f'/.backup{n}'
+            m = self.backup_path+n
+            if os.path.exists(b):
+                shutil.rmtree(b)
+            shutil.copytree(m, b)
             self.progress_bar_value.emit(100)
         except:
             self.progress.emit(6)
             if os.path.exists(self.backup_path+'/.backup'):
                 shutil.rmtree(self.backup_path+'/.backup')
-
 
     def download(self):
         try:
@@ -167,7 +160,7 @@ class controller_download(QThread):
         try:
             self.progress.emit(3)
             self.progress_bar_value.emit(0)
-            u = json.load(open(self.backup_path+self.update_folder+'/TickerK8_updater/APP_FILES/CONFIG/_04_settings_app_file_list.json', 'r'))
+            u = json.load(open(self.backup_path+self.update_folder+'/updater/CONFIG/GLOBAL/app_file_list', 'r'))
             t = len(u)
             c = 0 
             for file, check_sum in u.items():
@@ -190,12 +183,21 @@ class controller_download(QThread):
         try:
             self.progress.emit(4) 
             self.progress_bar_value.emit(0)
-
-            
-            
-
-
-
+            n = self.main_path[-(len(self.main_path)-len(self.backup_path)):]
+            m = self.main_path
+            b = self.backup_path
+            u = b+self.update_folder
+            s1 = b+f'/.backup{n}/updater/CONFIG/GLOBAL/global_config.json'
+            d1 = u+'updater/CONFIG/GLOBAL/global_config.json'
+            shutil.copy2(s1, d1)
+            for r, d, f in os.walk(u):
+                rp = os.path.relpath(r, u)
+                t = os.path.join(m, rp)
+                os.makedirs(t, exist_ok=True)
+                for file in f:
+                    src_file = os.path.join(r, file)
+                    dst_file = os.path.join(t, file)
+                    shutil.copy2(src_file, dst_file)
             self.progress_bar_value.emit(100)
         except:
             self.progress.emit(6)
@@ -208,17 +210,26 @@ class controller_download(QThread):
     def delete_backup(self):
         self.progress.emit(5)
         self.progress_bar_value.emit(0)
-        if os.path.exists(self.backup_path+'.backup'):
-            shutil.rmtree(self.backup_path+'.backup')
+        if os.path.exists(self.backup_path+self.update_folder):
+            shutil.rmtree(self.backup_path+self.update_folder)
+        if os.path.exists(self.backup_path+'/.backup'):
+            shutil.rmtree(self.backup_path+'/.backup')
             self.progress_bar_value.emit(100)
 
     def restart(self):
-        pass
+        subprocess.Popen(['/bin/bash', self.main_path+'/Launcher.sh'])
+        sys.exit(0)
 #______________________________________________________________________________________________________________________
 
     def restore_backup(self):
-        pass
-        # Dodać przywracanie backupu 
+        self.progress_bar_value.emit(0)
+        n = self.main_path[-(len(self.main_path)-len(self.backup_path)):]
+        b = self.backup_path+f'/.backup{n}'
+        m = self.backup_path+n
+        if os.path.exists(m):
+            shutil.rmtree(m)
+        shutil.copytree(b, m)
+        self.progress_bar_value.emit(100)
 
     def calculate_sha256(self, file):
         sha256 = hashlib.sha256()
