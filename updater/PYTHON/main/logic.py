@@ -14,36 +14,20 @@ from PyQt5.QtGui import (
 )
 #______________________________________________________________________________________________________________________
 
-def open_discord():
-    url = QUrl("https://discord.gg/twZ3SNcC")
+def open_link(u):
     try:
-        QDesktopServices.openUrl(url)
-        # Notification 
+        QDesktopServices.openUrl(u)
     except:
-        print('does not open discord ')
-        # Notification 
-
-def open_instagram():
-    url = QUrl("https://www.instagram.com/codenestgroup/")
-    try:
-        QDesktopServices.openUrl(url)
-        # Notification 
-    except:
-        print('does not open ig ')
-        # Notification 
-
-def open_github():
-    url = QUrl("https://github.com/CodeNestGroup")
-    try:
-        QDesktopServices.openUrl(url)
-        # Notification 
-    except:
-        print('does not open github ')
-        # Notification 
+        pass
+        # Sygnał
 
 def open_main_app(self):
-    subprocess.Popen(['/bin/bash', self.main_path+'/TickerK8.sh'])
-    sys.exit(0)
+    try:
+        subprocess.Popen(['/bin/bash', self.main_path+'/TickerK8.sh'])
+        sys.exit(0)
+    except:
+        pass
+        # Sygnał
 #______________________________________________________________________________________________________________________
 
 def main_no_connect(self):
@@ -96,3 +80,4 @@ def update_status_controller(self, b):
         self.start_button.clicked.connect(lambda: self.start_button.setDisabled(True))
     self.start_button.setText(text)
     self.start_button.setDisabled(False)
+#______________________________________________________________________________________________________________________
