@@ -53,7 +53,7 @@ class app_controller(QWidget):
         self.main_widget = Main_widget(self)
         self.layout.addWidget(self.main_widget)
         self.ping_thread.signal.connect(self.main_widget.main_connect_handle)
-        self.main_widget.changelog_widget.connection_signal.connect(self.main_changelog_connect)
+        self.main_widget.changelog_widget.connection_signal.connect(self.main_changelog_connection)
         self.main_widget.settings_button.clicked.connect(self.main_to_settings)
     
     def settings_setup(self):
@@ -118,7 +118,7 @@ class app_controller(QWidget):
         self.settings_setup()
 #______________________________________________________________________________________________________________________
     
-    def main_changelog_connect(self):
+    def main_changelog_connection(self):
         d = self.main_widget.changelog_widget.release_data
         b = self.main_widget.changelog_widget.releases_button_list
         for index, release in enumerate(d, start=0):

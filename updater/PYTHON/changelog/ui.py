@@ -56,21 +56,19 @@ def changelog_ui(self):
     self.update_date_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.update_text_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.exit_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-#______________________________________________________________________________________________________________________
-
+    
 def changelog_reload_style(self):
-    _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
-    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/changelog/'+_global_config['theme']+'.css')).read())
-#______________________________________________________________________________________________________________________
+    g = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
+    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/changelog/'+g['theme']+'.css')).read())
 
 def changelog_retranslate(self):
-    _t = json.load(open(self.main_path+'/CONFIG/changelog/translate.json', 'r'))
-    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
-    _c = self.changelog_data
-    self.title_label.setText(_t['title_label'][_l])
-    self.update_title_label.setText(_c['name'])
-    self.update_date_label.setText(str(_c['published_at']).replace('T', ' ').replace('Z', ''))
-    self.update_text_label.setText(_c['body'])
-    self.exit_button.setText(_t['exit_button'][_l])
+    t = json.load(open(self.main_path+'/CONFIG/changelog/translate.json', 'r'))
+    l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
+    c = self.changelog_data
+    self.title_label.setText(t['title_label'][l])
+    self.update_title_label.setText(c['name'])
+    self.update_date_label.setText(str(c['published_at']).replace('T', ' ').replace('Z', ''))
+    self.update_text_label.setText(c['body'])
+    self.exit_button.setText(t['exit_button'][l])
 #______________________________________________________________________________________________________________________    
     

@@ -38,12 +38,10 @@ def report_ui(self):
     self.send_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.clear_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.exit_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-#______________________________________________________________________________________________________________________
 
 def report_reload_style(self):
     g = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
     self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/report/'+g['theme']+'.css')).read())
-#______________________________________________________________________________________________________________________
 
 def report_retranslate(self):
     l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
@@ -52,4 +50,3 @@ def report_retranslate(self):
     self.clear_button.setText(t['clear_button'][l])
     self.exit_button.setText(t['exit_button'][l])
 #______________________________________________________________________________________________________________________
-

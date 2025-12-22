@@ -4,9 +4,6 @@ import hashlib
 import pathlib
 import urllib.request
 """ Import PyQt5 packages """
-from PyQt5.QtWidgets import (
-    QScrollArea
-)
 from PyQt5.QtCore import (
     QThread,
     pyqtSignal
@@ -22,7 +19,7 @@ from .ui import (
     report_retranslate
     )
 #______________________________________________________________________________________________________________________
-""" change day night """
+
 def change_d_n(self):
     """ Change config """
     c = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
@@ -43,7 +40,6 @@ def change_d_n(self):
     self.list_combobox.setCurrentIndex(i)
 #______________________________________________________________________________________________________________________
 
-""" change theme """
 def change_theme(self):
     c = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
     i = int(self.list_combobox.currentIndex())
@@ -59,7 +55,6 @@ def change_theme(self):
     theme_retranslate(self)
 #______________________________________________________________________________________________________________________
 
-""" change sound disabled, enabled """
 def change_sound_d_e(self, t):
     c = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
     c['sound'][t] = not c['sound'][t]
@@ -68,7 +63,6 @@ def change_sound_d_e(self, t):
     sound_retranslate(self)
 #______________________________________________________________________________________________________________________
 
-""" change auto update """
 def change_auto_update(self):
     c = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
     c['auto_update'] = not c['auto_update']

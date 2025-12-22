@@ -1,8 +1,7 @@
 """ Import packages """
 """ Import PyQT5 packages """
 from PyQt5.QtCore import (
-    QTimer,
-    pyqtSignal
+    QTimer
 )
 #______________________________________________________________________________________________________________________
     

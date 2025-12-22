@@ -5,16 +5,17 @@ from PyQt5.QtWidgets import (
     QWidget,
     QScrollArea,
     QLabel,
-    QPushButton,
     QGridLayout,
     QVBoxLayout
 )
 from PyQt5.QtCore import (
     pyqtSignal
 )
-""" Import main modules """
+""" Import main changelog modules """
 from .ui import *
 from .logic import *
+""" Import custom modules """
+from soundbutton.structure import QPushButton_sound
 #______________________________________________________________________________________________________________________
 
 class Changelog_widget(QWidget):
@@ -36,7 +37,6 @@ class Changelog_widget(QWidget):
         changelog_reload_style(self)
         self.no_connection()
         """ Connect functions """
-#______________________________________________________________________________________________________________________
 
     def reset(self):
         self.release_data = []
@@ -59,11 +59,24 @@ class Changelog_widget(QWidget):
         self.widget_layout = QGridLayout(self.widget)
         self.icon_label = QLabel(self.widget)
         self.message_label = QLabel(self.widget)
-        self.dots_label = QLabel(self.widget)
         """ Call functions """
         no_connection_ui(self)
         no_connection_reload_style(self)
         no_connection_retranslate(self)
+        """ Connect functions """
+
+    def loading(self):
+        self.reset()
+        """ Create objects """
+        self.widget = QWidget(self)
+        self.widget_layout = QGridLayout(self.widget)
+        self.icon_label = QLabel(self.widget)
+        self.message_label = QLabel(self.widget)
+        self.dots_label = QLabel(self.widget)
+        """ Call functions """
+        loading_ui(self)
+        loading_reload_style(self)
+        loading_retranslate(self)
         loading_thread(self)
 
     def connection(self, release_data):
@@ -74,7 +87,7 @@ class Changelog_widget(QWidget):
         self.widget = QWidget(self.scroll)
         self.widget_layout = QVBoxLayout(self.widget)
         for button in range(len(self.release_data)):
-            button = QPushButton(self.widget)
+            button = QPushButton_sound(self.widget)
             self.releases_button_list.append(button)
         """ Call functions """
         connection_ui(self)

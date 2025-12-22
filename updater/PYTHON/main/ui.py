@@ -2,6 +2,7 @@
 import json
 """ Import PyQt5 packages """
 from PyQt5.QtWidgets import (
+    QLabel,
     QSizePolicy
 )
 from PyQt5.QtCore import (
@@ -17,6 +18,8 @@ from PyQt5.QtGui import (
 from PyQt5.QtSvg import (
     QSvgRenderer
 )
+""" Import custom modules """
+from soundbutton.structure import QPushButton_sound
 #______________________________________________________________________________________________________________________
 
 def main_ui(self):
@@ -26,7 +29,6 @@ def main_ui(self):
     self.instagram_button.setObjectName('instagram_button')
     self.github_button.setObjectName('github_button')
     self.discord_button.setObjectName('discord_button')
-    self.info_label.setObjectName('info_label')
     """ Set property """
     self.settings_button.setProperty('class', 'button')
     self.instagram_button.setProperty('class', 'button')
@@ -38,7 +40,6 @@ def main_ui(self):
     self.layout.addWidget(self.instagram_button, 30, 75, 25, 23)
     self.layout.addWidget(self.github_button, 56, 51, 25, 23)
     self.layout.addWidget(self.discord_button, 56, 75, 25, 23)
-    self.layout.addWidget(self.info_label, 90, 51, 10, 49)
     self.layout.setSpacing(0)
     self.layout.setContentsMargins(0,0,0,0)
     for enc in range(100):
@@ -48,7 +49,6 @@ def main_ui(self):
     """ Set widget """
     self.setHidden(False)
     """ Set label """
-    self.info_label.setAlignment(Qt.AlignCenter)
     """ Set button """
     """ Set size """
     self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -56,8 +56,6 @@ def main_ui(self):
     self.instagram_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.github_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.discord_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.info_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-#______________________________________________________________________________________________________________________
 
 def main_reload_style(self):
     t = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['theme']
@@ -72,10 +70,120 @@ def main_reload_style(self):
     self.discord_button.setIconSize(self.discord_button.size())
 #______________________________________________________________________________________________________________________
 
-def main_retranslate(self):
+def main_no_connect_ui(self):
+    """ Create objects """
+    self.info_label = QLabel(self)
+    """ Set up """
+    """ Set object name """
+    self.info_label.setObjectName('info_label')
+    """ Set property """
+    """ Set layout """
+    self.layout.addWidget(self.info_label, 90, 51, 10, 49)
+    """ Set widget """
+    """ Set label """
+    self.info_label.setAlignment(Qt.AlignCenter)
+    """ Set button """
+    self.instagram_button.setDisabled(True)
+    self.github_button.setDisabled(True)
+    self.discord_button.setDisabled(True)
+    """ Set size """
+    self.info_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    
+def main_no_connect_retranslate(self):
     t = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r'))
     l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
     self.info_label.setText(t['info_label'][0][l])
+#______________________________________________________________________________________________________________________
+
+def main_connect_ui(self):
+    """ Create objects """
+    self.info_label = QLabel(self)
+    """ Set up """
+    """ Set object name """
+    self.info_label.setObjectName('info_label')
+    """ Set property """
+    """ Set layout """
+    self.layout.addWidget(self.info_label, 90, 51, 10, 49)
+    """ Set widget """
+    """ Set label """
+    self.info_label.setAlignment(Qt.AlignCenter)
+    """ Set button """
+    self.instagram_button.setDisabled(False)
+    self.github_button.setDisabled(False)
+    self.discord_button.setDisabled(False)
+    """ Set size """
+    self.info_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+
+def main_connect_retranslate(self):
+    t = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r'))
+    l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
+    self.info_label.setText(t['info_label'][1][l])
+#______________________________________________________________________________________________________________________
+
+def none_update_ui(self):
+    """ Create objects """
+    self.open_button = QPushButton_sound(self)
+    """ Set up """
+    """ Set object name """
+    self.open_button.setObjectName('open_button')
+    """ Set property """
+    self.open_button.setProperty('class', 'button')
+    """ Set layout """
+    self.layout.addWidget(self.open_button, 90, 51, 10, 49)
+    """ Set widget """
+    """ Set label """
+    """ Set button """
+    """ Set size """
+    self.open_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+
+def none_update_retranslate(self):
+    t = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r'))
+    l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
+    self.open_button.setText(t['open_button'][l])
+#______________________________________________________________________________________________________________________
+
+def new_update_ui(self):
+    """ Create objects """
+    self.download_button = QPushButton_sound(self)
+    """ Set up """
+    """ Set object name """
+    self.download_button.setObjectName('download_button')
+    """ Set property """
+    self.download_button.setProperty('class', 'button')
+    """ Set layout """
+    self.layout.addWidget(self.download_button, 90, 51, 10, 49)
+    """ Set widget """
+    """ Set label """
+    """ Set button """
+    """ Set size """
+    self.download_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+
+def new_update_retranslate(self):
+    t = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r'))
+    l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
+    self.download_button.setText(t['download_button'][l])
+#______________________________________________________________________________________________________________________
+
+def start_update_ui(self):
+    """ Create objects """
+    self.info_label = QLabel(self)
+    """ Set up """
+    """ Set object name """
+    self.info_label.setObjectName('info_label')
+    """ Set property """
+    """ Set layout """
+    self.layout.addWidget(self.info_label, 90, 51, 10, 49)
+    """ Set widget """
+    """ Set label """
+    self.info_label.setAlignment(Qt.AlignCenter)
+    """ Set button """
+    """ Set size """
+    self.info_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+
+def start_update_retranslate(self):
+    t = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r'))
+    l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
+    self.info_label.setText(t['info_label'][2][l])
 #______________________________________________________________________________________________________________________
 
 def load_svg(svg_path, width, height):
