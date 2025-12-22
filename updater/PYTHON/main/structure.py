@@ -3,8 +3,6 @@ import pathlib
 """ Import PyQt5 packages """
 from PyQt5.QtWidgets import (
     QWidget,
-    QLabel,
-    QScrollArea,
     QGridLayout
 )
 """ Import main modules """
@@ -26,12 +24,11 @@ class Main_widget(QWidget):
         """ Create objects """
         self.layout = QGridLayout(self)
         self.changelog_widget = Changelog_widget(self)
-        self.update_widget = Update_widget(self)
         self.settings_button = QPushButton_sound(self)
         self.instagram_button = QPushButton_sound(self)
         self.github_button = QPushButton_sound(self)
         self.discord_button = QPushButton_sound(self)
-        self.start_button = QPushButton_sound(self)
+        self.info_label = QLabel(self)
         """ Call functions """
         main_ui(self)
         main_reload_style(self)
@@ -40,9 +37,8 @@ class Main_widget(QWidget):
         self.instagram_button.clicked.connect(lambda: open_link('https://www.instagram.com/codenestgroup/'))
         self.github_button.clicked.connect(lambda: open_link('https://github.com/CodeNestGroup'))
         self.discord_button.clicked.connect(lambda: open_link('https://discord.gg/twZ3SNcC'))
-        self.update_widget.update_status.connect(self.update_status_handel)
     
-    def main_connect_controller(self, b):
+    def main_connect_handle(self, b):
         if b and not self.last_ping:
             main_connect(self)
             self.last_ping = True
@@ -50,7 +46,4 @@ class Main_widget(QWidget):
             main_no_connect(self)
             self.last_ping = False
     
-    def update_status_handel(self, b):
-        update_status_controller(self, b)
 #______________________________________________________________________________________________________________________
-

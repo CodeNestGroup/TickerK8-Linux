@@ -1,5 +1,4 @@
 """ Import packages """
-import pathlib 
 import json
 """ Import PyQt5 packages """
 from PyQt5.QtWidgets import (
@@ -27,20 +26,19 @@ def main_ui(self):
     self.instagram_button.setObjectName('instagram_button')
     self.github_button.setObjectName('github_button')
     self.discord_button.setObjectName('discord_button')
-    self.start_button.setObjectName('start_button')
+    self.info_label.setObjectName('info_label')
     """ Set property """
     self.settings_button.setProperty('class', 'button')
     self.instagram_button.setProperty('class', 'button')
     self.github_button.setProperty('class', 'button')
     self.discord_button.setProperty('class', 'button')
     """ Set layout """
-    self.layout.addWidget(self.changelog_widget, 0, 0, 90, 50)
-    self.layout.addWidget(self.update_widget, 90, 0, 10, 50)
+    self.layout.addWidget(self.changelog_widget, 0, 0, 100, 50)
     self.layout.addWidget(self.settings_button, 30, 51, 25, 23)
     self.layout.addWidget(self.instagram_button, 30, 75, 25, 23)
     self.layout.addWidget(self.github_button, 56, 51, 25, 23)
     self.layout.addWidget(self.discord_button, 56, 75, 25, 23)
-    self.layout.addWidget(self.start_button, 90, 50, 10, 50)
+    self.layout.addWidget(self.info_label, 90, 51, 10, 49)
     self.layout.setSpacing(0)
     self.layout.setContentsMargins(0,0,0,0)
     for enc in range(100):
@@ -50,15 +48,15 @@ def main_ui(self):
     """ Set widget """
     self.setHidden(False)
     """ Set label """
+    self.info_label.setAlignment(Qt.AlignCenter)
     """ Set button """
-    self.start_button.setDisabled(True)
     """ Set size """
     self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.settings_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.instagram_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.github_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.discord_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.start_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.info_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 #______________________________________________________________________________________________________________________
 
 def main_reload_style(self):
@@ -77,7 +75,7 @@ def main_reload_style(self):
 def main_retranslate(self):
     t = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r'))
     l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
-    self.start_button.setText(t['start_button'][0][l])
+    self.info_label.setText(t['info_label'][0][l])
 #______________________________________________________________________________________________________________________
 
 def load_svg(svg_path, width, height):

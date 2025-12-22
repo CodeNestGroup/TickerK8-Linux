@@ -5,7 +5,6 @@ from datetime import datetime
 """ Import PyQt5 packages """
 from PyQt5.QtWidgets import (
     QWidget,
-    QProgressBar,
     QLabel,
     QGridLayout
 )
@@ -28,7 +27,6 @@ class Update_widget(QWidget):
         self.layout = QGridLayout(self)
         self.label = None
         self.dots_label = None
-        self.progressbar = None
         self.timer = None
         self.text = None
         self.language = None
@@ -36,7 +34,7 @@ class Update_widget(QWidget):
         """ Call functions """
         update_ui(self)
         update_reload_style(self)
-        self.updated()
+        self.info()
         """ Connect functions """
     
     def reset(self):
@@ -46,9 +44,6 @@ class Update_widget(QWidget):
         if self.dots_label:
             self.dots_label.deleteLater()
             self.dots_label = None
-        if self.progressbar:
-            self.progressbar.deleteLater()
-            self.progressbar = None
         if self.timer:
             self.timer.stop()
             self.timer.deleteLater()
@@ -58,7 +53,7 @@ class Update_widget(QWidget):
         if self.language:
             self.language = None
     
-    def updated(self):
+    def info(self):
         self.reset()
         """ Create objects """
         self.label = QLabel(self)

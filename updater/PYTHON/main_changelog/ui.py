@@ -35,6 +35,7 @@ def changelog_ui(self):
 def changelog_reload_style(self):
     t = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['theme']
     self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/main_changelog/'+t+'.css')).read())
+#______________________________________________________________________________________________________________________
 
 def no_connection_ui(self):
     """ Set object name """
@@ -75,6 +76,7 @@ def no_connection_retranslate(self):
     t = json.load(open(self.main_path+'/CONFIG/main_changelog/translate.json', 'r'))
     l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
     self.message_label.setText(t['message_label'][l])
+#______________________________________________________________________________________________________________________
 
 def connection_ui(self):
     """ Set object name """
@@ -95,6 +97,8 @@ def connection_ui(self):
     self.scroll.setWidgetResizable(True)
     self.scroll.setWidget(self.widget)
     self.scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+    """ Set label """
+    """ Set button """
     """ Set size """
     self.scroll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -108,6 +112,7 @@ def connection_retranslate(self):
     d = self.release_data
     for i, button in enumerate(self.releases_button_list, start=0):
         button.setText(d[i]['name'])
+#______________________________________________________________________________________________________________________
 
 def load_svg(svg_path, width, height):
     renderer = QSvgRenderer(svg_path) 

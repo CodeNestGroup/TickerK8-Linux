@@ -69,7 +69,6 @@ class Changelog_widget(QWidget):
     def connection(self, release_data):
         self.reset()
         self.release_data = release_data
-        self.releases_button_list = []
         """ Create objects """
         self.scroll = QScrollArea(self)
         self.widget = QWidget(self.scroll)
@@ -82,4 +81,5 @@ class Changelog_widget(QWidget):
         connection_reload_style(self)
         connection_retranslate(self)
         self.connection_signal.emit()
+        """ Connect functions """
 #______________________________________________________________________________________________________________________

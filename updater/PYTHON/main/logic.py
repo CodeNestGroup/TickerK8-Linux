@@ -19,7 +19,7 @@ def open_link(u):
         QDesktopServices.openUrl(u)
     except:
         pass
-        # Sygnał
+        # Sygnał do reportu
 
 def open_main_app(self):
     try:
@@ -27,7 +27,7 @@ def open_main_app(self):
         sys.exit(0)
     except:
         pass
-        # Sygnał
+        # Sygnał do reportu
 #______________________________________________________________________________________________________________________
 
 def main_no_connect(self):
@@ -35,7 +35,7 @@ def main_no_connect(self):
     l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
     
     self.changelog_widget.no_connection()
-    self.update_widget.updated()
+    self.update_widget.info()
     self.instagram_button.setDisabled(True)
     self.github_button.setDisabled(True)
     self.discord_button.setDisabled(True)
