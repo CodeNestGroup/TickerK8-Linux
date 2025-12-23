@@ -3,6 +3,5 @@
     "menu_sound_button": ["Sound", "Dźwięk"],
     "menu_update_button": ["Update", "Aktualizacja"],
     "menu_language_button": ["Language", "Język"],
-    "menu_report_button": ["Report", "Raport"],
-    "exit_button": ["Exit", "Wyjście"]
+    "menu_report_button": ["Report", "Raport"]
 }

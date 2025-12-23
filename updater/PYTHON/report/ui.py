@@ -4,6 +4,18 @@ import json
 from PyQt5.QtWidgets import (
     QSizePolicy
 )
+from PyQt5.QtCore import (
+    Qt,
+    QSize
+)
+from PyQt5.QtGui import (
+    QPixmap,
+    QIcon,
+    QPainter
+)
+from PyQt5.QtSvg import (
+    QSvgRenderer
+)
 #______________________________________________________________________________________________________________________
 
 def report_ui(self):
@@ -41,12 +53,24 @@ def report_ui(self):
 
 def report_reload_style(self):
     g = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
-    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/report/'+g['theme']+'.css')).read())
+    t = g['theme']
+    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/report/'+t+'.css')).read())
+    self.exit_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/report/exit_'+t+'.svg'), 256, 256)))
 
 def report_retranslate(self):
     l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
     t = json.load(open(self.main_path+'/CONFIG/report/translate.json', 'r'))
     self.send_button.setText(t['send_button'][l])
     self.clear_button.setText(t['clear_button'][l])
-    self.exit_button.setText(t['exit_button'][l])
+#______________________________________________________________________________________________________________________
+
+def load_svg(svg_path, width, height):
+    renderer = QSvgRenderer(svg_path) 
+    pixmap = QPixmap(width, height) 
+    pixmap.fill(Qt.transparent) 
+    painter = QPainter(pixmap) 
+    renderer.render(painter)
+    painter.end()
+    scaled_pixmap = pixmap.scaled(QSize(width, height), Qt.KeepAspectRatio, Qt.SmoothTransformation)
+    return scaled_pixmap
 #______________________________________________________________________________________________________________________

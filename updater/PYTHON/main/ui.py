@@ -58,15 +58,16 @@ def main_ui(self):
     self.discord_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
 def main_reload_style(self):
-    t = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['theme']
+    g = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
+    t = g['theme']
     self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/main/'+t+'.css')).read())
-    self.settings_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/settings_'+t+'.svg'), 256, 256)))
+    self.settings_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/settings_vintage_elegance_d.svg'), 256, 256)))
     self.settings_button.setIconSize(self.settings_button.size())
-    self.instagram_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/instagram_'+t+'.svg'), 256, 256)))
+    self.instagram_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/instagram_vintage_elegance_d.svg'), 256, 256)))
     self.instagram_button.setIconSize(self.instagram_button.size())
-    self.github_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/github_'+t+'.svg'), 256, 256)))
+    self.github_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/github_vintage_elegance_d.svg'), 256, 256)))
     self.github_button.setIconSize(self.github_button.size())
-    self.discord_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/discord_'+t+'.svg'), 256, 256)))
+    self.discord_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/main/discord_vintage_elegance_d.svg'), 256, 256)))
     self.discord_button.setIconSize(self.discord_button.size())
 #______________________________________________________________________________________________________________________
 

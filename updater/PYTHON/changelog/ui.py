@@ -6,6 +6,15 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtCore import (
     Qt,
+    QSize
+)
+from PyQt5.QtGui import (
+    QPixmap,
+    QIcon,
+    QPainter
+)
+from PyQt5.QtSvg import (
+    QSvgRenderer
 )
 #______________________________________________________________________________________________________________________
 
@@ -59,7 +68,9 @@ def changelog_ui(self):
     
 def changelog_reload_style(self):
     g = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
-    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/changelog/'+g['theme']+'.css')).read())
+    t = g['theme']
+    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/changelog/'+t+'.css')).read())
+    self.exit_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/changelog/exit_'+t+'.svg'), 256, 256)))
 
 def changelog_retranslate(self):
     t = json.load(open(self.main_path+'/CONFIG/changelog/translate.json', 'r'))
@@ -69,6 +80,15 @@ def changelog_retranslate(self):
     self.update_title_label.setText(c['name'])
     self.update_date_label.setText(str(c['published_at']).replace('T', ' ').replace('Z', ''))
     self.update_text_label.setText(c['body'])
-    self.exit_button.setText(t['exit_button'][l])
 #______________________________________________________________________________________________________________________    
-    
+
+def load_svg(svg_path, width, height):
+    renderer = QSvgRenderer(svg_path) 
+    pixmap = QPixmap(width, height) 
+    pixmap.fill(Qt.transparent) 
+    painter = QPainter(pixmap) 
+    renderer.render(painter)
+    painter.end()
+    scaled_pixmap = pixmap.scaled(QSize(width, height), Qt.KeepAspectRatio, Qt.SmoothTransformation)
+    return scaled_pixmap
+#______________________________________________________________________________________________________________________

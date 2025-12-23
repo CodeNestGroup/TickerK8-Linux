@@ -71,7 +71,8 @@ def settings_ui(self):
 
 def settings_reload_style(self):
     g = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
-    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/settings/'+g['theme']+'.css')).read())
+    t = g['theme']
+    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/settings/'+t+'.css')).read())
     self.exit_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/settings/exit_'+t+'.svg'), 256, 256)))
 
 def settings_retranslate(self):
@@ -235,7 +236,6 @@ def update_retranslate(self):
     g = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
     d = json.load(open(self.main_path+'/CONFIG/GLOBAL/changelog.json', 'r'))['name']
     l = g['language']
-    a = g['auto_update']
     c = g['capacity']
     self.title_label.setText(t['title_label'][l])
     self.version_heading1_label.setText(t['version_heading1_label'][l])
@@ -296,7 +296,6 @@ def report_retranslate(self):
     t = json.load(open(self.main_path+'/CONFIG/settings/report_translate.json', 'r'))
     g = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
     l = g['language']
-    a = g['auto_report']
     self.title_label.setText(t['title_label'][l])
     self.sendreport_label.setText(t['sendreport_label'][l])
     self.sendreport_button.setText(t['sendreport_button'][l])

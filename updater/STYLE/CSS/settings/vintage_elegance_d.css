@@ -6,6 +6,30 @@
     background-color: #1a1a1a;
     border: 0;
 }
+#menu_scroll QScrollBar:vertical{
+    border: none;
+    background: #1a1a1a;
+    width: 8px;
+    margin: 0;
+}
+#menu_scroll QScrollBar::handle:vertical {
+    background: #353535;
+    min-height: 15px;
+    border-radius: 2px;
+}
+
+#menu_scroll QScrollBar::handle:vertical:hover {
+    background: #282828;
+}
+
+#menu_scroll QScrollBar::add-line:vertical, #menu_scroll QScrollBar::sub-line:vertical {
+    border: none;
+    background: none;
+}
+
+#menu_scroll QScrollBar::add-page:vertical, #menu_scroll QScrollBar::sub-page:vertical {
+    background: none;
+}
 #menu_scroll_widget{
     background-color: #00000000;
     border: 0;
@@ -37,6 +61,30 @@
 #sub_menu_scroll{
     background-color: #1a1a1a;
     border: 0;
+}
+#sub_menu_scroll QScrollBar:vertical{
+    border: none;
+    background: #1a1a1a;
+    width: 8px;
+    margin: 0;
+}
+#sub_menu_scroll QScrollBar::handle:vertical {
+    background: #353535;
+    min-height: 15px;
+    border-radius: 2px;
+}
+
+#sub_menu_scroll QScrollBar::handle:vertical:hover {
+    background: #282828;
+}
+
+#sub_menu_scroll QScrollBar::add-line:vertical, #sub_menu_scroll QScrollBar::sub-line:vertical {
+    border: none;
+    background: none;
+}
+
+#sub_menu_scroll QScrollBar::add-page:vertical, #sub_menu_scroll QScrollBar::sub-page:vertical {
+    background: none;
 }
 #sub_menu_widget{
     background-color: #00000000;

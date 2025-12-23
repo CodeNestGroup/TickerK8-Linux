@@ -1,7 +1,5 @@
 {
     "title_label": ["Report", "Zgłoś"],
-    "autoreport_label": ["Auto report:", "Automatyczne zgłoszenie:"],
-    "autoreport_button": [["Disabled", "Enabled"], ["Wyłączone","Włączone"]],
     "sendreport_label": ["Send report:", "Wyślij zgłoszenie:"],
     "sendreport_button": ["Send", "Wyślij"]
 }

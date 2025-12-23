@@ -33,7 +33,8 @@ def changelog_ui(self):
     self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
 def changelog_reload_style(self):
-    t = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['theme']
+    g = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
+    t = g['theme']
     self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/main_changelog/'+t+'.css')).read())
 #______________________________________________________________________________________________________________________
 

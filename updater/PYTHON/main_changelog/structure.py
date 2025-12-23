@@ -91,7 +91,6 @@ class Changelog_widget(QWidget):
             self.releases_button_list.append(button)
         """ Call functions """
         connection_ui(self)
-        connection_reload_style(self)
         connection_retranslate(self)
         self.connection_signal.emit()
         """ Connect functions """

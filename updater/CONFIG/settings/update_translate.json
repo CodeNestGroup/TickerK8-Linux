@@ -4,13 +4,6 @@
     "version_desc_label": ["Description:", "Opis:"],
     "version_changelog_label": ["Change log:", "Dziennik zmian:"],
     "version_changelog_button": ["Open", "Otwórz"],
-    "option_heading1_label": ["Options", "Opcje"],
-    "option_autoupdate_label": ["Auto update: ", "Automatyczna aktualizacja"],
-    "option_autoupdate_button": [["Disabled", "Enabled"], ["Wyłączone","Włączone"]],
-    "option_check_label": ["Check update:", "Sprawdź aktualizacje:"],
-    "option_check_button": [["Check", "Sprawdź"], ["Checking...", "Sprawdzam..."]],
     "advanced_heading1_label": ["Advanced", "Zaawansowane"],
-    "advanced_capacity_label": ["Capacity:", "Przepustowość:"],
-    "advanced_verification_label": ["File verification:", "Weryfikacja plików:"],
-    "advanced_verification_button": ["Check", "Sprawdź"]
+    "advanced_capacity_label": ["Capacity:", "Przepustowość:"]
 }

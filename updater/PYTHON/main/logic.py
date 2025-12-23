@@ -114,11 +114,10 @@ def none_update(self):
 
 def open_main_app(self):
     try:
-        subprocess.Popen(['/bin/bash', self.main_path+'/TickerK8.sh'])
+        subprocess.Popen(['/bin/bash', self.main_path[:-7]+'/TickerK8.sh'])
         sys.exit(0)
     except:
         pass
-        # Sygnał do reportu
 
 def new_update(self):
     reset(self)
