@@ -133,7 +133,7 @@ def start_update(self):
     """ Call functions """
     self.controller_download_thread = controller_download()
     self.controller_download_thread.progress.connect(self.info_label.setText)
-    self.controller_download_thread.progress.start()
+    self.controller_download_thread.start()
 #______________________________________________________________________________________________________________________
 
 class controller_download(QThread):
@@ -157,8 +157,8 @@ class controller_download(QThread):
         self.update_folder = None
         self.update_json_file_list = None
         self.zip_buffer = io.BytesIO()
-        self.t = json.load(open(self.main_path+'/CONFIG/main/translate.json', 'r'))
-        self.l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
+        self.t = json.load(open(self.main_path+'/updater/CONFIG/main/translate.json', 'r'))
+        self.l = json.load(open(self.main_path+'/updater/CONFIG/GLOBAL/global_config.json', 'r'))['language']
 
     def run(self):
         self.backup()
