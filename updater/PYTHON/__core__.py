@@ -1,8 +1,6 @@
 """ Import packages """
-import json
 import sys
 import pathlib
-import urllib.request
 import socket
 import time
 """ Import PyQt5 packages """
@@ -10,8 +8,6 @@ from PyQt5.QtWidgets import (
     QApplication,
     QWidget,
     QVBoxLayout,
-    QDesktopWidget,
-    QMainWindow
     )
 from PyQt5.QtCore import (
     QRect,
@@ -43,6 +39,11 @@ class app_controller(QWidget):
         self.report_widget = None 
         self.screen = QApplication.primaryScreen()
         self.geometry = self.screen.availableGeometry()
+        pos_x = self.geometry.width()//4
+        pos_y = self.geometry.height()//4
+        width = self.geometry.width()//2
+        height = self.geometry.height()//2
+        self.setGeometry(pos_x, pos_y, width, height)
         self.ping_thread = self.controller_ping()
         self.ping_thread.start()
         self.main_setup()
@@ -51,23 +52,13 @@ class app_controller(QWidget):
     def main_setup(self):
         self.main_widget = Main_widget(self)
         self.layout.addWidget(self.main_widget)
-        pos_x = int(self.geometry.width()//4)
-        pos_y = int(self.geometry.height()//4)
-        width = int(self.geometry.width()//2)
-        height = int(self.geometry.height()//2)
-        self.setGeometry(QRect(pos_x, pos_y, width, height))
-        self.ping_thread.signal.connect(self.main_widget.main_connect_controller)
-        self.main_widget.changelog_widget.connection_signal.connect(self.main_changelog_connect)
+        self.ping_thread.signal.connect(self.main_widget.main_connect_handle)
+        self.main_widget.changelog_widget.connection_signal.connect(self.main_changelog_connection)
         self.main_widget.settings_button.clicked.connect(self.main_to_settings)
     
     def settings_setup(self):
         self.settings_widget = Settings_widget(self)
         self.layout.addWidget(self.settings_widget)
-        pos_x = int(self.geometry.width()//4)
-        pos_y = int(self.geometry.height()//4)
-        width = int(self.geometry.width()//2)
-        height = int(self.geometry.height()//2)
-        self.setGeometry(QRect(pos_x, pos_y, width, height))
         self.settings_widget.exit_button.clicked.connect(self.settings_to_main)
         self.settings_widget.report_created.connect(lambda: self.settings_widget.sendreport_button.clicked.connect(self.settings_to_report))
         self.settings_widget.update_created.connect(lambda: self.settings_widget.version_changelog_button.clicked.connect(lambda: self.settings_to_changelog('', 's')))
@@ -75,11 +66,6 @@ class app_controller(QWidget):
     def changelog_setup(self, data, f):
         self.changelog_widget = Changelog_widget(self, data)
         self.layout.addWidget(self.changelog_widget)
-        pos_x = int(self.geometry.width()//4)
-        pos_y = int(self.geometry.height()//4)
-        width = int(self.geometry.width()//2)
-        height = int(self.geometry.height()//2)
-        self.setGeometry(QRect(pos_x, pos_y, width, height))
         if f == 'm':
             self.changelog_widget.exit_button.clicked.connect(self.changelog_to_main)
         elif f == 's':
@@ -88,11 +74,6 @@ class app_controller(QWidget):
     def report_setup(self):
         self.report_widget = Report_widget(self)
         self.layout.addWidget(self.report_widget)
-        pos_x = int(self.geometry.width()//4)
-        pos_y = int(self.geometry.height()//4)
-        width = int(self.geometry.width()//2)
-        height = int(self.geometry.height()//2)
-        self.setGeometry(QRect(pos_x, pos_y, width, height))
         self.report_widget.exit_button.clicked.connect(self.report_to_settings)
 #______________________________________________________________________________________________________________________
 
@@ -137,7 +118,7 @@ class app_controller(QWidget):
         self.settings_setup()
 #______________________________________________________________________________________________________________________
     
-    def main_changelog_connect(self):
+    def main_changelog_connection(self):
         d = self.main_widget.changelog_widget.release_data
         b = self.main_widget.changelog_widget.releases_button_list
         for index, release in enumerate(d, start=0):

@@ -3,7 +3,6 @@ import pathlib
 """ Import PyQt5 packages """
 from PyQt5.QtWidgets import (
     QWidget,
-    QPushButton,
     QLabel, 
     QComboBox,
     QScrollArea,
@@ -51,7 +50,6 @@ class Settings_widget(QWidget):
         self.menu_update_button.clicked.connect(lambda: self.sub_menu_open(self.update_widget_open))
         self.menu_language_button.clicked.connect(lambda: self.sub_menu_open(self.language_widget_open))
         self.menu_report_button.clicked.connect(lambda: self.sub_menu_open(self.report_widget_open))
-#______________________________________________________________________________________________________________________
 
     def sub_menu_open(self, open_func):
         if self.sub_menu_scroll:
@@ -64,7 +62,6 @@ class Settings_widget(QWidget):
         """ Call functions """
         sub_menu_ui(self)
         open_func()
-#______________________________________________________________________________________________________________________
     
     def theme_widget_open(self):
         """ Create objects """
@@ -80,24 +77,16 @@ class Settings_widget(QWidget):
         """ Connect functions """
         self.day_night_button.clicked.connect(lambda: change_d_n(self))
         self.list_combobox.currentIndexChanged.connect(lambda: change_theme(self))
-#______________________________________________________________________________________________________________________
 
     def sound_widget_open(self):
         """ Create objects """
         self.button_label = QLabel(self.sub_menu_widget)
         self.button_button = QPushButton_sound(self.sub_menu_widget)
-        self.alert_label = QLabel(self.sub_menu_widget)
-        self.alert_button = QPushButton_sound(self.sub_menu_widget)
-        self.notification_label = QLabel(self.sub_menu_widget)
-        self.notification_button = QPushButton_sound(self.sub_menu_widget)
         """ Call functions """
         sound_ui(self)
         sound_retranslate(self)
         """ Connect functions """
         self.button_button.clicked.connect(lambda: change_sound_d_e(self, 'button'))
-        self.alert_button.clicked.connect(lambda: change_sound_d_e(self, 'alert'))
-        self.notification_button.clicked.connect(lambda: change_sound_d_e(self, 'notification'))
-#______________________________________________________________________________________________________________________
 
     def update_widget_open(self):
         """ Create objects """
@@ -106,11 +95,6 @@ class Settings_widget(QWidget):
         self.version_desc_value_label = QLabel(self.sub_menu_widget)
         self.version_changelog_label = QLabel(self.sub_menu_widget)
         self.version_changelog_button = QPushButton_sound(self.sub_menu_widget)
-        self.option_heading1_label = QLabel(self.sub_menu_widget)
-        self.option_autoupdate_label = QLabel(self.sub_menu_widget)
-        self.option_autoupdate_button = QPushButton_sound(self.sub_menu_widget)
-        self.option_check_label = QLabel(self.sub_menu_widget)
-        self.option_check_button = QPushButton_sound(self.sub_menu_widget)
         self.advanced_heading1_label = QLabel(self.sub_menu_widget)
         self.advanced_capacity_label = QLabel(self.sub_menu_widget)
         self.advanced_capacity_combobox = QComboBox(self.sub_menu_widget)
@@ -119,18 +103,12 @@ class Settings_widget(QWidget):
         self.advanced_capacity_combobox.addItem("2000KB/s")
         self.advanced_capacity_combobox.addItem("5000KB/s")
         self.advanced_capacity_combobox.addItem("Unlimited")
-        self.advanced_verification_label = QLabel(self.sub_menu_widget)
-        self.advanced_verification_button = QPushButton_sound(self.sub_menu_widget)
         """ Call functions """
         update_ui(self)
         update_retranslate(self)
         """ Connect functions """
-        self.option_autoupdate_button.clicked.connect(lambda: change_auto_update(self))
-        self.option_check_button.clicked.connect(lambda: get_releases_file(self))
         self.advanced_capacity_combobox.currentIndexChanged.connect(lambda: change_capacity(self))
-        self.advanced_verification_button.clicked.connect(lambda: check_compatibility(self))
         self.update_created.emit()
-#______________________________________________________________________________________________________________________
 
     def language_widget_open(self):
         """ Create objects """
@@ -143,18 +121,13 @@ class Settings_widget(QWidget):
         language_retranslate(self)
         """ Connect functions """
         self.type_combobox.currentIndexChanged.connect(lambda: change_language(self))
-#______________________________________________________________________________________________________________________
     
     def report_widget_open(self):
-        self.autoreport_label = QLabel(self.sub_menu_widget)
-        self.autoreport_button = QPushButton_sound(self.sub_menu_widget)
         self.sendreport_label = QLabel(self.sub_menu_widget)
         self.sendreport_button = QPushButton_sound(self.sub_menu_widget)
         """ Call functions """
         report_ui(self)
         report_retranslate(self)
         """ Connect functions """
-        self.autoreport_button.clicked.connect(lambda: change_auto_report(self))
         self.report_created.emit()
 #______________________________________________________________________________________________________________________
-

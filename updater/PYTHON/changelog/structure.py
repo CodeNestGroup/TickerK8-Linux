@@ -8,10 +8,10 @@ from PyQt5.QtWidgets import (
     QGridLayout,
     QVBoxLayout
 )
-""" Import main modules """
+""" Import changelog modules """
 from .ui import *
 from .logic import *
-""" Import button modules """
+""" Import custom modules """
 from soundbutton.structure import QPushButton_sound
 #______________________________________________________________________________________________________________________
 

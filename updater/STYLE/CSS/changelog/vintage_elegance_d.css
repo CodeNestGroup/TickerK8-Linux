@@ -13,6 +13,30 @@
     background-color: #282828;
     border: 0;
 }
+#scroll QScrollBar:vertical{
+    border: none;
+    background: #1a1a1a;
+    width: 8px;
+    margin: 0;
+}
+#scroll QScrollBar::handle:vertical {
+    background: #353535;
+    min-height: 15px;
+    border-radius: 2px;
+}
+
+#scroll QScrollBar::handle:vertical:hover {
+    background: #282828;
+}
+
+#scroll QScrollBar::add-line:vertical, #scroll QScrollBar::sub-line:vertical {
+    border: none;
+    background: none;
+}
+
+#scroll QScrollBar::add-page:vertical, #scroll QScrollBar::sub-page:vertical {
+    background: none;
+}
 #update_widget{
     background-color: #00000000;
 }
