@@ -17,6 +17,7 @@ from soundbutton.structure import QPushButton_sound
 class Report_widget(QWidget):
     def __init__(self, parent):
         super().__init__()
+        self.setAttribute(Qt.WA_StyledBackground, True)
         self.setParent(parent)
         """" Set paths, file name """
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2])

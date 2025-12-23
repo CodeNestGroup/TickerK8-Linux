@@ -70,7 +70,7 @@ def changelog_reload_style(self):
     g = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
     t = g['theme']
     self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/changelog/'+t+'.css')).read())
-    self.exit_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/changelog/exit_'+t+'.svg'), 256, 256)))
+    self.exit_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/changelog/exit_vintage_elegance_d.svg'), 256, 256)))
 
 def changelog_retranslate(self):
     t = json.load(open(self.main_path+'/CONFIG/changelog/translate.json', 'r'))

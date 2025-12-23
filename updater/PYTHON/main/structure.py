@@ -5,6 +5,9 @@ from PyQt5.QtWidgets import (
     QWidget,
     QGridLayout
 )
+from PyQt5.QtCore import (
+    Qt
+)
 """ Import main modules """
 from .ui import (
     main_ui,
@@ -19,6 +22,7 @@ from main_changelog.structure import Changelog_widget
 class Main_widget(QWidget):
     def __init__(self, parent):
         super().__init__()
+        self.setAttribute(Qt.WA_StyledBackground, True)
         self.setParent(parent)
         """" Set paths, file name """
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2])
@@ -52,5 +56,4 @@ class Main_widget(QWidget):
         elif not b and self.last_ping:
             main_no_connect(self)
             self.last_ping = False
-    
 #______________________________________________________________________________________________________________________

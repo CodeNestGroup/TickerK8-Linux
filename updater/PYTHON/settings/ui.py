@@ -73,7 +73,7 @@ def settings_reload_style(self):
     g = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
     t = g['theme']
     self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/settings/'+t+'.css')).read())
-    self.exit_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/settings/exit_'+t+'.svg'), 256, 256)))
+    self.exit_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/settings/exit_vintage_elegance_d.svg'), 256, 256)))
 
 def settings_retranslate(self):
     t = json.load(open(self.main_path+'/CONFIG/settings/menu_translate.json', 'r'))
@@ -288,6 +288,7 @@ def report_ui(self):
     """ Set label """
     self.sendreport_label.setAlignment(Qt.AlignCenter)
     """ Set button """
+    self.sendreport_button.setDisabled(True)
     """ Set size """
     self.sendreport_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.sendreport_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
