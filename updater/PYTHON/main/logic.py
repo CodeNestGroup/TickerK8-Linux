@@ -246,7 +246,7 @@ class controller_download(QThread):
     def update_compatibility(self):
         try:
             self.progress.emit(self.t['info_label'][5][self.l])
-            u = json.load(open(self.backup_path+self.update_folder+'updater/CONFIG/GLOBAL/app_file_list', 'r'))
+            u = json.load(open(self.backup_path+self.update_folder+'updater/CONFIG/GLOBAL/app_file_list.json', 'r'))
             t = len(u)
             for file, check_sum in u.items():
                 if os.path.exists(self.backup_path+self.update_folder+file):
