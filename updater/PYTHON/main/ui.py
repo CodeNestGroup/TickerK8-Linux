@@ -79,7 +79,7 @@ def main_no_connect_ui(self):
     self.info_label.setObjectName('info_label')
     """ Set property """
     """ Set layout """
-    self.layout.addWidget(self.info_label, 90, 51, 10, 49)
+    self.layout.addWidget(self.info_label, 90, 51, 9, 48)
     """ Set widget """
     """ Set label """
     self.info_label.setAlignment(Qt.AlignCenter)
@@ -104,7 +104,7 @@ def main_connect_ui(self):
     self.info_label.setObjectName('info_label')
     """ Set property """
     """ Set layout """
-    self.layout.addWidget(self.info_label, 90, 51, 10, 49)
+    self.layout.addWidget(self.info_label, 90, 51, 9, 48)
     """ Set widget """
     """ Set label """
     self.info_label.setAlignment(Qt.AlignCenter)
@@ -130,7 +130,7 @@ def none_update_ui(self):
     """ Set property """
     self.open_button.setProperty('class', 'button')
     """ Set layout """
-    self.layout.addWidget(self.open_button, 90, 51, 10, 49)
+    self.layout.addWidget(self.open_button, 90, 51, 9, 48)
     """ Set widget """
     """ Set label """
     """ Set button """
@@ -152,7 +152,7 @@ def new_update_ui(self):
     """ Set property """
     self.download_button.setProperty('class', 'button')
     """ Set layout """
-    self.layout.addWidget(self.download_button, 90, 51, 10, 49)
+    self.layout.addWidget(self.download_button, 90, 51, 9, 48)
     """ Set widget """
     """ Set label """
     """ Set button """
@@ -173,7 +173,7 @@ def start_update_ui(self):
     self.info_label.setObjectName('info_label')
     """ Set property """
     """ Set layout """
-    self.layout.addWidget(self.info_label, 90, 51, 10, 49)
+    self.layout.addWidget(self.info_label, 90, 51, 9, 48)
     """ Set widget """
     """ Set label """
     self.info_label.setAlignment(Qt.AlignCenter)

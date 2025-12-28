@@ -42,10 +42,9 @@ from .ui import (
 
 def open_link(u):
     try:
-        QDesktopServices.openUrl(u)
+        QDesktopServices.openUrl(QUrl(u))
     except:
         pass
-        # Sygnał do reportu
 #______________________________________________________________________________________________________________________
 
 def reset(self):
@@ -100,7 +99,7 @@ def check_update(self, release_data):
     l_v = json.load(open(self.main_path+'/CONFIG/GLOBAL/changelog.json', 'r'))['published_at']
     g_t = datetime.fromisoformat(g_v.replace("Z", "+00:00"))
     l_t = datetime.fromisoformat(l_v.replace("Z", "+00:00"))
-    if g_t == l_t:
+    if g_t <= l_t:
         none_update(self)
     elif g_t > l_t:
         new_update(self)
