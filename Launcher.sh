@@ -27,7 +27,7 @@ source "$VENV_DIR/bin/activate"
 
 # Install packages.
 pip install --upgrade pip
-pip install -r "$PROJECT_DIR/TickerK8_updater/APP_FILES/CONFIG/requirements.txt"
+pip install -r "$PROJECT_DIR/updater/CONFIG/requirements.txt"
 
 # Start application.
-python "$PROJECT_DIR/TickerK8_updater/APP_FILES/PYTHON/_00_main.py"
+python "$PROJECT_DIR/updater/PYTHON/__core__.py"

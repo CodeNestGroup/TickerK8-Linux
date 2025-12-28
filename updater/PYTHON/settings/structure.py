@@ -3,19 +3,28 @@ import pathlib
 """ Import PyQt5 packages """
 from PyQt5.QtWidgets import (
     QWidget,
-    QPushButton,
     QLabel, 
+    QComboBox,
     QScrollArea,
-    QGridLayout
+    QGridLayout,
+    QVBoxLayout
+)
+from PyQt5.QtCore import (
+    pyqtSignal
 )
 """ Import settings modules """
 from .ui import *
 from .logic import *
+""" Import button modules """
+from soundbutton.structure import QPushButton_sound
 #______________________________________________________________________________________________________________________
 
 class Settings_widget(QWidget):
+    report_created = pyqtSignal()
+    update_created = pyqtSignal()
     def __init__(self, parent):
         super().__init__()
+        self.setAttribute(Qt.WA_StyledBackground, True)
         self.setParent(parent)
         """" Set paths, file name """
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2])
@@ -35,14 +44,13 @@ class Settings_widget(QWidget):
         settings_ui(self)
         settings_reload_style(self)
         settings_retranslate(self)
-        sub_menu_open(self, theme_widget_open(self))
+        self.sub_menu_open(self.theme_widget_open)
         """ Connect functions """
-        self.menu_theme_button.clicked.connect(sub_menu_ui(self, theme_widget_open(self)))
-        self.menu_sound_button.clicked.connect(sub_menu_ui(self, sound_widget_open(self)))
-        self.menu_update_button.clicked.connect(sub_menu_ui(self, update_widget_open(self)))
-        self.menu_language_button.clicked.connect(sub_menu_ui(self, language_widget_open(self)))
-        self.menu_report_button.clicked.connect(sub_menu_ui(self, report_widget_open(self)))
-#______________________________________________________________________________________________________________________
+        self.menu_theme_button.clicked.connect(lambda: self.sub_menu_open(self.theme_widget_open))
+        self.menu_sound_button.clicked.connect(lambda: self.sub_menu_open(self.sound_widget_open))
+        self.menu_update_button.clicked.connect(lambda: self.sub_menu_open(self.update_widget_open))
+        self.menu_language_button.clicked.connect(lambda: self.sub_menu_open(self.language_widget_open))
+        self.menu_report_button.clicked.connect(lambda: self.sub_menu_open(self.report_widget_open))
 
     def sub_menu_open(self, open_func):
         if self.sub_menu_scroll:
@@ -55,7 +63,6 @@ class Settings_widget(QWidget):
         """ Call functions """
         sub_menu_ui(self)
         open_func()
-#______________________________________________________________________________________________________________________
     
     def theme_widget_open(self):
         """ Create objects """
@@ -69,21 +76,18 @@ class Settings_widget(QWidget):
         theme_ui(self)
         theme_retranslate(self)
         """ Connect functions """
-#______________________________________________________________________________________________________________________
+        self.day_night_button.clicked.connect(lambda: change_d_n(self))
+        self.list_combobox.currentIndexChanged.connect(lambda: change_theme(self))
 
     def sound_widget_open(self):
         """ Create objects """
         self.button_label = QLabel(self.sub_menu_widget)
         self.button_button = QPushButton_sound(self.sub_menu_widget)
-        self.alert_label = QLabel(self.sub_menu_widget)
-        self.alert_button = QPushButton_sound(self.sub_menu_widget)
-        self.notification_label = QLabel(self.sub_menu_widget)
-        self.notification_button = QPushButton_sound(self.sub_menu_widget)
         """ Call functions """
         sound_ui(self)
         sound_retranslate(self)
         """ Connect functions """
-#______________________________________________________________________________________________________________________
+        self.button_button.clicked.connect(lambda: change_sound_d_e(self, 'button'))
 
     def update_widget_open(self):
         """ Create objects """
@@ -92,62 +96,39 @@ class Settings_widget(QWidget):
         self.version_desc_value_label = QLabel(self.sub_menu_widget)
         self.version_changelog_label = QLabel(self.sub_menu_widget)
         self.version_changelog_button = QPushButton_sound(self.sub_menu_widget)
-        self.option_subtitle_label = QLabel(self.sub_menu_widget)
-        self.option_autoupdate_title_label = QLabel(self.sub_menu_widget)
-        self.option_autoupdate_button = QPushButton_sound(self.sub_menu_widget)
-        self.option_check_title_label = QLabel(self.sub_menu_widget)
-        self.option_check_button = QPushButton_sound(self.sub_menu_widget)
-        self.advanced_subtitle_label = QLabel(self.sub_menu_widget)
-        self.advanced_capacity_title_label = QLabel(self.sub_menu_widget)
+        self.advanced_heading1_label = QLabel(self.sub_menu_widget)
+        self.advanced_capacity_label = QLabel(self.sub_menu_widget)
         self.advanced_capacity_combobox = QComboBox(self.sub_menu_widget)
         self.advanced_capacity_combobox.addItem("500 KB/s")
         self.advanced_capacity_combobox.addItem("1000KB/s")
         self.advanced_capacity_combobox.addItem("2000KB/s")
         self.advanced_capacity_combobox.addItem("5000KB/s")
         self.advanced_capacity_combobox.addItem("Unlimited")
-        self.advanced_verification_title_label = QLabel(self.sub_menu_widget)
-        self.advanced_verification_button = QPushButton_sound(self.sub_menu_widget)
         """ Call functions """
         update_ui(self)
         update_retranslate(self)
         """ Connect functions """
-
-#______________________________________________________________________________________________________________________
+        self.advanced_capacity_combobox.currentIndexChanged.connect(lambda: change_capacity(self))
+        self.update_created.emit()
 
     def language_widget_open(self):
-        if self.sub_menu_scroll:
-            self.sub_menu_scroll.deleteLater()
         """ Create objects """
-        self.sub_menu_scroll = QScrollArea(self)
-        self.language_widget = QWidget(self.sub_menu_scroll)
-        self.language_layout = QGridLayout(self.language_widget)
-        self.language_title_label = QLabel(self.language_widget)
-        self.language_type_label = QLabel(self.language_widget)
-        self.language_type_combobox = QComboBox(self.language_widget)
-        self.language_type_combobox.addItem("English / English")
-        self.language_type_combobox.addItem("Polski / Polish ")
+        self.type_label = QLabel(self.sub_menu_widget)
+        self.type_combobox = QComboBox(self.sub_menu_widget)
+        self.type_combobox.addItem("English / English")
+        self.type_combobox.addItem("Polski / Polish ")
         """ Call functions """
         language_ui(self)
         language_retranslate(self)
         """ Connect functions """
-
-#______________________________________________________________________________________________________________________
+        self.type_combobox.currentIndexChanged.connect(lambda: change_language(self))
     
     def report_widget_open(self):
-        if self.sub_menu_scroll:
-            self.sub_menu_scroll.deleteLater()
-        """ Create objects """
-        self.sub_menu_scroll = QScrollArea(self)
-        self.report_widget = QWidget(self.sub_menu_scroll)
-        self.report_layout = QGridLayout(self.report_widget)
-        self.report_title_label = QLabel(self.report_widget)
-        self.report_autoreport_title_label = QLabel(self.report_widget)
-        self.report_autoreport_button = QPushButton_sound(self.report_widget)
-        self.report_sendreport_title_label = QLabel(self.report_widget)
-        self.report_sendreport_button = QPushButton_sound(self.report_widget)
+        self.sendreport_label = QLabel(self.sub_menu_widget)
+        self.sendreport_button = QPushButton_sound(self.sub_menu_widget)
         """ Call functions """
         report_ui(self)
         report_retranslate(self)
         """ Connect functions """
+        self.report_created.emit()
 #______________________________________________________________________________________________________________________
-

@@ -68,22 +68,21 @@ def settings_ui(self):
     self.menu_language_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.menu_report_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.exit_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-#______________________________________________________________________________________________________________________
 
 def settings_reload_style(self):
-    _global_config = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
-    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/settings/'+_global_config['theme']+'.css')).read())
-#______________________________________________________________________________________________________________________
+    g = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
+    t = g['theme']
+    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/settings/'+t+'.css')).read())
+    self.exit_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/settings/exit_vintage_elegance_d.svg'), 256, 256)))
 
 def settings_retranslate(self):
-    _t = json.load(open(self.main_path+'/CONFIG/settings/translate.json', 'r'))
-    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
-    self.menu_theme_button.setText(_t['menu_theme_button'][_l])
-    self.menu_sound_button.setText(_t['menu_sound_button'][_l])
-    self.menu_update_button.setText(_t['menu_update_button'][_l])
-    self.menu_language_button.setText(_t['menu_language_button'][_l])
-    self.menu_report_button.setText(_t['menu_report_button'][_l])
-    self.exit_button.setText(_t['exit_button'][_l])
+    t = json.load(open(self.main_path+'/CONFIG/settings/menu_translate.json', 'r'))
+    l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
+    self.menu_theme_button.setText(t['menu_theme_button'][l])
+    self.menu_sound_button.setText(t['menu_sound_button'][l])
+    self.menu_update_button.setText(t['menu_update_button'][l])
+    self.menu_language_button.setText(t['menu_language_button'][l])
+    self.menu_report_button.setText(t['menu_report_button'][l])
 #______________________________________________________________________________________________________________________
 
 def sub_menu_ui(self):
@@ -93,7 +92,7 @@ def sub_menu_ui(self):
     self.title_label.setObjectName('title_label')
     """ Set layout """
     self.layout.addWidget(self.sub_menu_scroll, 0, 30, 100, 70)
-    self.sub_menu_layout.addWidget(self.title_label, 0, 0,10, 100)
+    self.sub_menu_layout.addWidget(self.title_label, 0, 0, 10, 100)
     self.sub_menu_layout.setSpacing(0)
     self.sub_menu_layout.setContentsMargins(0,0,0,0)
     for enc in range(100):
@@ -106,6 +105,7 @@ def sub_menu_ui(self):
     self.sub_menu_scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
     """ Set label """
     self.title_label.setAlignment(Qt.AlignCenter)
+    """ Set button """
     """ Set size """
     self.sub_menu_scroll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.sub_menu_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -125,9 +125,9 @@ def theme_ui(self):
     self.list_combobox.setProperty('class', 'value_combobox')
     """ Set layout """
     self.sub_menu_layout.addWidget(self.day_night_label, 20, 0, 30, 50)
-    self.sub_menu_layout.addWidget(self.day_night_button, 25, 50, 20, 50)
+    self.sub_menu_layout.addWidget(self.day_night_button, 20, 50, 30, 50)
     self.sub_menu_layout.addWidget(self.list_label, 60, 0, 30, 50)
-    self.sub_menu_layout.addWidget(self.list_combobox, 65, 50, 20, 50)
+    self.sub_menu_layout.addWidget(self.list_combobox, 60, 50, 30, 50)
     """ Set widget """
     """ Set label """
     self.day_night_label.setAlignment(Qt.AlignCenter)
@@ -138,65 +138,45 @@ def theme_ui(self):
     self.day_night_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.list_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.list_combobox.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-#______________________________________________________________________________________________________________________
 
 def theme_retranslate(self):
-    _t = json.load(open(self.main_path+'/CONFIG/settings/translate.json', 'r'))
-    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
-    self.title_label.setText(_t['title_label'][_l])
-    self.day_night_label.setText(_t['day_night_label'][_l])
-    self.day_night_button.setText(_t['day_night_button'][_l][config d n ])
-    self.list_label.setText(_t['list_label'][_l])
+    t = json.load(open(self.main_path+'/CONFIG/settings/theme_translate.json', 'r'))
+    g = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
+    l = g['language']
+    d = g['theme_index']
+    self.title_label.setText(t['title_label'][l])
+    self.day_night_label.setText(t['day_night_label'][l])
+    self.day_night_button.setText(t['day_night_button'][l][d])
+    self.list_combobox.setCurrentIndex(d)
+    self.list_label.setText(t['list_label'][l])
 #______________________________________________________________________________________________________________________
 
 def sound_ui(self):
     """ Set object name """
     self.button_label.setObjectName('button_label')
     self.button_button.setObjectName('button_button')
-    self.alert_label.setObjectName('alert_label')
-    self.alert_button.setObjectName('alert_button')
-    self.notification_label.setObjectName('notification_label')
-    self.notification_button.setObjectName('notification_button')
     """ Set property """
     self.button_label.setProperty('class', 'name_label')
     self.button_button.setProperty('class', 'value_button')
-    self.alert_label.setProperty('class', 'name_label')
-    self.alert_button.setProperty('class', 'value_button')
-    self.notification_label.setProperty('class', 'name_label')
-    self.notification_button.setProperty('class', 'value_button')
     """ Set layout """
-    self.sub_menu_layout.addWidget(self.button_label, 1, 0, 1, 50)
-    self.sub_menu_layout.addWidget(self.button_button, 1, 50, 1, 50)
-    self.sub_menu_layout.addWidget(self.alert_label, 2, 0, 1, 50)
-    self.sub_menu_layout.addWidget(self.alert_button, 2, 50, 1, 50)
-    self.sub_menu_layout.addWidget(self.notification_label, 3, 0, 1, 50)
-    self.sub_menu_layout.addWidget(self.notification_button, 3, 50, 1, 50)
+    self.sub_menu_layout.addWidget(self.button_label, 20, 0, 15, 50)
+    self.sub_menu_layout.addWidget(self.button_button, 20, 50, 15, 50)
     """ Set widget """
     """ Set label """
-    self.title_label.setAlignment(Qt.AlignCenter)
     self.button_label.setAlignment(Qt.AlignCenter)
-    self.alert_label.setAlignment(Qt.AlignCenter)
-    self.notification_label.setAlignment(Qt.AlignCenter)
     """ Set button """
     """ Set size """
     self.button_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.button_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.alert_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.alert_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.notification_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.notification_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-#______________________________________________________________________________________________________________________
 
 def sound_retranslate(self):
-    _t = json.load(open(self.main_path+'/CONFIG/settings/translate.json', 'r'))
-    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
-    self.title_label.setText(_t['title_label'][_l])
-    self.button_label.setText(_t['button_label'][_l])
-    self.button_button.setText(_t['button_button'][_l][config])
-    self.alert_label.setText(_t['alert_label'][_l])
-    self.alert_button.setText(_t['alert_button'][_l][config])
-    self.notification_label.setText(_t['notification_label'][_l])
-    self.notification_button.setText(_t['notification_button'][_l][config])
+    t = json.load(open(self.main_path+'/CONFIG/settings/sound_translate.json', 'r'))
+    g = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
+    l = g['language']
+    s = g['sound']
+    self.title_label.setText(t['title_label'][l])
+    self.button_label.setText(t['button_label'][l])
+    self.button_button.setText(t['button_button'][l][s['button']])
 #______________________________________________________________________________________________________________________
 
 def update_ui(self):
@@ -206,63 +186,40 @@ def update_ui(self):
     self.version_desc_value_label.setObjectName('version_desc_label')
     self.version_changelog_label.setObjectName('version_changelog_label')
     self.version_changelog_button.setObjectName('version_changelog_button')
-    self.option_heading1_label.setObjectName('option_heading1_label')
-    self.option_autoupdate_label.setObjectName('option_autoupdate_label')
-    self.option_autoupdate_button.setObjectName('option_autoupdate_button')
-    self.option_check_label.setObjectName('option_check_label')
-    self.option_check_button.setObjectName('option_check_button')
     self.advanced_heading1_label.setObjectName('advanced_heading1_label')
     self.advanced_capacity_label.setObjectName('advanced_capacity_label')
     self.advanced_capacity_combobox.setObjectName('advanced_capacity_combobox')
-    self.advanced_verification_label.setObjectName('advanced_verification_label')
-    self.advanced_verification_button.setObjectName('advanced_verification_button')
     """ Set property """
     self.version_heading1_label.setProperty('class', 'heading1')
     self.version_desc_label.setProperty('class', 'name_label')
     self.version_desc_value_label.setProperty('class', 'value_label')
     self.version_changelog_label.setProperty('class', 'name_label')
     self.version_changelog_button.setProperty('class', 'value_button')
-    self.option_heading1_label.setProperty('class', 'heading1')
-    self.option_autoupdate_label.setProperty('class', 'name_label')
-    self.option_autoupdate_button.setProperty('class', 'value_button')
-    self.option_check_label.setProperty('class', 'name_label')
-    self.option_check_button.setProperty('class', 'value_button')
     self.advanced_heading1_label.setProperty('class', 'heading1')
     self.advanced_capacity_label.setProperty('class', 'name_label')
     self.advanced_capacity_combobox.setProperty('class', 'value_combobox')
-    self.advanced_verification_label.setProperty('class', 'name_label')
-    self.advanced_verification_button.setProperty('class', 'value_button')
     """ Set layout """
-    self.sub_menu_layout.addWidget(self.version_heading1_label, 1, 0, 1, 100)
-    self.sub_menu_layout.addWidget(self.version_desc_label, 2, 0, 1, 50)
-    self.sub_menu_layout.addWidget(self.version_desc_value_label, 2, 50, 1, 50)
-    self.sub_menu_layout.addWidget(self.version_changelog_label, 3, 0, 1, 50)
-    self.sub_menu_layout.addWidget(self.version_changelog_button, 3, 50, 1, 50)
-    self.sub_menu_layout.addWidget(self.option_heading1_label, 4, 0, 1, 100)
-    self.sub_menu_layout.addWidget(self.option_autoupdate_label, 5, 0, 1, 50)
-    self.sub_menu_layout.addWidget(self.option_autoupdate_button, 5, 50, 1, 50)
-    self.sub_menu_layout.addWidget(self.option_check_label, 6, 0, 1, 50)
-    self.sub_menu_layout.addWidget(self.option_check_button, 6, 50, 1, 50)
-    self.sub_menu_layout.addWidget(self.advanced_heading1_label, 7, 0, 1, 100)
-    self.sub_menu_layout.addWidget(self.advanced_capacity_label, 8, 0, 1, 50)
-    self.sub_menu_layout.addWidget(self.advanced_capacity_combobox, 8, 50, 1, 50)
-    self.sub_menu_layout.addWidget(self.advanced_verification_label, 9, 0, 1, 50)
-    self.sub_menu_layout.addWidget(self.advanced_verification_button, 9, 50, 1, 50)
+    self.sub_menu_layout.addWidget(self.version_heading1_label, 20, 0, 10, 100)
+    self.sub_menu_layout.addWidget(self.version_desc_label, 35, 0, 5, 50)
+    self.sub_menu_layout.addWidget(self.version_desc_value_label, 35, 50, 5, 50)
+    self.sub_menu_layout.addWidget(self.version_changelog_label, 45, 0, 5, 50)
+    self.sub_menu_layout.addWidget(self.version_changelog_button, 45, 50, 5, 50)
+    self.sub_menu_layout.addWidget(self.advanced_heading1_label, 90, 0, 10, 100)
+    self.sub_menu_layout.addWidget(self.advanced_capacity_label, 105, 0, 5, 50)
+    self.sub_menu_layout.addWidget(self.advanced_capacity_combobox, 105, 50, 5, 50)
     """ Set widget """
     """ Set label """
     self.version_heading1_label.setAlignment(Qt.AlignCenter)
     self.version_desc_label.setAlignment(Qt.AlignCenter)
+    self.version_desc_label.setWordWrap(True)
     self.version_desc_value_label.setAlignment(Qt.AlignCenter)
     self.version_desc_value_label.setWordWrap(True)
     self.version_changelog_label.setAlignment(Qt.AlignCenter)
-    self.option_heading1_label.setAlignment(Qt.AlignCenter)
-    self.option_autoupdate_label.setAlignment(Qt.AlignCenter)
-    self.option_check_label.setAlignment(Qt.AlignCenter)
+    self.version_changelog_label.setWordWrap(True)
     self.advanced_heading1_label.setAlignment(Qt.AlignCenter)
     self.advanced_capacity_label.setAlignment(Qt.AlignCenter)
-    self.advanced_verification_label.setAlignment(Qt.AlignCenter)
+    self.advanced_capacity_label.setWordWrap(True)
     """ Set button """
-    self.option_check_button.setDisabled(True)
     """ Set size """
     self.title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.version_heading1_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -270,140 +227,88 @@ def update_ui(self):
     self.version_desc_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.version_changelog_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.version_changelog_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.option_heading1_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.option_autoupdate_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.option_autoupdate_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.option_check_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.option_check_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.advanced_heading1_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.advanced_capacity_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.advanced_capacity_combobox.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.advanced_verification_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.advanced_verification_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-#______________________________________________________________________________________________________________________
 
 def update_retranslate(self):
-    _t = json.load(open(self.main_path+'/CONFIG/settings/translate.json', 'r'))
-    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
-    self.title_label.setText(_t['title_label'][_l])
-    self.version_heading1_label.setText(_t['version_heading1_label'][_l])
-    self.version_desc_label.setText(_t['version_desc_label'][_l])
-    self.version_desc_value_label.setText(_t['version_desc_value_label'][_l])
-    self.version_changelog_label.setText(_t['version_changelog_label'][_l])
-    self.version_changelog_button.setText(_t['version_changelog_button'][_l])
-    self.option_heading1_label.setText(_t['option_heading1_label'][_l])
-    self.option_autoupdate_label.setText(_t['option_autoupdate_label'][_l])
-    self.option_autoupdate_button.setText(_t['option_autoupdate_button'][_l][config])
-    self.option_check_label.setText(_t['option_check_label'][_l])
-    self.option_check_button.setText(_t['option_check_button'][_l])
-    self.advanced_heading1_label.setText(_t['advanced_heading1_label'][_l])
-    self.advanced_capacity_label.setText(_t['advanced_capacity_label'][_l])
-    self.advanced_capacity_combobox.setCurrentIndex(config)
-    self.advanced_verification_label.setText(_t['advanced_verification_label'][_l])
-    self.advanced_verification_button.setText(_t['advanced_verification_button'][_l])
+    t = json.load(open(self.main_path+'/CONFIG/settings/update_translate.json', 'r'))
+    g = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
+    d = json.load(open(self.main_path+'/CONFIG/GLOBAL/changelog.json', 'r'))['name']
+    l = g['language']
+    c = g['capacity']
+    self.title_label.setText(t['title_label'][l])
+    self.version_heading1_label.setText(t['version_heading1_label'][l])
+    self.version_desc_label.setText(t['version_desc_label'][l])
+    self.version_desc_value_label.setText(d)
+    self.version_changelog_label.setText(t['version_changelog_label'][l])
+    self.version_changelog_button.setText(t['version_changelog_button'][l])
+    self.advanced_heading1_label.setText(t['advanced_heading1_label'][l])
+    self.advanced_capacity_label.setText(t['advanced_capacity_label'][l])
+    self.advanced_capacity_combobox.setCurrentIndex(c)
 #______________________________________________________________________________________________________________________
 
 def language_ui(self):
     """ Set object name """
-    self.sub_menu_scroll.setObjectName('sub_menu_scroll')
-    self.language_widget.setObjectName('language_widget')
-    self.language_title_label.setObjectName('language_title_label')
-    self.language_type_label.setObjectName('language_type_label')
-    self.language_type_combobox.setObjectName('language_type_combobox')
+    self.type_label.setObjectName('type_label')
+    self.type_combobox.setObjectName('type_combobox')
     """ Set property """
-    self.language_widget.setProperty('class', 'sub_widgets')
-    self.language_title_label.setProperty('class', 'titles')
-    self.language_type_label.setProperty('class', 'sub_titles')
-    self.language_type_combobox.setProperty('class', '')
+    self.type_label.setProperty('class', 'name_label')
+    self.type_combobox.setProperty('class', 'value_combobox')
     """ Set layout """
-    self.layout.addWidget(self.sub_menu_scroll, 0, 30, 100, 70)
-    self.language_layout.addWidget(self.language_title_label, 0, 0, 1, 100)
-    self.language_layout.addWidget(self.language_type_label, 1, 0, 1, 50)
-    self.language_layout.addWidget(self.language_type_combobox, 1, 50, 1, 50)
-    self.language_layout.setSpacing(0)
-    self.language_layout.setContentsMargins(0,0,0,0)
-    for enc in range(100):
-        self.language_layout.setColumnStretch(enc, 1)
-    self.language_widget.setLayout(self.language_layout)
+    self.sub_menu_layout.addWidget(self.type_label, 35, 0, 5, 50)
+    self.sub_menu_layout.addWidget(self.type_combobox, 35, 50, 5, 50)
     """ Set widget """
-    self.sub_menu_scroll.setWidgetResizable(True)
-    self.sub_menu_scroll.setWidget(self.language_widget)
-    self.sub_menu_scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-    self.language_widget.setHidden(False)
     """ Set label """
-    self.language_title_label.setAlignment(Qt.AlignCenter)
-    self.language_type_label.setAlignment(Qt.AlignCenter)
+    self.type_label.setAlignment(Qt.AlignCenter)
     """ Set button """
     """ Set size """
-    self.sub_menu_scroll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.language_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.language_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.language_type_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.language_type_combobox.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-#______________________________________________________________________________________________________________________
+    self.type_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.type_combobox.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
-def labguage_retranslate(self):
-    _t = json.load(open(self.main_path+'/CONFIG/settings/translate.json', 'r'))
-    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
-    self.language_title_label.setText(_t['language_title_label'][_l])
-    self.language_type_label.setText(_t['language_type_label'][_l])
-    self.language_type_combobox.setCurrentIndex(_l)
+def language_retranslate(self):
+    t = json.load(open(self.main_path+'/CONFIG/settings/language_translate.json', 'r'))
+    l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
+    self.title_label.setText(t['title_label'][l])
+    self.type_label.setText(t['type_label'][l])
+    self.type_combobox.setCurrentIndex(l)
 #______________________________________________________________________________________________________________________
 
 def report_ui(self):
     """ Set object name """
-    self.sub_menu_scroll.setObjectName('sub_menu_scroll')
-    self.report_widget.setObjectName('report_widget')
-    self.report_title_label.setObjectName('report_title_label')
-    self.report_autoreport_title_label.setObjectName('report_autoreport_title_label')
-    self.report_autoreport_button.setObjectName('report_autoreport_button')
-    self.report_sendreport_title_label.setObjectName('report_sendreport_title_label')
-    self.report_sendreport_button.setObjectName('report_sendreport_button')
+    self.sendreport_label.setObjectName('sendreport_label')
+    self.sendreport_button.setObjectName('sendreport_button')
     """ Set property """
-    self.report_widget.setProperty('class', 'sub_widgets')
-    self.report_title_label.setProperty('class', 'titles')
-    self.report_autoreport_title_label.setProperty('class', 'sub_titles')
-    self.report_autoreport_button.setProperty('class', 'sub_buttons')
-    self.report_sendreport_title_label.setProperty('class', 'sub_titles')
-    self.report_sendreport_button.setProperty('class', 'sub_buttons')
+    self.sendreport_label.setProperty('class', 'name_label')
+    self.sendreport_button.setProperty('class', 'value_button')
     """ Set layout """
-    self.layout.addWidget(self.sub_menu_scroll, 0, 30, 100, 70)
-    self.report_layout.addWidget(self.report_title_label, 0, 0, 1, 100)
-    self.report_layout.addWidget(self.report_autoreport_title_label, 1, 0, 1, 50)
-    self.report_layout.addWidget(self.report_autoreport_button, 1, 50, 1, 50)
-    self.report_layout.addWidget(self.report_sendreport_title_label, 2, 0, 1, 50)
-    self.report_layout.addWidget(self.report_sendreport_button, 2, 50, 1, 50)
-    self.report_layout.setSpacing(0)
-    self.report_layout.setContentsMargins(0,0,0,0)
-    for enc in range(100):
-        self.report_layout.setRowStretch(enc, 1)
-        self.report_layout.setColumnStretch(enc, 1)
-    self.report_widget.setLayout(self.report_layout)
+    self.sub_menu_layout.addWidget(self.sendreport_label, 45, 0, 5, 50)
+    self.sub_menu_layout.addWidget(self.sendreport_button, 45, 50, 5, 50)
     """ Set widget """
-    self.sub_menu_scroll.setWidgetResizable(True)
-    self.sub_menu_scroll.setWidget(self.report_widget)
-    self.sub_menu_scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-    self.report_widget.setHidden(False)
     """ Set label """
-    self.report_title_label.setAlignment(Qt.AlignCenter)
-    self.report_autoreport_title_label.setAlignment(Qt.AlignCenter)
-    self.report_sendreport_title_label.setAlignment(Qt.AlignCenter)
+    self.sendreport_label.setAlignment(Qt.AlignCenter)
     """ Set button """
+    self.sendreport_button.setDisabled(True)
     """ Set size """
-    self.report_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.report_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.report_autoreport_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.report_autoreport_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.report_sendreport_title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.report_sendreport_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-#______________________________________________________________________________________________________________________
+    self.sendreport_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.sendreport_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
 def report_retranslate(self):
-    _t = json.load(open(self.main_path+'/CONFIG/settings/translate.json', 'r'))
-    _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
-    self.report_title_label.setText(_t['report_title_label'][_l])
-    self.report_autoreport_title_label.setText(_t['report_autoreport_title_label'][_l])
-    self.report_autoreport_button.setText(_t['report_autoreport_button'][_l][conf])
-    self.report_sendreport_title_label.setText(_t['report_sendreport_title_label'][_l])
-    self.report_sendreport_button.setText(_t['report_sendreport_button'][_l])
+    t = json.load(open(self.main_path+'/CONFIG/settings/report_translate.json', 'r'))
+    g = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
+    l = g['language']
+    self.title_label.setText(t['title_label'][l])
+    self.sendreport_label.setText(t['sendreport_label'][l])
+    self.sendreport_button.setText(t['sendreport_button'][l])
+#______________________________________________________________________________________________________________________
+
+def load_svg(svg_path, width, height):
+    renderer = QSvgRenderer(svg_path) 
+    pixmap = QPixmap(width, height) 
+    pixmap.fill(Qt.transparent) 
+    painter = QPainter(pixmap) 
+    renderer.render(painter)
+    painter.end()
+    scaled_pixmap = pixmap.scaled(QSize(width, height), Qt.KeepAspectRatio, Qt.SmoothTransformation)
+    return scaled_pixmap
 #______________________________________________________________________________________________________________________
