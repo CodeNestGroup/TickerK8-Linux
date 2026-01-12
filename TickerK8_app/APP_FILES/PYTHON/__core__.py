@@ -43,38 +43,30 @@ class app_controller(QWidget):
         self.chart_widget = None
         self.screen = QApplication.primaryScreen()
         self.geometry = self.screen.availableGeometry()
+        self.pos_x = int(self.geometry.width()//4)
+        self.pos_y = int(self.geometry.height()//12)
+        self.width = int(self.geometry.width()//2)
+        self.height = int(self.geometry.height()//1.25)
         self.login_setup()
 #______________________________________________________________________________________________________________________
 
     def login_setup(self):
         self.login_widget = Login_widget(self)
         self.layout.addWidget(self.login_widget)
-        pos_x = int(self.geometry.width()//4)
-        pos_y = int(self.geometry.height()//12)
-        width = int(self.geometry.width()//2)
-        height = int(self.geometry.height()//1.25)
-        self.setGeometry(QRect(pos_x, pos_y, width, height))
+        self.setGeometry(QRect(self.pos_x, self.pos_y, self.width, self.height))
         self.login_widget.correct_login.connect(self.login_to_main)
         self.login_widget.login_register_button.clicked.connect(self.login_to_register)
     
     def register_setup(self):
         self.register_widget = Register_widget(self)
         self.layout.addWidget(self.register_widget)
-        pos_x = int(self.geometry.width()//4)
-        pos_y = int(self.geometry.height()//12)
-        width = int(self.geometry.width()//2)
-        height = int(self.geometry.height()//1.25)
-        self.setGeometry(QRect(pos_x, pos_y, width, height))
+        self.setGeometry(QRect(self.pos_x, self.pos_y, self.width, self.height))
         self.register_widget.register_exit_button.clicked.connect(self.register_to_login)
     
     def recover_password_setup(self):
         self.recover_password_widget = Recover_password_widget(self)
         self.layout.addWidget(self.recover_password_widget)
-        pos_x = int(self.geometry.width()//4)
-        pos_y = int(self.geometry.height()//12)
-        width = int(self.geometry.width()//2)
-        height = int(self.geometry.height()//1.25)
-        self.setGeometry(QRect(pos_x, pos_y, width, height))
+        self.setGeometry(QRect(self.pos_x, self.pos_y, self.width, self.height))
         self.recover_password_widget.recover_password_exit_button.clicked.connect(self.forgot_password_to_login)
     
     def main_setup(self):
