@@ -30,4 +30,4 @@ pip install --upgrade pip
 pip install -r "$PROJECT_DIR/updater/CONFIG/requirements.txt"
 
 # Start application.
-python "$PROJECT_DIR/updater/PYTHON/__core__.py"
+python -m "$PROJECT_DIR/updater/PYTHON/__core__.py"

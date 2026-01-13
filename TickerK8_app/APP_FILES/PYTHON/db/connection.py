@@ -3,30 +3,36 @@ import pymysql
 import json
 import requests
 import pathlib
+from cryptography.fernet import Fernet
 
 class database():
     def __init__(self):
         super().__init__()
         self.user_dict = {}
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2])
-
-
+    
 # --- Connect data ---
-    def ConnectData(self):
-        lambda_url = "https://rcqofuhvfp75adn6rftqoctpqu0xwzgy.lambda-url.eu-north-1.on.aws/"
-
-        response = requests.post(lambda_url)
-        data = response.json()
-        return data
+    def ConnectData(self, user:str) -> dict:
+        try:
+            conf = json.load(open(f'{self.main_path}/PYTHON/db/conf.json', 'r'))
+            payload = {
+                "token":conf['token'],
+                "name":user
+            }
+            response = requests.post(conf['url'], json=payload)
+            response.raise_for_status()
+            cipher = Fernet(conf['key'].encode())
+            return json.loads(cipher.decrypt(response.text.encode()))
+        except:
+            pass
 
 # --- Connection --- 
     def Connection(self, u_name:str):
         try:
             login_data = self.user_dict[u_name]
         except:
-            self.user_dict[u_name] = self.ConnectData()
+            self.user_dict[u_name] = self.ConnectData(u_name)
             login_data = self.user_dict[u_name]
-
         conn = pymysql.connect(
             host=login_data['host'],
             user=login_data['username'],
@@ -151,6 +157,5 @@ class database():
             curs = None
             conn.close()
             conn = None
-
 
 database()

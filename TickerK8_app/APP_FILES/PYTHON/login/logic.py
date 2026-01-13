@@ -1,7 +1,13 @@
 """ Import packages """
 import json
 import datetime
-import mysql.connector 
+import sys
+import argon2
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from db.connection import database 
+
 """ Import PyQt5 packages """
 from PyQt5.QtWidgets import (
     QWidget
@@ -96,22 +102,13 @@ def change_text_icon(self, title='', sub='', icon=''):
 #______________________________________________________________________________________________________________________
 """ Sign in controller """
 def sign_in_controller(self):
-    _login = self.login_login_lineedit.text()
-    _password = self.login_password_lineedit.text()
-    connect = mysql.connector.connect(
-        host = "localhost",
-        user = "client",
-        password = "Qwerty123456#",
-        database = "TickerK8"
-    )
-    cursor = connect.cursor()
-    cursor.execute('SELECT id FROM users WHERE name=%s and password=%s;', (_login, _password))
-    login_password_result = cursor.fetchone()
-    cursor.close()
-    connect.close()
-    """ Checking correct sign in data"""
-    if login_password_result:
-        self.correct_login.emit()
+    l = self.login_login_lineedit.text()
+    p = self.login_password_lineedit.text()
+    d = database()
+    f = d.LoginByName(l)
+    print(f)
+    if argon2.verify(p, f[1]):
+        self.correct_login.emit() # Przekaz ID w celu ustawienia apki pod config usera i jego dane
     else:
         """ Reset """
         self.login_login_lineedit.clear()
