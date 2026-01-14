@@ -1,5 +1,4 @@
 """ Import pacakges """
-import mysql
 import json
 import requests
 from io import BytesIO
@@ -24,18 +23,7 @@ from PyQt5.QtGui import (
 #______________________________________________________________________________________________________________________
 
 def news_widget(self, id_id):
-    connect = mysql.connector.connect(
-    host="localhost",
-    user="client",
-    password="Qwerty123456#",
-    database="TickerK8"
-    )
-    cursor = connect.cursor()
-    cursor.execute(f"SELECT json_file FROM News WHERE id={id_id};")
-    result = cursor.fetchone()[0]
-    json_file = json.loads(result)
-    cursor.close()
-    connect.close()
+    json_file = []
     """ Create objects """
     self.news_widget = QWidget(self.news_scroll)
     self.news_layout = QVBoxLayout(self.news_widget)

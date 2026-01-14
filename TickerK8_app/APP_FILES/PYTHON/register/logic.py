@@ -1,7 +1,6 @@
 """ Import packages """
 import json
 import string
-import mysql
 """ Import PyQt5 packages"""
 from PyQt5.QtWidgets import QLineEdit
 #______________________________________________________________________________________________________________________
@@ -33,13 +32,6 @@ def register_controller(self):
     c_c = None # Correct country.
     c_pass = None # Correct password.
     """ Database """
-    connect = mysql.connector.connect(
-        host = "localhost",
-        user = "register_user",
-        password = "Qwerty123456#",
-        database = "TickerK8"
-    )
-    cursor = connect.cursor()
     if self.register_name_lineedit.text() != '':
         _name_line = self.register_name_lineedit.text()
         cursor.execute('SELECT id FROM users WHERE name=%s;', (_name_line,))
@@ -123,17 +115,6 @@ def correct_register(self, name, email, phone, country, password):
     _t = json.load(open(self.main_path+'/CONFIG/register/translate.json', 'r'))
     _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
     """ Database """
-    connect = mysql.connector.connect( 
-        host = "localhost",
-        user = "register_user",
-        password = "Qwerty123456#",
-        database = "TickerK8"
-    )
-    cursor = connect.cursor()
-    cursor.execute('INSERT INTO users (name, emial, phone, country, password) values(%s, %s, %s, %s, %s);', (_name, _emial, _phone, _country, _password))
-    connect.commit()
-    cursor.close()
-    connect.close()
     """ Confirm cuccess"""
     self.register_name_lineedit.setDisabled(True)
     self.register_emial_lineedit.setDisabled(True)

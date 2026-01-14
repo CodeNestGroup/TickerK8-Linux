@@ -2,7 +2,6 @@
 import json
 import datetime
 import sys
-import argon2
 import os
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -106,8 +105,7 @@ def sign_in_controller(self):
     p = self.login_password_lineedit.text()
     d = database()
     f = d.LoginByName(l)
-    print(f)
-    if argon2.verify(p, f[1]):
+    if f[1] == p:
         self.correct_login.emit() # Przekaz ID w celu ustawienia apki pod config usera i jego dane
     else:
         """ Reset """

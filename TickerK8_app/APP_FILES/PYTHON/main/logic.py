@@ -2,7 +2,6 @@
 import json
 import datetime
 import sqlite3
-import mysql
 import requests
 from io import BytesIO
 """ Import PyQt5 packages """
@@ -869,17 +868,7 @@ def object_stock(self):
 
 def news_creator(self):
     _news_button_list = self.news_button_list
-    connect = mysql.connector.connect(
-        host = "localhost",
-        user = "client",
-        password = "Qwerty123456#",
-        database = "TickerK8"
-    )
-    cursor = connect.cursor()
-    cursor.execute('SELECT id, json_file FROM News ORDER BY date DESC LIMIT 5;')
-    news_list = cursor.fetchall()
-    cursor.close()
-    connect.close()
+    news_list = []
     if news_list:
         for index, data in enumerate(news_list, start=1):
             json_data = json.loads(data[1])
