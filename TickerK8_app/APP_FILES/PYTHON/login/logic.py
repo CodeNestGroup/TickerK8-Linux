@@ -3,10 +3,6 @@ import json
 import datetime
 import sys
 import os
-
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from db.connection import database 
-
 """ Import PyQt5 packages """
 from PyQt5.QtWidgets import (
     QWidget
@@ -98,22 +94,6 @@ def change_text_icon(self, title='', sub='', icon=''):
     render.render(icon_painter)
     icon_painter.end()
     self.login_welcome_icon_label.setPixmap(QPixmap(icon_pixmap))
-#______________________________________________________________________________________________________________________
-""" Sign in controller """
-def sign_in_controller(self):
-    l = self.login_login_lineedit.text()
-    p = self.login_password_lineedit.text()
-    d = database()
-    f = d.LoginByName(l)
-    if f[1] == p:
-        self.correct_login.emit() # Przekaz ID w celu ustawienia apki pod config usera i jego dane
-    else:
-        """ Reset """
-        self.login_login_lineedit.clear()
-        self.login_password_lineedit.clear()
-        """ Style """
-        self.login_login_lineedit.setStyleSheet('border: 2px solid red;')
-        self.login_password_lineedit.setStyleSheet('border: 2px solid red;')
 #______________________________________________________________________________________________________________________
 """ reset style """
 def reset_style(self):

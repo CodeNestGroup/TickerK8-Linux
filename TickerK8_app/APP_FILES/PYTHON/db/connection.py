@@ -62,7 +62,7 @@ class database():
         curs = conn.cursor()
         try:
             curs.execute('CALL get_countries();')
-            result = cursor.fetchall()
+            result = curs.fetchall()
             return result
         finally:
             curs.close()
@@ -157,5 +157,3 @@ class database():
             curs = None
             conn.close()
             conn = None
-
-database()

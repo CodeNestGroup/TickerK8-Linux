@@ -4,7 +4,6 @@ import string
 """ Import PyQt5 packages"""
 from PyQt5.QtWidgets import QLineEdit
 #______________________________________________________________________________________________________________________
-
 def show_hide_password(self):
     """ Variables """
     _l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']

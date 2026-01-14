@@ -24,6 +24,7 @@ from main.structure import Main_widget
 from settings.structure import Settings_widget
 from statistics.structure import Statistics_widget
 from chart.structure import Chart_widget
+from db.connection import database
 #______________________________________________________________________________________________________________________
 
 class app_controller(QWidget):
@@ -41,6 +42,7 @@ class app_controller(QWidget):
         self.settings_widget = None
         self.statistics_widget = None
         self.chart_widget = None
+        self.database = database()
         self.screen = QApplication.primaryScreen()
         self.geometry = self.screen.availableGeometry()
         self.pos_x = int(self.geometry.width()//4)
@@ -54,13 +56,15 @@ class app_controller(QWidget):
         self.login_widget = Login_widget(self)
         self.layout.addWidget(self.login_widget)
         self.setGeometry(QRect(self.pos_x, self.pos_y, self.width, self.height))
-        self.login_widget.correct_login.connect(self.login_to_main)
+        self.login_widget.login_login_button.clicked.connect(self.login_controller)
         self.login_widget.login_register_button.clicked.connect(self.login_to_register)
     
     def register_setup(self):
         self.register_widget = Register_widget(self)
         self.layout.addWidget(self.register_widget)
         self.setGeometry(QRect(self.pos_x, self.pos_y, self.width, self.height))
+        self.register_add_country(self)
+        self.register_add_prefix(self)
         self.register_widget.register_exit_button.clicked.connect(self.register_to_login)
     
     def recover_password_setup(self):
@@ -158,6 +162,27 @@ class app_controller(QWidget):
         self.chart_widget.deleteLater()
         self.chart_widget = None 
         self.main_setup()
+
+#   --- Modules functions  ---
+
+    def login_controller(self):
+        self.database.LoginByName(str(self.login_widget.login_login_lineedit.text()))
+        if self.database.LoginByName(str(self.login_widget.login_login_lineedit.text()))[1] == self.login_widget.login_password_lineedit.text():
+            self.login_to_main
+        else:
+            self.login_widget.login_login_lineedit.clear()
+            self.login_widget.login_password_lineedit.clear()
+            self.login_widget.login_login_lineedit.setStyleSheet('border: 2px solid red;')
+            self.login_widget.login_password_lineedit.setStyleSheet('border: 2px solid red;')
+    
+    def register_add_country(self):
+        r = self.database.GetCountries()
+        self.register_widget.register_country_combobox.addItems(r)
+    
+    def register_add_prefix(self):
+        r = self.database.GetPhonePrefix()
+        self.register_widget.register_phonenumber_combobox.addItems(r)
+
 #______________________________________________________________________________________________________________________
 
 def set_font():

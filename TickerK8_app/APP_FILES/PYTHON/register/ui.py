@@ -113,20 +113,6 @@ def register_ui(self):
     self.register_password_confirm_lineedit.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.register_register_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.register_exit_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    """ Combo box add item """
-    self.register_phonenumber_combobox.addItems(
-        [
-            "+93",
-            "+48"
-
-        ]
-    )
-    self.register_country_combobox.addItems(
-        [
-            "Afganistan",
-            "Polska"
-        ]
-    )
 #______________________________________________________________________________________________________________________
 
 def register_reload_style(self):
