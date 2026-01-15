@@ -48,7 +48,7 @@ class database():
         conn = self.Connection("u_login")
         curs = conn.cursor()
         try:
-            curs.execute('CALL login_by_name(%s);', u_name)
+            curs.execute('CALL login_by_name(%s);', (u_name,))
             result = curs.fetchone()
             return result
         finally:
@@ -63,7 +63,7 @@ class database():
         try:
             curs.execute('CALL get_countries();')
             result = curs.fetchall()
-            return result
+            return [x[0] for x in result]
         finally:
             curs.close()
             curs = None
@@ -75,8 +75,8 @@ class database():
         curs = conn.cursor()
         try:
             curs.execute('CALL get_phone_prefix();')
-            result = cursor.fetchall()
-            return result
+            result = curs.fetchall()
+            return [x[0] for x in result]
         finally:
             curs.close()
             curs = None
@@ -87,17 +87,41 @@ class database():
         conn = self.Connection("u_register")
         curs = conn.cursor()
         try:
-            curs.execute('CALL get_phone_prefix(%s, %s, %s %s, %s, %s);', u_data)
-            
-            return result
+            curs.execute("SET @p_errors = NULL;")
+            curs.execute(
+                "CALL register_user(%s, %s, %s, %s, %s, %s, @p_errors);",
+                u_data
+            )
+            curs.execute("SELECT @p_errors;")
+            errors_json = curs.fetchone()[0]
+            if errors_json:
+                errors = json.loads(errors_json)
+                conn.rollback()
+                return errors
+            conn.commit()
+            return None
+
+        except pymysql.err.OperationalError as e:
+            if conn:
+                conn.rollback()
+                raise 
+        except Exception as e:
+            if conn:
+                conn.rollback()
+                raise
         finally:
-            conn.close()
+            if curs:
+                curs.close()
+                curs = None
+            if conn:
+                conn.close()
+                conn = None
 
     def GetNewsContentById(self, c_id:int):
         conn = self.Connection("u_news")
         curs = conn.cursor()
         try:
-            curs.execute('CALL get_news_content_by_id(%s);', c_id)
+            curs.execute('CALL get_news_content_by_id(%s);', (c_id,))
             result = cursor.fetchall()
             return result
         finally:
@@ -110,7 +134,7 @@ class database():
         conn = self.Connection("u_news")
         curs = conn.cursor()
         try:
-            curs.execute('CALL get_news_list(%s);', s_type)
+            curs.execute('CALL get_news_list(%s);', (s_type,))
             result = cursor.fetchall()
             return result
         finally:
@@ -123,7 +147,7 @@ class database():
         conn = self.Connection("u_news")
         curs = conn.cursor()
         try:
-            curs.execute('CALL update_phone_popularity(%s);', n_id)
+            curs.execute('CALL update_phone_popularity(%s);', (n_id,))
             result = cursor.fetchall()
             return result
         finally:
@@ -149,7 +173,7 @@ class database():
         conn = self.Connection("u_report")
         curs = conn.cursor()
         try:
-            curs.execute('CALL send_report(%s);', mess)
+            curs.execute('CALL send_report(%s);', (mess,))
             result = cursor.fetchall()
             return result
         finally:

@@ -63,8 +63,9 @@ class app_controller(QWidget):
         self.register_widget = Register_widget(self)
         self.layout.addWidget(self.register_widget)
         self.setGeometry(QRect(self.pos_x, self.pos_y, self.width, self.height))
-        self.register_add_country(self)
-        self.register_add_prefix(self)
+        self.register_add_country()
+        self.register_add_prefix()
+        self.register_widget.correct_data.connect(self.register_user)
         self.register_widget.register_exit_button.clicked.connect(self.register_to_login)
     
     def recover_password_setup(self):
@@ -166,9 +167,8 @@ class app_controller(QWidget):
 #   --- Modules functions  ---
 
     def login_controller(self):
-        self.database.LoginByName(str(self.login_widget.login_login_lineedit.text()))
         if self.database.LoginByName(str(self.login_widget.login_login_lineedit.text()))[1] == self.login_widget.login_password_lineedit.text():
-            self.login_to_main
+            self.login_to_main()
         else:
             self.login_widget.login_login_lineedit.clear()
             self.login_widget.login_password_lineedit.clear()
@@ -183,6 +183,24 @@ class app_controller(QWidget):
         r = self.database.GetPhonePrefix()
         self.register_widget.register_phonenumber_combobox.addItems(r)
 
+    def register_user(self, user_data: tuple):
+        try:
+            err = self.database.RegisterUser(user_data)
+            if not err:
+                self.register_to_login()
+            else:
+                for e in err:
+                    if e == 'USER_EXISTS':
+                        self.register_widget.user_exists()
+                    elif e == 'EMAIL_EXISTS':
+                        self.register_widget.email_exists()
+                    elif e == 'PHONE_EXISTS_IN_PREFIX':
+                        self.register_widget.phone_exists()
+                    else:
+                        raise Exception
+        except Exception as e:
+            print(e) # Dopisz do logóe
+            
 #______________________________________________________________________________________________________________________
 
 def set_font():
