@@ -168,16 +168,3 @@ class database():
             curs = None
             conn.close()
             conn = None
-
-    def SendReport(self, mess:str):
-        conn = self.Connection("u_report")
-        curs = conn.cursor()
-        try:
-            curs.execute('CALL send_report(%s);', (mess,))
-            result = cursor.fetchall()
-            return result
-        finally:
-            curs.close()
-            curs = None
-            conn.close()
-            conn = None
