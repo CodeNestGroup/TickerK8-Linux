@@ -79,6 +79,7 @@ class app_controller(QWidget):
         self.layout.addWidget(self.main_widget)
         self.setGeometry(self.geometry)
         self.showMaximized()
+        self.main_widget.main_news_setup(self.database.GetNewsMain(), self.database.GetNewsContentById)
         self.main_widget.settings_button.clicked.connect(self.main_to_settings)
         self.main_widget.logout_button.clicked.connect(self.main_to_login)
     
@@ -199,7 +200,7 @@ class app_controller(QWidget):
                     else:
                         raise Exception
         except Exception as e:
-            print(e) # Dopisz do logóe
+            print(e) # Dopisz do logi
             
 #______________________________________________________________________________________________________________________
 

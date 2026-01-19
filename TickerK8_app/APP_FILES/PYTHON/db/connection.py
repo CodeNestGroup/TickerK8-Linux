@@ -122,7 +122,7 @@ class database():
         curs = conn.cursor()
         try:
             curs.execute('CALL get_news_content_by_id(%s);', (c_id,))
-            result = cursor.fetchall()
+            result = curs.fetchall()
             return result
         finally:
             curs.close()
@@ -161,7 +161,7 @@ class database():
         curs = conn.cursor()
         try:
             curs.execute('CALL get_news_main();')
-            result = cursor.fetchall()
+            result = curs.fetchall()
             return result
         finally:
             curs.close()

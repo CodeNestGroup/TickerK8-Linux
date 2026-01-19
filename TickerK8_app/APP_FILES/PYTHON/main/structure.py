@@ -25,8 +25,6 @@ class Main_widget(QWidget):
         super().__init__()
         self.setAttribute(Qt.WA_StyledBackground, True)
         self.setParent(parent)
-        self.news = None
-        self.news_list = None
         self.search_widget = None
         self.objects_list_widget = None
         """ Set paths, file name """
@@ -68,10 +66,10 @@ class Main_widget(QWidget):
         self.timer.timeout.connect(self.widget_background)
         self.timer.start(1)
         objects_list_open(self)
-        self.object_list_open = lambda: objects_list_open(self)
         object_setup(self)
-        news_creator(self)
         """ Connect  functions """
+        self.object_list_open = lambda: objects_list_open(self)
+        self.main_news_setup = lambda data, get_news_content_by_id: main_news_setup(self, data, get_news_content_by_id)
         self.search_button.clicked.connect(lambda: Main_search_widget(self))
         self.type_list_button.clicked.connect(self.objects_list_lists_open)
         self.data_list_button.clicked.connect(self.objects_list_edit_open)

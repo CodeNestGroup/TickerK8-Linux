@@ -866,20 +866,17 @@ def object_stock(self):
     self.object_icon_label.setPixmap(load_svg(self.main_path+'/STYLE/IMG/'+stock_data[2]+'.svg', int(self.object_icon_label.height()), int(self.object_icon_label.height())))
 #______________________________________________________________________________________________________________________
 
-def news_creator(self):
-    _news_button_list = self.news_button_list
-    news_list = []
-    if news_list:
-        for index, data in enumerate(news_list, start=1):
-            json_data = json.loads(data[1])
-            news_id = data[0]
+def main_news_setup(self, data:list, get_news_content_by_id):
+    if data:
+        l = []
+        for i, d in enumerate(data, start=1):
             """ Create objects """
             news_button = QPushButton(self)
             news_layout = QVBoxLayout(news_button)
             news_text_label = QLabel(news_button)
             """ Set object name """
-            news_button.setObjectName(f'news_button_{index}')
-            news_text_label.setObjectName(f'text_label_{index}')
+            news_button.setObjectName(f'news_button_{i}')
+            news_text_label.setObjectName(f'text_label_{i}')
             """ Set property """
             news_button.setProperty('class', 'news_button')
             news_text_label.setProperty('class', 'news_text_label')
@@ -898,15 +895,17 @@ def news_creator(self):
             news_text_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
             news_text_label.setGeometry(QRect(0,0,news_button.width(),news_button.height()))
             """ Set text """
-            news_text_label.setText(json_data['title'])
+            news_text_label.setText(d[1])
             """ Set graphics """
             """ Set connect function for open """
-            news_button.clicked.connect(lambda _, id_n=news_id: open_main_news(self, id_n))
-            _news_button_list.append(news_button)
-        self.news_button_list = _news_button_list
+            news_button.clicked.connect(lambda _, id_n=d[0]: Main_news_widget(self, get_news_content_by_id(id_n)[0]))
+            l.append(news_button)
+        self.news_button_list = l
         self.news_button_list[self.news_button_index].setHidden(False)
         self.news_timer.timeout.connect(lambda: news_next(self))
         self.news_timer.start(5000)
+        self.news_next_left_button.setDisabled(False)
+        self.news_next_right_button.setDisabled(False)
     else:
         news_label = QLabel(self)
         news_label.setObjectName('news_label')
@@ -932,10 +931,6 @@ def news_previous(self):
     self.news_button_list[self.news_button_index].setHidden(True)
     self.news_button_index = (self.news_button_index-1)%len(self.news_button_list)
     self.news_button_list[self.news_button_index].setHidden(False)
-#______________________________________________________________________________________________________________________
-
-def open_main_news(self, id_news):
-    self.main_news = Main_news_widget(self, id_news)
 #______________________________________________________________________________________________________________________
 
 def open_main_news_list(self, news_type_index):
