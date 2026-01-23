@@ -1,4 +1,5 @@
 # --- Import packages ---
+import sqlite3
 import pymysql
 import json
 import requests
@@ -10,14 +11,30 @@ class database():
         super().__init__()
         self.user_dict = {}
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2])
+        self.conn = self.Connect_offline_database()
+
+# --- Offline database ---
+    def Connect_offline_database(self):
+        c = sqlite3.connect(
+            database=self.main_path+'/CONFIG/GLOBAL/tickerk8_offline.db'
+        )
+        return c
+
+    def GetCountries(self):
+        r = self.conn.execute('SELECT name FROM country;')
+        return r.fetchall()
+
+    def GetPhonePrefix(self):
+        r = self.conn.execute('SELECT prefix FROM phone_prefix;')
+        return r.fetchall()
     
-# --- Connect data ---
-    def ConnectData(self, user:str) -> dict:
+# --- Online database ---
+    def ConnectData(self) -> dict:
         try:
             conf = json.load(open(f'{self.main_path}/PYTHON/db/conf.json', 'r'))
             payload = {
                 "token":conf['token'],
-                "name":user
+                "name":'u_app'
             }
             response = requests.post(conf['url'], json=payload)
             response.raise_for_status()
@@ -27,12 +44,12 @@ class database():
             pass
 
 # --- Connection --- 
-    def Connection(self, u_name:str):
+    def Connection(self):
         try:
-            login_data = self.user_dict[u_name]
+            login_data = self.user_dict['u_app']
         except:
-            self.user_dict[u_name] = self.ConnectData(u_name)
-            login_data = self.user_dict[u_name]
+            self.user_dict['u_app'] = self.ConnectData()
+            login_data = self.user_dict['u_app']
         conn = pymysql.connect(
             host=login_data['host'],
             user=login_data['username'],
@@ -45,7 +62,7 @@ class database():
 
 #   --- Get data ---
     def LoginByName(self, u_name:str):
-        conn = self.Connection("u_login")
+        conn = self.Connection()
         curs = conn.cursor()
         try:
             curs.execute('CALL login_by_name(%s);', (u_name,))
@@ -57,34 +74,8 @@ class database():
             conn.close()
             conn = None
 
-    def GetCountries(self):
-        conn = self.Connection("u_register")
-        curs = conn.cursor()
-        try:
-            curs.execute('CALL get_countries();')
-            result = curs.fetchall()
-            return [x[0] for x in result]
-        finally:
-            curs.close()
-            curs = None
-            conn.close()
-            conn = None
-
-    def GetPhonePrefix(self):
-        conn = self.Connection("u_register")
-        curs = conn.cursor()
-        try:
-            curs.execute('CALL get_phone_prefix();')
-            result = curs.fetchall()
-            return [x[0] for x in result]
-        finally:
-            curs.close()
-            curs = None
-            conn.close()
-            conn = None
-
     def RegisterUser(self, u_data:tuple):
-        conn = self.Connection("u_register")
+        conn = self.Connection()
         curs = conn.cursor()
         try:
             curs.execute("SET @p_errors = NULL;")
@@ -118,7 +109,7 @@ class database():
                 conn = None
 
     def GetNewsContentById(self, c_id:int):
-        conn = self.Connection("u_news")
+        conn = self.Connection()
         curs = conn.cursor()
         try:
             curs.execute('CALL get_news_content_by_id(%s);', (c_id,))
@@ -131,7 +122,7 @@ class database():
             conn = None
     
     def GetNewsList(self, s_type:str):
-        conn = self.Connection("u_news")
+        conn = self.Connection()
         curs = conn.cursor()
         try:
             curs.execute('CALL get_news_list(%s);', (s_type,))
@@ -144,7 +135,7 @@ class database():
             conn = None
     
     def UpdateNewsPopularity(self, n_id:int):
-        conn = self.Connection("u_news")
+        conn = self.Connection()
         curs = conn.cursor()
         try:
             curs.execute('CALL update_phone_popularity(%s);', (n_id,))
@@ -157,7 +148,7 @@ class database():
             conn = None
     
     def GetNewsMain(self):
-        conn = self.Connection("u_news")
+        conn = self.Connection()
         curs = conn.cursor()
         try:
             curs.execute('CALL get_news_main();')
@@ -168,3 +159,6 @@ class database():
             curs = None
             conn.close()
             conn = None
+
+
+print(database().GetCountries())
