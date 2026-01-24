@@ -22,11 +22,11 @@ class database():
 
     def GetCountries(self):
         r = self.conn.execute('SELECT name FROM country;')
-        return r.fetchall()
+        return [x[0] for x in r.fetchall()]
 
     def GetPhonePrefix(self):
         r = self.conn.execute('SELECT prefix FROM phone_prefix;')
-        return r.fetchall()
+        return [x[0] for x in r.fetchall()]
     
 # --- Online database ---
     def ConnectData(self) -> dict:
@@ -159,6 +159,3 @@ class database():
             curs = None
             conn.close()
             conn = None
-
-
-print(database().GetCountries())
