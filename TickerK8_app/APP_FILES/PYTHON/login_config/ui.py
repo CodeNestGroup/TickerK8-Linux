@@ -48,13 +48,36 @@ def ui(self):
     self.navi_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
 def reload_style(self):
-    self.setStyleSheet(self.main_path)
+    self.setStyleSheet(self.main_path+'/PYTHON/login_config/style.css')
+    # Dodać ikony
 
-def retranslate(self):
-    pass
+def center_widget_setup(self):
+    self.center_widget.setObjectName('center_widget')
+    self.center_layout.setSpacing(0)
+    self.center_layout.setContentsMargins(0,0,0,0)
+    self.center_widget.setLayout(self.center_layout)
+    self.layout.addWidget(self.center_widget, 15, 0, 75, 100)
+    self.center_widget.show()
+    self.center_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
 def app_conf_ui(self):
-    pass
+    self.language_subtitle_label.setObjectName('language_subtitle_label')
+    self.language_combobox.setObjectName('language_combobox')
+    self.theme_subtitle_label.setObjectName('theme_subtitle_label')
+    self.theme_combobox.setObjectName('theme_combobox')
+    self.language_subtitle_label.setProperty('class', 'subtitle')
+    self.theme_subtitle_label.setProperty('class', 'subtitle')
+    self.language_combobox.setProperty('class', 'list')
+    self.theme_combobox.setProperty('class', 'list')
+    self.center_layout.addWidget()
+    self.center_layout.addWidget()
+    self.center_layout.addWidget()
+    self.center_layout.addWidget()
+    self.center_layout.addWidget()
+    self.language_subtitle_label.setAlignment(Qt.AlignCenter)
+    self.theme_subtitle_label.setAlignment(Qt.AlignCenter)
+    
+
 
 def app_conf_reload_style(self):
     pass

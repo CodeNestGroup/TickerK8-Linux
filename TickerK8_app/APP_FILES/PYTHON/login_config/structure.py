@@ -36,13 +36,23 @@ class Login_configuration_widget(QWidget):
 #       --- Call functions ---
         ui(self)
         reload_style(self)
-        retranslate(self)
 #       --- Connect functions ---
+        self.open_info_label = lambda open_info_label(self)
+        self.open_app_conf = lambda open_app_conf(self)
+        self.open_sub_conf = lambda open_sub_conf(self)
+        self.open_list_conf = lambda open_list_conf(self)
+        self.open_accept_settings = lambda open_accept_settings(self)
+
+    def center_widget_setup(self):
+        if self.center_widget:
+            self.center_widget.deleteLater()
+            self.center_widget = None 
+        self.center_widget = QWidget(self)
+        self.center_layout = QGridLayout(self.center_widget)
+        center_ui(self)
 
     def app_conf(self):
 #       --- Create objects ---
-        self.center_widget = QWidget(self)
-        self.center_layout = QGridLayout(self.center_widget)
         self.language_subtitle_label = QLabel(self.center_widget)
         self.language_combobox = QComboBox(self.center_widget)
         self.theme_subtitle_label = QLabel(self.center_widget)
@@ -55,8 +65,6 @@ class Login_configuration_widget(QWidget):
 
     def sub_conf(self):
 #       --- Create objects ---
-        self.center_widget = QWidget(self)
-        self.center_layout = QGridLayout(self.center_widget)
         self.left_button = QPushButton(self.center_widget)
         self.center_button = QPushButton(self.center_widget)
         self.right_button = QPushButton(self.center_widget)
@@ -68,8 +76,6 @@ class Login_configuration_widget(QWidget):
 
     def list_conf(self):
 #       --- Create objects ---
-        self.center_widget = QWidget(self)
-        self.center_layout = QGridLayout(self.center_widget)
         self.country_subtitle_label = QLabel(self.center_widget)
         self.country_search_lineedit = QLineEdit(self.center_widget)
         self.country_scroll = QScrollArea(self.center_widget)
@@ -137,8 +143,6 @@ class Login_configuration_widget(QWidget):
 #       --- Connect functions ---
     def accept_settings(self):
 #       --- Create objects ---
-        self.center_widget = QWidget(self)
-        self.center_layout = QGridLayout(self.center_widget)
         self.regulations_scroll = QScrollArea(self.center_widget)
         self.regulations_widget = QWidget(self.regulations_scroll)
         self.regulations_layout = QGridLayout(self.regulations_widget)
