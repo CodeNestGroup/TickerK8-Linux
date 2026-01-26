@@ -49,7 +49,7 @@ class Login_configuration_widget(QWidget):
             self.center_widget = None 
         self.center_widget = QWidget(self)
         self.center_layout = QGridLayout(self.center_widget)
-        center_ui(self)
+        center_widget_setup_ui(self)
 
     def app_conf(self):
 #       --- Create objects ---
@@ -59,7 +59,6 @@ class Login_configuration_widget(QWidget):
         self.theme_combobox = QComboBox(self.center_widget)
 #       --- Call functions ---
         app_conf_ui(self)
-        app_conf_reload_style(self)
         app_conf_retranslate(self)
 #       --- Connect functions ---
 
