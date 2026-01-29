@@ -16,8 +16,8 @@ from PyQt5.QtCore import (
         QTimer
         )
 """ Import login configuration modules """
-from .ui import *
-from .logic import *
+from .p_ui import *
+from .p_logic import *
 #______________________________________________________________________________________________________________________
 
 class Login_configuration_widget(QWidget):
@@ -36,6 +36,7 @@ class Login_configuration_widget(QWidget):
 #       --- Call functions ---
         ui(self)
         reload_style(self)
+        retranslate(self)
 #       --- Connect functions ---
         self.open_info_label = lambda open_info_label(self)
         self.open_app_conf = lambda open_app_conf(self)

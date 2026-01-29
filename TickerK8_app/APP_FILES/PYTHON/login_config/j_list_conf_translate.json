@@ -1,0 +1,8 @@
+{
+    "country_subtitle_label": ["Country", "Kraj"],
+    "market_subtitle_label": ["Market", "Giełda"],
+    "stock_subtitle_label": ["Stock", "Akcje"],
+    "xxx_search_lineedit": ["Search", "Wyszukaj"],
+    "xxx_ticker_label": ["Ticker", "Ticker"],
+    "xxx_name_label": ["Name", "Nazwa"]
+}
