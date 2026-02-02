@@ -19,6 +19,7 @@ from PyQt5.QtGui import (
 """ Import application modules """
 from login.structure import Login_widget
 from register.structure import Register_widget
+from login_config.p_structure import Login_configuration_widget
 from recover_password.structure import Recover_password_widget
 from main.structure import Main_widget 
 from settings.structure import Settings_widget
@@ -67,6 +68,12 @@ class app_controller(QWidget):
         self.register_add_prefix()
         self.register_widget.correct_data.connect(self.register_user)
         self.register_widget.register_exit_button.clicked.connect(self.register_to_login)
+    
+    def login_configuration_setup(self):
+        self.login_configuration_widget = Login_configuration_widget(self)
+        self.layout.addWidget(sefl.login_configuration_widget)
+        self.setGeometry(QRect(self.pos_x, self.pos_y, self.width, self.height))
+        
     
     def recover_password_setup(self):
         self.recover_password_widget = Recover_password_widget(self)

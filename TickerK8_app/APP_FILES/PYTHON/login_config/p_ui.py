@@ -56,6 +56,7 @@ def retranslate(self):
     t = json.load(open(self.main_path+'/PYTHON/login_config/j_translate.json', 'r'))
     l = json.load(open(self.main_path+'/PYTHON/login_config/j_config.json', 'r'))['language']
     self.title_label.setText(t['title_label'][l])
+    self.info_label.setText(t['info_label'][l][0])
     self.left_button.setText(t['left_button'][l])
     self.right_button.setText(t['right_button'][l])
 

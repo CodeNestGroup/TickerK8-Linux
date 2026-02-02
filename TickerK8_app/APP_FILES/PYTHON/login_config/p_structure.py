@@ -26,6 +26,8 @@ class Login_configuration_widget(QWidget):
         self.setAttribute(Qt.WA_StyledBackground, True)
         self.setParent(parent)
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2])
+        self.widget_list = [None, self.app_conf, None, self.sub_conf, None, self.list_conf, None, self.accept_settings]
+        self.widget_list_index = 0
 #       --- Create objects ---
         self.layout = QGridLayout(self)
         self.title_label = QLabel(self)
@@ -38,12 +40,9 @@ class Login_configuration_widget(QWidget):
         reload_style(self)
         retranslate(self)
 #       --- Connect functions ---
-        self.open_info_label = lambda open_info_label(self)
-        self.open_app_conf = lambda open_app_conf(self)
-        self.open_sub_conf = lambda open_sub_conf(self)
-        self.open_list_conf = lambda open_list_conf(self)
-        self.open_accept_settings = lambda open_accept_settings(self)
-
+        self.left_button.clicked.connect(previous)
+        self.right_button.clicked.connect(next)
+        
     def center_widget_setup(self):
         if self.center_widget:
             self.center_widget.deleteLater()
