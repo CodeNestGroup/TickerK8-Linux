@@ -37,7 +37,12 @@ class app_controller(QWidget):
         self.layout.setContentsMargins(0,0,0,0)
         self.setLayout(self.layout)
         self.login_widget = None
+        self.logged_user_id = None
+        self.logged_user_config = None
+        self.logged_user_data = None
+        self.logged_user_sub = None
         self.register_widget = None
+        self.login_configuration_widget = None
         self.recover_password_widget = None
         self.main_widget = None
         self.settings_widget = None
@@ -54,6 +59,10 @@ class app_controller(QWidget):
 #______________________________________________________________________________________________________________________
 
     def login_setup(self):
+        self.logged_user_id = None
+        self.logged_user_config = None
+        self.logged_user_data = None
+        self.logged_user_sub = None
         self.login_widget = Login_widget(self)
         self.layout.addWidget(self.login_widget)
         self.setGeometry(QRect(self.pos_x, self.pos_y, self.width, self.height))
@@ -71,9 +80,10 @@ class app_controller(QWidget):
     
     def login_configuration_setup(self):
         self.login_configuration_widget = Login_configuration_widget(self)
-        self.layout.addWidget(sefl.login_configuration_widget)
+        self.layout.addWidget(self.login_configuration_widget)
         self.setGeometry(QRect(self.pos_x, self.pos_y, self.width, self.height))
-        
+        self.login_configuration_widget.accept_button.clicked.connect(self.login_configuration_controller)
+        self.login_configuration_widget.exit_button.clicked.connect(self.login_configuration_to_login)
     
     def recover_password_setup(self):
         self.recover_password_widget = Recover_password_widget(self)
@@ -121,6 +131,21 @@ class app_controller(QWidget):
         self.register_widget.deleteLater()
         self.register_widget = None
         self.login_setup()
+
+    def login_to_login_configuration(self):
+        self.login_widget.deleteLater()
+        self.login_widget = None 
+        self.login_configuration_setup()
+    
+    def login_configuration_to_login(self):
+        self.login_configuration_widget.deleteLater()
+        self.login_configuration_widget = None
+        self.login_setup()
+
+    def login_configuration_to_main(self):
+        self.login_configuration_widget.deleteLater()
+        self.login_configuration_widget = None
+        self.main_setup()
 
     def login_to_forgot_password(self):
         self.login_widget.deleteLater()
@@ -175,8 +200,17 @@ class app_controller(QWidget):
 #   --- Modules functions  ---
 
     def login_controller(self):
-        if self.database.LoginByName(str(self.login_widget.login_login_lineedit.text()))[1] == self.login_widget.login_password_lineedit.text():
-            self.login_to_main()
+        d = self.database.LoginByName(str(self.login_widget.login_login_lineedit.text()))
+        if d[1] == self.login_widget.login_password_lineedit.text():
+            if d[2]:
+                pass # Dopisać kiedyś notyfikacje że ktoś inny jest już zalogowany
+            else:
+                self.logged_user_id = d[0]
+                if not d[3]:
+                    self.login_to_login_configuration()
+                else:
+                    self.database.UpdateLastLogin(d[0])
+                    self.login_to_main()
         else:
             self.login_widget.login_login_lineedit.clear()
             self.login_widget.login_password_lineedit.clear()
@@ -208,6 +242,18 @@ class app_controller(QWidget):
                         raise Exception
         except Exception as e:
             print(e) # Dopisz do logi
+    
+    def login_configuration_controller(self):
+        c = json.load(open(self.main_path+'/PYTHON/login_config/j_config.json', 'r'))
+        language = c['language']
+        theme = c['theme']
+        subscription = c['subscription']
+        country = c['country']
+        market = c['market']
+        stock = c['stock']
+        self.database.
+
+        self.login_configuration_to_login()
             
 #______________________________________________________________________________________________________________________
 

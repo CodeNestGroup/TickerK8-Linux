@@ -32,16 +32,19 @@ class Login_configuration_widget(QWidget):
         self.layout = QGridLayout(self)
         self.title_label = QLabel(self)
         self.info_label = QLabel(self)
+        self.center_widget = None
         self.left_button = QPushButton(self)
+        self.exit_button = QPushButton(self)
         self.right_button = QPushButton(self)
+        self.accept_button = QPushButton(self)
         self.navi_label = QLabel(self)
 #       --- Call functions ---
         ui(self)
         reload_style(self)
         retranslate(self)
 #       --- Connect functions ---
-        self.left_button.clicked.connect(previous)
-        self.right_button.clicked.connect(next)
+        self.left_button.clicked.connect(lambda: previous(self))
+        self.right_button.clicked.connect(lambda: next(self))
         
     def center_widget_setup(self):
         if self.center_widget:
@@ -83,7 +86,7 @@ class Login_configuration_widget(QWidget):
         self.country_number_label = QLabel(self.country_widget)
         self.country_icon_label = QLabel(self.country_widget)
         self.country_ticker_label = QLabel(self.country_widget)
-        self,country_name_label = QLabel(self.country_widget)
+        self.country_name_label = QLabel(self.country_widget)
         self.country_add_button = QPushButton(self.country_widget)
         self.country_reset_button = QPushButton(self.country_widget)
         self.country_delete_button = QPushButton(self.country_widget)
@@ -126,7 +129,7 @@ class Login_configuration_widget(QWidget):
         self.stock_name_label = QLabel(self.stock_widget)
         self.stock_add_button = QPushButton(self.center_widget)
         self.stock_reset_button = QPushButton(self.center_widget)
-        self,stock_delete_button = QPushButton(self.center_widget)
+        self.stock_delete_button = QPushButton(self.center_widget)
         self.stock_added_scroll = QScrollArea(self.center_widget)
         self.stock_added_widget = QWidget(self.stock_added_scroll)
         self.stock_added_layout = QGridLayout(self.stock_added_widget)

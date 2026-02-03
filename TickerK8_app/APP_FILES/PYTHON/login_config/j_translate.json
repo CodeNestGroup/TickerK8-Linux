@@ -3,17 +3,27 @@
     "info_label": [
         [
             "Setup application settings like:\n- Language,\n- Theme",
+            "",
             "Set subscription plan",
+            "",
             "Setup observation list",
-            "Accept regulations and save config"
+            "",
+            "Accept regulations and save config",
+            ""
         ],
         [
             "Ustawienie ustawień aplikacji takich jak:\n-Język,\n- Motyw",
+            "",
             "Ustaw plan subskrypcji",
+            "",
             "Ustaw listy obserwowanych",
-            "Zaakcpetuj regulamin i zapisz ustawienia"
+            "",
+            "Zaakcpetuj regulamin i zapisz ustawienia",
+            ""
         ]
     ],
     "left_button": ["L", "L"],
-    "right_button": ["R", "R"]
+    "exit_button": ["E", "E"],
+    "right_button": ["R", "R"],
+    "accept_button": ["A", "A"]
 }

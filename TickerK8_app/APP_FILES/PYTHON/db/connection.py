@@ -60,12 +60,24 @@ class database():
         )
         return conn
 
-#   --- Get data ---
     def LoginByName(self, u_name:str):
         conn = self.Connection()
         curs = conn.cursor()
         try:
             curs.execute('CALL login_by_name(%s);', (u_name,))
+            result = curs.fetchone()
+            return result
+        finally:
+            curs.close()
+            curs = None
+            conn.close()
+            conn = None
+
+    def UpdateLastLogin(self, u_id:str):
+        conn = self.Connection()
+        curs = conn.cursor()
+        try:
+            curs.execute('CALL update_last_login(%s);', (u_id))
             result = curs.fetchone()
             return result
         finally:
@@ -107,7 +119,11 @@ class database():
             if conn:
                 conn.close()
                 conn = None
+    
+    def LoginConfiguration(self, ):
 
+
+#   --- Get data ---
     def GetNewsContentById(self, c_id:int):
         conn = self.Connection()
         curs = conn.cursor()
