@@ -245,14 +245,7 @@ class app_controller(QWidget):
     
     def login_configuration_controller(self):
         c = json.load(open(self.main_path+'/PYTHON/login_config/j_config.json', 'r'))
-        language = c['language']
-        theme = c['theme']
-        subscription = c['subscription']
-        country = c['country']
-        market = c['market']
-        stock = c['stock']
-        self.database.
-
+        self.database.LoginConfiguration(self.logged_user_id, c['language'], c['theme'], c['subscription'], c['country'], c['market'], c['stock'])
         self.login_configuration_to_login()
             
 #______________________________________________________________________________________________________________________

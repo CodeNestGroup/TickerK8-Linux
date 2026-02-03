@@ -120,8 +120,23 @@ class database():
                 conn.close()
                 conn = None
     
-    def LoginConfiguration(self, ):
-
+    def LoginConfiguration(self, id:str, language:int, theme:str, subscription:int, country:list, market:list, stock:list):
+        u_data = '{}'
+        conn = self.Connection()
+        curs = conn.cursor()
+        try:
+            curs.execute(
+                "CALL login_configuration(%s);",
+                u_data
+            )
+            curs.execute
+            conn.commit()
+            return None
+        finally:
+            curs.close()
+            curs = None
+            conn.close()
+            conn = None
 
 #   --- Get data ---
     def GetNewsContentById(self, c_id:int):

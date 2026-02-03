@@ -42,9 +42,10 @@ class Login_configuration_widget(QWidget):
         ui(self)
         reload_style(self)
         retranslate(self)
+        ResetConfig(self)
 #       --- Connect functions ---
-        self.left_button.clicked.connect(lambda: previous(self))
-        self.right_button.clicked.connect(lambda: next(self))
+        self.left_button.clicked.connect(lambda: Previous(self))
+        self.right_button.clicked.connect(lambda: Next(self))
         
     def center_widget_setup(self):
         if self.center_widget:
@@ -64,6 +65,8 @@ class Login_configuration_widget(QWidget):
         app_conf_ui(self)
         app_conf_retranslate(self)
 #       --- Connect functions ---
+        self.language_combobox.currentIndexChanged.connect(lambda: ChangeLanguage(self))
+        self.theme_combobox.currentIndexChanged.connect(lambda: ChangeTheme(self))
 
     def sub_conf(self):
 #       --- Create objects ---
