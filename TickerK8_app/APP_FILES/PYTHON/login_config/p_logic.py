@@ -62,12 +62,16 @@ def ChangeTheme(self):
         with open(self.main_path+'/PYTHON/login_config/j_config.json', 'w') as f:
             json.dump(c, f, indent=4)
 
-def ChangeSub(self, i:int):
+def ChangeSub(self, i:int, button):
     with open(self.main_path+'/PYTHON/login_config/j_config.json', 'r') as file:
         c = json.load(file)
         c['subscription'] = i
         with open(self.main_path+'/PYTHON/login_config/j_config.json', 'w') as f:
             json.dump(c, f, indent=4)
+    if self.checked_button:
+        self.checked_button.setStyleSheet('border: none;')
+    self.checked_button = button
+    self.checked_button.setStyleSheet('border: 2px solid green;')
 
 def Search(self, table, ticker, name):
     pass

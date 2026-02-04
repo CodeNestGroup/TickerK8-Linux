@@ -71,6 +71,7 @@ class Login_configuration_widget(QWidget):
 
     def sub_conf(self):
 #       --- Create objects ---
+        self.checked_button = None
         self.left_button = QPushButton(self.center_widget)
         self.center_button = QPushButton(self.center_widget)
         self.right_button = QPushButton(self.center_widget)
@@ -79,6 +80,9 @@ class Login_configuration_widget(QWidget):
         sub_conf_reload_style(self)
         sub_conf_retranslate(self)
 #       --- Connect functions ---
+        self.left_button.clicked.connect(lambda: ChangeSub(self, 3, self.left_button))
+        self.center_button.clicked.connect(lambda: ChangeSub(self, 1, self.center_button))
+        self.right_button.clicked.connect(lambda: ChangeSub(self, 2, self.right_button))
 
     def list_conf(self):
 #       --- Create objects ---

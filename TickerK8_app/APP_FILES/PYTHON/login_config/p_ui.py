@@ -124,12 +124,18 @@ def sub_conf_ui(self):
     self.right_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
 def sub_conf_reload_style(self):
-    pass
-    # Add icons 
+    s = json.load(open(self.main_path+'/PYTHON/login_config/j_config.json', 'r'))['subscription']
+    l = [self.center_button, self.right_button, self.left_button]
+    self.checked_button = l[s-1]
+    self.checked_button.setStyleSheet('border: 2px solid green;')
+
 
 def sub_conf_retranslate(self):
-    pass
-    # Add text 
+    t = json.load(open(self.main_path+'/PYTHON/login_config/j_sub_translate.json', 'r'))
+    l = json.load(open(self.main_path+'/PYTHON/login_config/j_config.json', 'r'))['language']
+    self.left_button.setText(t['left_button'][l])
+    self.center_button.setText(t['center_button'][l])
+    self.right_button.setText(t['right_button'][l])
 
 def list_conf_ui(self):
     self.country_subtitle_label.setObjectName('country_subtitle_label')
