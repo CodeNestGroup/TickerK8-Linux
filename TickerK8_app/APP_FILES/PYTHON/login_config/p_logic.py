@@ -37,7 +37,8 @@ def Previous(self):
         self.info_label.setText(t['info_label'][l][i])
 
 def ResetConfig(self):
-    with json.load(open(self.main_path+'/PYTHON/login_config/j_config.json', 'r')) as c:
+    with open(self.main_path+'/PYTHON/login_config/j_config.json', 'r') as file:
+        c = json.load(file)
         c['language'] = 0
         c['theme'] = "vintage_elegance_dark"
         c['subscription'] = 0
@@ -48,19 +49,25 @@ def ResetConfig(self):
             json.dump(c, f, indent=4)
 
 def ChangeLanguage(self):
-    with json.load(open(self.main_path+'/PYTHON/login_config/j_config.json', 'r')) as c:
+    with open(self.main_path+'/PYTHON/login_config/j_config.json', 'r') as file:
+        c = json.load(file)
         c['language'] = self.language_combobox.currentIndex()
         with open(self.main_path+'/PYTHON/login_config/j_config.json', 'w') as f:
             json.dump(c, f, indent=4)
 
 def ChangeTheme(self):
-    with open(json.load(open(self.main_path+'/PYTHON/login_config/j_config.json', 'r'))) as c:
-        c['theme'] = self.language_combobox.currentText()
+    with open(self.main_path+'/PYTHON/login_config/j_config.json', 'r') as file:
+        c = json.load(file)
+        c['theme'] = self.theme_combobox.currentText()
         with open(self.main_path+'/PYTHON/login_config/j_config.json', 'w') as f:
             json.dump(c, f, indent=4)
 
 def ChangeSub(self, i:int):
-    pass
+    with open(self.main_path+'/PYTHON/login_config/j_config.json', 'r') as file:
+        c = json.load(file)
+        c['subscription'] = i
+        with open(self.main_path+'/PYTHON/login_config/j_config.json', 'w') as f:
+            json.dump(c, f, indent=4)
 
 def Search(self, table, ticker, name):
     pass

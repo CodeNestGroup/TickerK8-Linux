@@ -28,6 +28,7 @@ class Login_configuration_widget(QWidget):
         self.main_path = str(pathlib.Path(__file__).resolve().parents[2])
         self.widget_list = [None, self.app_conf, None, self.sub_conf, None, self.list_conf, None, self.accept_settings]
         self.widget_list_index = 0
+        ResetConfig(self)
 #       --- Create objects ---
         self.layout = QGridLayout(self)
         self.title_label = QLabel(self)
@@ -42,7 +43,6 @@ class Login_configuration_widget(QWidget):
         ui(self)
         reload_style(self)
         retranslate(self)
-        ResetConfig(self)
 #       --- Connect functions ---
         self.left_button.clicked.connect(lambda: Previous(self))
         self.right_button.clicked.connect(lambda: Next(self))
@@ -66,6 +66,7 @@ class Login_configuration_widget(QWidget):
         app_conf_retranslate(self)
 #       --- Connect functions ---
         self.language_combobox.currentIndexChanged.connect(lambda: ChangeLanguage(self))
+        self.language_combobox.currentIndexChanged.connect(lambda: app_conf_retranslate(self))
         self.theme_combobox.currentIndexChanged.connect(lambda: ChangeTheme(self))
 
     def sub_conf(self):

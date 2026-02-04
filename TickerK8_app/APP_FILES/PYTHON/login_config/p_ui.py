@@ -105,6 +105,7 @@ def app_conf_retranslate(self):
     l = json.load(open(self.main_path+'/PYTHON/login_config/j_config.json', 'r'))['language']
     self.language_subtitle_label.setText(t['language_subtitle_label'][l])
     self.language_combobox.addItems(t['language_combobox'])
+    self.language_combobox.setCurrentIndex(l)
     self.theme_subtitle_label.setText(t['theme_subtitle_label'][l])
     self.theme_combobox.addItems(t['theme_combobox'])
 
@@ -426,7 +427,7 @@ def list_conf_reload_style(self):
 
 def list_conf_retranslate(self):
     t = json.load(open(self.main_path+'/PYTHON/login_config/j_list_conf_translate.json', 'r'))
-    l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
+    l = json.load(open(self.main_path+'/PYTHON/login_config/j_config.json', 'r'))['language']
     self.country_subtitle_label.setText(t['country_subtitle_label'][l])
     self.country_search_lineedit.setPlaceholderText(t['xxx_search_lineedit'][l])
     self.country_number_label.setText('#')
@@ -474,5 +475,5 @@ def accept_settings_reload_style(self):
 
 def accept_settings_retranslate(self):
     t = json.load(open(self.main_path+'/PYTHON/login_config/j_accept_settings_translate.json', 'r'))
-    l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
+    l = json.load(open(self.main_path+'/PYTHON/login_config/j_config.json', 'r'))['language']
     self.regulations_label.setText(t['regulations_label'][l])
