@@ -42,9 +42,6 @@ def ResetConfig(self):
         c['language'] = 0
         c['theme'] = "vintage_elegance_dark"
         c['subscription'] = 0
-        c['country'] = []
-        c['market'] = []
-        c['stock'] = []
         with open(self.main_path+'/PYTHON/login_config/j_config.json', 'w') as f:
             json.dump(c, f, indent=4)
 
@@ -72,15 +69,3 @@ def ChangeSub(self, i:int, button):
         self.checked_button.setStyleSheet('border: none;')
     self.checked_button = button
     self.checked_button.setStyleSheet('border: 2px solid green;')
-
-def Search(self, table, ticker, name):
-    pass
-
-def Add(self):
-    pass
-
-def Delete(self):
-    pass
-
-def Reset(self):
-    pass

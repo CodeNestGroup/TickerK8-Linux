@@ -1,8 +1,5 @@
 {
-    "language": 0,
-    "theme": "Vintage elegance light",
-    "subscription": 1,
-    "country": [],
-    "market": [],
-    "stock": []
+    "language": 1,
+    "theme": "vintage_elegance_dark",
+    "subscription": 1
 }

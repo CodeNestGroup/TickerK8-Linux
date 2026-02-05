@@ -1,6 +1,7 @@
 """ Import packages """
 import sys
 import pathlib
+import json
 """ Import PyQt5 packages """
 from PyQt5.QtWidgets import (
     QApplication,
@@ -31,6 +32,7 @@ from db.connection import database
 class app_controller(QWidget):
     def __init__(self):
         super().__init__()
+        self.main_path = str(pathlib.Path(__file__).resolve().parents[2])
         self.setObjectName('window')
         self.layout = QVBoxLayout(self)
         self.layout.setSpacing(0)
@@ -244,8 +246,7 @@ class app_controller(QWidget):
             print(e) # Dopisz do logi
     
     def login_configuration_controller(self):
-        c = json.load(open(self.main_path+'/PYTHON/login_config/j_config.json', 'r'))
-        self.database.LoginConfiguration(self.logged_user_id, c['language'], c['theme'], c['subscription'], c['country'], c['market'], c['stock'])
+        self.database.LoginConfiguration(self.logged_user_id)
         self.login_configuration_to_login()
             
 #______________________________________________________________________________________________________________________

@@ -119,19 +119,38 @@ class database():
             if conn:
                 conn.close()
                 conn = None
-    
-    def LoginConfiguration(self, id:str, language:int, theme:str, subscription:int, country:list, market:list, stock:list):
-        u_data = '{}'
+
+    def LoginConfiguration(self, i:str):
+        c = json.load(open(self.main_path+'/PYTHON/login_config/j_config.json', 'r'))
+        t = json.load(open(self.main_path+'/PYTHON/login_config/j_list_translate.json', 'r'))
+        l = c['language'] 
+        n = t[l]
+
         conn = self.Connection()
         curs = conn.cursor()
         try:
             curs.execute(
-                "CALL login_configuration(%s);",
-                u_data
-            )
-            curs.execute
+                "CALL user_config_configuration(%s, %s, %s, %s, %s, %s, %s);",
+                    (
+                    i,
+                    json.dumps(c),
+                    n[0],
+                    n[1],
+                    n[2],
+                    n[3],
+                    c['subscription']
+                    )
+                )
             conn.commit()
             return None
+        except pymysql.err.OperationalError as e:
+            if conn:
+                conn.rollback()
+                raise 
+        except Exception as e:
+            if conn:
+                conn.rollback()
+                raise
         finally:
             curs.close()
             curs = None
