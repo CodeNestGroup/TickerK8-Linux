@@ -20,7 +20,7 @@ from main_search.structure import Main_search_widget
 from main_news_list.structure import Main_news_list_widget
 #______________________________________________________________________________________________________________________
 
-class Main_widget(QWidget):
+class MainWidget(QWidget): 
     def __init__(self, parent):
         super().__init__()
         self.setAttribute(Qt.WA_StyledBackground, True)

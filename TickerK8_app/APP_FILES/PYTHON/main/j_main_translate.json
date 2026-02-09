@@ -1,14 +1,13 @@
 {
     "search_button": ["Search...", "Wyszukaj..."],
-    "objects_list_lists_title_label": ["  Lists  ", "  Listy  "],
-    "object_list_edit_title_label": ["Data", "Dane"],
-    "object_list_edit_icon_button": ["Icon", "Ikona"],
-    "object_list_edit_ticker_button": ["Ticker", "Ticker"],
-    "object_list_edit_pe_ratio_button": ["Pe ratio", "Pe ratio"],
-    "object_list_edit_eps_button": ["Eps", "Eps"],
-    "object_list_edit_dividend_yield_button": ["Dividend", "Dywidenda"],
-    "object_list_edit_capitalization_button": ["Capitalization", "Kapitalizacja"],
-    "object_list_edit_capital_button": ["Capital", "Stolica"],
+    "type_list_button": ["  Lists", "   Listy"],
+    "data_list_button": ["  Edit list data", "    Edytuj dane listy"],
+    "object_news_button": ["   News", "    Wiadmomości"],
+    "object_chart_button": ["  Chart", "   Wykres"],
+    "object_stats_button": ["  Statistics", "  Statystyki"],
+    "news_market_button": ["    Market", "  Rynek"],
+    "news_country_button": ["   Country", " Kraj"],
+    "news_world_button": [" World", "   Świat"],
     "objects_list_tags": {
         "icon": ["Logo", "Logo"],
         "name":["Name", "Nazwa"],
@@ -35,13 +34,5 @@
     "dividend_yield_name_label": ["Dividend yield", "Stopa dywidendy"],
     "objects_title_label": ["Ingridients of index", "Skladniki indeksu"],
     "objects_icon_label": ["Icon", "Ikona"],
-    "objects_ticker_label": ["Ticker", "Ticker"],
-    "object_news_button": ["   News", "    Wiadmomości"],
-    "object_chart_button": ["  Chart", "   Wykres"],
-    "object_stats_button": ["  Statistics", "  Statystyki"],
-    "type_list_button": ["  Lists", "   Listy"],
-    "data_list_button": ["  Edit list data", "    Edytuj dane listy"],
-    "news_market_button": ["    Market", "  Rynek"],
-    "news_country_button": ["   Country", " Kraj"],
-    "news_world_button": [" World", "   Świat"]
+    "objects_ticker_label": ["Ticker", "Ticker"]
 }
