@@ -20,7 +20,7 @@ from login.structure import Login_widget
 from register.structure import Register_widget
 from login_config.p_structure import Login_configuration_widget
 from recover_password.structure import Recover_password_widget
-from main.structure import Main_widget 
+from main.structure import MainW 
 from settings.structure import Settings_widget
 from statistics.structure import Statistics_widget
 from chart.structure import Chart_widget
@@ -92,13 +92,13 @@ class app_controller(QWidget):
         self.recover_password_widget.recover_password_exit_button.clicked.connect(self.forgot_password_to_login)
     
     def main_setup(self):
-        self.main_widget = MainW(self)
+        self.main_widget = MainW(self, self.logged_user_config)
         self.layout.addWidget(self.main_widget)
         self.setGeometry(self.geometry)
         self.showMaximized()
-        self.main_widget.main_news_setup(self.database.GetNewsMain(), self.database.GetNewsContentById)
         self.main_widget.settings_button.clicked.connect(self.main_to_settings)
         self.main_widget.logout_button.clicked.connect(self.main_to_login)
+        self.
     
     def settings_setup(self):
         self.settings_widget = Settings_widget(self)
@@ -210,6 +210,7 @@ class app_controller(QWidget):
                     self.login_to_login_configuration()
                 else:
                     self.database.UpdateLastLogin(d[0])
+                    self.logged_user_config = d[3]
                     self.login_to_main()
         else:
             self.login_widget.login_login_lineedit.clear()

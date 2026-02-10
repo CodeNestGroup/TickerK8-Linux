@@ -13,25 +13,24 @@ from PyQt5.QtCore import (
 )
 from .ui import *
 from .logic import *
+from MainListObject.AStructure import MainListObjectW
 from MainSearch.Structure import MainSearchWidget
 from MainNewsList.Structure import MainNewsListWidget
 
 #   --- Class ---
 class MainW(QWidget): 
-    def __init__(self, parent:object, theme:str, language:int):
+    def __init__(self):
         super().__init__()
-        self.theme = theme
-        self.language = language
         self.setParent(parent)
         self.setAttribute(Qt.WA_StyledBackground, True)
         self.BacgroundConf = json.load(open('./j_background_conf.json', 'r'))
 #           --- Create objects ---
         self.Layout = QGridLayout(self)
         self.SearchB = QPushButton(self)
-        # Dodać object list 
         self.SettingsB = QPushButton(self)
         self.LogoutB = QPushButton(self)
-        # Dodać object widget osobna klasa
+        self.MainListObjectW = MainListObjectW(self)
+        self.MainObjectW = MainObjectW(self)
         # Dodać news widget osobna klasa
         self.BackgroundT = QTimer(self)
         self.NewsT = QTimer(self)
