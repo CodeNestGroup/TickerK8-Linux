@@ -1,8 +1,7 @@
-""" Import packages """
+#   --- Import ---
 import sys
 import pathlib
 import json
-""" Import PyQt5 packages """
 from PyQt5.QtWidgets import (
     QApplication,
     QWidget,
@@ -17,7 +16,6 @@ from PyQt5.QtGui import (
     QFontDatabase,
     QFont
     )
-""" Import application modules """
 from login.structure import Login_widget
 from register.structure import Register_widget
 from login_config.p_structure import Login_configuration_widget
@@ -94,7 +92,7 @@ class app_controller(QWidget):
         self.recover_password_widget.recover_password_exit_button.clicked.connect(self.forgot_password_to_login)
     
     def main_setup(self):
-        self.main_widget = Main_widget(self)
+        self.main_widget = MainW(self)
         self.layout.addWidget(self.main_widget)
         self.setGeometry(self.geometry)
         self.showMaximized()
