@@ -1,4 +1,6 @@
 #   --- Import ---
+import datetime
+
 from PyQt5.QtGui import (
     QLinearGradient,
     QPalette,
@@ -9,8 +11,8 @@ from PyQt5.QtGui import (
 )
 
 #   --- Dynamic Background ---
-def widget_background_painter(self):
-    _colors = self.main_conf['background']
+def WidgetBackgroundPainter(self):
+    _colors = self.BacgroundConf['background']
     _color_0 = '#000000'
     _color_1 = '#000000'
     _color_2 = '#000000'

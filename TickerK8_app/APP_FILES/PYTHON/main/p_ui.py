@@ -26,6 +26,7 @@ def MainUi(self):
     self.Layout.addWidget(self.SearchB, 2, 40, 2, 20)
     self.Layout.addWidget(self.SettingsB, 2, 90, 2, 2)
     self.Layout.addWidget(self.LogoutB, 2, 94, 2, 2)
+    self.Layout.addWidget(self.MainListObjectW, 8, 2, 80, 30)
     self.Layout.setSpacing(0)
     self.Layout.setContentsMargins(0,0,0,0)
     for i in range(100):
@@ -38,19 +39,29 @@ def MainUi(self):
     self.SettingsB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.LogoutB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
-def main_reload_style(self):
-    t = self.theme
-    m = open('./s_main.css').read()
-    c = open(f'./s_{t}.css').read()
+def MainReloadStyle(self):
+    t = self.Theme
+    m = open(f'{self.Path}/APP_FILES/PYTHON/main/s_main.css').read()
+    c = open(f'{self.Path}/APP_FILES/PYTHON/main/s_{t}.css').read()
     self.setStyleSheet(m+c)
-    self.SearchB.setIcon(QIcon(load_svg(f'./search_{t}.svg', 256, 256)))
-    self.SearchB.setIconSize(self.search_button.size())
-    self.SettingsB.setIcon(QIcon(load_svg(f'./settings_{t}.svg', 256, 256)))
-    self.SettingsB.setIconSize(self.settings_button.size())
-    self.LogoutB.setIcon(QIcon(load_svg(f'./exit_{t}.svg', 256, 256)))
-    self.LogoutB.setIconSize(self.logout_button.size())
+    self.SearchB.setIcon(QIcon(LoadSvg(f'{self.Path}/APP_FILES/PYTHON/main/search_{t}.svg', 256, 256)))
+    self.SearchB.setIconSize(self.SearchB.size())
+    self.SettingsB.setIcon(QIcon(LoadSvg(f'{self.Path}/APP_FILES/PYTHON/main/settings_{t}.svg', 256, 256)))
+    self.SettingsB.setIconSize(self.SettingsB.size())
+    self.LogoutB.setIcon(QIcon(LoadSvg(f'{self.Path}/APP_FILES/PYTHON/main/exit_{t}.svg', 256, 256)))
+    self.LogoutB.setIconSize(self.LogoutB.size())
 
-def main_retranslate(self):
-    t = json.load(open('./j_main_translate.json', 'r'))
-    l = self.language
+def MainRetranslate(self):
+    t = json.load(open(f'{self.Path}/APP_FILES/PYTHON/main/j_main_translate.json', 'r'))
+    l = self.Language
     self.SearchB.setText(t['SearchB'][l])
+
+def LoadSvg(svg_path, width, height):
+    renderer = QSvgRenderer(svg_path) # Render svg
+    pixmap = QPixmap(width, height) # Create pixmap
+    pixmap.fill(Qt.transparent) # Transparent
+    painter = QPainter(pixmap) # Render graphic 
+    renderer.render(painter) # Render graphic
+    painter.end() # Render graphic
+    scaled_pixmap = pixmap.scaled(QSize(width, height), Qt.KeepAspectRatio, Qt.SmoothTransformation) # Scal pixmap
+    return scaled_pixmap
