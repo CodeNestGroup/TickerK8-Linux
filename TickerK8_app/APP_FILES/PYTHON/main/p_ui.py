@@ -33,7 +33,7 @@ def MainUi(self):
         self.Layout.setRowStretch(i, 1)
         self.Layout.setColumnStretch(i, 1)
     self.setLayout(self.Layout)
-    self.setHidden(False)
+    self.show()
     self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.SearchB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.SettingsB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)

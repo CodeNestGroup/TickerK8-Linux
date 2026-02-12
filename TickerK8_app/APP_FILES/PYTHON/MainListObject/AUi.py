@@ -17,7 +17,7 @@ from PyQt5.QtSvg import (
 )
 
 def Ui(self):
-    self.setObjectName('MainListObject')
+    self.setObjectName('MainListObjectW')
     self.Layout.setSpacing(0)
     self.Layout.setContentsMargins(0,0,0,0)
     for i in range(100):
@@ -57,14 +57,10 @@ def DataUi(self):
     self.ListNameL.setObjectName('ListNameL')
     self.DataS.setObjectName('DataS')
     self.DataW.setObjectName('DataW')
-    self.EditB.setObjectName('EditB')
     self.ListB.setObjectName('ListB')
-    self.EditB.setProperty('class', 'DataButton')
-    self.ListB.setProperty('class', 'DataButton')
     self.Layout.addWidget(self.ListNameL, 0, 0, 5, 100)
     self.Layout.addWidget(self.DataS, 5, 0, 85, 100)
-    self.Layout.addWidget(self.EditB, 90, 10, 10, 30)
-    self.Layout.addWidget(self.ListB, 90, 60, 10, 30)
+    self.Layout.addWidget(self.ListB, 90, 40, 10, 20)
     self.DataL.setSpacing(0)
     self.DataL.setContentsMargins(0,0,0,0)
     for i in range(100):
@@ -75,18 +71,15 @@ def DataUi(self):
     self.ListNameL.show()
     self.DataS.show()
     self.DataW.show()
-    self.EditB.show()
     self.ListB.show()
     self.ListNameL.setAlignment(Qt.AlignCenter)
     self.DataS.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.DataW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.EditB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.ListB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
 def DataRetranslate(self):
     t = json.load(open(f'{self.Path}/APP_FILES/PYTHON/MainListObject/CDataRetranslate.json', 'r'))
     l = self.Language
-    self.EditB.setText(t['EditB'][l])
     self.ListB.setText(t['ListB'][l])
 
 
