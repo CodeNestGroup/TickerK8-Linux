@@ -22,6 +22,7 @@ class MainListObjectW(QWidget):
 #       --- Create objects ---
         self.Layout = QGridLayout(self)
         self.NullDataL = None
+        self.ListNameL = None
         self.DataS = None
         self.EditB = None
         self.ListB = None
@@ -43,6 +44,7 @@ class MainListObjectW(QWidget):
     
     def Data(self):
 #       --- Create objects ---
+        self.ListNameL = QLabel(self)
         self.DataS = QScrollArea(self)
         self.DataW = QWidget(self)
         self.DataL = QGridLayout(self)

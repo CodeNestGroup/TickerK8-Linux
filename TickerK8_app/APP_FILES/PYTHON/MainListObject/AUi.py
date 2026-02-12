@@ -33,7 +33,7 @@ def ReloadStyle(self):
     self.setStyleSheet(m+c)
     
 def Reset(self):
-    l = [self.NullDataL, self.DataS, self.EditB, self.ListB]
+    l = [self.NullDataL, self.ListNameL, self.DataS, self.EditB, self.ListB]
     for o in l:
         if o:
             o.deleteLater()
@@ -54,13 +54,15 @@ def NullDataRetranslate(self):
 
 def DataUi(self):
     Reset(self)
+    self.ListNameL.setObjectName('ListNameL')
     self.DataS.setObjectName('DataS')
     self.DataW.setObjectName('DataW')
     self.EditB.setObjectName('EditB')
     self.ListB.setObjectName('ListB')
     self.EditB.setProperty('class', 'DataButton')
     self.ListB.setProperty('class', 'DataButton')
-    self.Layout.addWidget(self.DataS, 0, 0, 90, 100)
+    self.Layout.addWidget(self.ListNameL, 0, 0, 5, 100)
+    self.Layout.addWidget(self.DataS, 5, 0, 85, 100)
     self.Layout.addWidget(self.EditB, 90, 10, 10, 30)
     self.Layout.addWidget(self.ListB, 90, 60, 10, 30)
     self.DataL.setSpacing(0)
@@ -70,10 +72,12 @@ def DataUi(self):
     self.DataW.setLayout(self.DataL)
     self.DataS.setWidgetResizable(True)
     self.DataS.setWidget(self.DataW)
+    self.ListNameL.show()
     self.DataS.show()
     self.DataW.show()
     self.EditB.show()
     self.ListB.show()
+    self.ListNameL.setAlignment(Qt.AlignCenter)
     self.DataS.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.DataW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.EditB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
