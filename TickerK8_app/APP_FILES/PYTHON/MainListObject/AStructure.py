@@ -13,8 +13,8 @@ from .ALogic import *
 #   --- Class ---
 class MainListObjectW(QWidget): 
     def __init__(self, parent):
-        super().__init__()
-        self.setParent(parent)
+        super().__init__(parent)
+        self.setAttribute(Qt.WA_StyledBackground, True)
         self.Path = parent.Path
         self.Theme = parent.Theme
         self.Language = parent.Language
@@ -26,8 +26,8 @@ class MainListObjectW(QWidget):
         self.DataS = None
         self.ListB = None
 #       --- Call functions ---
-        Ui(self)
-        ReloadStyle(self)
+        MainListObjectUi(self)
+        MainListObjectReloadStyle(self)
         if self.ObjectList:
             self.Data()
         else:
@@ -45,8 +45,8 @@ class MainListObjectW(QWidget):
 #       --- Create objects ---
         self.ListNameL = QLabel(self)
         self.DataS = QScrollArea(self)
-        self.DataW = QWidget(self)
-        self.DataL = QGridLayout(self)
+        self.DataW = QWidget(self.DataS)
+        self.DataL = QGridLayout(self.DataW)
         self.ListB = QPushButton(self)
 #       --- Call functions ---
         DataUi(self)

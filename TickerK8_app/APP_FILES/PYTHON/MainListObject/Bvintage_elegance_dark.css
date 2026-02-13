@@ -1,0 +1,46 @@
+#MainListObjectW{
+    background-color: red;
+}
+#NullDataL{
+    background-color: black;
+}
+#ListNameL{
+    color: black;
+    background-color: blue;
+}
+#DataS{
+    background-color: green;
+}
+#DataW{
+    background-color: azure;
+}
+.SectionNameL{
+    color: black;
+    background-color: white;
+}
+.IndexL{
+    color: black;
+    background-color: blue;
+}
+.IconL{
+    color: black;
+    background-color: greenyellow;
+}
+.TickerL{
+    color: black;
+    background-color: yellow;
+}
+.NameB{
+    color: black;
+    background-color: red;
+}
+.NameB:hover{
+    background-color: aquamarine;
+}
+#ListB{
+    color: black;
+    background-color: red;
+}
+#ListB:hover{
+    background-color: blueviolet;
+}

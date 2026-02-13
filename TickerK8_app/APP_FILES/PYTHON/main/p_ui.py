@@ -44,11 +44,11 @@ def MainReloadStyle(self):
     m = open(f'{self.Path}/APP_FILES/PYTHON/main/s_main.css').read()
     c = open(f'{self.Path}/APP_FILES/PYTHON/main/s_{t}.css').read()
     self.setStyleSheet(m+c)
-    self.SearchB.setIcon(QIcon(LoadSvg(f'{self.Path}/APP_FILES/PYTHON/main/search_{t}.svg', 256, 256)))
+    self.SearchB.setIcon(QIcon(LoadSvg(f'{self.Path}/APP_FILES/PYTHON/main/i_search_{t}.svg', 256, 256)))
     self.SearchB.setIconSize(self.SearchB.size())
-    self.SettingsB.setIcon(QIcon(LoadSvg(f'{self.Path}/APP_FILES/PYTHON/main/settings_{t}.svg', 256, 256)))
+    self.SettingsB.setIcon(QIcon(LoadSvg(f'{self.Path}/APP_FILES/PYTHON/main/i_settings_{t}.svg', 256, 256)))
     self.SettingsB.setIconSize(self.SettingsB.size())
-    self.LogoutB.setIcon(QIcon(LoadSvg(f'{self.Path}/APP_FILES/PYTHON/main/exit_{t}.svg', 256, 256)))
+    self.LogoutB.setIcon(QIcon(LoadSvg(f'{self.Path}/APP_FILES/PYTHON/main/i_exit_{t}.svg', 256, 256)))
     self.LogoutB.setIconSize(self.LogoutB.size())
 
 def MainRetranslate(self):

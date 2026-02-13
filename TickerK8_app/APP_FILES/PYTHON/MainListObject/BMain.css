@@ -1,18 +1,50 @@
 #MainListObjectW{
-    background-color: aqua;
+    border: 0;
 }
 #NullDataL{
-
+    border: 0;
 }
 #ListNameL{
-
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
 }
 #DataS{
-
+    border: 0;
 }
 #DataW{
-
+    border: 0;
+}
+.SectionNameL{
+    border: 0;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+}
+.IndexL{
+    border: 0;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+}
+.IconL{
+    border: 0;
+}
+.TickerL{
+    border: 0;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+}
+.NameB{
+    border: 0;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
 }
 #ListB{
-    
+    border: 0;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
 }

@@ -196,7 +196,6 @@ class app_controller(QWidget):
 
     def login_controller(self):
         d = self.database.LoginByName(str(self.login_widget.login_login_lineedit.text()))
-        print(d)
         if d[1] == self.login_widget.login_password_lineedit.text():
             if d[2]:
                 pass # Dopisać kiedyś notyfikacje że ktoś inny jest już zalogowany
