@@ -1,5 +1,7 @@
 #MainListObjectW{
-    border: 0;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 12px;
 }
 #NullDataL{
     border: 0;
@@ -16,34 +18,44 @@
     border: 0;
 }
 .SectionNameL{
-    border: 0;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 10px;
     font-size: 18px;
     font-weight: 600;
     letter-spacing: 0.3em;
 }
 .IndexL{
     border: 0;
+    margin: 0.1em;
     font-size: 16px;
     font-weight: 400;
     letter-spacing: 0.2em;
 }
 .IconL{
     border: 0;
+    margin: 0.1em;
 }
 .TickerL{
     border: 0;
+    margin: 0.1em;
     font-size: 16px;
     font-weight: 400;
     letter-spacing: 0.2em;
 }
 .NameB{
-    border: 0;
+    margin: 0.1em;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 10px;
     font-size: 16px;
     font-weight: 400;
     letter-spacing: 0.2em;
 }
 #ListB{
-    border: 0;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 10px;
     font-size: 18px;
     font-weight: 600;
     letter-spacing: 0.3em;

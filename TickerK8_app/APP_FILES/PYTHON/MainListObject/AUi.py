@@ -58,8 +58,8 @@ def DataUi(self):
     self.DataW.setObjectName('DataW')
     self.ListB.setObjectName('ListB')
     self.Layout.addWidget(self.ListNameL, 0, 0, 5, 100)
-    self.Layout.addWidget(self.DataS, 5, 0, 85, 100)
-    self.Layout.addWidget(self.ListB, 90, 40, 10, 20)
+    self.Layout.addWidget(self.DataS, 7, 2, 83, 96)
+    self.Layout.addWidget(self.ListB, 92, 20, 6, 60)
     self.DataL.setSpacing(0)
     self.DataL.setContentsMargins(0,0,0,0)
     for i in range(100):

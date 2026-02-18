@@ -1,46 +1,52 @@
 #MainListObjectW{
-    background-color: red;
+    border-color: #1a1a1a;
+    background-color: #1a1a1a;
 }
 #NullDataL{
-    background-color: black;
+    background-color: #1a1a1a;
 }
 #ListNameL{
-    color: black;
-    background-color: blue;
+    color: #c3c3c3;
+    background-color: #00000000;
 }
 #DataS{
-    background-color: green;
+    background-color: #1a1a1a;
 }
 #DataW{
-    background-color: azure;
+    background-color: #00000000;
 }
 .SectionNameL{
-    color: black;
-    background-color: white;
+    color: #c3c3c3;
+    border-color: #1d1d1d;
+    background-color: #1d1d1d;
 }
 .IndexL{
-    color: black;
-    background-color: blue;
+    color: #c3c3c3;
+    background-color: #00000000;
 }
 .IconL{
-    color: black;
-    background-color: greenyellow;
+    color: #c3c3c3;
+    background-color: #00000000;
 }
 .TickerL{
-    color: black;
-    background-color: yellow;
+    color: #c3c3c3;
+    background-color: #00000000;
 }
 .NameB{
-    color: black;
-    background-color: red;
+    color: #c3c3c3;
+    border-color: #282828;
+    background-color: #282828;
 }
 .NameB:hover{
-    background-color: aquamarine;
+    border-color: #1a1a1a;
+    background-color: #1a1a1a;
 }
 #ListB{
-    color: black;
-    background-color: red;
+    color: #c3c3c3;
+    border-color: #282828;
+    background-color: #282828;
 }
 #ListB:hover{
-    background-color: blueviolet;
+    border-color: #1a1a1a;
+    background-color: #1a1a1a;
 }

@@ -14,6 +14,7 @@ from PyQt5.QtCore import (
 from .p_ui import *
 from .p_logic import *
 from MainListObject.AStructure import MainListObjectW
+
 #from MainSearch.Structure import MainSearchWidget
 #from MainNewsList.Structure import MainNewsListWidget
 
@@ -35,7 +36,7 @@ class MainW(QWidget):
         self.SettingsB = QPushButton(self)
         self.LogoutB = QPushButton(self)
         self.MainListObjectW = MainListObjectW(self)
-        #self.MainObjectW = MainObjectW(self)
+        self.MainObjectW = MainObjectW(self)
         # Dodać news widget osobna klasa
         self.BackgroundT = QTimer(self)
         self.NewsT = QTimer(self)
