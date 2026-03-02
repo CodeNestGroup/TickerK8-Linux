@@ -12,7 +12,7 @@ def SetupData(self, o:dict):
     conn = sqlite3.connect(f'{self.Path}/APP_FILES/CONFIG/GLOBAL/tickerk8_offline.db')
     cur = conn.cursor()
     for ListName, ListElements in o.items():
-        self.ListNameL.setText(ListName)
+        self.NameL.setText(ListName)
         i = 0
         for SectionName, SectionItems in ListElements.items():
             SectionNameL = QLabel(self.DataW)

@@ -6,7 +6,7 @@
 #NullDataL{
     border: 0;
 }
-#ListNameL{
+#NameL{
     font-size: 20px;
     font-weight: 600;
     letter-spacing: 0.3em;
@@ -52,7 +52,7 @@
     font-weight: 400;
     letter-spacing: 0.2em;
 }
-#ListB{
+.Button{
     border-width: 1px;
     border-style: solid;
     border-radius: 10px;

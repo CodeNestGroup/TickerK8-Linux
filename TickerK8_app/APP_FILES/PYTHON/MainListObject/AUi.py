@@ -31,15 +31,7 @@ def MainListObjectReloadStyle(self):
     c = open(f'{self.Path}/APP_FILES/PYTHON/MainListObject/B{self.Theme}.css').read()
     self.setStyleSheet(m+c)
     
-def Reset(self):
-    l = [self.NullDataL, self.ListNameL, self.DataS, self.ListB]
-    for o in l:
-        if o:
-            o.deleteLater()
-            o = None
-
 def NullDataUi(self):
-    #Reset(self)
     self.NullDataL.setObjectName('NullDataL')
     self.Layout.addWidget(self.NullDataL, 0, 0, 100, 100)
     self.NullDataL.show()
@@ -52,14 +44,11 @@ def NullDataRetranslate(self):
     self.NullDataL.setText(t['NullDataL'][l])
 
 def DataUi(self):
-    #Reset(self)
-    self.ListNameL.setObjectName('ListNameL')
+    self.NameL.setObjectName('NameL')
     self.DataS.setObjectName('DataS')
     self.DataW.setObjectName('DataW')
-    self.ListB.setObjectName('ListB')
-    self.Layout.addWidget(self.ListNameL, 0, 0, 5, 100)
-    self.Layout.addWidget(self.DataS, 7, 2, 83, 96)
-    self.Layout.addWidget(self.ListB, 92, 20, 6, 60)
+    self.Layout.addWidget(self.NameL, 0, 0, 5, 100)
+    self.Layout.addWidget(self.DataS, 7, 2, 88, 96)
     self.DataL.setSpacing(0)
     self.DataL.setContentsMargins(0,0,0,0)
     for i in range(100):
@@ -67,15 +56,9 @@ def DataUi(self):
     self.DataW.setLayout(self.DataL)
     self.DataS.setWidgetResizable(True)
     self.DataS.setWidget(self.DataW)
-    self.ListNameL.setAlignment(Qt.AlignCenter)
+    self.NameL.setAlignment(Qt.AlignCenter)
     self.DataS.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.DataW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.ListB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    
-def DataRetranslate(self):
-    t = json.load(open(f'{self.Path}/APP_FILES/PYTHON/MainListObject/CDataRetranslate.json', 'r'))
-    l = self.Language
-    self.ListB.setText(t['ListB'][l])
 
 def LoadSvg(svg_path, width, height):
     renderer = QSvgRenderer(svg_path) # Render svg

@@ -36,7 +36,7 @@ class MainW(QWidget):
         self.SettingsB = QPushButton(self)
         self.LogoutB = QPushButton(self)
         self.MainListObjectW = MainListObjectW(self)
-        self.MainObjectW = MainObjectW(self)
+        #self.MainObjectW = MainObjectW(self)
         # Dodać news widget osobna klasa
         self.BackgroundT = QTimer(self)
         self.NewsT = QTimer(self)

@@ -5,7 +5,7 @@
 #NullDataL{
     background-color: #1a1a1a;
 }
-#ListNameL{
+#NameL{
     color: #c3c3c3;
     background-color: #00000000;
 }
@@ -41,12 +41,12 @@
     border-color: #1a1a1a;
     background-color: #1a1a1a;
 }
-#ListB{
+.Button{
     color: #c3c3c3;
     border-color: #282828;
     background-color: #282828;
 }
-#ListB:hover{
+.Button:hover{
     border-color: #1a1a1a;
     background-color: #1a1a1a;
 }

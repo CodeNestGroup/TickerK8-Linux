@@ -5,7 +5,8 @@ from PyQt5.QtWidgets import (
     QPushButton,
     QLabel, 
     QScrollArea,
-    QGridLayout
+    QGridLayout,
+    QVBoxLayout
 )
 from .AUi import *
 from .ALogic import *
@@ -22,9 +23,8 @@ class MainListObjectW(QWidget):
 #       --- Create objects ---
         self.Layout = QGridLayout(self)
         self.NullDataL = None
-        self.ListNameL = None
+        self.NameL = None
         self.DataS = None
-        self.ListB = None
 #       --- Call functions ---
         MainListObjectUi(self)
         MainListObjectReloadStyle(self)
@@ -43,17 +43,11 @@ class MainListObjectW(QWidget):
     
     def Data(self):
 #       --- Create objects ---
-        self.ListNameL = QLabel(self)
+        self.NameL = QLabel(self)
         self.DataS = QScrollArea(self)
         self.DataW = QWidget(self.DataS)
         self.DataL = QGridLayout(self.DataW)
-        self.ListB = QPushButton(self)
 #       --- Call functions ---
         DataUi(self)
-        DataRetranslate(self)
         SetupData(self, self.ObjectList)
 #       --- Connect functions ---
-
-    def ListsData(self):
-        pass
-
