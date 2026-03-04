@@ -18,13 +18,11 @@ from .ALogic import *
 class MainObjectW(QWidget): 
     def __init__(self, parent):
         super().__init__()
-        self.setParent(parent)
-        self.Path = parent.main_path
-        self.Config = json.loads(parent.logged_user_config)
-        self.Theme = self.Config['theme']
-        self.Language = self.Config['language']
-        self.ObjectList = self.Config['lists']
         self.setAttribute(Qt.WA_StyledBackground, True)
+        self.Path = parent.Path
+        self.Theme = parent.Theme
+        self.Language = parent.Language
+        self.ObjectList = parent.ObjectList
 #           --- Create objects ---
         self.Layout = QGridLayout(self)
         self.IconL = QLabel(self)
@@ -41,4 +39,4 @@ class MainObjectW(QWidget):
         MainObjectUi(self)
         MainObjectReloadStyle(self)
         MainObjectRetranslate(self)
-        
+        Setup(self)
