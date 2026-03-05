@@ -49,11 +49,11 @@ class MainW(QWidget):
         MainUi(self)
         MainReloadStyle(self)
         MainRetranslate(self)
+        DefaultPage(self)
         self.WidgetBackgroundPainter = lambda: WidgetBackgroundPainter(self)
         self.BackgroundT.timeout.connect(self.WidgetBackgroundPainter)
         self.BackgroundT.start(1)
 #           --- Connect  functions ---
-        #self.search_button.clicked.connect(lambda: Main_search_widget(self))
 
     def DefaultPage(self):
 #           --- Create objects ---
