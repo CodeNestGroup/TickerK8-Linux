@@ -1,3 +1,7 @@
-{
-    "SearchB": ["Search...", "Wyszukaj..."]
+{   
+    "NavDefaultB": ["Default", "Domyślna"],
+    "NavSearchB": ["Search", "Szukaj"],
+    "NavListObjectB": ["List", "Lista"],
+    "NavObjectB": ["Object", "Obiekt"],
+    "NavNewsB": ["News", "Wiadomości"]
 }

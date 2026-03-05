@@ -1,20 +1,22 @@
-
-#SearchB{
+#MainW{
     border: 0;
-    border-radius: 0.25em;
-    padding: 0.3em;
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: 0.2em;
+    background-color: #00000000;
 }
-.B{
+#NavW{
     border: 0;
-    border-radius: 0.25em;
-    padding: 0.3em;
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: 0.2em;
+}
+.NavButton{
+    
+}
+.NavButton:hover{
+
+}
+.FuncButton{
+
+}
+.FuncButton:hover{
+
 }
 #FooterW{
-    border: 0;
+
 }

@@ -1,17 +1,22 @@
-#SearchB{
-    color: #c3c3c3;
-    background-color: #1a1a1a;
+#MainW{
+    border: 0;
+    background-color: #00000000;
 }
-#SearchB:hover{
-    background-color: #282828;
+#NavW{
+    border: 0;
 }
-.B{
-    color: #c3c3c3;
-    background-color: #1a1a1a;
+.NavButton{
+    
 }
-.B:hover{
-    background-color: #282828;
+.NavButton:hover{
+
+}
+.FuncButton{
+
+}
+.FuncButton:hover{
+
 }
 #FooterW{
-    
+
 }
