@@ -15,7 +15,7 @@ from .AUi import *
 from .ALogic import *
 
 #   --- Class ---
-class MainObjectW(QWidget): 
+class ObjectW(QWidget): 
     def __init__(self, parent):
         super().__init__()
         self.setAttribute(Qt.WA_StyledBackground, True)
@@ -23,6 +23,9 @@ class MainObjectW(QWidget):
         self.Theme = parent.Theme
         self.Language = parent.Language
         self.ObjectList = parent.ObjectList
+        self.ObjectListSorted = []
+        self.ObjectListSortedIndex = 0
+        self.Timer = None
 #           --- Create objects ---
         self.Layout = QGridLayout(self)
         self.IconL = QLabel(self)

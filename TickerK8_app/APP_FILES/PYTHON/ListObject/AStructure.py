@@ -12,7 +12,7 @@ from .AUi import *
 from .ALogic import *
 
 #   --- Class ---
-class MainListObjectW(QWidget): 
+class ListObjectW(QWidget): 
     def __init__(self, parent):
         super().__init__(parent)
         self.setAttribute(Qt.WA_StyledBackground, True)

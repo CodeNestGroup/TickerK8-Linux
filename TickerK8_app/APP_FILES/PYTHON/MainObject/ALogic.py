@@ -1,2 +1,0 @@
-def Setup(self):
-    pass

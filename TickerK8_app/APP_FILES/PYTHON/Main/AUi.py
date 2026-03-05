@@ -28,6 +28,7 @@ def MainUi(self):
     self.Layout.addWidget(self.LogoutB, 2, 94, 2, 2)
     self.Layout.addWidget(self.MainListObjectW, 10, 2, 80, 30)
     self.Layout.addWidget(self.MainObjectW, 10, 35, 80, 30)
+    self.Layout.addWidget(self.MainNewsW, 10, 68, 80, 30)
     self.Layout.setSpacing(0)
     self.Layout.setContentsMargins(0,0,0,0)
     for i in range(100):

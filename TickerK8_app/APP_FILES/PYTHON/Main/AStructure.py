@@ -11,10 +11,11 @@ from PyQt5.QtCore import (
     Qt,
     QTimer
 )
-from .p_ui import *
-from .p_logic import *
-from MainListObject.AStructure import MainListObjectW
-from MainObject.AStructure import MainObjectW
+from .AUi import *
+from .ALogic import *
+from ListObject.AStructure import ListObjectW
+from Object.AStructure import ObjectW
+from ListNews.AStructure import ListNewsW
 #from MainSearch.Structure import MainSearchWidget
 #from MainNewsList.Structure import MainNewsListWidget
 
@@ -29,17 +30,21 @@ class MainW(QWidget):
         self.Language = self.Config['language']
         self.ObjectList = self.Config['lists']
         self.setAttribute(Qt.WA_StyledBackground, True)
-        self.BacgroundConf = json.load(open(f'{self.Path}/APP_FILES/PYTHON/main/j_background_conf.json', 'r'))
+        self.BacgroundConf = json.load(open(f'{self.Path}/APP_FILES/PYTHON/Main/CBackgroundConf.json', 'r'))
 #           --- Create objects ---
         self.Layout = QGridLayout(self)
-        self.SearchB = QPushButton(self)
-        self.SettingsB = QPushButton(self)
-        self.LogoutB = QPushButton(self)
-        self.MainListObjectW = MainListObjectW(self)
-        self.MainObjectW = MainObjectW(self)
-        # Dodać news widget osobna klasa
+        self.NavW = QWidget(self)
+        self.NavL = QGridLayout(self)
+        self.NavDefaultB = QPushButton(self.NavW)
+        self.NavSearchB = QPushButton(self.NavW)
+        self.NavListObjectB = QPushButton(self.NavW)
+        self.NavObjectB = QPushButton(self.NavW)
+        self.NavNewsB = QPushButton(self.NavW)
+        self.NavSettingsB = QPushButton(self.NavW)
+        self.NavLogoutB = QPushButton(self.NavW)
+        self.OpenedW = None
+        self.FooterW = QWidget(self)
         self.BackgroundT = QTimer(self)
-        self.NewsT = QTimer(self)
 #           --- Call functions ---
         MainUi(self)
         MainReloadStyle(self)
@@ -49,3 +54,17 @@ class MainW(QWidget):
         self.BackgroundT.start(1)
 #           --- Connect  functions ---
         #self.search_button.clicked.connect(lambda: Main_search_widget(self))
+
+    def DefaultPage(self):
+#           --- Create objects ---
+        if OpenedW:
+            self.OpenedW.deleteLater()
+            self.OpenedW = None
+        self.OpenedW = QWidget(self)
+        self.OpenedL = QGridLayout(self)
+        self.ListObjectW = ListObjectW(self.OpenedW)
+        self.ObjectW = ObjectW(self.OpenedW)
+        self.ListNewsW = ListNewsW(self.OpenedW)
+#           --- Call functions ---
+        DefaultPageUi(self)
+#           --- Connect  functions ---

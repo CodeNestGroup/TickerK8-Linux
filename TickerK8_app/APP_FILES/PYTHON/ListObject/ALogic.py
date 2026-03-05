@@ -11,10 +11,10 @@ from PyQt5.QtCore import (
 def SetupData(self, o:dict):
     conn = sqlite3.connect(f'{self.Path}/APP_FILES/CONFIG/GLOBAL/tickerk8_offline.db')
     cur = conn.cursor()
-    for ListName, ListElements in o.items():
+    for ListName, ListItems in o.items():
         self.NameL.setText(ListName)
         i = 0
-        for SectionName, SectionItems in ListElements.items():
+        for SectionName, SectionItems in ListItems.items():
             SectionNameL = QLabel(self.DataW)
             SectionNameL.setObjectName(f'SectionNameL{SectionName}')
             SectionNameL.setProperty('class', 'SectionNameL')
