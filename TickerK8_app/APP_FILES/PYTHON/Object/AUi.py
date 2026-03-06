@@ -16,8 +16,8 @@ from PyQt5.QtSvg import (
     QSvgRenderer
 )
 
-def MainObjectUi(self):
-    self.setObjectName('MainObjectW')
+def ObjectUi(self):
+    self.setObjectName('ObjectW')
     self.IconL.setObjectName('IconL')
     self.TickerL.setObjectName('TickerL')
     self.ChartW.setObjectName('ChartW')
@@ -71,14 +71,14 @@ def MainObjectUi(self):
     self.InfoTickerNameL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.InfoTickerValueL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
-def MainObjectReloadStyle(self):
+def ObjectReloadStyle(self):
     t = self.Theme
-    m = open(f'{self.Path}/APP_FILES/PYTHON/MainObject/BMain.css').read()
-    c = open(f'{self.Path}/APP_FILES/PYTHON/MainObject/B{t}.css').read()
+    m = open(f'{self.Path}/APP_FILES/PYTHON/Object/BMain.css').read()
+    c = open(f'{self.Path}/APP_FILES/PYTHON/Object/B{t}.css').read()
     self.setStyleSheet(m+c)
 
-def MainObjectRetranslate(self):
-    t = json.load(open(f'{self.Path}/APP_FILES/PYTHON/MainObject/CMainObject.json', 'r'))
+def ObjectRetranslate(self):
+    t = json.load(open(f'{self.Path}/APP_FILES/PYTHON/Object/CMainObject.json', 'r'))
     l = self.Language
     self.InfoTitleL.setText(t['InfoTitleL'][l])
     self.InfoNameNameL.setText(t['InfoNameNameL'][l])

@@ -42,13 +42,13 @@ def MainUi(self):
         self.Layout.setRowStretch(i, 1)
         self.Layout.setColumnStretch(i, 1)
     self.setLayout(self.Layout)
-    self.NavL.addWidget(self.NavDefaultB, 10, 10, 80, 10)
-    self.NavL.addWidget(self.NavSearchB, 10, 25, 80, 10)
-    self.NavL.addWidget(self.NavListObjectB, 10, 40, 80, 10)
-    self.NavL.addWidget(self.NavObjectB, 10, 55, 80, 10)
-    self.NavL.addWidget(self.NavNewsB, 10, 70, 80, 10)
-    self.NavL.addWidget(self.NavSettingsB, 10, 85, 80, 5)
-    self.NavL.addWidget(self.NavLogoutB, 10, 95, 80, 5)
+    self.NavL.addWidget(self.NavDefaultB, 25, 31, 50, 6)
+    self.NavL.addWidget(self.NavSearchB, 25, 39, 50, 6)
+    self.NavL.addWidget(self.NavListObjectB, 25, 47, 50, 6)
+    self.NavL.addWidget(self.NavObjectB, 25, 55, 50, 6)
+    self.NavL.addWidget(self.NavNewsB, 25, 63, 50, 6 )
+    self.NavL.addWidget(self.NavSettingsB, 30, 92, 40, 2)
+    self.NavL.addWidget(self.NavLogoutB, 30, 95, 40, 2)
     self.NavL.setSpacing(0)
     self.NavL.setContentsMargins(0,0,0,0)
     for i in range(100):
@@ -69,15 +69,15 @@ def MainUi(self):
 
 def MainReloadStyle(self):
     t = self.Theme
-    m = open(f'{self.Path}/APP_FILES/PYTHON/main/s_main.css').read()
-    c = open(f'{self.Path}/APP_FILES/PYTHON/main/s_{t}.css').read()
+    m = open(f'{self.Path}/APP_FILES/PYTHON/Main/BMain.css').read()
+    c = open(f'{self.Path}/APP_FILES/PYTHON/Main/B{t}.css').read()
     self.setStyleSheet(m+c)
-    self.SearchB.setIcon(QIcon(LoadSvg(f'{self.Path}/APP_FILES/PYTHON/Main/i_search_{t}.svg', 256, 256)))
-    self.SearchB.setIconSize(self.SearchB.size())
-    self.SettingsB.setIcon(QIcon(LoadSvg(f'{self.Path}/APP_FILES/PYTHON/Main/i_settings_{t}.svg', 256, 256)))
-    self.SettingsB.setIconSize(self.SettingsB.size())
-    self.LogoutB.setIcon(QIcon(LoadSvg(f'{self.Path}/APP_FILES/PYTHON/Main/i_exit_{t}.svg', 256, 256)))
-    self.LogoutB.setIconSize(self.LogoutB.size())
+    self.NavSearchB.setIcon(QIcon(LoadSvg(f'{self.Path}/APP_FILES/PYTHON/Main/i_search_{t}.svg', 256, 256)))
+    self.NavSearchB.setIconSize(self.NavSearchB.size())
+    self.NavSettingsB.setIcon(QIcon(LoadSvg(f'{self.Path}/APP_FILES/PYTHON/Main/i_settings_{t}.svg', 256, 256)))
+    self.NavSettingsB.setIconSize(self.NavSettingsB.size())
+    self.NavLogoutB.setIcon(QIcon(LoadSvg(f'{self.Path}/APP_FILES/PYTHON/Main/i_exit_{t}.svg', 256, 256)))
+    self.NavLogoutB.setIconSize(self.NavLogoutB.size())
 
 def MainRetranslate(self):
     t = json.load(open(f'{self.Path}/APP_FILES/PYTHON/Main/CMainTranslate.json', 'r'))
@@ -88,8 +88,33 @@ def MainRetranslate(self):
     self.NavObjectB.setText(t['NavObjectB'][l])
     self.NavNewsB.setText(t['NavNewsB'][l])
 
-def DefaultPageUi(self):
-    self.Layout
+def MainPageUi(self):
+    self.OpenedW.setObjectName('OpenedW')
+    self.OpenedL.addWidget(self.ListObjectW, 0, 3, 100, 30)
+    self.OpenedL.addWidget(self.ObjectW, 0, 35, 100, 30)
+    self.OpenedL.addWidget(self.ListNewsW, 0, 67, 100, 30)
+    self.OpenedL.setSpacing(0)
+    self.OpenedL.setContentsMargins(0,0,0,0)
+    for i in range(100):
+        self.OpenedL.setRowStretch(i,1)
+        self.OpenedL.setColumnStretch(i,1)
+    self.OpenedW.setLayout(self.OpenedL)
+    self.Layout.addWidget(self.OpenedW, 10, 0, 80, 100)
+    self.OpenedW.show()
+
+def NewsPageUi(self):
+    self.OpenedW.setObjectName('OpenedW')
+    self.NewsMarketB.setObjectName('NewsMarketB')
+    self.NewsCountryB.setObjectName('NewsCountryB')
+    self.NewsWorldB.setObjectName('NewsWorldB')
+    
+
+def NewsPageReloadStyle(self):
+    
+    pass
+def NewsPageRetranslate(self):
+    pass
+
 
 def LoadSvg(svg_path, width, height):
     renderer = QSvgRenderer(svg_path) # Render svg

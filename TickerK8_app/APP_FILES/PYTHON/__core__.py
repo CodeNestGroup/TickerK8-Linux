@@ -20,7 +20,7 @@ from login.structure import Login_widget
 from register.structure import Register_widget
 from login_config.p_structure import Login_configuration_widget
 from recover_password.structure import Recover_password_widget
-from main.p_structure import MainW 
+from Main.AStructure import MainW 
 from settings.structure import Settings_widget
 from statistics.structure import Statistics_widget
 from chart.structure import Chart_widget
@@ -96,9 +96,8 @@ class app_controller(QWidget):
         self.layout.addWidget(self.main_widget)
         self.setGeometry(self.geometry)
         self.showMaximized()
-        self.main_widget.SettingsB.clicked.connect(self.main_to_settings)
-        self.main_widget.LogoutB.clicked.connect(self.main_to_login)
-        #self.
+        self.main_widget.NavSettingsB.clicked.connect(self.main_to_settings)
+        self.main_widget.NavLogoutB.clicked.connect(self.main_to_login)
     
     def settings_setup(self):
         self.settings_widget = Settings_widget(self)

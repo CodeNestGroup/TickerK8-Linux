@@ -16,13 +16,13 @@ from .ALogic import *
 
 #   --- Class ---
 class ObjectW(QWidget): 
-    def __init__(self, parent):
-        super().__init__()
+    def __init__(self, parent, s):
+        super().__init__(parent)
         self.setAttribute(Qt.WA_StyledBackground, True)
-        self.Path = parent.Path
-        self.Theme = parent.Theme
-        self.Language = parent.Language
-        self.ObjectList = parent.ObjectList
+        self.Path = s.Path
+        self.Theme = s.Theme
+        self.Language = s.Language
+        self.ObjectList = s.ObjectList
         self.ObjectListSorted = []
         self.ObjectListSortedIndex = 0
         self.Timer = None
@@ -39,7 +39,7 @@ class ObjectW(QWidget):
         self.InfoTickerNameL = QLabel(self.InfoW)
         self.InfoTickerValueL = QLabel(self.InfoW)
 #           --- Call functions ---
-        MainObjectUi(self)
-        MainObjectReloadStyle(self)
-        MainObjectRetranslate(self)
+        ObjectUi(self)
+        ObjectReloadStyle(self)
+        ObjectRetranslate(self)
         Setup(self)

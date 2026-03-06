@@ -16,17 +16,17 @@ from .ALogic import *
 
 #   --- Class ---
 class ListNewsW(QWidget): 
-    def __init__(self, parent):
-        super().__init__()
+    def __init__(self, parent, s):
+        super().__init__(parent)
         self.setAttribute(Qt.WA_StyledBackground, True)
-        self.Path = parent.Path
-        self.Theme = parent.Theme
-        self.Language = parent.Language
+        self.Path = s.Path
+        self.Theme = s.Theme
+        self.Language = s.Language
 #        self.NewsList = parent.NewsList
         self.NewsTimer = None
 #           --- Create objects ---
         self.Layout = QVBoxLayout(self)
 #           --- Call functions ---
-        MainNewsUi(self)
-        MainNewsReloadStyle(self)
+        ListNewsUi(self)
+        ListNewsReloadStyle(self)
         Setup(self)

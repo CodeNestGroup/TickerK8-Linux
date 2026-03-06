@@ -13,13 +13,13 @@ from .ALogic import *
 
 #   --- Class ---
 class ListObjectW(QWidget): 
-    def __init__(self, parent):
+    def __init__(self, parent, s):
         super().__init__(parent)
         self.setAttribute(Qt.WA_StyledBackground, True)
-        self.Path = parent.Path
-        self.Theme = parent.Theme
-        self.Language = parent.Language
-        self.ObjectList = parent.ObjectList
+        self.Path = s.Path
+        self.Theme = s.Theme
+        self.Language = s.Language
+        self.ObjectList = s.ObjectList
 #       --- Create objects ---
         self.Layout = QGridLayout(self)
         self.NullDataL = None
