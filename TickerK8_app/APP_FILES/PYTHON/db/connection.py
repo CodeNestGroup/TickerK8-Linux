@@ -158,51 +158,12 @@ class database():
             conn = None
 
 #   --- Get data ---
-    def GetNewsContentById(self, c_id:int):
+    def NewsList(self, type, lista_typów):
         conn = self.Connection()
         curs = conn.cursor()
         try:
-            curs.execute('CALL get_news_content_by_id(%s);', (c_id,))
-            result = curs.fetchall()
-            return result
-        finally:
-            curs.close()
-            curs = None
-            conn.close()
-            conn = None
-    
-    def GetNewsList(self, s_type:str):
-        conn = self.Connection()
-        curs = conn.cursor()
-        try:
-            curs.execute('CALL get_news_list(%s);', (s_type,))
-            result = cursor.fetchall()
-            return result
-        finally:
-            curs.close()
-            curs = None
-            conn.close()
-            conn = None
-    
-    def UpdateNewsPopularity(self, n_id:int):
-        conn = self.Connection()
-        curs = conn.cursor()
-        try:
-            curs.execute('CALL update_phone_popularity(%s);', (n_id,))
-            result = cursor.fetchall()
-            return result
-        finally:
-            curs.close()
-            curs = None
-            conn.close()
-            conn = None
-    
-    def GetNewsMain(self):
-        conn = self.Connection()
-        curs = conn.cursor()
-        try:
-            curs.execute('CALL get_news_main();')
-            result = curs.fetchall()
+            curs.execute('CALL get_news_list();', (u_name,))
+            result = curs.fetchone()
             return result
         finally:
             curs.close()

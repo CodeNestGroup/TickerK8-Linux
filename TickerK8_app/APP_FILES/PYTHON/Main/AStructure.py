@@ -54,6 +54,11 @@ class MainW(QWidget):
         self.BackgroundT.timeout.connect(self.WidgetBackgroundPainter)
         self.BackgroundT.start(1)
 #           --- Connect  functions ---
+        self.NavDefaultB.clicked.connect(self.MainPage)
+        #self.NavSearchB.clicked.connect(lambda: self.NewsPage)
+        #self.NavListObjectB.clicked.connect(lambda: self.NewsPage)
+        #self.NavObjectB.clicked.connect(lambda: self.NewsPage)
+        self.NavNewsB.clicked.connect(self.NewsPage)
 
     def ResetPage(self):
         if self.OpenedW:
@@ -62,7 +67,7 @@ class MainW(QWidget):
 
     def MainPage(self):
 #           --- Create objects ---
-        self.ResetPage(self)
+        self.ResetPage()
         self.OpenedW = QWidget(self)
         self.OpenedL = QGridLayout(self)
         self.ListObjectW = ListObjectW(self.OpenedW, self)
@@ -92,16 +97,15 @@ class MainW(QWidget):
 
     def NewsPage(self):
 #           --- Create objects ---
-        self.ResetPage(self)
+        self.ResetPage()
         self.OpenedW = QWidget(self)
         self.OpenedL = QGridLayout(self)
-        self.NewsReadW = NewsReadW(self.OpenedW, r)
-        self.NewsListW = NewsListW(self.OpenedW, l)
+        self.NewsReadW = NewsReadW(self.OpenedW)
+        self.NewsListW = NewsListW(self.OpenedW)
         self.NewsMarketB = QPushButton(self.OpenedW)
         self.NewsCountryB = QPushButton(self.OpenedW)
         self.NewsWorldB = QPushButton(self.OpenedW)
 #           --- Call functions ---
         NewsPageUi(self)
         NewsPageRetranslate(self)
-
 #           --- Connect  functions ---

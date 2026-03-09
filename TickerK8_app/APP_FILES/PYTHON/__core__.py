@@ -98,7 +98,7 @@ class app_controller(QWidget):
         self.showMaximized()
         self.main_widget.NavSettingsB.clicked.connect(self.main_to_settings)
         self.main_widget.NavLogoutB.clicked.connect(self.main_to_login)
-    
+
     def settings_setup(self):
         self.settings_widget = Settings_widget(self)
         self.layout.addWidget(self.settings_widget)
@@ -241,6 +241,8 @@ class app_controller(QWidget):
     def login_configuration_controller(self):
         self.database.LoginConfiguration(self.logged_user_id)
         self.login_configuration_to_login()
+
+    def 
             
 #______________________________________________________________________________________________________________________
 

@@ -101,27 +101,59 @@ def MainPageUi(self):
     self.OpenedW.setLayout(self.OpenedL)
     self.Layout.addWidget(self.OpenedW, 10, 0, 80, 100)
     self.OpenedW.show()
+    self.OpenedW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
 def NewsPageUi(self):
     self.OpenedW.setObjectName('OpenedW')
     self.NewsMarketB.setObjectName('NewsMarketB')
     self.NewsCountryB.setObjectName('NewsCountryB')
     self.NewsWorldB.setObjectName('NewsWorldB')
-    
+    self.NewsMarketB.setProperty('class', 'NewsB')
+    self.NewsCountryB.setProperty('class', 'NewsB')
+    self.NewsWorldB.setProperty('class', 'NewsB')
+    self.OpenedL.addWidget(self.NewsReadW, 0, 3, 100, 40)
+    self.OpenedL.addWidget(self.NewsListW, 0, 57, 80, 40)
+    self.OpenedL.addWidget(self.NewsMarketB, 85, 57, 10, 11)
+    self.OpenedL.addWidget(self.NewsCountryB, 85, 70, 10, 11)
+    self.OpenedL.addWidget(self.NewsWorldB, 85, 86, 10, 11)
+    self.OpenedL.setSpacing(0)
+    self.OpenedL.setContentsMargins(0,0,0,0)
+    for i in range(100):
+        self.OpenedL.setSpacing(0)
+        self.OpenedL.setContentsMargins(0,0,0,0)
+    self.OpenedW.setLayout(self.OpenedL)
+    self.Layout.addWidget(self.OpenedW, 10, 0, 80, 100)
+    self.OpenedW.show()
+    self.OpenedW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.NewsMarketB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.NewsCountryB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.NewsWorldB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
 def NewsPageReloadStyle(self):
-    
-    pass
-def NewsPageRetranslate(self):
-    pass
+    t = self.Theme
+    m = open(f'{self.Path}/APP_FILES/PYTHON/Main/BNewsPage.css').read()
+    c = open(f'{self.Path}/APP_FILES/PYTHON/Main/BNewsPage{self.Theme}.css').read()
+    self.setStyleSheet(m+c)
+    self.NewsMarketB.setIcon(QIcon(LoadSvg(f'{self.Path}/APP_FILES/PYTHON/Main/i_market_{t}.svg', 256, 256)))
+    self.NewsMarketB.setIconSize(self.NewsMarketB.size())
+    self.NewsCountryB.setIcon(QIcon(LoadSvg(f'{self.Path}/APP_FILES/PYTHON/Main/i_country_{t}.svg', 256, 256)))
+    self.NewsCountryB.setIconSize(self.NewsCountryB.size())
+    self.NewsWorldB.setIcon(QIcon(LoadSvg(f'{self.Path}/APP_FILES/PYTHON/Main/i_world_{t}.svg', 256, 256)))
+    self.NewsWorldB.setIconSize(self.NewsWorldB.size())
 
+def NewsPageRetranslate(self):
+    t = json.load(open(f'{self.Path}/APP_FILES/PYTHON/Main/CNewsPageRetranslate.json', 'r'))
+    l = self.Language
+    self.NewsMarketB.setText(t['NewsMarketB'][l])
+    self.NewsCountryB.setText(t['NewsCountryB'][l])
+    self.NewsWorldB.setText(t['NewsWorldB'][l])
 
 def LoadSvg(svg_path, width, height):
-    renderer = QSvgRenderer(svg_path) # Render svg
-    pixmap = QPixmap(width, height) # Create pixmap
-    pixmap.fill(Qt.transparent) # Transparent
-    painter = QPainter(pixmap) # Render graphic 
-    renderer.render(painter) # Render graphic
-    painter.end() # Render graphic
-    scaled_pixmap = pixmap.scaled(QSize(width, height), Qt.KeepAspectRatio, Qt.SmoothTransformation) # Scal pixmap
+    renderer = QSvgRenderer(svg_path)
+    pixmap = QPixmap(width, height)
+    pixmap.fill(Qt.transparent)
+    painter = QPainter(pixmap)
+    renderer.render(painter)
+    painter.end()
+    scaled_pixmap = pixmap.scaled(QSize(width, height), Qt.KeepAspectRatio, Qt.SmoothTransformation)
     return scaled_pixmap

@@ -29,3 +29,4 @@ def ListNewsReloadStyle(self):
     m = open(f'{self.Path}/APP_FILES/PYTHON/ListNews/BMain.css').read()
     c = open(f'{self.Path}/APP_FILES/PYTHON/ListNews/B{t}.css').read()
     self.setStyleSheet(m+c)
+    
