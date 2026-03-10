@@ -158,12 +158,12 @@ class database():
             conn = None
 
 #   --- Get data ---
-    def NewsList(self, type, lista_typów):
+    def GetNewsList(self, t, i, l):
         conn = self.Connection()
         curs = conn.cursor()
         try:
-            curs.execute('CALL get_news_list();', (u_name,))
-            result = curs.fetchone()
+            curs.execute('CALL get_news_list(%s, %s, %s);', (t, json.dumps(i), l))
+            result = curs.fetchall()
             return result
         finally:
             curs.close()

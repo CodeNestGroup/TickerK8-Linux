@@ -241,8 +241,6 @@ class app_controller(QWidget):
     def login_configuration_controller(self):
         self.database.LoginConfiguration(self.logged_user_id)
         self.login_configuration_to_login()
-
-    def 
             
 #______________________________________________________________________________________________________________________
 

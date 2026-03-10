@@ -105,17 +105,18 @@ def MainPageUi(self):
 
 def NewsPageUi(self):
     self.OpenedW.setObjectName('OpenedW')
+    self.NewsStockB.setObjectName('NewsStockB')
     self.NewsMarketB.setObjectName('NewsMarketB')
     self.NewsCountryB.setObjectName('NewsCountryB')
     self.NewsWorldB.setObjectName('NewsWorldB')
+    self.NewsStockB.setProperty('class', 'NewsB')
     self.NewsMarketB.setProperty('class', 'NewsB')
     self.NewsCountryB.setProperty('class', 'NewsB')
     self.NewsWorldB.setProperty('class', 'NewsB')
-    self.OpenedL.addWidget(self.NewsReadW, 0, 3, 100, 40)
-    self.OpenedL.addWidget(self.NewsListW, 0, 57, 80, 40)
-    self.OpenedL.addWidget(self.NewsMarketB, 85, 57, 10, 11)
-    self.OpenedL.addWidget(self.NewsCountryB, 85, 70, 10, 11)
-    self.OpenedL.addWidget(self.NewsWorldB, 85, 86, 10, 11)
+    self.OpenedL.addWidget(self.NewsStockB, 85, 57, 10, 8)
+    self.OpenedL.addWidget(self.NewsMarketB, 85, 67, 10, 8)
+    self.OpenedL.addWidget(self.NewsCountryB, 85, 77, 10, 8)
+    self.OpenedL.addWidget(self.NewsWorldB, 85, 89, 10, 8)
     self.OpenedL.setSpacing(0)
     self.OpenedL.setContentsMargins(0,0,0,0)
     for i in range(100):
@@ -125,6 +126,7 @@ def NewsPageUi(self):
     self.Layout.addWidget(self.OpenedW, 10, 0, 80, 100)
     self.OpenedW.show()
     self.OpenedW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.NewsStockB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.NewsMarketB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.NewsCountryB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.NewsWorldB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -144,6 +146,7 @@ def NewsPageReloadStyle(self):
 def NewsPageRetranslate(self):
     t = json.load(open(f'{self.Path}/APP_FILES/PYTHON/Main/CNewsPageRetranslate.json', 'r'))
     l = self.Language
+    self.NewsStockB.setText(t['NewsStockB'][l])
     self.NewsMarketB.setText(t['NewsMarketB'][l])
     self.NewsCountryB.setText(t['NewsCountryB'][l])
     self.NewsWorldB.setText(t['NewsWorldB'][l])

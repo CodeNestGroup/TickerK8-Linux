@@ -23,12 +23,12 @@ class MainW(QWidget):
         super().__init__()
         self.setParent(parent)
         self.Path = parent.main_path
+        self.GetNewsListD = parent.database.GetNewsList
         self.Config = json.loads(parent.logged_user_config)
         self.Theme = self.Config['theme']
         self.Language = self.Config['language']
         self.ObjectList = self.Config['lists']
-        self.NewsList = None
-        self.News = None
+        self.NewsListType = None
         self.setAttribute(Qt.WA_StyledBackground, True)
         self.BacgroundConf = json.load(open(f'{self.Path}/APP_FILES/PYTHON/Main/CBackgroundConf.json', 'r'))
 #           --- Create objects ---
@@ -96,16 +96,21 @@ class MainW(QWidget):
 #           --- Connect  functions ---
 
     def NewsPage(self):
+        self.NewsListType = None
 #           --- Create objects ---
         self.ResetPage()
         self.OpenedW = QWidget(self)
         self.OpenedL = QGridLayout(self)
-        self.NewsReadW = NewsReadW(self.OpenedW)
-        self.NewsListW = NewsListW(self.OpenedW)
+        self.NewsStockB = QPushButton(self.OpenedW)
         self.NewsMarketB = QPushButton(self.OpenedW)
         self.NewsCountryB = QPushButton(self.OpenedW)
         self.NewsWorldB = QPushButton(self.OpenedW)
 #           --- Call functions ---
         NewsPageUi(self)
         NewsPageRetranslate(self)
+        SetupNewsWidgets(self, self.GetNewsListD('Stock', self.Config['Stock'], self.Language))
 #           --- Connect  functions ---
+        self.NewsStockB.clicked.connect(lambda: SetupNewsWidgets(self, self.GetNewsListD('Stock', self.Config['Stock'], self.Language)))
+        self.NewsMarketB.clicked.connect(lambda: SetupNewsWidgets(self, self.GetNewsListD('Market', self.Config['Market'], self.Language)))
+        self.NewsCountryB.clicked.connect(lambda: SetupNewsWidgets(self, self.GetNewsListD('Country', self.Config['Country'], self.Language)))
+        self.NewsWorldB.clicked.connect(lambda: SetupNewsWidgets(self, self.GetNewsListD('World', [1, 2, 3, 4, 5, 6, 7], self.Language)))
