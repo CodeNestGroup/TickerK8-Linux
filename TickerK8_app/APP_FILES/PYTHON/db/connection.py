@@ -170,3 +170,16 @@ class database():
             curs = None
             conn.close()
             conn = None
+    
+    def GetNewsById(self, i, l):
+        conn = self.Connection()
+        curs = conn.cursor()
+        try:
+            curs.execute('CALL get_news_by_id(%s, %s);', (i, l))
+            result = curs.fetchall()
+            return result
+        finally:
+            curs.close()
+            curs = None
+            conn.close()
+            conn = None

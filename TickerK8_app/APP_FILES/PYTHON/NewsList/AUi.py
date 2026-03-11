@@ -14,6 +14,8 @@ def NewsListUi(self):
     self.ListL.setSpacing(0)
     self.ListL.setContentsMargins(0,0,0,0)
     self.ListW.setLayout(self.ListL)
+    self.MainSelf.OpenedL.addWidget(self, 0, 57, 90, 40)
+    self.show()
     self.setWidgetResizable(True)
     self.setWidget(self.ListW)
     self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)

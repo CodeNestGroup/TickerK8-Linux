@@ -10,8 +10,6 @@ from PyQt5.QtGui import (
     QPainter
 )
 
-from NewsList.AStructure import NewsListS
-
 #   --- Dynamic Background ---
 def WidgetBackgroundPainter(self):
     _colors = self.BacgroundConf['background']
@@ -57,8 +55,3 @@ def WidgetBackgroundPainter(self):
     palette.setBrush(QPalette.Window, QBrush(pixmap))
     self.setAutoFillBackground(True)
     self.setPalette(palette)
-
-def  SetupNewsWidgets(self, NewsDataList):
-    self.NewsListS = NewsListS(self, NewsDataList)
-#    self.NewsReadS = 
-    self.OpenedL.addWidget(self.NewsListS, 0, 57, 80, 40)

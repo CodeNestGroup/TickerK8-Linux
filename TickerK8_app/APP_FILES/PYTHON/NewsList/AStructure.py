@@ -2,9 +2,7 @@
 import json
 from PyQt5.QtWidgets import (
     QWidget,
-    QPushButton,
     QScrollArea,
-    QGridLayout,
     QVBoxLayout
 )
 from PyQt5.QtCore import (
@@ -16,11 +14,13 @@ from .ALogic import *
 
 #   --- Class ---
 class NewsListS(QScrollArea): 
-    def __init__(self, parent, MainNewsListData):
-        super().__init__(parent)
-        self.Path = parent.Path
-        self.Theme = parent.Theme
-        self.Language = parent.Language
+    def __init__(self, MainSelf, GetNewsListData):
+        super().__init__(MainSelf.OpenedW)
+        self.MainSelf = MainSelf
+        self.Path = self.MainSelf.Path
+        self.Theme = self.MainSelf.Theme
+        self.Language = self.MainSelf.Language
+        self.GetNewsListData = GetNewsListData
         self.setAttribute(Qt.WA_StyledBackground, True)
 #           --- Create objects ---
         self.ListW = QWidget(self)
@@ -28,5 +28,5 @@ class NewsListS(QScrollArea):
 #           --- Call functions ---
         NewsListUi(self)
         NewsListReloadStyle(self)
-        CreateList(self, MainNewsListData)
+        CreateList(self)
 #           --- Connect  functions ---
