@@ -108,6 +108,7 @@ class MainW(QWidget):
         self.StatsW = QWidget(self.StatsS)
         self.StatsL = QGridLayout(self.StatsW)
         self.StatsTitleL = QLabel(self.StatsW)
+        #
         
 #           --- Call functions ---
         ObjectPageUi(self)
