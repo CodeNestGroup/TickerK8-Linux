@@ -91,7 +91,7 @@ def NewsReadRetranslate(self):
         ItemName = self.NewsData[4]
     elif self.NewsData[5]:
         ItemName = self.NewsData[5]
-    elif ItemName[6]:
+    elif self.NewsData[6]:
         ItemName = self.NewsData[6]
     self.TitleL.setText(self.NewsData[2])
     self.ItemNameL.setText(ItemName)

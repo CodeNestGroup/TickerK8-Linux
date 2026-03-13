@@ -26,6 +26,7 @@ class MainW(QWidget):
         self.Path = parent.main_path
         self.GetNewsListD = parent.database.GetNewsList
         self.GetNewsById = parent.database.GetNewsById
+        self.UpdateNewsPopularity = parent.database.UpdateNewsPopularity
         self.Config = json.loads(parent.logged_user_config)
         self.Theme = self.Config['theme']
         self.Language = self.Config['language']
@@ -87,13 +88,31 @@ class MainW(QWidget):
     def ListPage(self):
 #           --- Create objects ---
         self.ResetPage(self)
+        self.OpenedW = QWidget(self)
+        self.OpenedL = QGridLayout(self.OpenedW)
+
 #           --- Call functions ---
 #           --- Connect  functions ---
 
     def ObjectPage(self):
 #           --- Create objects ---
         self.ResetPage(self)
+        self.OpenedW = QWidget(self)
+        self.OpenedL = QGridLayout(self.OpenedW)
+        self.InfoW  = QWidget(self.OpenedW)
+        self.InfoL = QGridLayout(self.InfoW)
+        self.IconL = QLabel(self.InfoW)
+        self.TickerL = QLabel(self.InfoW)
+        self.NameL = QLabel(self.InfoW)
+        self.StatsS = QScrollArea(self.OpenedW)
+        self.StatsW = QWidget(self.StatsS)
+        self.StatsL = QGridLayout(self.StatsW)
+        self.StatsTitleL = QLabel(self.StatsW)
+        
 #           --- Call functions ---
+        ObjectPageUi(self)
+        ObjectPageReloadStyle(self)
+        ObjectPageRetranslate(self)
 #           --- Connect  functions ---
 
     def NewsPage(self):

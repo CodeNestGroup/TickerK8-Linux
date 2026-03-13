@@ -183,3 +183,15 @@ class database():
             curs = None
             conn.close()
             conn = None
+    
+    def UpdateNewsPopularity(self, i):
+        conn = self.Connection()
+        curs = conn.cursor()
+        try:
+            curs.execute('CALL update_news_popularity(%s);', (i,))
+            conn.commit()
+        finally:
+            curs.close()
+            curs = None
+            conn.close()
+            conn = None

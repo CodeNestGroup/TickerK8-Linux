@@ -21,3 +21,5 @@ def OpenNewsRead(self, i):
         self.MainSelf.OpenedW.NewsReadS.deleteLater()
         self.MainSelf.OpenedW.NewsReadS = None
     NewsReadS(self.MainSelf, self.MainSelf.GetNewsById(i, self.Language))
+    self.MainSelf.UpdateNewsPopularity(i)
+    
