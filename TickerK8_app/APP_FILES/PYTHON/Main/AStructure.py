@@ -99,21 +99,11 @@ class MainW(QWidget):
         self.ResetPage(self)
         self.OpenedW = QWidget(self)
         self.OpenedL = QGridLayout(self.OpenedW)
-        self.InfoW  = QWidget(self.OpenedW)
-        self.InfoL = QGridLayout(self.InfoW)
-        self.IconL = QLabel(self.InfoW)
-        self.TickerL = QLabel(self.InfoW)
-        self.NameL = QLabel(self.InfoW)
-        self.StatsS = QScrollArea(self.OpenedW)
-        self.StatsW = QWidget(self.StatsS)
-        self.StatsL = QGridLayout(self.StatsW)
-        self.StatsTitleL = QLabel(self.StatsW)
-        #
+        self.ObejctInfoW = ObjectInfoW(self)
+        self.ObjectStatsW = ObjectStatsW(self)
         
 #           --- Call functions ---
         ObjectPageUi(self)
-        ObjectPageReloadStyle(self)
-        ObjectPageRetranslate(self)
 #           --- Connect  functions ---
 
     def NewsPage(self):

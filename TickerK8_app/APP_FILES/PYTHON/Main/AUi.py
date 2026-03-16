@@ -103,6 +103,18 @@ def MainPageUi(self):
     self.OpenedW.show()
     self.OpenedW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
+def ObjectPageUi(self):
+    self.OpenedW.setObjectName('OpenedW')
+    self.OpenedL.setSpacing(0)
+    self.OpenedL.setContentsMargins(0,0,0,0)
+    for i in range(100):
+        self.OpenedL
+        self.OpenedL
+    self.OpenedW.setLayout(self.OpenedL)
+    self.Layout.addWidget(self.OpenedW, 10, 0, 80 ,100)
+    self.OpenedW.show()
+    self.OpenedW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+
 def NewsPageUi(self):
     self.OpenedW.setObjectName('OpenedW')
     self.NewsStockB.setObjectName('NewsStockB')
