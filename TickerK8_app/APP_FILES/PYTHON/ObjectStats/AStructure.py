@@ -33,90 +33,150 @@ class ObjectStatsS(QScrollArea):
         self.Widget = QWidget(self)
         self.Layout = QGridLayout(self.Widget)
         self.TitleL = QLabel(self.Widget)
-
+#           --- Fundamental Data ---
         self.FundamentalDataTitleL = QLabel(self)
-
         self.IndicatorsSubTitleL = QLabel(self)
-        self.MarketCapNameL
-        self.MarketCapValueL
-        self.PENameL
-        self.PEValueL
-        self.ForwardPENameL
-        self.ForwardPEValueL
-        self.PEGNameL
-        self.PEGValueL
-        self.PBNameL
-        self.PBValueL
-        self.PSNameL
-        self.PSValueL
-        
+        self.MarketCapNameL = QLabel(self)
+        self.MarketCapValueL = QLabel(self)
+        self.PENameL = QLabel(self)
+        self.PEValueL = QLabel(self)
+        self.ForwardPENameL = QLabel(self)
+        self.ForwardPEValueL = QLabel(self)
+        self.PEGNameL = QLabel(self)
+        self.PEGValueL = QLabel(self)
+        self.PBNameL = QLabel(self)
+        self.PBValueL = QLabel(self)
+        self.PSNameL = QLabel(self)
+        self.PSValueL = QLabel(self)
+#           --- Profitability --- 
         self.ProfitabilitySubTitleL = QLabel(self)
-        self.ROENameL
-        self.ROEValueL
-        self.ROANameL
-        self.ROAValueL
-        self.ROINameL
-        self.ROIValueL
-        self.NetMarginNameL
-        self.NetMarginValueL
-        self.OperatingMarginNameL
-        self.OperatingMarginValueL
-        self.GrossMarginNameL
-        self.GrossMarginValueL
-
+        self.ROENameL = QLabel(self)
+        self.ROEValueL = QLabel(self)
+        self.ROANameL = QLabel(self)
+        self.ROAValueL = QLabel(self)
+        self.ROINameL = QLabel(self)
+        self.ROIValueL = QLabel(self)
+        self.NetMarginNameL = QLabel(self)
+        self.NetMarginValueL = QLabel(self)
+        self.OperatingMarginNameL = QLabel(self)
+        self.OperatingMarginValueL = QLabel(self)
+        self.GrossMarginNameL = QLabel(self)
+        self.GrossMarginValueL = QLabel(self)
+#           --- Balance --- 
         self.BalanceSubTitleL = QLabel(self)
-        self.AssetsNameL
-        self.AssetsValueL
-        self.LiabilitiesNameL
-        self.LiabilitiesValueL
-        self.EquityNameL
-        self.EquityValueL
-        self.CashNameL
-        self.CashValueL
-        self.DebtNameL
-        self.DebtValueL
-
+        self.AssetsNameL = QLabel(self)
+        self.AssetsValueL = QLabel(self)
+        self.LiabilitiesNameL = QLabel(self)
+        self.LiabilitiesValueL = QLabel(self)
+        self.EquityNameL = QLabel(self)
+        self.EquityValueL = QLabel(self)
+        self.CashNameL = QLabel(self)
+        self.CashValueL = QLabel(self)
+        self.DebtNameL = QLabel(self)
+        self.DebtValueL = QLabel(self)
+#           --- Financial Reports ---
         self.FinancialReportsTitleL = QLabel(self)
-
         self.IncomeStatementSubTitleL = QLabel(self)
-        self.RevenueNameL
-        self.RevenueValueL
-        self.GrossProfitNameL
-        self.GrossProfitValueL
-        self.OperatingIncomeNameL
-        self.OperatingIncomeValueL
-        self.NetIncomeNameL
-        self.NetIncomeValueL
-        self.EPSIncomeNameL
-        self.EPSIncomeValueL
-
+        self.RevenueNameL = QLabel(self)
+        self.RevenueValueL = QLabel(self)
+        self.GrossProfitNameL = QLabel(self)
+        self.GrossProfitValueL = QLabel(self)
+        self.OperatingIncomeNameL = QLabel(self)
+        self.OperatingIncomeValueL = QLabel(self)
+        self.NetIncomeNameL = QLabel(self)
+        self.NetIncomeValueL = QLabel(self)
+        self.EPSIncomeNameL = QLabel(self)
+        self.EPSIncomeValueL = QLabel(self)
+#           --- Balance Sheet ---
         self.BalanceSheetSubTitleL = QLabel(self)
-        self.TotalAssetsNameL
-        self.TotalAssetsValueL
-        self.TotalLiabilitiesNameL
-        self.TotalLiabilitiesValueL
-        self.ShareholderEqulityNameL
-        self.ShareholderEqulityValueL
-
+        self.TotalAssetsNameL = QLabel(self)
+        self.TotalAssetsValueL = QLabel(self)
+        self.TotalLiabilitiesNameL = QLabel(self)
+        self.TotalLiabilitiesValueL = QLabel(self)
+        self.ShareholderEqulityNameL = QLabel(self)
+        self.ShareholderEqulityValueL = QLabel(self)
+#           --- Cash Flow --- 
         self.CashFlowSubTitleL = QLabel(self)
-        self.OperatingCashFlowNameL
-        self.OperatingCashFlowValueL
-        self.InvestingCashFlowNameL
-        self.InvestingCashFlowValueL
-        self.FinancingCashFlowNameL
-        self.FinancingCashFlowValueL
-        self.FreeCashFlowNameL
-        self.FreeCashFlowValueL
-
+        self.OperatingCashFlowNameL = QLabel(self)
+        self.OperatingCashFlowValueL = QLabel(self)
+        self.InvestingCashFlowNameL = QLabel(self)
+        self.InvestingCashFlowValueL = QLabel(self)
+        self.FinancingCashFlowNameL = QLabel(self)
+        self.FinancingCashFlowValueL = QLabel(self)
+        self.FreeCashFlowNameL = QLabel(self)
+        self.FreeCashFlowValueL = QLabel(self)
+#           --- Dividend Data ---
         self.DividendDataSubTitleL = QLabel(self)
-        self.DividendYieldNameL
-        self.DividendYieldValueL
-        self.DividendPerShareNameL
-        self.DividendPerShareValueL
-        self.PayoutRatioNameL
-        self.PayoutRatioValueL
-
-        
+        self.DividendYieldNameL = QLabel(self)
+        self.DividendYieldValueL = QLabel(self)
+        self.DividendPerShareNameL = QLabel(self)
+        self.DividendPerShareValueL = QLabel(self)
+        self.PayoutRatioNameL = QLabel(self)
+        self.PayoutRatioValueL = QLabel(self)
+        self.DividendHistoryNameL = QLabel(self)
+        self.DividendHistoryValueL = QLabel(self)
+        self.ExDividendNameL = QLabel(self)
+        self.ExDividendValueL = QLabel(self)
+        self.PaymentDateNameL = QLabel(self)
+        self.PaymentDateValueL = QLabel(self)
+#           --- Corporation Data ---
+        self.CorporationDataTitleL = QLabel(self)
+        self.CorporateActionsSubTitleL = QLabel(self)
+        self.StockSplitNameL = QLabel(self)
+        self.StockSplitValueL = QLabel(self)
+        self.ReverseSplitNameL = QLabel(self)
+        self.ReverseSplitValueL = QLabel(self)
+        self.MergersNameL = QLabel(self)
+        self.MergersValueL = QLabel(self)
+        self.AcquisitionsNameL = QLabel(self)
+        self.AcquisitionsValueL = QLabel(self)
+        self.BuyBacksNameL = QLabel(self)
+        self.BuyBacksValueL = QLabel(self)
+#           --- Events ---
+        self.EventsSubTitleL = QLabel(self)
+        self.EarningsDateNameL = QLabel(self)
+        self.EarningsDateValueL = QLabel(self)
+        self.AGMNameL = QLabel(self)
+        self.AGMValueL = QLabel(self)
+        self.InvestorDayNameL = QLabel(self)
+        self.InvestorDayValueL = QLabel(self)
+#           --- Ownership Data ---
+        self.OwnershipDataTitleL = QLabel(self)
+        self.ShareholdingSubTitleL = QLabel(self)
+        self.InstitutionalOwnershipNameL = QLabel(self)
+        self.InstitutionalOwnershipValueL = QLabel(self)
+        self.InsiderOwnershipNameL = QLabel(self)
+        self.InsiderOwnershipValueL = QLabel(self)
+        self.TopShareholdersNameL = QLabel(self)
+        self.TopShareholdersValueL = QLabel(self)
+#           --- Insider Trading ---
+        self.InsiderTradingSubTitleL = QLabel(self)
+        self.InsiderBuysNameL = QLabel(self)
+        self.InsiderBuysValueL = QLabel(self)
+        self.InsiderSellsNameL = QLabel(self)
+        self.InsiderSellsValueL = QLabel(self)
+#           --- Analitical Data ---
+        self.AnaliticalDataTitleL = QLabel(self)
+        self.MovingAveragesNameL = QLabel(self)
+        self.MovingAveragesValueL = QLabel(self)
+        self.RSINameL = QLabel(self)
+        self.RSIValueL = QLabel(self)
+        self.MACDNameL = QLabel(self)
+        self.MACDValueL = QLabel(self)
+        self.BollingerBandsNameL = QLabel(self)
+        self.BollingerBandsValueL = QLabel(self)
+        self.MomentumNameL = QLabel(self)
+        self.MomentumValueL = QLabel(self)
+        self.VolatillityNameL = QLabel(self)
+        self.VolatillityValueL = QLabel(self)
+#           --- ESG Data ---
+        self.ESGDataTitleL = QLabel(self)
+        self.ESGScoreNameL = QLabel(self)
+        self.ESGScoreValueL = QLabel(self)
+        self.EnvironmentalScoreNameL = QLabel(self)
+        self.EnvironmentalScoreValueL = QLabel(self)
+        self.GovernanceScoreNameL = QLabel(self)
+        self.GovernanceScoreValueL = QLabel(self)
 #           --- Call functions ---
         StockUi(self)
         StockReloadStyle(self)
