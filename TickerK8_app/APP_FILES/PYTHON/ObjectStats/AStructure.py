@@ -14,7 +14,7 @@ from .AUi import *
 from .ALogic import *
 
 #   --- Class ---
-class ObjectStatsS(QScrollArea): 
+class ObjectStatsS(QWidget): 
     def __init__(self, parent, s):
         super().__init__(parent)
         self.setAttribute(Qt.WA_StyledBackground, True)
@@ -30,9 +30,11 @@ class ObjectStatsS(QScrollArea):
 
     def Stock(self):
 #           --- Create objects ---
-        self.Widget = QWidget(self)
-        self.Layout = QGridLayout(self.Widget)
-        self.TitleL = QLabel(self.Widget)
+        self.MainLayoutL = QGridLayout(self)
+        self.TitleL = QLabel(self)
+        self.ScrollS = QScrollArea(self)
+        self.WidgetW = QWidget(self.ScrollS)
+        self.LayoutL = QGridLayout(self.WidgetW)
 #           --- Fundamental Data ---
         self.FundamentalDataTitleL = QLabel(self)
         self.IndicatorsSubTitleL = QLabel(self)
