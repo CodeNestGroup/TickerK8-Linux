@@ -15,6 +15,8 @@ from .AUi import *
 from .ALogic import *
 from ListObject.AStructure import ListObjectW
 from Object.AStructure import ObjectW
+from ObjectInfo.AStructure import ObjectInfoS
+from ObjectStats.AStructure import ObjectStatsW
 from ListNews.AStructure import ListNewsW
 from NewsList.AStructure import NewsListS
 
@@ -59,7 +61,7 @@ class MainW(QWidget):
         self.NavDefaultB.clicked.connect(self.MainPage)
         #self.NavSearchB.clicked.connect(lambda: self.NewsPage)
         #self.NavListObjectB.clicked.connect(lambda: self.NewsPage)
-        #self.NavObjectB.clicked.connect(lambda: self.NewsPage)
+        self.NavObjectB.clicked.connect(self.ObjectPage)
         self.NavNewsB.clicked.connect(self.NewsPage)
 
     def ResetPage(self):
@@ -96,12 +98,12 @@ class MainW(QWidget):
 
     def ObjectPage(self):
 #           --- Create objects ---
-        self.ResetPage(self)
+        self.ResetPage()
         self.OpenedW = QWidget(self)
         self.OpenedL = QGridLayout(self.OpenedW)
-        self.ObejctInfoW = ObjectInfoW(self)
-        self.ObjectStatsW = ObjectStatsW(self)
-        
+        self.ListObjectW = ListObjectW(self.OpenedW, self)
+        self.ObejctInfoS = ObjectInfoS(self.OpenedW, self, 'stock', 1)
+        self.ObjectStatsW = ObjectStatsW(self.OpenedW, self, 'stock', 1)
 #           --- Call functions ---
         ObjectPageUi(self)
 #           --- Connect  functions ---

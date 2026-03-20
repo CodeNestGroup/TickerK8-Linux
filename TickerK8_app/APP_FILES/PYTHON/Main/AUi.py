@@ -105,6 +105,9 @@ def MainPageUi(self):
 
 def ObjectPageUi(self):
     self.OpenedW.setObjectName('OpenedW')
+    self.OpenedL.addWidget(self.ListObjectW, 0, 2, 100, 12)
+    self.OpenedL.addWidget(self.ObejctInfoS, 0, 16, 100, 40)
+    self.OpenedL.addWidget(self.ObjectStatsW, 0, 58, 100, 40)
     self.OpenedL.setSpacing(0)
     self.OpenedL.setContentsMargins(0,0,0,0)
     for i in range(100):

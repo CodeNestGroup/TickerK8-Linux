@@ -14,13 +14,19 @@ from .AUi import *
 from .ALogic import *
 
 #   --- Class ---
-class ObjectStatsS(QWidget): 
-    def __init__(self, parent, s):
+class ObjectStatsW(QWidget): 
+    def __init__(self, parent, s, t, i):
         super().__init__(parent)
         self.setAttribute(Qt.WA_StyledBackground, True)
         self.Path = s.Path
         self.Theme = s.Theme
         self.Language = s.Language
+        if t == 'country':
+                self.Country()
+        elif t == 'market':
+                self.Market()
+        elif t == 'stock':
+                self.Stock()
 
     def Country(self):
         pass
@@ -184,7 +190,3 @@ class ObjectStatsS(QWidget):
         StockReloadStyle(self)
         StockRetranslate(self)
 #           --- Connect functions ---
-
-
-
-
