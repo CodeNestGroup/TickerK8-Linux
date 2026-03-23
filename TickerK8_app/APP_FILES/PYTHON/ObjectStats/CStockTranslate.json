@@ -44,6 +44,7 @@
     "DividendHistoryNameL": ["Dividend history", "Historia dywidend"],
     "ExDividendNameL": ["Ex dividend", "Dzień bez dywidendy"],
     "PaymentDateNameL": ["Payment date", "Data wypłaty"],
+    "CorporationDataTitleL": ["Corporation data", "Dane korporacyjne"],
     "CorporateActionsSubTitleL": ["Corporation actions", "Działania korporacyjne"],
     "StockSplitNameL": ["Stock split", "Podział akcji"],
     "ReverseSplitNameL": ["Reverse split", "Scalenie akcji"],
@@ -70,6 +71,7 @@
     "MomentumNameL": ["Momentum", "Momentum"],
     "VolatillityNameL": ["Volatillity", "Zmienność"],
     "ESGDataTitleL": ["ESG data", "Dane ESG"],
+    "ESGScoreNameL": ["ESG score", "Punkty ESG"],
     "EnvironmentalScoreNameL": ["Environmental score", "Ocena środowiskowa"],
     "GovernanceScoreNameL": ["Governance score", "Ocena ładu korporacyjnego"]
 }
