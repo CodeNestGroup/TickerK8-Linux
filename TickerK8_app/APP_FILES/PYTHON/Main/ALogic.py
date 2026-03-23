@@ -1,6 +1,11 @@
 #   --- Import ---
 import datetime
 
+from Object.AStructure import ObjectW
+from ObjectInfo.AStructure import ObjectInfoS
+from ObjectStats.AStructure import ObjectStatsS
+
+
 from PyQt5.QtGui import (
     QLinearGradient,
     QPalette,
@@ -55,3 +60,23 @@ def WidgetBackgroundPainter(self):
     palette.setBrush(QPalette.Window, QBrush(pixmap))
     self.setAutoFillBackground(True)
     self.setPalette(palette)
+
+def SetupMainObject(self, t, i):
+    if self.ObjectW:
+        self.ObjectW.deleteLater()
+        self.ObjectW = None
+    self.ObjectW = ObjectW(self.OpenedW, self, t, i)
+    self.OpenedL.addWidget(self.ObjectW, 0, 35, 100, 30)
+
+def SetupObject(self, t, i):
+    if self.ObejctInfoS:
+        self.ObejctInfoS.deleteLater()
+        self.ObejctInfoS = None
+    if self.ObjectStatsS:
+        self.ObjectStats.deleteLater()
+        self.ObjectStats = None 
+    self.ObejctInfoS = ObjectInfoS(self.OpenedW, self, t, i)
+    self.ObjectStatsW = ObjectStatsS(self.OpenedW, self, t, i)
+    self.OpenedL.addWidget(self.ObejctInfoS, 0, 16, 100, 41)
+    self.OpenedL.addWidget(self.ObjectStatsW, 0, 58, 100, 41)
+    

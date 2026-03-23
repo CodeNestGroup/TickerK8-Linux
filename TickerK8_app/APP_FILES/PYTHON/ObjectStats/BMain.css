@@ -1,15 +1,7 @@
-#ObjectStatsW{
+#ObjectStatsS{
     border-width: 1px;
     border-style: solid;
     border-radius: 12px;
-}
-#TitleL{
-    font-size: 28px;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-}
-#ScrollS{
-    border: 0;
 }
 #WidgetW{
     border: 0;
@@ -20,17 +12,17 @@
     letter-spacing: 0.2em;
 }
 .SubTitle{
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
     letter-spacing: 0.2em;
 }
 .Name{
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 400;
     letter-spacing: 0.2em;
 }
 .Value{
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 400;
     letter-spacing: 0.2em;
 }

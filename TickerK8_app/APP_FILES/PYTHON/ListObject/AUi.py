@@ -16,8 +16,8 @@ from PyQt5.QtSvg import (
     QSvgRenderer
 )
 
-def MainListObjectUi(self):
-    self.setObjectName('MainListObjectW')
+def ListObjectUi(self):
+    self.setObjectName('ListObjectW')
     self.Layout.setSpacing(0)
     self.Layout.setContentsMargins(0,0,0,0)
     for i in range(100):
@@ -26,7 +26,7 @@ def MainListObjectUi(self):
     self.show()
     self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
-def MainListObjectReloadStyle(self):
+def ListObjectReloadStyle(self):
     m = open(f'{self.Path}/APP_FILES/PYTHON/ListObject/BMain.css').read()
     c = open(f'{self.Path}/APP_FILES/PYTHON/ListObject/B{self.Theme}.css').read()
     self.setStyleSheet(m+c)

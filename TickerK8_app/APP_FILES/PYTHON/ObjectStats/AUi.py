@@ -17,9 +17,7 @@ from PyQt5.QtSvg import (
 )
 
 def StockUi(self):
-    self.setObjectName('ObjectStatsW')
-    self.TitleL.setObjectName('TitleL')
-    self.ScrollS.setObjectName('ScrollS')
+    self.setObjectName('ObjectStatsS')
     self.WidgetW.setObjectName('WidgetW')
     self.FundamentalDataTitleL.setObjectName('FundamentalDataTitleL')
     self.IndicatorsSubTitleL.setObjectName('IndicatorsSubTitleL')
@@ -419,18 +417,9 @@ def StockUi(self):
     for i in range(100):
         self.LayoutL.setColumnStretch(i, 1)
     self.WidgetW.setLayout(self.LayoutL)
-    self.MainLayoutL.addWidget(self.TitleL, 0, 0, 10, 100)
-    self.MainLayoutL.addWidget(self.ScrollS, 10, 0, 90, 100)
-    self.MainLayoutL.setSpacing(0)
-    self.MainLayoutL.setContentsMargins(0,0,0,0)
-    for i in range(100):
-        self.MainLayoutL.setRowStretch(i, 1)
-        self.MainLayoutL.setColumnStretch(i, 1)
-    self.setLayout(self.MainLayoutL)
     self.show()
-    self.ScrollS.setWidget(self.WidgetW)
-    self.ScrollS.setWidgetResizable(True)
-    self.TitleL.setAlignment(Qt.AlignCenter)
+    self.setWidget(self.WidgetW)
+    self.setWidgetResizable(True)
     self.FundamentalDataTitleL.setAlignment(Qt.AlignCenter)
     self.IndicatorsSubTitleL.setAlignment(Qt.AlignCenter)
     self.MarketCapNameL.setAlignment(Qt.AlignCenter)
@@ -561,8 +550,6 @@ def StockUi(self):
     self.GovernanceScoreNameL.setAlignment(Qt.AlignCenter)
     self.GovernanceScoreValueL.setAlignment(Qt.AlignCenter)
     self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.TitleL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.ScrollS.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.WidgetW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.FundamentalDataTitleL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.IndicatorsSubTitleL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -703,7 +690,6 @@ def StockReloadStyle(self):
 def StockRetranslate(self):
     t = json.load(open(f'{self.Path}/APP_FILES/PYTHON/ObjectStats/CStockTranslate.json', 'r'))
     l = self.Language
-    self.TitleL.setText(t['TitleL'][l])
     self.FundamentalDataTitleL.setText(t['FundamentalDataTitleL'][l])
     self.IndicatorsSubTitleL.setText(t['IndicatorsSubTitleL'][l])
     self.MarketCapNameL.setText(t['MarketCapNameL'][l]+':')

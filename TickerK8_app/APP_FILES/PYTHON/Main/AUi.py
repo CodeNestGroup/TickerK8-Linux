@@ -91,7 +91,6 @@ def MainRetranslate(self):
 def MainPageUi(self):
     self.OpenedW.setObjectName('OpenedW')
     self.OpenedL.addWidget(self.ListObjectW, 0, 3, 100, 30)
-    self.OpenedL.addWidget(self.ObjectW, 0, 35, 100, 30)
     self.OpenedL.addWidget(self.ListNewsW, 0, 67, 100, 30)
     self.OpenedL.setSpacing(0)
     self.OpenedL.setContentsMargins(0,0,0,0)
@@ -105,14 +104,13 @@ def MainPageUi(self):
 
 def ObjectPageUi(self):
     self.OpenedW.setObjectName('OpenedW')
-    self.OpenedL.addWidget(self.ListObjectW, 0, 2, 100, 12)
-    self.OpenedL.addWidget(self.ObejctInfoS, 0, 16, 100, 40)
-    self.OpenedL.addWidget(self.ObjectStatsW, 0, 58, 100, 40)
+    self.OpenedL.addWidget(self.ListObjectW, 0, 1, 100, 14)
+    self.OpenedL.addWidget(self.ObejctInfoS, 0, 16, 100, 41)
+    self.OpenedL.addWidget(self.ObjectStatsW, 0, 58, 100, 41)
     self.OpenedL.setSpacing(0)
     self.OpenedL.setContentsMargins(0,0,0,0)
     for i in range(100):
-        self.OpenedL
-        self.OpenedL
+        self.OpenedL.setColumnStretch(i, 1)
     self.OpenedW.setLayout(self.OpenedL)
     self.Layout.addWidget(self.OpenedW, 10, 0, 80 ,100)
     self.OpenedW.show()

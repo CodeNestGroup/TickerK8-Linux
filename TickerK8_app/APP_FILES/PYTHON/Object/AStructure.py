@@ -16,7 +16,7 @@ from .ALogic import *
 
 #   --- Class ---
 class ObjectW(QWidget): 
-    def __init__(self, parent, s):
+    def __init__(self, parent, s, t, i):
         super().__init__(parent)
         self.setAttribute(Qt.WA_StyledBackground, True)
         self.Path = s.Path
@@ -42,4 +42,4 @@ class ObjectW(QWidget):
         ObjectUi(self)
         ObjectReloadStyle(self)
         ObjectRetranslate(self)
-        Setup(self)
+        Setup(self, t, i)

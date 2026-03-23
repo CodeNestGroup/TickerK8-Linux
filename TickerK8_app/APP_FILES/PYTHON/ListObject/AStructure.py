@@ -13,23 +13,25 @@ from .ALogic import *
 
 #   --- Class ---
 class ListObjectW(QWidget): 
-    def __init__(self, parent, s):
+    def __init__(self, parent, s, d, func):
         super().__init__(parent)
         self.setAttribute(Qt.WA_StyledBackground, True)
         self.Path = s.Path
         self.Theme = s.Theme
         self.Language = s.Language
         self.ObjectList = s.ObjectList
+        self.SetData = d
+        self.OpenFunc = func
 #       --- Create objects ---
         self.Layout = QGridLayout(self)
         self.NullDataL = None
         self.NameL = None
         self.DataS = None
 #       --- Call functions ---
-        MainListObjectUi(self)
-        MainListObjectReloadStyle(self)
+        ListObjectUi(self)
+        ListObjectReloadStyle(self)
         if self.ObjectList:
-            self.Data()
+            self.Data(s)
         else:
             self.NullData()
 #       --- Connect functions ---
@@ -41,7 +43,7 @@ class ListObjectW(QWidget):
         NullDataUi(self)
         NullDataRetranslate(self)
     
-    def Data(self):
+    def Data(self, MainSelf):
 #       --- Create objects ---
         self.NameL = QLabel(self)
         self.DataS = QScrollArea(self)
@@ -49,5 +51,5 @@ class ListObjectW(QWidget):
         self.DataL = QGridLayout(self.DataW)
 #       --- Call functions ---
         DataUi(self)
-        SetupData(self, self.ObjectList)
+        SetupData(self, MainSelf)
 #       --- Connect functions ---

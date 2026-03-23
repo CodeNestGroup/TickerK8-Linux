@@ -14,9 +14,6 @@ from PyQt5.QtCore import (
 from .AUi import *
 from .ALogic import *
 from ListObject.AStructure import ListObjectW
-from Object.AStructure import ObjectW
-from ObjectInfo.AStructure import ObjectInfoS
-from ObjectStats.AStructure import ObjectStatsW
 from ListNews.AStructure import ListNewsW
 from NewsList.AStructure import NewsListS
 
@@ -70,12 +67,12 @@ class MainW(QWidget):
             self.OpenedW = None
 
     def MainPage(self):
+        self.ObjectW = None
 #           --- Create objects ---
         self.ResetPage()
         self.OpenedW = QWidget(self)
         self.OpenedL = QGridLayout(self)
-        self.ListObjectW = ListObjectW(self.OpenedW, self)
-        self.ObjectW = ObjectW(self.OpenedW, self)
+        self.ListObjectW = ListObjectW(self.OpenedW, self, [1, 1, 1, 1], SetupMainObject)
         self.ListNewsW = ListNewsW(self.OpenedW, self)
 #           --- Call functions ---
         MainPageUi(self)
@@ -97,13 +94,13 @@ class MainW(QWidget):
 #           --- Connect  functions ---
 
     def ObjectPage(self):
+        self.ObejctInfoS = None
+        self.ObjectStatsS = None
 #           --- Create objects ---
         self.ResetPage()
         self.OpenedW = QWidget(self)
         self.OpenedL = QGridLayout(self.OpenedW)
-        self.ListObjectW = ListObjectW(self.OpenedW, self)
-        self.ObejctInfoS = ObjectInfoS(self.OpenedW, self, 'stock', 1)
-        self.ObjectStatsW = ObjectStatsW(self.OpenedW, self, 'stock', 1)
+        self.ListObjectW = ListObjectW(self.OpenedW, self, [0, 0, 1, 0], SetupObject)
 #           --- Call functions ---
         ObjectPageUi(self)
 #           --- Connect  functions ---

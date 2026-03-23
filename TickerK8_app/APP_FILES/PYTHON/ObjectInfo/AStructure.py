@@ -27,7 +27,7 @@ class ObjectInfoS(QScrollArea):
                 self.Market()
         elif t == 'stock':
                 self.Stock()
-
+        print(t, i)
     def Country(self):
         pass
 
@@ -36,16 +36,15 @@ class ObjectInfoS(QScrollArea):
 
     def Stock(self):
 #           --- Create objects ---
-        self.Widget = QWidget(self)
-        self.Layout = QGridLayout(self.Widget)
-        self.TitleL = QLabel(self.Widget)
-        self.IconL = QLabel(self.Widget)
-        self.TickerL = QLabel(self.Widget)
-        self.NameL = QLabel(self.Widget)
-        self.MarketL = QLabel(self.Widget)
-        self.CountryL = QLabel(self.Widget)
+        self.WidgetW = QWidget(self)
+        self.LayoutL = QGridLayout(self.WidgetW)
+        self.IconL = QLabel(self.WidgetW)
+        self.TickerL = QLabel(self.WidgetW)
+        self.NameL = QLabel(self.WidgetW)
+        self.MarketL = QLabel(self.WidgetW)
+        self.CountryL = QLabel(self.WidgetW)
 
-        self.InfoW = QWidget(self.Widget)
+        self.InfoW = QWidget(self.WidgetW)
         self.InfoL = QGridLayout(self.InfoW)
         self.InfoTitleL = QLabel(self.InfoW)
         self.ActivityNameL = QLabel(self.InfoW)
@@ -61,7 +60,7 @@ class ObjectInfoS(QScrollArea):
         self.AdresNameL = QLabel(self.InfoW)
         self.AdresValueL = QLabel(self.InfoW)
 
-        self.ManagmentW = QWidget(self)
+        self.ManagmentW = QWidget(self.WidgetW)
         self.ManagmentL = QGridLayout(self.ManagmentW)
         self.ManagmentTitleL = QLabel(self.ManagmentW)
         self.CEONameL = QLabel(self.ManagmentW)

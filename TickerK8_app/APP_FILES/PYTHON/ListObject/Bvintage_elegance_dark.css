@@ -1,4 +1,4 @@
-#MainListObjectW{
+#ListObjectW{
     border-color: #1a1a1a;
     background-color: #1a1a1a;
 }
@@ -28,25 +28,16 @@
     color: #c3c3c3;
     background-color: #00000000;
 }
-.TickerL{
+.TickerB{
+    color: #c3c3c3;
+    border-color: #282828;
+    background-color: #282828;
+}
+.TickerB:hover{
+    border-color: #1a1a1a;
+    background-color: #1a1a1a;
+}
+.NameL{
     color: #c3c3c3;
     background-color: #00000000;
-}
-.NameB{
-    color: #c3c3c3;
-    border-color: #282828;
-    background-color: #282828;
-}
-.NameB:hover{
-    border-color: #1a1a1a;
-    background-color: #1a1a1a;
-}
-.Button{
-    color: #c3c3c3;
-    border-color: #282828;
-    background-color: #282828;
-}
-.Button:hover{
-    border-color: #1a1a1a;
-    background-color: #1a1a1a;
 }

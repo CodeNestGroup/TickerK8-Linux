@@ -1,33 +1,49 @@
 #ObjectInfoS{
-
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 12px;
 }
-#Widget{
-
-}
-#TitleL{
-
+#WidgetW{
+    border: 0;
 }
 #IconL{
-
+    border: 0;
+}
+#TickerL{
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
 }
 #NameL{
-
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
 }
 #MarketL{
-
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
 }
 #CountryL{
-
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
 }
 .SubW{
-
+    border: 0;
 }
 .SubTitle{
-
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
 }
 .Name{
-
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
 }
 .Value{
-    
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
 }
