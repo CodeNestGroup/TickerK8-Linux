@@ -32,7 +32,10 @@ class ObjectStatsS(QScrollArea):
         pass
 
     def Market(self):
-        pass
+#           --- Create objects ---
+        self.WidgetW = QWidget(self)
+        self.LayoutL = QGridLayout(self.WidgetW)
+#           --- 
 
     def Stock(self):
 #           --- Create objects ---

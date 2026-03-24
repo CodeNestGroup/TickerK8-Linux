@@ -32,7 +32,45 @@ class ObjectInfoS(QScrollArea):
         pass
 
     def Market(self):
-        pass
+        self.WidgetW = QWidget(self)
+        self.LayoutL = QGridLayout(self.WidgetW)
+        self.IconL = QLabel(self.WidgetW)
+        self.TickerL
+        self.NameL
+        self.MicCodeL
+        self.OperatingMicL
+        self.CountryL
+
+        self.InfoW
+        self.InfoL
+        self.InfoTitleL
+        self.CityNameL
+        self.CityValueL
+        self.TimezoneNameL
+        self.TimezoneValueL
+        self.CurrencyNameL
+        self.CurrencyValueL
+        self.WebsiteNameL
+        self.WebsiteValueL
+
+        self.TradingSessionW
+        self.TradingSessionL
+        self.TradingSessionTitleL
+        self.PreMarketNameL
+        self.PreMarketValueL
+        self.OpenNameL
+        self.OpenValueL
+        self.CloseNameL
+        self.CloseValueL
+
+        self.CalendarW
+        self.CalendarL
+        self.CalendarTitleL
+        self.FreeDaysNameL
+        self.FreeDaysValueL
+
+        self
+
 
     def Stock(self):
 #           --- Create objects ---
@@ -43,7 +81,6 @@ class ObjectInfoS(QScrollArea):
         self.NameL = QLabel(self.WidgetW)
         self.MarketL = QLabel(self.WidgetW)
         self.CountryL = QLabel(self.WidgetW)
-
         self.InfoW = QWidget(self.WidgetW)
         self.InfoL = QGridLayout(self.InfoW)
         self.InfoTitleL = QLabel(self.InfoW)
@@ -59,7 +96,6 @@ class ObjectInfoS(QScrollArea):
         self.WebValueL = QLabel(self.InfoW)
         self.AdresNameL = QLabel(self.InfoW)
         self.AdresValueL = QLabel(self.InfoW)
-
         self.ManagmentW = QWidget(self.WidgetW)
         self.ManagmentL = QGridLayout(self.ManagmentW)
         self.ManagmentTitleL = QLabel(self.ManagmentW)
