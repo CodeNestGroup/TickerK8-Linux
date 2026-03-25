@@ -19,7 +19,12 @@
     font-weight: 600;
     letter-spacing: 0.2em;
 }
-#MarketL{
+#MicCodeL{
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+}
+#OperatingMicL{
     font-size: 14px;
     font-weight: 600;
     letter-spacing: 0.2em;
@@ -29,7 +34,7 @@
     font-weight: 600;
     letter-spacing: 0.2em;
 }
-.SubW{
+#InfoW{
     border: 0;
 }
 .SubTitle{
