@@ -37,7 +37,6 @@ class MainW(QWidget):
         self.NavW = QWidget(self)
         self.NavL = QGridLayout(self)
         self.NavDefaultB = QPushButton(self.NavW)
-        self.NavSearchB = QPushButton(self.NavW)
         self.NavListObjectB = QPushButton(self.NavW)
         self.NavObjectB = QPushButton(self.NavW)
         self.NavNewsB = QPushButton(self.NavW)
@@ -56,8 +55,7 @@ class MainW(QWidget):
         self.BackgroundT.start(1)
 #           --- Connect  functions ---
         self.NavDefaultB.clicked.connect(self.MainPage)
-        #self.NavSearchB.clicked.connect(lambda: self.NewsPage)
-        #self.NavListObjectB.clicked.connect(lambda: self.NewsPage)
+        self.NavListObjectB.clicked.connect(lambda: self.NewsPage)
         self.NavObjectB.clicked.connect(self.ObjectPage)
         self.NavNewsB.clicked.connect(self.NewsPage)
 
@@ -78,20 +76,53 @@ class MainW(QWidget):
         MainPageUi(self)
 #           --- Connect  functions ---
 
-    def SearchPage(self):
-#           --- Create objects ---
-        self.ResetPage(self)
-#           --- Call functions ---
-#           --- Connect  functions ---
-
     def ListPage(self):
 #           --- Create objects ---
         self.ResetPage(self)
         self.OpenedW = QWidget(self)
         self.OpenedL = QGridLayout(self.OpenedW)
 
+        self.ListObjectW = ListObjectW(self.OpenedW, self, [1, 1, 1, 1], self.ListDeletePage)
+        self.AddObjectB = QPushButton(self.OpenedW)
+
 #           --- Call functions ---
+        ListPageUi(self)
+        ListPageReloadStyle(self)
+        ListPageRetranslate(self)
 #           --- Connect  functions ---
+        self.AddObjectB.clicked.connect(self.ListAddPage)
+
+    def ListAddPage(self):
+        self.SearchW = None
+        self.PlaceW = None
+#           --- Create objects ---
+        self.ResetPage(self)
+        self.OpenedW = QWidget(self)
+        self.OpenedL = QGridLayout(self.OpenedW)
+
+        self.SearchW = 
+
+
+
+#           --- Call functions ---
+        ListAddPageUi(self)
+        ListAddPageReloadStyle(self)
+        ListAddPageRetranslate(self)
+#           --- Connect  functions ---
+
+    def ListDeletePage(self):
+#           --- Create objects ---
+        self.ResetPage(self)
+        self.OpenedW = QWidget(self)
+        self.OpenedL = QGridLayout(self.OpenedW)
+
+
+#           --- Call functions ---
+        ListDeletePageUi(self)
+        ListDeltePageReloadStyle(self)
+        ListDeletePageRetranslate(self)
+#           --- Connect  functions ---
+
 
     def ObjectPage(self):
         self.ObejctInfoS = None

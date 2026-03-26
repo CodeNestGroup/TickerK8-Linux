@@ -20,7 +20,6 @@ def MainUi(self):
     self.setObjectName('MainW')
     self.NavW.setObjectName('NavW')
     self.NavDefaultB.setObjectName('NavDefaultB')
-    self.NavSearchB.setObjectName('NavSearchB')
     self.NavListObjectB.setObjectName('NavListObjectB')
     self.NavObjectB.setObjectName('NavObjectB')
     self.NavNewsB.setObjectName('NavNewsB')
@@ -28,7 +27,6 @@ def MainUi(self):
     self.NavLogoutB.setObjectName('NavLogoutB')
     self.FooterW.setObjectName('FooterW')
     self.NavDefaultB.setProperty('class', 'NavButton')
-    self.NavSearchB.setProperty('class', 'NavButton')
     self.NavListObjectB.setProperty('class', 'NavButton')
     self.NavObjectB.setProperty('class', 'NavButton')
     self.NavNewsB.setProperty('class', 'NavButton')
@@ -42,11 +40,10 @@ def MainUi(self):
         self.Layout.setRowStretch(i, 1)
         self.Layout.setColumnStretch(i, 1)
     self.setLayout(self.Layout)
-    self.NavL.addWidget(self.NavDefaultB, 25, 31, 50, 6)
-    self.NavL.addWidget(self.NavSearchB, 25, 39, 50, 6)
-    self.NavL.addWidget(self.NavListObjectB, 25, 47, 50, 6)
-    self.NavL.addWidget(self.NavObjectB, 25, 55, 50, 6)
-    self.NavL.addWidget(self.NavNewsB, 25, 63, 50, 6 )
+    self.NavL.addWidget(self.NavDefaultB, 25, 28, 50, 8)
+    self.NavL.addWidget(self.NavListObjectB, 25, 40, 50, 8)
+    self.NavL.addWidget(self.NavObjectB, 25, 52, 50, 8)
+    self.NavL.addWidget(self.NavNewsB, 25, 64, 50, 8)
     self.NavL.addWidget(self.NavSettingsB, 30, 92, 40, 2)
     self.NavL.addWidget(self.NavLogoutB, 30, 95, 40, 2)
     self.NavL.setSpacing(0)
@@ -59,7 +56,6 @@ def MainUi(self):
     self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.NavW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.NavDefaultB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.NavSearchB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.NavListObjectB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.NavObjectB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.NavNewsB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -72,8 +68,6 @@ def MainReloadStyle(self):
     m = open(f'{self.Path}/APP_FILES/PYTHON/Main/BMain.css').read()
     c = open(f'{self.Path}/APP_FILES/PYTHON/Main/B{t}.css').read()
     self.setStyleSheet(m+c)
-    self.NavSearchB.setIcon(QIcon(LoadSvg(f'{self.Path}/APP_FILES/PYTHON/Main/i_search_{t}.svg', 256, 256)))
-    self.NavSearchB.setIconSize(self.NavSearchB.size())
     self.NavSettingsB.setIcon(QIcon(LoadSvg(f'{self.Path}/APP_FILES/PYTHON/Main/i_settings_{t}.svg', 256, 256)))
     self.NavSettingsB.setIconSize(self.NavSettingsB.size())
     self.NavLogoutB.setIcon(QIcon(LoadSvg(f'{self.Path}/APP_FILES/PYTHON/Main/i_exit_{t}.svg', 256, 256)))
@@ -83,7 +77,6 @@ def MainRetranslate(self):
     t = json.load(open(f'{self.Path}/APP_FILES/PYTHON/Main/CMainTranslate.json', 'r'))
     l = self.Language
     self.NavDefaultB.setText(t['NavDefaultB'][l])
-    self.NavSearchB.setText(t['NavSearchB'][l])
     self.NavListObjectB.setText(t['NavListObjectB'][l])
     self.NavObjectB.setText(t['NavObjectB'][l])
     self.NavNewsB.setText(t['NavNewsB'][l])
@@ -101,6 +94,31 @@ def MainPageUi(self):
     self.Layout.addWidget(self.OpenedW, 10, 0, 80, 100)
     self.OpenedW.show()
     self.OpenedW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+
+def ListPageUi(self):
+    self.AddObjectB.setObjectName('AddObjectB')
+    self.OpenedL.addWidget(self.ListObjectW, 0, 0, 90, 100)
+    self.OpenedL.addWidget(self.AddObjectB, 94, 40,6, 100)
+    self.OpenedL.setSpacing(0)
+    self.OpenedL.setContentsMargins(0,0,0,0)
+    for i in range(100):
+        self.OpenedL.setRowStretch(i, 1)
+        self.OpenedL.setColumnStretch(i, 1)
+    self.OpenedW.setWidget(self.OpenedL)
+    self.Layout.addWidget(self.OpenedW, 10, 0, 80, 100)
+    self.OpenedW.show()
+    self.OpenedW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+
+def ListPageReloadStyle(self):
+    t = self.Theme
+    m = open(f'{self.Path}/APP_FILES/PYTHON/Main/BListPage.css').read()
+    c = open(f'{self.Path}/APP_FILES/PYTHON/Main/BListPage{self.Theme}.css').read()
+    self.setStyleSheet(m+c)
+
+def ListPageRetranslate(self):
+    t = json.load(open(f'{self.Path}/APP_FILES/PYTHON/Main/CListPageRetranslate.json', 'r'))
+    l = self.Language
+    self.AddObjectB.setText(t['AddObjectB'][l])
 
 def ObjectPageUi(self):
     self.OpenedW.setObjectName('OpenedW')
