@@ -27,7 +27,7 @@ class MainW(QWidget):
         self.GetNewsListD = parent.database.GetNewsList
         self.GetNewsById = parent.database.GetNewsById
         self.UpdateNewsPopularity = parent.database.UpdateNewsPopularity
-        self.GetAllObjects = parent.database.GetAllObjects
+        self.AddObjectToList = parent.database.AddObjectToList
         self.Config = json.loads(parent.logged_user_config)
         self.Theme = self.Config['theme']
         self.Language = self.Config['language']
@@ -113,7 +113,6 @@ class MainW(QWidget):
         self.ExitB.clicked.connect(self.ListPage)
 
     def ListSearchPage(self):
-        r = self.GetAllObjects()
 #           --- Create objects ---
         self.ResetPage()
         self.OpenedW = QWidget(self)
@@ -121,15 +120,23 @@ class MainW(QWidget):
         self.SearchW = QWidget(self.ListAddBackgroundW)
         self.SearchL = QGridLayout(self.SearchW)
         self.SearchE = QLineEdit(self.SearchW)
+        self.SortType = 'stock'
+        self.StockB = QPushButton(self.SearchW)
+        self.MarketB = QPushButton(self.SearchW)
+        self.CountryB = QPushButton(self.SearchW)
+        self.ResultS = None
         self.ExitB = QPushButton(self.OpenedW)
 #           --- Call functions ---
         ListSearchPageUi(self)
         ListSearchPageReloadStyle(self)
         ListSearchPageRetranslate(self)
-        SetupResultS(self, r)
+        SetupResultS(self)
 #           --- Connect  functions ---
-        self.SearchE.textChanged.connect(lambda: SetupResultS(self, r))
-        self.ExitB.clicked.connect(self.ListPage)
+        self.SearchE.textChanged.connect(lambda: SetupResultS(self))
+        self.StockB.clicked.connect(lambda: SortTypeChange(self, 'stock'))
+        self.MarketB.clicked.connect(lambda: SortTypeChange(self, 'market'))
+        self.CountryB.clicked.connect(lambda: SortTypeChange(self, 'country'))
+        self.ExitB.clicked.connect(self.ListAddPage)
 
     def ObjectPage(self):
         self.ObejctInfoS = None

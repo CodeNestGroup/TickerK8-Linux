@@ -177,8 +177,17 @@ def ListSearchPageUi(self):
     self.OpenedW.setObjectName('OpenedW')
     self.SearchW.setObjectName('SearchW')
     self.SearchE.setObjectName('SearchE')
+    self.StockB.setObjectName('StockB')
+    self.MarketB.setObjectName('MarketB')
+    self.CountryB.setObjectName('CountryB')
+    self.StockB.setProperty('class', 'SortTypeB')
+    self.MarketB.setProperty('class', 'SortTypeB')
+    self.CountryB.setProperty('class', 'SortTypeB')
     self.ExitB.setObjectName('ExitB')
     self.SearchL.addWidget(self.SearchE, 0, 30, 10, 40)
+    self.SearchL.addWidget(self.StockB, 12, 25, 5, 10)
+    self.SearchL.addWidget(self.MarketB, 12, 38, 5, 10)
+    self.SearchL.addWidget(self.CountryB, 12, 49, 5, 10)
     self.SearchL.setSpacing(0)
     self.SearchL.setContentsMargins(0,0,0,0)
     for i in range(100):
@@ -198,6 +207,9 @@ def ListSearchPageUi(self):
     self.OpenedW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.SearchW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.SearchE.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.StockB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.MarketB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.CountryB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.ExitB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
 def ListSearchPageReloadStyle(self):
@@ -210,6 +222,9 @@ def ListSearchPageRetranslate(self):
     t = json.load(open(f'{self.Path}/APP_FILES/PYTHON/Main/CListSearchPageRetranslate.json', 'r'))
     l = self.Language
     self.SearchE.setPlaceholderText(t['SearchE'][l])
+    self.StockB.setText(t['StockB'][l])
+    self.MarketB.setText(t['MarketB'][l])
+    self.CountryB.setText(t['CountryB'][l])
     self.ExitB.setText(t['ExitB'][l])
 
 def ObjectPageUi(self):

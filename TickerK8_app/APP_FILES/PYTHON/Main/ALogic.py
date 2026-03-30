@@ -119,7 +119,7 @@ def ListAddSetupList(self):
                     self.ListAddL.addWidget(AddB, i, 0, 1, 100)
                     AddB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
                     AddB.setText('+')
-                    AddB.clicked.connect(lambda _, L_N=ListName, S_N=SectionName, I_I=ii: ListAddHandle(self, L_N, S_N, I_I))
+                    AddB.clicked.connect(lambda _, L_N=ListName, S_N=SectionName, I_I=ii: ListAddPlace(self, L_N, S_N, I_I))
                     i += 1
                     ObjectNameL = QLabel(self.ListAddW)
                     ObjectNameL.setObjectName(f'ObjectNameL{ii}')
@@ -135,20 +135,67 @@ def ListAddSetupList(self):
             self.ListAddL.addWidget(AddB, i, 0, 1, 100)
             AddB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
             AddB.setText('+')
-            AddB.clicked.connect(lambda _, L_N=ListName, S_N=SectionName, I_I=ii: ListAddHandle(self, L_N, S_N, I_I))
+            AddB.clicked.connect(lambda _, L_N=ListName, S_N=SectionName, I_I=ii: ListAddPlace(self, L_N, S_N, I_I))
             i += 1
     conn.close()
 
-def ListAddHandle(self, Table, Section, IdObject):
-    print(Table, Section, IdObject)
+def ListAddPlace(self, Table, Section, IdObject):
+    self.AddObjectData = {}
+    self.AddObjectData["TableName"] = Table
+    self.AddObjectData["SectionName"] = Section
+    self.AddObjectData["NewObjectPlace"] = IdObject
     self.ListSearchPage()
 
-def SetupResultS(self, result):
-    if self.SearchS:
-        self.SearchS.deleteLater()
-        self.SearchS = None
-    self.ResultS = QScrollArea(self.SearchW)
+def SortTypeChange(self, t):
+    self.SortType = t
+    SetupResultS(self)
 
+def SetupResultS(self):
+    conn = sqlite3.connect(f'{self.Path}/APP_FILES/CONFIG/GLOBAL/tickerk8_offline.db')
+    cur = conn.cursor()
+    cur.execute(f'SELECT id, name FROM {self.SortType} WHERE name like "%{self.SearchE.text()}%";')
+    data = cur.fetchall()
+    conn.close()
+    if self.ResultS:
+        self.ResultS.deleteLater()
+        self.ResultS = None
+#           --- Create objects ---
+    self.ResultS = QScrollArea(self.SearchW)
+    self.ResultW = QWidget(self.ResultS)
+    self.ResultL = QGridLayout(self.ResultW)
+    self.ResultS.setObjectName('ResultS')
+    self.ResultW.setObjectName('ResultW')
+    self.ResultL.setSpacing(0)
+    self.ResultL.setContentsMargins(0,0,0,0)
+    for i in range(100):
+        self.ResultL.setColumnStretch(i,1)
+    self.ResultW.setLayout(self.ResultL)
+    self.SearchL.addWidget(self.ResultS, 20, 2, 80, 96)
+    self.ResultS.setWidgetResizable(True)
+    self.ResultS.setWidget(self.ResultW)
+    self.ResultS.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.ResultW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    for ii, (ItemId, ItemName) in enumerate(data, 0):
+        IndexL = QLabel(self.ResultW)
+        NameB = QPushButton(self.ResultW)
+        IndexL.setObjectName(f'IndexL{ii}')
+        NameB.setObjectName(f'NameB{ii}')
+        IndexL.setProperty('class', 'IndexL')
+        NameB.setProperty('class', 'NameB')
+        self.ResultL.addWidget(IndexL, ii, 0, 1, 40)
+        self.ResultL.addWidget(NameB, ii, 40, 1, 60)
+        IndexL.setAlignment(Qt.AlignCenter)
+        IndexL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        NameB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        IndexL.setText(f'{ii+1}')
+        NameB.setText(f'{ItemName}')
+        NameB.clicked.connect(lambda _, dbi=ItemId: ListAddHandle(self, dbi))
+
+def ListAddHandle(self, DBI):
+    self.AddObjectData['NewObjectType'] = self.SortType
+    self.AddObjectData['NewObjectId'] = DBI
+    self.AddObjectToList(self.AddObjectData, self.Config)
+    self.ListPage()
 
 def ListDeleteObject(self, ItemTable, ItemId):
     print(ItemTable, ItemId)

@@ -196,15 +196,54 @@ class database():
             conn.close()
             conn = None
 
-    def GetAllObjects(self):
-        conn = self.Connection()
-        curs = conn.cursor()
-        try:
-            curs.execute('CALL get_all_objects();')
-            result = curs.fetchall()
-            return result
-        finally:
-            curs.close()
-            curs = None
-            conn.close()
-            conn = None
+    def AddObjectToList(self, N, O):
+        O_map = {
+        'stock': 'Stock',
+        'market': 'Market',
+        'country': 'Country'
+        }
+#           --- Add to list ---
+        O[O_map[N['NewObjectType']]].append(N['NewObjectId'])
+        print(N['NewObjectId'])
+#           --- Add to lists ---
+        section = O['lists'][N['TableName']][N['SectionName']]
+        items = list(section.items())
+        pos = max(0, min(N['NewObjectPlace'], len(items)))
+        items.insert(pos, (str(N['NewObjectId']), N['NewObjectType']))
+        print(dict(items))
+        O['lists'][N['TableName']][N['SectionName']] = dict(items)
+
+        print(O)
+    
+
+DELIMITER //
+
+CREATE  DEFINER='admin'@'%' PROCEDURE update_config_dynamic(
+    IN p_id INT,
+    IN p_type VARCHAR(20),     -- 'list' lub 'dict'
+    IN p_name VARCHAR(255),    -- nazwa listy lub sekcji
+    IN p_new_value JSON         -- nowa wartość jako JSON
+)
+BEGIN
+    DECLARE v_path VARCHAR(255);
+
+    IF p_type = 'list' THEN
+        -- zmiana listy Stock, Market lub Country
+        SET v_path = CONCAT('$.', p_name);
+        UPDATE settings
+        SET config = JSON_SET(config, v_path, p_new_value)
+        WHERE id = p_id;
+
+    ELSEIF p_type = 'dict' THEN
+        -- zmiana słownika w sekcji lists -> Podstawowa list
+        SET v_path = CONCAT('$.lists."Podstawowa list".', p_name);
+        UPDATE settings
+        SET config = JSON_SET(config, v_path, p_new_value)
+        WHERE id = p_id;
+
+    ELSE
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Nieprawidłowy typ: użyj list lub dict';
+    END IF;
+END //
+
+DELIMITER ;
