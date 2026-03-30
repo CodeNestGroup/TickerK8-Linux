@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import (
     QWidget,
     QPushButton,
     QLabel, 
+    QLineEdit,
     QScrollArea,
     QGridLayout
 )
@@ -26,6 +27,7 @@ class MainW(QWidget):
         self.GetNewsListD = parent.database.GetNewsList
         self.GetNewsById = parent.database.GetNewsById
         self.UpdateNewsPopularity = parent.database.UpdateNewsPopularity
+        self.GetAllObjects = parent.database.GetAllObjects
         self.Config = json.loads(parent.logged_user_config)
         self.Theme = self.Config['theme']
         self.Language = self.Config['language']
@@ -55,7 +57,7 @@ class MainW(QWidget):
         self.BackgroundT.start(1)
 #           --- Connect  functions ---
         self.NavDefaultB.clicked.connect(self.MainPage)
-        self.NavListObjectB.clicked.connect(lambda: self.NewsPage)
+        self.NavListObjectB.clicked.connect(self.ListPage)
         self.NavObjectB.clicked.connect(self.ObjectPage)
         self.NavNewsB.clicked.connect(self.NewsPage)
 
@@ -70,7 +72,7 @@ class MainW(QWidget):
         self.ResetPage()
         self.OpenedW = QWidget(self)
         self.OpenedL = QGridLayout(self)
-        self.ListObjectW = ListObjectW(self.OpenedW, self, [1, 1, 1, 1], SetupMainObject)
+        self.ListObjectW = ListObjectW(self.OpenedW, self, [1, 1, 1, 1, 1], SetupMainObject)
         self.ListNewsW = ListNewsW(self.OpenedW, self)
 #           --- Call functions ---
         MainPageUi(self)
@@ -78,13 +80,11 @@ class MainW(QWidget):
 
     def ListPage(self):
 #           --- Create objects ---
-        self.ResetPage(self)
+        self.ResetPage()
         self.OpenedW = QWidget(self)
         self.OpenedL = QGridLayout(self.OpenedW)
-
-        self.ListObjectW = ListObjectW(self.OpenedW, self, [1, 1, 1, 1], self.ListDeletePage)
+        self.ListObjectW = ListObjectW(self.OpenedW, self, [1, 1, 1, 1, 0], ListDeleteObject)
         self.AddObjectB = QPushButton(self.OpenedW)
-
 #           --- Call functions ---
         ListPageUi(self)
         ListPageReloadStyle(self)
@@ -93,36 +93,43 @@ class MainW(QWidget):
         self.AddObjectB.clicked.connect(self.ListAddPage)
 
     def ListAddPage(self):
-        self.SearchW = None
-        self.PlaceW = None
 #           --- Create objects ---
-        self.ResetPage(self)
+        self.ResetPage()
         self.OpenedW = QWidget(self)
         self.OpenedL = QGridLayout(self.OpenedW)
-
-        self.SearchW = 
-
-
-
+        self.ListAddBackgroundW = QWidget(self.OpenedW)
+        self.ListAddBackgroundL = QGridLayout(self.ListAddBackgroundW)
+        self.NameL = QLabel(self.ListAddBackgroundW)
+        self.ListAddS = QScrollArea(self.ListAddBackgroundW)
+        self.ListAddW = QWidget(self.ListAddS)
+        self.ListAddL = QGridLayout(self.ListAddW)
+        self.ExitB = QPushButton(self.OpenedW)
 #           --- Call functions ---
         ListAddPageUi(self)
         ListAddPageReloadStyle(self)
         ListAddPageRetranslate(self)
+        ListAddSetupList(self)
 #           --- Connect  functions ---
+        self.ExitB.clicked.connect(self.ListPage)
 
-    def ListDeletePage(self):
+    def ListSearchPage(self):
+        r = self.GetAllObjects()
 #           --- Create objects ---
-        self.ResetPage(self)
+        self.ResetPage()
         self.OpenedW = QWidget(self)
         self.OpenedL = QGridLayout(self.OpenedW)
-
-
+        self.SearchW = QWidget(self.ListAddBackgroundW)
+        self.SearchL = QGridLayout(self.SearchW)
+        self.SearchE = QLineEdit(self.SearchW)
+        self.ExitB = QPushButton(self.OpenedW)
 #           --- Call functions ---
-        ListDeletePageUi(self)
-        ListDeltePageReloadStyle(self)
-        ListDeletePageRetranslate(self)
+        ListSearchPageUi(self)
+        ListSearchPageReloadStyle(self)
+        ListSearchPageRetranslate(self)
+        SetupResultS(self, r)
 #           --- Connect  functions ---
-
+        self.SearchE.textChanged.connect(lambda: SetupResultS(self, r))
+        self.ExitB.clicked.connect(self.ListPage)
 
     def ObjectPage(self):
         self.ObejctInfoS = None
@@ -131,7 +138,7 @@ class MainW(QWidget):
         self.ResetPage()
         self.OpenedW = QWidget(self)
         self.OpenedL = QGridLayout(self.OpenedW)
-        self.ListObjectW = ListObjectW(self.OpenedW, self, [0, 0, 1, 0], SetupObject)
+        self.ListObjectW = ListObjectW(self.OpenedW, self, [0, 0, 1, 0, 1], SetupObject)
 #           --- Call functions ---
         ObjectPageUi(self)
 #           --- Connect  functions ---

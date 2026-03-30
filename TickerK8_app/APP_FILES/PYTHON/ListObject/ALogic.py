@@ -63,6 +63,6 @@ def SetupData(self, MainSelf):
                         ObjectNameL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
                         ObjectNameL.setText(r[2])
                 i+= 1
-    if b:
+    if b and self.SetData[4]:
         b.click()
     conn.close()

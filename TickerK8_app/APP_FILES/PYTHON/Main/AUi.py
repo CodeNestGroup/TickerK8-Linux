@@ -96,29 +96,121 @@ def MainPageUi(self):
     self.OpenedW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
 def ListPageUi(self):
+    self.OpenedW.setObjectName('OpenedW')
     self.AddObjectB.setObjectName('AddObjectB')
     self.OpenedL.addWidget(self.ListObjectW, 0, 0, 90, 100)
-    self.OpenedL.addWidget(self.AddObjectB, 94, 40,6, 100)
+    self.OpenedL.addWidget(self.AddObjectB, 94, 40,6, 20)
     self.OpenedL.setSpacing(0)
     self.OpenedL.setContentsMargins(0,0,0,0)
     for i in range(100):
         self.OpenedL.setRowStretch(i, 1)
         self.OpenedL.setColumnStretch(i, 1)
-    self.OpenedW.setWidget(self.OpenedL)
+    self.OpenedW.setLayout(self.OpenedL)
     self.Layout.addWidget(self.OpenedW, 10, 0, 80, 100)
     self.OpenedW.show()
     self.OpenedW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.AddObjectB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
 def ListPageReloadStyle(self):
     t = self.Theme
     m = open(f'{self.Path}/APP_FILES/PYTHON/Main/BListPage.css').read()
     c = open(f'{self.Path}/APP_FILES/PYTHON/Main/BListPage{self.Theme}.css').read()
-    self.setStyleSheet(m+c)
+    self.OpenedW.setStyleSheet(m+c)
 
 def ListPageRetranslate(self):
     t = json.load(open(f'{self.Path}/APP_FILES/PYTHON/Main/CListPageRetranslate.json', 'r'))
     l = self.Language
     self.AddObjectB.setText(t['AddObjectB'][l])
+
+def ListAddPageUi(self):
+    self.OpenedW.setObjectName('OpenedW')
+    self.ListAddBackgroundW.setObjectName('ListAddBackgroundW')
+    self.NameL.setObjectName('NameL')
+    self.ListAddS.setObjectName('ListAddS')
+    self.ListAddW.setObjectName('ListAddW')
+    self.ExitB.setObjectName('ExitB')
+    self.ListAddL.setSpacing(0)
+    self.ListAddL.setContentsMargins(0,0,0,0)
+    for i in range(100):
+        self.ListAddL.setColumnStretch(i, 1)
+    self.ListAddW.setLayout(self.ListAddL)
+    self.ListAddBackgroundL.addWidget(self.NameL, 0, 0, 5, 100)
+    self.ListAddBackgroundL.addWidget(self.ListAddS, 7, 2, 93, 96)
+    self.ListAddBackgroundL.setSpacing(0)
+    self.ListAddBackgroundL.setContentsMargins(0,0,0,0)
+    for i in range(100):
+        self.ListAddBackgroundL.setRowStretch(i, 1)
+        self.ListAddBackgroundL.setColumnStretch(i, 1)
+    self.ListAddBackgroundW.setLayout(self.ListAddBackgroundL)
+    self.OpenedL.addWidget(self.ListAddBackgroundW, 0, 30, 90, 40)
+    self.OpenedL.addWidget(self.ExitB, 94, 40, 6, 20)
+    self.OpenedL.setSpacing(0)
+    self.OpenedL.setContentsMargins(0,0,0,0)
+    for i in range(100):
+        self.OpenedL.setRowStretch(i, 1)
+        self.OpenedL.setColumnStretch(i, 1)
+    self.OpenedW.setLayout(self.OpenedL)
+    self.Layout.addWidget(self.OpenedW, 10, 0, 80, 100)
+    self.OpenedW.show()
+    self.ListAddS.setWidgetResizable(True)
+    self.ListAddS.setWidget(self.ListAddW)
+    self.NameL.setAlignment(Qt.AlignCenter)
+    self.OpenedW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.ListAddBackgroundW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.NameL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.ListAddS.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.ListAddW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.ExitB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+
+def ListAddPageReloadStyle(self):
+    t = self.Theme
+    m = open(f'{self.Path}/APP_FILES/PYTHON/Main/BListAddPage.css').read()
+    c = open(f'{self.Path}/APP_FILES/PYTHON/Main/BListAddPage{self.Theme}.css').read()
+    self.OpenedW.setStyleSheet(m+c)
+
+def ListAddPageRetranslate(self):
+    t = json.load(open(f'{self.Path}/APP_FILES/PYTHON/Main/CListAddPageRetranslate.json', 'r'))
+    l = self.Language
+    self.ExitB.setText(t['ExitB'][l])
+
+def ListSearchPageUi(self):
+    self.OpenedW.setObjectName('OpenedW')
+    self.SearchW.setObjectName('SearchW')
+    self.SearchE.setObjectName('SearchE')
+    self.ExitB.setObjectName('ExitB')
+    self.SearchL.addWidget(self.SearchE, 0, 30, 10, 40)
+    self.SearchL.setSpacing(0)
+    self.SearchL.setContentsMargins(0,0,0,0)
+    for i in range(100):
+        self.SearchL.setRowStretch(i,1)
+        self.SearchL.setColumnStretch(i,1)
+    self.SearchW.setLayout(self.SearchL)
+    self.OpenedL.addWidget(self.SearchW, 0, 30, 90, 40)
+    self.OpenedL.addWidget(self.ExitB, 94, 40, 6, 20)
+    self.OpenedL.setSpacing(0)
+    self.OpenedL.setContentsMargins(0,0,0,0)
+    for i in range(100):
+        self.OpenedL.setRowStretch(i, 1)
+        self.OpenedL.setColumnStretch(i, 1)
+    self.OpenedW.setLayout(self.OpenedL)
+    self.Layout.addWidget(self.OpenedW, 10, 0, 80, 100)
+    self.OpenedW.show()
+    self.OpenedW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.SearchW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.SearchE.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.ExitB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+
+def ListSearchPageReloadStyle(self):
+    t = self.Theme
+    m = open(f'{self.Path}/APP_FILES/PYTHON/Main/BListSearchPage.css').read()
+    c = open(f'{self.Path}/APP_FILES/PYTHON/Main/BListSearchPage{self.Theme}.css').read()
+    self.OpenedW.setStyleSheet(m+c)
+
+def ListSearchPageRetranslate(self):
+    t = json.load(open(f'{self.Path}/APP_FILES/PYTHON/Main/CListSearchPageRetranslate.json', 'r'))
+    l = self.Language
+    self.SearchE.setPlaceholderText(t['SearchE'][l])
+    self.ExitB.setText(t['ExitB'][l])
 
 def ObjectPageUi(self):
     self.OpenedW.setObjectName('OpenedW')

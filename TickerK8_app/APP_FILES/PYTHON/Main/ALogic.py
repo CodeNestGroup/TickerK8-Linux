@@ -1,9 +1,23 @@
 #   --- Import ---
 import datetime
+import sqlite3
 
 from Object.AStructure import ObjectW
 from ObjectInfo.AStructure import ObjectInfoS
 from ObjectStats.AStructure import ObjectStatsS
+
+from PyQt5.QtWidgets import (
+    QScrollArea,
+    QWidget,
+    QGridLayout,
+    QPushButton,
+    QLabel,
+    QSizePolicy
+)
+
+from PyQt5.QtCore import (
+    Qt
+)
 
 
 from PyQt5.QtGui import (
@@ -79,4 +93,62 @@ def SetupObject(self, t, i):
     self.ObjectStatsW = ObjectStatsS(self.OpenedW, self, t, i)
     self.OpenedL.addWidget(self.ObejctInfoS, 0, 16, 100, 41)
     self.OpenedL.addWidget(self.ObjectStatsW, 0, 58, 100, 41)
-    
+
+def ListAddSetupList(self):
+    conn = sqlite3.connect(f'{self.Path}/APP_FILES/CONFIG/GLOBAL/tickerk8_offline.db')
+    cur = conn.cursor()
+    for ListName, ListItems in self.ObjectList.items():
+        self.NameL.setText(ListName)
+        i = 0
+        for SectionName, SectionItems in ListItems.items():
+            SectionNameL = QLabel(self.ListAddW)
+            SectionNameL.setObjectName(f'SectionNameL{SectionName}')
+            SectionNameL.setProperty('class', 'SectionNameL')
+            self.ListAddL.addWidget(SectionNameL, i, 0, 1, 100)
+            SectionNameL.setAlignment(Qt.AlignCenter)
+            SectionNameL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+            SectionNameL.setText(SectionName)
+            i += 1
+            for ii, (ItemId, ItemTable) in enumerate(SectionItems.items(), 0):
+                cur.execute(f'SELECT name FROM "{ItemTable}" WHERE id=?;', (int(ItemId),))
+                r = cur.fetchone()
+                if r:
+                    AddB = QPushButton(self.ListAddW)
+                    AddB.setObjectName(f'AddB{ii}')
+                    AddB.setProperty('class', 'AddB')
+                    self.ListAddL.addWidget(AddB, i, 0, 1, 100)
+                    AddB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+                    AddB.setText('+')
+                    AddB.clicked.connect(lambda _, L_N=ListName, S_N=SectionName, I_I=ii: ListAddHandle(self, L_N, S_N, I_I))
+                    i += 1
+                    ObjectNameL = QLabel(self.ListAddW)
+                    ObjectNameL.setObjectName(f'ObjectNameL{ii}')
+                    ObjectNameL.setProperty('class', 'NameL')
+                    self.ListAddL.addWidget(ObjectNameL, i, 0, 1, 100)
+                    ObjectNameL.setAlignment(Qt.AlignCenter)
+                    ObjectNameL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+                    ObjectNameL.setText(r[0])
+                    i += 1
+            AddB = QPushButton(self.ListAddW)
+            AddB.setObjectName(f'AddB{ii}')
+            AddB.setProperty('class', 'AddB')
+            self.ListAddL.addWidget(AddB, i, 0, 1, 100)
+            AddB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+            AddB.setText('+')
+            AddB.clicked.connect(lambda _, L_N=ListName, S_N=SectionName, I_I=ii: ListAddHandle(self, L_N, S_N, I_I))
+            i += 1
+    conn.close()
+
+def ListAddHandle(self, Table, Section, IdObject):
+    print(Table, Section, IdObject)
+    self.ListSearchPage()
+
+def SetupResultS(self, result):
+    if self.SearchS:
+        self.SearchS.deleteLater()
+        self.SearchS = None
+    self.ResultS = QScrollArea(self.SearchW)
+
+
+def ListDeleteObject(self, ItemTable, ItemId):
+    print(ItemTable, ItemId)

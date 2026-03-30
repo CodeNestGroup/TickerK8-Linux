@@ -195,3 +195,16 @@ class database():
             curs = None
             conn.close()
             conn = None
+
+    def GetAllObjects(self):
+        conn = self.Connection()
+        curs = conn.cursor()
+        try:
+            curs.execute('CALL get_all_objects();')
+            result = curs.fetchall()
+            return result
+        finally:
+            curs.close()
+            curs = None
+            conn.close()
+            conn = None

@@ -1,0 +1,16 @@
+#SearchW{
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 12px;
+}
+#SearchE{
+    
+}
+#ExitB{
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+}
