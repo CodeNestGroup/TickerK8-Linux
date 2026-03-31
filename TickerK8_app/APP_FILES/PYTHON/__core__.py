@@ -38,8 +38,6 @@ class app_controller(QWidget):
         self.setLayout(self.layout)
         self.login_widget = None
         self.logged_user_id = None
-        self.logged_user_config = None
-        self.logged_user_data = None
         self.logged_user_sub = None
         self.register_widget = None
         self.login_configuration_widget = None
@@ -60,8 +58,6 @@ class app_controller(QWidget):
 
     def login_setup(self):
         self.logged_user_id = None
-        self.logged_user_config = None
-        self.logged_user_data = None
         self.logged_user_sub = None
         self.login_widget = Login_widget(self)
         self.layout.addWidget(self.login_widget)
@@ -204,7 +200,6 @@ class app_controller(QWidget):
                     self.login_to_login_configuration()
                 else:
                     self.database.UpdateLastLogin(d[0])
-                    self.logged_user_config = d[3]
                     self.login_to_main()
         else:
             self.login_widget.login_login_lineedit.clear()

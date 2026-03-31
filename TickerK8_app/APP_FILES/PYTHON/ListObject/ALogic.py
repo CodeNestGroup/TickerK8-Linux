@@ -24,8 +24,8 @@ def SetupData(self, MainSelf):
             SectionNameL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
             SectionNameL.setText(SectionName)
             i += 1
-            for ii, (ItemId, ItemTable) in enumerate(SectionItems.items(), 1):
-                cur.execute(f'SELECT icon, ticker, name FROM "{ItemTable}" WHERE id=?;', (int(ItemId),))
+            for ii, ItemData in enumerate(SectionItems, 1):
+                cur.execute(f'SELECT icon, ticker, name FROM "{ItemData['type']}" WHERE id=?;', (int(ItemData['id']),))
                 r = cur.fetchone()
                 if r:
                     if self.SetData[0]:
@@ -51,8 +51,8 @@ def SetupData(self, MainSelf):
                         self.DataL.addWidget(ObjectTickerB, i, 25, 1, 25)
                         ObjectTickerB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
                         ObjectTickerB.setText(r[1])
-                        ObjectTickerB.clicked.connect(lambda _, LT=ItemTable, LI=ItemId: self.OpenFunc(MainSelf , LT, LI))
-                        if ItemTable == 'stock' and b == None:
+                        ObjectTickerB.clicked.connect(lambda _, ObjectData={"type":ItemData['type'], "id":ItemData['id'], "listname":ListName, "sectionname":SectionName, "objectplace":ii-1}: self.OpenFunc(MainSelf , ObjectData))
+                        if ItemData['type'] == 'stock' and b == None:
                             b = ObjectTickerB
                     if self.SetData[3]:
                         ObjectNameL = QLabel(self.DataW)

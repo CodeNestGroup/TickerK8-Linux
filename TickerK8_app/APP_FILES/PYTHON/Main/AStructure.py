@@ -28,10 +28,10 @@ class MainW(QWidget):
         self.GetNewsById = parent.database.GetNewsById
         self.UpdateNewsPopularity = parent.database.UpdateNewsPopularity
         self.AddObjectToList = parent.database.AddObjectToList
-        self.Config = json.loads(parent.logged_user_config)
-        self.Theme = self.Config['theme']
-        self.Language = self.Config['language']
-        self.ObjectList = self.Config['lists']
+        self.DeleteObjectFromList = parent.database.DeleteObjectFromList
+        self.GetUserConfig = parent.database.GetUserConfig
+        self.LoggedUserId = parent.logged_user_id
+        ReloadConfig(self)
         self.setAttribute(Qt.WA_StyledBackground, True)
         self.BacgroundConf = json.load(open(f'{self.Path}/APP_FILES/PYTHON/Main/CBackgroundConf.json', 'r'))
 #           --- Create objects ---
@@ -163,9 +163,9 @@ class MainW(QWidget):
 #           --- Call functions ---
         NewsPageUi(self)
         NewsPageRetranslate(self)
-        NewsListS(self, self.GetNewsListD('Stock', self.Config['Stock'], self.Language))
+        NewsListS(self, self.GetNewsListD('stock', GetIdByTypeInLists(self.ObjectList, 'stock'), self.Language))
 #           --- Connect  functions ---
-        self.NewsStockB.clicked.connect(lambda: NewsListS(self, self.GetNewsListD('Stock', self.Config['Stock'], self.Language)))
-        self.NewsMarketB.clicked.connect(lambda: NewsListS(self, self.GetNewsListD('Market', self.Config['Market'], self.Language)))
-        self.NewsCountryB.clicked.connect(lambda: NewsListS(self, self.GetNewsListD('Country', self.Config['Country'], self.Language)))
-        self.NewsWorldB.clicked.connect(lambda: NewsListS(self, self.GetNewsListD('World', [1, 2, 3, 4, 5, 6, 7], self.Language)))
+        self.NewsStockB.clicked.connect(lambda: NewsListS(self, self.GetNewsListD('stock', GetIdByTypeInLists(self.ObjectList, 'stock'), self.Language)))
+        self.NewsMarketB.clicked.connect(lambda: NewsListS(self, self.GetNewsListD('market', GetIdByTypeInLists(self.ObjectList, 'market'), self.Language)))
+        self.NewsCountryB.clicked.connect(lambda: NewsListS(self, self.GetNewsListD('country', GetIdByTypeInLists(self.ObjectList, 'country'), self.Language)))
+        self.NewsWorldB.clicked.connect(lambda: NewsListS(self, self.GetNewsListD('world', [1, 2, 3, 4, 5, 6, 7], self.Language)))

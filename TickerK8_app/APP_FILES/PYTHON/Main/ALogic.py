@@ -1,6 +1,7 @@
 #   --- Import ---
 import datetime
 import sqlite3
+import json
 
 from Object.AStructure import ObjectW
 from ObjectInfo.AStructure import ObjectInfoS
@@ -75,22 +76,28 @@ def WidgetBackgroundPainter(self):
     self.setAutoFillBackground(True)
     self.setPalette(palette)
 
-def SetupMainObject(self, t, i):
+def ReloadConfig(self):
+    self.Config = json.loads(self.GetUserConfig(self.LoggedUserId)[0])
+    self.Theme = self.Config['theme']
+    self.Language = self.Config['language']
+    self.ObjectList = self.Config['lists']
+
+def SetupMainObject(self, d):
     if self.ObjectW:
         self.ObjectW.deleteLater()
         self.ObjectW = None
-    self.ObjectW = ObjectW(self.OpenedW, self, t, i)
+    self.ObjectW = ObjectW(self.OpenedW, self, d['type'], d['id'])
     self.OpenedL.addWidget(self.ObjectW, 0, 35, 100, 30)
 
-def SetupObject(self, t, i):
+def SetupObject(self, d):
     if self.ObejctInfoS:
         self.ObejctInfoS.deleteLater()
         self.ObejctInfoS = None
     if self.ObjectStatsS:
         self.ObjectStats.deleteLater()
         self.ObjectStats = None 
-    self.ObejctInfoS = ObjectInfoS(self.OpenedW, self, t, i)
-    self.ObjectStatsW = ObjectStatsS(self.OpenedW, self, t, i)
+    self.ObejctInfoS = ObjectInfoS(self.OpenedW, self, d['type'], d['id'])
+    self.ObjectStatsW = ObjectStatsS(self.OpenedW, self, d['type'], d['id'])
     self.OpenedL.addWidget(self.ObejctInfoS, 0, 16, 100, 41)
     self.OpenedL.addWidget(self.ObjectStatsW, 0, 58, 100, 41)
 
@@ -109,8 +116,9 @@ def ListAddSetupList(self):
             SectionNameL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
             SectionNameL.setText(SectionName)
             i += 1
-            for ii, (ItemId, ItemTable) in enumerate(SectionItems.items(), 0):
-                cur.execute(f'SELECT name FROM "{ItemTable}" WHERE id=?;', (int(ItemId),))
+            last = 0
+            for ii, ItemData in enumerate(SectionItems, 1):
+                cur.execute(f'SELECT name FROM "{ItemData['type']}" WHERE id=?;', (int(ItemData['id']),))
                 r = cur.fetchone()
                 if r:
                     AddB = QPushButton(self.ListAddW)
@@ -129,18 +137,21 @@ def ListAddSetupList(self):
                     ObjectNameL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
                     ObjectNameL.setText(r[0])
                     i += 1
+                    last = ii
+            last += ii
             AddB = QPushButton(self.ListAddW)
-            AddB.setObjectName(f'AddB{ii}')
+            AddB.setObjectName(f'AddB{last}')
             AddB.setProperty('class', 'AddB')
             self.ListAddL.addWidget(AddB, i, 0, 1, 100)
             AddB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
             AddB.setText('+')
-            AddB.clicked.connect(lambda _, L_N=ListName, S_N=SectionName, I_I=ii: ListAddPlace(self, L_N, S_N, I_I))
+            AddB.clicked.connect(lambda _, L_N=ListName, S_N=SectionName, I_I=last: ListAddPlace(self, L_N, S_N, I_I))
             i += 1
     conn.close()
 
 def ListAddPlace(self, Table, Section, IdObject):
     self.AddObjectData = {}
+    self.AddObjectData["UserId"] = self.LoggedUserId
     self.AddObjectData["TableName"] = Table
     self.AddObjectData["SectionName"] = Section
     self.AddObjectData["NewObjectPlace"] = IdObject
@@ -194,8 +205,21 @@ def SetupResultS(self):
 def ListAddHandle(self, DBI):
     self.AddObjectData['NewObjectType'] = self.SortType
     self.AddObjectData['NewObjectId'] = DBI
-    self.AddObjectToList(self.AddObjectData, self.Config)
+    self.AddObjectToList(self.AddObjectData)
+    ReloadConfig(self)
     self.ListPage()
 
-def ListDeleteObject(self, ItemTable, ItemId):
-    print(ItemTable, ItemId)
+def ListDeleteObject(self, d):
+    d['UserId'] = self.LoggedUserId
+    self.DeleteObjectFromList(d)
+    ReloadConfig(self)
+    self.ListPage()
+
+def GetIdByTypeInLists(lists, type_search):
+    IdList = []
+    for ListName, ListItems in lists.items():
+        for SectionName, SectionItems in ListItems.items():
+            for ObjectsItems in SectionItems:
+                if ObjectsItems['type'] == type_search:
+                    IdList.append(ObjectsItems['id'])
+    return IdList
