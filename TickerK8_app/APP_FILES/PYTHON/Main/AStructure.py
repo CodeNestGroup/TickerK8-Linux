@@ -20,8 +20,8 @@ from NewsList.AStructure import NewsListS
 
 #   --- Class ---
 class MainW(QWidget): 
-    def __init__(self, parent):
-        super().__init__()
+    def __init__(self):
+        super().__init__(parent)
         self.setParent(parent)
         self.Path = parent.main_path
         self.GetNewsListD = parent.database.GetNewsList

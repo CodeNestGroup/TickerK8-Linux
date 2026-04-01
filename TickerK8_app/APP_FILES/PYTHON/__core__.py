@@ -96,11 +96,11 @@ class app_controller(QWidget):
         self.main_widget.NavLogoutB.clicked.connect(self.main_to_login)
 
     def settings_setup(self):
-        self.settings_widget = Settings_widget(self)
+        self.settings_widget = SettingsW(self)
         self.layout.addWidget(self.settings_widget)
         self.setGeometry(self.geometry)
         self.showMaximized()
-        self.settings_widget.navi_exit_button.clicked.connect(self.settings_to_main)
+        self.settings_widget.NaviExitB.clicked.connect(self.settings_to_main)
     
     def statistics_setup(self):
         self.statistics_widget = Statistics_widget(self)
