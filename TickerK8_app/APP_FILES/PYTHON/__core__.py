@@ -21,7 +21,7 @@ from register.structure import Register_widget
 from login_config.p_structure import Login_configuration_widget
 from recover_password.structure import Recover_password_widget
 from Main.AStructure import MainW 
-from settings.structure import Settings_widget
+from Settings.AStructure import SettingsW
 from statistics.structure import Statistics_widget
 from chart.structure import Chart_widget
 from db.connection import database

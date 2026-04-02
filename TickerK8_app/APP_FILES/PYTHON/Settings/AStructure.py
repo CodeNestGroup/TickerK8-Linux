@@ -23,9 +23,12 @@ class SettingsW(QWidget):
     def __init__(self, parent):
         super().__init__(parent)
         self.setAttribute(Qt.WA_StyledBackground, True)
-        self.Path = parent.Path
-        
+        self.Path = parent.main_path
         self.LoggedUserId = parent.logged_user_id
+        self.GetUserConfig = parent.database.GetUserConfig
+        self.Config = json.loads(self.GetUserConfig(self.LoggedUserId)[0])
+        self.Theme = self.Config['theme']
+        self.Language = self.Config['language']
 #           --- Create objects ---
         self.Layout = QGridLayout(self)
         self.NaviS = QScrollArea(self)
@@ -33,9 +36,11 @@ class SettingsW(QWidget):
         self.NaviL = QVBoxLayout(self.NaviW)
         self.NaviUserB = QPushButton(self.NaviW)
         self.NaviStyleB = QPushButton(self.NaviW)
+        self.NaviSoundB = QPushButton(self.NaviW)
         self.NaviUpdateB = QPushButton(self.NaviW)
         self.NaviLanguageB = QPushButton(self.NaviW)
         self.NaviExitB  = QPushButton(self)
+        self.PanelS = None
 #           --- Call functions ---
         SettingsUi(self)
         SettingsReloadStyle(self)
@@ -43,6 +48,7 @@ class SettingsW(QWidget):
 #           --- Connect  functions ---
         self.NaviUserB.clicked.connect(self.UserPage)
         self.NaviStyleB.clicked.connect(self.StylePage)
+        self.NaviSoundB.clicked.connect(self.SoundPage)
         self.NaviUpdateB.clicked.connect(self.UpdatePage)
         self.NaviLanguageB.clicked.connect(self.LanguagePage)
 
@@ -54,8 +60,8 @@ class SettingsW(QWidget):
     def UserPage(self):
         self.ResetPage()
         self.PanelS = QScrollArea(self)
-        self.PanelW = QWidget(self.PanelW)
-        self.PanelL = QVBoxLayout(self.PanelW)
+        self.PanelW = QWidget(self.PanelS)
+        self.PanelL = QGridLayout(self.PanelW)
         self.PanelTitleL = QLabel(self.PanelW)
         self.UserNameNameL = QLabel(self.PanelW)
         self.UserNameValueL = QLabel(self.PanelW)
@@ -65,15 +71,14 @@ class SettingsW(QWidget):
         self.UserCreateDateValueL = QLabel(self.PanelW)
 #           --- Call functions ---
         UserUi(self)
-        UserReloadStyle(self)
         UserRetranslate(self)
 #           --- Connect  functions ---
 
     def StylePage(self):
         self.ResetPage()
         self.PanelS = QScrollArea(self)
-        self.PanelW = QWidget(self.PanelW)
-        self.PanelL = QVBoxLayout(self.PanelW)
+        self.PanelW = QWidget(self.PanelS)
+        self.PanelL = QGridLayout(self.PanelW)
         self.PanelTitleL = QLabel(self.PanelW)
         self.StyleThemeDayNightNameL = QLabel(self.PanelW)
         self.StyleThemeDayNightValueB = QPushButton(self.PanelW)
@@ -81,17 +86,29 @@ class SettingsW(QWidget):
         self.StyleThemeThemesValueC = QComboBox(self.PanelW)
 #           --- Call functions ---
         StyleUi(self)
-        StyleReloadStyle(self)
         StyleRetranslate(self)
 #           --- Connect  functions ---
 #        self.StyleThemeDayNightValueB.clicked.connect()
 #        self.StyleThemeThemesValueC.clicked.connect()
 
+    def SoundPage(self):
+        self.ResetPage()
+        self.PanelS = QScrollArea(self)
+        self.PanelW = QWidget(self.PanelS)
+        self.PanelL = QGridLayout(self.PanelW)
+        self.PanelTitleL = QLabel(self.PanelW)
+        self.SoundNameL = QLabel(self.PanelW)
+        self.SoundValueB = QPushButton(self.PanelW)
+#           --- Call functions ---
+        SoundUi(self)
+        SoundRetranslate(self)
+#           --- Connect  functions ---
+
     def UpdatePage(self):
         self.ResetPage()
         self.PanelS = QScrollArea(self)
-        self.PanelW = QWidget(self.PanelW)
-        self.PanelL = QVBoxLayout(self.PanelW)
+        self.PanelW = QWidget(self.PanelS)
+        self.PanelL = QGridLayout(self.PanelW)
         self.PanelTitleL = QLabel(self.PanelW)
         self.UpdateDescriptionNameL = QLabel(self.PanelW)
         self.UpdateDescriptionValueL = QLabel(self.PanelW)
@@ -101,21 +118,20 @@ class SettingsW(QWidget):
         self.UpdateChangelogValueL = QGridLayout(self.UpdateChangelogValueW)
 #           --- Call functions ---
         UpdateUi(self)
-        UpdateReloadStyle(self)
         UpdateRetranslate(self)
+        UpdatePageSetup(self)
 #           --- Connect  functions ---  
 
     def LanguagePage(self):
         self.ResetPage()
         self.PanelS = QScrollArea(self)
-        self.PanelW = QWidget(self.PanelW)
-        self.PanelL = QVBoxLayout(self.PanelW)
+        self.PanelW = QWidget(self.PanelS)
+        self.PanelL = QGridLayout(self.PanelW)
         self.PanelTitleL = QLabel(self.PanelW)
         self.LanguageNameL = QLabel(self.PanelW)
         self.LanguageValueC = QComboBox(self.PanelW)
 #           --- Call functions ---
         LanguageUi(self)
-        LanguageReloadStyle(self)
         LanguageRetranslate(self)
 #           --- Connect functions ---
 #        self.LanguageValueC.currentIndexChanged.connect()
