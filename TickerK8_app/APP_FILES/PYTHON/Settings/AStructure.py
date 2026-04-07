@@ -26,6 +26,7 @@ class SettingsW(QWidget):
         self.Path = parent.main_path
         self.LoggedUserId = parent.logged_user_id
         self.GetUserConfig = parent.database.GetUserConfig
+        self.GetUserData = parent.database.GetUserData
         self.Config = json.loads(self.GetUserConfig(self.LoggedUserId)[0])
         self.Theme = self.Config['theme']
         self.Language = self.Config['language']
@@ -67,6 +68,10 @@ class SettingsW(QWidget):
         self.UserNameValueL = QLabel(self.PanelW)
         self.UserEmailNameL = QLabel(self.PanelW)
         self.UserEmailValueL = QLabel(self.PanelW)
+        self.UserPhoneNameL = QLabel(self.PanelW)
+        self.UserPhoneValueL = QLabel(self.PanelW)
+        self.UserCountryNameL = QLabel(self.PanelW)
+        self.UserCountryValueL = QLabel(self.PanelW)
         self.UserCreateDateNameL = QLabel(self.PanelW)
         self.UserCreateDateValueL = QLabel(self.PanelW)
 #           --- Call functions ---

@@ -86,6 +86,19 @@ class database():
             conn.close()
             conn = None
 
+    def GetUserData(self, i):
+        conn = self.Connection()
+        curs = conn.cursor()
+        try:
+            curs.execute('CALL get_user_data(%s);', (i))
+            result = curs.fetchone()
+            return result
+        finally:
+            curs.close()
+            curs = None
+            conn.close()
+            conn = None
+
     def UpdateLastLogin(self, u_id:str):
         conn = self.Connection()
         curs = conn.cursor()
