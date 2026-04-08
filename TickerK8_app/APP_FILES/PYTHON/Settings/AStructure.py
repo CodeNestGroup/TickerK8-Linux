@@ -77,6 +77,7 @@ class SettingsW(QWidget):
 #           --- Call functions ---
         UserUi(self)
         UserRetranslate(self)
+        UserPageSetup(self)
 #           --- Connect  functions ---
 
     def StylePage(self):
@@ -92,6 +93,7 @@ class SettingsW(QWidget):
 #           --- Call functions ---
         StyleUi(self)
         StyleRetranslate(self)
+        StylePageSetup(self)
 #           --- Connect  functions ---
 #        self.StyleThemeDayNightValueB.clicked.connect()
 #        self.StyleThemeThemesValueC.clicked.connect()
@@ -107,6 +109,7 @@ class SettingsW(QWidget):
 #           --- Call functions ---
         SoundUi(self)
         SoundRetranslate(self)
+        SoundPageSetup(self)
 #           --- Connect  functions ---
 
     def UpdatePage(self):
@@ -138,6 +141,7 @@ class SettingsW(QWidget):
 #           --- Call functions ---
         LanguageUi(self)
         LanguageRetranslate(self)
+        LanguagePageSetup(self)
 #           --- Connect functions ---
 #        self.LanguageValueC.currentIndexChanged.connect()
         

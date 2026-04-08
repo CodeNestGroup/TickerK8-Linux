@@ -1,5 +1,6 @@
 import pathlib
 import json
+import datetime
 
 from PyQt5.QtWidgets import (
     QLabel,
@@ -20,9 +21,25 @@ def UpdatePageSetup(self):
     ChangelogL.setText(u['body'])
 
 def UserPageSetup(self):
-    d = self.GetUserData(self.LoggedUserId)
+    d = self.GetUserData(self.LoggedUserId)[0]
     self.UserNameValueL.setText(d[0])
     self.UserEmailValueL.setText(d[1])
-    self.UserPhoneValueL.setText(d[2])
-    self.UserCountryValueL.setText(d[3])
-    self.UserCreateDateValueL.setText(d[4])
+    self.UserPhoneValueL.setText(f'{d[2]} {d[3]}')
+    self.UserCountryValueL.setText(d[4])
+    self.UserCreateDateValueL.setText(f'{d[5].strftime("%Y-%m-%d %H:%M:%S")}')
+
+def StylePageSetup(self):
+
+    self.
+
+    self.StyleThemeThemesValueC.addItems("vintage_elegance_light", "vintage_elegance_dark")
+    self.StyleThemeThemesValueC.setCurrent
+    self.StyleThemeDayNightValueB.setText()
+
+def SoundPageSetup(self):
+    self.SoundValueB.setText()
+
+def LanguagePageSetup(self):
+    self.LanguageValueC.setCurrentIndex()
+
+

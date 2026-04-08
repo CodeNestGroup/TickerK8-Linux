@@ -91,7 +91,7 @@ class database():
         curs = conn.cursor()
         try:
             curs.execute('CALL get_user_data(%s);', (i))
-            result = curs.fetchone()
+            result = curs.fetchall()
             return result
         finally:
             curs.close()
