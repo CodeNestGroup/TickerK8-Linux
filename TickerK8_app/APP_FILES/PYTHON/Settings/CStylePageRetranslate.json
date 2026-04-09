@@ -1,5 +1,7 @@
 {
     "PanelTitleL": ["Style", "Wygląd"],
     "StyleThemeDayNightNameL": ["Day / Night", "Dzień / Noc"],
-    "StyleThemeThemesNameL": ["Themes", "Motywy"]
+    "StyleThemeDayNightValueB": [["Day", "Night"], ["Dzień", "Noc"]],
+    "StyleThemeThemesNameL": ["Themes", "Motywy"],
+    "StyleThemeThemesValueC": {"Vintage Elegance Light":"vintage_elegance_light", "Vintage Elegance Dark": "vintage_elegance_dark"}
 }

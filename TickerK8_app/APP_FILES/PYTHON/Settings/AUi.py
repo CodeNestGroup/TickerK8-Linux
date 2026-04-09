@@ -1,5 +1,6 @@
 #   --- Import packages ---
 import json
+import pathlib
 #   --- Import PyQt5 packages ---
 from PyQt5.QtWidgets import (
     QSizePolicy
@@ -23,19 +24,16 @@ def SettingsUi(self):
     self.NaviW.setObjectName('NaviW')
     self.NaviUserB.setObjectName('NaviUserB')
     self.NaviStyleB.setObjectName('NaviStyleB')
-    self.NaviSoundB.setObjectName('NaviSoundB')
     self.NaviUpdateB.setObjectName('NaviUpdateB')
     self.NaviLanguageB.setObjectName('NaviLanguageB')
     self.NaviExitB.setObjectName('NaviExitB')
     self.NaviUserB.setProperty('class', 'NaviB')
     self.NaviStyleB.setProperty('class', 'NaviB')
-    self.NaviSoundB.setProperty('class', 'NaviB')
     self.NaviUpdateB.setProperty('class', 'NaviB')
     self.NaviLanguageB.setProperty('class', 'NaviB')
     self.NaviExitB.setProperty('class', 'NaviB')
     self.NaviL.addWidget(self.NaviUserB)
     self.NaviL.addWidget(self.NaviStyleB)
-    self.NaviL.addWidget(self.NaviSoundB)
     self.NaviL.addWidget(self.NaviUpdateB)
     self.NaviL.addWidget(self.NaviLanguageB)
     self.NaviL.setSpacing(0)
@@ -57,7 +55,6 @@ def SettingsUi(self):
     self.NaviW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.NaviUserB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.NaviStyleB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.NaviSoundB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.NaviUpdateB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.NaviLanguageB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.NaviExitB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -67,15 +64,12 @@ def SettingsReloadStyle(self):
     m = open(f'{self.Path}/APP_FILES/PYTHON/Settings/BMain.css').read()
     c = open(f'{self.Path}/APP_FILES/PYTHON/Settings/B{self.Theme}.css').read()
     self.setStyleSheet(m+c)
-    self.NaviExitB.setIcon(QIcon(load_svg(f'{self.Path}/APP_FILES/PYTHON/Settings/DExit{t}.svg', 256, 256)))
-    self.NaviExitB.setIconSize(self.NaviExitB.size())
 
 def SettingsRetranslate(self):
     t = json.load(open(f'{self.Path}/APP_FILES/PYTHON/Settings/CNaviRetranslate.json', 'r'))
     l = self.Language
     self.NaviUserB.setText(t['NaviUserB'][l])
     self.NaviStyleB.setText(t['NaviStyleB'][l])
-    self.NaviSoundB.setText(t['NaviSoundB'][l])
     self.NaviUpdateB.setText(t['NaviUpdateB'][l])
     self.NaviLanguageB.setText(t['NaviLanguageB'][l])
     self.NaviExitB.setText(t['NaviExitB'][l])
@@ -152,12 +146,18 @@ def UserUi(self):
 def UserRetranslate(self):
     t = json.load(open(f'{self.Path}/APP_FILES/PYTHON/Settings/CUserPageRetranslate.json', 'r'))
     l = self.Language
+    d = self.UserData
     self.PanelTitleL.setText(t['PanelTitleL'][l])
     self.UserNameNameL.setText(t['UserNameNameL'][l]+':')
+    self.UserNameValueL.setText(d[0])
     self.UserEmailNameL.setText(t['UserEmailNameL'][l]+':')
+    self.UserEmailValueL.setText(d[1])
     self.UserPhoneNameL.setText(t['UserPhoneNameL'][l]+':')
+    self.UserPhoneValueL.setText(f'{d[2]} {d[3]}')
     self.UserCountryNameL.setText(t['UserCountryNameL'][l]+':')
+    self.UserCountryValueL.setText(d[4])
     self.UserCreateDateNameL.setText(t['UserCreateDateNameL'][l]+':')
+    self.UserCreateDateValueL.setText(f'{d[5].strftime("%Y-%m-%d %H:%M:%S")}')
 
 def StyleUi(self):
     self.PanelS.setObjectName('PanelS')
@@ -199,44 +199,16 @@ def StyleUi(self):
 def StyleRetranslate(self):
     t = json.load(open(f'{self.Path}/APP_FILES/PYTHON/Settings/CStylePageRetranslate.json', 'r'))
     l = self.Language
+    if self.Theme == 'vintage_elegance_light':
+        i = 0
+    elif self.Theme == 'vintage_elegance_dark':
+        i = 1
     self.PanelTitleL.setText(t['PanelTitleL'][l])
     self.StyleThemeDayNightNameL.setText(t['StyleThemeDayNightNameL'][l]+':')
+    self.StyleThemeDayNightValueB.setText(t['StyleThemeDayNightValueB'][l][i])
     self.StyleThemeThemesNameL.setText(t['StyleThemeThemesNameL'][l]+':')
-    #self.StyleThemeThemesValueC.
-
-def SoundUi(self):
-    self.PanelS.setObjectName('PanelS')
-    self.PanelW.setObjectName('PanelW')
-    self.PanelTitleL.setObjectName('PanelTitleL')
-    self.SoundNameL.setObjectName('SoundNameL')
-    self.SoundValueB.setObjectName('SoundValueB')
-    self.SoundNameL.setProperty('class', 'NameL')
-    self.SoundValueB.setProperty('class', 'ValueB')
-    self.PanelL.addWidget(self.PanelTitleL, 0, 0, 1, 100)
-    self.PanelL.addWidget(self.SoundNameL, 1, 0, 1, 25)
-    self.PanelL.addWidget(self.SoundValueB, 1, 25, 1, 25)
-    self.PanelL.setSpacing(0)
-    self.PanelL.setContentsMargins(0, 0, 0, 0)
-    for i in range(100):
-        self.PanelL.setColumnStretch(i,1)
-    self.PanelW.setLayout(self.PanelL)
-    self.Layout.addWidget(self.PanelS, 0, 20, 100, 75)
-    self.show()
-    self.PanelS.setWidgetResizable(True)
-    self.PanelS.setWidget(self.PanelW)
-    self.PanelTitleL.setAlignment(Qt.AlignCenter)
-    self.SoundNameL.setAlignment(Qt.AlignCenter)
-    self.PanelS.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.PanelW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.PanelTitleL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.SoundNameL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.SoundValueB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-
-def SoundRetranslate(self):
-    t = json.load(open(f'{self.Path}/APP_FILES/PYTHON/Settings/CSoundPageRetranslate.json', 'r'))
-    l = self.Language
-    self.PanelTitleL.setText(t['PanelTitleL'][l])
-    self.SoundNameL.setText(t['SoundNameL'][l]+':')
+    self.StyleThemeThemesValueC.addItems(dict(t['StyleThemeThemesValueC']).keys())
+    self.StyleThemeThemesValueC.setCurrentIndex(i)
 
 def UpdateUi(self):
     self.PanelS.setObjectName('PanelS')
@@ -247,11 +219,14 @@ def UpdateUi(self):
     self.UpdateChangelogNameL.setObjectName('UpdateChangelogNameL')
     self.UpdateChangelogValueS.setObjectName('UpdateChangelogValueS')
     self.UpdateChangelogValueW.setObjectName('UpdateChangelogValueW')
+    self.UpdateChangelogValueLA.setObjectName('UpdateChangelogValueLA')
     self.UpdateDescriptionNameL.setProperty('class', 'NameL')
     self.UpdateChangelogNameL.setProperty('class', 'NameL')
     self.UpdateDescriptionValueL.setProperty('class', 'ValueL')
     self.UpdateChangelogValueS.setProperty('class', 'ValueS')
     self.UpdateChangelogValueW.setProperty('class', 'ValueW')
+    self.UpdateChangelogValueLA.setProperty('class', 'ValueL')
+    self.UpdateChangelogValueL.addWidget(self.UpdateChangelogValueLA,0,0,1,1)
     self.UpdateChangelogValueL.setSpacing(0)
     self.UpdateChangelogValueL.setContentsMargins(0,0,0,0)
     self.UpdateChangelogValueW.setLayout(self.UpdateChangelogValueL)
@@ -275,6 +250,7 @@ def UpdateUi(self):
     self.UpdateDescriptionNameL.setAlignment(Qt.AlignCenter)
     self.UpdateDescriptionValueL.setAlignment(Qt.AlignCenter)
     self.UpdateChangelogNameL.setAlignment(Qt.AlignCenter)
+    self.UpdateChangelogValueLA.setWordWrap(True)
     self.PanelS.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.PanelW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.PanelTitleL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -283,13 +259,17 @@ def UpdateUi(self):
     self.UpdateChangelogNameL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.UpdateChangelogValueS.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.UpdateChangelogValueW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.UpdateChangelogValueLA.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
 def UpdateRetranslate(self):
     t = json.load(open(f'{self.Path}/APP_FILES/PYTHON/Settings/CUpdatePageRetranslate.json', 'r'))
+    p = str(pathlib.Path(__file__).resolve().parents[4])
+    u = json.load(open(p+'/updater/CONFIG/GLOBAL/changelog.json', 'r'))
     l = self.Language
     self.PanelTitleL.setText(t['PanelTitleL'][l])
     self.UpdateDescriptionNameL.setText(t['UpdateDescriptionNameL'][l]+':')
     self.UpdateChangelogNameL.setText(t['UpdateChangelogNameL'][l]+':')
+    self.UpdateChangelogValueLA.setText(u['body'])
 
 def LanguageUi(self):
     self.PanelS.setObjectName('PanelS')
@@ -324,7 +304,8 @@ def LanguageRetranslate(self):
     l = self.Language
     self.PanelTitleL.setText(t['PanelTitleL'][l])
     self.LanguageNameL.setText(t['LanguageNameL'][l]+':')
-    #self.LanguageValueC.setText(t[''][l])
+    self.LanguageValueC.addItems(t['LanguageValueC'])
+    self.LanguageValueC.setCurrentIndex(l)
 
 def load_svg(svg_path, width, height):
     renderer = QSvgRenderer(svg_path)

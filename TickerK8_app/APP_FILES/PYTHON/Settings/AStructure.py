@@ -26,8 +26,8 @@ class SettingsW(QWidget):
         self.Path = parent.main_path
         self.LoggedUserId = parent.logged_user_id
         self.GetUserConfig = parent.database.GetUserConfig
-        self.GetUserData = parent.database.GetUserData
         self.Config = json.loads(self.GetUserConfig(self.LoggedUserId)[0])
+        self.UserData = parent.database.GetUserData(self.LoggedUserId)[0]
         self.Theme = self.Config['theme']
         self.Language = self.Config['language']
 #           --- Create objects ---
@@ -37,7 +37,6 @@ class SettingsW(QWidget):
         self.NaviL = QVBoxLayout(self.NaviW)
         self.NaviUserB = QPushButton(self.NaviW)
         self.NaviStyleB = QPushButton(self.NaviW)
-        self.NaviSoundB = QPushButton(self.NaviW)
         self.NaviUpdateB = QPushButton(self.NaviW)
         self.NaviLanguageB = QPushButton(self.NaviW)
         self.NaviExitB  = QPushButton(self)
@@ -49,7 +48,6 @@ class SettingsW(QWidget):
 #           --- Connect  functions ---
         self.NaviUserB.clicked.connect(self.UserPage)
         self.NaviStyleB.clicked.connect(self.StylePage)
-        self.NaviSoundB.clicked.connect(self.SoundPage)
         self.NaviUpdateB.clicked.connect(self.UpdatePage)
         self.NaviLanguageB.clicked.connect(self.LanguagePage)
 
@@ -77,7 +75,6 @@ class SettingsW(QWidget):
 #           --- Call functions ---
         UserUi(self)
         UserRetranslate(self)
-        UserPageSetup(self)
 #           --- Connect  functions ---
 
     def StylePage(self):
@@ -93,24 +90,9 @@ class SettingsW(QWidget):
 #           --- Call functions ---
         StyleUi(self)
         StyleRetranslate(self)
-        StylePageSetup(self)
 #           --- Connect  functions ---
-#        self.StyleThemeDayNightValueB.clicked.connect()
-#        self.StyleThemeThemesValueC.clicked.connect()
-
-    def SoundPage(self):
-        self.ResetPage()
-        self.PanelS = QScrollArea(self)
-        self.PanelW = QWidget(self.PanelS)
-        self.PanelL = QGridLayout(self.PanelW)
-        self.PanelTitleL = QLabel(self.PanelW)
-        self.SoundNameL = QLabel(self.PanelW)
-        self.SoundValueB = QPushButton(self.PanelW)
-#           --- Call functions ---
-        SoundUi(self)
-        SoundRetranslate(self)
-        SoundPageSetup(self)
-#           --- Connect  functions ---
+        self.StyleThemeDayNightValueB.clicked.connect(lambda:ChangeDayNight(self))
+        self.StyleThemeThemesValueC.currentIndexChanged.connect(lambda: ChangeTheme(self))
 
     def UpdatePage(self):
         self.ResetPage()
@@ -124,10 +106,10 @@ class SettingsW(QWidget):
         self.UpdateChangelogValueS = QScrollArea(self.PanelW)
         self.UpdateChangelogValueW = QWidget(self.UpdateChangelogValueS)
         self.UpdateChangelogValueL = QGridLayout(self.UpdateChangelogValueW)
+        self.UpdateChangelogValueLA = QLabel(self.UpdateChangelogValueW)
 #           --- Call functions ---
         UpdateUi(self)
         UpdateRetranslate(self)
-        UpdatePageSetup(self)
 #           --- Connect  functions ---  
 
     def LanguagePage(self):
@@ -141,7 +123,6 @@ class SettingsW(QWidget):
 #           --- Call functions ---
         LanguageUi(self)
         LanguageRetranslate(self)
-        LanguagePageSetup(self)
 #           --- Connect functions ---
-#        self.LanguageValueC.currentIndexChanged.connect()
+        self.LanguageValueC.currentIndexChanged.connect(lambda: ChangeLanguage(self))
         
