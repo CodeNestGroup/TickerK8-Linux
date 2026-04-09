@@ -244,3 +244,15 @@ class database():
             curs = None
             conn.close()
             conn = None
+
+    def SaveSettings(self, i, t, l):
+        conn = self.Connection()
+        curs = conn.cursor()
+        try:
+            curs.execute('CALL save_settings(%s, %s, %s);', (i, t, l))
+            conn.commit()
+        finally:
+            curs.close()
+            curs = None
+            conn.close()
+            conn = None

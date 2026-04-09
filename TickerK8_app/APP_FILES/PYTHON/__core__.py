@@ -163,6 +163,7 @@ class app_controller(QWidget):
         self.settings_setup()
 
     def settings_to_main(self):
+        self.database.SaveSettings(self.logged_user_id, self.settings_widget.Config['theme'], self.settings_widget.Config['language'])
         self.settings_widget.deleteLater()
         self.settings_widget = None
         self.main_setup()
