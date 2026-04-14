@@ -19,7 +19,7 @@ from .logic import *
 from soundbutton.structure import QPushButton_sound
 #______________________________________________________________________________________________________________________
 
-class Settings_widget(QWidget):
+class UpdateSettingsW(QWidget):
     update_created = pyqtSignal()
     def __init__(self, parent):
         super().__init__()

@@ -2,20 +2,29 @@
 import sys
 import pathlib
 import json
-from PyQt5.QtWidgets import (
+
+#   --- Import PySide2 ---
+from PySide2.QtWidgets import (
     QApplication,
     QWidget,
     QVBoxLayout,
     QDesktopWidget,
     QMainWindow
     )
-from PyQt5.QtCore import (
+from PySide2.QtCore import (
     QRect
     )
-from PyQt5.QtGui import (
+from PySide2.QtGui import (
     QFontDatabase,
     QFont
     )
+#   --- Import main modules ---
+from .package.Update.Structure import UpdateW
+from .package.UpdateSettings.Structure import UpdateSettingsW
+
+
+
+
 from login.structure import Login_widget
 from register.structure import Register_widget
 from login_config.p_structure import Login_configuration_widget
@@ -24,41 +33,64 @@ from Main.AStructure import MainW
 from Settings.AStructure import SettingsW
 from statistics.structure import Statistics_widget
 from chart.structure import Chart_widget
+#   --- Import backend
 from db.connection import database
-#______________________________________________________________________________________________________________________
 
-class app_controller(QWidget):
+
+#   --- AppWindow ---
+
+class AppWindow(QWidget):
     def __init__(self):
         super().__init__()
-        self.main_path = str(pathlib.Path(__file__).resolve().parents[2])
-        self.setObjectName('window')
-        self.layout = QVBoxLayout(self)
-        self.layout.setSpacing(0)
-        self.layout.setContentsMargins(0,0,0,0)
-        self.setLayout(self.layout)
-        self.login_widget = None
-        self.logged_user_id = None
-        self.logged_user_sub = None
-        self.register_widget = None
-        self.login_configuration_widget = None
-        self.recover_password_widget = None
-        self.main_widget = None
-        self.settings_widget = None
-        self.statistics_widget = None
-        self.chart_widget = None
-        self.database = database()
-        self.screen = QApplication.primaryScreen()
-        self.geometry = self.screen.availableGeometry()
-        self.pos_x = int(self.geometry.width()//4)
-        self.pos_y = int(self.geometry.height()//12)
-        self.width = int(self.geometry.width()//2)
-        self.height = int(self.geometry.height()//1.25)
-        self.login_setup()
-#______________________________________________________________________________________________________________________
+#           --- AppWindow Ui ---
+        self.setObjectName('AppWindow')
+        self.Layout = QVBoxLayout(self)
+        self.Layout.setSpacing(0)
+        self.Layout.setContentsMargins(0,0,0,0)
+        self.setLayout(self.Layout)
+        self.OpenedW = None
+#           --- App default varaibles ---
+        self.Path = str(pathlib.Path(__file__).resolve().parents[2])
+        self.LoggedUserId = None
+        self.Screen = QApplication.screen()
+        self.Geometry = self.Screen.availableGeometry()
+#           --- Database Class  ---
+        self.Database = Database()
+#       --- Func for opens windows ---
 
-    def login_setup(self):
+    def Reset(self):
+        if self.OpenedW:
+            self.OpenedW.deleteLater()
+            self.OpenedW = None
+
+    def UpdateOpen(self):
+        self.Reset()
+        self.OpenedW = UpdateW(self)
+        self.Layout.addWidget(self.OpenedW)
+        x, y, w, h = self.Geometry.width()//4, self.Geometry.height()//4, self.Geometry.width()//2, self.Geometry.height()//2
+        self.setGeometry(x, y, w, h)
+        # Przekazanie funkcji do otwietania changelog, update tylko wtedy kiedy najnowszy jest nowszy niż oobecna wersja
+
+    def UpdateSettingsOpen(self):
+        self.Reset()
+        self.OpenedW = UpdateSettingsW(self)
+        self.Layout.addWidget(self.OpenedW)
+        x, y, w, h = self.Geometry.width()//4, self.Geometry.height()//4, self.Geometry.width()//2, self.Geometry.height()//2
+        self.setGeometry(x, y, w, h)
+        self.OpenedW.ExitB.clicked.connect(self.UpdateOpen)
+
+    def UpdateChangelogOpen(self):
+        self.Reset()
+        self.OpenedW = UpdateChangelogW(self)
+        self.Layout.addWidget(self.OpenedW)
+        x, y, w, h = self.Geometry.width()//4, self.Geometry.height()//4, self.Geometry.width()//2, self.Geometry.height()//2
+        self.setGeometry(x, y, w, h)
+        self.OpenedW.ExitB.clicked.connect(self.UpdateOpen)
+
+
+    def LoginOpen(self):
         self.logged_user_id = None
-        self.logged_user_sub = None
+
         self.login_widget = Login_widget(self)
         self.layout.addWidget(self.login_widget)
         self.setGeometry(QRect(self.pos_x, self.pos_y, self.width, self.height))
@@ -81,12 +113,6 @@ class app_controller(QWidget):
         self.login_configuration_widget.accept_button.clicked.connect(self.login_configuration_controller)
         self.login_configuration_widget.exit_button.clicked.connect(self.login_configuration_to_login)
     
-    def recover_password_setup(self):
-        self.recover_password_widget = Recover_password_widget(self)
-        self.layout.addWidget(self.recover_password_widget)
-        self.setGeometry(QRect(self.pos_x, self.pos_y, self.width, self.height))
-        self.recover_password_widget.recover_password_exit_button.clicked.connect(self.forgot_password_to_login)
-    
     def main_setup(self):
         self.main_widget = MainW(self)
         self.layout.addWidget(self.main_widget)
@@ -101,21 +127,6 @@ class app_controller(QWidget):
         self.setGeometry(self.geometry)
         self.showMaximized()
         self.settings_widget.NaviExitB.clicked.connect(self.settings_to_main)
-    
-    def statistics_setup(self):
-        self.statistics_widget = Statistics_widget(self)
-        self.layout.addWidget(self.statistics_widget)
-        self.setGeometry(self.geometry)
-        self.showMaximized()
-        self.statistics_widget.main_exit_button.clicked.connect(self.statistics_to_main)
-    
-    def chart_setup(self):
-        self.chart_widget = Chart_widget(self)
-        self.layout.addWidget(self.chart_widget)
-        self.setGeometry(self.geometry)
-        self.showMaximized()
-        self.chart_widget.top_exit_button.clicked.connect(self.chart_to_main)
-#______________________________________________________________________________________________________________________
     
     def login_to_register(self):
         self.login_widget.deleteLater()
@@ -136,11 +147,6 @@ class app_controller(QWidget):
         self.login_configuration_widget.deleteLater()
         self.login_configuration_widget = None
         self.login_setup()
-
-    def login_to_forgot_password(self):
-        self.login_widget.deleteLater()
-        self.login_widget = None
-        self.recover_password_setup()
 
     def forgot_password_to_login(self):
         self.recover_password_widget.deleteLater()
@@ -168,25 +174,6 @@ class app_controller(QWidget):
         self.settings_widget = None
         self.main_setup()
 
-    def main_to_statistics(self):
-        self.main_widget.deleteLater()
-        self.main_widget = None
-        self.statistics_setup()
-
-    def statistics_to_main(self):
-        self.statistics_widget.deleteLater() 
-        self.statistics_widget = None
-        self.main_setup()
-
-    def main_to_chart(self):
-        self.main_widget.deleteLater()
-        self.main_widget = None 
-        self.chart_setup()
-
-    def chart_to_main(self):
-        self.chart_widget.deleteLater()
-        self.chart_widget = None 
-        self.main_setup()
 
 #   --- Modules functions  ---
 
@@ -238,18 +225,17 @@ class app_controller(QWidget):
         self.database.LoginConfiguration(self.logged_user_id)
         self.login_configuration_to_login()
             
-#______________________________________________________________________________________________________________________
 
 def set_font():
     font_id = QFontDatabase.addApplicationFont(str(pathlib.Path(__file__).resolve().parents[3])+'/TickerK8_app/APP_FILES/STYLE/FONTS/NotoSerif-VariableFont_wdth,wght.ttf')
     font_families = QFontDatabase.applicationFontFamilies(font_id) 
     return QFont(font_families[0])
-#______________________________________________________________________________________________________________________
 
 if __name__ == '__main__':
     application = QApplication(sys.argv)
     application.setFont(set_font())
-    controller = app_controller()
-    controller.setHidden(False) 
-    sys.exit(application.exec_())
+    AppW = AppWindow()
+    AppW.show()
+    AppW.UpdateOpen()
+    sys.exit(application.exec())
     

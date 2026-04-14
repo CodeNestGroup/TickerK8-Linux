@@ -1,38 +1,35 @@
-""" Import packages """
-import pathlib 
-""" Import PyQt5 packages """
-from PyQt5.QtWidgets import (
+#   --- Import PySide2
+from PySide2.QtWidgets import (
     QWidget,
     QGridLayout
 )
-from PyQt5.QtCore import (
+from PySide2.QtCore import (
     Qt
 )
-""" Import main modules """
-from .ui import (
-    main_ui,
-    main_reload_style
+#   --- Import Update modules ---
+from .Ui import (
+    UpdateUi,
+    UpdateReloadStyle
  )
-from .logic import *
-""" Import custom modules """
-from soundbutton.structure import QPushButton_sound
-from main_changelog.structure import Changelog_widget
-#______________________________________________________________________________________________________________________
+from .Logic import *
 
-class Main_widget(QWidget):
+
+#   --- UpdateW ---
+
+class UpdateW(QWidget):
     def __init__(self, parent):
-        super().__init__()
+        super().__init__(parent)
         self.setAttribute(Qt.WA_StyledBackground, True)
-        self.setParent(parent)
+        self.Path = parent.Path
+
         """" Set paths, file name """
-        self.main_path = str(pathlib.Path(__file__).resolve().parents[2])
+        
         self.last_ping = False
         self.info_label = None
         self.download_button = None
         self.controller_download_thread = None
         self.open_button = None
         self.get_releases_thread = None 
-        self.controller_download_thread = None
         """ Create objects """
         self.layout = QGridLayout(self)
         self.changelog_widget = Changelog_widget(self)
