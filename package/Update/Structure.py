@@ -28,7 +28,7 @@ class UpdateW(QWidget):
         self.controller_download_thread = None
         self.open_button = None
         self.get_releases_thread = None 
-        """ Create objects """
+#           --- Create objects ---
         self.layout = QGridLayout(self)
         self.changelog_widget = Changelog_widget(self)
         self.settings_button = QPushButton_sound(self)
