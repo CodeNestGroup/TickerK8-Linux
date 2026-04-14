@@ -21,8 +21,6 @@ class UpdateW(QWidget):
         super().__init__(parent)
         self.setAttribute(Qt.WA_StyledBackground, True)
         self.Path = parent.Path
-
-        """" Set paths, file name """
         
         self.last_ping = False
         self.info_label = None
