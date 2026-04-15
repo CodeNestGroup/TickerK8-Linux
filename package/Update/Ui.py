@@ -22,7 +22,7 @@ from PyQt5.QtSvg import (
 from soundbutton.structure import QPushButton_sound
 #______________________________________________________________________________________________________________________
 
-def main_ui(self):
+def UpdateUi(self):
     """ Set object name """
     self.setObjectName('main_widget')
     self.settings_button.setObjectName('settings_button')

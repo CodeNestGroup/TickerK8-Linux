@@ -1,6 +1,7 @@
 #   --- Import PySide2
 from PySide2.QtWidgets import (
     QWidget,
+    QPushButton,
     QGridLayout
 )
 from PySide2.QtCore import (
@@ -22,20 +23,17 @@ class UpdateW(QWidget):
         self.setAttribute(Qt.WA_StyledBackground, True)
         self.Path = parent.Path
         
-        self.last_ping = False
-        self.info_label = None
-        self.download_button = None
-        self.controller_download_thread = None
-        self.open_button = None
-        self.get_releases_thread = None 
+        self.LastPing = False
+        self.ControllerDownloadT = None
+        self.GetReleasesT = None
 #           --- Create objects ---
-        self.layout = QGridLayout(self)
-        self.changelog_widget = Changelog_widget(self)
-        self.settings_button = QPushButton_sound(self)
-        self.instagram_button = QPushButton_sound(self)
-        self.github_button = QPushButton_sound(self)
-        self.discord_button = QPushButton_sound(self)
-        """ Call functions """
+        self.Layout = QGridLayout(self)
+       
+        self.SettingsB = QPushButton(self)
+        self.InstagramB = QPushButton(self)
+        self.GithubB = QPushButton(self)
+        self.DiscordB = QPushButton(self)
+#           --- Call functions ---
         main_ui(self)
         main_reload_style(self)
         main_no_connect(self)

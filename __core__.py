@@ -69,7 +69,6 @@ class AppWindow(QWidget):
         self.Layout.addWidget(self.OpenedW)
         x, y, w, h = self.Geometry.width()//4, self.Geometry.height()//4, self.Geometry.width()//2, self.Geometry.height()//2
         self.setGeometry(x, y, w, h)
-        # Przekazanie funkcji do otwietania changelog, update tylko wtedy kiedy najnowszy jest nowszy niż oobecna wersja
 
     def UpdateSettingsOpen(self):
         self.Reset()
