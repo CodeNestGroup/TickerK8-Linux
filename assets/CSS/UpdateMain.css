@@ -1,17 +1,26 @@
-#main_widget{
+#UpdateW{
     border: 0;
 }
-.icon_label{
+#ChangelogS{
     border: 0;
 }
-.button{
+#ChangelogW{
+    border: 0;
+}
+#ChangelogIconL{
+    border: 0;
+}
+#ChangelogMessageL{
+    border: 0;
+}
+.ChangelogB{
     border: 0;
     font-size: 16px;
     font-weight: 600;
     letter-spacing: 0.3em;
     text-transform: uppercase;
 }
-#info_label{
+.Button{
     border: 0;
     font-size: 16px;
     font-weight: 600;

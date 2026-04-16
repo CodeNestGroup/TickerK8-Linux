@@ -2,7 +2,8 @@
 from PySide2.QtWidgets import (
     QWidget,
     QPushButton,
-    QGridLayout
+    QGridLayout,
+    QVBoxLayout
 )
 from PySide2.QtCore import (
     Qt,
@@ -19,13 +20,15 @@ class UpdateW(QWidget):
         super().__init__(parent)
         self.setAttribute(Qt.WA_StyledBackground, True)
         self.Path = parent.Path
-        self.Theme = parent.Config['theme']
-        self.Language = parent.Config['language']
+        self.Theme = parent.Config_local['theme']
+        self.Language = parent.Config_local['language']
         self.LastPing = False
         self.ControllerDownloadT = None
         self.GetReleasesT = None
 #           --- Create objects ---
         self.Layout = QGridLayout(self)
+        self.ChaneglogW = None
+        self.ChaneglogS = None
         self.SettingsB = QPushButton(self)
         self.InstagramB = QPushButton(self)
         self.GithubB = QPushButton(self)
@@ -38,7 +41,16 @@ class UpdateW(QWidget):
         self.GithubB.clicked.connect(lambda: open_link('https://github.com/CodeNestGroup'))
         self.DiscordB.clicked.connect(lambda: open_link('https://discord.gg/twZ3SNcC'))
 
+    def ChangelogReset(self):
+        if self.ChaneglogW:
+            self.ChaneglogW.deleteLater()
+            self.ChaneglogW = None
+        if self.ChangelogS:
+            self.ChaneglogS.deleteLater()
+            self.ChaneglogS = None
+
     def ChangelogNoConnection(self):
+        self.ChangelogReset()
 #           --- Create objects ---
         self.ChangelogW = QWidget(self)
         self.ChangelogL = QGridLayout(self.ChangelogW)
@@ -49,6 +61,7 @@ class UpdateW(QWidget):
         ChangelogNoConnectionRetranslate(self)
 
     def ChangelogLoading(self):
+        self.ChangelogReset()
 #           --- Create objects ---
         self.ChangelogW = QWidget(self)
         self.ChangelogL = QGridLayout(self.ChangelogW)
@@ -59,10 +72,15 @@ class UpdateW(QWidget):
 #           --- Call functions ---
         ChangelogLoadingUi(self)
         ChangelogLoadingRetranslate(self)
+#           --- Connect functions ---
+        self.ChangelogDotsT
 
     def ChangelogConnection(self):
+        self.ChangelogReset()
 #           --- Create objects ---
-        
+        self.ChangelogS = QScrollArea(self)
+        self.ChangelogW = QWidget(self.ChangelogS)
+        self.ChangelogL = QVBoxLayout(self.ChangelogW)
 #           --- Call functions ---
         ChangelogConnctionUi(self)
-        ChangelogConnctionRetranslate(self)
+        ChangelogConnectionSetup(self)

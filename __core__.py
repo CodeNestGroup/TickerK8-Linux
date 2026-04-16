@@ -22,17 +22,6 @@ from PySide2.QtGui import (
 from .package.Update.Structure import UpdateW
 from .package.UpdateSettings.Structure import UpdateSettingsW
 
-
-
-
-from login.structure import Login_widget
-from register.structure import Register_widget
-from login_config.p_structure import Login_configuration_widget
-from recover_password.structure import Recover_password_widget
-from Main.AStructure import MainW 
-from Settings.AStructure import SettingsW
-from statistics.structure import Statistics_widget
-from chart.structure import Chart_widget
 #   --- Import backend
 from db.connection import database
 
@@ -51,7 +40,7 @@ class AppWindow(QWidget):
         self.OpenedW = None
 #           --- App default varaibles ---
         self.Path = str(pathlib.Path(__file__).resolve().parents[2])
-        self.Config_offline = json.load(open(f'{self.Path}/assets/JSON/ConfigOffline.json', 'r', encoding='utf-8'))
+        self.Config_local = json.load(open(f'{self.Path}/assets/JSON/ConfigOffline.json', 'r', encoding='utf-8'))
         self.Screen = QApplication.screen()
         self.Geometry = self.Screen.availableGeometry()
 #           --- Database Class  ---

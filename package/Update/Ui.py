@@ -61,16 +61,71 @@ def UpadateReloadStyle(self):
     self.DiscordB.setIconSize(self.DiscordB.size())
 
 def ChangelogNoConnectionUi(self):
+    self.ChangelogW.setObjectName('ChangelogW')
+    self.ChangelogIconL.setObjectName('ChangelogIconL')
+    self.ChangelogMessageL.setObjectName('ChangelogMessageL')
+    self.ChangelogL.addWidget(self.ChangelogIconL, 30,0, 30, 100)
+    self.ChangelogL.addWidget(self.ChangelogMessageL, 62, 0, 10, 100)
+    self.ChangelogL.setSpacing(0)
+    self.ChangelogL.setContentsMargins(0,0,0,0)
+    for enc in range(100):
+        self.ChangelogL.setRowStretch(enc, 1)
+        self.ChangelogL.setColumnStretch(enc, 1)
+    self.ChangelogW.setLayout(self.ChangelogL)
+    self.Layout.addWidget(self.ChangelogW, 0, 0, 100, 50)
+    self.ChangelogW.show()
+    self.ChangelogIconL.setAlignment(Qt.AlignCenter)
+    self.ChangelogMessageL.setAlignment(Qt.AlignCenter)
+    self.ChangelogW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.ChangelogIconL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.ChangelogMessageL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
 def ChangelogNoConnectionRetranslate(self):
+    l = self.Language
+    t = json.load(open(f'{self.Path}/assets/UpdateTranslate.json', 'r', encoding='utf-8'))
+    self.ChangelogMessageL.setText(t['ChangelogMessageL'][0][l])
 
 def ChangelogLoadingUi(self):
+    self.ChangelogW.setObjectName('ChangelogW')
+    self.ChangelogIconL.setObjectName('ChangelogIconL')
+    self.ChangelogMessageL.setObjectName('ChangelogMessageL')
+    self.ChaneglogDotsL.setObjectName('ChaneglogDotsL')
+    self.ChangelogL.addWidget(self.ChangelogIconL, 30,0, 30, 100)
+    self.ChangelogL.addWidget(self.ChangelogMessageL, 62, 0, 10, 50)
+    self.ChaneglogL.addWidget(self.ChaneglogDotsL, 62, 50, 10, 50)
+    self.ChangelogL.setSpacing(0)
+    self.ChangelogL.setContentsMargins(0,0,0,0)
+    for enc in range(100):
+        self.ChangelogL.setRowStretch(enc, 1)
+        self.ChangelogL.setColumnStretch(enc, 1)
+    self.ChangelogW.setLayout(self.ChangelogL)
+    self.Layout.addWidget(self.ChangelogW, 0, 0, 100, 50)
+    self.ChangelogW.show()
+    self.ChangelogIconL.setAlignment(Qt.AlignCenter)
+    self.ChangelogMessageL.setAlignment(Qt.AlignCenter)
+    self.ChaneglogDotsL.setAlignment(Qt.AlignLeft)
+    self.ChangelogW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.ChangelogIconL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.ChangelogMessageL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.ChaneglogDotsL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+
 
 def ChangelogLoadingRetranslate(self):
+    l = self.Language
+    t = json.load(open(f'{self.Path}/assets/UpdateTranslate.json', 'r', encoding='utf-8'))
+    self.ChangelogMessageL.setText(t['ChangelogMessageL'][1][l])
 
 def ChangelogConnctionUi(self):
-
-def ChangelogConnctionRetranslate(self):
+    self.ChangelogS.setObjectName('ChangelogS')
+    self.ChangelogW.setObjectName('ChangelogW')
+    self.ChangelogL.setSpacing(0)
+    self.ChaneglogL.setContentsMargins(0,0,0,0)
+    self.ChangelogW.setLayout(self.ChaneglogL)
+    self.ChangelogS.show()
+    self.ChangelogS.setWidgetResizable(True)
+    self.ChangelogS.setWidget(self.ChaneglogW)
+    self.ChangelogS.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.ChangelogW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
 def load_svg(svg_path, width, height):
     renderer = QSvgRenderer(svg_path) 

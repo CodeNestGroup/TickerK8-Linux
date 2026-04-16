@@ -1,6 +1,6 @@
-""" Import packages """
+#   --- Import packages ---
 import json
-""" Import PyQt5 packages """
+#   --- Import PyQt5 packages ---
 from PyQt5.QtWidgets import (
     QSizePolicy
 )
@@ -9,61 +9,50 @@ from PyQt5.QtCore import (
     QSize
 )
 from PyQt5.QtGui import (
-    QPixmap,
     QIcon,
+    QPixmap,
     QPainter
 )
 from PyQt5.QtSvg import (
     QSvgRenderer
 )
-#______________________________________________________________________________________________________________________
 
-def settings_ui(self):
-    """ Set object name """
-    self.setObjectName('settings_widget')
-    self.menu_scroll.setObjectName('menu_scroll')
-    self.menu_scroll_widget.setObjectName('menu_scroll_widget')
-    self.menu_theme_button.setObjectName('menu_theme_button')
-    self.menu_sound_button.setObjectName('menu_sound_button')
-    self.menu_update_button.setObjectName('menu_update_button')
-    self.menu_language_button.setObjectName('menu_language_button')
-    self.exit_button.setObjectName('exit_button')
-    """ Set property """
-    self.menu_theme_button.setProperty('class', 'menu_buttons')
-    self.menu_sound_button.setProperty('class', 'menu_buttons')
-    self.menu_update_button.setProperty('class', 'menu_buttons')
-    self.menu_language_button.setProperty('class', 'menu_buttons')
-    """ Set layout """
-    self.layout.addWidget(self.menu_scroll, 0, 0, 90, 30)
-    self.layout.addWidget(self.exit_button, 90, 0, 10, 30)
-    self.layout.setSpacing(0)
-    self.layout.setContentsMargins(0,0,0,0)
-    for enc in range(100):
-        self.layout.setRowStretch(enc, 1)
-        self.layout.setColumnStretch(enc, 1)
-    self.setLayout(self.layout)
-    self.menu_scroll_layout.addWidget(self.menu_theme_button)
-    self.menu_scroll_layout.addWidget(self.menu_sound_button)
-    self.menu_scroll_layout.addWidget(self.menu_update_button)
-    self.menu_scroll_layout.addWidget(self.menu_language_button)
-    self.menu_scroll_layout.setSpacing(0)
-    self.menu_scroll_layout.setContentsMargins(0,0,0,0)
-    self.menu_scroll_widget.setLayout(self.menu_scroll_layout)
-    """ Set widget """
-    self.setHidden(False)
-    self.menu_scroll.setWidgetResizable(True)
-    self.menu_scroll.setWidget(self.menu_scroll_widget)
-    self.menu_scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-    """ Set label """
-    """ Set button """
-    """ Set size """
+def UpdateSettingsUi(self):
+    self.setObjectName('SettingsW')
+    self.NaviS.setObjectName('NaviS')
+    self.NaviW.setObjectName('NaviW')
+    self.NaviStyleB.setObjectName('NaviStyleB')
+    self.NaviUpdateB.setObjectName('NaviUpdateB')
+    self.NaviLanguageB.setObjectName('NaviLanguageB')
+    self.NaviExitB.setObjectName('NaviExitB')
+    self.NaviStyleB.setProperty('class', 'NaviB')
+    self.NaviUpdateB.setProperty('class', 'NaviB')
+    self.NaviLanguageB.setProperty('class', 'NaviB')
+    self.NaviExitB.setProperty('class', 'NaviB')
+    self.NaviL.addWidget(self.NaviStyleB)
+    self.NaviL.addWidget(self.NaviUpdateB)
+    self.NaviL.addWidget(self.NaviLanguageB)
+    self.NaviL.setSpacing(0)
+    self.NaviL.setContentsMargins(0,0,0,0)
+    self.NaviW.setLayout(self.NaviL)
+    self.Layout.addWidget(self.NaviS, 0, 0, 90, 20)
+    self.Layout.addWidget(self.NaviExitB, 90, 0, 10, 20)
+    self.Layout.setSpacing(0)
+    self.Layout.setContentsMargins(0,0,0,0)
+    for i in range(100):
+        self.Layout.setRowStretch(i, 1)
+        self.Layout.setColumnStretch(i, 1)
+    self.setLayout(self.Layout)
+    self.show()
+    self.NaviS.setWidgetResizable(True)
+    self.NaviS.setWidget(self.NaviW)
     self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.menu_scroll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.menu_theme_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.menu_sound_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.menu_update_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.menu_language_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.exit_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.NaviS.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.NaviW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.NaviStyleB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.NaviUpdateB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.NaviLanguageB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.NaviExitB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
 def settings_reload_style(self):
     g = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
