@@ -51,7 +51,7 @@ class AppWindow(QWidget):
         self.OpenedW = None
 #           --- App default varaibles ---
         self.Path = str(pathlib.Path(__file__).resolve().parents[2])
-        self.LoggedUserId = None
+        self.Config_offline = json.load(open(f'{self.Path}/assets/JSON/ConfigOffline.json', 'r', encoding='utf-8'))
         self.Screen = QApplication.screen()
         self.Geometry = self.Screen.availableGeometry()
 #           --- Database Class  ---
