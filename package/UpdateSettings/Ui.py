@@ -54,47 +54,20 @@ def UpdateSettingsUi(self):
     self.NaviLanguageB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.NaviExitB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
-def settings_reload_style(self):
-    g = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
-    t = g['theme']
-    self.setStyleSheet(open(str(self.main_path+'/STYLE/CSS/settings/'+t+'.css')).read())
-    self.exit_button.setIcon(QIcon(load_svg(str(self.main_path+'/STYLE/IMG/icons/settings/exit_vintage_elegance_d.svg'), 256, 256)))
+def UpdateSettingsReloadStyle(self):
+    t = self.Theme
+    m = open(f'{self.Path}/assets/CSS/UpdateSettingsMain.css').read()
+    c = open(f'{self.Path}/assets/CSS/UpdateSettings{t}.css').read()
+    self.setStyleSheet(m+c)
+    self.NaviExitB.setIcon(QIcon(load_svg(f'/assets/ICON/Exitvintage_elegance_d.svg', 256, 256)))
 
-def settings_retranslate(self):
+def UpdareSettingsRetranslate(self):
     t = json.load(open(self.main_path+'/CONFIG/settings/menu_translate.json', 'r'))
     l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
     self.menu_theme_button.setText(t['menu_theme_button'][l])
     self.menu_sound_button.setText(t['menu_sound_button'][l])
     self.menu_update_button.setText(t['menu_update_button'][l])
     self.menu_language_button.setText(t['menu_language_button'][l])
-#______________________________________________________________________________________________________________________
-
-def sub_menu_ui(self):
-    """ Set object name """
-    self.sub_menu_scroll.setObjectName('sub_menu_scroll')
-    self.sub_menu_widget.setObjectName('sub_menu_widget')
-    self.title_label.setObjectName('title_label')
-    """ Set layout """
-    self.layout.addWidget(self.sub_menu_scroll, 0, 30, 100, 70)
-    self.sub_menu_layout.addWidget(self.title_label, 0, 0, 10, 100)
-    self.sub_menu_layout.setSpacing(0)
-    self.sub_menu_layout.setContentsMargins(0,0,0,0)
-    for enc in range(100):
-        self.sub_menu_layout.setRowStretch(enc, 1)
-        self.sub_menu_layout.setColumnStretch(enc, 1)
-    self.sub_menu_widget.setLayout(self.sub_menu_layout)
-    """ Set widget """
-    self.sub_menu_scroll.setWidgetResizable(True)
-    self.sub_menu_scroll.setWidget(self.sub_menu_widget)
-    self.sub_menu_scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-    """ Set label """
-    self.title_label.setAlignment(Qt.AlignCenter)
-    """ Set button """
-    """ Set size """
-    self.sub_menu_scroll.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.sub_menu_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-#______________________________________________________________________________________________________________________
 
 def theme_ui(self):
     """ Set object name """
