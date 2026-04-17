@@ -23,8 +23,8 @@ class UpdateW(QWidget):
         self.setAttribute(Qt.WA_StyledBackground, True)
         self.Path = parent.Path
         self.LoginOpenF = parent.LoginOpen
-        self.Theme = parent.Config_local['theme']
-        self.Language = parent.Config_local['language']
+        self.Theme = parent.ConfigOffline['theme']
+        self.Language = parent.ConfigOffline['language']
         self.PingT = QThread(self)
         parent.PingO.moveToThread(self.PingT)
         self.PingT.started.connect(parent.PingO)

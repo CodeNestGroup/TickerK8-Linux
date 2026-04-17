@@ -42,7 +42,7 @@ class AppWindow(QWidget):
         self.OpenedW = None
 #           --- App default varaibles ---
         self.Path = str(pathlib.Path(__file__).resolve().parents[2])
-        self.Config_local = json.load(open(f'{self.Path}/assets/JSON/ConfigOffline.json', 'r', encoding='utf-8'))
+        self.ConfigOffline = json.load(open(f'{self.Path}/assets/JSON/ConfigOffline.json', 'r', encoding='utf-8'))
         self.Screen = QApplication.screen()
         self.Geometry = self.Screen.availableGeometry()
 #           --- Database Class  ---
@@ -61,6 +61,7 @@ class AppWindow(QWidget):
         self.Layout.addWidget(self.OpenedW)
         x, y, w, h = self.Geometry.width()//4, self.Geometry.height()//4, self.Geometry.width()//2, self.Geometry.height()//2
         self.setGeometry(x, y, w, h)
+        self.ConfigOffline = json.load(open(f'{self.Path}/assets/JSON/ConfigOffline.json', 'r', encoding='utf-8'))
 
     def UpdateSettingsOpen(self):
         self.Reset()
@@ -77,7 +78,6 @@ class AppWindow(QWidget):
         x, y, w, h = self.Geometry.width()//4, self.Geometry.height()//4, self.Geometry.width()//2, self.Geometry.height()//2
         self.setGeometry(x, y, w, h)
         self.OpenedW.ExitB.clicked.connect(self.UpdateOpen)
-
 
     def LoginOpen(self):
         self.logged_user_id = None

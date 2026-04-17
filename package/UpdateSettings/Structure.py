@@ -23,8 +23,9 @@ class UpdateSettingsW(QWidget):
         super().__init__()
         self.setAttribute(Qt.WA_StyledBackground, True)
         self.Path = parent.Path
-        self.Theem = parent.Config_local['theme']
-        self.Language = parent.Config_local['language']
+        self.ConfigOffline = parent.ConfigOffline
+        self.Theme = parent.ConfigOffline['theme']
+        self.Language = parent.ConfigOffline['language']
 #           --- Create objects ---
         self.Layout = QGridLayout(self)
         self.NaviS = QScrollArea(self)
@@ -43,6 +44,7 @@ class UpdateSettingsW(QWidget):
         self.NaviStyleB.clicked.connect(self.StylePage)
         self.NaviUpdateB.clicked.connect(self.UpdatePage)
         self.NaviLanguageB.clicked.connect(self.LanguagePage)
+        self.NaviExitB.clicked.connect(lambda: SaveConfig(self))
 
     def ResetPage(self):
         if self.PanelS:

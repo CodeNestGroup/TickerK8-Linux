@@ -104,7 +104,6 @@ class ControllerDownload(QThread):
         super().__init__(parent)
         self.BackupPath = 'Dorobić ścieżke do bezpiecznej lokalizacji'
         self.Path = parent.Path
-        self.Capacity = self.SetSpeed(json.load(open(self.Path+'/assets/JSON/ConfigOffline.json', 'r', encoding='utf-8'))['capacity'])
         self.UpdateFolder = None
         self.UpdateJsonFileList = None
         self.ZipBuffer = io.BytesIO()
@@ -160,7 +159,6 @@ class ControllerDownload(QThread):
                             continue
                         self.ZipBuffer.write(chunk)
                         d = len(chunk)
-                        time.sleep(len(chunk) / self.Capacity*1024)
                     break
                 except (requests.RequestException, ConnectionError, TimeoutError):
                     self.Progress.emit(self.t['InfoL'][0][self.l])
@@ -261,17 +259,4 @@ class ControllerDownload(QThread):
         while chunk := f.read(4096):
             sha256.update(chunk)
         return sha256.hexdigest()
-
-    def SetSpeed(self, i):
-        c = 0 
-        if i == 0:
-            c = 500
-        elif i == 1:
-            c = 1000
-        elif i == 2:
-            c = 2000
-        elif i == 3:
-            c = 5000
-        elif i == 4:
-            c = float('inf')
-        return c
+        

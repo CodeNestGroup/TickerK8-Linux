@@ -62,181 +62,165 @@ def UpdateSettingsReloadStyle(self):
     self.NaviExitB.setIcon(QIcon(load_svg(f'/assets/ICON/Exit{t}.svg', 256, 256)))
 
 def UpdareSettingsRetranslate(self):
-    t = json.load(open(self.main_path+'/CONFIG/settings/menu_translate.json', 'r'))
-    l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
-    self.menu_theme_button.setText(t['menu_theme_button'][l])
-    self.menu_sound_button.setText(t['menu_sound_button'][l])
-    self.menu_update_button.setText(t['menu_update_button'][l])
-    self.menu_language_button.setText(t['menu_language_button'][l])
+    t = json.load(open(self.Path+'/assets/JSON/SettingsNaviTranslate.json', 'r', encoding='utf-8'))
+    l = self.Language
+    self.NaviStyleB.setText(t['NaviStyleB'][l])
+    self.NaviUpdateB.setText(t['NaviUpdateB'][l])
+    self.NaviLanguageB.setText(t['NaviLanguageB'][l])
 
-def theme_ui(self):
-    """ Set object name """
-    self.day_night_label.setObjectName('day_night_label')
-    self.day_night_button.setObjectName('day_night_button')
-    self.list_label.setObjectName('list_label')
-    self.list_combobox.setObjectName('list_combobox')
-    """ Set property """
-    self.day_night_label.setProperty('class', 'name_label')
-    self.day_night_button.setProperty('class', 'value_button')
-    self.list_label.setProperty('class', 'name_label')
-    self.list_combobox.setProperty('class', 'value_combobox')
-    """ Set layout """
-    self.sub_menu_layout.addWidget(self.day_night_label, 20, 0, 30, 50)
-    self.sub_menu_layout.addWidget(self.day_night_button, 20, 50, 30, 50)
-    self.sub_menu_layout.addWidget(self.list_label, 60, 0, 30, 50)
-    self.sub_menu_layout.addWidget(self.list_combobox, 60, 50, 30, 50)
-    """ Set widget """
-    """ Set label """
-    self.day_night_label.setAlignment(Qt.AlignCenter)
-    self.list_label.setAlignment(Qt.AlignCenter)
-    """ Set button """
-    """ Set size """
-    self.day_night_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.day_night_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.list_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.list_combobox.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+def StylePageUi(self):
+    self.PanelS.setObjectName('PanelS')
+    self.PanelW.setObjectName('PanelW')
+    self.PanelTitleL.setObjectName('PanelTitleL')
+    self.StyleThemeDayNightNameL.setObjectName('StyleThemeDayNightNameL')
+    self.StyleThemeDayNightValueB.setObjectName('StyleThemeDayNightValueB')
+    self.StyleThemeThemesNameL.setObjectName('StyleThemeThemesNameL')
+    self.StyleThemeThemesValueC.setObjectName('StyleThemeThemesValueC')
+    self.StyleThemeDayNightNameL.setProperty('class', 'NameL')
+    self.StyleThemeThemesNameL.setProperty('class', 'NameL')
+    self.StyleThemeDayNightValueB.setProperty('class', 'ValueB')
+    self.StyleThemeThemesValueC.setProperty('class', 'ValueC')
+    self.PanelL.addWidget(self.PanelTitleL, 0, 0, 1, 100)
+    self.PanelL.addWidget(self.StyleThemeDayNightNameL, 1, 0, 1, 25)
+    self.PanelL.addWidget(self.StyleThemeDayNightValueB, 1, 25, 1, 25)
+    self.PanelL.addWidget(self.StyleThemeThemesNameL, 2, 0, 1, 25)
+    self.PanelL.addWidget(self.StyleThemeThemesValueC, 2, 25, 1, 25)
+    self.PanelL.setSpacing(0)
+    self.PanelL.setContentsMargins(0, 0, 0, 0)
+    for i in range(100):
+        self.PanelL.setColumnStretch(i,1)
+    self.PanelW.setLayout(self.PanelL)
+    self.Layout.addWidget(self.PanelS, 0, 20, 100, 75)
+    self.show()
+    self.PanelS.setWidgetResizable(True)
+    self.PanelS.setWidget(self.PanelW)
+    self.PanelTitleL.setAlignment(Qt.AlignCenter)
+    self.StyleThemeDayNightNameL.setAlignment(Qt.AlignCenter)
+    self.StyleThemeThemesNameL.setAlignment(Qt.AlignCenter)
+    self.PanelS.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.PanelW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.PanelTitleL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.StyleThemeDayNightNameL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.StyleThemeDayNightValueB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.StyleThemeThemesNameL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.StyleThemeThemesValueC.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    
+def StyleRetranslate(self):
+    t = json.load(open(f'{self.Path}/assets/JSON/SettingsStyleTranslate.json', 'r'))
+    l = self.Language
+    if self.Theme == 'vintage_elegance_light':
+        i = 0
+    elif self.Theme == 'vintage_elegance_dark':
+        i = 1
+    self.PanelTitleL.setText(t['PanelTitleL'][l])
+    self.StyleThemeDayNightNameL.setText(t['StyleThemeDayNightNameL'][l]+':')
+    self.StyleThemeDayNightValueB.setText(t['StyleThemeDayNightValueB'][l][i])
+    self.StyleThemeThemesNameL.setText(t['StyleThemeThemesNameL'][l]+':')
+    self.StyleThemeThemesValueC.addItems(dict(t['StyleThemeThemesValueC']).keys())
+    self.StyleThemeThemesValueC.setCurrentIndex(i)
 
-def theme_retranslate(self):
-    t = json.load(open(self.main_path+'/CONFIG/settings/theme_translate.json', 'r'))
-    g = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
-    l = g['language']
-    d = g['theme_index']
-    self.title_label.setText(t['title_label'][l])
-    self.day_night_label.setText(t['day_night_label'][l])
-    self.day_night_button.setText(t['day_night_button'][l][d])
-    self.list_combobox.setCurrentIndex(d)
-    self.list_label.setText(t['list_label'][l])
-#______________________________________________________________________________________________________________________
+def UpdateUi(self):
+    self.PanelS.setObjectName('PanelS')
+    self.PanelW.setObjectName('PanelW')
+    self.PanelTitleL.setObjectName('PanelTitleL')
+    self.UpdateDescriptionNameL.setObjectName('UpdateDescriptionNameL')
+    self.UpdateDescriptionValueL.setObjectName('UpdateDescriptionValueL')
+    self.UpdateChangelogNameL.setObjectName('UpdateChangelogNameL')
+    self.UpdateChangelogValueS.setObjectName('UpdateChangelogValueS')
+    self.UpdateChangelogValueW.setObjectName('UpdateChangelogValueW')
+    self.UpdateChangelogValueLA.setObjectName('UpdateChangelogValueLA')
+    self.UpdateDescriptionNameL.setProperty('class', 'NameL')
+    self.UpdateChangelogNameL.setProperty('class', 'NameL')
+    self.UpdateDescriptionValueL.setProperty('class', 'ValueL')
+    self.UpdateChangelogValueS.setProperty('class', 'ValueS')
+    self.UpdateChangelogValueW.setProperty('class', 'ValueW')
+    self.UpdateChangelogValueLA.setProperty('class', 'ValueL')
+    self.UpdateChangelogValueL.addWidget(self.UpdateChangelogValueLA,0,0,1,1)
+    self.UpdateChangelogValueL.setSpacing(0)
+    self.UpdateChangelogValueL.setContentsMargins(0,0,0,0)
+    self.UpdateChangelogValueW.setLayout(self.UpdateChangelogValueL)
+    self.PanelL.addWidget(self.PanelTitleL, 0, 0, 1, 100)
+    self.PanelL.addWidget(self.UpdateDescriptionNameL, 1, 0, 1, 25)
+    self.PanelL.addWidget(self.UpdateDescriptionValueL, 1, 25, 1, 25)
+    self.PanelL.addWidget(self.UpdateChangelogNameL, 2, 0, 1, 25)
+    self.PanelL.addWidget(self.UpdateChangelogValueS, 2, 25, 1, 50)
+    self.PanelL.setSpacing(0)
+    self.PanelL.setContentsMargins(0, 0, 0, 0)
+    for i in range(100):
+        self.PanelL.setColumnStretch(i,1)
+    self.PanelW.setLayout(self.PanelL)
+    self.Layout.addWidget(self.PanelS, 0, 20, 100, 75)
+    self.show()
+    self.UpdateChangelogValueS.setWidgetResizable(True)
+    self.UpdateChangelogValueS.setWidget(self.UpdateChangelogValueW)
+    self.PanelS.setWidgetResizable(True)
+    self.PanelS.setWidget(self.PanelW)
+    self.PanelTitleL.setAlignment(Qt.AlignCenter)
+    self.UpdateDescriptionNameL.setAlignment(Qt.AlignCenter)
+    self.UpdateDescriptionValueL.setAlignment(Qt.AlignCenter)
+    self.UpdateChangelogNameL.setAlignment(Qt.AlignCenter)
+    self.UpdateChangelogValueLA.setWordWrap(True)
+    self.PanelS.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.PanelW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.PanelTitleL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.UpdateDescriptionNameL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.UpdateDescriptionValueL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.UpdateChangelogNameL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.UpdateChangelogValueS.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.UpdateChangelogValueW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.UpdateChangelogValueLA.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
-def sound_ui(self):
-    """ Set object name """
-    self.button_label.setObjectName('button_label')
-    self.button_button.setObjectName('button_button')
-    """ Set property """
-    self.button_label.setProperty('class', 'name_label')
-    self.button_button.setProperty('class', 'value_button')
-    """ Set layout """
-    self.sub_menu_layout.addWidget(self.button_label, 20, 0, 15, 50)
-    self.sub_menu_layout.addWidget(self.button_button, 20, 50, 15, 50)
-    """ Set widget """
-    """ Set label """
-    self.button_label.setAlignment(Qt.AlignCenter)
-    """ Set button """
-    """ Set size """
-    self.button_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.button_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+def UpdateRetranslate(self):
+    t = json.load(open(f'{self.Path}/assets/JSON/SettingsUpdateTranslate.json', 'r', encoding='utf-8'))
+    u = json.load(open(self.Path+'/assets/JSON/Changelog.json', 'r', encoding='utf-8'))
+    l = self.Language
+    self.PanelTitleL.setText(t['PanelTitleL'][l])
+    self.UpdateDescriptionNameL.setText(t['UpdateDescriptionNameL'][l]+':')
+    self.UpdateChangelogNameL.setText(t['UpdateChangelogNameL'][l]+':')
+    self.UpdateChangelogValueLA.setText(u['body'])
 
-def sound_retranslate(self):
-    t = json.load(open(self.main_path+'/CONFIG/settings/sound_translate.json', 'r'))
-    g = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
-    l = g['language']
-    s = g['sound']
-    self.title_label.setText(t['title_label'][l])
-    self.button_label.setText(t['button_label'][l])
-    self.button_button.setText(t['button_button'][l][s['button']])
-#______________________________________________________________________________________________________________________
+def LanguageUi(self):
+    self.PanelS.setObjectName('PanelS')
+    self.PanelW.setObjectName('PanelW')
+    self.PanelTitleL.setObjectName('PanelTitleL')
+    self.LanguageNameL.setObjectName('LanguageNameL')
+    self.LanguageValueC.setObjectName('LanguageValueC')
+    self.LanguageNameL.setProperty('class', 'NameL')
+    self.LanguageValueC.setProperty('class', 'ValueC')
+    self.PanelL.addWidget(self.PanelTitleL, 0, 0, 1, 100)
+    self.PanelL.addWidget(self.LanguageNameL, 1, 0, 1, 25)
+    self.PanelL.addWidget(self.LanguageValueC, 1, 25, 1, 25)
+    self.PanelL.setSpacing(0)
+    self.PanelL.setContentsMargins(0, 0, 0, 0)
+    for i in range(100):
+        self.PanelL.setColumnStretch(i,1)
+    self.PanelW.setLayout(self.PanelL)
+    self.Layout.addWidget(self.PanelS, 0, 20, 100, 75)
+    self.show()
+    self.PanelS.setWidgetResizable(True)
+    self.PanelS.setWidget(self.PanelW)
+    self.PanelTitleL.setAlignment(Qt.AlignCenter)
+    self.LanguageNameL.setAlignment(Qt.AlignCenter)
+    self.PanelS.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.PanelW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.PanelTitleL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.LanguageNameL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.LanguageValueC.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
-def update_ui(self):
-    """ Set object name """
-    self.version_heading1_label.setObjectName('version_heading1_label')
-    self.version_desc_label.setObjectName('version_desc_label')
-    self.version_desc_value_label.setObjectName('version_desc_label')
-    self.version_changelog_label.setObjectName('version_changelog_label')
-    self.version_changelog_button.setObjectName('version_changelog_button')
-    self.advanced_heading1_label.setObjectName('advanced_heading1_label')
-    self.advanced_capacity_label.setObjectName('advanced_capacity_label')
-    self.advanced_capacity_combobox.setObjectName('advanced_capacity_combobox')
-    """ Set property """
-    self.version_heading1_label.setProperty('class', 'heading1')
-    self.version_desc_label.setProperty('class', 'name_label')
-    self.version_desc_value_label.setProperty('class', 'value_label')
-    self.version_changelog_label.setProperty('class', 'name_label')
-    self.version_changelog_button.setProperty('class', 'value_button')
-    self.advanced_heading1_label.setProperty('class', 'heading1')
-    self.advanced_capacity_label.setProperty('class', 'name_label')
-    self.advanced_capacity_combobox.setProperty('class', 'value_combobox')
-    """ Set layout """
-    self.sub_menu_layout.addWidget(self.version_heading1_label, 20, 0, 10, 100)
-    self.sub_menu_layout.addWidget(self.version_desc_label, 35, 0, 5, 50)
-    self.sub_menu_layout.addWidget(self.version_desc_value_label, 35, 50, 5, 50)
-    self.sub_menu_layout.addWidget(self.version_changelog_label, 45, 0, 5, 50)
-    self.sub_menu_layout.addWidget(self.version_changelog_button, 45, 50, 5, 50)
-    self.sub_menu_layout.addWidget(self.advanced_heading1_label, 90, 0, 10, 100)
-    self.sub_menu_layout.addWidget(self.advanced_capacity_label, 105, 0, 5, 50)
-    self.sub_menu_layout.addWidget(self.advanced_capacity_combobox, 105, 50, 5, 50)
-    """ Set widget """
-    """ Set label """
-    self.version_heading1_label.setAlignment(Qt.AlignCenter)
-    self.version_desc_label.setAlignment(Qt.AlignCenter)
-    self.version_desc_label.setWordWrap(True)
-    self.version_desc_value_label.setAlignment(Qt.AlignCenter)
-    self.version_desc_value_label.setWordWrap(True)
-    self.version_changelog_label.setAlignment(Qt.AlignCenter)
-    self.version_changelog_label.setWordWrap(True)
-    self.advanced_heading1_label.setAlignment(Qt.AlignCenter)
-    self.advanced_capacity_label.setAlignment(Qt.AlignCenter)
-    self.advanced_capacity_label.setWordWrap(True)
-    """ Set button """
-    """ Set size """
-    self.title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.version_heading1_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.version_desc_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.version_desc_value_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.version_changelog_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.version_changelog_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.advanced_heading1_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.advanced_capacity_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.advanced_capacity_combobox.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-
-def update_retranslate(self):
-    t = json.load(open(self.main_path+'/CONFIG/settings/update_translate.json', 'r'))
-    g = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))
-    d = json.load(open(self.main_path+'/CONFIG/GLOBAL/changelog.json', 'r'))['name']
-    l = g['language']
-    c = g['capacity']
-    self.title_label.setText(t['title_label'][l])
-    self.version_heading1_label.setText(t['version_heading1_label'][l])
-    self.version_desc_label.setText(t['version_desc_label'][l])
-    self.version_desc_value_label.setText(d)
-    self.version_changelog_label.setText(t['version_changelog_label'][l])
-    self.version_changelog_button.setText(t['version_changelog_button'][l])
-    self.advanced_heading1_label.setText(t['advanced_heading1_label'][l])
-    self.advanced_capacity_label.setText(t['advanced_capacity_label'][l])
-    self.advanced_capacity_combobox.setCurrentIndex(c)
-#______________________________________________________________________________________________________________________
-
-def language_ui(self):
-    """ Set object name """
-    self.type_label.setObjectName('type_label')
-    self.type_combobox.setObjectName('type_combobox')
-    """ Set property """
-    self.type_label.setProperty('class', 'name_label')
-    self.type_combobox.setProperty('class', 'value_combobox')
-    """ Set layout """
-    self.sub_menu_layout.addWidget(self.type_label, 35, 0, 5, 50)
-    self.sub_menu_layout.addWidget(self.type_combobox, 35, 50, 5, 50)
-    """ Set widget """
-    """ Set label """
-    self.type_label.setAlignment(Qt.AlignCenter)
-    """ Set button """
-    """ Set size """
-    self.type_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.type_combobox.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-
-def language_retranslate(self):
-    t = json.load(open(self.main_path+'/CONFIG/settings/language_translate.json', 'r'))
-    l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
-    self.title_label.setText(t['title_label'][l])
-    self.type_label.setText(t['type_label'][l])
-    self.type_combobox.setCurrentIndex(l)
+def LanguageRetranslate(self):
+    t = json.load(open(f'{self.Path}/assets/JSON/Settings/SettingsLanguageTranslate.json', 'r', encoding='utf-8'))
+    l = self.Language
+    self.PanelTitleL.setText(t['PanelTitleL'][l])
+    self.LanguageNameL.setText(t['LanguageNameL'][l]+':')
+    self.LanguageValueC.addItems(t['LanguageValueC'])
+    self.LanguageValueC.setCurrentIndex(l)
 
 def load_svg(svg_path, width, height):
-    renderer = QSvgRenderer(svg_path) 
-    pixmap = QPixmap(width, height) 
-    pixmap.fill(Qt.transparent) 
-    painter = QPainter(pixmap) 
+    renderer = QSvgRenderer(svg_path)
+    pixmap = QPixmap(width, height)
+    pixmap.fill(Qt.transparent)
+    painter = QPainter(pixmap)
     renderer.render(painter)
     painter.end()
     scaled_pixmap = pixmap.scaled(QSize(width, height), Qt.KeepAspectRatio, Qt.SmoothTransformation)
     return scaled_pixmap
-#______________________________________________________________________________________________________________________
