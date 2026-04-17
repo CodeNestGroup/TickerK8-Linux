@@ -59,7 +59,7 @@ def UpdateSettingsReloadStyle(self):
     m = open(f'{self.Path}/assets/CSS/UpdateSettingsMain.css').read()
     c = open(f'{self.Path}/assets/CSS/UpdateSettings{t}.css').read()
     self.setStyleSheet(m+c)
-    self.NaviExitB.setIcon(QIcon(load_svg(f'/assets/ICON/Exitvintage_elegance_d.svg', 256, 256)))
+    self.NaviExitB.setIcon(QIcon(load_svg(f'/assets/ICON/Exit{t}.svg', 256, 256)))
 
 def UpdareSettingsRetranslate(self):
     t = json.load(open(self.main_path+'/CONFIG/settings/menu_translate.json', 'r'))
