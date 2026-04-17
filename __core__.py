@@ -12,7 +12,8 @@ from PySide2.QtWidgets import (
     QMainWindow
     )
 from PySide2.QtCore import (
-    QRect
+    QRect,
+    QThread
     )
 from PySide2.QtGui import (
     QFontDatabase,
@@ -23,7 +24,8 @@ from .package.Update.Structure import UpdateW
 from .package.UpdateSettings.Structure import UpdateSettingsW
 
 #   --- Import backend
-from db.connection import database
+from .package.Db.Connection import Database
+from .package.Ping.Logic import PingO
 
 
 #   --- AppWindow ---
@@ -45,6 +47,7 @@ class AppWindow(QWidget):
         self.Geometry = self.Screen.availableGeometry()
 #           --- Database Class  ---
         self.Database = Database()
+        self.PingO = PingO()
 #       --- Func for opens windows ---
 
     def Reset(self):

@@ -1,5 +1,5 @@
 {
-    "info_label": [
+    "InfoL": [
         ["Connection lost", "Brak połączenia"],
         ["Checking", "Sprawdzanie"],
         ["Creating backup", "Tworzenie kopii zapasowej"],
@@ -10,6 +10,5 @@
         ["Deleting backup", "Usuwanie kopii zapasowej"],
         ["Update failed", "Błąd aktualizacji"]
     ],
-    "download_button": ["Download", "Pobierz"],
-    "open_button": ["Open", "Otwórz"]
+    "FuncB": [["Open", "Otwórz"], ["Download", "Pobierz"]]
 }

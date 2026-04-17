@@ -1,4 +1,4 @@
-""" Import packages """
+#   --- Import ---
 import json 
 import sys
 import os
@@ -12,131 +12,83 @@ import requests
 import hashlib
 import time
 from datetime import datetime
-""" Import PyQT5 packages """
-from PyQt5.QtWidgets import (
+#   --- Import PySide2 ---
+from PySide2.QtWidgets import (
     QLabel,
-    QPushButton
+    QPushButton,
+    QSizePolicy
 )
-from PyQt5.QtCore import (
+from PySide2.QtCore import (
     QUrl,
     QThread,
-    pyqtSignal
+    Signal
 )
-from PyQt5.QtGui import (
+from PySide2.QtGui import (
     QDesktopServices
 )
-""" Import main modules """
-from .ui import (
-    main_no_connect_ui,
-    main_no_connect_retranslate,
-    main_connect_ui,
-    main_connect_retranslate,
-    none_update_ui,
-    none_update_retranslate,
-    new_update_ui,
-    new_update_retranslate,
-    start_update_ui,
-    start_update_retranslate
-)
-#______________________________________________________________________________________________________________________
 
-def open_link(u):
+def OpenLink(u):
     try:
         QDesktopServices.openUrl(QUrl(u))
     except:
         pass
-#______________________________________________________________________________________________________________________
 
-def reset(self):
-    """ Reset """
-    if self.info_label and not self.controller_download_thread:
-        self.info_label.deleteLater()
-        self.info_label = None 
-    if self.download_button:
-        self.download_button.deleteLater()
-        self.download_button = None
-    if self.open_button:
-        self.open_button.deleteLater()
-        self.open_button = None
+def DotsUpdate(self):
+    t = self.ChaneglogDotsL.text()
+    l = len(t)
+    if l < 14:
+        self.ChaneglogDotsL.setText(t+'.')
+    else:
+        self.ChaneglogDotsL.setText('.')
 
-def main_no_connect(self):
-    reset(self)
-    if not self.controller_download_thread:
-        main_no_connect_ui(self)
-        main_no_connect_retranslate(self)
-    """ Call functions """
-    self.changelog_widget.no_connection()
+def ResetFuncInfo(self):
+    if self.FuncB:
+        self.FuncB.deleteLater()
+        self.FuncB = None
+    if self.InfoL:
+        self.InfoL.deleteLater()
+        self.InfoL = None
 
-def main_connect(self):
-    reset(self)
-    self.get_releases_thread = get_releases()
-    if not self.controller_download_thread:
-        main_connect_ui(self)
-        main_connect_retranslate(self)
-        self.get_releases_thread.finished.connect(lambda release_data: check_update(self, release_data))
-    """ Call functtions """
-    self.changelog_widget.loading()
-    """ Connect functions """
-    self.get_releases_thread.finished.connect(self.changelog_widget.connection)
-    self.get_releases_thread.finished.connect(lambda: self.get_releases_thread.quit())
-    self.get_releases_thread.finished.connect(lambda: self.get_releases_thread.deleteLater())
-    self.get_releases_thread.start()
-#______________________________________________________________________________________________________________________
-
-class get_releases(QThread):
-        finished = pyqtSignal(list)
+class GetReleasesT(QThread):
+        Finished = pyqtSignal(list)
         def __init__(self):
             super().__init__()
             self.start()
 
         def run(self):
-            release = urllib.request.urlopen('https://api.github.com/repos/CodeNestGroup/TickerK8-Linux/releases')
-            self.finished.emit(json.loads(release.read().decode()))
-#______________________________________________________________________________________________________________________
+            r = urllib.request.urlopen('https://api.github.com/repos/CodeNestGroup/TickerK8-Linux/releases')
+            self.Finished.emit(json.loads(r.read().decode()))
 
-def check_update(self, release_data):
-    g_v = release_data[0]['published_at']
-    l_v = json.load(open(self.main_path+'/CONFIG/GLOBAL/changelog.json', 'r'))['published_at']
-    g_t = datetime.fromisoformat(g_v.replace("Z", "+00:00"))
-    l_t = datetime.fromisoformat(l_v.replace("Z", "+00:00"))
-    if g_t <= l_t:
-        none_update(self)
-    elif g_t > l_t:
-        new_update(self)
+def ChangelogConnectionSetup(self, r):
+    GithubVersion = r[0]['published_at']
+    LocalVersion = json.load(open(self.main_path+'/assets/JSON/changelog.json', 'r', encoding='utf-8'))['published_at']
+    GithubTime = datetime.fromisoformat(GithubVersion.replace("Z", "+00:00"))
+    LocalTime = datetime.fromisoformat(LocalVersion.replace("Z", "+00:00"))
+    ResetFuncInfo(self)
+    self.FuncB = QPushButton(self)
+    self.FuncB.setObjectName('FuncB')
+    self.FuncB.setProperty('class', 'Button')
+    self.Layout.addWidget(self.FuncB, 91, 51, 9, 48)
+    self.FuncB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    l = self.Language
+    t = json.load(open(f'{self.Path}/assets/UpdateTranslate.json', 'r', encoding='utf-8'))
+    if GithubTime <= LocalTime:
+        self.FuncB.clicked.connect(self.LoginOpenF)
+        self.FuncB.setText(t['FuncB'][0][l])
+    elif GithubTime > LocalTime:
+        self.FuncB.clicked.connect(lambda: StartUpdate(self))
+        self.FuncB.setText(t['FuncB'][1][l])
 
-def none_update(self):
-    reset(self)
-    none_update_ui(self)
-    none_update_retranslate(self)
-    """ Connect functtions """
-    self.open_button.clicked.connect(lambda: open_main_app(self))
+def StartUpdate(self):
+    ResetFuncInfo(self)
+    self.ControllerDownloadT = ControllerDownload(self)
+    self.ControllerDownloadT.Progress.connect(self.InfoL.setText)
+    self.ControllerDownloadT.start()
 
-def open_main_app(self):
-    try:
-        subprocess.Popen(['/bin/bash', self.main_path[:-7]+'/TickerK8.sh'])
-        sys.exit(0)
-    except:
-        pass
+#   --- ControllerDownload ---
 
-def new_update(self):
-    reset(self)
-    new_update_ui(self)
-    new_update_retranslate(self)
-    """ Connect functtions """
-    self.download_button.clicked.connect(lambda: start_update(self))
-
-def start_update(self):
-    reset(self)
-    start_update_ui(self)
-    start_update_retranslate(self)
-    """ Call functions """
-    self.controller_download_thread = controller_download()
-    self.controller_download_thread.progress.connect(self.info_label.setText)
-    self.controller_download_thread.start()
-#______________________________________________________________________________________________________________________
-
-class controller_download(QThread):
-    progress = pyqtSignal(str)
+class ControllerDownload(QThread):
+    Progress = Signal(str)
     """
     2 - Creating backup
     3 - Downloading
@@ -148,49 +100,49 @@ class controller_download(QThread):
     0 - No connection  
 
     Init, creating items, set base variables like paths, screen size, etc. """
-    def __init__(self):
-        super().__init__()
-        self.backup_path = str(pathlib.Path(__file__).resolve().parents[4])
-        self.main_path = str(pathlib.Path(__file__).resolve().parents[3])
-        self.capacity = self.set_speed(json.load(open(self.main_path+'/updater/CONFIG/GLOBAL/global_config.json', 'r'))['capacity'])
-        self.update_folder = None
-        self.update_json_file_list = None
-        self.zip_buffer = io.BytesIO()
-        self.t = json.load(open(self.main_path+'/updater/CONFIG/main/translate.json', 'r'))
-        self.l = json.load(open(self.main_path+'/updater/CONFIG/GLOBAL/global_config.json', 'r'))['language']
+    def __init__(self, parent):
+        super().__init__(parent)
+        self.BackupPath = 'Dorobić ścieżke do bezpiecznej lokalizacji'
+        self.Path = parent.Path
+        self.Capacity = self.SetSpeed(json.load(open(self.Path+'/assets/JSON/ConfigOffline.json', 'r', encoding='utf-8'))['capacity'])
+        self.UpdateFolder = None
+        self.UpdateJsonFileList = None
+        self.ZipBuffer = io.BytesIO()
+        self.t = json.load(open(self.Path+'/assets/JSON/UpdateTranslate.json', 'r', encoding='utf-8'))
+        self.l = parent.Language
 
     def run(self):
-        self.backup()
+        self.Backup()
         time.sleep(0.2)
-        self.download()
+        self.Download()
         time.sleep(0.2)
-        self.un_zip()
+        self.UnZip()
         time.sleep(0.2)
-        self.update_compatibility()
+        self.UpdateCompatibility()
         time.sleep(0.2)
-        self.install()
+        self.Install()
         time.sleep(0.2)
-        self.delete_backup()
+        self.DeleteBackup()
         time.sleep(0.2)
-        self.restart()
+        self.Restart()
 
-    def backup(self):
+    def Backup(self):
         try:
-            self.progress.emit(self.t['info_label'][2][self.l])
-            n = self.main_path[-(len(self.main_path)-len(self.backup_path)):]
-            b = self.backup_path+f'/.backup{n}'
-            m = self.backup_path+n
+            self.Progress.emit(self.t['InfoL'][2][self.l])
+            n = self.Path[-(len(self.Path)-len(self.BackupPath)):]
+            b = self.BackupPath+f'/.backup{n}'
+            m = self.BackupPath+n
             if os.path.exists(b):
                 shutil.rmtree(b)
             shutil.copytree(m, b)
         except:
-            self.progress.emit(self.t['info_label'][8][self.l])
-            if os.path.exists(self.backup_path+'/.backup'):
-                shutil.rmtree(self.backup_path+'/.backup')
+            self.Progress.emit(self.t['InfoL'][8][self.l])
+            if os.path.exists(self.BackupP+'/.backup'):
+                shutil.rmtree(self.BackupP+'/.backup')
 
-    def download(self):
+    def Download(self):
         try:
-            self.progress.emit(self.t['info_label'][3][self.l])
+            self.Progress.emit(self.t['InfoL'][3][self.l])
             r = urllib.request.urlopen('https://api.github.com/repos/CodeNestGroup/TickerK8-Linux/releases/latest')
             u = json.loads(r.read().decode())['zipball_url']
             c = 8192
@@ -202,72 +154,72 @@ class controller_download(QThread):
                         h['Range'] = f'bytes={d}-'
                     r = requests.get(u, stream=True, timeout=10, headers=h)
                     r.raise_for_status()
-                    chunk_generator = r.iter_content(chunk_size=c)
-                    for chunk in chunk_generator: 
+                    ChunkGenerator = r.iter_content(chunk_size=c)
+                    for chunk in ChunkGenerator: 
                         if not chunk:
                             continue
-                        self.zip_buffer.write(chunk)
+                        self.ZipBuffer.write(chunk)
                         d = len(chunk)
-                        time.sleep(len(chunk) / self.capacity*1024)
+                        time.sleep(len(chunk) / self.Capacity*1024)
                     break
                 except (requests.RequestException, ConnectionError, TimeoutError):
-                    self.progress.emit(self.t['info_label'][0][self.l])
+                    self.Progress.emit(self.t['InfoL'][0][self.l])
                     time.sleep(3)
         except Exception:
-            self.progress.emit(self.t['info_label'][8][self.l])
-            if os.path.exists(self.backup_path+'/.backup'):
-                shutil.rmtree(self.backup_path+'/.backup')
-            if self.zip_buffer:
-                self.zip_buffer.seek(0)
-                self.zip_buffer.truncate(0)
+            self.Progress.emit(self.t['InfoL'][8][self.l])
+            if os.path.exists(self.BackupP+'/.backup'):
+                shutil.rmtree(self.BackupP+'/.backup')
+            if self.ZipBuffer:
+                self.ZipBuffer.seek(0)
+                self.ZipBuffer.truncate(0)
 
-    def un_zip(self):
+    def UnZip(self):
         try:
-            self.progress.emit(self.t['info_label'][4][self.l])
-            with zipfile.ZipFile(self.zip_buffer, 'r') as zip_ref:
-                self.update_folder = f'/{zip_ref.namelist()[0]}'
+            self.Progress.emit(self.t['InfoL'][4][self.l])
+            with zipfile.ZipFile(self.ZipBuffer, 'r') as zip_ref:
+                self.UpdateFolder = f'/{zip_ref.namelist()[0]}'
                 l = zip_ref.namelist()
                 t = len(l)
                 for file in l:
-                    zip_ref.extract(file, self.backup_path)
-                self.zip_buffer.seek(0)
-                self.zip_buffer.truncate(0)
+                    zip_ref.extract(file, self.BackupPath)
+                self.ZipBuffer.seek(0)
+                self.ZipBuffer.truncate(0)
         except:
-            self.progress.emit(self.t['info_label'][8][self.l])
-            if os.path.exists(self.backup_path+'/.backup'):
-                shutil.rmtree(self.backup_path+'/.backup')
-            if self.zip_buffer:
-                self.zip_buffer.seek(0)
-                self.zip_buffer.truncate(0)
-            if os.path.exists(self.backup_path+self.update_folder):
-                shutil.rmtree(self.backup_path+self.update_folder)
+            self.Progress.emit(self.t['InfoL'][8][self.l])
+            if os.path.exists(self.BackupPath+'/.backup'):
+                shutil.rmtree(self.BackupPath+'/.backup')
+            if self.ZipBuffer:
+                self.ZipBuffer.seek(0)
+                self.ZipBuffer.truncate(0)
+            if os.path.exists(self.BackupPath+self.UpdateFolder):
+                shutil.rmtree(self.BackupPath+self.UpdateFolder)
 
     def update_compatibility(self):
         try:
-            self.progress.emit(self.t['info_label'][5][self.l])
-            u = json.load(open(self.backup_path+self.update_folder+'updater/CONFIG/GLOBAL/app_file_list.json', 'r'))
+            self.Progress.emit(self.t['InfoL'][5][self.l])
+            u = json.load(open(self.BackupPath+self.UpdateFolder+'/assets/JSON/AppFileList.json', 'r', encoding='utf-8'))
             t = len(u)
             for file, check_sum in u.items():
-                if os.path.exists(self.backup_path+self.update_folder+file):
+                if os.path.exists(self.BackupPath+self.UpdateFolder+file):
                     if check_sum != 'config':
-                        if check_sum != self.calculate_sha256(self.backup_path+self.update_folder+file):
+                        if check_sum != self.calculate_sha256(self.BackupPath+self.UpdateFolder+file):
                             raise
         except:
-            self.progress.emit(self.t['info_label'][8][self.l])
-            if os.path.exists(self.backup_path+'/.backup'):
-                shutil.rmtree(self.backup_path+'/.backup')
-            if os.path.exists(self.backup_path+self.update_folder): 
-                shutil.rmtree(self.backup_path+self.update_folder)
+            self.Progress.emit(self.t['InfoL'][8][self.l])
+            if os.path.exists(self.BackupPath+'/.backup'):
+                shutil.rmtree(self.BackupP+'/.backup')
+            if os.path.exists(self.BackupPath+self.UpdateFolder): 
+                shutil.rmtree(self.BackupPath+self.UpdateFolder)
 
     def install(self):
         try:
-            self.progress.emit(self.t['info_label'][6][self.l]) 
-            n = self.main_path[-(len(self.main_path)-len(self.backup_path)):]
-            m = self.main_path
-            b = self.backup_path
-            u = b+self.update_folder
-            s1 = b+f'/.backup{n}/updater/CONFIG/GLOBAL/global_config.json'
-            d1 = u+'updater/CONFIG/GLOBAL/global_config.json'
+            self.Progress.emit(self.t['InfoL'][6][self.l]) 
+            n = self.Path[-(len(self.Path)-len(self.BackupPath)):]
+            m = self.Path
+            b = self.BackupPath
+            u = b+self.UpdateFolder
+            s1 = b+f'/.backup{n}/assets/JSON/ConfigOffline.json'
+            d1 = u+'/assets/JSON/ConfigOffline.json'
             shutil.copy2(s1, d1)
             for r, d, f in os.walk(u):
                 rp = os.path.relpath(r, u)
@@ -278,27 +230,27 @@ class controller_download(QThread):
                     dst_file = os.path.join(t, file)
                     shutil.copy2(src_file, dst_file)
         except:
-            self.progress.emit(self.t['info_label'][8][self.l])
-            if os.path.exists(self.backup_path+'/.backup'):
-                self.restore_backup()
-            if os.path.exists(self.backup_path+self.update_folder): 
-                shutil.rmtree(self.backup_path+self.update_folder)
+            self.Progress.emit(self.t['InfoL'][8][self.l])
+            if os.path.exists(self.BackupPath+'/.backup'):
+                self.RestoreBackup()
+            if os.path.exists(self.BackupPath+self.UpdateFolder): 
+                shutil.rmtree(self.BackupPath+self.UpdateFolder)
 
-    def delete_backup(self):
-        self.progress.emit(self.t['info_label'][7][self.l])
-        if os.path.exists(self.backup_path+self.update_folder):
-            shutil.rmtree(self.backup_path+self.update_folder)
-        if os.path.exists(self.backup_path+'/.backup'):
-            shutil.rmtree(self.backup_path+'/.backup')
+    def DeleteBackup(self):
+        self.Progress.emit(self.t['InfoL'][7][self.l])
+        if os.path.exists(self.BackupPath+self.UpdateFolder):
+            shutil.rmtree(self.BackupPath+self.UpdateFolder)
+        if os.path.exists(self.BackupPath+'/.backup'):
+            shutil.rmtree(self.BackupPath+'/.backup')
 
-    def restart(self):
-        subprocess.Popen(['/bin/bash', self.main_path+'/Launcher.sh'])
+    def Restart(self):
+        subprocess.Popen(['/bin/bash', self.Path+'/Launcher.sh'])
         sys.exit(0)
 
-    def restore_backup(self):
-        n = self.main_path[-(len(self.main_path)-len(self.backup_path)):]
-        b = self.backup_path+f'/.backup{n}'
-        m = self.backup_path+n
+    def RestoreBackup(self):
+        n = self.Path[-(len(self.Path)-len(self.BackupPath)):]
+        b = self.BackupPath+f'/.backup{n}'
+        m = self.BackupPath+n
         if os.path.exists(m):
             shutil.rmtree(m)
         shutil.copytree(b, m)
@@ -310,17 +262,16 @@ class controller_download(QThread):
             sha256.update(chunk)
         return sha256.hexdigest()
 
-    def set_speed(self, index):
-        capacity = 0 
-        if index == 0:
-            capacity = 500
-        elif index == 1:
-            capacity = 1000
-        elif index == 2:
-            capacity = 2000
-        elif index== 3:
-            capacity = 5000
-        elif index == 4:
-            capacity = float('inf')
-        return capacity
-#______________________________________________________________________________________________________________________
+    def SetSpeed(self, i):
+        c = 0 
+        if i == 0:
+            c = 500
+        elif i == 1:
+            c = 1000
+        elif i == 2:
+            c = 2000
+        elif i == 3:
+            c = 5000
+        elif i == 4:
+            c = float('inf')
+        return c
