@@ -1,11 +1,11 @@
-#   --- Import PySide2 ---
-from PySide2.QtWidgets import (
+#   --- Import PySide6 ---
+from PySide6.QtWidgets import (
     QWidget,
     QPushButton,
     QGridLayout,
     QVBoxLayout
 )
-from PySide2.QtCore import (
+from PySide6.QtCore import (
     Qt,
     QThread,
     QTimer
@@ -77,6 +77,7 @@ class UpdateW(QWidget):
         self.ChangelogMessageL = QLabel(self.ChangelogW)
 #           --- Call functions ---
         ChangelogNoConnectionUi(self)
+        ChangelogNoConnectionReloadStyle(self)
         ChangelogNoConnectionRetranslate(self)
 
     def ChangelogLoading(self):

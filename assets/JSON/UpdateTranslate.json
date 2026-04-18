@@ -1,4 +1,5 @@
-{
+{   
+    "ChangelogMessageL": [["No connection", "Brak połączenia"], ["Loading", "Ładowanie"]],
     "InfoL": [
         ["Connection lost", "Brak połączenia"],
         ["Checking", "Sprawdzanie"],

@@ -1,5 +1,5 @@
-#   --- Import PyQt5 packages ---
-from PySide2.QtWidgets import (
+#   --- Import PySide6 packages ---
+from PySide6.QtWidgets import (
     QWidget,
     QLabel, 
     QComboBox,
@@ -7,9 +7,9 @@ from PySide2.QtWidgets import (
     QGridLayout,
     QVBoxLayout
 )
-from PySide2.QtCore import (
+from PySide6.QtCore import (
     Qt,
-    pyqtSignal
+    Signal
 )
 #   --- Import UpdateSettings modules ---
 from .Ui import *

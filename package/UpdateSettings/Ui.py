@@ -1,19 +1,19 @@
 #   --- Import packages ---
 import json
 #   --- Import PyQt5 packages ---
-from PyQt5.QtWidgets import (
+from PySide6.QtWidgets import (
     QSizePolicy
 )
-from PyQt5.QtCore import (
+from PySide6.QtCore import (
     Qt,
     QSize
 )
-from PyQt5.QtGui import (
+from PySide6.QtGui import (
     QIcon,
     QPixmap,
     QPainter
 )
-from PyQt5.QtSvg import (
+from PySide6.QtSvg import (
     QSvgRenderer
 )
 
@@ -56,12 +56,13 @@ def UpdateSettingsUi(self):
 
 def UpdateSettingsReloadStyle(self):
     t = self.Theme
-    m = open(f'{self.Path}/assets/CSS/UpdateSettingsMain.css').read()
-    c = open(f'{self.Path}/assets/CSS/UpdateSettings{t}.css').read()
+    m = open(f'{self.Path}/assets/CSS/SettingsMain.css').read()
+    c = open(f'{self.Path}/assets/CSS/Settings{t}.css').read()
     self.setStyleSheet(m+c)
     self.NaviExitB.setIcon(QIcon(load_svg(f'/assets/ICON/Exit{t}.svg', 256, 256)))
+    self.NaviExitB.setIconSize(self.NaviExitB.size())
 
-def UpdareSettingsRetranslate(self):
+def UpdateSettingsRetranslate(self):
     t = json.load(open(self.Path+'/assets/JSON/SettingsNaviTranslate.json', 'r', encoding='utf-8'))
     l = self.Language
     self.NaviStyleB.setText(t['NaviStyleB'][l])

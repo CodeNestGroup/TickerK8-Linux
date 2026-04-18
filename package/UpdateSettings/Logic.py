@@ -1,9 +1,9 @@
 #   --- Import packages ---
 import json
 #   --- Import UpdateSettings modules ---
-from .AUi import (
-    SettingsRetranslate,
-    SettingsReloadStyle,
+from .Ui import (
+    UpdateSettingsRetranslate,
+    UpdateSettingsReloadStyle,
     LanguageRetranslate,
     StyleRetranslate
     )

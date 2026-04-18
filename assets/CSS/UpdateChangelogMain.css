@@ -1,5 +1,11 @@
-#UpdateW{
+#UpdateChangelogW{
     border: 0;
+}
+#TitleL{
+    border: 0;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
 }
 #ChangelogS{
     border: 0;
@@ -7,34 +13,26 @@
 #ChangelogW{
     border: 0;
 }
-#ChangelogIconL{
+#ChangelogTitleL{
     border: 0;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0.3em;
 }
-#ChangelogMessageL{
-    border: 0;
-}
-#ChaneglogDotsL{
+#ChangelogDateL{
     border: 0;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 400;
     letter-spacing: 0.3em;
-    text-transform: uppercase;
 }
-.ChangelogB{
+#ChangelogTextL{
     border: 0;
-    font-size: 16px;
-    font-weight: 600;
+    padding: 0.5em;
+    font-size: 14px;
+    font-weight: 400;
     letter-spacing: 0.3em;
-    text-transform: uppercase;
 }
-.Button{
-    border: 0;
-    font-size: 16px;
-    font-weight: 600;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-}
-#InfoL{
+#ExitB{
     border: 0;
     font-size: 16px;
     font-weight: 600;

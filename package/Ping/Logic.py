@@ -1,5 +1,5 @@
-#   --- Import PySide2 ---
-from PySide2.QtCore import (
+#   --- Import PySide6 ---
+from PySide6.QtCore import (
     QObject,
     QTimer,
     Signal,
@@ -13,7 +13,7 @@ class PingO(QObject):
     def __init__(self):
         self.Timer = QTimer()
         self.Timer.timeout.connect(self.Check)
-        self,Timer.start(5000)
+        self.Timer.start(5000)
 
     @Slot()
     def Check(self):

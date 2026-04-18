@@ -1,43 +1,41 @@
-""" Import packages """
-import pathlib 
-""" Import PyQt5 packages """
-from PyQt5.QtWidgets import (
+#   --- Import PyQt5 packages ---
+from PySide6.QtWidgets import (
     QWidget,
     QScrollArea,
     QLabel,
+    QPushButton,
     QGridLayout,
     QVBoxLayout
 )
-""" Import changelog modules """
-from .ui import *
-from .logic import *
-""" Import custom modules """
-from soundbutton.structure import QPushButton_sound
-#______________________________________________________________________________________________________________________
+#   --- Import changelog modules ---
+from .Ui import *
+from .Logic import *
 
-class Changelog_widget(QWidget):
-    def __init__(self, parent, data):
-        super().__init__()
+
+#   --- UpdateChangelogW ---
+
+class UpdateChangelogW(QWidget):
+    def __init__(self, parent, data=None):
+        super().__init__(parent)
         self.setAttribute(Qt.WA_StyledBackground, True)
-        self.setParent(parent)
-        """" Set paths, file name """
-        self.main_path = str(pathlib.Path(__file__).resolve().parents[2])
-        if data == '':
-            data = json.load(open(self.main_path+'/CONFIG/GLOBAL/changelog.json', 'r'))
-        self.changelog_data = data
-        """ Create objects """
-        self.layout = QGridLayout(self)
-        self.title_label = QLabel(self)
-        self.scroll = QScrollArea(self)
-        self.update_widget = QWidget(self.scroll)
-        self.update_layout = QVBoxLayout(self.update_widget)
-        self.update_title_label = QLabel(self.update_widget)
-        self.update_date_label = QLabel(self.update_widget)
-        self.update_text_label = QLabel(self.update_widget)
-        self.exit_button = QPushButton_sound(self)
-        """ Call functions """
-        changelog_ui(self)
-        changelog_reload_style(self)
-        changelog_retranslate(self)
-        """ Connect functions  """
-#______________________________________________________________________________________________________________________
+        self.Path = parent.Path
+        self.Theme = parent.Config['theme']
+        self.Language = parent.Config['language']
+        if not data:
+            data = json.load(open(self.Path+'/assets/JSON/Changelog.json', 'r', encoding='utf-8'))
+        self.ChangelogData = data
+#           --- Create objects ---
+        self.Layout = QGridLayout(self)
+        self.TitleL = QLabel(self)
+        self.ChangelogS = QScrollArea(self)
+        self.ChangelogW = QWidget(self.scroll)
+        self.ChangelogL = QVBoxLayout(self.update_widget)
+        self.ChangelogTitleL = QLabel(self.update_widget)
+        self.ChangelogDateL = QLabel(self.update_widget)
+        self.ChangelogTextL = QLabel(self.update_widget)
+        self.ExitB = QPushButton(self)
+#           --- Call functions ---
+        UpdateChangelogUi(self)
+        UpdateChangelogReloadStyle(self)
+        UpdateChangelogRetranslate(self)
+#           --- Connect functions  ---

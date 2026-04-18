@@ -1,21 +1,21 @@
 #   --- Import packages ---
 import json
-#   --- Import PyQt5 packages ---
-from PySide2.QtWidgets import (
+#   --- Import PySide6 packages ---
+from PySide6.QtWidgets import (
     QLabel,
     QSizePolicy
 )
-from PySide2.QtCore import (
+from PySide6.QtCore import (
     Qt,
     QRectF,
     QSize
 )
-from PySide2.QtGui import (
+from PySide6.QtGui import (
     QIcon,
     QPixmap,
     QPainter
 )
-from PySide2.QtSvg import (
+from PySide6.QtSvg import (
     QSvgRenderer
 )
 
@@ -80,9 +80,14 @@ def ChangelogNoConnectionUi(self):
     self.ChangelogIconL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.ChangelogMessageL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
+def ChangelogNoConnectionReloadStyle(self):
+    t = self.Theme
+    self.ChangelogIconL.setIcon(QIcon(load_svg(f'{self.Path}/assets/ICON/NoConnection{t}.svg', 256, 256)))
+    self.ChangelogIconL.setIconSize(self.ChangelogIconL.size())
+
 def ChangelogNoConnectionRetranslate(self):
     l = self.Language
-    t = json.load(open(f'{self.Path}/assets/UpdateTranslate.json', 'r', encoding='utf-8'))
+    t = json.load(open(f'{self.Path}/assets/JSON/UpdateTranslate.json', 'r', encoding='utf-8'))
     self.ChangelogMessageL.setText(t['ChangelogMessageL'][0][l])
 
 def ChangelogLoadingUi(self):
@@ -112,7 +117,7 @@ def ChangelogLoadingUi(self):
 
 def ChangelogLoadingRetranslate(self):
     l = self.Language
-    t = json.load(open(f'{self.Path}/assets/UpdateTranslate.json', 'r', encoding='utf-8'))
+    t = json.load(open(f'{self.Path}/assets/JSON/UpdateTranslate.json', 'r', encoding='utf-8'))
     self.ChangelogMessageL.setText(t['ChangelogMessageL'][1][l])
 
 def ChangelogConnctionUi(self):

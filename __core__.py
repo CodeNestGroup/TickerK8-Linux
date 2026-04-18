@@ -3,29 +3,29 @@ import sys
 import pathlib
 import json
 
-#   --- Import PySide2 ---
-from PySide2.QtWidgets import (
+#   --- Import PySide6 ---
+from PySide6.QtWidgets import (
     QApplication,
     QWidget,
     QVBoxLayout,
-    QDesktopWidget,
     QMainWindow
     )
-from PySide2.QtCore import (
+from PySide6.QtCore import (
     QRect,
     QThread
     )
-from PySide2.QtGui import (
+from PySide6.QtGui import (
+    QGuiApplication,
     QFontDatabase,
     QFont
     )
 #   --- Import main modules ---
-from .package.Update.Structure import UpdateW
-from .package.UpdateSettings.Structure import UpdateSettingsW
+from package.Update.Structure import UpdateW
+from package.UpdateSettings.Structure import UpdateSettingsW
 
 #   --- Import backend
-from .package.Db.Connection import Database
-from .package.Ping.Logic import PingO
+#from package.Db.Connection import Database
+from package.Ping.Logic import PingO
 
 
 #   --- AppWindow ---
@@ -41,12 +41,12 @@ class AppWindow(QWidget):
         self.setLayout(self.Layout)
         self.OpenedW = None
 #           --- App default varaibles ---
-        self.Path = str(pathlib.Path(__file__).resolve().parents[2])
+        self.Path = str(pathlib.Path(__file__).resolve().parents[0])
         self.ConfigOffline = json.load(open(f'{self.Path}/assets/JSON/ConfigOffline.json', 'r', encoding='utf-8'))
-        self.Screen = QApplication.screen()
+        self.Screen = QGuiApplication.primaryScreen()
         self.Geometry = self.Screen.availableGeometry()
 #           --- Database Class  ---
-        self.Database = Database()
+#        self.Database = Database()
         self.PingO = PingO()
 #       --- Func for opens windows ---
 
@@ -79,14 +79,19 @@ class AppWindow(QWidget):
         self.setGeometry(x, y, w, h)
         self.OpenedW.ExitB.clicked.connect(self.UpdateOpen)
 
+
+
+
+
     def LoginOpen(self):
         self.logged_user_id = None
-
         self.login_widget = Login_widget(self)
         self.layout.addWidget(self.login_widget)
         self.setGeometry(QRect(self.pos_x, self.pos_y, self.width, self.height))
         self.login_widget.login_login_button.clicked.connect(self.login_controller)
         self.login_widget.login_register_button.clicked.connect(self.login_to_register)
+
+"""
     
     def register_setup(self):
         self.register_widget = Register_widget(self)
@@ -216,15 +221,15 @@ class AppWindow(QWidget):
         self.database.LoginConfiguration(self.logged_user_id)
         self.login_configuration_to_login()
             
-
-def set_font():
-    font_id = QFontDatabase.addApplicationFont(str(pathlib.Path(__file__).resolve().parents[3])+'/TickerK8_app/APP_FILES/STYLE/FONTS/NotoSerif-VariableFont_wdth,wght.ttf')
+"""
+def SetFont():
+    font_id = QFontDatabase.addApplicationFont(str(pathlib.Path(__file__).resolve().parents[0])+'/assets/FONTS/NotoSerif-VariableFont_wdth,wght.ttf')
     font_families = QFontDatabase.applicationFontFamilies(font_id) 
     return QFont(font_families[0])
 
 if __name__ == '__main__':
     application = QApplication(sys.argv)
-    application.setFont(set_font())
+    application.setFont(SetFont())
     AppW = AppWindow()
     AppW.show()
     AppW.UpdateOpen()

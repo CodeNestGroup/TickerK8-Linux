@@ -12,18 +12,18 @@ import requests
 import hashlib
 import time
 from datetime import datetime
-#   --- Import PySide2 ---
-from PySide2.QtWidgets import (
+#   --- Import PySide6 ---
+from PySide6.QtWidgets import (
     QLabel,
     QPushButton,
     QSizePolicy
 )
-from PySide2.QtCore import (
+from PySide6.QtCore import (
     QUrl,
     QThread,
     Signal
 )
-from PySide2.QtGui import (
+from PySide6.QtGui import (
     QDesktopServices
 )
 
@@ -50,7 +50,7 @@ def ResetFuncInfo(self):
         self.InfoL = None
 
 class GetReleasesT(QThread):
-        Finished = pyqtSignal(list)
+        Finished = Signal(list)
         def __init__(self):
             super().__init__()
             self.start()
@@ -78,6 +78,8 @@ def ChangelogConnectionSetup(self, r):
     elif GithubTime > LocalTime:
         self.FuncB.clicked.connect(lambda: StartUpdate(self))
         self.FuncB.setText(t['FuncB'][1][l])
+
+    # Dorobić guziki XD
 
 def StartUpdate(self):
     ResetFuncInfo(self)
