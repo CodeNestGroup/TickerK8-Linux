@@ -1,4 +1,4 @@
-#   --- Import PyQt5 packages ---
+#   --- Import PySide6 ---
 from PySide6.QtWidgets import (
     QWidget,
     QScrollArea,
@@ -7,7 +7,7 @@ from PySide6.QtWidgets import (
     QGridLayout,
     QVBoxLayout
 )
-#   --- Import changelog modules ---
+#   --- Import UpdateChangelog modules ---
 from .Ui import *
 from .Logic import *
 
@@ -17,7 +17,9 @@ from .Logic import *
 class UpdateChangelogW(QWidget):
     def __init__(self, parent, data=None):
         super().__init__(parent)
+#           --- Set ---
         self.setAttribute(Qt.WA_StyledBackground, True)
+#           --- Get data from parent [ core ] ---
         self.Path = parent.Path
         self.Theme = parent.Config['theme']
         self.Language = parent.Config['language']
@@ -39,3 +41,4 @@ class UpdateChangelogW(QWidget):
         UpdateChangelogReloadStyle(self)
         UpdateChangelogRetranslate(self)
 #           --- Connect functions  ---
+        self.ExitB.clicked.connect(parent.UpdateOpen)

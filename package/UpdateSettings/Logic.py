@@ -1,4 +1,4 @@
-#   --- Import packages ---
+#   --- Import ---
 import json
 #   --- Import UpdateSettings modules ---
 from .Ui import (

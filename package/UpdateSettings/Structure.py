@@ -1,4 +1,4 @@
-#   --- Import PySide6 packages ---
+#   --- Import PySide6 ---
 from PySide6.QtWidgets import (
     QWidget,
     QLabel, 
@@ -20,8 +20,10 @@ from .Logic import *
 
 class UpdateSettingsW(QWidget):
     def __init__(self, parent):
-        super().__init__()
+        super().__init__(parent)
+#           --- Set ---
         self.setAttribute(Qt.WA_StyledBackground, True)
+#           --- Get data from parent [ core ] ---
         self.Path = parent.Path
         self.ConfigOffline = parent.ConfigOffline
         self.Theme = parent.ConfigOffline['theme']
@@ -45,6 +47,7 @@ class UpdateSettingsW(QWidget):
         self.NaviUpdateB.clicked.connect(self.UpdatePage)
         self.NaviLanguageB.clicked.connect(self.LanguagePage)
         self.NaviExitB.clicked.connect(lambda: SaveConfig(self))
+        self.NaviExitB.clicked.connect(parent.UpdateOpen)
 
     def ResetPage(self):
         if self.PanelS:

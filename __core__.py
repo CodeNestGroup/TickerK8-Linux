@@ -19,12 +19,13 @@ from PySide6.QtGui import (
     QFontDatabase,
     QFont
     )
-#   --- Import main modules ---
+#   --- Import __core__ modules ---
 from package.Update.Structure import UpdateW
 from package.UpdateSettings.Structure import UpdateSettingsW
+from package.Login.Structure import LoginW
 
 #   --- Import backend
-#from package.Db.Connection import Database
+from package.Db.Connection import Database
 from package.Ping.Logic import PingO
 
 
@@ -33,22 +34,23 @@ from package.Ping.Logic import PingO
 class AppWindow(QWidget):
     def __init__(self):
         super().__init__()
-#           --- AppWindow Ui ---
+#           --- AppWindowUi ---
+        self.OpenedW = None
         self.setObjectName('AppWindow')
         self.Layout = QVBoxLayout(self)
         self.Layout.setSpacing(0)
         self.Layout.setContentsMargins(0,0,0,0)
         self.setLayout(self.Layout)
-        self.OpenedW = None
-#           --- App default varaibles ---
+#           --- Get app data ---
         self.Path = str(pathlib.Path(__file__).resolve().parents[0])
         self.ConfigOffline = json.load(open(f'{self.Path}/assets/JSON/ConfigOffline.json', 'r', encoding='utf-8'))
         self.Screen = QGuiApplication.primaryScreen()
         self.Geometry = self.Screen.availableGeometry()
-#           --- Database Class  ---
-#        self.Database = Database()
+#           --- App functions  ---
+        self.Database = Database()
         self.PingO = PingO()
-#       --- Func for opens windows ---
+
+#   --- Func for opens windows ---
 
     def Reset(self):
         if self.OpenedW:
@@ -69,31 +71,22 @@ class AppWindow(QWidget):
         self.Layout.addWidget(self.OpenedW)
         x, y, w, h = self.Geometry.width()//4, self.Geometry.height()//4, self.Geometry.width()//2, self.Geometry.height()//2
         self.setGeometry(x, y, w, h)
-        self.OpenedW.ExitB.clicked.connect(self.UpdateOpen)
 
-    def UpdateChangelogOpen(self):
+    def UpdateChangelogOpen(self, d):
         self.Reset()
-        self.OpenedW = UpdateChangelogW(self)
+        self.OpenedW = UpdateChangelogW(self, d)
         self.Layout.addWidget(self.OpenedW)
         x, y, w, h = self.Geometry.width()//4, self.Geometry.height()//4, self.Geometry.width()//2, self.Geometry.height()//2
         self.setGeometry(x, y, w, h)
-        self.OpenedW.ExitB.clicked.connect(self.UpdateOpen)
-
-
-
-
 
     def LoginOpen(self):
-        self.logged_user_id = None
-        self.login_widget = Login_widget(self)
-        self.layout.addWidget(self.login_widget)
-        self.setGeometry(QRect(self.pos_x, self.pos_y, self.width, self.height))
-        self.login_widget.login_login_button.clicked.connect(self.login_controller)
-        self.login_widget.login_register_button.clicked.connect(self.login_to_register)
+        self.LoggedUserId = None
+        self.OpenW = LoginW(self)
+        self.Layout.addWidget(self.OpenedW)
+        x, y, w, h = self.Geometry.width()//4, self.Geometry.height()//12, self.Geometry.width()//2, self.Geometry.height()//1.25
+        self.setGeometry(x, y, w, h)
 
-"""
-    
-    def register_setup(self):
+    def RegisterOpen(self):
         self.register_widget = Register_widget(self)
         self.layout.addWidget(self.register_widget)
         self.setGeometry(QRect(self.pos_x, self.pos_y, self.width, self.height))
@@ -221,7 +214,6 @@ class AppWindow(QWidget):
         self.database.LoginConfiguration(self.logged_user_id)
         self.login_configuration_to_login()
             
-"""
 def SetFont():
     font_id = QFontDatabase.addApplicationFont(str(pathlib.Path(__file__).resolve().parents[0])+'/assets/FONTS/NotoSerif-VariableFont_wdth,wght.ttf')
     font_families = QFontDatabase.applicationFontFamilies(font_id) 

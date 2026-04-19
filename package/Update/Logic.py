@@ -64,6 +64,14 @@ def ChangelogConnectionSetup(self, r):
     LocalVersion = json.load(open(self.main_path+'/assets/JSON/changelog.json', 'r', encoding='utf-8'))['published_at']
     GithubTime = datetime.fromisoformat(GithubVersion.replace("Z", "+00:00"))
     LocalTime = datetime.fromisoformat(LocalVersion.replace("Z", "+00:00"))
+    for i, c in enumerate(r, start=0):
+        ChangelogB = QPushButton(self.ChangelogW)
+        ChangelogB.clicked.connect(lambda cc=c: self.UpdateChangelogOpenF(cc))
+        ChangelogB.setObjectName(f'ChangelogB{i}')
+        ChangelogB.setProperty('class', 'ChangelogB')
+        self.ChangelogL.addWidget(ChangelogB)
+        self.ChangelogB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        ChangelogB.setText(c['name'])
     ResetFuncInfo(self)
     self.FuncB = QPushButton(self)
     self.FuncB.setObjectName('FuncB')
@@ -78,8 +86,6 @@ def ChangelogConnectionSetup(self, r):
     elif GithubTime > LocalTime:
         self.FuncB.clicked.connect(lambda: StartUpdate(self))
         self.FuncB.setText(t['FuncB'][1][l])
-
-    # Dorobić guziki XD
 
 def StartUpdate(self):
     ResetFuncInfo(self)

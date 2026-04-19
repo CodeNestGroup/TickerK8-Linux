@@ -11,6 +11,7 @@ from PySide6.QtCore import (
 class PingO(QObject):
     Status = Signal(bool)
     def __init__(self):
+#           --- Set Class Threads ---
         self.Timer = QTimer()
         self.Timer.timeout.connect(self.Check)
         self.Timer.start(5000)

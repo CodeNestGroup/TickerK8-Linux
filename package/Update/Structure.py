@@ -20,18 +20,23 @@ from .Logic import *
 class UpdateW(QWidget):
     def __init__(self, parent):
         super().__init__(parent)
+#           --- Set ---
         self.setAttribute(Qt.WA_StyledBackground, True)
+#           --- Get data from parent [ core ] ---
         self.Path = parent.Path
-        self.LoginOpenF = parent.LoginOpen
         self.Theme = parent.ConfigOffline['theme']
         self.Language = parent.ConfigOffline['language']
+#           --- Get functions from parent [ core ] ---
+        self.LoginOpenF = parent.LoginOpen
+        self.UpdateChangelogOpenF = parent.UpdateChangelogOpen
+#           --- Set Class Threads ---
         self.PingT = QThread(self)
         parent.PingO.moveToThread(self.PingT)
         self.PingT.started.connect(parent.PingO)
         parent.PingO.Status.connect(lambda s: self.PingHandler(s))
         self.PingT.start()
+#           --- Set Class varaibles ---
         self.LastPing = False
-        self.ControllerDownloadT = None
 #           --- Create objects ---
         self.Layout = QGridLayout(self)
         self.ChaneglogW = None

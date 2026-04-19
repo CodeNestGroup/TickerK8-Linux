@@ -1,6 +1,6 @@
-#   --- Import packages ---
+#   --- Import ---
 import json
-#   --- Import PyQt5 packages ---
+#   --- Import PySide ---
 from PySide6.QtWidgets import (
     QSizePolicy
 )

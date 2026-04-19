@@ -1,6 +1,6 @@
-#   --- Import packages ---
+#   --- Import ---
 import json
-#   --- Import PySide6 packages ---
+#   --- Import PySide6 ---
 from PySide6.QtWidgets import (
     QLabel,
     QSizePolicy
