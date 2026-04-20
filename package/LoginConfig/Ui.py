@@ -1,86 +1,84 @@
-#   --- Import packages ---
+#   --- Import ---
 import json
-#   --- Import PyQt5 packages ---
-from PyQt5.QtWidgets import (
+#   --- Import PySide6 ---
+from PySide6.QtWidgets import (
     QSizePolicy
 )
-from PyQt5.QtCore import (
+from PySide6.QtCore import (
     Qt,
     QSize
 )
-from PyQt5.QtGui import (
+from PySide6.QtGui import (
     QPixmap,
     QIcon,
     QPainter
 )
-from PyQt5.QtSvg import (
+from PySide6.QtSvg import (
     QSvgRenderer
 )
 
-def ui(self):
-    self.setObjectName('Login_configuration_widget')
-    self.title_label.setObjectName('title_label')
-    self.info_label.setObjectName('info_label')
-    self.left_button.setObjectName('left_button')
-    self.exit_button.setObjectName('exit_button')
-    self.right_button.setObjectName('right_button')
-    self.accept_button.setObjectName('accept_button')
-    self.navi_label.setObjectName('navi_label')
-    self.left_button.setProperty('class', 'navi_button')
-    self.exit_button.setProperty('class', 'navi_button')
-    self.right_button.setProperty('class', 'navi_button')
-    self.accept_button.setProperty('class', 'navi_button')
-    self.layout.addWidget(self.title_label, 0, 0, 10, 100)
-    self.layout.addWidget(self.info_label, 15, 0, 75, 100)
-    self.layout.addWidget(self.left_button, 92, 10, 3, 10)
-    self.layout.addWidget(self.exit_button, 97, 10, 3, 10)
-    self.layout.addWidget(self.right_button, 92, 80, 3, 10)
-    self.layout.addWidget(self.accept_button, 97, 80, 3, 10)
-    self.layout.addWidget(self.navi_label, 92, 20, 6, 60)
-    self.layout.setSpacing(0)
-    self.layout.setContentsMargins(0,0,0,0)
+def LoginConfigurationUi(self):
+    self.setObjectName('LoginConfigurationW')
+    self.TitleL.setObjectName('TitleL')
+    self.InfoL.setObjectName('InfoL')
+    self.LeftB.setObjectName('LeftB')
+    self.ExitB.setObjectName('ExitB')
+    self.RightB.setObjectName('RightB')
+    self.AcceptB.setObjectName('AcceptB')
+    self.NaviL.setObjectName('NaviL')
+    self.LeftB.setProperty('class', 'NaviButton')
+    self.ExitB.setProperty('class', 'NaviButton')
+    self.RightB.setProperty('class', 'NaviButton')
+    self.AcceptB.setProperty('class', 'NaviButton')
+    self.Layout.addWidget(self.TitleL, 0, 0, 10, 100)
+    self.Layout.addWidget(self.InfoL, 15, 0, 75, 100)
+    self.Layout.addWidget(self.LeftB, 92, 10, 3, 10)
+    self.Layout.addWidget(self.ExitB, 97, 10, 3, 10)
+    self.Layout.addWidget(self.RightB, 92, 80, 3, 10)
+    self.Layout.addWidget(self.AcceptB, 97, 80, 3, 10)
+    self.Layout.addWidget(self.NaviL, 92, 20, 6, 60)
+    self.Layout.setSpacing(0)
+    self.Layout.setContentsMargins(0,0,0,0)
     for enc in range(100):
-        self.layout.setRowStretch(enc, 1)
-        self.layout.setColumnStretch(enc, 1)
-    self.setLayout(self.layout)
+        self.Layout.setRowStretch(enc, 1)
+        self.Layout.setColumnStretch(enc, 1)
+    self.setLayout(self.Layout)
     self.show()
-    self.accept_button.hide()
-    self.title_label.setAlignment(Qt.AlignCenter)
-    self.info_label.setAlignment(Qt.AlignCenter)
-    self.navi_label.setAlignment(Qt.AlignCenter)
+    self.AcceptB.hide()
+    self.TitleL.setAlignment(Qt.AlignCenter)
+    self.InfoL.setAlignment(Qt.AlignCenter)
+    self.NaviL.setAlignment(Qt.AlignCenter)
     self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.title_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.info_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.left_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.exit_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.right_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.accept_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.navi_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.TitleL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.InfoL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.LeftB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.ExitB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.RightB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.AcceptB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.NaviL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
-def reload_style(self):
-    self.setStyleSheet(self.main_path+'/PYTHON/login_config/c_style.css')
-    # Dodać ikony
+def LoginConfigurationReloadStyle(self):
+    t = self.Theme
+    m = open(f'{self.Path}/assets/CSS/LoginConfigurationMain.css').read()
+    c = open(f'{self.Path}/assets/CSS/LoginConfiguration{t}.css').read()
+    self.setStyleSheet(m+c)
 
-def retranslate(self):
-    t = json.load(open(self.main_path+'/PYTHON/login_config/j_translate.json', 'r'))
-    l = json.load(open(self.main_path+'/PYTHON/login_config/j_config.json', 'r'))['language']
-    self.title_label.setText(t['title_label'][l])
-    self.info_label.setText(t['info_label'][l][0])
-    self.left_button.setText(t['left_button'][l])
-    self.exit_button.setText(t['exit_button'][l])
-    self.right_button.setText(t['right_button'][l])
-    self.accept_button.setText(t['accept_button'][l])
+def LoginConfigurationRetranslate(self):
+    l = self.Language
+    t = json.load(open(f'{self.Path}/assets/JSON/LoginConfigurationTranslate.json', 'r', encoding='utf-8'))
+    self.TitleL.setText(t['TitleL'][l])
+    self.InfoL.setText(t['InfoL'][l][0])
+    self.LeftB.setText(t['LeftB'][l])
+    self.ExitB.setText(t['ExitB'][l])
+    self.RightB.setText(t['RightB'][l])
+    self.AcceptB.setText(t['AcceptB'][l])
 
-def center_widget_setup_ui(self):
-    self.center_widget.setObjectName('center_widget')
-    self.center_layout.setSpacing(0)
-    self.center_layout.setContentsMargins(0,0,0,0)
-    self.center_widget.setLayout(self.center_layout)
-    self.layout.addWidget(self.center_widget, 15, 0, 75, 100)
-    self.center_widget.show()
-    self.center_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+def AppConfUi(self):
+    self.CenterW.setObjectName('CenterW')
 
-def app_conf_ui(self):
+
+
+    
     self.language_subtitle_label.setObjectName('language_subtitle_label')
     self.language_combobox.setObjectName('language_combobox')
     self.theme_subtitle_label.setObjectName('theme_subtitle_label')
@@ -93,6 +91,10 @@ def app_conf_ui(self):
     self.center_layout.addWidget(self.language_combobox, 20, 20, 80, 20)
     self.center_layout.addWidget(self.theme_subtitle_label, 0, 50, 10, 50)
     self.center_layout.addWidget(self.theme_combobox, 20, 60, 80, 20)
+
+    self.layout.addWidget(self.center_widget, 15, 0, 75, 100)
+
+
     self.language_subtitle_label.setAlignment(Qt.AlignCenter)
     self.theme_subtitle_label.setAlignment(Qt.AlignCenter)
     self.accept_button.hide()
@@ -101,7 +103,7 @@ def app_conf_ui(self):
     self.theme_subtitle_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.theme_combobox.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     
-def app_conf_retranslate(self):
+def AppConfRetranslate(self):
     t = json.load(open(self.main_path+'/PYTHON/login_config/j_app_conf_translate.json', 'r'))
     l = json.load(open(self.main_path+'/PYTHON/login_config/j_config.json', 'r'))['language']
     self.language_subtitle_label.setText(t['language_subtitle_label'][l])

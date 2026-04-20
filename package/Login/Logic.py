@@ -22,76 +22,70 @@ from PyQt5.QtSvg import (
 
 def BackgroundPainter(self):
     l = self.Language
-    _colors = self.Background['background']
-    _color_0 = '#000000'
-    _color_1 = '#000000'
-    _color_2 = '#000000'
-    _alpha_1 = 'ff'
-    _alpha_2 = 'ff'
-    _x_1 = 0.0
-    _x_2 = 1.0 
-    _icons = self.login_conf['icon']
-
-    """ Calculate index and precent """
-    _now = datetime.datetime.now()
-    _today_sec = _now.hour*3600+_now.minute*60+_now.second
-    if _today_sec >=86400:
-        _today_sec = 86399
-    _index = _today_sec//8640 
-    _percent = (_today_sec/8640)-_index 
-
-    """ Set colors """
-    if _percent <= 0.5:
-        _x_1 = 1-(_percent*2)
-        _x_2 = 1.0
-        _alpha_1 = 'ff'
-        _alpha_2 = f'{int(255 *(_percent / 0.5)):02X}'
-        _color_0 = f'#ff{_colors[_index-1]}'
+    ColorsJson = self.Background['background']
+    IconsJson = self.Background['icon']
+    Color0 = '#000000'
+    Color1 = '#000000'
+    Color2 = '#000000'
+    Alpha1 = 'ff'
+    Alpha2 = 'ff'
+    X1 = 0.0
+    X2 = 1.0 
+#       --- Calculate index and precent ---
+    Now = datetime.datetime.now()
+    TodaySec = Now.hour*3600+Now.minute*60+Now.second
+    if TodaySec >=86400:
+        TodaySec = 86399
+    Index = TodaySec//8640 
+    Percent = (TodaySec/8640)-Index 
+#       --- Set colors ---
+    if Percent <= 0.5:
+        X1 = 1-(Percent*2)
+        X2 = 1.0
+        Alpha1 = 'ff'
+        Alpha2 = f'{int(255 *(Percent / 0.5)):02X}'
+        Color0 = f'#ff{ColorsJson[Index-1]}'
     else:
-        _x_1 = 0.0
-        _x_2 = 1-(_percent-0.5)*2
-        _alpha_1 = f'{255-int(255 *(_percent - 0.5) / 0.5):02X}'
-        _alpha_2 = 'ff'
-        _color_0 = f'#ff{_colors[_index]}'
-    _color_1 = f'#{_alpha_1}{_colors[_index-1]}'
-    _color_2 = f'#{_alpha_2}{_colors[_index]}'
-
-    """ Paint background """
-    pixmap = QPixmap(self.size())
-    pixmap.fill(QColor(_color_0))
-    painter = QPainter(pixmap)
-    gradient = QLinearGradient(0,0,self.width(), 0)
-    gradient.setColorAt(_x_1, QColor(_color_1))
-    gradient.setColorAt(_x_2, QColor(_color_2))
-    painter.fillRect(self.rect(), gradient)
-    painter.end()
-    palette = self.palette()
-    palette.setBrush(QPalette.Window, QBrush(pixmap))
+        X1 = 0.0
+        X2 = 1-(Percent-0.5)*2
+        Alpha1 = f'{255-int(255 *(Percent - 0.5) / 0.5):02X}'
+        Alpha2 = 'ff'
+        Color0 = f'#ff{ColorsJson[Index]}'
+    Color1 = f'#{Alpha1}{ColorsJson[Index-1]}'
+    Color2 = f'#{Alpha2}{ColorsJson[Index]}'
+#       --- Paint background ---
+    Pixmap = QPixmap(self.size())
+    Pixmap.fill(QColor(Color0))
+    Painter = QPainter(pixmap)
+    Gradient = QLinearGradient(0,0,self.width(), 0)
+    Gadient.setColorAt(X1, QColor(Color1))
+    Gradient.setColorAt(X2, QColor(Color2))
+    Painter.fillRect(self.rect(), Gradient)
+    Painter.end()
+    Palette = self.palette()
+    Palette.setBrush(QPalette.Window, QBrush(Pixmap))
     self.setAutoFillBackground(True)
-    self.setPalette(palette)
-
-    """ Call text and icon change """
-    if self.index_changed != _index:
-        _icon = f'{self.main_path}/STYLE/IMG/icons/login/{_icons[_index]}.svg'
+    self.setPalette(Palette)
+#       --- Call text and icon change ---
+    if self.IndexChanged != Index:
+        Icon = f'{self.Path}/assets/ICON/{Icons[Index]}.svg'
         ChangeTextCcon(
             self,
-            self.LoginWelcomeTranslate['WelcomeTitleL'][_index][l],
-            self.LoginWelcomeTranslate['WelcomeSubL'][_index][l],
-            _icon)
-        self.index_changed = _index
+            self.LoginWelcomeTranslate['WelcomeTitleL'][Index][l],
+            self.LoginWelcomeTranslate['WelcomeSubL'][Index][l],
+            Icon)
+        self.IndexChanged = Index
 
-def ChangeTextIcon(self, title='', sub='', icon=''):
-    _sub = sub
-    _icon = icon
-    self.login_welcome_title_label.setText(title)
-    self.login_welcome_sub_label.setText(sub)
-    render = QSvgRenderer(_icon)
-    icon_pixmap = QPixmap(self.login_welcome_icon_label.height(), self.login_welcome_icon_label.height())
-    icon_pixmap.fill(Qt.transparent)
-    icon_painter = QPainter(icon_pixmap)
-    render.render(icon_painter)
-    icon_painter.end()
-    self.login_welcome_icon_label.setPixmap(QPixmap(icon_pixmap))
+def ChangeTextIcon(self, t='', s='', i=''):
+    self.WelcomeTitleL.setText(t)
+    self.WelcomeSubL.setText(s)
+    Render = QSvgRenderer(i)
+    IconPixmap = QPixmap(self.WelcomeIconL.height(), self.WelcomeIconL.height())
+    IconPixmap.fill(Qt.transparent)
+    IconPainter = QPainter(IconPixmap)
+    Render.render(IconPainter)
+    IconPainter.end()
+    self.WelcomeIconL.setPixmap(QPixmap(IconPixmap))
 
 def ResetStyle(self):
     if self.Theme == 'vintage_elegance_l':
@@ -102,4 +96,19 @@ def ResetStyle(self):
     self.PasswordL.setStyleSheet(f'border-color: {c};')
 
 def LoginController(self):
-    pass
+    d = self.CheckLoginF(str(self.LoginL.text()))
+    if d[1] == self.PasswordL.text():
+        if d[2]:
+             pass
+        else:
+            self.SetLoggedUserIdF(d[0])
+            if not d[3]:
+                self.LoginConfigurationOpenF()
+            else:
+                self.UpdateLastLoginF(d[0])
+                self.MainOpenF()
+    else:
+        self.LoginL.clear()
+        self.PasswordL.clear()
+        self.LoginL.setStyleSheet('border: 2px solid red;')
+        self.PasswordL.setStyleSheet('border: 2px solid red;')  

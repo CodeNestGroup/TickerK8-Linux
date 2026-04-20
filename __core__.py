@@ -23,6 +23,8 @@ from PySide6.QtGui import (
 from package.Update.Structure import UpdateW
 from package.UpdateSettings.Structure import UpdateSettingsW
 from package.Login.Structure import LoginW
+from package.Register.Structure import RegisterW
+from package.LoginConfig.Structure import LoginConfigurationW
 
 #   --- Import backend
 from package.Db.Connection import Database
@@ -87,22 +89,22 @@ class AppWindow(QWidget):
         self.setGeometry(x, y, w, h)
 
     def RegisterOpen(self):
-        self.register_widget = Register_widget(self)
-        self.layout.addWidget(self.register_widget)
-        self.setGeometry(QRect(self.pos_x, self.pos_y, self.width, self.height))
-        self.register_add_country()
-        self.register_add_prefix()
-        self.register_widget.correct_data.connect(self.register_user)
-        self.register_widget.register_exit_button.clicked.connect(self.register_to_login)
-    
-    def login_configuration_setup(self):
-        self.login_configuration_widget = Login_configuration_widget(self)
-        self.layout.addWidget(self.login_configuration_widget)
-        self.setGeometry(QRect(self.pos_x, self.pos_y, self.width, self.height))
+        self.OpenW = RegisterW(self)
+        self.Layout.addWidget(self.OpenW)
+        x, y, w, h = self.Geometry.width()//4, self.Geometry.height()//12, self.Geometry.width()//2, self.Geometry.height()//1.25
+        self.setGeometry(x, y, w, h)
+        
+    def LoginConfigurationOpen(self):
+        self.OpenedW = LoginConfigurationW(self)
+        self.Layout.addWidget(self.OpenedW)
+        x, y, w, h = self.Geometry.width()//4, self.Geometry.height()//12, self.Geometry.width()//2, self.Geometry.height()//1.25
+        self.setGeometry(x, y, w, h)
+
+
+
         self.login_configuration_widget.accept_button.clicked.connect(self.login_configuration_controller)
-        self.login_configuration_widget.exit_button.clicked.connect(self.login_configuration_to_login)
-    
-    def main_setup(self):
+        
+    def MainOpen(self):
         self.main_widget = MainW(self)
         self.layout.addWidget(self.main_widget)
         self.setGeometry(self.geometry)
@@ -163,52 +165,8 @@ class AppWindow(QWidget):
         self.settings_widget = None
         self.main_setup()
 
-
-#   --- Modules functions  ---
-
-    def login_controller(self):
-        d = self.database.LoginByName(str(self.login_widget.login_login_lineedit.text()))
-        if d[1] == self.login_widget.login_password_lineedit.text():
-            if d[2]:
-                pass # Dopisać kiedyś notyfikacje że ktoś inny jest już zalogowany
-            else:
-                self.logged_user_id = d[0]
-                if not d[3]:
-                    self.login_to_login_configuration()
-                else:
-                    self.database.UpdateLastLogin(d[0])
-                    self.login_to_main()
-        else:
-            self.login_widget.login_login_lineedit.clear()
-            self.login_widget.login_password_lineedit.clear()
-            self.login_widget.login_login_lineedit.setStyleSheet('border: 2px solid red;')
-            self.login_widget.login_password_lineedit.setStyleSheet('border: 2px solid red;')
-    
-    def register_add_country(self):
-        r = self.database.GetCountries()
-        self.register_widget.register_country_combobox.addItems(r)
-    
-    def register_add_prefix(self):
-        r = self.database.GetPhonePrefix()
-        self.register_widget.register_phonenumber_combobox.addItems(r)
-
-    def register_user(self, user_data: tuple):
-        try:
-            err = self.database.RegisterUser(user_data)
-            if not err:
-                self.register_to_login()
-            else:
-                for e in err:
-                    if e == 'USER_EXISTS':
-                        self.register_widget.user_exists()
-                    elif e == 'EMAIL_EXISTS':
-                        self.register_widget.email_exists()
-                    elif e == 'PHONE_EXISTS_IN_PREFIX':
-                        self.register_widget.phone_exists()
-                    else:
-                        raise Exception
-        except Exception as e:
-            print(e) # Dopisz do logi
+    def SetLoggedUserId(self, i):
+        self.LoggedUserId = i
     
     def login_configuration_controller(self):
         self.database.LoginConfiguration(self.logged_user_id)

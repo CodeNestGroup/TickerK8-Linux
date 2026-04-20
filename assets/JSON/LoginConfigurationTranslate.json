@@ -1,6 +1,6 @@
 {
-    "title_label": ["User config", "Konfiguracja użytkownika"],
-    "info_label": [
+    "TitleL": ["User config", "Konfiguracja użytkownika"],
+    "InfoL": [
         [
             "Setup application settings like:\n- Language,\n- Theme",
             "",
@@ -18,8 +18,8 @@
             ""
         ]
     ],
-    "left_button": ["L", "L"],
-    "exit_button": ["E", "E"],
-    "right_button": ["R", "R"],
-    "accept_button": ["A", "A"]
+    "LeftB": ["L", "L"],
+    "ExitB": ["E", "E"],
+    "RightB": ["R", "R"],
+    "AcceptB": ["A", "A"]
 }

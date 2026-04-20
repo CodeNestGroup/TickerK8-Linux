@@ -34,7 +34,11 @@ class LoginW(QWidget):
         self.IndexChanged = -10
 #           --- Get functions from parent [ core ] ---
         self.CheckLoginF = parent.Database.LoginByName
+        self.UpdateLastLoginF = parent.Database.UpdateLastLogin
+        self.LoginConfigurationOpenF = parent.LoginConfigurationOpen
         self.RegisterOpenF = parent.RegisterOpen
+        self.MainOpenF = parent.MainOpen
+        self.SetLoggedUserIdF = parent.SetLoggedUserId
 #           --- Create objects ---
         self.Layout = QGridLayout(self)
         self.LoginL = QLineEdit(self)
