@@ -31,6 +31,9 @@ class LoginConfigurationW(QWidget):
         self.Language = parent.ConfigOffline['language']
 #           --- Get functions from parent [ core ] ---
         self.LoginOpenF = parent.LoginOpen
+        self.LoginConfigurationF = parent.Database.LoginConfiguration
+#           --- Set Class varaibles ---
+        self.StepIndex = 0
 #       --- Create objects ---
         self.Layout = QGridLayout(self)
         self.TitleL = QLabel(self)
@@ -46,9 +49,10 @@ class LoginConfigurationW(QWidget):
         LoginConfigurationReloadStyle(self)
         LoginConfigurationRetranslate(self)
 #       --- Connect functions ---
-        self.LeftB.clicked.connect(lambda: Previous(self))
-        self.RightB.clicked.connect(lambda: Next(self))
+        self.LeftB.clicked.connect(lambda: ChangePage(self, -1))
+        self.RightB.clicked.connect(lambda: ChangePage(self, 1))
         self.ExitB.clicked.connect(self.LoginOpenF)
+        self.AcceptB.clicked.connect(lambda: LoginConfigurationController(self))
     
     def Reset(self):
         if self.CenterW:
@@ -56,6 +60,7 @@ class LoginConfigurationW(QWidget):
             self.CenterW = None 
 
     def AppConf(self):
+        self.Reset()
 #       --- Create objects ---
         self.CenterW = QWidget(self)
         self.CenterL = QGridLayout(self.CenterW)
@@ -70,18 +75,19 @@ class LoginConfigurationW(QWidget):
         self.LanguageC.currentIndexChanged.connect(lambda: ChangeLanguage(self))
         self.LanguageC.currentIndexChanged.connect(lambda: AppConfRetranslate(self))
         self.ThemeC.currentIndexChanged.connect(lambda: ChangeTheme(self))
+        self.ThemeC.currentIndexChanged.connect(lambda: LoginConfigurationReloadStyle(self))
 
     def SubConf(self):
+        self.Reset()
 #       --- Create objects ---
         self.CenterW = QWidget(self)
         self.CenterL = QGridLayout(self.CenterW)
-        self.CheckedB = None
         self.LeftB = QPushButton(self.CenterW)
         self.CenterB = QPushButton(self.CenterW)
         self.RightB = QPushButton(self.CenterW)
+        self.CheckedB = None
 #       --- Call functions ---
         SubConfUi(self)
-        SubConfReloadStyle(self)
         SubConfRetranslate(self)
 #       --- Connect functions ---
         self.LeftB.clicked.connect(lambda: ChangeSub(self, 3, self.LeftB))
@@ -89,6 +95,7 @@ class LoginConfigurationW(QWidget):
         self.RightB.clicked.connect(lambda: ChangeSub(self, 2, self.RightB))
 
     def AcceptSettings(self):
+        self.Reset()
 #       --- Create objects ---
         self.CenterW = QWidget(self)
         self.CenterL = QGridLayout(self.CenterW)
@@ -98,6 +105,5 @@ class LoginConfigurationW(QWidget):
         self.RegulationsValueL = QLabel(self.RegulationsW)
 #       --- Call functions ---
         AcceptSettingsUi(self)
-        AcceptSettingsReloadstyle(self)
         AcceptSettingsRetranslate(self)
 #       --- Connect functions ---

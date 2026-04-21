@@ -25,6 +25,8 @@ from package.UpdateSettings.Structure import UpdateSettingsW
 from package.Login.Structure import LoginW
 from package.Register.Structure import RegisterW
 from package.LoginConfig.Structure import LoginConfigurationW
+from package.Main.Structure import MainW
+from package.Settings.Structure import SettingsW
 
 #   --- Import backend
 from package.Db.Connection import Database
@@ -49,7 +51,7 @@ class AppWindow(QWidget):
         self.Screen = QGuiApplication.primaryScreen()
         self.Geometry = self.Screen.availableGeometry()
 #           --- App functions  ---
-        self.Database = Database()
+        self.Database = Database(self)
         self.PingO = PingO()
 
 #   --- Func for opens windows ---
@@ -82,6 +84,7 @@ class AppWindow(QWidget):
         self.setGeometry(x, y, w, h)
 
     def LoginOpen(self):
+        self.Reset()
         self.LoggedUserId = None
         self.OpenW = LoginW(self)
         self.Layout.addWidget(self.OpenedW)
@@ -89,88 +92,37 @@ class AppWindow(QWidget):
         self.setGeometry(x, y, w, h)
 
     def RegisterOpen(self):
+        self.Reset()
         self.OpenW = RegisterW(self)
         self.Layout.addWidget(self.OpenW)
         x, y, w, h = self.Geometry.width()//4, self.Geometry.height()//12, self.Geometry.width()//2, self.Geometry.height()//1.25
         self.setGeometry(x, y, w, h)
         
     def LoginConfigurationOpen(self):
+        self.Reset()
         self.OpenedW = LoginConfigurationW(self)
         self.Layout.addWidget(self.OpenedW)
         x, y, w, h = self.Geometry.width()//4, self.Geometry.height()//12, self.Geometry.width()//2, self.Geometry.height()//1.25
         self.setGeometry(x, y, w, h)
 
-
-
-        self.login_configuration_widget.accept_button.clicked.connect(self.login_configuration_controller)
-        
     def MainOpen(self):
-        self.main_widget = MainW(self)
-        self.layout.addWidget(self.main_widget)
-        self.setGeometry(self.geometry)
+        self.Reset()
+        self.OpenedW = MainW(self)
+        self.Layout.addWidget(self.OpenedW)
         self.showMaximized()
-        self.main_widget.NavSettingsB.clicked.connect(self.main_to_settings)
-        self.main_widget.NavLogoutB.clicked.connect(self.main_to_login)
+        x, y, w, h = self.Geometry.width(), self.Geometry.height(), self.Geometry.width(), self.Geometry.height()
+        self.setGeometry(x, y, w, h)
 
-    def settings_setup(self):
-        self.settings_widget = SettingsW(self)
-        self.layout.addWidget(self.settings_widget)
-        self.setGeometry(self.geometry)
+    def SettingsOpen(self):
+        self.Reset()
+        self.OpenedW = SettingsW(self)
+        self.Layout.addWidget(self.OpenedW)
         self.showMaximized()
-        self.settings_widget.NaviExitB.clicked.connect(self.settings_to_main)
-    
-    def login_to_register(self):
-        self.login_widget.deleteLater()
-        self.login_widget = None 
-        self.register_setup()
-
-    def register_to_login(self):
-        self.register_widget.deleteLater()
-        self.register_widget = None
-        self.login_setup()
-
-    def login_to_login_configuration(self):
-        self.login_widget.deleteLater()
-        self.login_widget = None 
-        self.login_configuration_setup()
-    
-    def login_configuration_to_login(self):
-        self.login_configuration_widget.deleteLater()
-        self.login_configuration_widget = None
-        self.login_setup()
-
-    def forgot_password_to_login(self):
-        self.recover_password_widget.deleteLater()
-        self.recover_password_widget = None
-        self.login_setup()
-
-    def login_to_main(self):
-        self.login_widget.deleteLater()
-        self.login_widget = None
-        self.main_setup()
-
-    def main_to_login(self):
-        self.main_widget.deleteLater()
-        self.main_widget = None
-        self.login_setup()
-
-    def main_to_settings(self):
-        self.main_widget.deleteLater()
-        self.main_widget = None
-        self.settings_setup()
-
-    def settings_to_main(self):
-        self.database.SaveSettings(self.logged_user_id, self.settings_widget.Config['theme'], self.settings_widget.Config['language'])
-        self.settings_widget.deleteLater()
-        self.settings_widget = None
-        self.main_setup()
+        x, y, w, h = self.Geometry.width(), self.Geometry.height(), self.Geometry.width(), self.Geometry.height()
+        self.setGeometry(x, y, w, h)
 
     def SetLoggedUserId(self, i):
         self.LoggedUserId = i
-    
-    def login_configuration_controller(self):
-        self.database.LoginConfiguration(self.logged_user_id)
-        self.login_configuration_to_login()
             
 def SetFont():
     font_id = QFontDatabase.addApplicationFont(str(pathlib.Path(__file__).resolve().parents[0])+'/assets/FONTS/NotoSerif-VariableFont_wdth,wght.ttf')

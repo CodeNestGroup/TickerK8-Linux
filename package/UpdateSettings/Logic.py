@@ -12,10 +12,10 @@ def ChangeDayNight(self):
     s = self.Theme.split('_')
     dn = s[-1]
     m = f'{s[0]}_{s[1]}'
-    if dn == 'light':
-        dn = 'dark'
-    elif dn == 'dark':
-        dn = 'light'
+    if dn == 'l':
+        dn = 'd'
+    elif dn == 'd':
+        dn = 'l'
     self.ConfigOffline['theme'] = f'{m}_{dn}'
     self.Theme = self.ConfigOffline['theme']
     UpdateSettingsReloadStyle(self)

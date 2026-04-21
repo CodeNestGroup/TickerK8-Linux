@@ -1,71 +1,53 @@
+#   --- Import ---
 import json
 
-def Next(self):
-    if self.widget_list_index <= len(self.widget_list)-2:
-        self.widget_list_index += 1
-    i = self.widget_list_index
-    f = self.widget_list[i]
-    if f:
-        self.info_label.hide()
-        self.center_widget_setup()
-        f()
-    elif not f:
-        t = json.load(open(self.main_path+'/PYTHON/login_config/j_translate.json', 'r'))
-        l = json.load(open(self.main_path+'/PYTHON/login_config/j_config.json', 'r'))['language']
-        if self.center_widget:
-            self.center_widget.deleteLater()
-            self.center_widget = None 
-        self.info_label.show()
-        self.info_label.setText(t['info_label'][l][i])
-    
-def Previous(self):
-    if self.widget_list_index >= 1:
-        self.widget_list_index -= 1
-    i = self.widget_list_index
-    f = self.widget_list[i]
-    if f:
-        self.info_label.hide()
-        self.center_widget_setup()
-        f()
-    elif not f:
-        t = json.load(open(self.main_path+'/PYTHON/login_config/j_translate.json', 'r'))
-        l = json.load(open(self.main_path+'/PYTHON/login_config/j_config.json', 'r'))['language']
-        if self.center_widget:
-            self.center_widget.deleteLater()
-            self.center_widget = None 
-        self.info_label.show()
-        self.info_label.setText(t['info_label'][l][i])
+def ChangePage(self, i):
+    self.StepIndex += i
+    if self.StepIndex <= -1:
+        self.StepIndex == 0
+    elif self.StepIndex >= 6:
+        self.StepIndex == 5
 
-def ResetConfig(self):
-    with open(self.main_path+'/PYTHON/login_config/j_config.json', 'r') as file:
-        c = json.load(file)
-        c['language'] = 0
-        c['theme'] = "vintage_elegance_dark"
-        c['subscription'] = 0
-        with open(self.main_path+'/PYTHON/login_config/j_config.json', 'w') as f:
-            json.dump(c, f, indent=4)
+    if self.StepIndex in (1, 3, 5):
+        self.InfoL.hide()
+        if self.StepIndex == 1:
+            self.AppConf()
+        elif self.StepIndex == 3:
+            self.SubConf()
+        elif self.StepIndex == 5:
+            self.AcceptSettings()
+    elif self.StepIndex in (0, 2, 4):
+        l = self.Language
+        t = json.load(open(f'{self.Path}/assets/JSON/LoginConfigurationTranslate.json', 'r', encoding='utf-8'))
+        self.Reset()
+        self.InfoL.show()
+        self.InfoL.setText(t['InfoL'][l][self.StepIndex])
 
 def ChangeLanguage(self):
-    with open(self.main_path+'/PYTHON/login_config/j_config.json', 'r') as file:
+    with open(self.Path+'/assets/JSON/LoginConfigurationConfig.json', 'r', encoding='utf-8') as file:
         c = json.load(file)
-        c['language'] = self.language_combobox.currentIndex()
-        with open(self.main_path+'/PYTHON/login_config/j_config.json', 'w') as f:
+        c['language'] = self.LanguageC.currentIndex()
+        with open(self.Path+'/assets/JSON/LoginConfigurationConfig.json', 'w', encoding='utf-8') as f:
             json.dump(c, f, indent=4)
 
 def ChangeTheme(self):
-    with open(self.main_path+'/PYTHON/login_config/j_config.json', 'r') as file:
+    with open(self.Path+'/assets/JSON/LoginConfigurationConfig.json', 'r', encoding='utf-8') as file:
         c = json.load(file)
-        c['theme'] = self.theme_combobox.currentText()
-        with open(self.main_path+'/PYTHON/login_config/j_config.json', 'w') as f:
+        c['theme'] = self.ThemeC.currentText()
+        with open(self.Path+'/assets/JSON/LoginConfigurationConfig.json', 'w', encoding='utf-8') as f:
             json.dump(c, f, indent=4)
 
 def ChangeSub(self, i:int, button):
-    with open(self.main_path+'/PYTHON/login_config/j_config.json', 'r') as file:
+    with open(self.Path+'/assets/JSON/LoginConfigurationConfig.json', 'r', encoding='utf-8') as file:
         c = json.load(file)
         c['subscription'] = i
-        with open(self.main_path+'/PYTHON/login_config/j_config.json', 'w') as f:
+        with open(self.Path+'/assets/JSON/LoginConfigurationConfig.json', 'w', encoding='utf-8') as f:
             json.dump(c, f, indent=4)
-    if self.checked_button:
-        self.checked_button.setStyleSheet('border: none;')
-    self.checked_button = button
-    self.checked_button.setStyleSheet('border: 2px solid green;')
+    if self.CheckedB:
+        self.CheckedB.setStyleSheet('border: none;')
+    self.CheckedB = button
+    self.CheckedB.setStyleSheet('border: 2px solid green;')
+
+def LoginConfigurationController(self):
+    self.LoginConfigurationF()
+    self.LoginOpenF()
