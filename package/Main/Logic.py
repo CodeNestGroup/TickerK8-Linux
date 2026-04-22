@@ -34,8 +34,7 @@ from ..ObjectStats.Structure import ObjectStatsS
 #   --- Dynamic Background ---
 def BackgroundPainter(self):
     l = self.Language
-    ColorsJson = self.Background['background']
-    IconsJson = self.Background['icon']
+    ColorsJson = self.BackgroundConf['background']
     Color0 = '#000000'
     Color1 = '#000000'
     Color2 = '#000000'
@@ -68,9 +67,9 @@ def BackgroundPainter(self):
 #       --- Paint background ---
     Pixmap = QPixmap(self.size())
     Pixmap.fill(QColor(Color0))
-    Painter = QPainter(pixmap)
+    Painter = QPainter(Pixmap)
     Gradient = QLinearGradient(0,0,self.width(), 0)
-    Gadient.setColorAt(X1, QColor(Color1))
+    Gradient.setColorAt(X1, QColor(Color1))
     Gradient.setColorAt(X2, QColor(Color2))
     Painter.fillRect(self.rect(), Gradient)
     Painter.end()
@@ -134,7 +133,7 @@ def ListAddSetupList(self):
                     i += 1
                     ObjectNameL = QLabel(self.ListAddW)
                     ObjectNameL.setObjectName(f'ObjectNameL{ii}')
-                    ObjectNameL.setProperty('class', 'NameL')
+                    ObjectNameL.setProperty('class', 'ObjectNameL')
                     self.ListAddL.addWidget(ObjectNameL, i, 0, 1, 100)
                     ObjectNameL.setAlignment(Qt.AlignCenter)
                     ObjectNameL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -208,7 +207,7 @@ def SetupResultS(self):
 def ListAddHandle(self, DBI):
     self.AddObjectData['NewObjectType'] = self.SortType
     self.AddObjectData['NewObjectId'] = DBI
-    self.AddObjectToList(self.AddObjectData)
+    self.AddObjectToListF(self.AddObjectData)
     ReloadConfig(self)
     self.ListPage()
 

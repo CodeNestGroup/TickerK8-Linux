@@ -1,8 +1,6 @@
 #   --- Import ---\
 import sqlite3
-from PyQt5.QtCore import (
-    QTimer
-)
+
 def Setup(self, Table, ItemId):
     conn = sqlite3.connect(f'{self.Path}/assets/DB/Tickerk8Offline.db')
     cur = conn.cursor()

@@ -59,5 +59,5 @@ class LoginW(QWidget):
 #           --- Connect functions ---
         self.LoginL.textChanged.connect(lambda: ResetStyle(self))
         self.PasswordL.textChanged.connect(lambda: ResetStyle(self))
-        self.LoginLoginB.clicked.connect(lambda: LoginController(self))
+        self.LoginB.clicked.connect(lambda: LoginController(self))
         self.RegisterB.clicked.connect(self.RegisterOpenF)

@@ -25,14 +25,16 @@ def ChangeTheme(self):
     t = json.load(open(f'{self.Path}/assets/JSON/SettingsStyleTranslate.json', 'r', encoding='utf-8'))
     self.ConfigOffline['theme'] = t['StyleThemeThemesValueC'][self.StyleThemeThemesValueC.currentText()]
     self.Theme = self.ConfigOffline['theme']
-    SettingsReloadStyle(self)
+    UpdateSettingsReloadStyle(self)
+    StyleRetranslate(self)
 
 def ChangeLanguage(self):
     self.ConfigOffline['language'] = self.LanguageValueC.currentIndex()
     self.Language = self.ConfigOffline['language']
-    SettingsRetranslate(self)
+    UpdateSettingsRetranslate(self)
     LanguageRetranslate(self)
 
 def SaveConfig(self):
-    with open(f'{self.Path}/assets/JSON/ConfigOffline.json', 'r', encoding='utf-8') as C:
+    with open(f'{self.Path}/assets/JSON/ConfigOffline.json', 'w', encoding='utf-8') as C:
         json.dump(self.ConfigOffline, C, indent=4)
+    self.ReloadConfigOfflineF()

@@ -105,11 +105,17 @@ def AppConfRetranslate(self):
         ti = 1
     t = json.load(open(f'{self.Path}/assets/JSON/LoginConfigurationAppConfTranslate.json', 'r', encoding='utf-8'))
     self.LanguageSubtitleL.setText(t['LanguageSubtitleL'][l])
+    self.LanguageC.blockSignals(True)
+    self.LanguageC.clear()
     self.LanguageC.addItems(t['LanguageC'])
     self.LanguageC.setCurrentIndex(l)
+    self.LanguageC.blockSignals(False)
     self.ThemeSubtitleL.setText(t['ThemeSubtitleL'][l])
-    self.ThemeC.addItems(t['ThemeC'])
+    self.ThemeC.blockSignals(True)
+    self.ThemeC.clear()
+    self.ThemeC.addItems(dict(t['ThemeC']).keys())
     self.ThemeC.setCurrentIndex(ti)
+    self.ThemeC.blockSignals(False)
 
 def SubConfUi(self):
     self.CenterW.setObjectName('CenterW')
@@ -140,8 +146,8 @@ def AcceptSettingsUi(self):
     self.CenterW.setObjectName('CenterW')
     self.RegulationsS.setObjectName('RegulationsS')
     self.RegulationsW.setObjectName('RegulationsW')
-    self.RegulationsL.setObjectName('RegulationsL')
-    self.RegulationsL.addWidget(self.regulations_label, 0, 0)
+    self.RegulationsValueL.setObjectName('RegulationsValueL')
+    self.RegulationsL.addWidget(self.RegulationsValueL, 0, 0)
     self.RegulationsL.setSpacing(0)
     self.RegulationsL.setContentsMargins(0,0,0,0)
     self.RegulationsW.setLayout(self.RegulationsL)
@@ -151,13 +157,13 @@ def AcceptSettingsUi(self):
     self.RegulationsS.setWidget(self.RegulationsW)
     self.RegulationsS.setWidgetResizable(True)
     self.RegulationsS.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-    self.regulations_label.setAlignment(Qt.AlignCenter)
+    self.RegulationsValueL.setAlignment(Qt.AlignCenter)
     self.CenterW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.RegulationsS.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.RegulationsW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-    self.RegulationsL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+    self.RegulationsValueL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
-def AcceptSettingsRetranslateetranslate(self):
+def AcceptSettingsRetranslate(self):
     l = self.Language
     t = json.load(open(f'{self.Path}/assets/JSON/LoginConfigurationAcceptSettingsTranslate.json', 'r', encoding='utf-8'))
-    self.RegulationsL.setText(t['RegulationsL'][l])
+    self.RegulationsValueL.setText(t['RegulationsValueL'][l])

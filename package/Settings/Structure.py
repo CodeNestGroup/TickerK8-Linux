@@ -23,16 +23,16 @@ class SettingsW(QWidget):
 #           --- Set ---
         self.setAttribute(Qt.WA_StyledBackground, True)
 #           --- Get data from parent [ core ] ---
-        self.Path = parent.main_path
-        self.LoggedUserId = parent.logged_user_id
-        self.GetUserConfig = parent.database.GetUserConfig
+        self.Path = parent.Path
+        self.LoggedUserId = parent.LoggedUserId
+        self.GetUserConfig = parent.Database.GetUserConfig
         self.Config = json.loads(self.GetUserConfig(self.LoggedUserId)[0])
-        self.UserData = parent.database.GetUserData(self.LoggedUserId)[0]
+        self.UserData = parent.Database.GetUserData(self.LoggedUserId)[0]
         self.Theme = self.Config['theme']
         self.Language = self.Config['language']
 #           --- Set Class varaibles ---
 #           --- Get functions from parent [ core ] ---
-        self.SaveSettingsF = parent.SaveSettings
+        self.SaveSettingsF = parent.Database.SaveSettings
         self.MainOpenF = parent.MainOpen
 #           --- Create objects ---
         self.Layout = QGridLayout(self)

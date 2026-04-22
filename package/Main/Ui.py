@@ -231,8 +231,6 @@ def ListSearchPageRetranslate(self):
 def ObjectPageUi(self):
     self.OpenedW.setObjectName('OpenedW')
     self.OpenedL.addWidget(self.ListObjectW, 0, 1, 100, 14)
-    self.OpenedL.addWidget(self.ObejctInfoS, 0, 16, 100, 41)
-    self.OpenedL.addWidget(self.ObjectStatsW, 0, 58, 100, 41)
     self.OpenedL.setSpacing(0)
     self.OpenedL.setContentsMargins(0,0,0,0)
     for i in range(100):
@@ -277,7 +275,7 @@ def NewsPageReloadStyle(self):
     self.setStyleSheet(m+c)
 
 def NewsPageRetranslate(self):
-    t = json.load(open(f'{self.Path}/assets/JSONMainNewsTranslate.json', 'r', encoding='utf-8'))
+    t = json.load(open(f'{self.Path}/assets/JSON/MainNewsTranslate.json', 'r', encoding='utf-8'))
     l = self.Language
     self.NewsStockB.setText(t['NewsStockB'][l])
     self.NewsMarketB.setText(t['NewsMarketB'][l])

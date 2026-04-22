@@ -53,7 +53,7 @@ def UpadateReloadStyle(self):
     self.setStyleSheet(m+c)
     self.SettingsB.setIcon(QIcon(load_svg(f'{self.Path}/assets/ICON/Settings{t}.svg', 256, 256)))
     self.SettingsB.setIconSize(self.SettingsB.size())
-    self.InstagramB.setIcon(QIcon(load_svg(f'{self.Pat}/assets/ICON/Instagram{t}.svg', 256, 256)))
+    self.InstagramB.setIcon(QIcon(load_svg(f'{self.Path}/assets/ICON/Instagram{t}.svg', 256, 256)))
     self.InstagramB.setIconSize(self.InstagramB.size())
     self.GithubB.setIcon(QIcon(load_svg(f'{self.Path}/assets/ICON/Github{t}.svg', 256, 256)))
     self.GithubB.setIconSize(self.GithubB.size())
@@ -82,8 +82,7 @@ def ChangelogNoConnectionUi(self):
 
 def ChangelogNoConnectionReloadStyle(self):
     t = self.Theme
-    self.ChangelogIconL.setIcon(QIcon(load_svg(f'{self.Path}/assets/ICON/NoConnection{t}.svg', 256, 256)))
-    self.ChangelogIconL.setIconSize(self.ChangelogIconL.size())
+    self.ChangelogIconL.setPixmap(QPixmap(load_svg(f'{self.Path}/assets/ICON/NoConnection{t}.svg', 256, 256)))
 
 def ChangelogNoConnectionRetranslate(self):
     l = self.Language
@@ -97,7 +96,7 @@ def ChangelogLoadingUi(self):
     self.ChaneglogDotsL.setObjectName('ChaneglogDotsL')
     self.ChangelogL.addWidget(self.ChangelogIconL, 30,0, 30, 100)
     self.ChangelogL.addWidget(self.ChangelogMessageL, 62, 0, 10, 50)
-    self.ChaneglogL.addWidget(self.ChaneglogDotsL, 62, 50, 10, 50)
+    self.ChangelogL.addWidget(self.ChaneglogDotsL, 62, 50, 10, 50)
     self.ChangelogL.setSpacing(0)
     self.ChangelogL.setContentsMargins(0,0,0,0)
     for enc in range(100):
@@ -108,12 +107,15 @@ def ChangelogLoadingUi(self):
     self.ChangelogW.show()
     self.ChangelogIconL.setAlignment(Qt.AlignCenter)
     self.ChangelogMessageL.setAlignment(Qt.AlignCenter)
-    self.ChaneglogDotsL.setAlignment(Qt.AlignLeft)
+    self.ChaneglogDotsL.setAlignment(Qt.AlignCenter)
     self.ChangelogW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.ChangelogIconL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.ChangelogMessageL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.ChaneglogDotsL.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
+def ChangelogLoadingReloadStyle(self):
+    t = self.Theme
+    self.ChangelogIconL.setPixmap(QPixmap(load_svg(f'{self.Path}/assets/ICON/NoConnection{t}.svg', 256, 256)))
 
 def ChangelogLoadingRetranslate(self):
     l = self.Language
@@ -124,11 +126,12 @@ def ChangelogConnctionUi(self):
     self.ChangelogS.setObjectName('ChangelogS')
     self.ChangelogW.setObjectName('ChangelogW')
     self.ChangelogL.setSpacing(0)
-    self.ChaneglogL.setContentsMargins(0,0,0,0)
-    self.ChangelogW.setLayout(self.ChaneglogL)
+    self.ChangelogL.setContentsMargins(0,0,0,0)
+    self.ChangelogW.setLayout(self.ChangelogL)
+    self.Layout.addWidget(self.ChangelogS, 0, 0, 100, 50)
     self.ChangelogS.show()
     self.ChangelogS.setWidgetResizable(True)
-    self.ChangelogS.setWidget(self.ChaneglogW)
+    self.ChangelogS.setWidget(self.ChangelogW)
     self.ChangelogS.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     self.ChangelogW.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 

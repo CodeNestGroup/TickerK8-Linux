@@ -1,19 +1,19 @@
 #   --- Import ---
 import json
 #   --- Import PySide6 ---
-from PyQt5.QtWidgets import (
+from PySide6.QtWidgets import (
     QSizePolicy
 )
-from PyQt5.QtCore import (
+from PySide6.QtCore import (
     Qt,
     QSize
 )
-from PyQt5.QtGui import (
+from PySide6.QtGui import (
     QPixmap,
     QIcon,
     QPainter
 )
-from PyQt5.QtSvg import (
+from PySide6.QtSvg import (
     QSvgRenderer
 )
 
@@ -31,7 +31,7 @@ def UpdateChangelogUi(self):
     self.ChangelogL.addWidget(self.ChangelogTextL)
     self.ChangelogL.setSpacing(0)
     self.ChangelogL.setContentsMargins(0,0,0,0)
-    self.ChangelogL.setLayout(self.update_layout)
+    self.ChangelogW.setLayout(self.ChangelogL)
     self.Layout.addWidget(self.TitleL, 5, 5, 10, 90)
     self.Layout.addWidget(self.ChangelogS, 20, 5, 60, 90)
     self.Layout.addWidget(self.ExitB, 89, 40, 6, 20)

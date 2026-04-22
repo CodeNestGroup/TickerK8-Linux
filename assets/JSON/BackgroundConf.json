@@ -12,15 +12,15 @@
         "191970"
     ],
     "icon": [
-        "chart",
-        "country",
-        "edit",
-        "list",
-        "market",
-        "news",
-        "search",
-        "settings",
-        "statistics",
-        "world"
+        "Chart",
+        "Country",
+        "Edit",
+        "List",
+        "Market",
+        "News",
+        "Search",
+        "Settings",
+        "Statistics",
+        "World"
     ]
 }

@@ -29,7 +29,7 @@ class RegisterW(QWidget):
 #           --- Get functions from parent [ core ] ---
         self.GetCountriesF = parent.Database.GetCountries
         self.GetPhonePrefixF = parent.Database.GetPhonePrefix
-        self.RegisteruserF = parent.Database.RegisterUser
+        self.RegisterUserF = parent.Database.RegisterUser
         self.LoginOpenF = parent.LoginOpen
 #           --- Set Class varaibles ---
 #           --- Create objects ---

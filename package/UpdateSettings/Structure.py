@@ -2,6 +2,7 @@
 from PySide6.QtWidgets import (
     QWidget,
     QLabel, 
+    QPushButton,
     QComboBox,
     QScrollArea,
     QGridLayout,
@@ -28,6 +29,8 @@ class UpdateSettingsW(QWidget):
         self.ConfigOffline = parent.ConfigOffline
         self.Theme = parent.ConfigOffline['theme']
         self.Language = parent.ConfigOffline['language']
+#           --- Get functions from parent [ core ] ---
+        self.ReloadConfigOfflineF = parent.ReloadConfigOffline
 #           --- Create objects ---
         self.Layout = QGridLayout(self)
         self.NaviS = QScrollArea(self)

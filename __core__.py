@@ -22,15 +22,15 @@ from PySide6.QtGui import (
 #   --- Import __core__ modules ---
 from package.Update.Structure import UpdateW
 from package.UpdateSettings.Structure import UpdateSettingsW
+from package.UpdateChangelog.Structure import UpdateChangelogW
 from package.Login.Structure import LoginW
 from package.Register.Structure import RegisterW
 from package.LoginConfig.Structure import LoginConfigurationW
 from package.Main.Structure import MainW
 from package.Settings.Structure import SettingsW
 
-#   --- Import backend
+#   --- Import backend ---
 from package.Db.Connection import Database
-from package.Ping.Logic import PingO
 
 
 #   --- AppWindow ---
@@ -47,14 +47,17 @@ class AppWindow(QWidget):
         self.setLayout(self.Layout)
 #           --- Get app data ---
         self.Path = str(pathlib.Path(__file__).resolve().parents[0])
-        self.ConfigOffline = json.load(open(f'{self.Path}/assets/JSON/ConfigOffline.json', 'r', encoding='utf-8'))
         self.Screen = QGuiApplication.primaryScreen()
         self.Geometry = self.Screen.availableGeometry()
+        self.LoggedUserId = None
+        self.ConfigOffline = None
 #           --- App functions  ---
         self.Database = Database(self)
-        self.PingO = PingO()
+        self.ReloadConfigOffline()
 
 #   --- Func for opens windows ---
+    def ReloadConfigOffline(self):
+        self.ConfigOffline = json.load(open(f'{self.Path}/assets/JSON/ConfigOffline.json', 'r', encoding='utf-8'))
 
     def Reset(self):
         if self.OpenedW:
@@ -86,15 +89,15 @@ class AppWindow(QWidget):
     def LoginOpen(self):
         self.Reset()
         self.LoggedUserId = None
-        self.OpenW = LoginW(self)
+        self.OpenedW = LoginW(self)
         self.Layout.addWidget(self.OpenedW)
         x, y, w, h = self.Geometry.width()//4, self.Geometry.height()//12, self.Geometry.width()//2, self.Geometry.height()//1.25
         self.setGeometry(x, y, w, h)
 
     def RegisterOpen(self):
         self.Reset()
-        self.OpenW = RegisterW(self)
-        self.Layout.addWidget(self.OpenW)
+        self.OpenedW = RegisterW(self)
+        self.Layout.addWidget(self.OpenedW)
         x, y, w, h = self.Geometry.width()//4, self.Geometry.height()//12, self.Geometry.width()//2, self.Geometry.height()//1.25
         self.setGeometry(x, y, w, h)
         
@@ -123,6 +126,7 @@ class AppWindow(QWidget):
 
     def SetLoggedUserId(self, i):
         self.LoggedUserId = i
+        self.Database.LoggedUserId = self.LoggedUserId
             
 def SetFont():
     font_id = QFontDatabase.addApplicationFont(str(pathlib.Path(__file__).resolve().parents[0])+'/assets/FONTS/NotoSerif-VariableFont_wdth,wght.ttf')

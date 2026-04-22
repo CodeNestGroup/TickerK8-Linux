@@ -79,7 +79,7 @@ def ObjectReloadStyle(self):
     self.setStyleSheet(m+c)
 
 def ObjectRetranslate(self):
-    t = json.load(open(f'{self.Path}/app_files/JSON/ObjectTranslate.json', 'r', encoding='utf-8'))
+    t = json.load(open(f'{self.Path}/assets/JSON/ObjectTranslate.json', 'r', encoding='utf-8'))
     l = self.Language
     self.InfoTitleL.setText(t['InfoTitleL'][l])
     self.InfoNameNameL.setText(t['InfoNameNameL'][l])

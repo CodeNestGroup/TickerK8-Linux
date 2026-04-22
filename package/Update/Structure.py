@@ -2,6 +2,7 @@
 from PySide6.QtWidgets import (
     QWidget,
     QPushButton,
+    QScrollArea,
     QGridLayout,
     QVBoxLayout
 )
@@ -10,9 +11,10 @@ from PySide6.QtCore import (
     QThread,
     QTimer
 )
-#   --- Import Update modules ---
 from .Ui import *
 from .Logic import *
+#   --- Import backend ---
+from ..Ping.Logic import PingO
 
 
 #   --- UpdateW ---
@@ -29,18 +31,23 @@ class UpdateW(QWidget):
 #           --- Get functions from parent [ core ] ---
         self.LoginOpenF = parent.LoginOpen
         self.UpdateChangelogOpenF = parent.UpdateChangelogOpen
+        self.UpdateSettingsOpenF = parent.UpdateSettingsOpen
+#           --- Set Class varaibles ---
+        self.PingT = None
+        self.LastPing = False
+        self.ChangelogDotsT = None
+        self.GetReleasesT = None
 #           --- Set Class Threads ---
         self.PingT = QThread(self)
-        parent.PingO.moveToThread(self.PingT)
-        self.PingT.started.connect(parent.PingO)
-        parent.PingO.Status.connect(lambda s: self.PingHandler(s))
+        self.PingO = PingO()
+        self.PingO.moveToThread(self.PingT)
+        self.PingT.started.connect(self.PingO.run)
+        self.PingO.Status.connect(self.PingHandler)
         self.PingT.start()
-#           --- Set Class varaibles ---
-        self.LastPing = False
 #           --- Create objects ---
         self.Layout = QGridLayout(self)
-        self.ChaneglogW = None
-        self.ChaneglogS = None
+        self.ChangelogW = None
+        self.ChangelogS = None
         self.SettingsB = QPushButton(self)
         self.InstagramB = QPushButton(self)
         self.GithubB = QPushButton(self)
@@ -51,6 +58,7 @@ class UpdateW(QWidget):
         UpdateUi(self)
         UpadateReloadStyle(self)
 #        --- Connect functions ---
+        self.SettingsB.clicked.connect(lambda: UpdateSettingsOpenHandler(self))
         self.InstagramB.clicked.connect(lambda: OpenLink('https://www.instagram.com/codenestgroup/'))
         self.GithubB.clicked.connect(lambda: OpenLink('https://github.com/CodeNestGroup'))
         self.DiscordB.clicked.connect(lambda: OpenLink('https://discord.gg/twZ3SNcC'))
@@ -66,12 +74,16 @@ class UpdateW(QWidget):
             self.LastPing = False
 
     def ChangelogReset(self):
-        if self.ChaneglogW:
-            self.ChaneglogW.deleteLater()
-            self.ChaneglogW = None
+        if self.ChangelogW:
+            self.ChangelogW.deleteLater()
+            self.ChangelogW = None
         if self.ChangelogS:
-            self.ChaneglogS.deleteLater()
-            self.ChaneglogS = None
+            self.ChangelogS.deleteLater()
+            self.ChangelogS = None
+        if self.ChangelogDotsT:
+            self.ChangelogDotsT.stop()
+            self.ChangelogDotsT.deleteLater()
+            self.ChangelogDotsT = None
 
     def ChangelogNoConnection(self):
         self.ChangelogReset()
@@ -93,7 +105,7 @@ class UpdateW(QWidget):
         self.ChangelogIconL = QLabel(self.ChangelogW)
         self.ChangelogMessageL = QLabel(self.ChangelogW)
         self.ChaneglogDotsL = QLabel(self.ChangelogW)
-        self.ChangelogDotsT = QTimer(self.ChaneglogDotsL)
+        self.ChangelogDotsT = QTimer(self)
         self.GetReleasesT = GetReleasesT()
 #           --- Call functions ---
         ChangelogLoadingUi(self)

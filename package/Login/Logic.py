@@ -5,10 +5,10 @@ import datetime
 from PySide6.QtWidgets import (
     QWidget
     )
-from PyQt5.QtCore import (
+from PySide6.QtCore import (
     Qt,
     )
-from PyQt5.QtGui import (
+from PySide6.QtGui import (
     QLinearGradient,
     QPalette,
     QBrush,
@@ -16,7 +16,7 @@ from PyQt5.QtGui import (
     QPixmap,
     QPainter
 )
-from PyQt5.QtSvg import (
+from PySide6.QtSvg import (
     QSvgRenderer
 )
 
@@ -56,9 +56,9 @@ def BackgroundPainter(self):
 #       --- Paint background ---
     Pixmap = QPixmap(self.size())
     Pixmap.fill(QColor(Color0))
-    Painter = QPainter(pixmap)
+    Painter = QPainter(Pixmap)
     Gradient = QLinearGradient(0,0,self.width(), 0)
-    Gadient.setColorAt(X1, QColor(Color1))
+    Gradient.setColorAt(X1, QColor(Color1))
     Gradient.setColorAt(X2, QColor(Color2))
     Painter.fillRect(self.rect(), Gradient)
     Painter.end()
@@ -68,8 +68,8 @@ def BackgroundPainter(self):
     self.setPalette(Palette)
 #       --- Call text and icon change ---
     if self.IndexChanged != Index:
-        Icon = f'{self.Path}/assets/ICON/{Icons[Index]}.svg'
-        ChangeTextCcon(
+        Icon = f'{self.Path}/assets/ICON/{IconsJson[Index]}vintage_elegance_d.svg'
+        ChangeTextIcon(
             self,
             self.LoginWelcomeTranslate['WelcomeTitleL'][Index][l],
             self.LoginWelcomeTranslate['WelcomeSubL'][Index][l],

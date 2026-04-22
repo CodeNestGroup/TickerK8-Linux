@@ -1,25 +1,24 @@
-#   --- Import PySide6 ---
-from PySide6.QtCore import (
-    QObject,
-    QTimer,
-    Signal,
-    Slot
-)
+# Ping/Logic.py
 
-#   --- PingO ---
+import requests
+from PySide6.QtCore import QObject, QThread, Signal, Slot
 
 class PingO(QObject):
     Status = Signal(bool)
     def __init__(self):
-#           --- Set Class Threads ---
-        self.Timer = QTimer()
-        self.Timer.timeout.connect(self.Check)
-        self.Timer.start(5000)
+        super().__init__()
+        self._running = True
 
     @Slot()
-    def Check(self):
-        try:
-            r = requests.get('https://api.github.com', timeout=3)
-            self.Status.emit(True)
-        except Exception as e:
-            self.Status.emit(False)
+    def run(self):
+        while self._running:
+            try:
+                requests.get("https://api.github.com", timeout=3)
+                self.Status.emit(True)
+            except:
+                self.Status.emit(False)
+            QThread.sleep(5)
+
+    @Slot()
+    def stop(self):
+        self._running = False

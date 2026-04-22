@@ -2,13 +2,13 @@
 import json
 import string
 #   --- Import PySide6 ---
-from PyQt5.QtWidgets import (
+from PySide6.QtWidgets import (
     QLineEdit
 )
 
 def ShowHidePassword(self):
     l = self.Language
-    t = json.load(open(self.Path+'/assets/JSON/RegisterTranslate.json', 'r', encoding='utf-8'))['PasswordShowButton']
+    t = json.load(open(self.Path+'/assets/JSON/RegisterTranslate.json', 'r', encoding='utf-8'))['PasswordShowB']
 
     if self.PasswordL.echoMode() == QLineEdit.Normal: 
         self.PasswordL.setEchoMode(QLineEdit.Password) 
@@ -70,9 +70,8 @@ def RegisterController(self):
 
     Password = self.PasswordL.text()
     PasswordConfirm = self.PasswordConfirmL.text()
-    if len(PasswordConfirm) < 8 and not any(h.isupper() for h in PasswordConfirm) and not any(h.isdigit() for h in PasswordConfirm) and not any(h in string.punctuation for h in PasswordConfirm):
+    if len(PasswordConfirm) < 8 or not any(h.isupper() for h in PasswordConfirm) or not any(h.isdigit() for h in PasswordConfirm) or not any(h in string.punctuation for h in PasswordConfirm):
         Password = None
-        self.PasswordL.setStyleSheet(WrongData)
         self.PasswordRequirementsL.setText(f'{t['PasswordRequirementsL'][2][l]}')
         self.PasswordL.setStyleSheet(WrongData)
     if Password  != PasswordConfirm:
@@ -82,9 +81,9 @@ def RegisterController(self):
     
     if Name and Password and Email and PhonePrefix and Phone and Country:
         try:
-            err = self.RegisterUser((Name, Password, Email, PhonePrefix, Phone, Country))
+            err = self.RegisterUserF((Name, Password, Email, PhonePrefix, Phone, Country))
             if not err:
-                self.LoginOpenF
+                self.LoginOpenF()
             else:
                 for e in err:
                     if e == 'USER_EXISTS':
@@ -105,10 +104,10 @@ def UserExists(self):
     self.NameInfoL.setText(t['NameInfoL'][1][l])
 
 def EmailExists(self):
-    t = json.load(open(self.main_path+'/CONFIG/register/translate.json', 'r'))
-    l = json.load(open(self.main_path+'/CONFIG/GLOBAL/global_config.json', 'r'))['language']
-    self.register_emial_lineedit.setStyleSheet('border-color: #c01414;')
-    self.register_email_label.setText(t['register_email_label'][1][l])
+    l = self.Language
+    t = json.load(open(self.Path+'/assets/JSON/RegisterTranslate.json', 'r', encoding='utf-8'))
+    self.EmialL.setStyleSheet('border-color: #c01414;')
+    self.EmailInfoL.setText(t['register_email_label'][1][l])
 
 def PhoneExists(self):
     l = self.Language
@@ -142,7 +141,7 @@ def ResetConfirmEmail(self):
         c = '#e0e0e0'
     elif self.Theme == 'vintage_elegance_d':
         c = '#1a1a1a'
-    self.register_emial_confirm_lineedit.setStyleSheet(f'border-color: {c};')
+    self.EmialConfirmL.setStyleSheet(f'border-color: {c};')
 
 def ResetPhone(self):
     if self.Theme == 'vintage_elegance_l':

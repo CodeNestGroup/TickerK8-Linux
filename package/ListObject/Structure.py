@@ -34,7 +34,7 @@ class ListObjectW(QWidget):
         ListObjectUi(self)
         ListObjectReloadStyle(self)
         if self.ObjectList:
-            self.Data(s)
+            self.Data(parent)
         else:
             self.NullData()
 #       --- Connect functions ---

@@ -23,9 +23,9 @@ class NewsReadS(QScrollArea):
         self.setAttribute(Qt.WA_StyledBackground, True)
 #           --- Get data from parent [ core ] ---
         self.Parent = parent
-        self.Path = self.parent.Path
-        self.Theme = self.parent.Theme
-        self.Language = self.parent.Language
+        self.Path = parent.Path
+        self.Theme = parent.Theme
+        self.Language = parent.Language
 #           --- Set Class varaibles ---
         self.NewsData = NewsData[0]
 #           --- Get functions from parent [ core ] ---

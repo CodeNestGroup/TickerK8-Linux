@@ -198,16 +198,19 @@ def StyleUi(self):
 def StyleRetranslate(self):
     t = json.load(open(f'{self.Path}/assets/JSON/SettingsStyleTranslate.json', 'r', encoding='utf-8'))
     l = self.Language
-    if self.Theme == 'vintage_elegance_light':
+    if self.Theme == 'vintage_elegance_l':
         i = 0
-    elif self.Theme == 'vintage_elegance_dark':
+    elif self.Theme == 'vintage_elegance_d':
         i = 1
     self.PanelTitleL.setText(t['PanelTitleL'][l])
     self.StyleThemeDayNightNameL.setText(t['StyleThemeDayNightNameL'][l]+':')
     self.StyleThemeDayNightValueB.setText(t['StyleThemeDayNightValueB'][l][i])
     self.StyleThemeThemesNameL.setText(t['StyleThemeThemesNameL'][l]+':')
+    self.StyleThemeThemesValueC.blockSignals(True)
+    self.StyleThemeThemesValueC.clear()
     self.StyleThemeThemesValueC.addItems(dict(t['StyleThemeThemesValueC']).keys())
     self.StyleThemeThemesValueC.setCurrentIndex(i)
+    self.StyleThemeThemesValueC.blockSignals(False)
 
 def UpdateUi(self):
     self.PanelS.setObjectName('PanelS')
@@ -262,8 +265,7 @@ def UpdateUi(self):
 
 def UpdateRetranslate(self):
     t = json.load(open(f'{self.Path}/assets/JSON/SettingsUpdateTranslate.json', 'r', encoding='utf-8'))
-    p = str(pathlib.Path(__file__).resolve().parents[4])
-    u = json.load(open(p+'/assets/JSON/Changelog.json', 'r', encoding='utf-8'))
+    u = json.load(open(f'{self.Path}/assets/JSON/Changelog.json', 'r', encoding='utf-8'))
     l = self.Language
     self.PanelTitleL.setText(t['PanelTitleL'][l])
     self.UpdateDescriptionNameL.setText(t['UpdateDescriptionNameL'][l]+':')
@@ -303,8 +305,11 @@ def LanguageRetranslate(self):
     l = self.Language
     self.PanelTitleL.setText(t['PanelTitleL'][l])
     self.LanguageNameL.setText(t['LanguageNameL'][l]+':')
+    self.LanguageValueC.blockSignals(True)
+    self.LanguageValueC.clear()
     self.LanguageValueC.addItems(t['LanguageValueC'])
     self.LanguageValueC.setCurrentIndex(l)
+    self.LanguageValueC.blockSignals(False)
 
 def load_svg(svg_path, width, height):
     renderer = QSvgRenderer(svg_path)

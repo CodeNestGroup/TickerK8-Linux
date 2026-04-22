@@ -55,7 +55,7 @@ def NewsReadUi(self):
     for i in range(100):
         self.HashL.setColumnStretch(i, 1)
     self.HashW.setLayout(self.HashL)
-    self.MainSelf.OpenedL.addWidget(self, 0, 3, 90, 40)
+    self.Parent.OpenedL.addWidget(self, 0, 3, 90, 40)
     self.show()
     self.setWidgetResizable(True)
     self.setWidget(self.ReadW)

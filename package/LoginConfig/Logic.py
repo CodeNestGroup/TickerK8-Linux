@@ -1,6 +1,11 @@
 #   --- Import ---
 import json
 
+from .Ui import (
+    LoginConfigurationReloadStyle,
+    AppConfRetranslate
+)
+
 def ChangePage(self, i):
     self.StepIndex += i
     if self.StepIndex <= -1:
@@ -29,13 +34,20 @@ def ChangeLanguage(self):
         c['language'] = self.LanguageC.currentIndex()
         with open(self.Path+'/assets/JSON/LoginConfigurationConfig.json', 'w', encoding='utf-8') as f:
             json.dump(c, f, indent=4)
+    self.Language = c['language']
+    AppConfRetranslate(self)
 
 def ChangeTheme(self):
+    t = json.load(open(f'{self.Path}/assets/JSON/LoginConfigurationAppConfTranslate.json', 'r', encoding='utf-8'))
     with open(self.Path+'/assets/JSON/LoginConfigurationConfig.json', 'r', encoding='utf-8') as file:
         c = json.load(file)
-        c['theme'] = self.ThemeC.currentText()
+        c['theme'] = t['ThemeC'][self.ThemeC.currentText()]
         with open(self.Path+'/assets/JSON/LoginConfigurationConfig.json', 'w', encoding='utf-8') as f:
             json.dump(c, f, indent=4)
+    self.Theme = c['theme']
+    (self)
+    LoginConfigurationReloadStyle(self)
+    AppConfRetranslate(self)
 
 def ChangeSub(self, i:int, button):
     with open(self.Path+'/assets/JSON/LoginConfigurationConfig.json', 'r', encoding='utf-8') as file:

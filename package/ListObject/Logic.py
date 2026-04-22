@@ -11,7 +11,7 @@ from PySide6.QtCore import (
 )
 
 def SetupData(self, MainSelf):
-    conn = sqlite3.connect(f'{self.Path}/assets/JSON/Tickerk8Offline.db')
+    conn = sqlite3.connect(f'{self.Path}/assets/DB/Tickerk8Offline.db')
     cur = conn.cursor()
     b = None
     for ListName, ListItems in self.ObjectList.items():
@@ -53,7 +53,7 @@ def SetupData(self, MainSelf):
                         self.DataL.addWidget(ObjectTickerB, i, 25, 1, 25)
                         ObjectTickerB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
                         ObjectTickerB.setText(r[1])
-                        ObjectTickerB.clicked.connect(lambda _, ObjectData={"type":ItemData['type'], "id":ItemData['id'], "listname":ListName, "sectionname":SectionName, "objectplace":ii-1}: self.OpenFunc(MainSelf , ObjectData))
+                        ObjectTickerB.clicked.connect(lambda _, ObjectData={"type":ItemData['type'], "id":ItemData['id'], "listname":ListName, "sectionname":SectionName, "objectplace":ii-1}: self.Open(MainSelf , ObjectData))
                         if ItemData['type'] == 'stock' and b == None:
                             b = ObjectTickerB
                     if self.SetData[3]:

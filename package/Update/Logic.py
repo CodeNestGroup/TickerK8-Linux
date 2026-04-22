@@ -27,6 +27,41 @@ from PySide6.QtGui import (
     QDesktopServices
 )
 
+def UpdateCloseThreads(self):
+    try:
+        self.PingO.stop()
+        self.PingT.quit()
+        if self.PingT.isRunning():
+            self.PingT.terminate()
+        self.PingT.deleteLater()
+        self.PingT = None
+        if self.ChangelogDotsT:
+            self.ChangelogDotsT.stop()
+            self.ChangelogDotsT.deleteLater()
+            self.ChangelogDotsT = None
+        if self.GetReleasesT:
+            self.GetReleasesT.stop()
+            self.GetReleasesT.quit()
+            if self.GetReleasesT.isRunning():
+                self.GetReleasesT.terminate()
+            self.GetReleasesT.deleteLater()
+            self.GetReleasesT = None
+
+    except Exception as e:
+        pass
+
+def UpdateSettingsOpenHandler(self):
+    UpdateCloseThreads(self)
+    self.UpdateSettingsOpenF()
+
+def UpdateChangelogOpenHandler(self, d):
+    UpdateCloseThreads(self)
+    self.UpdateChangelogOpenF(d)
+
+def LoginOpenHandler(self):
+    UpdateCloseThreads(self)
+    self.LoginOpenF()
+
 def OpenLink(u):
     try:
         QDesktopServices.openUrl(QUrl(u))
@@ -61,16 +96,16 @@ class GetReleasesT(QThread):
 
 def ChangelogConnectionSetup(self, r):
     GithubVersion = r[0]['published_at']
-    LocalVersion = json.load(open(self.main_path+'/assets/JSON/changelog.json', 'r', encoding='utf-8'))['published_at']
+    LocalVersion = json.load(open(self.Path+'/assets/JSON/Changelog.json', 'r', encoding='utf-8'))['published_at']
     GithubTime = datetime.fromisoformat(GithubVersion.replace("Z", "+00:00"))
     LocalTime = datetime.fromisoformat(LocalVersion.replace("Z", "+00:00"))
     for i, c in enumerate(r, start=0):
         ChangelogB = QPushButton(self.ChangelogW)
-        ChangelogB.clicked.connect(lambda cc=c: self.UpdateChangelogOpenF(cc))
+        ChangelogB.clicked.connect(lambda _, cc=c: UpdateChangelogOpenHandler(self, cc))
         ChangelogB.setObjectName(f'ChangelogB{i}')
         ChangelogB.setProperty('class', 'ChangelogB')
         self.ChangelogL.addWidget(ChangelogB)
-        self.ChangelogB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        ChangelogB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         ChangelogB.setText(c['name'])
     ResetFuncInfo(self)
     self.FuncB = QPushButton(self)
@@ -79,9 +114,9 @@ def ChangelogConnectionSetup(self, r):
     self.Layout.addWidget(self.FuncB, 91, 51, 9, 48)
     self.FuncB.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
     l = self.Language
-    t = json.load(open(f'{self.Path}/assets/UpdateTranslate.json', 'r', encoding='utf-8'))
+    t = json.load(open(f'{self.Path}/assets/JSON/UpdateTranslate.json', 'r', encoding='utf-8'))
     if GithubTime <= LocalTime:
-        self.FuncB.clicked.connect(self.LoginOpenF)
+        self.FuncB.clicked.connect(lambda: LoginOpenHandler(self))
         self.FuncB.setText(t['FuncB'][0][l])
     elif GithubTime > LocalTime:
         self.FuncB.clicked.connect(lambda: StartUpdate(self))

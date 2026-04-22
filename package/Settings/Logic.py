@@ -31,3 +31,7 @@ def ChangeLanguage(self):
     self.Language = self.Config['language']
     SettingsRetranslate(self)
     LanguageRetranslate(self)
+
+def SaveExitController(self):
+    self.SaveSettingsF(self.LoggedUserId, self.Theme, self.Language)
+    self.MainOpenF()

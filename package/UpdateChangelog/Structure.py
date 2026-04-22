@@ -21,8 +21,8 @@ class UpdateChangelogW(QWidget):
         self.setAttribute(Qt.WA_StyledBackground, True)
 #           --- Get data from parent [ core ] ---
         self.Path = parent.Path
-        self.Theme = parent.Config['theme']
-        self.Language = parent.Config['language']
+        self.Theme = parent.ConfigOffline['theme']
+        self.Language = parent.ConfigOffline['language']
         if not data:
             data = json.load(open(self.Path+'/assets/JSON/Changelog.json', 'r', encoding='utf-8'))
         self.ChangelogData = data
@@ -30,11 +30,11 @@ class UpdateChangelogW(QWidget):
         self.Layout = QGridLayout(self)
         self.TitleL = QLabel(self)
         self.ChangelogS = QScrollArea(self)
-        self.ChangelogW = QWidget(self.scroll)
-        self.ChangelogL = QVBoxLayout(self.update_widget)
-        self.ChangelogTitleL = QLabel(self.update_widget)
-        self.ChangelogDateL = QLabel(self.update_widget)
-        self.ChangelogTextL = QLabel(self.update_widget)
+        self.ChangelogW = QWidget(self.ChangelogS)
+        self.ChangelogL = QVBoxLayout(self.ChangelogW)
+        self.ChangelogTitleL = QLabel(self.ChangelogW)
+        self.ChangelogDateL = QLabel(self.ChangelogW)
+        self.ChangelogTextL = QLabel(self.ChangelogW)
         self.ExitB = QPushButton(self)
 #           --- Call functions ---
         UpdateChangelogUi(self)

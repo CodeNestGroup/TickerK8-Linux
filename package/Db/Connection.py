@@ -10,7 +10,7 @@ from cryptography.fernet import Fernet
 
 class Database():
     def __init__(self, parent):
-        super().__init__(parent)
+        super().__init__()
 #           --- Get data from parent [ core ] ---
         self.Path = parent.Path
         self.LoggedUserId = parent.LoggedUserId
@@ -41,10 +41,10 @@ class Database():
                 "token":Conf['token'],
                 "name":'u_app'
             }
-            Response = requests.post(conf['url'], json=Payload)
-            response.raise_for_status()
-            Cipher = Fernet(conf['key'].encode())
-            return json.loads(Cipher.decrypt(response.text.encode()))
+            Response = requests.post(Conf['url'], json=Payload)
+            Response.raise_for_status()
+            Cipher = Fernet(Conf['key'].encode())
+            return json.loads(Cipher.decrypt(Response.text.encode()))
         except:
             pass
 
@@ -54,7 +54,7 @@ class Database():
             LoginData = self.UserDict['u_app']
         except:
             self.UserDict['u_app'] = self.ConnectData()
-            LoginData = self.user_dict['u_app']
+            LoginData = self.UserDict['u_app']
         Conn = pymysql.connect(
             host=LoginData['host'],
             user=LoginData['username'],
@@ -80,7 +80,7 @@ class Database():
     
     def GetUserConfig(self, UserId):
         Conn = self.Connection()
-        Curs = conn.cursor()
+        Curs = Conn.cursor()
         try:
             Curs.execute('CALL get_user_config(%s);', (UserId,))
             Result = Curs.fetchone()
@@ -127,7 +127,7 @@ class Database():
                 UserData
             )
             Curs.execute("SELECT @p_errors;")
-            ErrorsJson = curs.fetchone()[0]
+            ErrorsJson = Curs.fetchone()[0]
             if ErrorsJson:
                 Errors = json.loads(ErrorsJson)
                 Conn.rollback()
@@ -193,7 +193,7 @@ class Database():
         Curs = Conn.cursor()
         try:
             Curs.execute('CALL get_news_list(%s, %s, %s);', (t, json.dumps(i), l))
-            Cesult = Curs.fetchall()
+            Result = Curs.fetchall()
             return Result
         finally:
             Curs.close()
@@ -216,7 +216,7 @@ class Database():
     
     def UpdateNewsPopularity(self, NewsId):
         Conn = self.Connection()
-        Curs = Conn.Cursor()
+        Curs = Conn.cursor()
         try:
             Curs.execute('CALL update_news_popularity(%s);', (NewsId,))
             Conn.commit()
@@ -228,7 +228,7 @@ class Database():
 
     def AddObjectToList(self, N):
         Conn = self.Connection()
-        Curs = Conn.Cursor()
+        Curs = Conn.cursor()
         try:
             Curs.execute('CALL add_object_to_list(%s, %s, %s, %s, %s, %s);', (N['UserId'], N['TableName'], N['SectionName'], N['NewObjectPlace'], N['NewObjectType'], N['NewObjectId']))
             Conn.commit()

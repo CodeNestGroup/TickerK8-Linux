@@ -29,7 +29,7 @@ class MainW(QWidget):
 #           --- Get data from parent [ core ] ---
         self.Path = parent.Path
 #           --- Set Class varaibles ---
-        self.BacgroundConf = json.load(open(f'{self.Path}/assets/JSON/BackgroundConf.json', 'r', encoding='utf-8'))
+        self.BackgroundConf = json.load(open(f'{self.Path}/assets/JSON/BackgroundConf.json', 'r', encoding='utf-8'))
 #           --- Get functions from parent [ core ] ---
         self.GetNewsListF = parent.Database.GetNewsList
         self.GetNewsByIdF = parent.Database.GetNewsById
@@ -59,9 +59,9 @@ class MainW(QWidget):
         MainReloadStyle(self)
         MainRetranslate(self)
         self.MainPage()
-        self.WidgetBackgroundPainter = lambda: WidgetBackgroundPainter(self)
-        self.BackgroundT.timeout.connect(self.WidgetBackgroundPainter)
-        self.BackgroundT.start(1)
+        self.BackgroundPainter = lambda: BackgroundPainter(self)
+        self.BackgroundT.timeout.connect(self.BackgroundPainter)
+        self.BackgroundT.start(1000)
 #           --- Connect  functions ---
         self.NavDefaultB.clicked.connect(self.MainPage)
         self.NavListObjectB.clicked.connect(self.ListPage)
@@ -82,6 +82,7 @@ class MainW(QWidget):
         self.OpenedW = QWidget(self)
         self.OpenedL = QGridLayout(self)
         self.ListObjectW = ListObjectW(self, [1, 1, 1, 1, 1], SetupMainObject)
+        # Object
         self.ListNewsW = ListNewsW(self)
 #           --- Call functions ---
         MainPageUi(self)
@@ -172,9 +173,9 @@ class MainW(QWidget):
 #           --- Call functions ---
         NewsPageUi(self)
         NewsPageRetranslate(self)
-        NewsListS(self, self.GetNewsListD('stock', GetIdByTypeInLists(self.ObjectList, 'stock'), self.Language))
+        NewsListS(self, self.GetNewsListF('stock', GetIdByTypeInLists(self.ObjectList, 'stock'), self.Language))
 #           --- Connect  functions ---
-        self.NewsStockB.clicked.connect(lambda: NewsListS(self, self.GetNewsListD('stock', GetIdByTypeInLists(self.ObjectList, 'stock'), self.Language)))
-        self.NewsMarketB.clicked.connect(lambda: NewsListS(self, self.GetNewsListD('market', GetIdByTypeInLists(self.ObjectList, 'market'), self.Language)))
-        self.NewsCountryB.clicked.connect(lambda: NewsListS(self, self.GetNewsListD('country', GetIdByTypeInLists(self.ObjectList, 'country'), self.Language)))
-        self.NewsWorldB.clicked.connect(lambda: NewsListS(self, self.GetNewsListD('world', [1, 2, 3, 4, 5, 6, 7], self.Language)))
+        self.NewsStockB.clicked.connect(lambda: NewsListS(self, self.GetNewsListF('stock', GetIdByTypeInLists(self.ObjectList, 'stock'), self.Language)))
+        self.NewsMarketB.clicked.connect(lambda: NewsListS(self, self.GetNewsListF('market', GetIdByTypeInLists(self.ObjectList, 'market'), self.Language)))
+        self.NewsCountryB.clicked.connect(lambda: NewsListS(self, self.GetNewsListF('country', GetIdByTypeInLists(self.ObjectList, 'country'), self.Language)))
+        self.NewsWorldB.clicked.connect(lambda: NewsListS(self, self.GetNewsListF('world', [1, 2, 3, 4, 5, 6, 7], self.Language)))

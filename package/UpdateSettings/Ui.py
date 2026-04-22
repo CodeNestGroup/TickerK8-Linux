@@ -59,17 +59,17 @@ def UpdateSettingsReloadStyle(self):
     m = open(f'{self.Path}/assets/CSS/SettingsMain.css').read()
     c = open(f'{self.Path}/assets/CSS/Settings{t}.css').read()
     self.setStyleSheet(m+c)
-    self.NaviExitB.setIcon(QIcon(load_svg(f'/assets/ICON/Exit{t}.svg', 256, 256)))
+    self.NaviExitB.setIcon(QIcon(load_svg(f'{self.Path}/assets/ICON/Exit{t}.svg', 256, 256)))
     self.NaviExitB.setIconSize(self.NaviExitB.size())
 
 def UpdateSettingsRetranslate(self):
-    t = json.load(open(self.Path+'/assets/JSON/SettingsNaviTranslate.json', 'r', encoding='utf-8'))
+    t = json.load(open(f'{self.Path}/assets/JSON/SettingsNaviTranslate.json', 'r', encoding='utf-8'))
     l = self.Language
     self.NaviStyleB.setText(t['NaviStyleB'][l])
     self.NaviUpdateB.setText(t['NaviUpdateB'][l])
     self.NaviLanguageB.setText(t['NaviLanguageB'][l])
 
-def StylePageUi(self):
+def StyleUi(self):
     self.PanelS.setObjectName('PanelS')
     self.PanelW.setObjectName('PanelW')
     self.PanelTitleL.setObjectName('PanelTitleL')
@@ -109,16 +109,19 @@ def StylePageUi(self):
 def StyleRetranslate(self):
     t = json.load(open(f'{self.Path}/assets/JSON/SettingsStyleTranslate.json', 'r'))
     l = self.Language
-    if self.Theme == 'vintage_elegance_light':
+    if self.Theme == 'vintage_elegance_l':
         i = 0
-    elif self.Theme == 'vintage_elegance_dark':
+    elif self.Theme == 'vintage_elegance_d':
         i = 1
     self.PanelTitleL.setText(t['PanelTitleL'][l])
     self.StyleThemeDayNightNameL.setText(t['StyleThemeDayNightNameL'][l]+':')
     self.StyleThemeDayNightValueB.setText(t['StyleThemeDayNightValueB'][l][i])
     self.StyleThemeThemesNameL.setText(t['StyleThemeThemesNameL'][l]+':')
+    self.StyleThemeThemesValueC.blockSignals(True)
+    self.StyleThemeThemesValueC.clear()
     self.StyleThemeThemesValueC.addItems(dict(t['StyleThemeThemesValueC']).keys())
     self.StyleThemeThemesValueC.setCurrentIndex(i)
+    self.StyleThemeThemesValueC.blockSignals(False)
 
 def UpdateUi(self):
     self.PanelS.setObjectName('PanelS')
@@ -209,12 +212,15 @@ def LanguageUi(self):
     self.LanguageValueC.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
 def LanguageRetranslate(self):
-    t = json.load(open(f'{self.Path}/assets/JSON/Settings/SettingsLanguageTranslate.json', 'r', encoding='utf-8'))
+    t = json.load(open(f'{self.Path}/assets/JSON/SettingsLanguageTranslate.json', 'r', encoding='utf-8'))
     l = self.Language
     self.PanelTitleL.setText(t['PanelTitleL'][l])
     self.LanguageNameL.setText(t['LanguageNameL'][l]+':')
+    self.LanguageValueC.blockSignals(True)
+    self.LanguageValueC.clear()
     self.LanguageValueC.addItems(t['LanguageValueC'])
     self.LanguageValueC.setCurrentIndex(l)
+    self.LanguageValueC.blockSignals(False)
 
 def load_svg(svg_path, width, height):
     renderer = QSvgRenderer(svg_path)
