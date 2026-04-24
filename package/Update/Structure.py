@@ -75,14 +75,24 @@ class UpdateW(QWidget):
 
     def ChangelogReset(self):
         if self.ChangelogW:
-            self.ChangelogW.deleteLater()
+            try:
+                self.ChangelogW.deleteLater()
+            except:
+                pass
             self.ChangelogW = None
         if self.ChangelogS:
-            self.ChangelogS.deleteLater()
+            try:
+                self.ChangelogS.deleteLater()
+            except:
+                pass
             self.ChangelogS = None
         if self.ChangelogDotsT:
-            self.ChangelogDotsT.stop()
-            self.ChangelogDotsT.deleteLater()
+            try:
+                self.ChangelogDotsT.quit()
+                self.ChangelogDotsT.wait()
+                self.ChangelogDotsT.deleteLater()
+            except:
+                pass
             self.ChangelogDotsT = None
 
     def ChangelogNoConnection(self):

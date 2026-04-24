@@ -29,12 +29,13 @@ from PySide6.QtGui import (
 
 def UpdateCloseThreads(self):
     try:
-        self.PingO.stop()
-        self.PingT.quit()
-        if self.PingT.isRunning():
-            self.PingT.terminate()
-        self.PingT.deleteLater()
-        self.PingT = None
+        if self.PingT:
+            self.PingO.stop()
+            self.PingT.quit()
+            if self.PingT.isRunning():
+                self.PingT.terminate()
+            self.PingT.deleteLater()
+            self.PingT = None
         if self.ChangelogDotsT:
             self.ChangelogDotsT.stop()
             self.ChangelogDotsT.deleteLater()
@@ -88,11 +89,16 @@ class GetReleasesT(QThread):
         Finished = Signal(list)
         def __init__(self):
             super().__init__()
+            self.IsRunning = True
             self.start()
 
         def run(self):
-            r = urllib.request.urlopen('https://api.github.com/repos/CodeNestGroup/TickerK8-Linux/releases')
-            self.Finished.emit(json.loads(r.read().decode()))
+            while self.IsRunning:
+                r = urllib.request.urlopen('https://api.github.com/repos/CodeNestGroup/TickerK8-Linux/releases')
+                self.Finished.emit(json.loads(r.read().decode()))
+        
+        def stop(self):
+            self.IsRunning = False
 
 def ChangelogConnectionSetup(self, r):
     GithubVersion = r[0]['published_at']
