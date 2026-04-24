@@ -17,7 +17,10 @@ class PingO(QObject):
                 self.Status.emit(True)
             except:
                 self.Status.emit(False)
-            QThread.sleep(5)
+            for _ in range(50):
+                if not self._running:
+                    return
+                QThread.msleep(100)
 
     @Slot()
     def stop(self):

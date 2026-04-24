@@ -32,8 +32,7 @@ def UpdateCloseThreads(self):
         if self.PingT:
             self.PingO.stop()
             self.PingT.quit()
-            if self.PingT.isRunning():
-                self.PingT.terminate()
+            self.PingT.wait()
             self.PingT.deleteLater()
             self.PingT = None
         if self.ChangelogDotsT:
@@ -47,7 +46,6 @@ def UpdateCloseThreads(self):
                 self.GetReleasesT.terminate()
             self.GetReleasesT.deleteLater()
             self.GetReleasesT = None
-
     except Exception as e:
         pass
 
