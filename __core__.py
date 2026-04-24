@@ -1,6 +1,5 @@
 #   --- Import ---
 import sys
-import pathlib
 import json
 
 #   --- Import PySide6 ---
@@ -30,6 +29,7 @@ from package.Main.Structure import MainW
 from package.Settings.Structure import SettingsW
 
 #   --- Import backend ---
+from package.Path.Structure import Path
 from package.Db.Connection import Database
 
 
@@ -46,9 +46,8 @@ class AppWindow(QWidget):
         self.Layout.setContentsMargins(0,0,0,0)
         self.setLayout(self.Layout)
 #           --- Get app data ---
-        self.Path = str(pathlib.Path(__file__).resolve().parents[0])
-        self.Screen = QGuiApplication.primaryScreen()
-        self.Geometry = self.Screen.availableGeometry()
+        self.Path = Path()
+        self.Geometry = self.screen().availableGeometry()
         self.LoggedUserId = None
         self.ConfigOffline = None
 #           --- App functions  ---
@@ -129,7 +128,7 @@ class AppWindow(QWidget):
         self.Database.LoggedUserId = self.LoggedUserId
             
 def SetFont():
-    font_id = QFontDatabase.addApplicationFont(str(pathlib.Path(__file__).resolve().parents[0])+'/assets/FONTS/NotoSerif-VariableFont_wdth,wght.ttf')
+    font_id = QFontDatabase.addApplicationFont(str(Path())+'/assets/FONTS/NotoSerif-VariableFont_wdth,wght.ttf')
     font_families = QFontDatabase.applicationFontFamilies(font_id) 
     return QFont(font_families[0])
 
