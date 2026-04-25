@@ -13,7 +13,7 @@ class PingO(QObject):
     def run(self):
         while self._running:
             try:
-                requests.get("https://api.github.com", timeout=3)
+                requests.get("https://www.google.com", timeout=3)
                 self.Status.emit(True)
             except:
                 self.Status.emit(False)

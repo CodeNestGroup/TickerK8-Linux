@@ -86,14 +86,6 @@ class UpdateW(QWidget):
             except:
                 pass
             self.ChangelogS = None
-        if self.ChangelogDotsT:
-            try:
-                self.ChangelogDotsT.quit()
-                self.ChangelogDotsT.wait()
-                self.ChangelogDotsT.deleteLater()
-            except:
-                pass
-            self.ChangelogDotsT = None
 
     def ChangelogNoConnection(self):
         self.ChangelogReset()
@@ -115,17 +107,17 @@ class UpdateW(QWidget):
         self.ChangelogIconL = QLabel(self.ChangelogW)
         self.ChangelogMessageL = QLabel(self.ChangelogW)
         self.ChaneglogDotsL = QLabel(self.ChangelogW)
-        self.ChangelogDotsT = QTimer(self)
+        self.ChangelogDotsT = QTimer()
         self.GetReleasesT = GetReleasesT()
+        self.GetReleasesT.setObjectName('111')
 #           --- Call functions ---
         ChangelogLoadingUi(self)
         ChangelogLoadingRetranslate(self)
 #           --- Connect functions ---
         self.ChangelogDotsT.timeout.connect(lambda: DotsUpdate(self))
         self.ChangelogDotsT.start(500)
-        self.GetReleasesT.Finished.connect(lambda r: self.ChangelogConnection(r))
-        self.GetReleasesT.Finished.connect(lambda: self.GetReleasesT.quit())
-        self.GetReleasesT.Finished.connect(lambda: self.GetReleasesT.deleteLater())
+        self.GetReleasesT.List.connect(lambda r: self.ChangelogConnection(r))
+        self.GetReleasesT.Finished.connect(lambda: CloseGetReleasesThread(self))
         self.GetReleasesT.start()
 
     def ChangelogConnection(self, r):
