@@ -37,17 +37,26 @@ def UpdateCloseThreads(self):
             self.PingT = None
         if self.ChangelogDotsT:
             self.ChangelogDotsT.stop()
+            self.ChangelogDotsT.wait()
             self.ChangelogDotsT.deleteLater()
             self.ChangelogDotsT = None
         if self.GetReleasesT:
-            self.GetReleasesT.stop()
+            self.GetReleasesT.IsRunning = False
             self.GetReleasesT.quit()
-            if self.GetReleasesT.isRunning():
-                self.GetReleasesT.terminate()
+            self.GetReleasesT.wait()
             self.GetReleasesT.deleteLater()
             self.GetReleasesT = None
     except Exception as e:
         pass
+
+def CloseGetReleasesThread(self):
+    self.GetReleasesT.quit()
+    self.GetReleasesT.wait()
+    self.GetReleasesT.deleteLater()
+    self.GetReleasesT = None
+    self.ChangelogDotsT.stop()
+    self.ChangelogDotsT.deleteLater()
+    self.ChangelogDotsT = None
 
 def UpdateSettingsOpenHandler(self):
     UpdateCloseThreads(self)
@@ -84,7 +93,8 @@ def ResetFuncInfo(self):
         self.InfoL = None
 
 class GetReleasesT(QThread):
-        Finished = Signal(list)
+        List = Signal(list)
+        Finished = Signal()
         def __init__(self):
             super().__init__()
             self.IsRunning = True
@@ -92,11 +102,17 @@ class GetReleasesT(QThread):
 
         def run(self):
             while self.IsRunning:
-                r = urllib.request.urlopen('https://api.github.com/repos/CodeNestGroup/TickerK8-Linux/releases')
-                self.Finished.emit(json.loads(r.read().decode()))
+                try:
+                    r = urllib.request.urlopen('https://api.github.com/repos/CodeNestGroup/TickerK8-Linux/releases')
+                    self.List.emit(json.loads(r.read().decode()))
+                    self.stop()
+                    break
+                except Exception as e:
+                    pass
         
         def stop(self):
             self.IsRunning = False
+            self.Finished.emit()
 
 def ChangelogConnectionSetup(self, r):
     GithubVersion = r[0]['published_at']
